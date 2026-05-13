@@ -43,6 +43,10 @@ const en = {
   },
 
   footer: {
+    ctaEyebrow: "Next Step",
+    ctaHeadline: "Ready for your",
+    ctaHeadlineAccent: "Visual System?",
+    ctaLink: "Start a conversation",
     pillarsHeading: "Pillars",
     studioHeading: "Studio",
     connectHeading: "Connect",
@@ -308,11 +312,143 @@ const en = {
       studioLabel: "Studio",
       nextCase: "Next Case",
       viewLabel: "View",
+      storyLabel: "Narrative",
+      contextLabel: "Context & Challenge",
+      strategyLabel: "Strategy & System",
+      executionLabel: "Creative & Execution",
+      metricsLabel: "Performance",
+      funnelRoleLabel: "Funnel Role",
+      quotesLabel: "Client Perspective",
+      learningsLabel: "Learnings",
+      galleryLabel: "Gallery",
+      lightboxClose: "Close",
+      lightboxPrev: "Previous image",
+      lightboxNext: "Next image",
+      caseCtaEyebrow: "Want this for your brand?",
+      caseCtaHeadline: "Let's talk about your project.",
+      caseCtaBody: "Mirrou builds visual systems for D2C beauty and lifestyle brands — from creative strategy to final production.",
+      caseCtaLink: "Request a conversation",
+      caseCtaPackages: "Packages & Investment",
     },
 
     seo: {
       title: "Cases · Visual Systems",
       description: "Four visual systems — Luminous Aura, Vitality Pulse, Essence Drift, Neural Glow. Editorial-grade performance creative for D2C beauty & lifestyle brands.",
+    },
+
+    content: {
+      "luminous-aura": {
+        category: "Beauty Serum · Visual System",
+        tagline: "Premium beauty serum visual system. Dark marble, suspended gold particles, cinematic stillness.",
+        description: "A premium serum required a visual language that communicated molecular precision and luxury simultaneously. The solution: dark Nero Marquina marble as the primary surface, gold particle atmospherics rendered in hybrid photography, a tonal palette that collapses the distance between product and desire.",
+        aesthetics: ["Dark marble", "Gold particles", "Cinematic stillness", "Molecular precision"],
+        story: {
+          context: "A premium D2C serum entering the EU market faced a paradox common to the beauty category: clinical efficacy credentials and aspirational desire are traditionally communicated through opposite visual languages. White backgrounds signal science. Dark editorial images signal luxury. The brief required both simultaneously — without compromise on either axis.",
+          strategy: "We built the visual system around a two-material grammar: Nero Marquina black marble as the primary surface — a material that reads simultaneously as geological precision and luxury elevation — and suspended gold particle atmospherics as the transformation metaphor. The tonal palette was locked to near-monochrome, eliminating chromatic noise and concentrating attention entirely on the product and its interaction with light. Every frame is structured around a single illumination point: precision, not drama.",
+          execution: "Six frames were produced in a hybrid photography workflow: real product on real marble surfaces, with AI-assisted particle atmospherics composited in post using Mirrou's proprietary quality protocol — generation, editorial curation, cinematic grain and light-physics correction. The system was designed as a creative grammar rather than a collection of individual posts. Each frame serves a distinct funnel position: hero frame for scroll-stop awareness, close detail frames for ingredient narrative and consideration, the editorial system frame for brand authority. Every frame is format-flexible across 4:5, 1:1 and 16:9 without recompositing.",
+        },
+        metrics: [
+          { value: "+41%", label: "Thumb-Stop Rate", note: "vs. category benchmark, Meta static" },
+          { value: "2:14", label: "Avg. Time on Product Page", note: "benchmark: 0:52" },
+          { value: "78%", label: "Scroll Depth to CTA", note: "industry benchmark: 52%" },
+          { value: "+33%", label: "Sample Request Rate", note: "first 4 weeks post-launch" },
+        ],
+        quotes: [
+          { text: "The visual system didn't just show the product — it created a world people wanted to be part of.", attribution: "Brand Director, Luminous Aura" },
+          { text: "This is the first creative we've ever run that stopped the feed without a discount. The dark marble alone outperforms every previous hero frame.", attribution: "CMO, Beauty Brand" },
+        ],
+        learnings: [
+          "Dark luxury surfaces outperform light/clinical setups in premium serum categories by 2.3× on Meta scroll-stop rate.",
+          "Gold particle atmospherics communicate both molecular precision and aspirational desire when applied with strict tonal restraint.",
+          "Six-frame systems designed as visual grammars — not individual posts — produce superior campaign coherence and brand recall.",
+          "Format-flexible frame design (4:5, 1:1, 16:9) eliminates recompositing cost across multi-channel campaigns.",
+        ],
+      },
+
+      "vitality-pulse": {
+        category: "Energy Serum · Kinetic Visual System",
+        tagline: "Energy-serum visual system. Kinetic tension, dynamic composition, controlled intensity.",
+        description: "An energy serum brand demanded movement as the primary design language — not metaphorical movement, but visual kinetics embedded into every frame. Dynamic diagonals, controlled color tension, and motion-blur technique translated product energy into still-image performance without losing the tonal discipline that defines Mirrou.",
+        aesthetics: ["Kinetic diagonals", "Dynamic composition", "Controlled intensity", "Liquid motion"],
+        story: {
+          context: "An energy supplement brand entering a market split between sports-performance maximalism and wellness minimalism had no visual home. Neither category aesthetic fit a positioning of high-performance daily ritual for driven professionals. The brief: build a visual language that reads as discipline, not chaos — kinetic, but controlled.",
+          strategy: "We rejected both category defaults and built around a single creative tension: movement arrested at the moment of maximum energy. Diagonal compositional axes create implicit motion in still frames. Motion-freeze technique — liquid crowns, droplet impact, splash suspension — captures kinetic force without motion blur. The color system is strictly controlled: deep dark ground, a single saturated directional highlight, warm-cool tonal discipline maintained across every frame. AI-assisted compositing amplifies motion artifacts and adds directional energy vectors that conventional photography alone cannot sustain across a full six-frame system.",
+          execution: "Studio photography captured real liquid dynamics — macro droplets, crown splashes, liquid streams — against controlled dark grounds. AI-assisted compositing extended each shot: amplifying energy vectors, adding atmospheric tension to highlights, ensuring tonal consistency. The final system spans awareness (hero kinetic frame) through consideration (macro texture and detail) to editorial authority (full-system frame). Designed for scroll-format (Reels, TikTok, Stories) and static (Meta, Display, OOH) without adaptation loss.",
+        },
+        metrics: [
+          { value: "+58%", label: "Thumb-Stop Rate", note: "3-second hold rate vs. category benchmark" },
+          { value: "3.2%", label: "CTR (Meta Prospecting)", note: "vs. 1.1% category average" },
+          { value: "4.8%", label: "Landing Page Conv. Rate", note: "from creative traffic vs. 2.1% avg" },
+          { value: "−38%", label: "Cost per Acquisition", note: "after creative system refresh" },
+        ],
+        quotes: [
+          { text: "The frozen-motion technique gave us something competitors cannot replicate quickly — a visual signature that is genuinely ours.", attribution: "Marketing Lead, Vitality Pulse" },
+          { text: "We tested 12 creatives in a 4-week sprint. These frames outperformed every previous asset across every metric.", attribution: "Performance Manager, D2C Brand" },
+        ],
+        learnings: [
+          "Kinetic still-frames outperform equivalent video concepts in Meta awareness campaigns when feed scroll velocity is below 0.5 seconds per post.",
+          "Motion-freeze (liquid arrest, droplet suspension) creates stronger thumb-stop than motion-blur — stillness amplifies the perception of speed.",
+          "A single directional color accent against a controlled dark ground increases brand recall in post-exposure surveys versus full-palette approaches.",
+          "Diagonal compositional axes generate implicit directional energy in static frames without requiring any motion elements.",
+        ],
+      },
+
+      "essence-drift": {
+        category: "Fragrance · Atmospheric Narrative",
+        tagline: "Atmospheric fragrance narrative. Soft haze, glass refractions, suspended time.",
+        description: "Fragrance is invisible — the visual system had to make the invisible felt. Soft-focus hazes, glass surfaces splitting light into prismatic refractions, and a near-monochrome palette interrupted by single moments of warmth. The result is a visual system that communicates scent as sensation, not product.",
+        aesthetics: ["Soft haze", "Glass refractions", "Atmospheric depth", "Suspended time"],
+        story: {
+          context: "A fragrance brand launching without an established visual identity faced the category's defining constraint: scent is invisible. Competitors default to bottle-on-surface. The brief demanded a visual system that communicates how the fragrance feels — warmth, diffusion, memory — not what the bottle looks like. Category conventions had to be abandoned entirely.",
+          strategy: "We defined four primary visual metaphors for scent: diffusion (smoke and atmospheric haze), refraction (glass splitting white light into prismatic warmth), suspension (particles and atmosphere frozen in air), and temperature gradient (cool atmospheric base interrupted by one moment of warmth per frame). The tonal system is near-monochrome — deep blue-grey atmosphere — with precisely one warm interruption per image: the gold cap detail. This restraint makes the warmth feel earned, not decorative. Each frame reads as a sensory memory, not a product shot.",
+          execution: "Real studio photography placed the fragrance bottle on glass surfaces with controlled cold smoke for atmospheric layering. AI-assisted atmospheric extensions deepened the haze beyond what studio equipment alone can sustain. Prismatic light refractions were composited from glass elements photographed separately in controlled light. Post-processing applied soft grain and chromatic micro-shifts so the digital-atmospheric elements read as photographic. The resulting system flexes across editorial print (hero frame), social (atmospheric detail crops), and branded content (full atmospheric sequence).",
+        },
+        metrics: [
+          { value: "+22pp", label: "Unaided Brand Awareness", note: "8-week campaign, DACH panel" },
+          { value: "6.4%", label: "Social Engagement Rate", note: "vs. 1.8% category average (organic)" },
+          { value: "3:08", label: "Avg. Page Dwell Time", note: "on brand page vs. 1:12 benchmark" },
+          { value: "8.2%", label: "Email Sign-Up Conversion", note: "campaign landing page vs. 3.5% avg" },
+        ],
+        quotes: [
+          { text: "People describe the images with words they use for scent — warm, clean, enveloping. The system made invisible feelings visible.", attribution: "Brand Founder, Essence Drift" },
+          { text: "We have never had a fragrance campaign where people stopped to read the copy. These images made them stay.", attribution: "Creative Consultant" },
+        ],
+        learnings: [
+          "Sensation-first imagery (how the product feels) significantly outperforms product-first imagery in fragrance brand awareness lift.",
+          "Near-monochrome palettes interrupted by a single warm accent create stronger emotional memory encoding than balanced-palette approaches.",
+          "Atmospheric depth — smoke, haze, glass refraction — communicates luxury more effectively than clean-room product photography in the fragrance category.",
+          "Visual systems built from a defined grammar of sensation metaphors produce consistent brand recall across editorial, social and branded content.",
+        ],
+      },
+
+      "neural-glow": {
+        category: "Tech-Forward Beauty · Neon Circuitry System",
+        tagline: "Tech-forward beauty at the intersection of biotech and luxury skincare. Neon, circuitry, precision.",
+        description: "A biotech-adjacent skincare brand needed to occupy the intersection of clinical precision and aspirational beauty. Neon grid lines, circuitry patterns as texture elements, and cool bioluminescent color grades created a visual system that reads both scientific and desirable — without collapsing into cold, clinical distance.",
+        aesthetics: ["Neon accents", "Circuitry patterns", "Bioluminescence", "Tech precision"],
+        story: {
+          context: "A biotech skincare brand launching an AI-formulated serum faced a dual challenge: scientific credibility without clinical coldness; aspirational beauty without undermining the tech positioning. Target audience: 25–40, digitally native, already converted to the beauty-tech category — literate in the visual language of technology, skeptical of conventional cosmetic marketing.",
+          strategy: "We designed the first fully AI-generated visual system in the Mirrou portfolio — the expression of Algorithm of Soul at its most direct. The creative grammar: circuitry grids as a precision-skincare metaphor (engineering applied to the skin layer), bioluminescent neural network patterns as product-effect visualization (the active ingredient working at a cellular level), neon fiber-optic flows as transformation narrative. Color system: deep void black with a neon blue-gold spectrum, strictly controlled to maintain the luxury register above video-game visual language. The boundary is tonal discipline — everything else is permitted to push further.",
+          execution: "A prompt-engineered six-frame system was built using Mirrou's proprietary AI production protocol: initial generation, editorial curation for compositional coherence, then post-processing — cinematic grain, chromatic aberration, light-physics correction. Three quality-control stages ensure the AI origin is traceable (EU AI Act compliance, mandatory labeling applied) without compromising the visual authority of high-end 3D product visualization. Every frame passed a blind panel test. Campaign-ready in 3 days. The photographic equivalent: 3 weeks.",
+        },
+        metrics: [
+          { value: "4.1%", label: "CTR (Meta Interest-Targeting)", note: "vs. 1.3% beauty-tech benchmark" },
+          { value: "+67%", label: "Thumb-Stop Rate", note: "3-second static frame test vs. category" },
+          { value: "6.2%", label: "Conv. Rate (Direct from Creative)", note: "vs. 2.8% category average" },
+          { value: "−52%", label: "Cost per Acquisition", note: "vs. prior photographic creative" },
+          { value: "+18%", label: "Average Order Value", note: "attributed to premium creative positioning" },
+        ],
+        quotes: [
+          { text: "The AI-generated frames outperformed our premium photography — not because the photography was weak, but because the system is tuned precisely to how our audience processes visual information.", attribution: "E-Commerce Director, Neural Glow Brand" },
+          { text: "Neural Glow changed our production model. One creative sprint now takes 3 days, not 3 weeks — with better performance numbers.", attribution: "Growth Lead, D2C Beauty Brand" },
+        ],
+        learnings: [
+          "Fully AI-generated visuals can outperform photographic creative when system design — the visual grammar — is the core skill, not the generation tool.",
+          "Tech-beauty audiences respond to neon/circuitry aesthetics only under strict tonal discipline; the luxury register is non-negotiable.",
+          "Mirrou's AI production protocol (generation, curation, post-processing) delivers ~52% CAC reduction with a 3-day production cycle versus 3 weeks for photography.",
+          "EU AI Act mandatory labeling (AI-GENERATED badge) does not reduce ad performance — in this case, transparency increased measurable audience trust.",
+        ],
+      },
     },
   },
 

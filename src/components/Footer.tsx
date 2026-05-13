@@ -1,4 +1,6 @@
 import { Link } from "react-router-dom";
+import { motion } from "motion/react";
+import { ArrowRight } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import { PILLARS, SITE } from "../content/site-data";
 
@@ -8,6 +10,40 @@ export default function Footer() {
 
   return (
     <footer id="main-footer" className="border-t border-white/6 mt-32">
+      {/* ── Conversion CTA ─────────────────────────────────────────── */}
+      <div className="border-b border-white/6">
+        <div className="max-w-7xl mx-auto px-6 md:px-10 py-24 md:py-32 flex flex-col md:flex-row items-start md:items-end justify-between gap-10">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-80px" }}
+            transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
+          >
+            <p className="font-mono text-[10px] uppercase tracking-[0.45em] text-accent mb-5">
+              {t("ctaEyebrow")}
+            </p>
+            <h2 className="font-serif italic text-5xl md:text-6xl lg:text-7xl leading-[0.92] tracking-tight text-ink">
+              {t("ctaHeadline")}
+              <br />
+              <span className="text-accent">{t("ctaHeadlineAccent")}</span>
+            </h2>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 16 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-80px" }}
+            transition={{ duration: 0.9, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
+            className="shrink-0"
+          >
+            <Link to="/kontakt" className="btn-primary">
+              {t("ctaLink")}
+              <ArrowRight size={14} aria-hidden />
+            </Link>
+          </motion.div>
+        </div>
+      </div>
+
       <div className="max-w-7xl mx-auto px-6 md:px-10 py-20 grid gap-12 md:grid-cols-12">
         <div className="md:col-span-5">
           <p className="font-serif italic text-3xl text-ink">{SITE.name}</p>

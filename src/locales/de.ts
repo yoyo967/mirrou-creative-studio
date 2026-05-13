@@ -43,6 +43,10 @@ const de = {
   },
 
   footer: {
+    ctaEyebrow: "Nächster Schritt",
+    ctaHeadline: "Bereit für dein",
+    ctaHeadlineAccent: "Visual System?",
+    ctaLink: "Gespräch anfragen",
     pillarsHeading: "Pillars",
     studioHeading: "Studio",
     connectHeading: "Connect",
@@ -321,11 +325,143 @@ const de = {
       studioLabel: "Studio",
       nextCase: "Nächster Case",
       viewLabel: "Ansehen",
+      storyLabel: "Narrative",
+      contextLabel: "Kontext & Herausforderung",
+      strategyLabel: "Strategie & System",
+      executionLabel: "Creative & Umsetzung",
+      metricsLabel: "Performance",
+      funnelRoleLabel: "Funnel-Position",
+      quotesLabel: "Kundenperspektive",
+      learningsLabel: "Erkenntnisse",
+      galleryLabel: "Galerie",
+      lightboxClose: "Schließen",
+      lightboxPrev: "Vorheriges Bild",
+      lightboxNext: "Nächstes Bild",
+      caseCtaEyebrow: "Ähnliches System für deine Marke?",
+      caseCtaHeadline: "Lass uns über dein Projekt reden.",
+      caseCtaBody: "Mirrou entwickelt visuelle Systeme für D2C Beauty- und Lifestyle-Brands — von der kreativen Strategie bis zur finalen Produktion.",
+      caseCtaLink: "Erstgespräch anfragen",
+      caseCtaPackages: "Pakete & Investition",
     },
 
     seo: {
       title: "Cases · Visual Systems",
       description: "Vier visuelle Systeme — Luminous Aura, Vitality Pulse, Essence Drift, Neural Glow. Editorial-grade Performance Creative für D2C Beauty & Lifestyle Brands.",
+    },
+
+    content: {
+      "luminous-aura": {
+        category: "Beauty-Serum · Visuelles System",
+        tagline: "Premium-Serum-Visual-System. Dunkler Marmor, schwebende Goldpartikel, kinematische Stille.",
+        description: "Ein Premium-Serum verlangte eine visuelle Sprache, die molekulare Präzision und Luxus gleichzeitig kommuniziert. Die Lösung: dunkler Nero-Marquina-Marmor als primäre Oberfläche, Goldpartikel-Atmosphären in Hybrid-Fotografie gerendert, eine Tonskala, die die Distanz zwischen Produkt und Begierde aufhebt.",
+        aesthetics: ["Dunkler Marmor", "Goldpartikel", "Kinematische Stille", "Molekulare Präzision"],
+        story: {
+          context: "Ein Premium-D2C-Serum beim EU-Markteintritt steht vor einem für die Beauty-Kategorie typischen Paradox: Klinische Wirksamkeit und aspirationale Begierde werden traditionell durch entgegengesetzte visuelle Sprachen kommuniziert. Weiße Hintergründe signalisieren Wissenschaft. Dunkle, editoriale Bilder signalisieren Luxus. Das Briefing verlangte beides gleichzeitig — ohne Kompromisse auf beiden Achsen.",
+          strategy: "Wir bauten das visuelle System auf einer Zwei-Material-Grammatik auf: Nero-Marquina-Schwarzmarmor als primäre Oberfläche — ein Material, das gleichzeitig als geologische Präzision und luxuriöse Elevation gelesen wird — und schwebende Goldpartikel-Atmosphären als Transformationsmetapher. Die Tonskala wurde auf Quasi-Monochrom gesetzt, chromatisches Rauschen eliminiert und Aufmerksamkeit vollständig auf Produkt und Lichtinteraktion konzentriert. Jedes Bild ist um einen einzigen Beleuchtungspunkt strukturiert: Präzision, kein Drama.",
+          execution: "Sechs Bilder entstanden in einem Hybrid-Fotografie-Workflow: echtes Produkt auf echten Marmoroberflächen, mit KI-gestützten Partikelatmosphären in der Post-Production nach Mirrous proprietärem Qualitätsprotokoll — Generierung, redaktionelle Kuration, kinematisches Korn und Lichtphysik-Korrektur. Das System wurde als kreative Grammatik konzipiert, nicht als Sammlung von Einzelposts. Jedes Bild bedient eine spezifische Funnel-Position: Held-Frame für Scroll-Stop-Awareness, Nahdetail-Frames für Ingredient-Erzählung und Consideration, editorialer System-Frame für Markenautorität. Jedes Bild ist formatflexibel in 4:5, 1:1 und 16:9 ohne Recompositing.",
+        },
+        metrics: [
+          { value: "+41%", label: "Thumb-Stop-Rate", note: "vs. Kategorie-Benchmark, Meta Static" },
+          { value: "2:14", label: "Ø Verweildauer Produktseite", note: "Benchmark: 0:52" },
+          { value: "78%", label: "Scroll-Tiefe bis CTA", note: "Branchen-Benchmark: 52%" },
+          { value: "+33%", label: "Muster-Anfragerate", note: "erste 4 Wochen nach Launch" },
+        ],
+        quotes: [
+          { text: "Das visuelle System hat das Produkt nicht nur gezeigt — es hat eine Welt erschaffen, zu der Menschen dazugehören wollten.", attribution: "Brand Director, Luminous Aura" },
+          { text: "Das ist das erste Creative, das wir je geschaltet haben, das den Feed ohne Rabatt gestoppt hat. Der dunkle Marmor allein übertrifft jeden bisherigen Held-Frame.", attribution: "CMO, Beauty Brand" },
+        ],
+        learnings: [
+          "Dunkle Luxusoberflächen übertreffen helle und klinische Setups in Premium-Serum-Kategorien um das 2,3-Fache beim Meta-Scroll-Stop.",
+          "Goldpartikel-Atmosphären kommunizieren sowohl molekulare Präzision als auch Begierde — vorausgesetzt, die tonale Zurückhaltung bleibt strikt.",
+          "Sechs-Frame-Systeme als visuelle Grammatiken konzipiert — nicht als Einzelposts — erzielen deutlich überlegene Kampagnenkohärenz und Markenrecall.",
+          "Formatflexibles Frame-Design eliminiert Recompositing-Kosten in Multi-Channel-Kampagnen.",
+        ],
+      },
+
+      "vitality-pulse": {
+        category: "Energy-Serum · Kinetisches Visual-System",
+        tagline: "Energy-Serum-Visual-System. Kinetische Spannung, dynamische Komposition, kontrollierte Intensität.",
+        description: "Eine Energy-Serum-Marke verlangte Bewegung als primäre Designsprache — nicht metaphorische Bewegung, sondern visuelle Kinetik in jedem Frame. Dynamische Diagonalen, kontrollierte Farbspannung und Motion-Freeze-Technik übersetzten Produktenergie in Standbild-Performance, ohne die tonale Disziplin zu verlieren, die Mirrou definiert.",
+        aesthetics: ["Kinetische Diagonalen", "Dynamische Komposition", "Kontrollierte Intensität", "Flüssige Bewegung"],
+        story: {
+          context: "Eine Energy-Supplement-Marke in einem Markt zwischen sportlichem Performance-Maximalismus und Wellness-Minimalismus hatte keine visuelle Heimat. Keine der Kategorie-Ästhetiken passte zu einer Positionierung als hochperformantes tägliches Ritual für ambitionierte Fachleute. Das Briefing: eine visuelle Sprache schaffen, die als Disziplin gelesen wird, nicht als Chaos — kinetisch, aber kontrolliert.",
+          strategy: "Wir lehnten beide Kategorie-Defaults ab und bauten auf einer einzigen kreativen Spannung auf: Bewegung, angehalten im Moment maximaler Energie. Diagonale Kompositionsachsen erzeugen implizite Bewegung in Standbildern. Motion-Freeze-Technik — Flüssigkeitskronen, Tropfenaufprall, Splash-Suspension — fängt kinetische Kraft ohne Motion-Blur ein. Das Farbsystem ist streng kontrolliert: tiefer dunkler Grund, ein einziger gesättigter Richtungslichter, tonale Disziplin in jedem Frame. KI-gestütztes Compositing verstärkt Motion-Artefakte und fügt Richtungsenergievektoren hinzu, die konventionelle Fotografie über ein Sechs-Frame-System nicht aufrechterhalten kann.",
+          execution: "Studio-Fotografie erfasste echte Flüssigkeitsdynamiken — Makrotropfen, Kronensplash, Flüssigkeitsströme — vor kontrollierten dunklen Hintergründen. KI-gestütztes Compositing erweiterte jeden Shot: Verstärkung der Energievektoren, atmosphärische Spannung in den Glanzlichtern, tonale Konsistenz im gesamten System. Das finale System reicht von Awareness (Hero-Kinetik-Frame) über Consideration (Makrotextur und Detail) bis zur editorialen Autorität (Full-System-Frame). Konzipiert für Scroll-Format (Reels, TikTok, Stories) und Static (Meta, Display, OOH) ohne Adaptionsverlust.",
+        },
+        metrics: [
+          { value: "+58%", label: "Thumb-Stop-Rate", note: "3-Sek.-Haltezeit vs. Kategorie-Benchmark" },
+          { value: "3,2%", label: "CTR (Meta Prospecting)", note: "vs. 1,1% Kategorie-Durchschnitt" },
+          { value: "4,8%", label: "Landingpage-Conversion", note: "Creative-Traffic vs. 2,1% Ø" },
+          { value: "−38%", label: "Cost per Acquisition", note: "nach Creative-System-Refresh" },
+        ],
+        quotes: [
+          { text: "Die Frozen-Motion-Technik hat uns etwas gegeben, das Wettbewerber nicht schnell replizieren können — eine visuelle Signatur, die wirklich unsere ist.", attribution: "Marketing Lead, Vitality Pulse" },
+          { text: "Wir haben 12 Creatives in einem 4-Wochen-Sprint getestet. Diese Frames haben jeden bisherigen Asset über alle Metriken hinweg übertroffen.", attribution: "Performance Manager, D2C Brand" },
+        ],
+        learnings: [
+          "Kinetische Standbilder übertreffen äquivalente Video-Konzepte in Meta-Awareness-Kampagnen, wenn die Feed-Scroll-Geschwindigkeit unter 0,5 Sekunden pro Post liegt.",
+          "Motion-Freeze erzeugt stärkeren Thumb-Stop als Motion-Blur — Stille verstärkt die Wahrnehmung von Geschwindigkeit.",
+          "Ein einziger Richtungsfarbakzent gegen kontrollierten dunklen Grund erhöht den Markenrecall gegenüber Vollpaletten-Ansätzen.",
+          "Diagonale Kompositionsachsen erzeugen implizite Richtungsenergie in Standbildern ohne Bewegungselemente.",
+        ],
+      },
+
+      "essence-drift": {
+        category: "Duft · Atmosphärische Erzählung",
+        tagline: "Atmosphärische Duft-Erzählung. Weicher Dunst, Glasreflexionen, schwebende Zeit.",
+        description: "Duft ist unsichtbar — das visuelle System musste das Unsichtbare spürbar machen. Weichgezeichnete Dunstschleier, Glasoberflächen, die Licht in prismatische Reflexionen aufteilen, und eine Quasi-Monochrom-Palette, die von einzelnen Momenten der Wärme unterbrochen wird. Das Ergebnis: ein System, das Duft als Sensation kommuniziert, nicht als Produkt.",
+        aesthetics: ["Weicher Dunst", "Glasreflexionen", "Atmosphärische Tiefe", "Schwebende Zeit"],
+        story: {
+          context: "Eine Duftmarke ohne etablierte visuelle Identität steht vor der grundlegenden Einschränkung der Kategorie: Duft ist unsichtbar. Der Wettbewerb zeigt standardmäßig Flakons auf Oberflächen. Das Briefing verlangte ein System, das kommuniziert, wie sich der Duft anfühlt — Wärme, Diffusion, Erinnerung — nicht wie die Flasche aussieht. Kategorie-Konventionen mussten vollständig aufgegeben werden.",
+          strategy: "Wir definierten vier primäre visuelle Metaphern für Duft: Diffusion (Rauch und atmosphärischer Dunst), Refraktion (Glas, das weißes Licht in prismatische Wärme aufteilt), Suspension (Partikel und Atmosphäre, in der Luft eingefroren) und Temperaturgradient (kühle atmosphärische Basis, unterbrochen von einem einzigen Wärmemoment pro Frame). Das tonale System ist Quasi-Monochrom — tiefblaue-graue Atmosphäre — mit genau einer warmen Unterbrechung pro Bild: dem goldenen Kappen-Detail. Diese Zurückhaltung lässt die Wärme verdient wirken, nicht dekorativ.",
+          execution: "Echte Studio-Fotografie platzierte die Duftflasche auf Glasoberflächen mit kontrolliertem Kaltdampf. KI-gestützte atmosphärische Erweiterungen vertieften den Dunst über das hinaus, was Studio-Equipment allein hält. Prismatische Lichtreflexionen wurden aus separat fotografierten Glaselementen composited. Post-Production applizierte weiches Korn und chromatische Mikroverschiebungen, damit digital-atmosphärische Elemente fotografisch wirken. Das System ist flexibel für Editorial-Print (Held-Frame), Social (atmosphärische Detail-Crops) und Branded Content.",
+        },
+        metrics: [
+          { value: "+22 PP", label: "Ungestützte Markenbekanntheit", note: "8-Wochen-Kampagne, DACH-Panel" },
+          { value: "6,4%", label: "Social Engagement Rate", note: "vs. 1,8% Kategorie-Ø (organisch)" },
+          { value: "3:08", label: "Ø Verweildauer Markenseite", note: "Benchmark: 1:12" },
+          { value: "8,2%", label: "E-Mail-Konversionsrate", note: "Kampagnen-Landingpage vs. 3,5% Ø" },
+        ],
+        quotes: [
+          { text: "Menschen beschreiben die Bilder mit Worten, die sie für Düfte verwenden — warm, sauber, einhüllend. Das System hat unsichtbare Gefühle sichtbar gemacht.", attribution: "Brand Founder, Essence Drift" },
+          { text: "Wir hatten noch nie eine Duft-Kampagne, bei der Menschen stehen geblieben sind, um den Text zu lesen. Diese Bilder haben sie zum Verweilen gebracht.", attribution: "Creative Consultant" },
+        ],
+        learnings: [
+          "Sensation-first Imagery übertrifft Product-first Imagery deutlich beim Aufbau von Markenbekanntheit in der Duft-Kategorie.",
+          "Quasi-Monochrome Paletten mit einem einzigen warmen Akzent erzeugen stärkere emotionale Gedächtniscodierung als ausgewogene Paletten.",
+          "Atmosphärische Tiefe — Rauch, Dunst, Glasrefraktion — kommuniziert Luxus effektiver als Reinraum-Produktfotografie.",
+          "Visuelle Systeme aus einer Grammatik von Sensationsmetaphern erzielen konsistenten Markenrecall über Editorial, Social und Branded Content.",
+        ],
+      },
+
+      "neural-glow": {
+        category: "Tech-Forward Beauty · Neon-Schaltkreis-System",
+        tagline: "Tech-Forward Beauty an der Schnittstelle von Biotech und Luxus-Skincare. Neon, Schaltkreise, Präzision.",
+        description: "Eine Biotech-nahe Skincare-Marke musste die Schnittstelle von klinischer Präzision und aspirationaler Beauty besetzen. Neon-Gitterlinien, Schaltkreismuster als Texturelemente und kühle biolumineszente Farbabstufungen schufen ein System, das sowohl wissenschaftlich als auch begehrenswert gelesen wird — ohne in klinische Distanz zu kollabieren.",
+        aesthetics: ["Neon-Akzente", "Schaltkreismuster", "Biolumineszenz", "Tech-Präzision"],
+        story: {
+          context: "Eine Biotech-Skincare-Marke beim Launch eines KI-formulierten Serums steht vor einer doppelten Herausforderung: wissenschaftliche Glaubwürdigkeit ohne klinische Kälte, aspirationale Beauty ohne Aushöhlung der Tech-Positionierung. Zielgruppe: 25–40, digital Native, bereits in der Beauty-Tech-Kategorie konvertiert — vertraut mit der visuellen Sprache von Technologie, skeptisch gegenüber konventionellem Kosmetik-Marketing.",
+          strategy: "Wir haben das erste vollständig KI-generierte visuelle System im Mirrou-Portfolio entwickelt — den direktesten Ausdruck von Algorithm of Soul. Die kreative Grammatik: Schaltkreis-Gitter als Präzisions-Skincare-Metapher, biolumineszente Netzwerkmuster als Produktwirkungs-Visualisierung, Neon-Lichtwellenfasern als Transformationserzählung. Farbsystem: tiefes Void-Schwarz mit Neon-Blau-Gold-Spektrum, streng kontrolliert, um den Luxus-Register über Videospiel-Bildsprache zu halten. Die Grenze: tonale Disziplin.",
+          execution: "Ein prompt-engineertes Sechs-Frame-System wurde mit Mirrous proprietärem KI-Produktionsprotokoll realisiert: initiale Generierung, redaktionelle Kuration für kompositorische Kohärenz, dann Post-Production mit kinematischem Korn, chromatischer Aberration und Lichtphysik-Korrektur. Drei Qualitätskontrollstufen stellen sicher, dass der KI-Ursprung nachvollziehbar bleibt (EU-KI-Gesetz-Konformität, Pflichtbeschriftung), ohne die visuelle Autorität zu beeinträchtigen. Jedes Frame bestand einen Blind-Panel-Test. Kampagnenfertig in 3 Tagen — das fotografische Äquivalent: 3 Wochen.",
+        },
+        metrics: [
+          { value: "4,1%", label: "CTR (Meta Interest-Targeting)", note: "vs. 1,3% Beauty-Tech-Benchmark" },
+          { value: "+67%", label: "Thumb-Stop-Rate", note: "3-Sek.-Frame-Test vs. Kategorie" },
+          { value: "6,2%", label: "Conversion Rate (direkt aus Creative)", note: "vs. 2,8% Kategorie-Ø" },
+          { value: "−52%", label: "Cost per Acquisition", note: "vs. bisheriger Fotografie-Creative" },
+          { value: "+18%", label: "Durchschnittlicher Bestellwert", note: "Premium-Creative-Positionierung" },
+        ],
+        quotes: [
+          { text: "Die KI-generierten Frames übertrafen unsere Premium-Fotografie — nicht weil die Fotografie schwach war, sondern weil das System präzise auf die visuelle Verarbeitungsweise unserer Zielgruppe abgestimmt ist.", attribution: "E-Commerce-Direktor, Neural Glow Brand" },
+          { text: "Neural Glow hat unser Produktionsmodell verändert. Ein Creative-Sprint dauert jetzt 3 Tage, nicht 3 Wochen — mit besseren Performance-Zahlen.", attribution: "Growth Lead, D2C Beauty Brand" },
+        ],
+        learnings: [
+          "Vollständig KI-generierte Visuals können Fotografie-Creatives übertreffen, wenn System-Design — die visuelle Grammatik — die Kernkompetenz ist.",
+          "Tech-Beauty-Zielgruppen reagieren auf Neon-Schaltkreis-Ästhetik nur unter strenger tonaler Disziplin; der Luxus-Register ist nicht verhandelbar.",
+          "Mirrous KI-Produktionsprotokoll liefert ~52% CPA-Reduktion bei 3-tägigem Produktionszyklus gegenüber 3 Wochen für Fotografie.",
+          "EU-KI-Gesetz-Pflichtbeschriftung reduziert die Anzeigenperformance nicht — Transparenz hat in diesem Fall das Zielgruppenvertrauen messbar erhöht.",
+        ],
+      },
     },
   },
 

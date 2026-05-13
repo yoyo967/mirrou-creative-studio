@@ -76,6 +76,11 @@ export default function CasesPage() {
 
 function CaseRow({ project, index }: { project: CaseProject; index: number }) {
   const { t } = useTranslation("cases");
+  const content = t(`content.${project.id}`, { returnObjects: true }) as unknown as {
+    category: string;
+    tagline: string;
+    aesthetics: string[];
+  };
 
   return (
     <motion.div
@@ -111,7 +116,7 @@ function CaseRow({ project, index }: { project: CaseProject; index: number }) {
               </span>
               <span className="w-px h-4 bg-white/10 mx-1" />
               <span className="font-mono text-[10px] uppercase tracking-[0.3em] text-muted">
-                {project.category}
+                {content.category}
               </span>
             </div>
 
@@ -120,11 +125,11 @@ function CaseRow({ project, index }: { project: CaseProject; index: number }) {
             </h2>
 
             <p className="text-body text-[15px] leading-relaxed mb-8 max-w-lg">
-              {project.tagline}
+              {content.tagline}
             </p>
 
             <div className="flex flex-wrap gap-2 mb-8">
-              {project.aesthetics.map((tag) => (
+              {content.aesthetics.map((tag: string) => (
                 <span
                   key={tag}
                   className="font-mono text-[9px] uppercase tracking-[0.35em] border border-white/10 px-2 py-1.5 text-muted"

@@ -109,15 +109,14 @@ export default function PaketePage() {
         })}
       </div>
 
-      <div className="max-w-5xl mx-auto mt-16 p-10 border border-accent/20 bg-accent/5">
-        <h2 className="text-2xl font-serif italic mb-3">{p("ctaHeadline")}</h2>
-        <p className="text-muted font-light text-sm leading-relaxed mb-6 max-w-2xl">
-          {p("ctaBody")}
-        </p>
-        <Link
-          to="/kontakt"
-          className="inline-block bg-accent text-bg font-semibold px-6 py-3 rounded-full hover:opacity-90 transition uppercase text-xs tracking-widest font-mono"
-        >
+      <div className="max-w-5xl mx-auto mt-16 border-t border-white/6 pt-16 flex flex-col md:flex-row items-start md:items-center justify-between gap-8">
+        <div>
+          <p className="eyebrow mb-4">{p("ctaHeadline")}</p>
+          <p className="text-body font-light max-w-xl leading-relaxed">
+            {p("ctaBody")}
+          </p>
+        </div>
+        <Link to="/kontakt" className="btn-primary shrink-0">
           {p("ctaLink")}
         </Link>
       </div>

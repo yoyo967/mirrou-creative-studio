@@ -41,6 +41,12 @@ export default function WorkGrid() {
 }
 
 function CaseCard({ project, className = "" }: { project: CaseProject; className?: string }) {
+  const { t } = useTranslation("cases");
+  const content = t(`content.${project.id}`, { returnObjects: true }) as unknown as {
+    category: string;
+    tagline: string;
+  };
+
   return (
     <motion.div
       initial={{ opacity: 0 }}
@@ -75,7 +81,7 @@ function CaseCard({ project, className = "" }: { project: CaseProject; className
           </span>
           <span className="w-6 h-px bg-accent/30" />
           <span className="font-mono text-muted text-[10px] uppercase tracking-[0.32em]">
-            {project.category}
+            {content.category}
           </span>
         </div>
 
@@ -84,7 +90,7 @@ function CaseCard({ project, className = "" }: { project: CaseProject; className
         </h3>
 
         <p className="text-body max-w-xl text-pretty text-[15px] leading-relaxed">
-          {project.tagline}
+          {content.tagline}
         </p>
       </div>
 

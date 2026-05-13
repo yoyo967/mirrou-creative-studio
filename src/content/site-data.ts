@@ -561,18 +561,32 @@ export interface CaseVisual {
   alt: string;
 }
 
+export interface CaseStory {
+  context: string;
+  strategy: string;
+  execution: string;
+}
+
+export interface CaseMetric {
+  value: string;
+  label: string;
+  note?: string;
+}
+
+export interface CaseQuote {
+  text: string;
+  attribution: string;
+}
+
 export interface CaseProject {
   id: string;
   title: string;
   year: string;
-  category: string;
   coverImage: string;
   visuals: CaseVisual[];
-  tagline: string;
-  description: string;
-  aesthetics: string[];
   aiVariant: "assisted" | "generated";
   anchor: string;
+  funnelRole: "Awareness" | "Consideration" | "Conversion";
 }
 
 export const CASES: CaseProject[] = [
@@ -580,161 +594,69 @@ export const CASES: CaseProject[] = [
     id: "luminous-aura",
     title: "Luminous Aura",
     year: "2026",
-    category: "Beauty Serum · Visual System",
     coverImage: "/images/cases/luminous-aura-1.png",
     visuals: [
-      {
-        src: "/images/cases/luminous-aura-1.png",
-        alt: "Luminous Aura — dark marble backdrop with gold particle atmosphere",
-      },
-      {
-        src: "/images/cases/luminous-aura-2.png",
-        alt: "Luminous Aura — serum bottle detail, gold light refraction on marble",
-      },
-      {
-        src: "/images/cases/luminous-aura-3.png",
-        alt: "Luminous Aura — texture close-up, mineral surface and product interaction",
-      },
-      {
-        src: "/images/cases/luminous-aura-4.png",
-        alt: "Luminous Aura — product elevated on dark marble plinth, controlled lighting",
-      },
-      {
-        src: "/images/cases/luminous-aura-5.png",
-        alt: "Luminous Aura — overhead composition, gold particle dispersion",
-      },
-      {
-        src: "/images/cases/luminous-aura-6.png",
-        alt: "Luminous Aura — editorial full-system frame, cinematic dark luxury",
-      },
+      { src: "/images/cases/luminous-aura-1.png", alt: "Luminous Aura — dark marble backdrop with gold particle atmosphere" },
+      { src: "/images/cases/luminous-aura-2.png", alt: "Luminous Aura — serum bottle detail, gold light refraction on marble" },
+      { src: "/images/cases/luminous-aura-3.png", alt: "Luminous Aura — texture close-up, mineral surface and product interaction" },
+      { src: "/images/cases/luminous-aura-4.png", alt: "Luminous Aura — product elevated on dark marble plinth, controlled lighting" },
+      { src: "/images/cases/luminous-aura-5.png", alt: "Luminous Aura — overhead composition, gold particle dispersion" },
+      { src: "/images/cases/luminous-aura-6.png", alt: "Luminous Aura — editorial full-system frame, cinematic dark luxury" },
     ],
-    tagline:
-      "Premium beauty serum visual system. Dark marble, suspended gold particles, cinematic stillness.",
-    description:
-      "A premium serum required a visual language that communicated molecular precision and luxury simultaneously. The solution: dark Nero Marquina marble as the primary surface, gold particle atmospherics rendered in hybrid photography, a tonal palette that collapses the distance between product and desire.",
-    aesthetics: ["Dark marble", "Gold particles", "Cinematic stillness", "Molecular precision"],
     aiVariant: "assisted",
     anchor: "luminous-aura",
+    funnelRole: "Consideration",
   },
   {
     id: "vitality-pulse",
     title: "Vitality Pulse",
     year: "2026",
-    category: "Energy Serum · Kinetic Visual System",
     coverImage: "/images/cases/vitality-pulse-1.png",
     visuals: [
-      {
-        src: "/images/cases/vitality-pulse-1.png",
-        alt: "Vitality Pulse — kinetic energy serum, dynamic diagonal composition",
-      },
-      {
-        src: "/images/cases/vitality-pulse-2.png",
-        alt: "Vitality Pulse — macro detail, water droplets on glass, tactile energy texture",
-      },
-      {
-        src: "/images/cases/vitality-pulse-3.png",
-        alt: "Vitality Pulse — motion-driven product placement, energy tension and liquid dynamics",
-      },
-      {
-        src: "/images/cases/vitality-pulse-4.png",
-        alt: "Vitality Pulse — saturated directional highlight against dark controlled ground",
-      },
-      {
-        src: "/images/cases/vitality-pulse-5.png",
-        alt: "Vitality Pulse — gold liquid crown splash, kinetic motion frozen in time",
-      },
-      {
-        src: "/images/cases/vitality-pulse-6.png",
-        alt: "Vitality Pulse — full editorial frame, kinetic visual system complete",
-      },
+      { src: "/images/cases/vitality-pulse-1.png", alt: "Vitality Pulse — kinetic energy serum, dynamic diagonal composition" },
+      { src: "/images/cases/vitality-pulse-2.png", alt: "Vitality Pulse — macro detail, water droplets on glass, tactile energy texture" },
+      { src: "/images/cases/vitality-pulse-3.png", alt: "Vitality Pulse — motion-driven product placement, energy tension and liquid dynamics" },
+      { src: "/images/cases/vitality-pulse-4.png", alt: "Vitality Pulse — saturated directional highlight against dark controlled ground" },
+      { src: "/images/cases/vitality-pulse-5.png", alt: "Vitality Pulse — gold liquid crown splash, kinetic motion frozen in time" },
+      { src: "/images/cases/vitality-pulse-6.png", alt: "Vitality Pulse — full editorial frame, kinetic visual system complete" },
     ],
-    tagline:
-      "Energy-serum visual system. Kinetic tension, dynamic composition, controlled intensity.",
-    description:
-      "An energy serum brand demanded movement as the primary design language — not metaphorical movement, but visual kinetics embedded into every frame. Dynamic diagonals, controlled color tension, and motion-blur technique translated product energy into still-image performance without losing the tonal discipline that defines Mirrou.",
-    aesthetics: ["Kinetic diagonals", "Dynamic composition", "Controlled intensity", "Liquid motion"],
     aiVariant: "assisted",
     anchor: "vitality-pulse",
+    funnelRole: "Awareness",
   },
   {
     id: "essence-drift",
     title: "Essence Drift",
     year: "2026",
-    category: "Fragrance · Atmospheric Narrative",
     coverImage: "/images/cases/essence-drift-1.png",
     visuals: [
-      {
-        src: "/images/cases/essence-drift-1.png",
-        alt: "Essence Drift — soft haze atmosphere, glass refraction and diffused light",
-      },
-      {
-        src: "/images/cases/essence-drift-2.png",
-        alt: "Essence Drift — fragrance bottle in layered diffused light, atmospheric depth",
-      },
-      {
-        src: "/images/cases/essence-drift-3.png",
-        alt: "Essence Drift — editorial atmospheric frame, translucence and suspended time",
-      },
-      {
-        src: "/images/cases/essence-drift-4.png",
-        alt: "Essence Drift — hero fragrance bottle, teal smoke atmosphere, gold cap detail",
-      },
-      {
-        src: "/images/cases/essence-drift-5.png",
-        alt: "Essence Drift — bottle silhouette in dense fog, warm-cool atmospheric gradient",
-      },
-      {
-        src: "/images/cases/essence-drift-6.png",
-        alt: "Essence Drift — serum on dark marble, glass refraction and gold liquid warmth",
-      },
+      { src: "/images/cases/essence-drift-1.png", alt: "Essence Drift — soft haze atmosphere, glass refraction and diffused light" },
+      { src: "/images/cases/essence-drift-2.png", alt: "Essence Drift — fragrance bottle in layered diffused light, atmospheric depth" },
+      { src: "/images/cases/essence-drift-3.png", alt: "Essence Drift — editorial atmospheric frame, translucence and suspended time" },
+      { src: "/images/cases/essence-drift-4.png", alt: "Essence Drift — hero fragrance bottle, teal smoke atmosphere, gold cap detail" },
+      { src: "/images/cases/essence-drift-5.png", alt: "Essence Drift — bottle silhouette in dense fog, warm-cool atmospheric gradient" },
+      { src: "/images/cases/essence-drift-6.png", alt: "Essence Drift — serum on dark marble, glass refraction and gold liquid warmth" },
     ],
-    tagline:
-      "Atmospheric fragrance narrative. Soft haze, glass refractions, suspended time.",
-    description:
-      "Fragrance is invisible — the visual system had to make the invisible felt. Soft-focus hazes, glass surfaces splitting light into prismatic refractions, and a near-monochrome palette interrupted by single moments of warmth. The result is a visual system that communicates scent as sensation, not product.",
-    aesthetics: ["Soft haze", "Glass refractions", "Atmospheric depth", "Suspended time"],
     aiVariant: "assisted",
     anchor: "essence-drift",
+    funnelRole: "Awareness",
   },
   {
     id: "neural-glow",
     title: "Neural Glow",
     year: "2026",
-    category: "Tech-Forward Beauty · Neon Circuitry System",
     coverImage: "/images/cases/neural-glow-cover.png",
     visuals: [
-      {
-        src: "/images/cases/neural-glow-cover.png",
-        alt: "Neural Glow — neon serum bottle with bioluminescent neural network pattern, tech-forward hero",
-      },
-      {
-        src: "/images/cases/neural-glow-2.png",
-        alt: "Neural Glow — gold energy glow on dark tech grid, atmospheric abstract texture",
-      },
-      {
-        src: "/images/cases/neural-glow-4.png",
-        alt: "Neural Glow — circuitry grid with illuminated gold nodes, tech precision pattern",
-      },
-      {
-        src: "/images/cases/neural-glow-5.png",
-        alt: "Neural Glow — neon fiber-optic wave system, blue-gold bioluminescent flow",
-      },
-      {
-        src: "/images/cases/neural-glow-6.png",
-        alt: "Neural Glow — neural network visualization, glowing synaptic connections on dark field",
-      },
-      {
-        src: "/images/cases/neural-glow-3.png",
-        alt: "Neural Glow — wireframe geometry structure, precision-engineered tech aesthetic",
-      },
+      { src: "/images/cases/neural-glow-cover.png", alt: "Neural Glow — neon serum bottle with bioluminescent neural network pattern, tech-forward hero" },
+      { src: "/images/cases/neural-glow-2.png", alt: "Neural Glow — gold energy glow on dark tech grid, atmospheric abstract texture" },
+      { src: "/images/cases/neural-glow-4.png", alt: "Neural Glow — circuitry grid with illuminated gold nodes, tech precision pattern" },
+      { src: "/images/cases/neural-glow-5.png", alt: "Neural Glow — neon fiber-optic wave system, blue-gold bioluminescent flow" },
+      { src: "/images/cases/neural-glow-6.png", alt: "Neural Glow — neural network visualization, glowing synaptic connections on dark field" },
+      { src: "/images/cases/neural-glow-3.png", alt: "Neural Glow — wireframe geometry structure, precision-engineered tech aesthetic" },
     ],
-    tagline:
-      "Tech-forward beauty at the intersection of biotech and luxury skincare. Neon, circuitry, precision.",
-    description:
-      "A biotech-adjacent skincare brand needed to occupy the intersection of clinical precision and aspirational beauty. Neon grid lines, circuitry patterns as texture elements, and cool bioluminescent color grades created a visual system that reads both scientific and desirable — without collapsing into cold, clinical distance.",
-    aesthetics: ["Neon accents", "Circuitry patterns", "Bioluminescence", "Tech precision"],
     aiVariant: "generated",
     anchor: "neural-glow",
+    funnelRole: "Conversion",
   },
 ];
 
