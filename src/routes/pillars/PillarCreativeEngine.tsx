@@ -1,138 +1,77 @@
 import { Link } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
 export default function PillarCreativeEngine() {
+  const { t } = useTranslation("pillars");
+
   return (
     <>
-      <h2>Warum ein „Operating System"</h2>
-      <p>
-        Die meisten Agentur-Briefings funktionieren linear: Brief rein, Shooting raus, Rechnung
-        dazu. Das ist okay, wenn du einmal pro Quartal eine Kampagne brauchst. Es ist nicht okay,
-        wenn dein Werbekonto rund um die Uhr läuft und alle paar Wochen neue, getestete Creatives
-        braucht.
-      </p>
-      <p>
-        Was du brauchst, ist nicht ein nächstes Shooting. Du brauchst einen{" "}
-        <strong>Loop, der nicht stoppt</strong>. Wir nennen ihn die Creative Engine.
-      </p>
+      <h2>{t("ce.h1")}</h2>
+      <p>{t("ce.p1")}</p>
+      <p dangerouslySetInnerHTML={{ __html: t("ce.p2") }} />
 
-      <h2>Die fünf Schritte</h2>
+      <h2>{t("ce.h2")}</h2>
 
-      <h3>01 — Analyse</h3>
-      <p>
-        Wir bekommen Read-only-Zugriff auf euer Werbekonto (Meta, TikTok, Google Ads). Wir lesen
-        die letzten 60–90 Tage:
-      </p>
+      <h3>{t("ce.h3a")}</h3>
+      <p>{t("ce.p3")}</p>
       <ul>
-        <li>Welche Creatives haben gespendet, welche sind ermüdet?</li>
-        <li>Wo bricht die Hook-Rate weg? Wo bricht die CTR weg?</li>
-        <li>
-          Welche Hooks, Formate, Bildwelten korrelieren mit gutem ROAS — und welche nur mit guter
-          CTR (das ist nicht dasselbe)?
-        </li>
+        {(["anal1", "anal2", "anal3"] as const).map((k) => (
+          <li key={k}>{t(`ce.${k}`)}</li>
+        ))}
       </ul>
-      <p>
-        Output dieses Schritts ist ein Creative-Audit-Dokument. Kein Marketingmaterial, sondern
-        eine ehrliche Bestandsaufnahme. Es bildet die Grundlage für alles, was danach kommt.
-      </p>
+      <p>{t("ce.p4")}</p>
 
-      <h3>02 — Hypothesen</h3>
-      <p>
-        Aus der Analyse leiten wir konkrete Creative-Hypothesen ab. Eine Hypothese ist nicht „lass
-        uns mal etwas Neues probieren". Eine Hypothese hat dieses Format:
-      </p>
-      <blockquote>
-        Wir vermuten, dass <strong>[konkrete Creative-Variante]</strong> für{" "}
-        <strong>[konkrete Zielgruppe]</strong> zu <strong>[konkretem KPI-Effekt]</strong> führt —
-        weil <strong>[Begründung aus Daten oder Marktbeobachtung]</strong>.
-      </blockquote>
-      <p>Beispiel:</p>
-      <blockquote>
-        Wir vermuten, dass eine Hook-Variante mit dem Pain Point „klebrige Sonnencreme" zu einer
-        um mindestens 25 % höheren Hook-Rate führt als die aktuelle aspirational Variante — weil
-        unsere Top-3 organischen TikTok-Posts der Konkurrenz alle dieselbe Pain-Point-Eröffnung
-        nutzen.
-      </blockquote>
-      <p>
-        Pro Produktionszyklus formulieren wir typischerweise 3–5 Hypothesen. Jede wird mit
-        Test-Cells (Kontrolle + 2–3 Varianten) gegen die aktuelle Bestform gestellt.
-      </p>
+      <h3>{t("ce.h3b")}</h3>
+      <p>{t("ce.p5")}</p>
+      <blockquote dangerouslySetInnerHTML={{ __html: t("ce.bq1") }} />
+      <p>{t("ce.p6")}</p>
+      <blockquote>{t("ce.bq2")}</blockquote>
+      <p>{t("ce.p7")}</p>
 
-      <h3>03 — Produktion</h3>
+      <h3>{t("ce.h3c")}</h3>
       <p>
-        Die Produktion ist hybrid. Wir kombinieren echte Fotografie aus unserem Hamburger Studio
-        mit KI-generierten Hintergründen und Stilvarianten (
-        <Link to="/foto-ki-hybrid">mehr dazu hier</Link>). Aus einem Shooting-Tag entstehen so
-        20–40 finale Creatives — nicht 5.
+        {t("ce.p8Before")}
+        <Link to="/foto-ki-hybrid">{t("ce.p8Link")}</Link>
+        {t("ce.p8After")}
       </p>
-      <p>
-        Das ist kein Selbstzweck. Es ist die einzige Art, in einem 2-Wochen-Rhythmus echte
-        Test-Cells mit ausreichender Varianten-Tiefe zu liefern. Jede Variante bekommt einen
-        klaren Dateinamen und eine Hypothese-ID.
-      </p>
+      <p>{t("ce.p9")}</p>
 
-      <h3>04 — Testing</h3>
-      <p>Tests werden strukturiert aufgesetzt. Standardlogik:</p>
+      <h3>{t("ce.h3d")}</h3>
+      <p>{t("ce.p10")}</p>
       <ul>
-        <li>1 Hypothese = 1 Test</li>
-        <li>1 Test = mindestens 2 Cells (Kontrolle + Variante)</li>
-        <li>Mindest-Statistik: ab 1.000 Klicks oder 50.000 Impressions pro Cell</li>
-        <li>Stop-Regel: Nach 7 Tagen, oder wenn ein Cell signifikant unterperformt</li>
+        {(["test1", "test2", "test3", "test4"] as const).map((k) => (
+          <li key={k}>{t(`ce.${k}`)}</li>
+        ))}
       </ul>
-      <p>
-        Wir nutzen die A/B-Testing-Funktionen der Plattformen, ergänzt durch eigene
-        UTM-Strukturen. Reporting läuft wöchentlich.
-      </p>
+      <p>{t("ce.p11")}</p>
 
-      <h3>05 — Learning</h3>
-      <p>
-        Das ist der Schritt, den fast alle überspringen — und der den Unterschied zwischen Output
-        und echter Lernkurve macht. Jede Test-Auswertung landet in einem Learning-Log mit:
-      </p>
+      <h3>{t("ce.h3e")}</h3>
+      <p>{t("ce.p12")}</p>
       <ul>
-        <li>Hypothese (formuliert vor dem Test)</li>
-        <li>Test-Setup</li>
-        <li>Ergebnis (gewonnene/verlorene Hypothese, mit KPI-Delta)</li>
-        <li>
-          Generalisierbare Erkenntnis: <em>Was lernen wir daraus für nächste Creatives?</em>
-        </li>
-        <li>Nächster Test (was wir auf Basis dieses Ergebnisses als Nächstes prüfen)</li>
+        {(["learn1", "learn2", "learn3", "learn4", "learn5"] as const).map((k) => (
+          <li key={k} dangerouslySetInnerHTML={{ __html: t(`ce.${k}`) }} />
+        ))}
       </ul>
-      <p>
-        Nach 6 Monaten hast du nicht nur 30+ Creatives produziert. Du hast einen dokumentierten
-        Lernpfad: <em>Welche Hooks funktionieren in deiner Nische?</em> Diese Erkenntnis ist
-        langlebiger als jedes einzelne Creative.
-      </p>
+      <p dangerouslySetInnerHTML={{ __html: t("ce.p13") }} />
 
-      <h2>Variablen-Isolation: Wissenschaft statt Raten</h2>
-      <p>
-        Der größte Fehler im Creative Testing: drei Dinge gleichzeitig ändern. Wenn die neue
-        Variante gewinnt, weißt du nicht, woran es lag. Unsere Regel: <strong>eine Variable pro
-        Test</strong>. Hook gegen Hook. Format gegen Format. Aber nie alles auf einmal.
-      </p>
+      <h2>{t("ce.h4")}</h2>
+      <p dangerouslySetInnerHTML={{ __html: t("ce.p14") }} />
 
-      <h2>Wie der Loop bei uns einsteckt</h2>
-      <p>Im Retainer-Modell läuft der Loop durchgehend:</p>
+      <h2>{t("ce.h5")}</h2>
+      <p>{t("ce.p15")}</p>
       <ul>
-        <li><strong>Woche 1–2:</strong> Analyse + Hypothesen + Briefing-Update</li>
-        <li><strong>Woche 3:</strong> Shooting-Tag in Hamburg</li>
-        <li><strong>Woche 4:</strong> Postproduktion + KI-Varianten + Test-Setup</li>
-        <li><strong>Woche 5–6:</strong> Tests laufen, Reporting, Learning-Update</li>
-        <li><strong>Loop neu</strong></li>
+        {(["loop1", "loop2", "loop3", "loop4", "loop5"] as const).map((k) => (
+          <li key={k} dangerouslySetInnerHTML={{ __html: t(`ce.${k}`) }} />
+        ))}
       </ul>
-      <p>
-        Bei Tier-S-Kunden (10–30 k € Ad-Spend / Monat) ist der Loop eher 6-wöchig, bei
-        Tier-L-Kunden (80 k+) eher 3-wöchig. Die Logik bleibt dieselbe.
-      </p>
+      <p>{t("ce.p16")}</p>
 
-      <h2>Was die Engine nicht ist</h2>
+      <h2>{t("ce.h6")}</h2>
+      <p>{t("ce.p17")}</p>
       <p>
-        Sie ist kein Tool, kein SaaS, kein Buzzword. Sie ist eine Disziplin: ein Set von
-        Vorgehensweisen, das verhindert, dass Creative-Produktion zur Bauchentscheidung wird. Mehr
-        nicht, weniger auch nicht.
-      </p>
-      <p>
-        Mehr in den Cluster-Artikeln unten — und in einer ausführlichen Demonstration unserer
-        Methodik im <Link to="/cases">Pilot-Case</Link>.
+        {t("ce.p18Before")}{" "}
+        <Link to="/cases">{t("ce.p18Link")}</Link>
+        {t("ce.p18After")}
       </p>
     </>
   );

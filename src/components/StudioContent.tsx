@@ -72,11 +72,10 @@ export default function StudioContent() {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 mb-16 md:mb-24">
           <div className="lg:col-span-5">
             <p className="eyebrow mb-5">{c("eyebrow")}</p>
-            <h2 className="font-serif text-4xl md:text-5xl lg:text-6xl leading-[1.05] tracking-tight text-balance">
-              Mirrou ist ein <span className="italic">Studio</span>.
-              <br />
-              Die <span className="italic">Vision</span> ist Olhas.
-            </h2>
+            <h2
+              className="font-serif text-4xl md:text-5xl lg:text-6xl leading-[1.05] tracking-tight text-balance"
+              dangerouslySetInnerHTML={{ __html: `${c("headline")}<br>${c("headlineSub")}` }}
+            />
           </div>
           <div className="lg:col-span-6 lg:col-start-7">
             <p className="text-[18px] leading-[1.65] text-[color:var(--color-body-on-cream)] max-w-xl">

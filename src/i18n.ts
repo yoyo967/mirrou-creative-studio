@@ -9,7 +9,7 @@ i18n.use(initReactI18next).init({
   lng: "de",           // SSG default — client restores preference below
   fallbackLng: "de",
   defaultNS: "common",
-  ns: ["common", "nav", "footer", "home", "studio", "cases", "press", "contact", "packages", "blog", "legal", "seo"],
+  ns: ["common", "nav", "footer", "home", "studio", "cases", "press", "contact", "packages", "blog", "legal", "seo", "pillars", "clusters"],
   interpolation: { escapeValue: false },
 });
 

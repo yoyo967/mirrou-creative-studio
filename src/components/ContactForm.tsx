@@ -57,9 +57,9 @@ export default function ContactForm() {
 
           <div className="mt-12 p-6 border-l border-accent/30 bg-accent/3">
             <p className="font-mono text-[11px] uppercase tracking-[0.3em] text-muted leading-loose">
-              Mirrou Creative Studio
+              {SITE.name}
               <br />
-              Creative Direction · Olha Yevtushenko
+              {f("directorLine")}
               <br />
               {f("locationLine")}
             </p>

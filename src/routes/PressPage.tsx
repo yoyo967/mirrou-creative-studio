@@ -151,7 +151,7 @@ export default function PressPage() {
               <p className="text-body leading-relaxed">{SITE.press.boilerplate}</p>
               <div className="mt-6 pt-6 border-t border-white/6 space-y-1">
                 <p className="font-mono text-[11px] uppercase tracking-[0.3em] text-muted">
-                  Creative Direction: Olha Yevtushenko
+                  {pr("creativeDirectionLine")}
                 </p>
                 <p className="font-mono text-[11px] uppercase tracking-[0.3em] text-muted">{pr("hamburg")}</p>
                 <p className="font-mono text-[11px] uppercase tracking-[0.3em] text-accent">mirrou.studio</p>

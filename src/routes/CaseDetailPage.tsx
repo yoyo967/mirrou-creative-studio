@@ -7,6 +7,8 @@ import SEO from "../components/SEO";
 import AILabel from "../components/AILabel";
 import CaseLightbox from "../components/CaseLightbox";
 import { CASES, SITE, findCase } from "../content/site-data";
+import GrowthSystemLayer from "../components/GrowthSystemLayer";
+import { getGrowthData } from "../content/growth-system-data";
 
 interface CaseContent {
   category: string;
@@ -87,6 +89,7 @@ export default function CaseDetailPage() {
 
   const project = findCase(id ?? "");
   if (!project) return <Navigate to="/cases" replace />;
+  const growthData = getGrowthData(project.id);
 
   const content = t(`content.${project.id}`, { returnObjects: true }) as unknown as CaseContent;
   const currentIndex = CASES.findIndex((c) => c.id === project.id);
@@ -124,7 +127,7 @@ export default function CaseDetailPage() {
 
       {/* ── Reading progress line (left edge) ────────────────────────── */}
       <motion.div
-        className="fixed left-0 top-0 bottom-0 w-[2px] bg-accent z-[9998] pointer-events-none origin-top"
+        className="fixed left-0 top-0 bottom-0 w-[2px] bg-accent z-9998 pointer-events-none origin-top"
         style={{ scaleY: scrollYProgress }}
       />
 
@@ -289,10 +292,10 @@ export default function CaseDetailPage() {
                 {d("studioLabel")}
               </p>
               <p className="font-mono text-[11px] uppercase tracking-[0.3em] text-ink/70">
-                Mirrou Creative Studio
+                {SITE.name}
               </p>
               <p className="font-mono text-[10px] uppercase tracking-[0.3em] text-muted mt-2">
-                Creative Direction · {SITE.creativeDirection.name}
+                {t("common:creativeDirection")} · {SITE.creativeDirection.name}
               </p>
             </div>
           </div>
@@ -309,7 +312,7 @@ export default function CaseDetailPage() {
         <div className="overflow-hidden">
           <motion.p
             {...clipReveal(0.1)}
-            className="font-serif text-2xl md:text-3xl lg:text-4xl xl:text-[42px] leading-[1.5] text-ink font-light text-pretty"
+            className="font-serif text-2xl md:text-3xl lg:text-4xl xl:text-[42px] leading-normal text-ink font-light text-pretty"
           >
             {content.description}
           </motion.p>
@@ -543,7 +546,7 @@ export default function CaseDetailPage() {
                     <img
                       src={v.src}
                       alt={v.alt}
-                      className="w-full h-full object-cover transition-transform duration-[1200ms] ease-out group-hover:scale-[1.05]"
+                      className="w-full h-full object-cover transition-transform duration-1200 ease-out group-hover:scale-[1.05]"
                       loading="lazy"
                       draggable={false}
                     />
@@ -568,7 +571,7 @@ export default function CaseDetailPage() {
             className="px-6 md:px-10 lg:px-16 mt-4"
           >
             <p className="font-mono text-[9px] uppercase tracking-[0.4em] text-muted/50">
-              ← drag to explore · click to open
+              {d("dragHint")}
             </p>
           </motion.div>
 
@@ -679,7 +682,7 @@ export default function CaseDetailPage() {
                   }}
                   className="text-center"
                 >
-                  <blockquote className="font-serif italic text-[clamp(26px,4.5vw,64px)] leading-[1.25] text-ink text-balance mb-10">
+                  <blockquote className="font-serif italic text-[clamp(26px,4.5vw,64px)] leading-tight text-ink text-balance mb-10">
                     &ldquo;{q.text}&rdquo;
                   </blockquote>
                   <figcaption className="font-mono text-[10px] uppercase tracking-[0.5em] text-muted">
@@ -733,7 +736,14 @@ export default function CaseDetailPage() {
       </section>
 
       {/* ═══════════════════════════════════════════════════════════════
-          11 — CONVERSION CTA  (inline — after learnings, before next case)
+          11 — GROWTH SYSTEM LAYER
+      ═══════════════════════════════════════════════════════════════ */}
+      {growthData && (
+        <GrowthSystemLayer data={growthData} t={d} />
+      )}
+
+      {/* ═══════════════════════════════════════════════════════════════
+          12 — CONVERSION CTA  (inline — after growth layer, before next case)
       ═══════════════════════════════════════════════════════════════ */}
       <section className="border-t border-white/6 py-24 md:py-36">
         <div className="max-w-4xl mx-auto px-6 md:px-10 lg:px-16 text-center">
