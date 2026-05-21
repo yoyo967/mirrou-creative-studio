@@ -939,6 +939,88 @@ const tr = {
   },
 
   clusters: {
+    meta: {
+      "hooksDieFunktionieren": {
+        "title": "Güzellik Reklamlarında İşe Yarayan Hook'lar",
+        "description": "İlk 1,5 saniye belirleyicidir. Güzellik/Sağlık/Yaşam Tarzı testlerimizde tekrar tekrar ortalamanın üzerinde performans gösteren yedi hook modeli — ve kaçınmanız gereken üçü."
+      },
+      "creativeFatigueErkennen": {
+        "title": "Kreatif Yorgunluğu (Creative Fatigue) Fark Etmek — Bütçenizi Tüketmeden Önce",
+        "description": "Bir kreatifin ne zaman tükendiğini tahminlerle değil, verilerle görürsünüz. Dört erken gösterge — ve fişi ne zaman çekeceğiniz."
+      },
+      "scrollStopRateVerbessern": {
+        "title": "Kaydırma Durdurma Oranını (Scroll-Stop-Rate) Geliştirmek: 1,5 Saniye Mücadelesi",
+        "description": "Kaydırma durdurma oranı, kreatifinizin en dürüst değerlendirmesidir. Gerçekte neyi ölçer, hangi kıyaslamalar geçerlidir ve bunu sistematik olarak nasıl artırırsınız."
+      },
+      "creativeBurnoutVermeiden": {
+        "title": "Kreatif Tükenmişlik (Burnout): Tüm Ekip Duvara Tosladığında",
+        "description": "Yorulan kreatifler değil, ekiptir. Yapılandırılmış Engine döngüleri tükenmişliği neden önler ve sürdürülebilir bir üretim ritmini nasıl kurarsınız."
+      },
+      "ctrBenchmarksBeautyAds": {
+        "title": "DACH 2026 Güzellik Reklamları İçin CTR Karşılaştırmaları",
+        "description": "Günümüzde Cilt Bakımı, Sağlık ve Yaşam Tarzı Güzelliğinde dürüstçe karşılaştırılabilir bir CTR neye benzer — ve en büyük dalgalanmaları hangi faktörler açıklar."
+      },
+      "creativeHypothesenFormulieren": {
+        "title": "Kreatif Hipotezler Oluşturmak — Unutulmuş Bir Zanaat",
+        "description": "İyi bir hipotez, kontrollü bir testi rastgele bir denemeden ayırır. Her hipotezin ihtiyaç duyduğu üç yapı taşı — ve bir şablon."
+      },
+      "learningLogAufbauen": {
+        "title": "12 Ay Sonra Paha Biçilemez Hale Gelen Bir Öğrenme Günlüğü (Learning-Log) Oluşturmak",
+        "description": "Çoğu marka bu ay hangi kreatifin kazandığını bilir — ancak kendi nişlerinde hangi hook mantığının iki yıl boyunca istikrarlı bir şekilde baskın olduğunu bilmez. Öğrenme günlüğü bu boşluğu kapatır."
+      },
+      "creativeBriefTemplate": {
+        "title": "Performans Reklamları İçin Kreatif Brief Şablonu",
+        "description": "Bir brief dilek listesi değil, dikkat çekmek için bir inşaat talimatıdır. Hiçbir brief'in stüdyodan onsuz çıkmaması gereken yedi alan."
+      },
+      "abTestingMechanikImDetail": {
+        "title": "A/B Testi Mekaniği Detayları: Değişken İzolasyonu",
+        "description": "Aynı anda üç şeyi değiştirirseniz ve test kazanırsa, nedenini bilemezsiniz. Sıkı değişken izolasyonu nasıl gerçek öğrenme sağlar."
+      },
+      "creativeVelocityProductionSprints": {
+        "title": "Kreatif Hız: Ölçeklenen Üretim Sprintleri",
+        "description": "Aylık 100 bin+ harcama yapan bir markanın haftada 5–10 yeni teste ihtiyacı vardır. Üretim sprintlerimiz kaliteden ödün vermeden bu ritmi nasıl sağlar."
+      },
+      "d2cBeautyDach2026": {
+        "title": "DACH 2026'da D2C Güzellik — Şu An Önemli Olan Beş Değişim",
+        "description": "TikTok Shop, uyumluluk baskısı, YZ görünürlüğü, edinimden önce elde tutma ve salt arzu uyandıran (aspirational) estetiğin sonu. Kısa bir pazar değerlendirmesi."
+      },
+      "metaAdsFuerBeautyBrands": {
+        "title": "Güzellik Markaları İçin Meta Reklamları: 2026'da Neler Farklı",
+        "description": "Hedef kitle otomasyonu, Advantage+, etki vaatlerinde uyumluluk — bugün güzellik D2C için Meta'yı eski kalıplara düşmeden nasıl doğru kurarsınız."
+      },
+      "tiktokBeautyTrends": {
+        "title": "2026 TikTok Güzellik Trendleri: Trendden Satın Almaya",
+        "description": "TikTok Shop, GRWM formatları, acı noktası (pain-point) hook'ları — TikTok'ta güzellik için şu an ne dönüşüm sağlıyor ve ne sadece viral görünüyor."
+      },
+      "roasVsMerFuerBeautyD2c": {
+        "title": "Güzellik D2C İçin ROAS vs. MER: Gerçekte Hangi Metrik Önemlidir",
+        "description": "Platform ROAS'ı yalan söyler. MER (Medya Verimlilik Oranı) sizi gerçeğe zorlar. Her ikisini de nasıl doğru okursunuz ve buna bağlı olan kararlar nelerdir."
+      },
+      "skincareVisualsPaidSocial": {
+        "title": "Ücretli Sosyal Medyada Cilt Bakımı Görselleri: Satan Dokular",
+        "description": "Fondöten damlası, krem kıvamı, serum ışıltısı — cilt bakımı reklamlarında hangi mikro sinyallerin fark yarattığı ve bunların nasıl üretildiği."
+      },
+      "euAiActFuerMarketers": {
+        "title": "Pazarlamacılar İçin AB YZ Yasası — Ağustos 2026'da Gerçekten Neler Geçerli Olacak",
+        "description": "Ağustos 2026'dan itibaren AB'de YZ tarafından oluşturulan reklam içeriklerinin etiketlenmesi gerekecek. Bunun somut olarak ne anlama geldiği, ne anlama gelmediği — ve kendinizi şimdiden nasıl konumlandıracağınız."
+      },
+      "kiHintergruendeRichtigEinsetzen": {
+        "title": "YZ Arka Planlarını Doğru Kullanmak — Güveni Kaybetmeden",
+        "description": "Midjourney ve Firefly stüdyonuzu ölçeklendirebilir — veya markalaşmanızı mahvedebilir. YZ için hangi kategorilerin uygun olduğu, hangilerinin olmadığı ve nasıl temiz maskeleme yapılacağı."
+      },
+      "ugcVsStudio": {
+        "title": "UGC vs. Stüdyo: Ne Zaman Ne İşe Yarar (ve Ne Zaman Yaramaz)",
+        "description": "Otantik görünen UGC genellikle stüdyo ihtişamını yener — ama her zaman değil. Özdeşleşme ile güveni baltalamak arasındaki ince çizgi."
+      },
+      "techSpecsFuerAdCreatives": {
+        "title": "2026 Reklam Kreatifleri İçin Teknik Özellikler — Tüm Platformlar İçin Bir Kopya Kağıdı",
+        "description": "Boyutlar, uzunluklar, bit hızları, güvenli alanlar (safe areas). Meta, TikTok, Google ve YouTube için kompakt bir referans — 2026 itibarıyla."
+      },
+      "texturshotsBeautyPerformance": {
+        "title": "Güzellik Performansı İçin Doku Çekimleri: 1,8x Daha Yüksek Hook Oranı",
+        "description": "Saf doku çekimleri, cilt bakımındaki kişi çekimlerini düzenli olarak açık ara geride bırakıyor. Neden işe yaradıkları ve onları nasıl ürettiğimiz."
+      }
+    },
     hooks: {
       p1: "Bir reklam kreatifinin ilk 1,5 saniyesi, birinin durup durmayacağına veya kaydırmaya devam edip etmeyeceğine karar verir. Bu ana <strong>Hook</strong> denir — ve kreatifinizin, performansını hemen hemen her platform analizinde doğrudan okuyabileceğiniz tek unsurudur (3 Saniyelik Görüntüleme Oranı, Hook Oranı).",
       p2: "Beauty/Health/Lifestyle'da test edilen yaklaşık 200 hook'tan, bizim için defalarca daha iyi performans gösteren yedi model ve kaçınmanız gereken üç model belirginleşti.",

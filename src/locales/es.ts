@@ -938,6 +938,88 @@ const es = {
   },
 
   clusters: {
+    meta: {
+      "hooksDieFunktionieren": {
+        "title": "Ganchos que funcionan en anuncios de belleza",
+        "description": "Los primeros 1,5 segundos son decisivos. Siete patrones de ganchos que sistemáticamente tienen un rendimiento por encima de la media en nuestros tests de Belleza/Salud/Estilo de vida — y tres que deberías evitar."
+      },
+      "creativeFatigueErkennen": {
+        "title": "Reconocer la fatiga creativa — antes de que devore tu presupuesto",
+        "description": "Cuándo se fatiga un creativo no se ve en la cabeza, sino en los datos. Cuatro indicadores tempranos — y cuándo deberías desconectarlo."
+      },
+      "scrollStopRateVerbessern": {
+        "title": "Mejorar la tasa de scroll-stop: La batalla por los 1,5 segundos",
+        "description": "La tasa de scroll-stop es la evaluación más honesta de tu creativo. Lo que realmente mide, qué benchmarks se aplican y cómo puedes aumentarla sistemáticamente."
+      },
+      "creativeBurnoutVermeiden": {
+        "title": "Burnout creativo: Cuando todo el equipo choca contra un muro",
+        "description": "No es el creativo el que se fatiga, sino el equipo. Por qué los bucles estructurados del motor previenen el burnout y cómo construir una cadencia de producción sostenible."
+      },
+      "ctrBenchmarksBeautyAds": {
+        "title": "Benchmarks de CTR para anuncios de belleza en DACH 2026",
+        "description": "Cómo se ve hoy un CTR honestamente comparable en el cuidado de la piel, la salud y la belleza de estilo de vida — y qué factores explican las mayores fluctuaciones."
+      },
+      "creativeHypothesenFormulieren": {
+        "title": "Formular hipótesis creativas — el oficio olvidado",
+        "description": "Una buena hipótesis distingue un test controlado de un intento aleatorio. Tres elementos fundamentales que toda hipótesis necesita — más una plantilla."
+      },
+      "learningLogAufbauen": {
+        "title": "Construir un registro de aprendizaje que sea invaluable después de 12 meses",
+        "description": "La mayoría de las marcas saben qué creativos ganaron este mes — no qué lógica de gancho domina de forma estable en su nicho durante dos años. Un registro de aprendizaje cierra esta brecha."
+      },
+      "creativeBriefTemplate": {
+        "title": "Plantilla de brief creativo para anuncios de rendimiento",
+        "description": "Un brief no es una lista de deseos, sino un manual de instrucciones para captar la atención. Los siete campos sin los cuales ningún brief debería salir del estudio."
+      },
+      "abTestingMechanikImDetail": {
+        "title": "Mecánica de pruebas A/B en detalle: Aislamiento de variables",
+        "description": "Si cambias tres cosas a la vez y el test gana, no sabes por qué. Cómo el aislamiento estricto de variables genera un aprendizaje real."
+      },
+      "creativeVelocityProductionSprints": {
+        "title": "Creative Velocity: Sprints de producción que escalan",
+        "description": "Una marca con más de 100k de gasto mensual necesita de 5 a 10 nuevos tests por semana. Cómo nuestros sprints de producción logran este ritmo sin sacrificar la calidad."
+      },
+      "d2cBeautyDach2026": {
+        "title": "Belleza D2C en DACH 2026 — cinco cambios que importan ahora",
+        "description": "TikTok Shop, presión por el cumplimiento normativo, visibilidad de IA, retención antes que adquisición y el fin de la estética puramente aspiracional. Un inventario compacto del mercado."
+      },
+      "metaAdsFuerBeautyBrands": {
+        "title": "Anuncios en Meta para marcas de belleza: Qué es diferente en 2026",
+        "description": "Automatización de audiencias, Advantage+, cumplimiento normativo en promesas de eficacia — cómo configurar correctamente Meta hoy para la belleza D2C sin caer en viejos patrones."
+      },
+      "tiktokBeautyTrends": {
+        "title": "Tendencias de belleza en TikTok 2026: De la tendencia a la compra",
+        "description": "TikTok Shop, formatos GRWM, ganchos de puntos de dolor — lo que convierte actualmente en belleza en TikTok y lo que solo parece viral."
+      },
+      "roasVsMerFuerBeautyD2c": {
+        "title": "ROAS vs. MER para belleza D2C: Qué métrica importa realmente",
+        "description": "El ROAS de la plataforma miente. El MER (Media Efficiency Ratio) te obliga a ver la verdad. Cómo interpretar ambos correctamente y qué decisiones dependen de ello."
+      },
+      "skincareVisualsPaidSocial": {
+        "title": "Visuales de skincare en redes sociales pagadas: Texturas que venden",
+        "description": "Gotas de base, consistencia de crema, brillo de sérum — qué micro señales marcan la diferencia en los anuncios de cuidado de la piel y cómo se producen."
+      },
+      "euAiActFuerMarketers": {
+        "title": "Ley de IA de la UE para marketers — lo que realmente se aplica en agosto de 2026",
+        "description": "A partir de agosto de 2026, el contenido publicitario generado por IA debe etiquetarse en la UE. Qué significa esto de forma concreta, qué no — y cómo posicionarse ahora."
+      },
+      "kiHintergruendeRichtigEinsetzen": {
+        "title": "Usar fondos de IA correctamente — sin perder la confianza",
+        "description": "Midjourney y Firefly pueden escalar tu estudio — o arruinar tu marca. Qué categorías son adecuadas para la IA, cuáles no y cómo enmascarar limpiamente."
+      },
+      "ugcVsStudio": {
+        "title": "UGC vs. Estudio: Cuándo funciona cada uno (y cuándo no)",
+        "description": "El contenido UGC de aspecto auténtico suele superar al brillo del estudio — pero no siempre. La línea divisoria entre la identificación y el socavamiento de la confianza."
+      },
+      "techSpecsFuerAdCreatives": {
+        "title": "Especificaciones técnicas para creativos publicitarios 2026 — todas las plataformas, una hoja de trucos",
+        "description": "Dimensiones, duraciones, bitrates, áreas seguras. Una referencia compacta para Meta, TikTok, Google y YouTube — actualizada a 2026."
+      },
+      "texturshotsBeautyPerformance": {
+        "title": "Tomas de textura para rendimiento en belleza: tasa de gancho 1,8 veces mayor",
+        "description": "Las tomas de textura puras suelen superar a las tomas de personas en el cuidado de la piel. Por qué funcionan y cómo las producimos."
+      }
+    },
     hooks: {
       p1: "Los primeros 1,5 segundos de un anuncio creativo deciden si alguien se detiene o sigue haciendo scroll. Este momento se llama el <strong>Gancho (Hook)</strong> — y es el único elemento de tu creativo cuyo rendimiento puedes leer directamente en casi cualquier análisis de plataforma (Tasa de retención a 3 segundos, Tasa de gancho).",
       p2: "A partir de unos 200 ganchos probados en Belleza/Salud/Estilo de vida, hemos identificado siete patrones que sistemáticamente superan al resto — y tres que deberías evitar.",

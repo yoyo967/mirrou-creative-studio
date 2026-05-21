@@ -1,0 +1,82 @@
+{
+  "hooksDieFunktionieren": {
+    "title": "Hooks, die in Beauty-Ads funktionieren",
+    "description": "Die ersten 1,5 Sekunden entscheiden. Sieben Hook-Muster, die in unseren Tests in Beauty/Health/Lifestyle wiederholt überdurchschnittlich performen — und drei, die du vermeiden solltest."
+  },
+  "creativeFatigueErkennen": {
+    "title": "Creative Fatigue erkennen — bevor sie dein Budget frisst",
+    "description": "Wann ein Creative ermüdet, sieht man nicht im Kopf, sondern in den Daten. Vier Frühindikatoren — und wann du den Stecker ziehen solltest."
+  },
+  "scrollStopRateVerbessern": {
+    "title": "Scroll-Stop-Rate verbessern: Der Kampf um 1,5 Sekunden",
+    "description": "Die Scroll-Stop-Rate ist die ehrlichste Bewertung deines Creatives. Was sie wirklich misst, welche Benchmarks gelten, und wie du sie systematisch hebst."
+  },
+  "creativeBurnoutVermeiden": {
+    "title": "Creative Burnout: Wenn das ganze Team an die Wand fährt",
+    "description": "Nicht das Creative ermüdet, sondern das Team. Warum strukturierte Engine-Loops Burnout verhindern und wie du eine nachhaltige Production Cadence baust."
+  },
+  "ctrBenchmarksBeautyAds": {
+    "title": "CTR-Benchmarks für Beauty-Ads in DACH 2026",
+    "description": "Was eine ehrlich benchmarkbare CTR in Skincare, Health und Lifestyle-Beauty heute aussieht — und welche Faktoren die größten Schwankungen erklären."
+  },
+  "creativeHypothesenFormulieren": {
+    "title": "Creative-Hypothesen formulieren — das vergessene Handwerk",
+    "description": "Eine gute Hypothese unterscheidet einen kontrollierten Test von einem zufälligen Versuch. Drei Bausteine, die jede Hypothese braucht — plus Template."
+  },
+  "learningLogAufbauen": {
+    "title": "Ein Learning-Log aufbauen, das nach 12 Monaten unbezahlbar ist",
+    "description": "Die meisten Brands wissen, welche Creatives diesen Monat gewonnen haben — nicht, welche Hook-Logik in ihrer Nische über zwei Jahre stabil dominiert. Ein Learning-Log schließt diese Lücke."
+  },
+  "creativeBriefTemplate": {
+    "title": "Creative-Brief-Template für Performance Ads",
+    "description": "Ein Briefing ist keine Wunschliste, sondern eine Bauanleitung für Aufmerksamkeit. Die sieben Felder, ohne die kein Brief das Studio verlassen sollte."
+  },
+  "abTestingMechanikImDetail": {
+    "title": "A/B-Testing-Mechanik im Detail: Variablen-Isolation",
+    "description": "Wenn du drei Dinge gleichzeitig änderst und der Test gewinnt, weißt du nicht, warum. Wie strikte Variablen-Isolation echtes Lernen erzeugt."
+  },
+  "creativeVelocityProductionSprints": {
+    "title": "Creative Velocity: Production Sprints, die skalieren",
+    "description": "Eine Brand mit 100k+ Monats-Spend braucht 5–10 neue Tests pro Woche. Wie unsere Production Sprints diesen Rhythmus liefern, ohne Qualität zu opfern."
+  },
+  "d2cBeautyDach2026": {
+    "title": "D2C-Beauty in DACH 2026 — fünf Verschiebungen, die jetzt zählen",
+    "description": "TikTok Shop, Compliance-Druck, KI-Sichtbarkeit, Retention vor Akquise und das Ende der reinen Aspirational-Ästhetik. Eine kompakte Marktbestandsaufnahme."
+  },
+  "metaAdsFuerBeautyBrands": {
+    "title": "Meta Ads für Beauty-Brands: Was 2026 anders ist",
+    "description": "Audience-Automatisierung, Advantage+, Compliance bei Wirkversprechen — wie du Meta heute für Beauty-D2C richtig aufsetzt, ohne in alte Patterns zu fallen."
+  },
+  "tiktokBeautyTrends": {
+    "title": "TikTok Beauty Trends 2026: Vom Trend zum Buy",
+    "description": "TikTok Shop, GRWM-Formate, Pain-Point-Hooks — was bei Beauty auf TikTok aktuell konvertiert und was nur viral aussieht."
+  },
+  "roasVsMerFuerBeautyD2c": {
+    "title": "ROAS vs. MER für Beauty-D2C: Welche Metrik wirklich zählt",
+    "description": "Plattform-ROAS lügt. MER (Media Efficiency Ratio) zwingt zur Wahrheit. Wie du beide richtig liest und welche Entscheidungen daran hängen."
+  },
+  "skincareVisualsPaidSocial": {
+    "title": "Skincare-Visuals in Paid Social: Texturen, die verkaufen",
+    "description": "Foundation-Tropfen, Cremeskonsistenz, Serum-Schimmer — welche Mikro-Signale in Skincare-Ads den Unterschied machen und wie sie produziert werden."
+  },
+  "euAiActFuerMarketers": {
+    "title": "EU AI Act für Marketers — was im August 2026 wirklich gilt",
+    "description": "Ab August 2026 müssen KI-generierte Werbeinhalte in der EU gekennzeichnet werden. Was das konkret heißt, was nicht — und wie du dich jetzt aufstellst."
+  },
+  "kiHintergruendeRichtigEinsetzen": {
+    "title": "KI-Hintergründe richtig einsetzen — ohne den Trust zu verlieren",
+    "description": "Midjourney und Firefly können dein Studio skalieren — oder dein Branding ruinieren. Welche Kategorien für KI taugen, welche nicht, und wie sauber maskiert wird."
+  },
+  "ugcVsStudio": {
+    "title": "UGC vs. Studio: Wann was funktioniert (und wann nicht)",
+    "description": "Authentisch wirkender UGC schlägt Studio-Hochglanz oft — aber nicht immer. Die Trennlinie zwischen Identifikation und Trust-Untergrabung."
+  },
+  "techSpecsFuerAdCreatives": {
+    "title": "Tech Specs für Ad Creatives 2026 — alle Plattformen, ein Cheatsheet",
+    "description": "Maße, Längen, Bitrates, Safe Areas. Eine kompakte Referenz für Meta, TikTok, Google und YouTube — Stand 2026."
+  },
+  "texturshotsBeautyPerformance": {
+    "title": "Texturshots für Beauty-Performance: 1,8x höhere Hook-Rate",
+    "description": "Pure Texturshots schlagen Personenshots in Skincare regelmäßig deutlich. Warum sie funktionieren und wie wir sie produzieren."
+  }
+}

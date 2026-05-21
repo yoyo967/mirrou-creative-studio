@@ -938,6 +938,88 @@ const fr = {
   },
 
   clusters: {
+    meta: {
+      "hooksDieFunktionieren": {
+        "title": "Les hooks qui fonctionnent dans les publicités beauté",
+        "description": "Les 1,5 premières secondes sont décisives. Sept modèles de hooks qui surperforment systématiquement dans nos tests Beauté/Santé/Lifestyle — et trois que vous devriez éviter."
+      },
+      "creativeFatigueErkennen": {
+        "title": "Identifier la fatigue créative — avant qu'elle ne dévore votre budget",
+        "description": "Le moment où un créatif s'épuise ne se voit pas à l'intuition, mais dans les données. Quatre indicateurs précoces — et quand débrancher la prise."
+      },
+      "scrollStopRateVerbessern": {
+        "title": "Améliorer le taux d'arrêt au scroll : la bataille des 1,5 secondes",
+        "description": "Le taux d'arrêt au scroll est l'évaluation la plus honnête de votre créatif. Ce qu'il mesure vraiment, quels sont les benchmarks applicables et comment l'augmenter systématiquement."
+      },
+      "creativeBurnoutVermeiden": {
+        "title": "Creative Burnout : quand toute l'équipe fonce dans le mur",
+        "description": "Ce n'est pas le créatif qui s'épuise, c'est l'équipe. Pourquoi des boucles de production structurées préviennent l'épuisement et comment construire une cadence de production durable."
+      },
+      "ctrBenchmarksBeautyAds": {
+        "title": "Benchmarks CTR pour les publicités beauté dans la région DACH en 2026",
+        "description": "À quoi ressemble un CTR véritablement comparable aujourd'hui dans les secteurs skincare, santé et beauté lifestyle — et quels facteurs expliquent les plus grandes variations."
+      },
+      "creativeHypothesenFormulieren": {
+        "title": "Formuler des hypothèses créatives — l'artisanat oublié",
+        "description": "Une bonne hypothèse différencie un test contrôlé d'un essai aléatoire. Les trois éléments fondateurs dont chaque hypothèse a besoin — plus un modèle."
+      },
+      "learningLogAufbauen": {
+        "title": "Construire un journal d'apprentissage inestimable après 12 mois",
+        "description": "La plupart des marques savent quels créatifs ont gagné ce mois-ci — mais pas quelle logique de hook domine durablement leur niche sur deux ans. Un journal d'apprentissage comble cette lacune."
+      },
+      "creativeBriefTemplate": {
+        "title": "Modèle de brief créatif pour les publicités de performance",
+        "description": "Un brief n'est pas une liste de souhaits, mais un plan de construction pour l'attention. Les sept champs sans lesquels aucun brief ne devrait quitter le studio."
+      },
+      "abTestingMechanikImDetail": {
+        "title": "La mécanique des tests A/B en détail : l'isolation des variables",
+        "description": "Si vous changez trois choses en même temps et que le test est gagnant, vous ne savez pas pourquoi. Comment une stricte isolation des variables génère un véritable apprentissage."
+      },
+      "creativeVelocityProductionSprints": {
+        "title": "Vélocité Créative : des sprints de production qui scalent",
+        "description": "Une marque dépensant plus de 100k€ par mois a besoin de 5 à 10 nouveaux tests par semaine. Comment nos sprints de production assurent ce rythme sans sacrifier la qualité."
+      },
+      "d2cBeautyDach2026": {
+        "title": "D2C Beauté DACH 2026 — cinq changements qui comptent maintenant",
+        "description": "TikTok Shop, pression réglementaire, visibilité de l'IA, rétention plutôt qu'acquisition et la fin de l'esthétique purement aspirationnelle. Un état des lieux compact du marché."
+      },
+      "metaAdsFuerBeautyBrands": {
+        "title": "Meta Ads pour les marques beauté : ce qui change en 2026",
+        "description": "Automatisation des audiences, Advantage+, conformité des allégations d'efficacité — comment configurer correctement Meta aujourd'hui pour le D2C beauté, sans retomber dans les anciens schémas."
+      },
+      "tiktokBeautyTrends": {
+        "title": "Tendances Beauté TikTok 2026 : de la tendance à l'achat",
+        "description": "TikTok Shop, formats GRWM, hooks sur les points de douleur — ce qui convertit réellement dans la beauté sur TikTok aujourd'hui, et ce qui n'est que viralité apparente."
+      },
+      "roasVsMerFuerBeautyD2c": {
+        "title": "ROAS vs MER pour le D2C beauté : la métrique qui compte vraiment",
+        "description": "Le ROAS des plateformes ment. Le MER (Media Efficiency Ratio) force à la vérité. Comment lire correctement les deux et quelles décisions en découlent."
+      },
+      "skincareVisualsPaidSocial": {
+        "title": "Visuels skincare en paid social : des textures qui vendent",
+        "description": "Gouttes de fond de teint, consistance de crème, miroitement de sérum — quels micro-signaux font la différence dans les publicités skincare et comment nous les produisons."
+      },
+      "euAiActFuerMarketers": {
+        "title": "L'EU AI Act pour les marketeurs — ce qui s'applique vraiment en août 2026",
+        "description": "À partir d'août 2026, les contenus publicitaires générés par IA dans l'UE devront être étiquetés. Ce que cela signifie concrètement, ce que cela ne signifie pas — et comment vous y préparer dès maintenant."
+      },
+      "kiHintergruendeRichtigEinsetzen": {
+        "title": "Bien utiliser les arrière-plans IA — sans perdre la confiance",
+        "description": "Midjourney et Firefly peuvent scaler votre studio — ou ruiner votre image de marque. Quelles catégories se prêtent à l'IA, lesquelles non, et comment réaliser un masquage propre."
+      },
+      "ugcVsStudio": {
+        "title": "UGC vs Studio : quand l'un fonctionne (et l'autre pas)",
+        "description": "L'UGC à l'aspect authentique bat souvent les productions studio ultra-léchées — mais pas toujours. La ligne de démarcation entre identification et perte de confiance."
+      },
+      "techSpecsFuerAdCreatives": {
+        "title": "Spécifications techniques pour les créatifs publicitaires 2026 — l'aide-mémoire toutes plateformes",
+        "description": "Dimensions, durées, débits binaires, zones de sécurité (safe areas). Une référence compacte pour Meta, TikTok, Google et YouTube — édition 2026."
+      },
+      "texturshotsBeautyPerformance": {
+        "title": "Plans de texture pour la performance beauté : un hook rate 1,8x plus élevé",
+        "description": "Les plans de texture purs battent régulièrement et nettement les plans avec des personnes dans le skincare. Pourquoi ils fonctionnent et comment nous les produisons."
+      }
+    },
     hooks: {
       p1: "Les premières 1,5 secondes d'un créatif publicitaire décident si quelqu'un s'arrête ou continue de faire défiler. Ce moment s'appelle le <strong>Hook</strong> — et c'est le seul élément de votre créatif dont vous pouvez lire la performance directement dans presque chaque analyse de plateforme (3-Second View Rate, Hook Rate).",
       p2: "Parmi environ 200 hooks testés dans la Beauté/Santé/Lifestyle, sept modèles se sont cristallisés pour nous qui surperforment à plusieurs reprises — et trois que vous devriez éviter.",

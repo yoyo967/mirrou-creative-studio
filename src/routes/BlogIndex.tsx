@@ -13,6 +13,7 @@ const SLUG_TO_KEY: Record<string, string> = {
 export default function BlogIndex() {
   const { t, i18n } = useTranslation("blog");
   const { t: tPillar } = useTranslation("pillars");
+  const { t: tCluster } = useTranslation("clusters");
   const { t: tSeo } = useTranslation("seo");
   const h = (key: string) => t(`hub.${key}`);
 
@@ -45,14 +46,19 @@ export default function BlogIndex() {
     url: SITE.url + "/blog",
     inLanguage: langTag,
     isPartOf: { "@type": "WebSite", name: SITE.name, url: SITE.url },
-    hasPart: CLUSTERS.map((c) => ({
-      "@type": "Article",
-      headline: c.title,
-      description: c.description,
-      datePublished: c.publishedAt,
-      dateModified: c.updatedAt ?? c.publishedAt,
-      url: new URL(`/blog/${c.slug}`, SITE.url).toString(),
-    })),
+    hasPart: CLUSTERS.map((c) => {
+      const ck = c.slug.replace(/-([a-z0-9])/g, g => g[1].toUpperCase());
+      const cTitle = tCluster(`meta.${ck}.title`, { defaultValue: c.title });
+      const cDesc = tCluster(`meta.${ck}.description`, { defaultValue: c.description });
+      return {
+        "@type": "Article",
+        headline: cTitle,
+        description: cDesc,
+        datePublished: c.publishedAt,
+        dateModified: c.updatedAt ?? c.publishedAt,
+        url: new URL(`/blog/${c.slug}`, SITE.url).toString(),
+      };
+    }),
   };
 
   return (
@@ -105,16 +111,20 @@ export default function BlogIndex() {
                 </div>
 
                 <ul className="divide-y divide-white/5">
-                  {clusters.map((c) => (
+                  {clusters.map((c) => {
+                    const ck = c.slug.replace(/-([a-z0-9])/g, g => g[1].toUpperCase());
+                    const cTitle = tCluster(`meta.${ck}.title`, { defaultValue: c.title });
+                    const cDesc = tCluster(`meta.${ck}.description`, { defaultValue: c.description });
+                    return (
                     <li key={c.slug}>
                       <Link
                         to={`/blog/${c.slug}`}
                         className="group flex flex-col sm:flex-row sm:items-baseline sm:justify-between gap-2 py-5 hover:text-accent transition-colors"
                       >
                         <div className="flex-1">
-                          <h3 className="text-xl font-serif italic leading-snug">{c.title}</h3>
+                          <h3 className="text-xl font-serif italic leading-snug">{cTitle}</h3>
                           <p className="text-sm text-muted group-hover:text-ink mt-1 font-light">
-                            {c.description}
+                            {cDesc}
                           </p>
                         </div>
                         <div className="text-[10px] uppercase tracking-widest text-[#444] font-mono shrink-0 flex items-center gap-3">
@@ -125,7 +135,7 @@ export default function BlogIndex() {
                         </div>
                       </Link>
                     </li>
-                  ))}
+                  )})}
                 </ul>
               </section>
             );

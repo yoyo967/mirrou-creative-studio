@@ -938,6 +938,88 @@ const it = {
   },
 
   clusters: {
+    meta: {
+      "hooksDieFunktionieren": {
+        "title": "Hook che funzionano nelle pubblicità beauty",
+        "description": "I primi 1,5 secondi sono decisivi. Sette modelli di hook che nei nostri test nei settori Beauty/Salute/Lifestyle performano costantemente sopra la media — e tre da evitare."
+      },
+      "creativeFatigueErkennen": {
+        "title": "Riconoscere la creative fatigue — prima che prosciughi il tuo budget",
+        "description": "Quando un creativo si esaurisce non si vede a occhio nudo, ma nei dati. Quattro indicatori precoci — e quando staccare la spina."
+      },
+      "scrollStopRateVerbessern": {
+        "title": "Migliorare lo scroll-stop-rate: la battaglia per 1,5 secondi",
+        "description": "Lo scroll-stop-rate è la valutazione più onesta del tuo creativo. Cosa misura davvero, quali benchmark si applicano e come aumentarlo sistematicamente."
+      },
+      "creativeBurnoutVermeiden": {
+        "title": "Creative Burnout: quando l'intero team va in tilt",
+        "description": "Non è il creativo a esaurirsi, ma il team. Perché i loop strutturati dell'engine prevengono il burnout e come costruire una cadenza di produzione sostenibile."
+      },
+      "ctrBenchmarksBeautyAds": {
+        "title": "Benchmark CTR per le pubblicità beauty in DACH nel 2026",
+        "description": "Come appare oggi un CTR onestamente misurabile in Skincare, Salute e Lifestyle-Beauty — e quali fattori spiegano le maggiori fluttuazioni."
+      },
+      "creativeHypothesenFormulieren": {
+        "title": "Formulare ipotesi creative — l'arte dimenticata",
+        "description": "Una buona ipotesi distingue un test controllato da un tentativo casuale. Tre elementi fondamentali che ogni ipotesi richiede — più un template."
+      },
+      "learningLogAufbauen": {
+        "title": "Costruire un learning log inestimabile dopo 12 mesi",
+        "description": "La maggior parte dei brand sa quali creativi hanno vinto questo mese — ma non quale logica di hook domina stabilmente nella loro nicchia per due anni. Un learning log colma questa lacuna."
+      },
+      "creativeBriefTemplate": {
+        "title": "Template di creative brief per performance ads",
+        "description": "Un brief non è una lista dei desideri, ma un manuale per attirare l'attenzione. I sette campi senza i quali nessun brief dovrebbe lasciare lo studio."
+      },
+      "abTestingMechanikImDetail": {
+        "title": "Meccanica dell'A/B testing nel dettaglio: l'isolamento delle variabili",
+        "description": "Se cambi tre cose contemporaneamente e il test vince, non saprai mai perché. Come l'isolamento rigoroso delle variabili genera vero apprendimento."
+      },
+      "creativeVelocityProductionSprints": {
+        "title": "Creative Velocity: production sprint scalabili",
+        "description": "Un brand con oltre 100k€ di spesa mensile ha bisogno di 5–10 nuovi test a settimana. Come i nostri production sprint mantengono questo ritmo senza sacrificare la qualità."
+      },
+      "d2cBeautyDach2026": {
+        "title": "D2C-Beauty in DACH nel 2026 — cinque cambiamenti che contano ora",
+        "description": "TikTok Shop, pressione sulla compliance, visibilità dell'IA, retention prima dell'acquisizione e la fine della pura estetica aspirazionale. Un inventario compatto del mercato."
+      },
+      "metaAdsFuerBeautyBrands": {
+        "title": "Meta Ads per i brand beauty: cosa cambia nel 2026",
+        "description": "Automazione dell'audience, Advantage+, compliance sulle promesse di efficacia — come impostare correttamente Meta oggi per il beauty D2C, senza ricadere in vecchi pattern."
+      },
+      "tiktokBeautyTrends": {
+        "title": "Trend beauty su TikTok nel 2026: dal trend all'acquisto",
+        "description": "TikTok Shop, formati GRWM, hook sui pain point — cosa converte attualmente nel beauty su TikTok e cosa sembra solo virale."
+      },
+      "roasVsMerFuerBeautyD2c": {
+        "title": "ROAS vs. MER per il D2C beauty: quale metrica conta davvero",
+        "description": "Il ROAS della piattaforma mente. Il MER (Media Efficiency Ratio) costringe alla verità. Come leggerli entrambi correttamente e quali decisioni dipendono da essi."
+      },
+      "skincareVisualsPaidSocial": {
+        "title": "Visual di skincare nel paid social: texture che vendono",
+        "description": "Gocce di fondotinta, consistenza delle creme, shimmer del siero — quali micro-segnali fanno la differenza nelle ads di skincare e come vengono prodotti."
+      },
+      "euAiActFuerMarketers": {
+        "title": "EU AI Act per i marketer — cosa si applica davvero da agosto 2026",
+        "description": "Da agosto 2026 i contenuti pubblicitari generati dall'IA nell'UE dovranno essere etichettati. Cosa significa concretamente, cosa no — e come prepararsi fin da ora."
+      },
+      "kiHintergruendeRichtigEinsetzen": {
+        "title": "Usare correttamente gli sfondi IA — senza perdere la fiducia",
+        "description": "Midjourney e Firefly possono far scalare il tuo studio — o rovinare il tuo branding. Quali categorie si prestano all'IA, quali no, e come mascherare in modo pulito."
+      },
+      "ugcVsStudio": {
+        "title": "UGC vs. Studio: quando funziona cosa (e quando no)",
+        "description": "Un UGC dall'aspetto autentico spesso batte la qualità patinata da studio — ma non sempre. La linea di demarcazione tra l'identificazione e la perdita di fiducia."
+      },
+      "techSpecsFuerAdCreatives": {
+        "title": "Tech Specs per gli ad creative nel 2026 — tutte le piattaforme, un cheatsheet",
+        "description": "Dimensioni, durate, bitrate, safe area. Una guida di riferimento compatta per Meta, TikTok, Google e YouTube — aggiornata al 2026."
+      },
+      "texturshotsBeautyPerformance": {
+        "title": "Scatti di texture per performance beauty: hook rate 1,8x più alto",
+        "description": "I puri scatti di texture superano regolarmente e in modo netto gli scatti con persone nello skincare. Perché funzionano e come li produciamo."
+      }
+    },
     ...en.clusters,
     hooks: {
       p1: "I primi 1,5 secondi di un creativo pubblicitario decidono se qualcuno si ferma o continua a scorrere. Questo momento si chiama <strong>Hook</strong> — ed è l'unico elemento del tuo creativo le cui performance possono essere lette direttamente in quasi ogni analisi di piattaforma (3-Second View Rate, Hook Rate).",

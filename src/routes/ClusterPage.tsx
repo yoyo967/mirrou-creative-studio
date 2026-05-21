@@ -15,11 +15,16 @@ import { CLUSTER_BODIES } from "./clusters/index";
 export default function ClusterPage() {
   const { slug } = useParams();
   const { t, i18n } = useTranslation("blog");
+  const { t: tCluster } = useTranslation("clusters");
   const { t: tSeo } = useTranslation("seo");
   const c = (key: string) => t(`cluster.${key}`);
 
   const cluster = slug ? findCluster(slug) : undefined;
   if (!cluster) return <Navigate to="/blog" replace />;
+
+  const ck = cluster.slug.replace(/-([a-z0-9])/g, g => g[1].toUpperCase());
+  const cTitle = tCluster(`meta.${ck}.title`, { defaultValue: cluster.title });
+  const cDesc = tCluster(`meta.${ck}.description`, { defaultValue: cluster.description });
 
   const pillar = findPillar(cluster.pillar);
   if (!pillar) return <Navigate to="/blog" replace />;
@@ -57,16 +62,16 @@ export default function ClusterPage() {
         name: pillar.shortLabel,
         item: new URL(`/${pillar.slug}`, SITE.url).toString(),
       },
-      { "@type": "ListItem", position: 3, name: cluster.title, item: canonical },
+      { "@type": "ListItem", position: 3, name: cTitle, item: canonical },
     ],
   };
 
   const articleLd = {
     "@context": "https://schema.org",
     "@type": "Article",
-    headline: cluster.title,
-    description: cluster.description,
-    abstract: tldr,
+    headline: cTitle,
+    description: cDesc,
+    abstract: cluster.tldr ?? cDesc,
     datePublished: cluster.publishedAt,
     dateModified: cluster.updatedAt ?? cluster.publishedAt,
     inLanguage: langTag,
@@ -109,8 +114,8 @@ export default function ClusterPage() {
   return (
     <article className="min-h-screen bg-transparent pt-40 pb-24 px-6 md:px-10 relative z-10">
       <SEO
-        title={cluster.title}
-        description={cluster.description}
+        title={cTitle}
+        description={cDesc}
         pathname={pathname}
         jsonLd={jsonLd}
       />
@@ -172,10 +177,10 @@ export default function ClusterPage() {
             transition={{ duration: 0.8 }}
             className="text-4xl lg:text-6xl font-serif italic leading-[1.05] tracking-tight mb-8 text-balance"
           >
-            {cluster.title}
+            {cTitle}
           </motion.h1>
 
-          <p className="text-body-lg text-ink/90 max-w-3xl">{cluster.description}</p>
+          <p className="text-body-lg text-ink/90 max-w-3xl">{cDesc}</p>
 
           {cluster.status === "stub" && (
             <p className="mt-6 text-[10px] uppercase tracking-[0.3em] text-accent font-mono border border-accent/20 inline-block px-3 py-2">
@@ -219,7 +224,7 @@ export default function ClusterPage() {
         </div>
 
         <div className="prose prose-invert prose-lg max-w-none prose-headings:font-serif prose-headings:italic prose-headings:tracking-tight prose-a:text-accent prose-strong:text-ink prose-p:text-body prose-p:leading-relaxed prose-p:font-light prose-li:text-body prose-li:font-light">
-          {Body ? <Body /> : <DefaultStub cluster={cluster} pillar={pillar} />}
+          {Body ? <Body /> : <DefaultStub cDesc={cDesc} pillar={pillar} />}
         </div>
 
         {cluster.faq && cluster.faq.length > 0 && (
@@ -264,19 +269,23 @@ export default function ClusterPage() {
           <section className="mt-16 pt-16 border-t border-white/6">
             <p className="eyebrow mb-6">{c("moreArticles")}</p>
             <ul className="space-y-px bg-white/6 border border-white/6">
-              {otherClusters.map((cl) => (
+              {otherClusters.map((cl) => {
+                const ock = cl.slug.replace(/-([a-z0-9])/g, g => g[1].toUpperCase());
+                const ocTitle = tCluster(`meta.${ock}.title`, { defaultValue: cl.title });
+                const ocDesc = tCluster(`meta.${ock}.description`, { defaultValue: cl.description });
+                return (
                 <li key={cl.slug} className="bg-bg">
                   <Link
                     to={`/blog/${cl.slug}`}
                     className="group block py-5 px-6 hover:bg-surface/50 transition"
                   >
                     <p className="text-lg font-serif italic group-hover:text-accent transition">
-                      {cl.title}
+                      {ocTitle}
                     </p>
-                    <p className="text-body text-[14px] mt-1">{cl.description}</p>
+                    <p className="text-body text-[14px] mt-1">{ocDesc}</p>
                   </Link>
                 </li>
-              ))}
+              )})}
             </ul>
           </section>
         )}
@@ -286,10 +295,10 @@ export default function ClusterPage() {
 }
 
 function DefaultStub({
-  cluster,
+  cDesc,
   pillar,
 }: {
-  cluster: { title: string; description: string };
+  cDesc: string;
   pillar: { slug: string; shortLabel: string };
 }) {
   const { t } = useTranslation("blog");
@@ -297,7 +306,7 @@ function DefaultStub({
 
   return (
     <>
-      <p>{cluster.description}</p>
+      <p>{cDesc}</p>
       <p>
         {c("stubBody1")}{" "}
         <Link to={`/${pillar.slug}`}>{pillar.shortLabel}</Link>.{" "}

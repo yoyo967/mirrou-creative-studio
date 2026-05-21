@@ -1150,6 +1150,88 @@ const en = {
   },
 
   clusters: {
+    meta: {
+      "hooksDieFunktionieren": {
+        "title": "Hooks that work in beauty ads",
+        "description": "The first 1.5 seconds decide. Seven hook patterns that consistently outperform in our Beauty/Health/Lifestyle tests — and three you should avoid."
+      },
+      "creativeFatigueErkennen": {
+        "title": "Recognising creative fatigue — before it eats your budget",
+        "description": "When a creative fatigues isn't a gut feeling, it's visible in the data. Four early indicators — and when you should pull the plug."
+      },
+      "scrollStopRateVerbessern": {
+        "title": "Improving Scroll-Stop Rate: The battle for 1.5 seconds",
+        "description": "The scroll-stop rate is the most honest evaluation of your creative. What it actually measures, which benchmarks apply, and how you can systematically increase it."
+      },
+      "creativeBurnoutVermeiden": {
+        "title": "Creative Burnout: When the whole team hits the wall",
+        "description": "It's not the creative that fatigues, it's the team. Why structured Engine-Loops prevent burnout and how to build a sustainable production cadence."
+      },
+      "ctrBenchmarksBeautyAds": {
+        "title": "CTR benchmarks for beauty ads in DACH 2026",
+        "description": "What an honestly benchmarkable CTR in skincare, health, and lifestyle beauty looks like today — and which factors explain the biggest fluctuations."
+      },
+      "creativeHypothesenFormulieren": {
+        "title": "Formulating creative hypotheses — the forgotten craft",
+        "description": "A good hypothesis separates a controlled test from a random attempt. Three building blocks every hypothesis needs — plus a template."
+      },
+      "learningLogAufbauen": {
+        "title": "Building a learning log that becomes invaluable after 12 months",
+        "description": "Most brands know which creatives won this month — but not which hook logic has stably dominated their niche over two years. A learning log closes this gap."
+      },
+      "creativeBriefTemplate": {
+        "title": "Creative brief template for performance ads",
+        "description": "A brief is not a wish list, but a blueprint for attention. The seven fields without which no brief should ever leave the studio."
+      },
+      "abTestingMechanikImDetail": {
+        "title": "A/B testing mechanics in detail: variable isolation",
+        "description": "If you change three things at once and the test wins, you don't know why. How strict variable isolation generates real learning."
+      },
+      "creativeVelocityProductionSprints": {
+        "title": "Creative Velocity: Production sprints that scale",
+        "description": "A brand with €100k+ monthly spend needs 5–10 new tests per week. How our production sprints deliver this rhythm without sacrificing quality."
+      },
+      "d2cBeautyDach2026": {
+        "title": "D2C Beauty in DACH 2026 — five shifts that matter right now",
+        "description": "TikTok Shop, compliance pressure, AI visibility, retention over acquisition, and the end of purely aspirational aesthetics. A compact market assessment."
+      },
+      "metaAdsFuerBeautyBrands": {
+        "title": "Meta Ads for beauty brands: What's different in 2026",
+        "description": "Audience automation, Advantage+, compliance for efficacy claims — how to set up Meta correctly for Beauty D2C today without falling into old patterns."
+      },
+      "tiktokBeautyTrends": {
+        "title": "TikTok Beauty Trends 2026: From trend to buy",
+        "description": "TikTok Shop, GRWM formats, pain-point hooks — what currently converts in beauty on TikTok and what just looks viral."
+      },
+      "roasVsMerFuerBeautyD2c": {
+        "title": "ROAS vs. MER for Beauty D2C: Which metric really matters",
+        "description": "Platform ROAS lies. MER (Media Efficiency Ratio) forces truth. How to read both correctly and what decisions depend on them."
+      },
+      "skincareVisualsPaidSocial": {
+        "title": "Skincare visuals in paid social: Textures that sell",
+        "description": "Foundation drops, cream consistency, serum shimmer — which micro-signals make the difference in skincare ads and how they are produced."
+      },
+      "euAiActFuerMarketers": {
+        "title": "EU AI Act for marketers — what really applies in August 2026",
+        "description": "From August 2026, AI-generated advertising content in the EU must be labelled. What this means in concrete terms, what it doesn't — and how to position yourself now."
+      },
+      "kiHintergruendeRichtigEinsetzen": {
+        "title": "Using AI backgrounds correctly — without losing trust",
+        "description": "Midjourney and Firefly can scale your studio — or ruin your branding. Which categories are suited for AI, which aren't, and how to mask cleanly."
+      },
+      "ugcVsStudio": {
+        "title": "UGC vs. Studio: When what works (and when it doesn't)",
+        "description": "Authentic-looking UGC often beats studio gloss — but not always. The dividing line between identification and undermining trust."
+      },
+      "techSpecsFuerAdCreatives": {
+        "title": "Tech specs for ad creatives 2026 — all platforms, one cheatsheet",
+        "description": "Dimensions, lengths, bitrates, safe areas. A compact reference for Meta, TikTok, Google, and YouTube — as of 2026."
+      },
+      "texturshotsBeautyPerformance": {
+        "title": "Texture shots for beauty performance: 1.8x higher hook rate",
+        "description": "Pure texture shots regularly and significantly outperform person shots in skincare. Why they work and how we produce them."
+      }
+    },
     hooks: {
       p1: "The first 1.5 seconds of an ad creative decide whether someone stops or keeps scrolling. This moment is called the <strong>Hook</strong> — and it is the only element of your creative whose performance you can read directly in almost every platform analysis (3-Second View Rate, Hook Rate).",
       p2: "From around 200 tested hooks in Beauty/Health/Lifestyle, seven patterns have crystallised for us that repeatedly outperform — and three you should avoid.",

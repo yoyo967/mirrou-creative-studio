@@ -178,6 +178,7 @@ function ClusterListSection({
   clusters: ReturnType<typeof clustersByPillar>;
 }) {
   const { t } = useTranslation("blog");
+  const { t: tCluster } = useTranslation("clusters");
   const p = (key: string, opts?: Record<string, unknown>) => t(`pillar.${key}`, opts);
 
   if (clusters.length === 0) return null;
@@ -194,16 +195,20 @@ function ClusterListSection({
       </div>
 
       <ul className="divide-y divide-white/5">
-        {clusters.map((cluster) => (
+        {clusters.map((cluster) => {
+          const ck = cluster.slug.replace(/-([a-z0-9])/g, g => g[1].toUpperCase());
+          const cTitle = tCluster(`meta.${ck}.title`, { defaultValue: cluster.title });
+          const cDesc = tCluster(`meta.${ck}.description`, { defaultValue: cluster.description });
+          return (
           <li key={cluster.slug}>
             <Link
               to={`/blog/${cluster.slug}`}
               className="group flex flex-col sm:flex-row sm:items-baseline sm:justify-between gap-2 py-6 hover:text-accent transition-colors"
             >
               <div>
-                <h3 className="text-xl font-serif italic leading-snug">{cluster.title}</h3>
+                <h3 className="text-xl font-serif italic leading-snug">{cTitle}</h3>
                 <p className="text-sm text-muted group-hover:text-ink mt-1 font-light">
-                  {cluster.description}
+                  {cDesc}
                 </p>
               </div>
               <span className="text-[10px] uppercase tracking-widest text-[#444] font-mono shrink-0 flex items-center gap-2">
@@ -214,7 +219,7 @@ function ClusterListSection({
               </span>
             </Link>
           </li>
-        ))}
+        )})}
       </ul>
     </section>
   );
