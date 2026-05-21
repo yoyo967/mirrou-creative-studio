@@ -7,7 +7,7 @@ import { SITE } from "../content/site-data";
 interface TeamMember {
   name: string;
   location: string;
-  role: string;
+  roleKey: string;
   focusKey: string;
   id: string;
   isFounder: boolean;
@@ -22,7 +22,7 @@ export default function StudioContent() {
     {
       name: "Olha Yevtushenko",
       location: SITE.locations[0]?.city ?? "Hamburg",
-      role: "Founder & Creative Director",
+      roleKey: "roleOlha",
       focusKey: "memberOlhaFocus",
       id: "olha",
       isFounder: true,
@@ -34,7 +34,7 @@ export default function StudioContent() {
     {
       name: "Denys Demyanyshyn",
       location: SITE.locations[0]?.city ?? "Hamburg",
-      role: "Campaign Manager & Marketing-AI",
+      roleKey: "roleDenys",
       focusKey: "memberDenysFocus",
       id: "denys",
       isFounder: false,
@@ -42,7 +42,7 @@ export default function StudioContent() {
     {
       name: "Ralph Kindermann",
       location: SITE.locations[1]?.city ?? "Berlin",
-      role: "CRM & Lifecycle Marketing",
+      roleKey: "roleRalph",
       focusKey: "memberRalphFocus",
       id: "ralph",
       isFounder: false,
@@ -50,7 +50,7 @@ export default function StudioContent() {
     {
       name: "Yahya Yildirim",
       location: SITE.locations[1]?.city ?? "Berlin",
-      role: "Growth & Inbound Marketing",
+      roleKey: "roleYahya",
       focusKey: "memberYahyaFocus",
       id: "yahya",
       isFounder: false,
@@ -105,7 +105,7 @@ export default function StudioContent() {
                 {founder.name}
               </h3>
               <p className="font-mono text-[11px] uppercase tracking-[0.3em] text-[color:var(--color-muted-on-cream)] mt-4">
-                {founder.location} · {founder.role}
+                {founder.location} · {c(founder.roleKey)}
               </p>
             </div>
 
@@ -142,7 +142,7 @@ export default function StudioContent() {
                 {member.name}
               </h3>
               <p className="font-mono text-[11px] uppercase tracking-[0.3em] text-[color:var(--color-muted-on-cream)]">
-                {member.location} · {member.role}
+                {member.location} · {c(member.roleKey)}
               </p>
               <span className="block w-10 h-px bg-accent" />
               <p className="text-[15px] leading-[1.6] text-[color:var(--color-body-on-cream)]">

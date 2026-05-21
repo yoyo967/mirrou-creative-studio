@@ -1,5 +1,5 @@
 import { motion } from "motion/react";
-import { Link } from "react-router-dom";
+import { Link } from "@/src/components/LocalizedLink";
 import { useTranslation } from "react-i18next";
 import SEO from "../components/SEO";
 import PressDownloadCard from "../components/PressDownloadCard";
@@ -7,13 +7,14 @@ import { PRESS_DOWNLOADS, SITE } from "../content/site-data";
 
 export default function PressPage() {
   const { t } = useTranslation("press");
+  const { t: tSeo } = useTranslation("seo");
   const pr = (key: string) => t(key);
 
   const pressLd = {
     "@context": "https://schema.org",
     "@type": "CollectionPage",
-    name: "Press · Mirrou Creative Studio",
-    description: SITE.press.boilerplate,
+    name: t("seo.title"),
+    description: pr("boilerplate"),
     url: SITE.url + "/press",
     publisher: {
       "@type": "Organization",
@@ -27,8 +28,8 @@ export default function PressPage() {
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
     itemListElement: [
-      { "@type": "ListItem", position: 1, name: "Home", item: SITE.url + "/" },
-      { "@type": "ListItem", position: 2, name: "Press", item: SITE.url + "/press" },
+      { "@type": "ListItem", position: 1, name: tSeo("breadcrumb.home"), item: SITE.url + "/" },
+      { "@type": "ListItem", position: 2, name: tSeo("breadcrumb.press"), item: SITE.url + "/press" },
     ],
   };
 
@@ -39,7 +40,7 @@ export default function PressPage() {
     <main className="min-h-screen bg-transparent pt-40 pb-24 relative z-10">
       <SEO
         title={t("seo.title")}
-        description={`${t("seo.description")} ${SITE.press.boilerplate}`}
+        description={`${t("seo.description")} ${pr("boilerplate")}`}
         pathname="/press"
         jsonLd={[pressLd, breadcrumbLd]}
       />
@@ -61,7 +62,7 @@ export default function PressPage() {
             <span className="text-accent">{pr("headlineAccent")}</span>
           </h1>
           <p className="text-body text-lg md:text-xl leading-relaxed mt-10 max-w-2xl font-light">
-            {SITE.press.boilerplate}
+            {pr("boilerplate")}
           </p>
           <p className="eyebrow mt-6 text-muted">{pr("locations")}</p>
         </motion.div>
@@ -148,7 +149,7 @@ export default function PressPage() {
               <p className="font-mono text-[10px] uppercase tracking-[0.4em] text-muted mb-5">
                 {pr("boilerplateLabel")}
               </p>
-              <p className="text-body leading-relaxed">{SITE.press.boilerplate}</p>
+              <p className="text-body leading-relaxed">{pr("boilerplate")}</p>
               <div className="mt-6 pt-6 border-t border-white/6 space-y-1">
                 <p className="font-mono text-[11px] uppercase tracking-[0.3em] text-muted">
                   {pr("creativeDirectionLine")}

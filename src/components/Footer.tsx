@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link } from "@/src/components/LocalizedLink";
 import { motion } from "motion/react";
 import { ArrowRight } from "lucide-react";
 import { useTranslation } from "react-i18next";
@@ -47,8 +47,8 @@ export default function Footer() {
       <div className="max-w-7xl mx-auto px-6 md:px-10 py-20 grid gap-12 md:grid-cols-12">
         <div className="md:col-span-5">
           <p className="font-serif italic text-3xl text-ink">{SITE.name}</p>
-          <p className="eyebrow mt-3">{SITE.tagline}</p>
-          <p className="text-body mt-6 max-w-md">{SITE.description}</p>
+          <p className="eyebrow mt-3">{t("siteTagline")}</p>
+          <p className="text-body mt-6 max-w-md">{t("siteDescription")}</p>
           <p className="eyebrow mt-6 text-muted">
             {SITE.locations.map((l) => `${l.city} (${l.role})`).join(" · ")}
           </p>

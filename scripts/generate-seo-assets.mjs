@@ -91,32 +91,83 @@ const STATIC_ROUTES = [
   { url: "/kontakt", lastmod: "2026-05-06", priority: "0.7", changefreq: "monthly" },
 ];
 
+const LOCALES = ["de", "en", "es", "it", "fr", "tr", "ru", "uk"];
+
 // ===== Sitemap =====
 const today = new Date().toISOString().slice(0, 10);
 
-const sitemapEntries = [
-  ...STATIC_ROUTES.map((r) => ({
-    loc: SITE_URL + r.url,
+const routesToGenerate = [];
+
+// Static routes
+STATIC_ROUTES.forEach((r) => {
+  routesToGenerate.push({
+    path: r.url,
     lastmod: r.lastmod,
     priority: r.priority,
     changefreq: r.changefreq,
-  })),
-  ...PILLAR_SLUGS.map((slug) => ({
-    loc: `${SITE_URL}/${slug}`,
+  });
+});
+
+// Pillars
+PILLAR_SLUGS.forEach((slug) => {
+  routesToGenerate.push({
+    path: `/${slug}`,
     lastmod: today,
     priority: "0.9",
     changefreq: "monthly",
-  })),
-  ...CLUSTERS.map((c) => ({
-    loc: `${SITE_URL}/blog/${c.slug}`,
+  });
+});
+
+// Clusters
+CLUSTERS.forEach((c) => {
+  routesToGenerate.push({
+    path: `/blog/${c.slug}`,
     lastmod: c.publishedAt,
     priority: "0.7",
     changefreq: "monthly",
-  })),
-];
+  });
+});
+
+// Cases
+const CASE_IDS = ["luminous-aura", "vitality-pulse", "essence-drift", "neural-glow"];
+CASE_IDS.forEach((id) => {
+  routesToGenerate.push({
+    path: `/cases/${id}`,
+    lastmod: today,
+    priority: "0.8",
+    changefreq: "monthly",
+  });
+});
+
+const sitemapEntries = [];
+
+routesToGenerate.forEach((route) => {
+  LOCALES.forEach((locale) => {
+    const cleanPath = route.path;
+    const localizedPath = `/${locale}${cleanPath === "/" ? "" : cleanPath}`;
+    const loc = SITE_URL + localizedPath;
+
+    // Alternate links (hreflangs)
+    const alternates = LOCALES.map((l) => {
+      const altPath = `/${l}${cleanPath === "/" ? "" : cleanPath}`;
+      return `    <xhtml:link rel="alternate" hrefLang="${l}" href="${SITE_URL}${altPath}" />`;
+    });
+    // x-default points to the root (which auto-redirects)
+    const xDefaultLoc = SITE_URL + (cleanPath === "/" ? "/" : cleanPath);
+    alternates.push(`    <xhtml:link rel="alternate" hrefLang="x-default" href="${xDefaultLoc}" />`);
+
+    sitemapEntries.push({
+      loc,
+      lastmod: route.lastmod,
+      priority: route.priority,
+      changefreq: route.changefreq,
+      alternates,
+    });
+  });
+});
 
 const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
 ${sitemapEntries
   .map(
     (e) => `  <url>
@@ -124,6 +175,7 @@ ${sitemapEntries
     <lastmod>${e.lastmod}</lastmod>
     <changefreq>${e.changefreq}</changefreq>
     <priority>${e.priority}</priority>
+${e.alternates.join("\n")}
   </url>`,
   )
   .join("\n")}
@@ -143,8 +195,8 @@ const rssItems = [...CLUSTERS]
     const pillar = PILLARS.find((p) => p.slug === c.pillar);
     return `    <item>
       <title>${escapeXml(c.title)}</title>
-      <link>${SITE_URL}/blog/${c.slug}</link>
-      <guid isPermaLink="true">${SITE_URL}/blog/${c.slug}</guid>
+      <link>${SITE_URL}/de/blog/${c.slug}</link>
+      <guid isPermaLink="true">${SITE_URL}/de/blog/${c.slug}</guid>
       <pubDate>${new Date(c.publishedAt).toUTCString()}</pubDate>
       <category>${escapeXml(pillar?.title ?? "")}</category>
       <description>${escapeXml(pillar?.description ?? "")}</description>
@@ -156,7 +208,7 @@ const rss = `<?xml version="1.0" encoding="UTF-8"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Mirrou Resources</title>
-    <link>${SITE_URL}/blog</link>
+    <link>${SITE_URL}/de/blog</link>
     <description>Performance Creative, Beauty E-Commerce, KI-Hybrid-Production und Compliance — von Mirrou Creative Studio.</description>
     <language>de-DE</language>
     <atom:link href="${SITE_URL}/rss.xml" rel="self" type="application/rss+xml" />
@@ -177,32 +229,32 @@ const llmsTxt = `# Mirrou Creative Studio
 
 > Performance Creative Studio für D2C-Brands in Beauty, Health und Lifestyle (DACH/EU). Hybrid aus High-End-Fotografie, KI-Visuals und systematischem A/B-Testing. Creative Direction: Olha Yevtushenko. EU-AI-Act-, DSGVO- und Data-Act-konform von Tag 1.
 
-Mirrou ist ein Studio neuer Gründung (2026) mit Sitz in Hamburg (Produktion & Creative Direction) und Berlin (Performance, AI & Growth). Wir verbinden visuelle Präzision mit datengetriebener Logik, um D2C-Brands in einem regulierten Marketing-Umfeld (HWG, EU AI Act, Cosmetics Regulation) wachsen zu helfen. Unsere Apex/Pillar/Cluster-Architektur dokumentiert vier Wissensgebiete: Performance Creative, Creative Engine, Beauty E-Commerce und Foto-+-KI-Hybrid.
+Mirrou ist ein Studio neuer Gründung (2026) mit Sitz in Hamburg (Produktion & Creative Direction) und Berlin (Performance, AI & Growth). Wir verbinden visuelle Präzision mit datengetriebener Logik, um D2C-Brands in einem regulierten Marketing-Umfeld (HWG, EU AI Act, Cosmetics Regulation) wachsen to helfen. Unsere Apex/Pillar/Cluster-Architektur dokumentiert vier Wissensgebiete: Performance Creative, Creative Engine, Beauty E-Commerce und Foto-+-KI-Hybrid.
 
 ## Apex
 
-- [Home](${SITE_URL}/): Mirrou Creative Studio — Performance Creatives, die in Paid Social messbar konvertieren.
+- [Home](${SITE_URL}/de/): Mirrou Creative Studio — Performance Creatives, die in Paid Social messbar konvertieren.
 
 ## Pillars
 
 ${PILLARS.map(
-  (p) => `- [${p.title}](${SITE_URL}/${p.slug}): ${p.description}`,
+  (p) => `- [${p.title}](${SITE_URL}/de/${p.slug}): ${p.description}`,
 ).join("\n")}
 
 ## Resources (Cluster)
 
 ${CLUSTERS.map((c) => {
   const pillar = PILLARS.find((p) => p.slug === c.pillar);
-  return `- [${c.title}](${SITE_URL}/blog/${c.slug}) · Pillar: ${pillar?.title ?? ""}`;
+  return `- [${c.title}](${SITE_URL}/de/blog/${c.slug}) · Pillar: ${pillar?.title ?? ""}`;
 }).join("\n")}
 
 ## Studio & Trust
 
-- [Studio](${SITE_URL}/studio): Team aus Hamburg und Berlin. Olha Yevtushenko (Founder & Creative Director), Denys Demyanyshyn (Campaign & AI), Ralph Kindermann (CRM & Documentation), Yahya Yildirim (Growth & Inbound).
-- [Pakete](${SITE_URL}/pakete): Drei Angebote — E-Commerce & Catalog (1.500–3.000 €/Shooting), Social Media & Advertising (2.000–5.000 €/Set), Creative Retainer (2.000–15.000 €/Monat in drei Tiers).
-- [Cases](${SITE_URL}/cases): Dokumentierter Demo-Case (LumiSkin Berlin) mit +82 % CTR-Verbesserung, −38 % CPC, ROAS +42 %.
-- [Trust Center](${SITE_URL}/trust): EU AI Act, DSGVO und Data Act — wie Mirrou Compliance-by-Design implementiert.
-- [Kontakt](${SITE_URL}/kontakt): Strategiegespräch, 30 Minuten, kostenfrei.
+- [Studio](${SITE_URL}/de/studio): Team aus Hamburg und Berlin. Olha Yevtushenko (Founder & Creative Director), Denys Demyanyshyn (Campaign & AI), Ralph Kindermann (CRM & Documentation), Yahya Yildirim (Growth & Inbound).
+- [Pakete](${SITE_URL}/de/pakete): Drei Angebote — E-Commerce & Catalog (1.500–3.000 €/Shooting), Social Media & Advertising (2.000–5.000 €/Set), Creative Retainer (2.000–15.000 €/Monat in three Tiers).
+- [Cases](${SITE_URL}/de/cases): Dokumentierter Demo-Case (LumiSkin Berlin) mit +82 % CTR-Verbesserung, −38 % CPC, ROAS +42 %.
+- [Trust Center](${SITE_URL}/de/trust): EU AI Act, DSGVO und Data Act — wie Mirrou Compliance-by-Design implementiert.
+- [Kontakt](${SITE_URL}/de/kontakt): Strategiegespräch, 30 Minuten, kostenfrei.
 
 ## Compliance
 
@@ -214,8 +266,8 @@ ${CLUSTERS.map((c) => {
 
 - [RSS-Feed](${SITE_URL}/rss.xml)
 - [Sitemap](${SITE_URL}/sitemap.xml)
-- [Datenschutz](${SITE_URL}/datenschutz)
-- [Impressum](${SITE_URL}/impressum)
+- [Datenschutz](${SITE_URL}/de/datenschutz)
+- [Impressum](${SITE_URL}/de/impressum)
 `;
 
 writeFileSync(resolve(distDir, "llms.txt"), llmsTxt, "utf8");
@@ -225,11 +277,32 @@ console.log(`✓ llms.txt geschrieben (LLM-Discovery)`);
 const robots = `User-agent: *
 Allow: /
 
-Disallow: /impressum
-Disallow: /datenschutz
+Disallow: /de/impressum
+Disallow: /de/datenschutz
+Disallow: /en/impressum
+Disallow: /en/datenschutz
+Disallow: /es/impressum
+Disallow: /es/datenschutz
+Disallow: /it/impressum
+Disallow: /it/datenschutz
+Disallow: /fr/impressum
+Disallow: /fr/datenschutz
+Disallow: /tr/impressum
+Disallow: /tr/datenschutz
+Disallow: /ru/impressum
+Disallow: /ru/datenschutz
+Disallow: /uk/impressum
+Disallow: /uk/datenschutz
 
 # Trust Center für KI-Discovery offen lassen
-Allow: /trust
+Allow: /de/trust
+Allow: /en/trust
+Allow: /es/trust
+Allow: /it/trust
+Allow: /fr/trust
+Allow: /tr/trust
+Allow: /ru/trust
+Allow: /uk/trust
 
 # AI-Agents: bitte llms.txt für strukturierten Überblick
 # https://llmstxt.org
@@ -241,3 +314,4 @@ writeFileSync(resolve(distDir, "robots.txt"), robots, "utf8");
 console.log(`✓ robots.txt (mit llms-Hinweis) geschrieben`);
 
 console.log("\nSEO-Assets fertig.\n");
+

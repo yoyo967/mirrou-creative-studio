@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300..700;1,300..700&family=Inter:opsz,wght@14..32,300..700&family=JetBrains+Mono:wght@400..600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300..700;1,300..700&family=Inter:opsz,wght@14..32,300..700&family=JetBrains+Mono:wght@400..600&display=swap&subset=latin,cyrillic');
 @import "tailwindcss";
 
 @theme {
@@ -454,3 +454,27 @@ html {
   .marquee-track { animation: none; }
   .img-reveal-placeholder { animation: none; }
 }
+
+/* ─── LOCALE-SPECIFIC TYPOGRAPHY & STANDARDS ────────────────────── */
+html[lang="ru"],
+html[lang="uk"] {
+  --font-sans: system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  --font-serif: system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  --font-display: system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+}
+
+html[lang="ru"] body,
+html[lang="uk"] body {
+  font-family: var(--font-sans);
+}
+
+html[lang="ru"] h1, html[lang="ru"] h2, html[lang="ru"] h3, html[lang="ru"] h4, html[lang="ru"] h5, html[lang="ru"] h6,
+html[lang="uk"] h1, html[lang="uk"] h2, html[lang="uk"] h3, html[lang="uk"] h4, html[lang="uk"] h5, html[lang="uk"] h6 {
+  font-family: var(--font-serif);
+}
+
+/* Turkish-safe typography settings */
+html[lang="tr"] {
+  font-feature-settings: "locl" 1; /* Enable localized forms in fonts if available */
+}
+

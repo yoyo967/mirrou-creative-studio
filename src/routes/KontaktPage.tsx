@@ -1,6 +1,6 @@
 import ContactForm from "../components/ContactForm";
 import SEO from "../components/SEO";
-import { Link } from "react-router-dom";
+import { Link } from "@/src/components/LocalizedLink";
 import { useTranslation } from "react-i18next";
 import { SITE } from "../content/site-data";
 

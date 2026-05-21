@@ -1,7 +1,7 @@
 import { useEffect, useState, lazy, Suspense } from "react";
 import { motion } from "motion/react";
 import { ArrowRight, ArrowDown } from "lucide-react";
-import { Link } from "react-router-dom";
+import { Link } from "@/src/components/LocalizedLink";
 import { useTranslation } from "react-i18next";
 import MarqueeStrip from "./MarqueeStrip";
 import ScrambleText from "./ScrambleText";

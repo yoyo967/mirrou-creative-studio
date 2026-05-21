@@ -6,6 +6,8 @@ import { SITE } from "../content/site-data";
 
 export default function StudioPage() {
   const { t } = useTranslation("studio");
+  const { t: tPress } = useTranslation("press");
+  const { t: tSeo } = useTranslation("seo");
 
   const personLd = {
     "@context": "https://schema.org",
@@ -25,7 +27,7 @@ export default function StudioPage() {
     name: SITE.name,
     alternateName: SITE.shortName,
     url: SITE.url,
-    description: SITE.description,
+    description: t("seo.description"),
     email: SITE.email,
     founder: { "@type": "Person", name: SITE.creativeDirection.name, jobTitle: SITE.creativeDirection.role },
     foundingDate: "2026",
@@ -43,8 +45,8 @@ export default function StudioPage() {
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
     itemListElement: [
-      { "@type": "ListItem", position: 1, name: "Home", item: SITE.url + "/" },
-      { "@type": "ListItem", position: 2, name: "Studio", item: SITE.url + "/studio" },
+      { "@type": "ListItem", position: 1, name: tSeo("breadcrumb.home"), item: SITE.url + "/" },
+      { "@type": "ListItem", position: 2, name: tSeo("breadcrumb.studio"), item: SITE.url + "/studio" },
     ],
   };
 
@@ -67,7 +69,7 @@ export default function StudioPage() {
           <br />
           {t("page.headline2")}
         </h1>
-        <p className="text-body-lg mt-8 max-w-2xl">{SITE.press.boilerplate}</p>
+        <p className="text-body-lg mt-8 max-w-2xl">{tPress("boilerplate")}</p>
         <p className="eyebrow mt-6 text-muted">
           {t("page.credit", { name: SITE.creativeDirection.name })}
         </p>

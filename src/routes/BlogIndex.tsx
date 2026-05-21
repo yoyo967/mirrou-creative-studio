@@ -1,14 +1,21 @@
-import { Link } from "react-router-dom";
+import { Link } from "@/src/components/LocalizedLink";
 import { useTranslation } from "react-i18next";
 import { PILLARS, clustersByPillar, CLUSTERS, SITE } from "../content/site-data";
 import SEO from "../components/SEO";
 
 export default function BlogIndex() {
   const { t, i18n } = useTranslation("blog");
+  const { t: tSeo } = useTranslation("seo");
   const h = (key: string) => t(`hub.${key}`);
 
+  const localeTag: Record<string, string> = {
+    de: "de-DE", en: "en-GB", es: "es-ES", it: "it-IT",
+    fr: "fr-FR", tr: "tr-TR", ru: "ru-RU", uk: "uk-UA",
+  };
+  const langTag = localeTag[i18n.language] ?? "de-DE";
+
   const formatDate = (iso: string) =>
-    new Date(iso).toLocaleDateString(i18n.language === "en" ? "en-GB" : "de-DE", {
+    new Date(iso).toLocaleDateString(langTag, {
       year: "numeric",
       month: "long",
       day: "numeric",
@@ -18,17 +25,17 @@ export default function BlogIndex() {
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
     itemListElement: [
-      { "@type": "ListItem", position: 1, name: "Home", item: SITE.url + "/" },
-      { "@type": "ListItem", position: 2, name: "Resources", item: SITE.url + "/blog" },
+      { "@type": "ListItem", position: 1, name: tSeo("breadcrumb.home"), item: SITE.url + "/" },
+      { "@type": "ListItem", position: 2, name: tSeo("breadcrumb.resources"), item: SITE.url + "/blog" },
     ],
   };
 
   const collectionLd = {
     "@context": "https://schema.org",
     "@type": "CollectionPage",
-    name: "Mirrou Resources · Performance Creative für D2C",
+    name: t("seo.title"),
     url: SITE.url + "/blog",
-    inLanguage: "de-DE",
+    inLanguage: langTag,
     isPartOf: { "@type": "WebSite", name: SITE.name, url: SITE.url },
     hasPart: CLUSTERS.map((c) => ({
       "@type": "Article",

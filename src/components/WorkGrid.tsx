@@ -1,6 +1,6 @@
 import { motion } from "motion/react";
 import { ArrowUpRight } from "lucide-react";
-import { Link } from "react-router-dom";
+import { Link } from "@/src/components/LocalizedLink";
 import { useTranslation } from "react-i18next";
 import AILabel from "./AILabel";
 import OptimizedImage from "./OptimizedImage";

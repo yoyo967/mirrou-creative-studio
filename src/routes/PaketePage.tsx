@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link } from "@/src/components/LocalizedLink";
 import { useTranslation } from "react-i18next";
 import SEO from "../components/SEO";
 
@@ -13,7 +13,7 @@ export default function PaketePage() {
   const serviceLd = {
     "@context": "https://schema.org",
     "@type": "Service",
-    name: "Performance Creative Production & Retainer",
+    name: t("seo.title"),
     provider: { "@type": "Organization", name: "Mirrou Creative Studio" },
     serviceType: "Creative & Performance Marketing",
     offers: pkgKeys.map((k, i) => ({

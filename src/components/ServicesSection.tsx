@@ -1,5 +1,5 @@
 import { motion } from "motion/react";
-import { Link } from "react-router-dom";
+import { Link } from "@/src/components/LocalizedLink";
 import { ArrowRight } from "lucide-react";
 import { useTranslation } from "react-i18next";
 

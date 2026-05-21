@@ -1,4 +1,5 @@
-import { useParams, Link, Navigate } from "react-router-dom";
+import { Link } from "@/src/components/LocalizedLink";
+import { useParams, Navigate } from "react-router-dom";
 import { motion } from "motion/react";
 import { ArrowLeft, ArrowRight } from "lucide-react";
 import { useTranslation } from "react-i18next";
@@ -26,8 +27,14 @@ const PILLAR_CONTENT: Record<string, ComponentType> = {
 
 export default function PillarPage() {
   const { slug } = useParams();
-  const { t } = useTranslation("blog");
+  const { t, i18n } = useTranslation("blog");
+  const { t: tSeo } = useTranslation("seo");
   const p = (key: string, opts?: Record<string, unknown>) => t(`pillar.${key}`, opts);
+  const localeTag: Record<string, string> = {
+    de: "de-DE", en: "en-GB", es: "es-ES", it: "it-IT",
+    fr: "fr-FR", tr: "tr-TR", ru: "ru-RU", uk: "uk-UA",
+  };
+  const langTag = localeTag[i18n.language] ?? "de-DE";
   const pillar = slug ? findPillar(slug) : undefined;
 
   if (!pillar) return <Navigate to="/" replace />;
@@ -42,7 +49,7 @@ export default function PillarPage() {
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
     itemListElement: [
-      { "@type": "ListItem", position: 1, name: "Home", item: SITE.url + "/" },
+      { "@type": "ListItem", position: 1, name: tSeo("breadcrumb.home"), item: SITE.url + "/" },
       { "@type": "ListItem", position: 2, name: pillar.title, item: canonical },
     ],
   };
@@ -52,7 +59,7 @@ export default function PillarPage() {
     "@type": "Article",
     headline: pillar.title,
     description: pillar.description,
-    inLanguage: "de-DE",
+    inLanguage: langTag,
     keywords: pillar.keywords.join(", "),
     author: [
       { "@type": "Organization", name: "Mirrou Editorial", url: SITE.url },

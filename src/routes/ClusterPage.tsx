@@ -1,4 +1,5 @@
-import { useParams, Link, Navigate } from "react-router-dom";
+import { Link } from "@/src/components/LocalizedLink";
+import { useParams, Navigate } from "react-router-dom";
 import { motion } from "motion/react";
 import { ArrowLeft, Clock } from "lucide-react";
 import { useTranslation } from "react-i18next";
@@ -14,6 +15,7 @@ import { CLUSTER_BODIES } from "./clusters/index";
 export default function ClusterPage() {
   const { slug } = useParams();
   const { t, i18n } = useTranslation("blog");
+  const { t: tSeo } = useTranslation("seo");
   const c = (key: string) => t(`cluster.${key}`);
 
   const cluster = slug ? findCluster(slug) : undefined;
@@ -22,8 +24,14 @@ export default function ClusterPage() {
   const pillar = findPillar(cluster.pillar);
   if (!pillar) return <Navigate to="/blog" replace />;
 
+  const localeTag: Record<string, string> = {
+    de: "de-DE", en: "en-GB", es: "es-ES", it: "it-IT",
+    fr: "fr-FR", tr: "tr-TR", ru: "ru-RU", uk: "uk-UA",
+  };
+  const langTag = localeTag[i18n.language] ?? "de-DE";
+
   const formatDate = (iso: string) =>
-    new Date(iso).toLocaleDateString(i18n.language === "en" ? "en-GB" : "de-DE", {
+    new Date(iso).toLocaleDateString(langTag, {
       year: "numeric",
       month: "long",
       day: "numeric",
@@ -42,7 +50,7 @@ export default function ClusterPage() {
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
     itemListElement: [
-      { "@type": "ListItem", position: 1, name: "Home", item: SITE.url + "/" },
+      { "@type": "ListItem", position: 1, name: tSeo("breadcrumb.home"), item: SITE.url + "/" },
       {
         "@type": "ListItem",
         position: 2,
@@ -61,7 +69,7 @@ export default function ClusterPage() {
     abstract: tldr,
     datePublished: cluster.publishedAt,
     dateModified: cluster.updatedAt ?? cluster.publishedAt,
-    inLanguage: "de-DE",
+    inLanguage: langTag,
     keywords: pillar.keywords.join(", "),
     author: [
       { "@type": "Organization", name: "Mirrou Editorial", url: SITE.url },
@@ -120,7 +128,7 @@ export default function ClusterPage() {
           className="text-[10px] uppercase tracking-[0.3em] text-muted font-mono mb-8 flex items-center gap-2"
           aria-label={c("breadcrumbAriaLabel")}
         >
-          <Link to="/" className="hover:text-accent">Home</Link>
+          <Link to="/" className="hover:text-accent">{tSeo("breadcrumb.home")}</Link>
           <span className="text-subtle">/</span>
           <Link to={`/${pillar.slug}`} className="hover:text-accent">
             {pillar.shortLabel}

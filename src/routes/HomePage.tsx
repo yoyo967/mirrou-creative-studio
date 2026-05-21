@@ -15,6 +15,7 @@ import HorizontalShowcase from "../components/HorizontalShowcase";
 import StatsCounter from "../components/StatsCounter";
 import SEO from "../components/SEO";
 import { SITE } from "../content/site-data";
+import { useTranslation } from "react-i18next";
 
 /**
  * HomePage - "Full Editorial Issue"
@@ -68,13 +69,21 @@ import { SITE } from "../content/site-data";
  * ---------------------------------------------------------------------------
  */
 export default function HomePage() {
+  const { i18n } = useTranslation();
+  const { t: tSeo } = useTranslation("seo");
+  const localeTag: Record<string, string> = {
+    de: "de-DE", en: "en-GB", es: "es-ES", it: "it-IT",
+    fr: "fr-FR", tr: "tr-TR", ru: "ru-RU", uk: "uk-UA",
+  };
+  const langTag = localeTag[i18n.language] ?? "de-DE";
+
   const orgLd = {
     "@context": "https://schema.org",
     "@type": "ProfessionalService",
     name: SITE.name,
     alternateName: SITE.shortName,
     url: SITE.url,
-    description: SITE.description,
+    description: tSeo("home.description"),
     email: SITE.email,
     founder: {
       "@type": "Person",
@@ -95,7 +104,7 @@ export default function HomePage() {
     "@type": "WebSite",
     name: SITE.name,
     url: SITE.url,
-    inLanguage: "de-DE",
+    inLanguage: langTag,
   };
 
   const scrollTo = (id: string) => {
@@ -112,7 +121,7 @@ export default function HomePage() {
     <>
       <SEO
         title={SITE.name}
-        description={SITE.description}
+        description={tSeo("home.description")}
         pathname="/"
         jsonLd={[orgLd, websiteLd]}
       />

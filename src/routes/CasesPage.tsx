@@ -1,5 +1,5 @@
 import { motion } from "motion/react";
-import { Link } from "react-router-dom";
+import { Link } from "@/src/components/LocalizedLink";
 import { ArrowUpRight } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import SEO from "../components/SEO";
@@ -10,13 +10,14 @@ import { CASES, SITE, type CaseProject } from "../content/site-data";
 
 export default function CasesPage() {
   const { t } = useTranslation("cases");
+  const { t: tSeo } = useTranslation("seo");
 
   const breadcrumbLd = {
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
     itemListElement: [
-      { "@type": "ListItem", position: 1, name: "Home", item: SITE.url + "/" },
-      { "@type": "ListItem", position: 2, name: "Cases", item: SITE.url + "/cases" },
+      { "@type": "ListItem", position: 1, name: tSeo("breadcrumb.home"), item: SITE.url + "/" },
+      { "@type": "ListItem", position: 2, name: tSeo("breadcrumb.work"), item: SITE.url + "/cases" },
     ],
   };
 

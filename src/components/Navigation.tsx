@@ -1,7 +1,8 @@
 import { motion, AnimatePresence, useScroll, useMotionValueEvent } from "motion/react";
 import { useState, useEffect } from "react";
 import { Menu, X } from "lucide-react";
-import { Link, NavLink, useLocation } from "react-router-dom";
+import { Link, NavLink } from "@/src/components/LocalizedLink";
+import { useLocation } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import ScrambleText from "./ScrambleText";
 import LanguageSwitcher from "./LanguageSwitcher";

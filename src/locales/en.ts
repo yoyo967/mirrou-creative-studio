@@ -62,6 +62,8 @@ const en = {
     datenschutz: "Privacy Policy",
     copyright: "All rights reserved.",
     creativeDirection: "Creative Direction ·",
+    siteTagline: "Performance Creative Studio",
+    siteDescription: "Mirrou Creative Studio — Performance Creatives for Beauty, Health & Lifestyle brands. High-end photography, AI visuals and systematic creative testing as a measurable Creative Engine. Creative Direction: Olha Yevtushenko.",
   },
 
   home: {
@@ -277,6 +279,10 @@ const en = {
       memberOlhaFocus: "\"I don't just photograph products. I capture their soul's intention.\" Photography, AI visuals, creative direction — the algorithm behind Mirrou's visual language is Olha's.",
       memberDenysFocus: "Performance, A/B tests, data logic.",
       memberRalphFocus: "Structure, documentation, business planning.",
+      roleOlha: "Founder & Creative Director",
+      roleDenys: "Campaign Manager & Marketing-AI",
+      roleRalph: "CRM & Lifecycle Marketing",
+      roleYahya: "Growth & Inbound Marketing",
       memberYahyaFocus: "Project lead, positioning, B2B outreach.",
     },
 
@@ -498,6 +504,7 @@ const en = {
     contactHeadlineAccent: "media enquiries.",
     responseTime: "Response within 48 hours · EN & DE",
     usageRights: "Usage rights: rights@mirrou.studio",
+    boilerplate: "Mirrou Creative Studio is a Hamburg-based performance creative studio with a second studio presence in Berlin, building editorial-grade brand systems and assets for beauty, lifestyle and culture-led brands.",
     boilerplateLabel: "Studio Boilerplate · EN-SHORT",
     hamburg: "Hamburg (Production) · Berlin (Performance, AI & Growth)",
     creativeDirectionLine: "Creative Direction: Olha Yevtushenko",
@@ -1285,6 +1292,15 @@ const en = {
     studio: {
       title: "Studio · Mirrou Creative Studio",
       description: "Four founders from Hamburg and Berlin. Mirrou Creative Studio — Creative Direction: Olha Yevtushenko.",
+    },
+    breadcrumb: {
+      home: "Home",
+      studio: "Studio",
+      press: "Press",
+      work: "Cases",
+      contact: "Contact",
+      resources: "Resources",
+      trust: "Trust Center",
     },
   },
 } as const;

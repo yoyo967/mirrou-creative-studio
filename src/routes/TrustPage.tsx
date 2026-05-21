@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link } from "@/src/components/LocalizedLink";
 import { ShieldCheck, FileCheck2, Sparkles, Database, FileText, KeyRound, Workflow } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import SEO from "../components/SEO";
@@ -13,6 +13,7 @@ type FaqItem = { q: string; a: string };
 
 export default function TrustPage() {
   const { t } = useTranslation("legal");
+  const { t: tSeo } = useTranslation("seo");
   const tr = (key: string) => t(`trust.${key}`);
 
   const principles = t("trust.principles", { returnObjects: true }) as unknown as Principle[];
@@ -33,8 +34,8 @@ export default function TrustPage() {
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
     itemListElement: [
-      { "@type": "ListItem", position: 1, name: "Home", item: SITE.url + "/" },
-      { "@type": "ListItem", position: 2, name: "Trust Center", item: SITE.url + "/trust" },
+      { "@type": "ListItem", position: 1, name: tSeo("breadcrumb.home"), item: SITE.url + "/" },
+      { "@type": "ListItem", position: 2, name: tSeo("breadcrumb.trust"), item: SITE.url + "/trust" },
     ],
   };
 

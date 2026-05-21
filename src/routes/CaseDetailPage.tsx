@@ -1,5 +1,6 @@
 import { useState, useRef, useEffect } from "react";
-import { useParams, Link, Navigate } from "react-router-dom";
+import { Link } from "@/src/components/LocalizedLink";
+import { useParams, Navigate } from "react-router-dom";
 import { motion, useScroll, useTransform, useInView, AnimatePresence } from "motion/react";
 import { ArrowLeft, ArrowRight, ChevronDown } from "lucide-react";
 import { useTranslation } from "react-i18next";
@@ -48,6 +49,7 @@ const rise = (delay = 0) => ({
 export default function CaseDetailPage() {
   const { id } = useParams<{ id: string }>();
   const { t } = useTranslation("cases");
+  const { t: tSeo } = useTranslation("seo");
   const d = (key: string) => t(`detail.${key}`);
 
   const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
@@ -110,8 +112,8 @@ export default function CaseDetailPage() {
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
     itemListElement: [
-      { "@type": "ListItem", position: 1, name: "Home", item: SITE.url + "/" },
-      { "@type": "ListItem", position: 2, name: "Cases", item: SITE.url + "/cases" },
+      { "@type": "ListItem", position: 1, name: tSeo("breadcrumb.home"), item: SITE.url + "/" },
+      { "@type": "ListItem", position: 2, name: tSeo("breadcrumb.work"), item: SITE.url + "/cases" },
       { "@type": "ListItem", position: 3, name: project.title, item: `${SITE.url}/cases/${project.id}` },
     ],
   };
