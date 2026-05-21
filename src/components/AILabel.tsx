@@ -6,11 +6,6 @@ interface Props {
   className?: string;
 }
 
-const COPY = {
-  assisted: "AI-Assisted",
-  generated: "AI-Generated",
-};
-
 const POSITIONS = {
   "bottom-right": "bottom-3 right-3",
   "bottom-left": "bottom-3 left-3",
@@ -24,14 +19,15 @@ export default function AILabel({
   className = "",
 }: Props) {
   const { t } = useTranslation("common");
+  const label = variant === "assisted" ? t("aiAssisted") : t("aiGenerated");
   return (
     <span
       className={`absolute z-10 ${POSITIONS[position]} font-mono text-[9px] uppercase tracking-[0.25em] text-ink/85 bg-bg/70 backdrop-blur-sm px-2 py-1 border border-white/10 ${className}`}
       role="note"
-      aria-label={t("aiLabelAria", { label: COPY[variant] })}
+      aria-label={t("aiLabelAria", { label })}
     >
       <span aria-hidden className="inline-block w-1.5 h-1.5 rounded-full bg-accent mr-1.5 align-middle" />
-      {COPY[variant]}
+      {label}
     </span>
   );
 }

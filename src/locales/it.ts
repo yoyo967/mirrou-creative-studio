@@ -22,6 +22,8 @@ const it = {
     personalBrand: "Marchio personale",
     portfolio: "Portfolio",
     aiLabelAria: "Avviso: {{label}} — etichettato in conformità con l'EU AI Act",
+    aiAssisted: "IA-Assistita",
+    aiGenerated: "IA-Generata",
   },
 
   nav: {
@@ -433,6 +435,19 @@ const it = {
       caseCtaBody: "Mirrou costruisce sistemi visivi per marchi D2C di bellezza e lifestyle — dalla strategia creativa alla produzione finale.",
       caseCtaLink: "Richiedi una conversazione",
       caseCtaPackages: "Pacchetti e Investimento",
+      gsAudience: "Pubblico",
+      gsToneAndPromise: "Tono e Promessa",
+      gsPainPoints: "Punti di Dolore",
+      gsSuccessMetric: "Metrica di Successo",
+      gsWinnerRule: "Regola del Vincitore",
+      gsConfidence: "Confidenza",
+      gsRationale: "Giustificazione",
+      gsHookWinners: "Vincitori",
+      gsHookTesting: "In Test",
+      gsHookPaused: "In Pausa",
+      gsScoreRel: "Ril.",
+      gsScoreIntr: "Int.",
+      gsScoreClr: "Clar.",
     },
     seo: {
       ...en.cases.seo,

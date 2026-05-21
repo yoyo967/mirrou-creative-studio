@@ -22,6 +22,8 @@ const fr = {
     personalBrand: "Marque personnelle",
     portfolio: "Portfolio",
     aiLabelAria: "Note : {{label}} — marqué conformément à l'EU AI Act",
+    aiAssisted: "IA-Assistée",
+    aiGenerated: "IA-Générée",
   },
 
   nav: {

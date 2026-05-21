@@ -22,6 +22,8 @@ const uk = {
     personalBrand: "Особистий бренд",
     portfolio: "Портфоліо",
     aiLabelAria: "Примітка: {{label}} — промарковано відповідно до Регламенту ЄС про штучний інтелект (EU AI Act)",
+    aiAssisted: "ШІ-Підтрим.",
+    aiGenerated: "ШІ-Генерир.",
   },
 
   nav: {

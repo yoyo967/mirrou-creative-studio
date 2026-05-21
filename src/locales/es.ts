@@ -22,6 +22,8 @@ const es = {
     personalBrand: "Marca personal",
     portfolio: "Portafolio",
     aiLabelAria: "Aviso: {{label}} — etiquetado según el Reglamento de IA de la UE",
+    aiAssisted: "IA-Asistida",
+    aiGenerated: "IA-Generada",
   },
 
   nav: {
@@ -433,6 +435,19 @@ const es = {
       caseCtaBody: "Mirrou construye sistemas visuales para marcas D2C de belleza y estilo de vida — desde la estrategia creativa hasta la producción final.",
       caseCtaLink: "Solicitar una conversación",
       caseCtaPackages: "Paquetes e Inversión",
+      gsAudience: "Audiencia",
+      gsToneAndPromise: "Tono y Promesa",
+      gsPainPoints: "Puntos de Dolor",
+      gsSuccessMetric: "Métrica de Éxito",
+      gsWinnerRule: "Regla del Ganador",
+      gsConfidence: "Confianza",
+      gsRationale: "Fundamento",
+      gsHookWinners: "Ganadores",
+      gsHookTesting: "En Prueba",
+      gsHookPaused: "Pausados",
+      gsScoreRel: "Rel.",
+      gsScoreIntr: "Int.",
+      gsScoreClr: "Clar.",
     },
     seo: {
       ...en.cases.seo,

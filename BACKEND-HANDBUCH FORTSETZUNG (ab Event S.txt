@@ -1,0 +1,282 @@
+BACKEND-HANDBUCH FORTSETZUNG (ab Event System)
+markdown## 4. EVENT SYSTEM (Pub/Sub) — Fortsetzung
+### 4.1 Event Types
+```ts
+type EventType =
+  | 'campaign.created' | 'campaign.updated' | 'campaign.completed' | 'campaign.deleted'
+  | 'content.generated' | 'content.reviewed' | 'content.published' | 'content.rejected'
+  | 'agent.task.started' | 'agent.task.completed' | 'agent.task.failed'
+  | 'workflow.started' | 'workflow.node.completed' | 'workflow.completed' | 'workflow.failed'
+  | 'senate.case.created' | 'senate.case.decided'
+  | 'asset.uploaded' | 'asset.processed' | 'asset.deleted'
+  | 'knowledge.ingested' | 'knowledge.indexed'
+  | 'notification.created'
+  | 'system.health.check' | 'system.error'
+interface SystemEvent<T = unknown> {
+  id: string
+  type: EventType
+  timestamp: string
+  source: { service: string; agentId?: string }
+  data: T
+  metadata: { traceId: string; userId?: string }
+}
+```
+### 4.2 Event Publisher
+```ts
+// src/services/eventBus.ts
+import { PubSub } from '@google-cloud/pubsub'
+class EventBus {
+  private pubsub: PubSub
+  private topicName = 'agenticum-events'
+  constructor() {
+    this.pubsub = new PubSub({ projectId: process.env.GCP_PROJECT })
+  }
+  async publish(type: EventType, data: T, source: string, agentId?: string): Promise {
+    const event: SystemEvent = {
+      id: crypto.randomUUID(),
+      type,
+      timestamp: new Date().toISOString(),
+      source: { service: source, agentId },
+      data,
+      metadata: { traceId: crypto.randomUUID() },
+    }
+    const messageId = await this.pubsub
+      .topic(this.topicName)
+      .publishMessage({
+        data: Buffer.from(JSON.stringify(event)),
+        attributes: { type, source },
+      })
+    return messageId
+  }
+}
+export const eventBus = new EventBus()
+```
+### 4.3 Event Subscribers (Cloud Functions)
+```ts
+// functions/src/eventHandlers.ts
+import * as functions from 'firebase-functions/v2'
+// Wenn Content generiert → Senate-Case erstellen
+export const onContentGenerated = functions.pubsub
+  .onMessagePublished('agenticum-events', async (event) => {
+    const data = JSON.parse(Buffer.from(event.data.message.data, 'base64').toString())
+    if (data.type !== 'content.generated') return
+    const content = data.data
+    // Automatische Senate-Prüfung für Ad-Content und Blog
+    if (['ad-copy', 'blog'].includes(content.type)) {
+      await createSenateCase({
+        content: { type: content.type, id: content.id, preview: content.excerpt },
+        agent: data.source.agentId || 'CC-06',
+        policy: 'auto-review',
+        status: 'pending',
+        risk: await assessRisk(content),
+      })
+    }
+  })
+// Wenn Senate entscheidet → Content-Status updaten + Notification
+export const onSenateDecision = functions.pubsub
+  .onMessagePublished('agenticum-events', async (event) => {
+    const data = JSON.parse(Buffer.from(event.data.message.data, 'base64').toString())
+    if (data.type !== 'senate.case.decided') return
+    const decision = data.data
+    // Content-Status updaten
+    await db.collection('content').doc(decision.contentId).update({
+      status: decision.status === 'approved' ? 'approved' : 'rejected',
+      senateDecision: decision,
+    })
+    // Notification
+    await createNotification({
+      type: decision.status === 'approved' ? 'success' : 'warning',
+      title: `Senate: Content ${decision.status}`,
+      message: `${decision.contentTitle} was ${decision.status} by Security Senate`,
+      source: { module: 'senate', agentId: 'RA-01' },
+      action: { label: 'View Case', route: `/os/senate/${decision.caseId}` },
+    })
+  })
+// Analytics Aggregation (täglich)
+export const dailyAnalyticsAggregation = functions.scheduler
+  .onSchedule('0 2 * * *', async () => { // 02:00 UTC täglich
+    const yesterday = new Date()
+    yesterday.setDate(yesterday.getDate() - 1)
+    const dateKey = yesterday.toISOString().split('T')[0]
+    // Aggregiere Agent-Stats
+    const agents = await db.collection('agents').get()
+    const agentStats: Record = {}
+    for (const agent of agents.docs) {
+      const history = await agent.ref.collection('history')
+        .where('timestamp', '>=', yesterday)
+        .where('timestamp', '<', new Date())
+        .get()
+      agentStats[agent.id] = {
+        tasks: history.size,
+        tokens: history.docs.reduce((sum, d) => sum + (d.data().tokens?.input || 0) + (d.data().tokens?.output || 0), 0),
+        errors: history.docs.filter(d => d.data().status === 'error').length,
+      }
+    }
+    await db.collection('analytics').doc(dateKey).set({
+      agents: agentStats,
+      content: await aggregateContentStats(yesterday),
+      campaigns: await aggregateCampaignStats(yesterday),
+      system: await aggregateSystemStats(yesterday),
+      costs: await calculateDailyCosts(agentStats),
+    })
+  })
+```
+---
+## 5. KNOWLEDGE SERVICE (RAG)
+```ts
+// src/services/knowledgeService.ts
+import { VertexAI } from '@google-cloud/vertexai'
+class KnowledgeService {
+  private db: FirebaseFirestore.Firestore
+  private embeddingModel: any
+  constructor(db: FirebaseFirestore.Firestore, vertexai: VertexAI) {
+    this.db = db
+    this.embeddingModel = vertexai.getGenerativeModel({ model: 'text-embedding-005' })
+  }
+  // Dokument aufnehmen
+  async ingest(input: { title: string; content: string; source: string; tags?: string[] }): Promise {
+    // 1. Chunking
+    const chunks = this.chunkText(input.content, 512, 50) // 512 tokens, 50 overlap
+    // 2. Embeddings generieren
+    const embeddings = await Promise.all(
+      chunks.map(chunk => this.generateEmbedding(chunk))
+    )
+    // 3. In Firestore speichern
+    const docRef = await this.db.collection('knowledge').add({
+      title: input.title,
+      content: input.content,
+      source: input.source,
+      tags: input.tags || [],
+      chunkCount: chunks.length,
+      createdAt: new Date(),
+    })
+    // 4. Chunks mit Embeddings speichern
+    const batch = this.db.batch()
+    chunks.forEach((chunk, i) => {
+      const chunkRef = docRef.collection('chunks').doc()
+      batch.set(chunkRef, {
+        text: chunk,
+        embedding: embeddings[i],
+        index: i,
+        docId: docRef.id,
+      })
+    })
+    await batch.commit()
+    // 5. Event emittieren
+    await eventBus.publish('knowledge.ingested', { docId: docRef.id, chunks: chunks.length }, 'knowledge-service')
+    return docRef.id
+  }
+  // Semantische Suche
+  async semanticSearch(query: string, topK: number = 5): Promise {
+    // 1. Query Embedding
+    const queryEmbedding = await this.generateEmbedding(query)
+    // 2. Vector Similarity Search
+    // Option A: Firestore Vector Search (wenn verfügbar)
+    // Option B: Manuelle Cosine Similarity (für kleine Datenmengen)
+    const allChunks = await this.db.collectionGroup('chunks').get()
+    const scored = allChunks.docs.map(doc => ({
+      ...doc.data(),
+      score: this.cosineSimilarity(queryEmbedding, doc.data().embedding),
+    }))
+    // 3. Top-K zurückgeben
+    scored.sort((a, b) => b.score - a.score)
+    return scored.slice(0, topK).map(s => ({
+      text: s.text,
+      score: s.score,
+      docId: s.docId,
+    }))
+  }
+  private chunkText(text: string, maxTokens: number, overlap: number): string[] {
+    const words = text.split(/\\s+/)
+    const chunks: string[] = []
+    const wordsPerChunk = maxTokens * 0.75 // ~0.75 words per token approximation
+    const step = wordsPerChunk - overlap
+    for (let i = 0; i < words.length; i += step) {
+      chunks.push(words.slice(i, i + wordsPerChunk).join(' '))
+    }
+    return chunks
+  }
+  private async generateEmbedding(text: string): Promise {
+    const result = await this.embeddingModel.embedContent(text)
+    return result.embedding.values
+  }
+  private cosineSimilarity(a: number[], b: number[]): number {
+    let dotProduct = 0, normA = 0, normB = 0
+    for (let i = 0; i < a.length; i++) {
+      dotProduct += a[i] * b[i]
+      normA += a[i] * a[i]
+      normB += b[i] * b[i]
+    }
+    return dotProduct / (Math.sqrt(normA) * Math.sqrt(normB))
+  }
+}
+```
+---
+## 6. HEALTH CHECK & SERVER ENTRY
+```ts
+// src/server.ts
+import { Hono } from 'hono'
+import { cors } from 'hono/cors'
+import { logger } from 'hono/logger'
+import { campaignRoutes } from './routes/campaigns'
+import { contentRoutes } from './routes/content'
+import { agentRoutes } from './routes/agents'
+import { assetRoutes } from './routes/assets'
+import { workflowRoutes } from './routes/workflows'
+import { senateRoutes } from './routes/senate'
+import { analyticsRoutes } from './routes/analytics'
+import { knowledgeRoutes } from './routes/knowledge'
+import { configRoutes } from './routes/config'
+import { notificationRoutes } from './routes/notifications'
+import { authMiddleware } from './middleware/auth'
+import { rateLimiter } from './middleware/rateLimit'
+import { errorHandler } from './middleware/errorHandler'
+const app = new Hono()
+// Global Middleware
+app.use('*', logger())
+app.use('*', cors({
+  origin: [
+    'https://online-marketing-manager.web.app',
+    'http://localhost:5173',
+    'http://localhost:4173',
+  ],
+  allowMethods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  allowHeaders: ['Content-Type', 'Authorization'],
+}))
+app.use('/api/v1/*', authMiddleware)
+app.use('/api/v1/*', rateLimiter(100, 60000))
+// Health Check (kein Auth)
+app.get('/api/v1/health', (c) => c.json({
+  status: 'healthy',
+  version: process.env.npm_package_version || '1.0.0',
+  timestamp: new Date().toISOString(),
+  services: {
+    firestore: 'connected',
+    vertexai: 'available',
+    storage: 'connected',
+    pubsub: 'connected',
+  },
+}))
+// Routes
+app.route('/api/v1/campaigns', campaignRoutes)
+app.route('/api/v1/content', contentRoutes)
+app.route('/api/v1/agents', agentRoutes)
+app.route('/api/v1/assets', assetRoutes)
+app.route('/api/v1/workflows', workflowRoutes)
+app.route('/api/v1/senate', senateRoutes)
+app.route('/api/v1/analytics', analyticsRoutes)
+app.route('/api/v1/knowledge', knowledgeRoutes)
+app.route('/api/v1/config', configRoutes)
+app.route('/api/v1/notifications', notificationRoutes)
+// Global Error Handler
+app.onError(errorHandler)
+// 404
+app.notFound((c) => c.json({
+  success: false,
+  error: { code: 'NOT_FOUND', message: `Route ${c.req.method} ${c.req.path} not found` }
+}, 404))
+// Start
+const port = parseInt(process.env.PORT || '8080')
+console.log(`AGENTICUM G5 Backend starting on port ${port}`)
+export default { port, fetch: app.fetch }
+```

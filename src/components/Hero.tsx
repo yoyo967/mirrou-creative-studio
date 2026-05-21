@@ -7,7 +7,7 @@ import MarqueeStrip from "./MarqueeStrip";
 import ScrambleText from "./ScrambleText";
 import { SITE } from "../content/site-data";
 
-const HeroScene = lazy(() => import("./HeroScene"));
+const HeroImageSequence = lazy(() => import("./HeroImageSequence"));
 
 const reveal = (delay: number) => ({
   initial:    { opacity: 0, y: 18 },
@@ -17,7 +17,7 @@ const reveal = (delay: number) => ({
 
 export default function Hero({ onExplore }: { onExplore: () => void }) {
   const [clipped, setClipped] = useState(false);
-  const [sceneMounted, setSceneMounted] = useState(false);
+  const [sequenceMounted, setSequenceMounted] = useState(false);
   const { t } = useTranslation("home");
 
   useEffect(() => {
@@ -25,7 +25,7 @@ export default function Hero({ onExplore }: { onExplore: () => void }) {
     return () => clearTimeout(timer);
   }, []);
 
-  useEffect(() => { setSceneMounted(true); }, []);
+  useEffect(() => { setSequenceMounted(true); }, []);
 
   return (
     <section
@@ -128,16 +128,16 @@ export default function Hero({ onExplore }: { onExplore: () => void }) {
           </motion.p>
         </div>
 
-        {/* RIGHT: WebGL Gold Sphere */}
+        {/* RIGHT: Image Sequence */}
         <div className="
-          absolute inset-0 opacity-30
+          absolute inset-0 opacity-40
           lg:relative lg:opacity-100
           lg:w-[46%] xl:w-[48%]
           lg:flex lg:items-center lg:justify-center
         ">
-          {sceneMounted && (
+          {sequenceMounted && (
             <Suspense fallback={null}>
-              <HeroScene className="absolute inset-0 w-full h-full" />
+              <HeroImageSequence className="absolute inset-0 w-full h-full" />
             </Suspense>
           )}
         </div>

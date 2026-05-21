@@ -24,6 +24,8 @@ const de = {
     personalBrand: "Personal Brand",
     portfolio: "Portfolio",
     aiLabelAria: "Hinweis: {{label}} — gekennzeichnet gemäß EU AI Act",
+    aiAssisted: "KI-Unterstützt",
+    aiGenerated: "KI-Generiert",
   },
 
   nav: {
@@ -360,6 +362,19 @@ const de = {
       gsNextAction: "Nächste Maßnahme",
       gsSystemInsight: "System Insight",
       gsCreativeFatigue: "Creative Fatigue",
+      gsAudience: "Zielgruppe",
+      gsToneAndPromise: "Tonalität & Versprechen",
+      gsPainPoints: "Pain Points",
+      gsSuccessMetric: "Erfolgsmetrik",
+      gsWinnerRule: "Winner-Regel",
+      gsConfidence: "Konfidenz",
+      gsRationale: "Begründung",
+      gsHookWinners: "Gewinner",
+      gsHookTesting: "In Test",
+      gsHookPaused: "Pausiert",
+      gsScoreRel: "Rel.",
+      gsScoreIntr: "Int.",
+      gsScoreClr: "Klar.",
     },
 
     seo: {
@@ -664,6 +679,7 @@ const de = {
       sectionHeadlineAccent: "& Insights.",
       otherPillarsLabel: "Weitere Pillars",
       clusterReadMore: "weiterlesen",
+      clusterCount: "{{count}} Cluster",
       allArticles: "Alle Artikel",
       totalClustersBody: "{{count}} Cluster-Artikel, vier Pillars: Performance Creative, Methodik, Beauty-E-Commerce und Foto/KI-Hybrid.",
     },

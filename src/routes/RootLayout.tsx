@@ -7,7 +7,7 @@ import GrainOverlay from "../components/GrainOverlay";
 import CursorFollower from "../components/CursorFollower";
 import Preloader from "../components/Preloader";
 
-const HeroScene = lazy(() => import("../components/HeroScene"));
+
 
 export default function RootLayout() {
   const location = useLocation();

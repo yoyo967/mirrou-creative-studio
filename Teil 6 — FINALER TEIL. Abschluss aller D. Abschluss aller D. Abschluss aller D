@@ -1,0 +1,236 @@
+Teil 6 — FINALER TEIL. Abschluss aller Dokumente.
+DOKUMENT 9 FORTSETZUNG (Typed Env Abschluss)
+markdown## Typed Env (Frontend) — Vollständig
+```ts
+// src/config/env.ts
+const env = {
+  API_BASE_URL: import.meta.env.VITE_API_BASE_URL as string,
+  API_VERSION: import.meta.env.VITE_API_VERSION || 'v1',
+  FIREBASE_CONFIG: {
+    apiKey: import.meta.env.VITE_FIREBASE_API_KEY as string,
+    authDomain: import.meta.env.VITE_FIREBASE_AUTH_DOMAIN as string,
+    projectId: import.meta.env.VITE_FIREBASE_PROJECT_ID as string,
+    storageBucket: import.meta.env.VITE_FIREBASE_STORAGE_BUCKET as string,
+    messagingSenderId: import.meta.env.VITE_FIREBASE_MESSAGING_SENDER_ID as string,
+    appId: import.meta.env.VITE_FIREBASE_APP_ID as string,
+  },
+  ENVIRONMENT: (import.meta.env.VITE_ENVIRONMENT || 'development') as 'development' | 'staging' | 'production',
+  ENABLE_DEVTOOLS: import.meta.env.VITE_ENABLE_DEVTOOLS === 'true',
+  ENABLE_MOCK: import.meta.env.VITE_ENABLE_MOCK === 'true',
+  FEATURES: {
+    SPLIT_VIEW: import.meta.env.VITE_FF_SPLIT_VIEW === 'true',
+    VOICE_INPUT: import.meta.env.VITE_FF_VOICE_INPUT === 'true',
+    CLIENT_PORTAL: import.meta.env.VITE_FF_CLIENT_PORTAL === 'true',
+    BILLING: import.meta.env.VITE_FF_BILLING === 'true',
+  },
+  get API_URL() {
+    return `${this.API_BASE_URL}/api/${this.API_VERSION}`
+  },
+  get IS_PRODUCTION() {
+    return this.ENVIRONMENT === 'production'
+  },
+  get IS_DEVELOPMENT() {
+    return this.ENVIRONMENT === 'development'
+  },
+} as const
+// Validation at startup
+function validateEnv(): void {
+  const required = ['API_BASE_URL', 'FIREBASE_CONFIG.apiKey', 'FIREBASE_CONFIG.projectId']
+  const missing: string[] = []
+  if (!env.API_BASE_URL) missing.push('VITE_API_BASE_URL')
+  if (!env.FIREBASE_CONFIG.apiKey) missing.push('VITE_FIREBASE_API_KEY')
+  if (!env.FIREBASE_CONFIG.projectId) missing.push('VITE_FIREBASE_PROJECT_ID')
+  if (missing.length > 0) {
+    console.error(`[AGENTICUM] Missing environment variables: ${missing.join(', ')}`)
+    if (env.IS_PRODUCTION) {
+      throw new Error(`Missing required environment variables: ${missing.join(', ')}`)
+    }
+  }
+}
+validateEnv()
+export { env }
+```
+## Typed Env (Backend)
+```ts
+// backend/src/config/env.ts
+import { z } from 'zod'
+const EnvSchema = z.object({
+  PORT: z.coerce.number().default(8080),
+  NODE_ENV: z.enum(['development', 'staging', 'production']).default('development'),
+  GCP_PROJECT: z.string().min(1),
+  FIREBASE_PROJECT: z.string().min(1),
+  VERTEX_AI_LOCATION: z.string().default('europe-west1'),
+  GEMINI_MODEL: z.string().default('gemini-2.0-pro'),
+  IMAGEN_MODEL: z.string().default('imagen-3'),
+  EMBEDDING_MODEL: z.string().default('text-embedding-005'),
+  GCS_BUCKET: z.string().default('agenticum-g5-assets'),
+  PUBSUB_TOPIC: z.string().default('agenticum-events'),
+  RATE_LIMIT_MAX: z.coerce.number().default(100),
+  RATE_LIMIT_WINDOW_MS: z.coerce.number().default(60000),
+  CORS_ORIGINS: z.string().default('https://online-marketing-manager.web.app,http://localhost:5173'),
+  LOG_LEVEL: z.enum(['debug', 'info', 'warn', 'error']).default('info'),
+})
+export type Env = z.infer
+function loadEnv(): Env {
+  const result = EnvSchema.safeParse(process.env)
+  if (!result.success) {
+    console.error('Invalid environment configuration:')
+    console.error(result.error.format())
+    process.exit(1)
+  }
+  return result.data
+}
+export const env = loadEnv()
+```
+## Firebase Init
+```ts
+// src/config/firebase.ts (Frontend)
+import { initializeApp } from 'firebase/app'
+import { getAuth } from 'firebase/auth'
+import { getFirestore } from 'firebase/firestore'
+import { getStorage } from 'firebase/storage'
+import { env } from './env'
+const app = initializeApp(env.FIREBASE_CONFIG)
+export const auth = getAuth(app)
+export const db = getFirestore(app)
+export const storage = getStorage(app)
+// Backend
+// backend/src/config/firebase.ts
+import { initializeApp, cert, getApps } from 'firebase-admin/app'
+import { getFirestore } from 'firebase-admin/firestore'
+import { getAuth } from 'firebase-admin/auth'
+import { getStorage } from 'firebase-admin/storage'
+if (getApps().length === 0) {
+  initializeApp({
+    projectId: process.env.FIREBASE_PROJECT,
+    storageBucket: `${process.env.FIREBASE_PROJECT}.appspot.com`,
+  })
+}
+export const db = getFirestore()
+export const auth = getAuth()
+export const bucket = getStorage().bucket()
+// Firestore Settings
+db.settings({ ignoreUndefinedProperties: true })
+```
+
+📋 DOKUMENT 10: MASTER-INDEX — GESAMTÜBERSICHT ALLER DOKUMENTE
+markdown# ══════════════════════════════════════════════════════════════
+# AGENTICUM G5 — MASTER-INDEX
+# Strategisches Briefing & Entwicklungshandbücher
+# ══════════════════════════════════════════════════════════════
+## DOKUMENT 1: STRATEGISCHES BRIEFING
+- Mission Statement
+- IST-Zustand: Tech Stack, 15 bestehende Module, 6 Agenten, Bugs, API Status
+- ZIEL-Zustand: 30 Module, OS-Experience Features, Backend-Architektur
+- Implementierungs-Phasen (Phase 0–7, 13+ Wochen)
+- Antigravity-spezifische Anweisungen (Workspace, CLIs, Models, MCP, Task Groups, Knowledge)
+- Qualitätsstandards (Code, Testing, Performance, Security)
+## DOKUMENT 2: SYSTEM PROMPTS FÜR ANTIGRAVITY-AGENTEN
+- Agent 1: Frontend Architect (React, TypeScript, Tailwind, Design System, Routing, Performance)
+- Agent 2: Backend Engineer (Hono, Firestore, Vertex AI, API Design, Agent Runtime)
+- Agent 3: DevOps Engineer (Deploy Pipeline, Docker, Monitoring, Rollback)
+- Agent 4: QA Engineer (Vitest, Playwright, Coverage, Bug Reports, Deploy Checklist)
+- Agent 5: System Architect (Architektur-Prinzipien, ADRs, System Boundaries, Datenflüsse)
+## DOKUMENT 3: FRONTEND-ENTWICKLERHANDBUCH
+- Teil 1: Architektur & Konventionen
+  - Projekt-Struktur (komplett)
+  - Shared UI Component API (Button, Card, Modal, Table)
+  - API Client Pattern (Fetch + React Query)
+  - Zustand Store Pattern
+- Teil 2: Modul-Spezifikationen (ALLE 30 MODULE)
+  - Modul 1: Executive Dashboard
+  - Modul 2: Campaign Hub
+  - Modul 3: Genius Console
+  - Modul 4: Nexus Engine V2
+  - Modul 5: Blog Engine
+  - Modul 6: Creative Studio
+  - Modul 7: Workflows (Visual DAG Editor)
+  - Modul 8: Asset Vault
+  - Modul 9: Project Memory
+  - Modul 10: Swarm Analytics
+  - Modul 11: Synergy Map
+  - Modul 12: Security Senate
+  - Modul 13: Columna Radar
+  - Modul 14: Perfect Twin
+  - Modul 15: Configuration
+  - Modul 16: Content Calendar (NEU)
+  - Modul 17: Client Portal (NEU)
+  - Modul 18: A/B Testing Lab (NEU)
+  - Modul 19: Distribution Engine (NEU)
+  - Modul 20: Performance Analytics (NEU)
+  - Modul 21: Knowledge Base / RAG (NEU)
+  - Modul 22: Brand Voice Engine (NEU)
+  - Modul 23: Competitor Intelligence (NEU)
+  - Modul 24: Notification Center (NEU)
+  - Modul 25: Team Management (NEU)
+  - Modul 26: Billing & Usage (NEU)
+  - Modul 27: Playground / Sandbox (NEU)
+  - Modul 28: Integration Hub (NEU)
+  - Modul 29: Audit Log (NEU)
+  - Modul 30: Command Palette (NEU — Overlay)
+  - Keyboard Shortcuts (Global Registry)
+## DOKUMENT 4: BACKEND-ENTWICKLERHANDBUCH
+- Service-Topologie (Cloud Run, Firestore, Vertex AI, Pub/Sub)
+- Tech Stack & Projektstruktur (Hono, Zod, Firebase Admin, 42 Dateien)
+- Agent Runtime Engine
+  - BaseAgent Abstract Class (execute, assembleContext, buildPrompt, processOutput)
+  - ContentAgent (CC-06) vollständige Implementierung
+  - AgentRegistry & Router (Task-Type → Agent Mapping)
+- Workflow Execution Engine (DAG Execution, Node Types, Topological Sort)
+- Middleware Patterns (Auth, Validation, Rate Limiting)
+- Event System (Pub/Sub Events, Publisher, Subscribers/Cloud Functions)
+- Knowledge Service (RAG: Chunking, Embedding, Semantic Search, Cosine Similarity)
+- Health Check & Server Entry (Hono App, Routes, CORS, Error Handler)
+## DOKUMENT 5: FUNKTIONSHANDBUCH
+- Horizontale Verbindungsmatrix (30×30 Matrix: R/W/RW zwischen allen Modulen)
+- Kernflüsse (End-to-End Pipelines):
+  - Flow 1: Content-Generierungs-Pipeline (23 Schritte)
+  - Flow 2: Kampagnen-Lifecycle (19 Schritte)
+  - Flow 3: Echtzeit-Monitoring (8 Systeme)
+- Vertikale Tiefe pro Modul:
+  - Dashboard: Datenfluss von Mount bis Render
+  - Genius Console: Chat-Flow von Input bis Streaming-Response
+  - Workflow Execution: Von Trigger bis Completion
+## DOKUMENT 6: ANTIGRAVITY WORKSPACE-KONFIGURATION
+- Rules (Always-On):
+  - code-standards.md (TypeScript, Naming, Dateistruktur, Error Handling, Imports)
+  - architecture.md (Frontend Architecture, Backend Architecture, API Design, Infrastructure)
+  - security.md (Secrets, Auth, CORS, Validation, Logging)
+- Rules (Glob-basiert):
+  - frontend/react-patterns.md (Component Pattern, State Management, Performance, Styling, Animation)
+  - backend/api-design.md (Endpoint Structure, Response Format, Validation, Error Handling)
+  - backend/firestore-patterns.md (Batch Writes, Transactions, Indexes, Subcollections, Pagination)
+- Workflows:
+  - fix-bug.md (5 Schritte: Analyse → Kontext → Fix → Test → Dokumentieren)
+  - new-module.md (11 Schritte: Planung → Struktur → Types → Store → Komponenten → Route → Sidebar → CmdPal → Test → Docs)
+  - new-api-endpoint.md (7 Schritte: Planung → Schema → Handler → Service → Errors → Test → Deploy)
+  - deploy.md (6 Schritte: Pre-Check → Frontend → Backend → Rules → Verify → Rollback Plan)
+  - full-feature.md (8 Schritte: Analyse → Types → Backend → Frontend → Integration → Polish → Deploy → Docs)
+- MCP Config:
+  - mcp_config.json (Firebase, BigQuery, GitHub, gcloud-cli, firebase-cli)
+## DOKUMENT 7: OS UX / INTERACTION DESIGN HANDBUCH
+- Design Philosophy (6 Prinzipien)
+- Layout System (OS Shell, Sidebar States, Navigation Structure mit 30 Einträgen)
+- Split-View System (2-Panel, 4-Panel, Resizable, Keyboard Shortcuts)
+- Theme Engine (ThemeTokens Interface, Dark Theme, Midnight Theme, CSS Variables)
+- Animation System (Page Transitions, List Stagger, Modal, Micro-Interactions, Reduced Motion)
+- Responsive Design (6 Breakpoints, Adaptive Behaviors)
+- Accessibility WCAG 2.1 AA (Keyboard Navigation, Focus Management, ARIA Labels, Color Contrast, Skip Nav)
+- Notification Toast System
+## DOKUMENT 8: FIRESTORE SECURITY RULES
+- Komplette firestore.rules Datei
+- Helper Functions (isAuthenticated, isOwner, hasRole, isAdmin)
+- Rules für: campaigns, content, agents, workflows, assets, senate, knowledge, notifications, analytics, config, audit
+- Default Deny All
+## DOKUMENT 9: ENVIRONMENT CONFIGURATION
+- Frontend .env (API, Firebase, Environment, Feature Flags)
+- Backend .env (Server, GCP, Firebase, Vertex AI, Storage, Pub/Sub, Rate Limiting, CORS, Logging)
+- Typed Env Frontend (Vite import.meta.env, Validation at startup)
+- Typed Env Backend (Zod Schema validation, process.exit on invalid)
+- Firebase Init (Frontend + Backend)
+
+══════════════════════════════════════════════════════════════
+✅ ALLE DOKUMENTE VOLLSTÄNDIG GELIEFERT
+══════════════════════════════════════════════════════════════
+ZUSAMMENFASSUNG: Was wurde geliefert?
+#DokumentInhalt1Strategisches BriefingMission, IST/ZIEL, Phasen, Antigravity-Setup, Qualität2System Prompts5 Agent-Prompts (Frontend, Backend, DevOps, QA, Architect)3Frontend-HandbuchArchitektur + alle 30 Module detailliert spezifiziert4Backend-HandbuchServices, Agent Runtime, Workflow Engine, RAG, Events5Funktionshandbuch30×30 Verbindungsmatrix + 3 End-to-End Flows + Vertikale Tiefe6Antigravity Config6 Rules, 5 Workflows, 1 MCP Config — alles copy-paste-ready7UX/Design HandbuchLayout, Split-View, Themes, Animations, Responsive, A11y8Firestore RulesKomplette Security Rules für alle Collections9Environment ConfigFrontend + Backend .env, Typed Validation, Firebase Init10Master-IndexInhaltsverzeichnis aller DokumenteGesamtumfang: ~30.000 Wörter, 10 Dokumente, 30 Module spezifiziert, 5 Agent-Prompts, 6 Antigravity Rules, 5 Workflows, vollständige Firestore-Schemas, API-Designs, Component Trees, Datenflüsse und Architektur-Patterns.Nächster Schritt: Diese Dokumente in die Antigravity Knowledge Base laden, die .agent/ Dateien in den Workspace kopieren, und mit Phase 0 (Bug-Fixing) beginnen.Das ist jetzt wirklich alles. 🏁Spending cap reached · ManageVor dem Handeln nachfragen

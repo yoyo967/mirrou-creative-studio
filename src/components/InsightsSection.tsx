@@ -6,6 +6,7 @@ import { PILLARS, clustersByPillar } from "../content/site-data";
 
 export default function InsightsSection() {
   const { t } = useTranslation("blog");
+  const h = (key: string, opts?: Record<string, unknown>) => t(`hub.${key}`, opts);
   const featured = PILLARS[0];
   const others = PILLARS.slice(1);
   const featuredClusters = clustersByPillar(featured.slug).length;
@@ -55,14 +56,14 @@ export default function InsightsSection() {
             )}
             <div className="p-8 md:p-12">
               <p className="eyebrow mb-5">
-                Pillar 01 · {featured.tagline}
+                {h("pillarPrefix")}{featured.order} · {featured.tagline}
               </p>
               <h3 className="font-serif italic text-3xl md:text-5xl leading-[1.1] mb-6 tracking-tight text-ink group-hover:text-accent transition-colors">
                 {featured.title}
               </h3>
               <p className="text-body max-w-xl mb-8">{featured.description}</p>
               <div className="flex items-center gap-3 font-mono text-[10px] uppercase tracking-[0.4em] text-accent">
-                <span>{featuredClusters} Cluster · {t("insights.clusterReadMore")}</span>
+                <span>{t("insights.clusterCount", { count: featuredClusters })} · {t("insights.clusterReadMore")}</span>
                 <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform" />
               </div>
             </div>
@@ -87,7 +88,7 @@ export default function InsightsSection() {
                       0{i + 2}
                     </span>
                     <span className="font-mono text-muted text-[10px] uppercase tracking-[0.3em]">
-                      {count} Cluster
+                      {t("insights.clusterCount", { count })}
                     </span>
                   </div>
                   <h5 className="font-serif italic text-xl md:text-2xl text-ink group-hover:text-accent transition-colors">

@@ -22,6 +22,8 @@ const tr = {
     personalBrand: "Kişisel Marka",
     portfolio: "Portföy",
     aiLabelAria: "Uyarı: {{label}} — AB Yapay Zeka Yasası uyarınca etiketlenmiştir",
+    aiAssisted: "YZ-Destekli",
+    aiGenerated: "YZ-Üretildi",
   },
 
   nav: {

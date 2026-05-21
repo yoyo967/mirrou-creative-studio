@@ -92,9 +92,9 @@ function HookRow({ hook, index }: { hook: HookEntry; index: number }) {
       </div>
       <div className="grid grid-cols-3 gap-4 mt-3">
         {[
-          { label: "Rel.", score: hook.relevance },
-          { label: "Intr.", score: hook.intrigue },
-          { label: "Clr.", score: hook.clarity },
+          { label: t("gsScoreRel"), score: hook.relevance },
+          { label: t("gsScoreIntr"), score: hook.intrigue },
+          { label: t("gsScoreClr"), score: hook.clarity },
         ].map(({ label, score }, i) => (
           <div key={label}>
             <div className="flex justify-between items-center mb-1.5">
@@ -188,16 +188,16 @@ export default function GrowthSystemLayer({ data, t }: Props) {
             <SectionHeading label={t("gsStrategicInputs")} />
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-px bg-white/5 border border-white/6">
               <div className="bg-bg p-8">
-                <p className="font-mono text-[8px] uppercase tracking-[0.45em] text-muted/60 mb-3">Audience</p>
+                <p className="font-mono text-[8px] uppercase tracking-[0.45em] text-muted/60 mb-3">{t("gsAudience")}</p>
                 <p className="text-sm text-ink/75 font-light leading-relaxed">{data.strategicInputs.audience}</p>
               </div>
               <div className="bg-bg p-8">
-                <p className="font-mono text-[8px] uppercase tracking-[0.45em] text-muted/60 mb-3">Tone & Promise</p>
+                <p className="font-mono text-[8px] uppercase tracking-[0.45em] text-muted/60 mb-3">{t("gsToneAndPromise")}</p>
                 <p className="text-sm text-ink/75 font-light leading-relaxed mb-3">{data.strategicInputs.tone}</p>
                 <p className="font-serif italic text-sm text-accent/80">{data.strategicInputs.promise}</p>
               </div>
               <div className="bg-bg p-8 lg:col-span-2">
-                <p className="font-mono text-[8px] uppercase tracking-[0.45em] text-muted/60 mb-4">Pain Points</p>
+                <p className="font-mono text-[8px] uppercase tracking-[0.45em] text-muted/60 mb-4">{t("gsPainPoints")}</p>
                 <ul className="space-y-2">
                   {data.strategicInputs.painPoints.map((pt, i) => (
                     <li key={i} className="flex gap-3 text-sm text-ink/65 font-light">
@@ -217,9 +217,9 @@ export default function GrowthSystemLayer({ data, t }: Props) {
               <div className="bg-bg p-8 lg:col-span-2 border-b border-white/6">
                 <div className="grid grid-cols-3 gap-6 text-center">
                   {[
-                    { label: "Winners", count: data.hooks.filter((h) => h.status === "winner").length },
-                    { label: "Testing", count: data.hooks.filter((h) => h.status === "testing").length },
-                    { label: "Paused", count: data.hooks.filter((h) => h.status === "paused").length },
+                    { label: t("gsHookWinners"), count: data.hooks.filter((h) => h.status === "winner").length },
+                    { label: t("gsHookTesting"), count: data.hooks.filter((h) => h.status === "testing").length },
+                    { label: t("gsHookPaused"), count: data.hooks.filter((h) => h.status === "paused").length },
                   ].map(({ label, count }) => (
                     <div key={label}>
                       <p className="font-serif italic text-3xl text-ink mb-1">{count}</p>
@@ -272,15 +272,15 @@ export default function GrowthSystemLayer({ data, t }: Props) {
 
               <div className="grid grid-cols-1 md:grid-cols-3 gap-6 border-t border-white/6 pt-8">
                 <div>
-                  <p className="font-mono text-[8px] uppercase tracking-[0.45em] text-muted/60 mb-2">Success Metric</p>
+                  <p className="font-mono text-[8px] uppercase tracking-[0.45em] text-muted/60 mb-2">{t("gsSuccessMetric")}</p>
                   <p className="text-sm text-ink/70 font-light leading-relaxed">{data.experiment.successMetric}</p>
                 </div>
                 <div>
-                  <p className="font-mono text-[8px] uppercase tracking-[0.45em] text-muted/60 mb-2">Winner Rule</p>
+                  <p className="font-mono text-[8px] uppercase tracking-[0.45em] text-muted/60 mb-2">{t("gsWinnerRule")}</p>
                   <p className="text-sm text-ink/70 font-light leading-relaxed">{data.experiment.winnerRule}</p>
                 </div>
                 <div>
-                  <p className="font-mono text-[8px] uppercase tracking-[0.45em] text-muted/60 mb-2">Confidence</p>
+                  <p className="font-mono text-[8px] uppercase tracking-[0.45em] text-muted/60 mb-2">{t("gsConfidence")}</p>
                   <div className="flex items-baseline gap-2">
                     <p className="font-serif italic text-4xl text-accent">{data.experiment.confidence}%</p>
                   </div>
@@ -382,7 +382,7 @@ export default function GrowthSystemLayer({ data, t }: Props) {
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8 border-t border-white/6 pt-8">
                   <div>
-                    <p className="font-mono text-[8px] uppercase tracking-[0.45em] text-muted/60 mb-3">Rationale</p>
+                    <p className="font-mono text-[8px] uppercase tracking-[0.45em] text-muted/60 mb-3">{t("gsRationale")}</p>
                     <p className="text-sm text-ink/65 font-light leading-relaxed">{data.decision.rationale}</p>
                   </div>
                   <div>
