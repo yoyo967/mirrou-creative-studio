@@ -137,6 +137,12 @@ export default function ClusterPage() {
           <span aria-current="page">{c("breadcrumbArticle")}</span>
         </nav>
 
+        {i18n.language !== "de" && (
+          <div className="mb-8 border border-accent/30 bg-accent/5 px-5 py-3 text-[12px] text-muted font-mono uppercase tracking-[0.15em]">
+            {c("contentLangNote")}
+          </div>
+        )}
+
         <header className="mb-12">
           <div className="flex items-center gap-4 mb-6 text-[10px] uppercase tracking-[0.3em] font-mono flex-wrap">
             <Link to={`/${pillar.slug}`} className="text-accent hover:underline">

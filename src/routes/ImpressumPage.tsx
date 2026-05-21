@@ -1,9 +1,11 @@
 import { useTranslation } from "react-i18next";
 import SEO from "../components/SEO";
+import { Link } from "@/src/components/LocalizedLink";
 
 export default function ImpressumPage() {
-  const { t } = useTranslation("legal");
+  const { t, i18n } = useTranslation("legal");
   const im = (key: string) => t(`impressum.${key}`);
+  const isNonEuLegal = i18n.language !== "de" && i18n.language !== "en";
 
   return (
     <main className="min-h-screen bg-transparent pt-40 pb-24 px-10 relative z-10">
@@ -14,6 +16,11 @@ export default function ImpressumPage() {
         noIndex
       />
 
+      {isNonEuLegal && (
+        <div className="max-w-3xl mx-auto mb-8 border border-accent/30 bg-accent/5 px-6 py-4 text-[13px] text-muted font-light">
+          {t("deOnlyNote")} <Link to="/de/impressum" className="text-accent hover:underline ml-1">→ DE</Link>
+        </div>
+      )}
       <article className="max-w-3xl mx-auto prose prose-invert prose-lg prose-headings:font-serif prose-headings:italic prose-a:text-accent prose-strong:text-ink prose-p:text-muted prose-p:font-light">
         <h1 className="text-5xl font-serif italic">{im("title")}</h1>
         <p className="text-[10px] uppercase tracking-widest text-accent font-mono not-prose">

@@ -50,7 +50,7 @@ export default function Footer() {
           <p className="eyebrow mt-3">{t("siteTagline")}</p>
           <p className="text-body mt-6 max-w-md">{t("siteDescription")}</p>
           <p className="eyebrow mt-6 text-muted">
-            {SITE.locations.map((l) => `${l.city} (${l.role})`).join(" · ")}
+            {t("locations")}
           </p>
           <p className="eyebrow mt-3 text-muted">
             {t("creativeDirection")}{" "}

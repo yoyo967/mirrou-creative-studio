@@ -3,8 +3,16 @@ import { useTranslation } from "react-i18next";
 import { PILLARS, clustersByPillar, CLUSTERS, SITE } from "../content/site-data";
 import SEO from "../components/SEO";
 
+const SLUG_TO_KEY: Record<string, string> = {
+  "performance-creative": "pc",
+  "creative-engine": "ce",
+  "beauty-ecommerce-marketing": "be",
+  "foto-ki-hybrid": "fkh",
+};
+
 export default function BlogIndex() {
   const { t, i18n } = useTranslation("blog");
+  const { t: tPillar } = useTranslation("pillars");
   const { t: tSeo } = useTranslation("seo");
   const h = (key: string) => t(`hub.${key}`);
 
@@ -75,6 +83,9 @@ export default function BlogIndex() {
         <div className="space-y-20">
           {PILLARS.map((pillar) => {
             const clusters = clustersByPillar(pillar.slug);
+            const pk = SLUG_TO_KEY[pillar.slug];
+            const pTitle = pk ? tPillar(`meta.${pk}.title`, { defaultValue: pillar.title }) : pillar.title;
+            const pTagline = pk ? tPillar(`meta.${pk}.tagline`, { defaultValue: pillar.tagline }) : pillar.tagline;
             return (
               <section key={pillar.slug}>
                 <div className="flex items-baseline justify-between mb-8 pb-4 border-b border-white/10">
@@ -82,8 +93,8 @@ export default function BlogIndex() {
                     <p className="text-[10px] uppercase tracking-widest text-accent font-mono">
                       {h("pillarPrefix")}{pillar.order}
                     </p>
-                    <h2 className="text-3xl font-serif italic mt-2">{pillar.title}</h2>
-                    <p className="text-sm text-muted font-light mt-2">{pillar.tagline}</p>
+                    <h2 className="text-3xl font-serif italic mt-2">{pTitle}</h2>
+                    <p className="text-sm text-muted font-light mt-2">{pTagline}</p>
                   </div>
                   <Link
                     to={`/${pillar.slug}`}

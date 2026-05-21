@@ -66,6 +66,7 @@ const en = {
     creativeDirection: "Creative Direction ·",
     siteTagline: "Performance Creative Studio",
     siteDescription: "Mirrou Creative Studio — Performance Creatives for Beauty, Health & Lifestyle brands. High-end photography, AI visuals and systematic creative testing as a measurable Creative Engine. Creative Direction: Olha Yevtushenko.",
+    locations: "Hamburg (Production · Creative Direction) · Berlin (Performance · AI · Growth)",
   },
 
   home: {
@@ -714,6 +715,7 @@ const en = {
       stubBody3: "If you urgently need this topic and can't wait:",
       stubLink: "Book a strategy call",
       stubBody4: "We look at your question free of charge and share our perspective directly.",
+      contentLangNote: "This article is currently published in German only. Switch to DE or EN for the full content.",
     },
 
     seo: {
@@ -723,6 +725,8 @@ const en = {
   },
 
   legal: {
+    deOnlyNote: "This page is a German legal requirement (§ 5 TMG / GDPR). The English version shown here is a courtesy translation only — the binding text is German.",
+
     notFound: {
       label: "404 // Not Found",
       headline: "This page doesn't exist.",
@@ -916,6 +920,28 @@ const en = {
   },
 
   pillars: {
+    meta: {
+      pc: {
+        title: "Performance Creative for D2C Brands",
+        tagline: "The Biggest Lever in Paid Social",
+        description: "Performance creative is the discipline of producing visual worlds that measurably win attention, generate clicks and increase ROAS. Here you learn how the lever works — and how to use it for your beauty, health or lifestyle brand.",
+      },
+      ce: {
+        title: "The Creative Engine",
+        tagline: "Our Operating System for Performance Creatives",
+        description: "The Creative Engine is our operating system: a loop of analysis, hypotheses, production, testing and learning that makes creative output systematic. Here we explain each of the five steps — and how they together produce measurable impact.",
+      },
+      be: {
+        title: "Beauty, Health & Lifestyle E-Commerce",
+        tagline: "The Niche We Sit Deep In",
+        description: "D2C brands in beauty, health and lifestyle play a different game than generic e-commerce brands. We have specialised in this niche because it has its own language, its own compliance requirements and its own visual culture.",
+      },
+      fkh: {
+        title: "Photo + AI: Hybrid Production",
+        tagline: "Why the Mix Wins — Not Purity",
+        description: "Pure AI visuals feel interchangeable. Pure photography is slow. We work hybrid: real products and people in front of the lens, AI for backgrounds, moods and variations. Here we explain why this mix works in performance campaigns — produced in compliance with the EU AI Act.",
+      },
+    },
     pc: {
       h1: "What it's about",
       p1: "Over the last five years, a quiet shift has happened in paid social: <strong>algorithms can target better than any human can.</strong> Meta, TikTok and Google now distribute budgets largely automatically. What they can't invent for you is the image, the hook, the two seconds that stop a thumb.",

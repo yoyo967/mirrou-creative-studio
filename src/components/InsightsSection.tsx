@@ -4,8 +4,16 @@ import { Link } from "@/src/components/LocalizedLink";
 import { useTranslation } from "react-i18next";
 import { PILLARS, clustersByPillar } from "../content/site-data";
 
+const SLUG_TO_KEY: Record<string, string> = {
+  "performance-creative": "pc",
+  "creative-engine": "ce",
+  "beauty-ecommerce-marketing": "be",
+  "foto-ki-hybrid": "fkh",
+};
+
 export default function InsightsSection() {
   const { t } = useTranslation("blog");
+  const { t: tPillar } = useTranslation("pillars");
   const h = (key: string, opts?: Record<string, unknown>) => t(`hub.${key}`, opts);
   const featured = PILLARS[0];
   const others = PILLARS.slice(1);
@@ -48,7 +56,7 @@ export default function InsightsSection() {
               <div className="overflow-hidden">
                 <img
                   src={featured.heroImage}
-                  alt={featured.title}
+                  alt={tPillar(`meta.${SLUG_TO_KEY[featured.slug]}.title`, { defaultValue: featured.title })}
                   className="w-full aspect-[16/9] object-cover transition-transform duration-1000 group-hover:scale-[1.02]"
                   loading="lazy"
                 />
@@ -56,12 +64,12 @@ export default function InsightsSection() {
             )}
             <div className="p-8 md:p-12">
               <p className="eyebrow mb-5">
-                {h("pillarPrefix")}{featured.order} · {featured.tagline}
+                {h("pillarPrefix")}{featured.order} · {tPillar(`meta.${SLUG_TO_KEY[featured.slug]}.tagline`, { defaultValue: featured.tagline })}
               </p>
               <h3 className="font-serif italic text-3xl md:text-5xl leading-[1.1] mb-6 tracking-tight text-ink group-hover:text-accent transition-colors">
-                {featured.title}
+                {tPillar(`meta.${SLUG_TO_KEY[featured.slug]}.title`, { defaultValue: featured.title })}
               </h3>
-              <p className="text-body max-w-xl mb-8">{featured.description}</p>
+              <p className="text-body max-w-xl mb-8">{tPillar(`meta.${SLUG_TO_KEY[featured.slug]}.description`, { defaultValue: featured.description })}</p>
               <div className="flex items-center gap-3 font-mono text-[10px] uppercase tracking-[0.4em] text-accent">
                 <span>{t("insights.clusterCount", { count: featuredClusters })} · {t("insights.clusterReadMore")}</span>
                 <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform" />
@@ -77,6 +85,7 @@ export default function InsightsSection() {
           <div className="space-y-px bg-white/6 border border-white/6">
             {others.map((p, i) => {
               const count = clustersByPillar(p.slug).length;
+              const pk = SLUG_TO_KEY[p.slug];
               return (
                 <Link
                   key={p.slug}
@@ -92,9 +101,9 @@ export default function InsightsSection() {
                     </span>
                   </div>
                   <h5 className="font-serif italic text-xl md:text-2xl text-ink group-hover:text-accent transition-colors">
-                    {p.title}
+                    {pk ? tPillar(`meta.${pk}.title`, { defaultValue: p.title }) : p.title}
                   </h5>
-                  <p className="text-[14px] text-muted mt-2">{p.tagline}</p>
+                  <p className="text-[14px] text-muted mt-2">{pk ? tPillar(`meta.${pk}.tagline`, { defaultValue: p.tagline }) : p.tagline}</p>
                 </Link>
               );
             })}

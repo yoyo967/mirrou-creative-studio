@@ -25,9 +25,17 @@ const PILLAR_CONTENT: Record<string, ComponentType> = {
   "foto-ki-hybrid": PillarFotoKiHybrid,
 };
 
+const SLUG_TO_KEY: Record<string, string> = {
+  "performance-creative": "pc",
+  "creative-engine": "ce",
+  "beauty-ecommerce-marketing": "be",
+  "foto-ki-hybrid": "fkh",
+};
+
 export default function PillarPage() {
   const { slug } = useParams();
   const { t, i18n } = useTranslation("blog");
+  const { t: tPillar } = useTranslation("pillars");
   const { t: tSeo } = useTranslation("seo");
   const p = (key: string, opts?: Record<string, unknown>) => t(`pillar.${key}`, opts);
   const localeTag: Record<string, string> = {
@@ -38,6 +46,11 @@ export default function PillarPage() {
   const pillar = slug ? findPillar(slug) : undefined;
 
   if (!pillar) return <Navigate to="/" replace />;
+
+  const pillarKey = SLUG_TO_KEY[pillar.slug];
+  const pillarTitle = pillarKey ? tPillar(`meta.${pillarKey}.title`, { defaultValue: pillar.title }) : pillar.title;
+  const pillarTagline = pillarKey ? tPillar(`meta.${pillarKey}.tagline`, { defaultValue: pillar.tagline }) : pillar.tagline;
+  const pillarDescription = pillarKey ? tPillar(`meta.${pillarKey}.description`, { defaultValue: pillar.description }) : pillar.description;
 
   const ContentComponent = PILLAR_CONTENT[pillar.slug];
   const clusters = clustersByPillar(pillar.slug);
@@ -50,15 +63,15 @@ export default function PillarPage() {
     "@type": "BreadcrumbList",
     itemListElement: [
       { "@type": "ListItem", position: 1, name: tSeo("breadcrumb.home"), item: SITE.url + "/" },
-      { "@type": "ListItem", position: 2, name: pillar.title, item: canonical },
+      { "@type": "ListItem", position: 2, name: pillarTitle, item: canonical },
     ],
   };
 
   const articleLd = {
     "@context": "https://schema.org",
     "@type": "Article",
-    headline: pillar.title,
-    description: pillar.description,
+    headline: pillarTitle,
+    description: pillarDescription,
     inLanguage: langTag,
     keywords: pillar.keywords.join(", "),
     author: [
@@ -80,7 +93,7 @@ export default function PillarPage() {
       ? {
           "@context": "https://schema.org",
           "@type": "ItemList",
-          name: `Cluster: ${pillar.title}`,
+          name: `Cluster: ${pillarTitle}`,
           itemListElement: clusters.map((c, i) => ({
             "@type": "ListItem",
             position: i + 1,
@@ -98,8 +111,8 @@ export default function PillarPage() {
   return (
     <article className="min-h-screen bg-transparent pt-40 pb-24 px-10 relative z-10">
       <SEO
-        title={pillar.title}
-        description={pillar.description}
+        title={pillarTitle}
+        description={pillarDescription}
         pathname={pathname}
         ogImage={pillar.heroImage}
         jsonLd={jsonLd}
@@ -118,7 +131,7 @@ export default function PillarPage() {
           <div className="flex items-center gap-4 mb-8 text-[10px] uppercase tracking-[0.3em] font-mono">
             <span className="text-accent">{p("pillarLabel", { order: pillar.order })}</span>
             <span className="text-[#333]">/</span>
-            <span className="text-muted">{pillar.tagline}</span>
+            <span className="text-muted">{pillarTagline}</span>
           </div>
 
           <motion.h1
@@ -127,11 +140,11 @@ export default function PillarPage() {
             transition={{ duration: 0.8 }}
             className="text-5xl lg:text-7xl font-serif italic leading-[1.05] mb-12 tracking-tight"
           >
-            {pillar.title}
+            {pillarTitle}
           </motion.h1>
 
           <p className="text-xl text-ink/85 leading-relaxed font-light max-w-3xl">
-            {pillar.description}
+            {pillarDescription}
           </p>
         </header>
 
@@ -139,7 +152,7 @@ export default function PillarPage() {
           <div className="mb-16 rounded-sm overflow-hidden border border-white/5">
             <img
               src={pillar.heroImage}
-              alt={pillar.title}
+              alt={pillarTitle}
               className="w-full h-auto object-cover"
               loading="eager"
             />

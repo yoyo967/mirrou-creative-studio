@@ -66,6 +66,7 @@ const de = {
     creativeDirection: "Creative Direction ·",
     siteTagline: "Performance Creative Studio",
     siteDescription: "Mirrou Creative Studio — Performance Creatives für Beauty-, Health- & Lifestyle-Brands. High-End-Fotografie, KI-Visuals und systematisches Creative-Testing als messbare Creative-Engine. Creative Direction: Olha Yevtushenko.",
+    locations: "Hamburg (Produktion & Creative Direction) · Berlin (Performance, AI & Growth)",
   },
 
   home: {
@@ -931,6 +932,28 @@ const de = {
   },
 
   pillars: {
+    meta: {
+      pc: {
+        title: "Performance Creative für D2C-Brands",
+        tagline: "Der größte Hebel im Paid Social",
+        description: "Performance Creative ist die Disziplin, Bildwelten so zu produzieren, dass sie messbar Aufmerksamkeit gewinnen, Klicks auslösen und ROAS steigern. Hier erfährst du, wie der Hebel funktioniert — und wie du ihn für deine Beauty-, Health- oder Lifestyle-Brand nutzt.",
+      },
+      ce: {
+        title: "Die Creative Engine",
+        tagline: "Unser Operating System für Performance Creatives",
+        description: "Die Creative Engine ist unser Operating System: ein Loop aus Analyse, Hypothesen, Produktion, Testing und Learning, der Creative-Output systematisch macht. Hier erklären wir jeden der fünf Schritte — und wie sie zusammen messbare Wirkung erzeugen.",
+      },
+      be: {
+        title: "Beauty, Health & Lifestyle E-Commerce",
+        tagline: "Die Nische, in der wir tief sitzen",
+        description: "D2C-Marken in Beauty, Health und Lifestyle spielen ein anderes Spiel als generische E-Commerce-Brands. Wir haben uns auf diese Nische spezialisiert, weil sie eigene Sprache, eigene Compliance-Anforderungen und eigene Visualkultur hat.",
+      },
+      fkh: {
+        title: "Foto + KI: Hybrid Production",
+        tagline: "Warum die Mischung schlägt — nicht die Reinheit",
+        description: "Pure KI-Visuals wirken austauschbar. Pure Fotografie ist langsam. Wir arbeiten hybrid: echte Produkte und Menschen vor der Linse, KI für Hintergründe, Stimmungen und Variationen. Hier erklären wir, warum dieser Mix in Performance-Kampagnen funktioniert — EU-AI-Act-konform produziert.",
+      },
+    },
     pc: {
       h1: "Worum es geht",
       p1: "In den letzten fünf Jahren ist im Paid Social ein stiller Wechsel passiert: <strong>Die Algorithmen können besser targeten als jeder Mensch.</strong> Meta, TikTok und Google verteilen Budgets längst weitgehend automatisch. Was sie nicht für dich erfinden können, ist das Bild, der Hook, die zwei Sekunden, die einen Daumen anhalten.",
