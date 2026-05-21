@@ -42,7 +42,7 @@ export const routes: RouteRecord[] = [
               const paths: string[] = [];
               LOCALES.forEach((l) => {
                 CLUSTERS.forEach((c) => {
-                  paths.push(`/blog/${c.slug}`);
+                  paths.push(`/${l}/blog/${c.slug}`);
                 });
               });
               return paths;
@@ -59,7 +59,7 @@ export const routes: RouteRecord[] = [
               const paths: string[] = [];
               LOCALES.forEach((l) => {
                 CASE_IDS.forEach((id) => {
-                  paths.push(`/cases/${id}`);
+                  paths.push(`/${l}/cases/${id}`);
                 });
               });
               return paths;
@@ -78,7 +78,7 @@ export const routes: RouteRecord[] = [
               const paths: string[] = [];
               LOCALES.forEach((l) => {
                 PILLAR_SLUGS.forEach((slug) => {
-                  paths.push(`/${slug}`);
+                  paths.push(`/${l}/${slug}`);
                 });
               });
               return paths;

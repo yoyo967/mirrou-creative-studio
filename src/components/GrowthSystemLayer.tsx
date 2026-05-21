@@ -68,7 +68,7 @@ function SectionHeading({ label }: { label: string }) {
 }
 
 // Hook row
-function HookRow({ hook, index }: { hook: HookEntry; index: number }) {
+function HookRow({ hook, index, t }: { hook: HookEntry; index: number; t: (key: string) => string }) {
   const statusBadge: Record<string, string> = {
     winner: "border-accent/40 text-accent",
     testing: "border-white/15 text-muted",
@@ -230,7 +230,7 @@ export default function GrowthSystemLayer({ data, t }: Props) {
               </div>
               <div className="bg-bg p-8 lg:col-span-2">
                 {data.hooks.map((hook, i) => (
-                  <HookRow key={i} hook={hook} index={i} />
+                  <HookRow key={i} hook={hook} index={i} t={t} />
                 ))}
               </div>
             </div>
