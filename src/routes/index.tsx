@@ -13,10 +13,12 @@ import ImpressumPage from "./ImpressumPage";
 import DatenschutzPage from "./DatenschutzPage";
 import TrustPage from "./TrustPage";
 import PressPage from "./PressPage";
+import TeamMemberPage from "./TeamMemberPage";
 import NotFoundPage from "./NotFoundPage";
+import BrandBookPage from "./BrandBookPage";
 import LocaleWrapper, { LOCALES } from "./LocaleWrapper";
 import RootRedirect from "./RootRedirect";
-import { PILLAR_SLUGS, CLUSTERS, CASE_IDS } from "../content/site-data";
+import { PILLAR_SLUGS, CLUSTERS, CASE_IDS, SITE } from "../content/site-data";
 
 export const routes: RouteRecord[] = [
   {
@@ -69,7 +71,22 @@ export const routes: RouteRecord[] = [
           { path: "impressum", Component: ImpressumPage, entry: "src/routes/ImpressumPage.tsx" },
           { path: "datenschutz", Component: DatenschutzPage, entry: "src/routes/DatenschutzPage.tsx" },
           { path: "trust", Component: TrustPage, entry: "src/routes/TrustPage.tsx" },
+          { path: "brand-book", Component: BrandBookPage, entry: "src/routes/BrandBookPage.tsx" },
           { path: "press", Component: PressPage, entry: "src/routes/PressPage.tsx" },
+          {
+            path: "team/:slug",
+            Component: TeamMemberPage,
+            entry: "src/routes/TeamMemberPage.tsx",
+            getStaticPaths: () => {
+              const paths: string[] = [];
+              LOCALES.forEach((l) => {
+                SITE.teamMembers.forEach((m) => {
+                  paths.push(`/${l}/team/${m.slug}`);
+                });
+              });
+              return paths;
+            },
+          },
           {
             path: ":slug",
             Component: PillarPage,

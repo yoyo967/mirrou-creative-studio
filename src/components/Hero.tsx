@@ -30,130 +30,125 @@ export default function Hero({ onExplore }: { onExplore: () => void }) {
   return (
     <section
       id="hero"
-      className="relative min-h-screen flex flex-col overflow-hidden bg-bg"
+      className="relative min-h-screen flex flex-col overflow-hidden bg-bg justify-center pt-24 pb-20"
     >
-      {/* Corner ticks */}
+      {/* Corner ticks for premium tech aesthetic */}
       <span className="absolute top-7 left-7 w-7 h-7 border-t border-l border-accent/40 z-20 pointer-events-none" aria-hidden />
       <span className="absolute top-7 right-7 w-7 h-7 border-t border-r border-accent/40 z-20 pointer-events-none" aria-hidden />
-      <span className="absolute bottom-20 left-7 w-5 h-5 border-b border-l border-accent/20 z-20 pointer-events-none" aria-hidden />
-      <span className="absolute bottom-20 right-7 w-5 h-5 border-b border-r border-accent/20 z-20 pointer-events-none" aria-hidden />
-
-      <div className="flex-1 flex flex-col lg:flex-row">
-
-        {/* LEFT: Typography */}
-        <div className="relative z-10 flex flex-col justify-center
-                        px-6 md:px-12 lg:px-16 xl:px-20
-                        pt-36 pb-10 lg:pt-0 lg:pb-0
-                        lg:w-[54%] xl:w-[52%]">
-
-          <motion.div {...reveal(0.1)} className="flex items-center gap-4 mb-5">
-            <span className="w-6 h-px bg-accent/60 flex-shrink-0" />
-            <p className="eyebrow tracking-[0.38em]">{t("hero.eyebrow")}</p>
-          </motion.div>
-
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.28, duration: 0.6 }}
-            className="mb-9"
-          >
-            <ScrambleText
-              text={t("hero.scramble", { ns: "common", defaultValue: "ALGORITHM OF SOUL" })}
-              triggerOnLoad
-              loadDelay={700}
-              className="text-[11px] uppercase tracking-[0.55em] text-accent/65 block"
-            />
-          </motion.div>
-
-          <div className={`clip-reveal mb-10${clipped ? " in-view" : ""}`}>
-            <h1 className="display-hero font-serif italic leading-[0.88] tracking-[-0.03em] text-ink">
-              {t("hero.h1line1")}&nbsp;
-              <br />
-              <span
-                className="text-accent"
-                style={{ textShadow: "0 0 80px rgba(200,162,90,0.25)" }}
-              >
-                {t("hero.h1accent")}
-              </span>
-              {t("hero.h1line3") && <><br />{t("hero.h1line3")}</>}
-            </h1>
-          </div>
-
-          <motion.p
-            {...reveal(0.52)}
-            className="font-mono text-[11px] uppercase tracking-[0.35em] text-muted mb-10 max-w-sm"
-          >
-            {t("hero.tagline")}
-          </motion.p>
-
-          <motion.p
-            {...reveal(0.62)}
-            className="text-body-lg text-pretty max-w-md mb-10"
-          >
-            {t("hero.body")}
-          </motion.p>
-
-          <motion.div
-            {...reveal(0.76)}
-            className="flex flex-wrap items-center gap-3"
-          >
-            <Link to="/kontakt" className="btn-primary" data-magnetic>
-              {t("hero.ctaPrimary")}
-              <ArrowRight size={14} aria-hidden />
-            </Link>
-            <button
-              onClick={onExplore}
-              className="btn-ghost cursor-pointer"
-              data-magnetic
-            >
-              {t("hero.ctaSecondary")}
-              <ArrowDown size={13} aria-hidden />
-            </button>
-          </motion.div>
-
-          <motion.p
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 1.0, duration: 0.8 }}
-            className="eyebrow text-muted mt-8"
-          >
-            {t("hero.creditPrefix")}{" "}
-            <a
-              href={SITE.creativeDirection.instagram}
-              rel="noopener"
-              className="text-accent hover:underline"
-            >
-              {SITE.creativeDirection.name}
-            </a>
-          </motion.p>
-        </div>
-
-        {/* RIGHT: Image Sequence */}
-        <div className="
-          absolute inset-0 opacity-40
-          lg:relative lg:opacity-100
-          lg:w-[46%] xl:w-[48%]
-          lg:flex lg:items-center lg:justify-center
-        ">
+      
+      {/* The Central Dynamic Canvas */}
+      <div className="absolute inset-0 flex items-center justify-center p-4 md:p-8 lg:p-12 xl:p-16 opacity-40 lg:opacity-100">
+        <div className="relative w-full h-full max-h-[85vh] max-w-[1400px] rounded-2xl md:rounded-3xl overflow-hidden shadow-2xl border border-white/5">
           {sequenceMounted && (
-            <Suspense fallback={null}>
+            <Suspense fallback={<div className="absolute inset-0 bg-surface/50" />}>
               <HeroImageSequence className="absolute inset-0 w-full h-full" />
             </Suspense>
           )}
+          
+          {/* Cinematic Vignette / Overlay to ensure perfect text readability */}
+          <div className="absolute inset-0 bg-gradient-to-t from-bg/95 via-bg/40 to-bg/80 mix-blend-multiply" />
+          <div className="absolute inset-0 bg-black/30 backdrop-blur-[2px] md:backdrop-blur-[1px]" />
+          
+          {/* Subtle noise over the image canvas */}
+          <div className="absolute inset-0 grain-overlay opacity-[0.05]" />
         </div>
       </div>
 
-      <motion.div
-        className="relative z-10 mx-6 md:mx-12 lg:mx-16 xl:mx-20"
-        initial={{ scaleX: 0, opacity: 0 }}
-        animate={{ scaleX: 1, opacity: 1 }}
-        transition={{ delay: 0.35, duration: 1.6, ease: [0.16, 1, 0.3, 1] as [number,number,number,number] }}
-        style={{ transformOrigin: "left" }}
-      >
-        <div className="gold-rule" />
-      </motion.div>
+      {/* Typography Overlay (Centered) */}
+      <div className="relative z-10 flex flex-col items-center justify-center text-center px-6 md:px-12 max-w-4xl mx-auto mt-12 lg:mt-0">
 
-      <div className="relative z-10">
+        <motion.div {...reveal(0.1)} className="flex items-center justify-center gap-4 mb-6 md:mb-8">
+          <span className="w-8 md:w-12 h-px bg-accent/60 flex-shrink-0" />
+          <p className="eyebrow tracking-[0.38em]">{t("hero.eyebrow")}</p>
+          <span className="w-8 md:w-12 h-px bg-accent/60 flex-shrink-0" />
+        </motion.div>
+
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.28, duration: 0.6 }}
+          className="mb-6 md:mb-8"
+        >
+          <ScrambleText
+            text={t("hero.scramble", { ns: "common", defaultValue: "ALGORITHM OF SOUL" })}
+            triggerOnLoad
+            loadDelay={700}
+            className="text-[10px] md:text-[12px] uppercase tracking-[0.55em] text-accent/80 block font-semibold"
+          />
+        </motion.div>
+
+        <div className={`clip-reveal mb-8 md:mb-10${clipped ? " in-view" : ""}`}>
+          <h1 className="display-hero font-serif italic leading-[0.85] tracking-[-0.03em] text-ink drop-shadow-2xl">
+            {t("hero.h1line1")}&nbsp;
+            <br className="md:hidden" />
+            <span
+              className="text-accent relative inline-block z-10"
+              style={{ textShadow: "0 0 70px rgba(200,162,90,0.5)" }}
+            >
+              {t("hero.h1accent")}
+            </span>
+            {t("hero.h1line3") && (
+              <>
+                <span className="hidden md:inline">&nbsp;</span>
+                <br className="md:hidden" />
+                {t("hero.h1line3")}
+              </>
+            )}
+          </h1>
+        </div>
+
+        <motion.p
+          {...reveal(0.52)}
+          className="font-mono text-[9px] md:text-[11px] uppercase tracking-[0.35em] text-ink/75 mb-6 md:mb-8 max-w-xl mx-auto"
+        >
+          {t("hero.tagline")}
+        </motion.p>
+
+        <motion.p
+          {...reveal(0.62)}
+          className="text-body-lg text-ink/90 text-pretty max-w-2xl mx-auto mb-10 md:mb-12"
+          style={{ textShadow: "0 2px 10px rgba(0,0,0,0.4)" }}
+        >
+          {t("hero.body")}
+        </motion.p>
+
+        <motion.div
+          {...reveal(0.76)}
+          className="flex flex-col sm:flex-row items-center justify-center gap-4 w-full sm:w-auto"
+        >
+          <Link to="/kontakt" className="btn-primary w-full sm:w-auto justify-center" data-magnetic>
+            {t("hero.ctaPrimary")}
+            <ArrowRight size={14} aria-hidden />
+          </Link>
+          <button
+            onClick={onExplore}
+            className="btn-ghost cursor-pointer w-full sm:w-auto justify-center backdrop-blur-md bg-black/20"
+            data-magnetic
+          >
+            {t("hero.ctaSecondary")}
+            <ArrowDown size={13} aria-hidden />
+          </button>
+        </motion.div>
+
+        <motion.p
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 1.0, duration: 0.8 }}
+          className="eyebrow text-ink/50 mt-14 md:mt-16"
+        >
+          {t("hero.creditPrefix")}{" "}
+          <a
+            href={SITE.creativeDirection.instagram}
+            rel="noopener"
+            className="text-accent hover:text-accent-light hover:underline transition"
+          >
+            {SITE.creativeDirection.name}
+          </a>
+        </motion.p>
+      </div>
+
+      {/* Marquee at the very bottom */}
+      <div className="absolute bottom-0 left-0 right-0 z-20 w-full bg-bg/40 backdrop-blur-sm border-t border-accent/10">
         <MarqueeStrip />
       </div>
     </section>

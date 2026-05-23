@@ -1,69 +1,21 @@
 import { motion } from "motion/react";
-import { Instagram, ExternalLink } from "lucide-react";
+import { Instagram, ExternalLink, Linkedin, User } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import OptimizedImage from "./OptimizedImage";
+import { Link } from "@/src/components/LocalizedLink";
 import { SITE } from "../content/site-data";
-
-interface TeamMember {
-  name: string;
-  location: string;
-  roleKey: string;
-  focusKey: string;
-  id: string;
-  isFounder: boolean;
-  personal?: { instagram: string; portfolio?: string };
-}
 
 export default function StudioContent() {
   const { t } = useTranslation("studio");
   const c = (key: string) => t(`content.${key}`);
 
-  const team: TeamMember[] = [
-    {
-      name: "Olha Yevtushenko",
-      location: SITE.locations[0]?.city ?? "Hamburg",
-      roleKey: "roleOlha",
-      focusKey: "memberOlhaFocus",
-      id: "olha",
-      isFounder: true,
-      personal: {
-        instagram: SITE.creativeDirection.instagram,
-        portfolio: SITE.creativeDirection.portfolio,
-      },
-    },
-    {
-      name: "Denys Demyanyshyn",
-      location: SITE.locations[0]?.city ?? "Hamburg",
-      roleKey: "roleDenys",
-      focusKey: "memberDenysFocus",
-      id: "denys",
-      isFounder: false,
-    },
-    {
-      name: "Ralph Kindermann",
-      location: SITE.locations[1]?.city ?? "Berlin",
-      roleKey: "roleRalph",
-      focusKey: "memberRalphFocus",
-      id: "ralph",
-      isFounder: false,
-    },
-    {
-      name: "Yahya Yildirim",
-      location: SITE.locations[1]?.city ?? "Berlin",
-      roleKey: "roleYahya",
-      focusKey: "memberYahyaFocus",
-      id: "yahya",
-      isFounder: false,
-    },
-  ];
-
-  const founder = team.find((m) => m.isFounder)!;
-  const others = team.filter((m) => !m.isFounder);
+  const founder = SITE.teamMembers.find((m) => m.isFounder)!;
+  const others  = SITE.teamMembers.filter((m) => !m.isFounder);
 
   const stats = [
     { labelKey: "statFounded",  valueKey: "statFoundedVal" },
     { labelKey: "statMarket",   valueKey: "statMarketVal" },
-    { labelKey: "statDirection",value: SITE.creativeDirection.name },
+    { labelKey: "statDirection", value: SITE.creativeDirection.name },
   ];
 
   return (
@@ -87,7 +39,7 @@ export default function StudioContent() {
           </div>
         </div>
 
-        {/* Founder Card */}
+        {/* ── Founder Card ────────────────────────────────────────────── */}
         <motion.div
           initial={{ opacity: 0, y: 16 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -114,52 +66,114 @@ export default function StudioContent() {
                 {c(founder.focusKey)}
               </p>
               <div className="flex flex-wrap gap-4 text-[11px] uppercase tracking-[0.3em] font-mono pt-4 border-t border-[color:var(--color-ink-on-cream)]/10">
-                {founder.personal && (
-                  <>
-                    <a href={founder.personal.instagram} rel="noopener" className="flex items-center gap-2 text-accent hover:underline">
-                      <Instagram size={12} /> {c("personalBrand")}
-                    </a>
-                    {founder.personal.portfolio && (
-                      <a href={founder.personal.portfolio} rel="noopener" className="flex items-center gap-2 text-[color:var(--color-muted-on-cream)] hover:text-[color:var(--color-ink-on-cream)]">
-                        <ExternalLink size={12} /> {c("portfolio")}
-                      </a>
-                    )}
-                  </>
+                {/* Interne Profilseite */}
+                <Link
+                  to={`/team/${founder.slug}`}
+                  className="flex items-center gap-2 text-accent hover:underline"
+                >
+                  <User size={12} /> {c("portfolio")}
+                </Link>
+                {/* Instagram */}
+                {"instagram" in founder && (founder as { instagram?: string }).instagram && (
+                  <a
+                    href={(founder as { instagram?: string }).instagram}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-2 text-[color:var(--color-muted-on-cream)] hover:text-[color:var(--color-ink-on-cream)]"
+                  >
+                    <Instagram size={12} /> {c("personalBrand")}
+                  </a>
                 )}
+                {/* LinkedIn */}
+                <a
+                  href={founder.linkedin}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-2 text-[color:var(--color-muted-on-cream)] hover:text-[color:var(--color-ink-on-cream)]"
+                >
+                  <Linkedin size={12} /> LinkedIn
+                </a>
               </div>
             </div>
           </div>
         </motion.div>
 
-        {/* Other team */}
+        {/* ── Team Grid ────────────────────────────────────────────────── */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-px bg-[color:var(--color-ink-on-cream)]/10 border border-[color:var(--color-ink-on-cream)]/15 border-t-0">
-          {others.map((member) => (
-            <div key={member.id} className="bg-[color:var(--color-cream-2)] p-8 lg:p-10 flex flex-col gap-4">
-              <span className="font-mono text-[10px] uppercase tracking-[0.4em] text-[color:var(--color-muted-on-cream)]">
-                {c("teamLabel")}
-              </span>
-              <h3 className="font-serif text-2xl text-[color:var(--color-ink-on-cream)] leading-tight">
-                {member.name}
-              </h3>
-              <p className="font-mono text-[11px] uppercase tracking-[0.3em] text-[color:var(--color-muted-on-cream)]">
-                {member.location} · {c(member.roleKey)}
-              </p>
-              <span className="block w-10 h-px bg-accent" />
-              <p className="text-[15px] leading-[1.6] text-[color:var(--color-body-on-cream)]">
-                {c(member.focusKey)}
-              </p>
-            </div>
-          ))}
+          {others.map((member, i) => {
+            const hasExternalPortfolio = "externalPortfolio" in member;
+            const isYahya = member.id === "yahya";
+            return (
+              <motion.div
+                key={member.id}
+                initial={{ opacity: 0, y: 12 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-60px" }}
+                transition={{ duration: 0.5, delay: i * 0.1 }}
+                className="bg-[color:var(--color-cream-2)] p-8 lg:p-10 flex flex-col gap-4 group"
+              >
+                <span className="font-mono text-[10px] uppercase tracking-[0.4em] text-[color:var(--color-muted-on-cream)]">
+                  {c("teamLabel")}
+                </span>
+                <h3 className="font-serif text-2xl text-[color:var(--color-ink-on-cream)] leading-tight">
+                  {member.name}
+                </h3>
+                <p className="font-mono text-[11px] uppercase tracking-[0.3em] text-[color:var(--color-muted-on-cream)]">
+                  {member.location} · {c(member.roleKey)}
+                </p>
+                <span className="block w-10 h-px bg-accent transition-all duration-300 group-hover:w-16" />
+                <p className="text-[15px] leading-[1.6] text-[color:var(--color-body-on-cream)] flex-1">
+                  {c(member.focusKey)}
+                </p>
+
+                {/* Links-Zeile */}
+                <div className="flex flex-wrap gap-3 pt-3 border-t border-[color:var(--color-ink-on-cream)]/10 mt-auto text-[10px] uppercase tracking-[0.3em] font-mono">
+                  {/* Yahya: externes Portfolio unverändert */}
+                  {isYahya && hasExternalPortfolio ? (
+                    <a
+                      href={(member as { externalPortfolio?: string }).externalPortfolio}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center gap-1.5 text-accent hover:text-[color:var(--color-ink-on-cream)] transition-colors duration-200"
+                    >
+                      <ExternalLink size={11} />
+                      {c("portfolio")}
+                    </a>
+                  ) : !isYahya ? (
+                    /* Alle anderen: interne Profilseite */
+                    <Link
+                      to={`/team/${member.slug}`}
+                      className="flex items-center gap-1.5 text-accent hover:text-[color:var(--color-ink-on-cream)] transition-colors duration-200"
+                    >
+                      <User size={11} />
+                      {c("portfolio")}
+                    </Link>
+                  ) : null}
+
+                  {/* LinkedIn immer anzeigen */}
+                  <a
+                    href={member.linkedin}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-1.5 text-[color:var(--color-muted-on-cream)] hover:text-[color:var(--color-ink-on-cream)] transition-colors duration-200"
+                  >
+                    <Linkedin size={11} />
+                    LinkedIn
+                  </a>
+                </div>
+              </motion.div>
+            );
+          })}
         </div>
 
-        {/* Mission */}
+        {/* ── Mission ──────────────────────────────────────────────────── */}
         <div className="mt-24 md:mt-32 max-w-4xl mx-auto text-center">
           <p className="font-serif italic text-2xl md:text-4xl lg:text-5xl leading-[1.2] text-[color:var(--color-ink-on-cream)] text-balance">
             {c("missionQuote")}
           </p>
         </div>
 
-        {/* Stats */}
+        {/* ── Stats ────────────────────────────────────────────────────── */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-10 md:gap-16 mt-20 md:mt-24 pt-16 md:pt-20 border-t border-[color:var(--color-ink-on-cream)]/15">
           {stats.map((item) => (
             <div key={item.labelKey}>
@@ -173,7 +187,7 @@ export default function StudioContent() {
           ))}
         </div>
 
-        {/* Visual gallery */}
+        {/* ── Visual Gallery ───────────────────────────────────────────── */}
         <div className="mt-20 grid grid-cols-2 md:grid-cols-4 gap-px bg-[color:var(--color-ink-on-cream)]/10 border border-[color:var(--color-ink-on-cream)]/10 overflow-hidden">
           {Array.from({ length: 8 }, (_, i) => i + 41).map((n) => (
             <div key={n} className="img-zoom overflow-hidden">

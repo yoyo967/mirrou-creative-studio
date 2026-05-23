@@ -60,7 +60,7 @@ export default function HeroImageSequence({ className = "" }: { className?: stri
           key={src}
           src={src}
           alt={`Hero visual sequence ${idx + 1}`}
-          className="absolute inset-0 w-full h-full object-cover lg:rounded-l-2xl"
+          className="absolute inset-0 w-full h-full object-cover"
           initial={{ opacity: 0 }}
           animate={{ opacity: currentIndex === idx ? 1 : 0 }}
           transition={{ duration: 1.5, ease: "easeInOut" }}
