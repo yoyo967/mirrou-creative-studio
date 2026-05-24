@@ -21,6 +21,7 @@ export default function Navigation() {
     { nameKey: "cases", to: "/cases" },
     { nameKey: "press", to: "/press" },
     { nameKey: "trust", to: "/trust" },
+    { nameKey: "brandBook", to: "/brand-book" },
     { nameKey: "contact", to: "/kontakt" },
   ];
 

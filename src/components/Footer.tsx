@@ -86,6 +86,7 @@ export default function Footer() {
             <li><Link to="/press" className="text-ink/85 hover:text-accent transition">{t("press")}</Link></li>
             <li><Link to="/blog" className="text-ink/85 hover:text-accent transition">{t("resources")}</Link></li>
             <li><Link to="/trust" className="text-ink/85 hover:text-accent transition">{t("trustCenter")}</Link></li>
+            <li><Link to="/brand-book" className="text-ink/85 hover:text-accent transition">{t("brandBook")}</Link></li>
             <li><Link to="/kontakt" className="text-ink/85 hover:text-accent transition">{t("contact")}</Link></li>
           </ul>
         </div>
