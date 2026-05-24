@@ -12,7 +12,38 @@ import {
   Check,
   ChevronDown,
   ChevronUp,
+  Download,
 } from "lucide-react";
+
+/* ─── SVG Downloader Helper ───────────────────────────────────── */
+function downloadSvgElement(id: string, filename: string) {
+  const svgEl = document.getElementById(id);
+  if (!svgEl) return;
+  const clone = svgEl.cloneNode(true) as SVGElement;
+  clone.setAttribute("xmlns", "http://www.w3.org/2000/svg");
+  const svgContent = clone.outerHTML;
+  const blob = new Blob([svgContent], { type: "image/svg+xml;charset=utf-8" });
+  const url = URL.createObjectURL(blob);
+  const link = document.createElement("a");
+  link.href = url;
+  link.download = filename;
+  document.body.appendChild(link);
+  link.click();
+  document.body.removeChild(link);
+  URL.revokeObjectURL(url);
+}
+
+/* ─── Asset Download Button Component ─────────────────────────── */
+function AssetDownloadButton({ svgId, filename }: { svgId: string; filename: string }) {
+  return (
+    <button
+      onClick={() => downloadSvgElement(svgId, filename)}
+      className="mt-3 flex items-center gap-2 text-[10px] font-mono uppercase tracking-[0.25em] text-accent hover:text-ink transition-colors border border-accent/20 hover:border-accent px-3 py-1.5"
+    >
+      <Download size={10} /> Download SVG
+    </button>
+  );
+}
 
 /* ─── Small utility: copy-to-clipboard swatch ─────────────────── */
 function ColorSwatch({
@@ -186,6 +217,8 @@ function BeforeAfter({
 export default function BrandBookPage() {
   const [activeSection, setActiveSection] = useState("foundation");
   const [tocOpen, setTocOpen] = useState(false);
+  const [logoTheme, setLogoTheme] = useState<"dark" | "light">("dark");
+  const [activePlatformTab, setActivePlatformTab] = useState("linkedin");
   const observerRef = useRef<IntersectionObserver | null>(null);
 
   const sections = [
@@ -194,6 +227,7 @@ export default function BrandBookPage() {
     { id: "visual", label: "03 · Visual Identity" },
     { id: "messaging", label: "04 · Messaging" },
     { id: "application", label: "05 · Application" },
+    { id: "assets", label: "06 · Logo & Assets" },
   ];
 
   useEffect(() => {
@@ -1528,6 +1562,1466 @@ export default function BrandBookPage() {
                 </div>
               </div>
             </div>
+          </div>
+        </section>
+
+        {/* ═══════════════════════════════════════════════════════════
+            SECTION 6 · LOGO SYSTEM & SOCIAL MEDIA ASSETS
+        ═══════════════════════════════════════════════════════════ */}
+        <section id="assets" className="py-20 md:py-28 border-b border-white/6">
+          <div className="flex items-baseline gap-5 mb-16">
+            <span className="font-mono text-accent text-[11px] tracking-[0.4em]">06</span>
+            <div>
+              <Layout size={18} className="text-accent mb-3" strokeWidth={1.2} />
+              <h2 className="font-serif text-4xl md:text-5xl tracking-tight leading-[1.05]">
+                Logo System & Assets
+              </h2>
+            </div>
+          </div>
+
+          <div className="mb-16">
+            <p className="eyebrow mb-6">Logo System & Assets · Overview</p>
+            <div className="border border-white/8 bg-surface/30 p-8 md:p-12">
+              <h3 className="font-serif italic text-2xl text-accent mb-4">
+                Jedes Asset. Jeder Kanal. Kein Kompromiss.
+              </h3>
+              <p className="text-body max-w-3xl leading-relaxed mb-4">
+                Als Performance Creative Studio leben wir die eigenen Prinzipien bei jeder Facette unserer Markenidentität. 
+                Jedes Logo und Social-Media-Asset wurde im exakten Seitenverhältnis und Format-Standard direkt als Vektorgrafik (SVG) gecodet.
+              </p>
+              <p className="text-body max-w-3xl leading-relaxed">
+                Klicke auf den Download-Button unter einem Asset, um die skalierbare Vektorgrafik direkt herunterzuladen. 
+                Keine Platzhalter, keine Verpixelung — produktionsreife Assets für maximale Markenkonsistenz.
+              </p>
+            </div>
+          </div>
+
+          {/* SUBSECTION: LOGO SYSTEM */}
+          <div className="mb-24">
+            <div className="flex flex-col sm:flex-row sm:items-baseline justify-between gap-4 mb-8">
+              <p className="eyebrow">Wortmarke & Monogramm · Varianten</p>
+              <div className="flex bg-white/6 p-1 border border-white/8 rounded-sm self-start">
+                <button
+                  onClick={() => setLogoTheme("dark")}
+                  className={`px-3 py-1 font-mono text-[9px] uppercase tracking-wider transition-colors ${
+                    logoTheme === "dark" ? "bg-accent text-bg font-semibold" : "text-muted hover:text-ink"
+                  }`}
+                >
+                  Dunkler Hintergrund
+                </button>
+                <button
+                  onClick={() => setLogoTheme("light")}
+                  className={`px-3 py-1 font-mono text-[9px] uppercase tracking-wider transition-colors ${
+                    logoTheme === "light" ? "bg-accent text-bg font-semibold" : "text-muted hover:text-ink"
+                  }`}
+                >
+                  Heller Hintergrund
+                </button>
+              </div>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {/* Logo 1: Primary Logo - Full */}
+              <div className="border border-white/8 bg-surface/20 p-6 flex flex-col justify-between">
+                <div>
+                  <p className="font-mono text-[9px] uppercase tracking-[0.3em] text-muted mb-4">
+                    01 · Primary Logo (Full)
+                  </p>
+                  <div
+                    className={`h-40 flex items-center justify-center border border-white/6 overflow-hidden transition-colors duration-500 ${
+                      logoTheme === "dark" ? "bg-bg" : "bg-[#F5F5F0]"
+                    }`}
+                  >
+                    <svg
+                      id="svg-logo-primary"
+                      viewBox="0 0 400 120"
+                      className="w-full max-w-[280px]"
+                    >
+                      <rect width="100%" height="100%" fill="none" />
+                      <g textAnchor="middle">
+                        <text
+                          x="200"
+                          y="65"
+                          fontFamily="system-ui, -apple-system, sans-serif"
+                          fontWeight="900"
+                          fontSize="30"
+                          letterSpacing="0.45em"
+                          fill={logoTheme === "dark" ? "#C8A25A" : "#080808"}
+                        >
+                          MIRROU
+                        </text>
+                        <text
+                          x="200"
+                          y="92"
+                          fontFamily="system-ui, -apple-system, sans-serif"
+                          fontWeight="400"
+                          fontSize="9"
+                          letterSpacing="0.32em"
+                          fill={logoTheme === "dark" ? "#F2EFE9" : "#6E6B66"}
+                        >
+                          CREATIVE STUDIO
+                        </text>
+                      </g>
+                    </svg>
+                  </div>
+                </div>
+                <div className="mt-4 border-t border-white/6 pt-4">
+                  <p className="text-[13px] text-body mb-3">
+                    Querformat für Desktop-Navbar, Kopfzeilen und primäres Branding.
+                  </p>
+                  <button
+                    onClick={() => downloadSvgElement("svg-logo-primary", `mirrou-logo-primary-${logoTheme}.svg`)}
+                    className="flex items-center gap-2 text-[10px] font-mono uppercase tracking-[0.25em] text-accent hover:text-ink transition-colors border border-accent/20 hover:border-accent px-3 py-1.5"
+                  >
+                    <Download size={10} /> Download SVG
+                  </button>
+                </div>
+              </div>
+
+              {/* Logo 2: Primary Logo - Stacked */}
+              <div className="border border-white/8 bg-surface/20 p-6 flex flex-col justify-between">
+                <div>
+                  <p className="font-mono text-[9px] uppercase tracking-[0.3em] text-muted mb-4">
+                    02 · Stacked Logo
+                  </p>
+                  <div
+                    className={`h-40 flex items-center justify-center border border-white/6 overflow-hidden transition-colors duration-500 ${
+                      logoTheme === "dark" ? "bg-bg" : "bg-[#F5F5F0]"
+                    }`}
+                  >
+                    <svg
+                      id="svg-logo-stacked"
+                      viewBox="0 0 300 300"
+                      className="h-full max-h-[140px]"
+                    >
+                      <rect width="100%" height="100%" fill="none" />
+                      <g textAnchor="middle">
+                        <text
+                          x="150"
+                          y="130"
+                          fontFamily="system-ui, -apple-system, sans-serif"
+                          fontWeight="900"
+                          fontSize="36"
+                          letterSpacing="0.45em"
+                          fill={logoTheme === "dark" ? "#C8A25A" : "#080808"}
+                        >
+                          MIRROU
+                        </text>
+                        <text
+                          x="150"
+                          y="170"
+                          fontFamily="system-ui, -apple-system, sans-serif"
+                          fontWeight="400"
+                          fontSize="10"
+                          letterSpacing="0.32em"
+                          fill={logoTheme === "dark" ? "#F2EFE9" : "#6E6B66"}
+                        >
+                          CREATIVE STUDIO
+                        </text>
+                        <line
+                          x1="100"
+                          y1="195"
+                          x2="200"
+                          y2="195"
+                          stroke={logoTheme === "dark" ? "rgba(200, 162, 90, 0.3)" : "rgba(8, 8, 8, 0.2)"}
+                          strokeWidth="1"
+                        />
+                      </g>
+                    </svg>
+                  </div>
+                </div>
+                <div className="mt-4 border-t border-white/6 pt-4">
+                  <p className="text-[13px] text-body mb-3">
+                    Quadratische Anordnung für zentrierte Layouts, Beutel und Verpackungen.
+                  </p>
+                  <button
+                    onClick={() => downloadSvgElement("svg-logo-stacked", `mirrou-logo-stacked-${logoTheme}.svg`)}
+                    className="flex items-center gap-2 text-[10px] font-mono uppercase tracking-[0.25em] text-accent hover:text-ink transition-colors border border-accent/20 hover:border-accent px-3 py-1.5"
+                  >
+                    <Download size={10} /> Download SVG
+                  </button>
+                </div>
+              </div>
+
+              {/* Logo 3: Icon / Monogram */}
+              <div className="border border-white/8 bg-surface/20 p-6 flex flex-col justify-between">
+                <div>
+                  <p className="font-mono text-[9px] uppercase tracking-[0.3em] text-muted mb-4">
+                    03 · Monogram Icon
+                  </p>
+                  <div
+                    className={`h-40 flex items-center justify-center border border-white/6 overflow-hidden transition-colors duration-500 ${
+                      logoTheme === "dark" ? "bg-bg" : "bg-[#F5F5F0]"
+                    }`}
+                  >
+                    <svg
+                      id="svg-logo-icon"
+                      viewBox="0 0 200 200"
+                      className="h-full max-h-[120px]"
+                    >
+                      <rect width="100%" height="100%" fill="none" />
+                      <circle
+                        cx="100"
+                        cy="100"
+                        r="60"
+                        fill="none"
+                        stroke={logoTheme === "dark" ? "#C8A25A" : "#080808"}
+                        strokeWidth="1.5"
+                        strokeDasharray="4 2"
+                      />
+                      <text
+                        x="100"
+                        y="118"
+                        fontFamily="Georgia, serif"
+                        fontWeight="bold"
+                        fontStyle="italic"
+                        fontSize="62"
+                        textAnchor="middle"
+                        fill={logoTheme === "dark" ? "#C8A25A" : "#080808"}
+                      >
+                        M
+                      </text>
+                    </svg>
+                  </div>
+                </div>
+                <div className="mt-4 border-t border-white/6 pt-4">
+                  <p className="text-[13px] text-body mb-3">
+                    Prägnantes Avatar-Icon für App Icons, Favicons und Siegel.
+                  </p>
+                  <button
+                    onClick={() => downloadSvgElement("svg-logo-icon", `mirrou-monogram-${logoTheme}.svg`)}
+                    className="flex items-center gap-2 text-[10px] font-mono uppercase tracking-[0.25em] text-accent hover:text-ink transition-colors border border-accent/20 hover:border-accent px-3 py-1.5"
+                  >
+                    <Download size={10} /> Download SVG
+                  </button>
+                </div>
+              </div>
+
+              {/* Logo 4: Inverse Version (White transparent) */}
+              <div className="border border-white/8 bg-surface/20 p-6 flex flex-col justify-between">
+                <div>
+                  <p className="font-mono text-[9px] uppercase tracking-[0.3em] text-muted mb-4">
+                    04 · Inverse Logo (Transparent)
+                  </p>
+                  <div className="h-40 flex items-center justify-center border border-white/6 bg-gradient-to-tr from-stone-900 to-stone-950 overflow-hidden">
+                    <svg
+                      id="svg-logo-inverse"
+                      viewBox="0 0 400 120"
+                      className="w-full max-w-[280px]"
+                    >
+                      <rect width="100%" height="100%" fill="none" />
+                      <g textAnchor="middle">
+                        <text
+                          x="200"
+                          y="65"
+                          fontFamily="system-ui, -apple-system, sans-serif"
+                          fontWeight="900"
+                          fontSize="30"
+                          letterSpacing="0.45em"
+                          fill="#FFFFFF"
+                        >
+                          MIRROU
+                        </text>
+                        <text
+                          x="200"
+                          y="92"
+                          fontFamily="system-ui, -apple-system, sans-serif"
+                          fontWeight="400"
+                          fontSize="9"
+                          letterSpacing="0.32em"
+                          fill="rgba(255, 255, 255, 0.6)"
+                        >
+                          CREATIVE STUDIO
+                        </text>
+                      </g>
+                    </svg>
+                  </div>
+                </div>
+                <div className="mt-4 border-t border-white/6 pt-4">
+                  <p className="text-[13px] text-body mb-3">
+                    Weiße Ausführung auf transparentem Grund für Overlays und Fotos.
+                  </p>
+                  <button
+                    onClick={() => downloadSvgElement("svg-logo-inverse", "mirrou-logo-inverse.svg")}
+                    className="flex items-center gap-2 text-[10px] font-mono uppercase tracking-[0.25em] text-accent hover:text-ink transition-colors border border-accent/20 hover:border-accent px-3 py-1.5"
+                  >
+                    <Download size={10} /> Download SVG
+                  </button>
+                </div>
+              </div>
+
+              {/* Logo 5: Favicon (32x32) */}
+              <div className="border border-white/8 bg-surface/20 p-6 flex flex-col justify-between">
+                <div>
+                  <p className="font-mono text-[9px] uppercase tracking-[0.3em] text-muted mb-4">
+                    05 · Favicon (32×32px)
+                  </p>
+                  <div className="h-40 flex items-center justify-center border border-white/6 bg-bg overflow-hidden">
+                    <svg
+                      id="svg-logo-favicon"
+                      viewBox="0 0 32 32"
+                      className="w-12 h-12"
+                    >
+                      <rect width="100%" height="100%" fill="#080808" />
+                      <circle
+                        cx="16"
+                        cy="16"
+                        r="12"
+                        fill="none"
+                        stroke="#C8A25A"
+                        strokeWidth="0.8"
+                      />
+                      <text
+                        x="16.5"
+                        y="22"
+                        fontFamily="Georgia, serif"
+                        fontWeight="bold"
+                        fontStyle="italic"
+                        fontSize="18"
+                        textAnchor="middle"
+                        fill="#C8A25A"
+                      >
+                        M
+                      </text>
+                    </svg>
+                  </div>
+                </div>
+                <div className="mt-4 border-t border-white/6 pt-4">
+                  <p className="text-[13px] text-body mb-3">
+                    Kompakte 32×32px Ausführung, optimiert auf Pixelgenauigkeit im Browser.
+                  </p>
+                  <button
+                    onClick={() => downloadSvgElement("svg-logo-favicon", "favicon-32x32.svg")}
+                    className="flex items-center gap-2 text-[10px] font-mono uppercase tracking-[0.25em] text-accent hover:text-ink transition-colors border border-accent/20 hover:border-accent px-3 py-1.5"
+                  >
+                    <Download size={10} /> Download SVG
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* SUBSECTION: SOCIAL MEDIA ASSETS */}
+          <div className="mb-24">
+            <div className="border-b border-white/6 mb-8 flex flex-wrap gap-2">
+              {[
+                { id: "linkedin", label: "LinkedIn" },
+                { id: "instagram", label: "Instagram" },
+                { id: "facebook", label: "Facebook" },
+                { id: "website", label: "Website Assets" },
+              ].map((tab) => (
+                <button
+                  key={tab.id}
+                  onClick={() => setActivePlatformTab(tab.id)}
+                  className={`pb-4 px-4 font-mono text-[10px] uppercase tracking-[0.35em] border-b-2 transition-all ${
+                    activePlatformTab === tab.id
+                      ? "border-accent text-accent font-semibold"
+                      : "border-transparent text-muted hover:text-ink"
+                  }`}
+                >
+                  {tab.label}
+                </button>
+              ))}
+            </div>
+
+            {/* PLATFORM CONTENT: LINKEDIN */}
+            {activePlatformTab === "linkedin" && (
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                {/* LinkedIn A: Profile Picture */}
+                <div className="border border-white/6 bg-surface/10 p-6 flex flex-col justify-between">
+                  <div>
+                    <div className="flex justify-between items-baseline mb-4">
+                      <p className="font-mono text-[9px] uppercase tracking-[0.3em] text-accent">
+                        LinkedIn Profile Picture
+                      </p>
+                      <p className="font-mono text-[9px] text-muted">400×400px</p>
+                    </div>
+                    <div className="aspect-square w-full max-w-[280px] mx-auto border border-white/6 overflow-hidden bg-bg flex items-center justify-center">
+                      <svg
+                        id="svg-li-profile"
+                        viewBox="0 0 400 400"
+                        className="w-full h-full"
+                      >
+                        <rect width="100%" height="100%" fill="#080808" />
+                        <circle
+                          cx="200"
+                          cy="200"
+                          r="150"
+                          fill="none"
+                          stroke="#C8A25A"
+                          strokeWidth="2.5"
+                          strokeDasharray="8 4"
+                        />
+                        <text
+                          x="200"
+                          y="245"
+                          fontFamily="Georgia, serif"
+                          fontWeight="bold"
+                          fontStyle="italic"
+                          fontSize="130"
+                          textAnchor="middle"
+                          fill="#C8A25A"
+                        >
+                          M
+                        </text>
+                      </svg>
+                    </div>
+                  </div>
+                  <div className="mt-6 border-t border-white/6 pt-4">
+                    <p className="text-[13px] text-body mb-4">
+                      Profilbild mit markantem Monogramm. Die gestrichelte Außenlinie zeigt das Kreis-Schnittfenster.
+                    </p>
+                    <AssetDownloadButton svgId="svg-li-profile" filename="linkedin-profile-picture.svg" />
+                  </div>
+                </div>
+
+                {/* LinkedIn B: Banner / Cover */}
+                <div className="border border-white/6 bg-surface/10 p-6 flex flex-col justify-between">
+                  <div>
+                    <div className="flex justify-between items-baseline mb-4">
+                      <p className="font-mono text-[9px] uppercase tracking-[0.3em] text-accent">
+                        LinkedIn Banner
+                      </p>
+                      <p className="font-mono text-[9px] text-muted">1584×396px</p>
+                    </div>
+                    <div className="w-full border border-white/6 overflow-hidden bg-bg flex items-center justify-center">
+                      <svg
+                        id="svg-li-cover"
+                        viewBox="0 0 1584 396"
+                        className="w-full h-auto"
+                      >
+                        <rect width="100%" height="100%" fill="#080808" />
+                        <path d="M 0 0 L 1584 396 M 0 396 L 1584 0" stroke="rgba(200, 162, 90, 0.03)" strokeWidth="1" />
+                        <line x1="792" y1="80" x2="792" y2="316" stroke="#C8A25A" strokeWidth="1.5" opacity="0.3" />
+                        <g transform="translate(140, 210)">
+                          <text
+                            fontFamily="system-ui, -apple-system, sans-serif"
+                            fontWeight="900"
+                            fontSize="44"
+                            letterSpacing="0.45em"
+                            fill="#C8A25A"
+                          >
+                            MIRROU
+                          </text>
+                          <text
+                            y="40"
+                            fontFamily="system-ui, -apple-system, sans-serif"
+                            fontWeight="400"
+                            fontSize="13"
+                            letterSpacing="0.3em"
+                            fill="#F2EFE9"
+                          >
+                            CREATIVE STUDIO
+                          </text>
+                        </g>
+                        <g transform="translate(860, 210)">
+                          <text
+                            fontFamily="Georgia, serif"
+                            fontStyle="italic"
+                            fontSize="48"
+                            fill="#F2EFE9"
+                          >
+                            Algorithm of Soul.
+                          </text>
+                          <text
+                            y="40"
+                            fontFamily="system-ui, -apple-system, sans-serif"
+                            fontWeight="300"
+                            fontSize="12"
+                            letterSpacing="0.35em"
+                            fill="#6E6B66"
+                          >
+                            PERFORMANCE CREATIVE STUDIO · DACH
+                          </text>
+                        </g>
+                      </svg>
+                    </div>
+                  </div>
+                  <div className="mt-6 border-t border-white/6 pt-4">
+                    <p className="text-[13px] text-body mb-4">
+                      Offizieller Header-Banner für Firmen- und persönliche Accounts mit Markenwerten.
+                    </p>
+                    <AssetDownloadButton svgId="svg-li-cover" filename="linkedin-banner-cover.svg" />
+                  </div>
+                </div>
+
+                {/* LinkedIn C: Post Template (Square) */}
+                <div className="border border-white/6 bg-surface/10 p-6 flex flex-col justify-between">
+                  <div>
+                    <div className="flex justify-between items-baseline mb-4">
+                      <p className="font-mono text-[9px] uppercase tracking-[0.3em] text-accent">
+                        Post Template · Square
+                      </p>
+                      <p className="font-mono text-[9px] text-muted">1080×1080px</p>
+                    </div>
+                    <div className="aspect-square w-full max-w-[280px] mx-auto border border-white/6 overflow-hidden bg-bg flex items-center justify-center">
+                      <svg
+                        id="svg-li-post-sq"
+                        viewBox="0 0 1080 1080"
+                        className="w-full h-full"
+                      >
+                        <rect width="100%" height="100%" fill="#080808" />
+                        <line x1="80" y1="80" x2="1000" y2="80" stroke="#C8A25A" strokeWidth="2" />
+                        <text
+                          x="80"
+                          y="130"
+                          fontFamily="system-ui, -apple-system, sans-serif"
+                          fontWeight="600"
+                          fontSize="22"
+                          letterSpacing="0.35em"
+                          fill="#C8A25A"
+                        >
+                          ALGORITHM OF SOUL
+                        </text>
+                        {/* Mock Performance Chart */}
+                        <g transform="translate(80, 220)">
+                          <rect width="920" height="600" fill="rgba(255, 255, 255, 0.02)" stroke="rgba(255,255,255,0.06)" strokeWidth="1" />
+                          {/* Grid Lines */}
+                          <line x1="0" y1="150" x2="920" y2="150" stroke="rgba(255,255,255,0.04)" />
+                          <line x1="0" y1="300" x2="920" y2="300" stroke="rgba(255,255,255,0.04)" />
+                          <line x1="0" y1="450" x2="920" y2="450" stroke="rgba(255,255,255,0.04)" />
+                          <line x1="230" y1="0" x2="230" y2="600" stroke="rgba(255,255,255,0.04)" />
+                          <line x1="460" y1="0" x2="460" y2="600" stroke="rgba(255,255,255,0.04)" />
+                          <line x1="690" y1="0" x2="690" y2="600" stroke="rgba(255,255,255,0.04)" />
+                          {/* Data Curves */}
+                          <path
+                            d="M 50,500 Q 230,450 460,250 T 870,80"
+                            fill="none"
+                            stroke="#C8A25A"
+                            strokeWidth="4"
+                          />
+                          <path
+                            d="M 50,520 Q 230,500 460,400 T 870,300"
+                            fill="none"
+                            stroke="#6E6B66"
+                            strokeWidth="2.5"
+                            strokeDasharray="6 4"
+                          />
+                          <circle cx="870" cy="80" r="10" fill="#C8A25A" />
+                          <text
+                            x="850"
+                            y="50"
+                            fontFamily="Georgia, serif"
+                            fontStyle="italic"
+                            fontSize="28"
+                            fill="#C8A25A"
+                            textAnchor="end"
+                          >
+                            +82% CTR Increase
+                          </text>
+                        </g>
+                        <g transform="translate(80, 950)">
+                          <text
+                            fontFamily="system-ui, -apple-system, sans-serif"
+                            fontWeight="900"
+                            fontSize="26"
+                            letterSpacing="0.4em"
+                            fill="#F2EFE9"
+                          >
+                            MIRROU
+                          </text>
+                        </g>
+                        <text
+                          x="1000"
+                          y="950"
+                          fontFamily="system-ui, -apple-system, sans-serif"
+                          fontSize="16"
+                          letterSpacing="0.25em"
+                          fill="#6E6B66"
+                          textAnchor="end"
+                        >
+                          CASE STUDY: LUMISKIN BERLIN
+                        </text>
+                      </svg>
+                    </div>
+                  </div>
+                  <div className="mt-6 border-t border-white/6 pt-4">
+                    <p className="text-[13px] text-body mb-4">
+                      Quadratisches Template zur Präsentation von Datenberichten und Performance-Meldungen.
+                    </p>
+                    <AssetDownloadButton svgId="svg-li-post-sq" filename="linkedin-post-square.svg" />
+                  </div>
+                </div>
+
+                {/* LinkedIn D: Post Template (Landscape) */}
+                <div className="border border-white/6 bg-surface/10 p-6 flex flex-col justify-between">
+                  <div>
+                    <div className="flex justify-between items-baseline mb-4">
+                      <p className="font-mono text-[9px] uppercase tracking-[0.3em] text-accent">
+                        Post Template · Landscape
+                      </p>
+                      <p className="font-mono text-[9px] text-muted">1200×627px</p>
+                    </div>
+                    <div className="w-full border border-white/6 overflow-hidden bg-bg flex items-center justify-center">
+                      <svg
+                        id="svg-li-post-ls"
+                        viewBox="0 0 1200 627"
+                        className="w-full h-auto"
+                      >
+                        <rect width="100%" height="100%" fill="#080808" />
+                        <line x1="60" y1="60" x2="60" y2="567" stroke="#C8A25A" strokeWidth="2.5" />
+                        <g transform="translate(100, 150)">
+                          <text
+                            fontFamily="system-ui, -apple-system, sans-serif"
+                            fontWeight="300"
+                            fontSize="16"
+                            letterSpacing="0.45em"
+                            fill="#C8A25A"
+                          >
+                            PERFORMANCE CREATIVE ENGINE
+                          </text>
+                          <text
+                            y="80"
+                            fontFamily="Georgia, serif"
+                            fontStyle="italic"
+                            fontSize="56"
+                            fill="#F2EFE9"
+                          >
+                            Where Aesthetics
+                          </text>
+                          <text
+                            y="150"
+                            fontFamily="Georgia, serif"
+                            fontStyle="italic"
+                            fontSize="56"
+                            fill="#C8A25A"
+                          >
+                            becomes Algorithm.
+                          </text>
+                          <text
+                            y="270"
+                            fontFamily="system-ui, -apple-system, sans-serif"
+                            fontWeight="300"
+                            fontSize="18"
+                            fill="#6E6B66"
+                          >
+                            Boutique-Ansatz für D2C Brands (Beauty, Health & Lifestyle).
+                          </text>
+                        </g>
+                        <g transform="translate(100, 540)">
+                          <text
+                            fontFamily="system-ui, -apple-system, sans-serif"
+                            fontWeight="900"
+                            fontSize="24"
+                            letterSpacing="0.4em"
+                            fill="#F2EFE9"
+                          >
+                            MIRROU
+                          </text>
+                        </g>
+                        <text
+                          x="1140"
+                          y="540"
+                          fontFamily="system-ui, -apple-system, sans-serif"
+                          fontSize="14"
+                          letterSpacing="0.3em"
+                          fill="#C8A25A"
+                          textAnchor="end"
+                        >
+                          WWW.MIRROU.STUDIO
+                        </text>
+                      </svg>
+                    </div>
+                  </div>
+                  <div className="mt-6 border-t border-white/6 pt-4">
+                    <p className="text-[13px] text-body mb-4">
+                      Querformat-Template für Teaser, Blog-Beiträge und Veröffentlichungs-Vorschauen.
+                    </p>
+                    <AssetDownloadButton svgId="svg-li-post-ls" filename="linkedin-post-landscape.svg" />
+                  </div>
+                </div>
+              </div>
+            )}
+
+            {/* PLATFORM CONTENT: INSTAGRAM */}
+            {activePlatformTab === "instagram" && (
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                {/* Instagram A: Profile Picture */}
+                <div className="border border-white/6 bg-surface/10 p-6 flex flex-col justify-between">
+                  <div>
+                    <div className="flex justify-between items-baseline mb-4">
+                      <p className="font-mono text-[9px] uppercase tracking-[0.3em] text-accent">
+                        Profile Picture
+                      </p>
+                      <p className="font-mono text-[9px] text-muted">320×320px</p>
+                    </div>
+                    <div className="aspect-square w-full max-w-[240px] mx-auto border border-white/6 overflow-hidden bg-bg flex items-center justify-center">
+                      <svg
+                        id="svg-ig-profile"
+                        viewBox="0 0 320 320"
+                        className="w-full h-full"
+                      >
+                        <rect width="100%" height="100%" fill="#080808" />
+                        <circle
+                          cx="160"
+                          cy="160"
+                          r="120"
+                          fill="none"
+                          stroke="#C8A25A"
+                          strokeWidth="2"
+                          strokeDasharray="4 2"
+                        />
+                        <text
+                          x="160"
+                          y="195"
+                          fontFamily="Georgia, serif"
+                          fontWeight="bold"
+                          fontStyle="italic"
+                          fontSize="100"
+                          textAnchor="middle"
+                          fill="#C8A25A"
+                        >
+                          M
+                        </text>
+                      </svg>
+                    </div>
+                  </div>
+                  <div className="mt-6 border-t border-white/6 pt-4">
+                    <p className="text-[13px] text-body mb-4">
+                      Monochromer Profil-Avatar für Instagram mit champagne-farbenem M.
+                    </p>
+                    <AssetDownloadButton svgId="svg-ig-profile" filename="instagram-profile-avatar.svg" />
+                  </div>
+                </div>
+
+                {/* Instagram B: Feed Post (Square) */}
+                <div className="border border-white/6 bg-surface/10 p-6 flex flex-col justify-between">
+                  <div>
+                    <div className="flex justify-between items-baseline mb-4">
+                      <p className="font-mono text-[9px] uppercase tracking-[0.3em] text-accent">
+                        Feed Post · Square
+                      </p>
+                      <p className="font-mono text-[9px] text-muted">1080×1080px</p>
+                    </div>
+                    <div className="aspect-square w-full max-w-[240px] mx-auto border border-white/6 overflow-hidden bg-bg flex items-center justify-center">
+                      <svg
+                        id="svg-ig-post-sq"
+                        viewBox="0 0 1080 1080"
+                        className="w-full h-full"
+                      >
+                        <rect width="100%" height="100%" fill="#080808" />
+                        <rect
+                          x="40"
+                          y="40"
+                          width="1000"
+                          height="1000"
+                          fill="none"
+                          stroke="#C8A25A"
+                          strokeWidth="2"
+                          opacity="0.6"
+                        />
+                        {/* Circular abstract vector graphic */}
+                        <g transform="translate(540, 540)">
+                          <circle cx="0" cy="0" r="260" fill="none" stroke="rgba(255,255,255,0.05)" strokeWidth="1" />
+                          <circle cx="0" cy="0" r="200" fill="none" stroke="#C8A25A" strokeWidth="1.5" opacity="0.3" />
+                          <circle cx="0" cy="0" r="140" fill="none" stroke="#C8A25A" strokeWidth="3" />
+                          <line x1="-300" y1="0" x2="300" y2="0" stroke="rgba(200, 162, 90, 0.2)" strokeWidth="1" />
+                          <line x1="0" y1="-300" x2="0" y2="300" stroke="rgba(200, 162, 90, 0.2)" strokeWidth="1" />
+                        </g>
+                        <text
+                          x="540"
+                          y="880"
+                          fontFamily="system-ui, -apple-system, sans-serif"
+                          fontWeight="300"
+                          fontSize="22"
+                          letterSpacing="0.45em"
+                          fill="#F2EFE9"
+                          textAnchor="middle"
+                        >
+                          HYBRID CREATIVE ENGINE
+                        </text>
+                        <text
+                          x="1000"
+                          y="1000"
+                          fontFamily="system-ui, -apple-system, sans-serif"
+                          fontWeight="900"
+                          fontSize="18"
+                          letterSpacing="0.35em"
+                          fill="#C8A25A"
+                          textAnchor="end"
+                        >
+                          MIRROU
+                        </text>
+                      </svg>
+                    </div>
+                  </div>
+                  <div className="mt-6 border-t border-white/6 pt-4">
+                    <p className="text-[13px] text-body mb-4">
+                      Visual-Template für den quadratischen Feed mit filigranen Gridlines.
+                    </p>
+                    <AssetDownloadButton svgId="svg-ig-post-sq" filename="instagram-post-square.svg" />
+                  </div>
+                </div>
+
+                {/* Instagram C: Feed Post (Portrait) */}
+                <div className="border border-white/6 bg-surface/10 p-6 flex flex-col justify-between">
+                  <div>
+                    <div className="flex justify-between items-baseline mb-4">
+                      <p className="font-mono text-[9px] uppercase tracking-[0.3em] text-accent">
+                        Feed Post · Portrait
+                      </p>
+                      <p className="font-mono text-[9px] text-muted">1080×1350px</p>
+                    </div>
+                    <div className="aspect-[1080/1350] w-full max-w-[240px] mx-auto border border-white/6 overflow-hidden bg-bg flex items-center justify-center">
+                      <svg
+                        id="svg-ig-post-port"
+                        viewBox="0 0 1080 1350"
+                        className="w-full h-full"
+                      >
+                        <rect width="100%" height="100%" fill="#080808" />
+                        <line x1="80" y1="80" x2="80" y2="1270" stroke="#C8A25A" strokeWidth="2.5" />
+                        <g transform="translate(130, 160)">
+                          <text
+                            fontFamily="system-ui, -apple-system, sans-serif"
+                            fontWeight="300"
+                            fontSize="20"
+                            letterSpacing="0.45em"
+                            fill="#C8A25A"
+                          >
+                            PERFORMANCE CASE
+                          </text>
+                          <text
+                            y="70"
+                            fontFamily="Georgia, serif"
+                            fontStyle="italic"
+                            fontSize="54"
+                            fill="#F2EFE9"
+                          >
+                            Luminous Aura
+                          </text>
+                          <text
+                            y="130"
+                            fontFamily="system-ui, -apple-system, sans-serif"
+                            fontWeight="300"
+                            fontSize="18"
+                            letterSpacing="0.25em"
+                            fill="#6E6B66"
+                          >
+                            Skincare D2C Brand · Growth Loop
+                          </text>
+                        </g>
+                        {/* Mock Metric Box */}
+                        <g transform="translate(130, 420)">
+                          <rect width="810" height="560" fill="rgba(255, 255, 255, 0.02)" stroke="rgba(255,255,255,0.06)" strokeWidth="1" />
+                          <circle cx="405" cy="240" r="160" fill="none" stroke="rgba(200,162,90,0.15)" strokeWidth="2" />
+                          <text
+                            x="405"
+                            y="250"
+                            fontFamily="Georgia, serif"
+                            fontStyle="italic"
+                            fontSize="76"
+                            fill="#C8A25A"
+                            textAnchor="middle"
+                          >
+                            +82%
+                          </text>
+                          <text
+                            x="405"
+                            y="300"
+                            fontFamily="system-ui, -apple-system, sans-serif"
+                            fontWeight="400"
+                            fontSize="13"
+                            letterSpacing="0.32em"
+                            fill="#F2EFE9"
+                            textAnchor="middle"
+                          >
+                            CTR ENHANCEMENT
+                          </text>
+                        </g>
+                        <g transform="translate(130, 1140)">
+                          <text
+                            fontFamily="system-ui, -apple-system, sans-serif"
+                            fontWeight="400"
+                            fontSize="18"
+                            letterSpacing="0.32em"
+                            fill="#6E6B66"
+                          >
+                            0.85% → 1.55% Meta static ads
+                          </text>
+                          <text
+                            y="35"
+                            fontFamily="system-ui, -apple-system, sans-serif"
+                            fontWeight="400"
+                            fontSize="18"
+                            letterSpacing="0.32em"
+                            fill="#6E6B66"
+                          >
+                            A/B isolated testing (4 weeks)
+                          </text>
+                        </g>
+                        <g transform="translate(130, 1260)">
+                          <text
+                            fontFamily="system-ui, -apple-system, sans-serif"
+                            fontWeight="900"
+                            fontSize="24"
+                            letterSpacing="0.4em"
+                            fill="#F2EFE9"
+                          >
+                            MIRROU
+                          </text>
+                        </g>
+                      </svg>
+                    </div>
+                  </div>
+                  <div className="mt-6 border-t border-white/6 pt-4">
+                    <p className="text-[13px] text-body mb-4">
+                      Portrait-Template (4:5) für Cases mit viel Platz für Textur-Details und Metriken.
+                    </p>
+                    <AssetDownloadButton svgId="svg-ig-post-port" filename="instagram-post-portrait.svg" />
+                  </div>
+                </div>
+
+                {/* Instagram D: Story / Reels Cover */}
+                <div className="border border-white/6 bg-surface/10 p-6 flex flex-col justify-between">
+                  <div>
+                    <div className="flex justify-between items-baseline mb-4">
+                      <p className="font-mono text-[9px] uppercase tracking-[0.3em] text-accent">
+                        Story / Reels Cover
+                      </p>
+                      <p className="font-mono text-[9px] text-muted">1080×1920px</p>
+                    </div>
+                    <div className="aspect-[1080/1920] w-full max-w-[180px] mx-auto border border-white/6 overflow-hidden bg-bg flex items-center justify-center">
+                      <svg
+                        id="svg-ig-story"
+                        viewBox="0 0 1080 1920"
+                        className="w-full h-full"
+                      >
+                        <rect width="100%" height="100%" fill="#080808" />
+                        <line x1="540" y1="120" x2="540" y2="400" stroke="#C8A25A" strokeWidth="1.5" opacity="0.3" />
+                        <circle
+                          cx="540"
+                          cy="960"
+                          r="320"
+                          fill="none"
+                          stroke="#C8A25A"
+                          strokeWidth="2.5"
+                          strokeDasharray="12 6"
+                        />
+                        <text
+                          x="540"
+                          y="1070"
+                          fontFamily="Georgia, serif"
+                          fontWeight="bold"
+                          fontStyle="italic"
+                          fontSize="260"
+                          textAnchor="middle"
+                          fill="#C8A25A"
+                        >
+                          M
+                        </text>
+                        <g transform="translate(540, 1500)">
+                          <text
+                            fontFamily="system-ui, -apple-system, sans-serif"
+                            fontWeight="900"
+                            fontSize="36"
+                            letterSpacing="0.45em"
+                            fill="#F2EFE9"
+                            textAnchor="middle"
+                          >
+                            MIRROU
+                          </text>
+                          <text
+                            y="55"
+                            fontFamily="system-ui, -apple-system, sans-serif"
+                            fontWeight="400"
+                            fontSize="14"
+                            letterSpacing="0.35em"
+                            fill="#6E6B66"
+                            textAnchor="middle"
+                          >
+                            CREATIVE ENGINE
+                          </text>
+                        </g>
+                        <text
+                          x="540"
+                          y="1800"
+                          fontFamily="Georgia, serif"
+                          fontStyle="italic"
+                          fontSize="30"
+                          fill="#C8A25A"
+                          textAnchor="middle"
+                        >
+                          Algorithm of Soul.
+                        </text>
+                      </svg>
+                    </div>
+                  </div>
+                  <div className="mt-6 border-t border-white/6 pt-4">
+                    <p className="text-[13px] text-body mb-4">
+                      Vollbild-Template (9:16) für Story-Hintergründe, Reels-Cover und Short-Videos.
+                    </p>
+                    <AssetDownloadButton svgId="svg-ig-story" filename="instagram-story-cover.svg" />
+                  </div>
+                </div>
+
+                {/* Instagram E: Highlight Covers (Combined) */}
+                <div className="border border-white/6 bg-surface/10 p-6 flex flex-col justify-between lg:col-span-2">
+                  <div>
+                    <div className="flex justify-between items-baseline mb-4">
+                      <p className="font-mono text-[9px] uppercase tracking-[0.3em] text-accent">
+                        Highlight Cover Icons (6er Set)
+                      </p>
+                      <p className="font-mono text-[9px] text-muted">Je 400×400px</p>
+                    </div>
+                    <div className="grid grid-cols-3 sm:grid-cols-6 gap-2">
+                      {[
+                        { id: "services", label: "Services", p: "M200,120 L300,170 L200,220 L100,170 Z M200,170 L300,220 L200,270 L100,220 Z M200,220 L300,270 L200,320 L100,270 Z" },
+                        { id: "cases", label: "Cases", p: "M200,100 L280,170 L200,300 L120,170 Z M200,100 L200,300 M120,170 L280,170 M150,135 L250,135 L200,170 Z" },
+                        { id: "process", label: "Process", p: "M200,160 C240,160 260,200 240,240 C220,280 180,280 160,240 C140,200 160,160 200,160 Z M200,160 L200,110 M160,240 L110,270 M240,240 L290,270" },
+                        { id: "frontier", label: "Frontier", p: "M200,100 C230,100 270,115 270,150 C270,220 200,290 200,310 C200,290 130,220 130,150 C130,115 170,100 200,100 Z M170,190 L195,215 L235,165" },
+                        { id: "resources", label: "Resources", p: "M130,100 L240,100 L270,130 L270,300 L130,300 Z M240,100 L240,130 L270,130 M160,160 L240,160 M160,200 L240,200 M160,240 L210,240" },
+                        { id: "about", label: "About", p: "M200,170 C225,170 245,150 245,125 C245,100 225,80 200,80 C175,80 155,100 155,125 C155,150 175,170 200,170 Z M120,290 C120,230 155,215 200,215 C245,215 280,230 280,290" }
+                      ].map((item) => (
+                        <div key={item.id} className="border border-white/6 bg-bg flex flex-col items-center p-2">
+                          <svg
+                            id={`svg-ig-hl-${item.id}`}
+                            viewBox="0 0 400 400"
+                            className="w-full h-auto max-w-[80px]"
+                          >
+                            <rect width="100%" height="100%" fill="#080808" />
+                            <circle cx="200" cy="200" r="170" fill="none" stroke="rgba(200,162,90,0.1)" strokeWidth="2" />
+                            <circle cx="200" cy="200" r="160" fill="none" stroke="#C8A25A" strokeWidth="1" strokeDasharray="3 3" />
+                            <path d={item.p} fill="none" stroke="#C8A25A" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                          </svg>
+                          <span className="font-mono text-[8px] uppercase tracking-wider text-muted mt-2 text-center block">
+                            {item.label}
+                          </span>
+                          <button
+                            onClick={() => downloadSvgElement(`svg-ig-hl-${item.id}`, `instagram-highlight-${item.id}.svg`)}
+                            className="mt-2 text-[8px] font-mono text-accent hover:text-ink border border-accent/20 px-1 py-0.5"
+                          >
+                            Down
+                          </button>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                  <div className="mt-6 border-t border-white/6 pt-4">
+                    <p className="text-[13px] text-body">
+                      Einheitliche Cover-Icons für Story-Highlights auf der Profilseite mit präziser Vektorbeschreibung.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            )}
+
+            {/* PLATFORM CONTENT: FACEBOOK */}
+            {activePlatformTab === "facebook" && (
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                {/* Facebook A: Profile Picture */}
+                <div className="border border-white/6 bg-surface/10 p-6 flex flex-col justify-between">
+                  <div>
+                    <div className="flex justify-between items-baseline mb-4">
+                      <p className="font-mono text-[9px] uppercase tracking-[0.3em] text-accent">
+                        Facebook Page Profile Picture
+                      </p>
+                      <p className="font-mono text-[9px] text-muted">170×170px</p>
+                    </div>
+                    <div className="aspect-square w-full max-w-[240px] mx-auto border border-white/6 overflow-hidden bg-bg flex items-center justify-center">
+                      <svg
+                        id="svg-fb-profile"
+                        viewBox="0 0 170 170"
+                        className="w-full h-full"
+                      >
+                        <rect width="100%" height="100%" fill="#080808" />
+                        <circle cx="85" cy="85" r="70" fill="none" stroke="#C8A25A" strokeWidth="1" strokeDasharray="3 2" />
+                        <text
+                          x="85"
+                          y="105"
+                          fontFamily="Georgia, serif"
+                          fontWeight="bold"
+                          fontStyle="italic"
+                          fontSize="54"
+                          textAnchor="middle"
+                          fill="#C8A25A"
+                        >
+                          M
+                        </text>
+                      </svg>
+                    </div>
+                  </div>
+                  <div className="mt-6 border-t border-white/6 pt-4">
+                    <p className="text-[13px] text-body mb-4">
+                      Profilbild für Facebook-Seiten und Social-Meta-Profile.
+                    </p>
+                    <AssetDownloadButton svgId="svg-fb-profile" filename="facebook-profile-picture.svg" />
+                  </div>
+                </div>
+
+                {/* Facebook B: Page Cover */}
+                <div className="border border-white/6 bg-surface/10 p-6 flex flex-col justify-between">
+                  <div>
+                    <div className="flex justify-between items-baseline mb-4">
+                      <p className="font-mono text-[9px] uppercase tracking-[0.3em] text-accent">
+                        Facebook Page Cover
+                      </p>
+                      <p className="font-mono text-[9px] text-muted">820×312px</p>
+                    </div>
+                    <div className="w-full border border-white/6 overflow-hidden bg-bg flex items-center justify-center">
+                      <svg
+                        id="svg-fb-cover"
+                        viewBox="0 0 820 312"
+                        className="w-full h-auto"
+                      >
+                        <rect width="100%" height="100%" fill="#080808" />
+                        <line x1="50" y1="20" x2="770" y2="292" stroke="rgba(200,162,90,0.02)" strokeWidth="1" />
+                        <g transform="translate(80, 150)">
+                          <text
+                            fontFamily="system-ui, -apple-system, sans-serif"
+                            fontWeight="900"
+                            fontSize="32"
+                            letterSpacing="0.45em"
+                            fill="#C8A25A"
+                          >
+                            MIRROU
+                          </text>
+                          <text
+                            y="35"
+                            fontFamily="system-ui, -apple-system, sans-serif"
+                            fontWeight="400"
+                            fontSize="10"
+                            letterSpacing="0.32em"
+                            fill="#F2EFE9"
+                          >
+                            CREATIVE STUDIO
+                          </text>
+                        </g>
+                        <g transform="translate(480, 150)">
+                          <text
+                            fontFamily="Georgia, serif"
+                            fontStyle="italic"
+                            fontSize="28"
+                            fill="#F2EFE9"
+                          >
+                            Wo Ästhetik Algorithmus wird.
+                          </text>
+                          <text
+                            y="35"
+                            fontFamily="system-ui, -apple-system, sans-serif"
+                            fontWeight="400"
+                            fontSize="10"
+                            letterSpacing="0.3em"
+                            fill="#C8A25A"
+                          >
+                            WWW.MIRROU.STUDIO
+                          </text>
+                        </g>
+                      </svg>
+                    </div>
+                  </div>
+                  <div className="mt-6 border-t border-white/6 pt-4">
+                    <p className="text-[13px] text-body mb-4">
+                      Cover-Header für die offizielle Facebook-Seite des Studios.
+                    </p>
+                    <AssetDownloadButton svgId="svg-fb-cover" filename="facebook-page-cover.svg" />
+                  </div>
+                </div>
+
+                {/* Facebook C: Ad Creative - Square */}
+                <div className="border border-white/6 bg-surface/10 p-6 flex flex-col justify-between">
+                  <div>
+                    <div className="flex justify-between items-baseline mb-4">
+                      <p className="font-mono text-[9px] uppercase tracking-[0.3em] text-accent">
+                        Facebook Ad Creative · Square Template
+                      </p>
+                      <p className="font-mono text-[9px] text-muted">1080×1080px</p>
+                    </div>
+                    <div className="aspect-square w-full max-w-[240px] mx-auto border border-white/6 overflow-hidden bg-bg flex items-center justify-center">
+                      <svg
+                        id="svg-fb-ad-sq"
+                        viewBox="0 0 1080 1080"
+                        className="w-full h-full"
+                      >
+                        <rect width="100%" height="100%" fill="#080808" />
+                        
+                        {/* Hook Zone (top 30%) */}
+                        <g transform="translate(40, 40)">
+                          <rect width="1000" height="300" fill="none" stroke="rgba(200, 162, 90, 0.4)" strokeWidth="2" strokeDasharray="8 6" />
+                          <text x="50" y="70" fontFamily="system-ui, -apple-system, sans-serif" fontWeight="bold" fontSize="20" letterSpacing="0.4em" fill="#C8A25A">HOOK ZONE (30%)</text>
+                          <text x="50" y="140" fontFamily="Georgia, serif" fontStyle="italic" fontSize="36" fill="#F2EFE9">Brennst du deine Budgets durch Creative Fatigue nieder?</text>
+                          <text x="50" y="210" fontFamily="system-ui, -apple-system, sans-serif" fontWeight="300" fontSize="18" fill="#6E6B66">Unsere Hybrid-Creatives reduzieren den CPC nachweislich um 38%.</text>
+                        </g>
+
+                        {/* Visual Zone (middle 50%) */}
+                        <g transform="translate(40, 360)">
+                          <rect width="1000" height="500" fill="none" stroke="rgba(255, 255, 255, 0.2)" strokeWidth="2" strokeDasharray="8 6" />
+                          <rect x="50" y="50" width="900" height="400" fill="rgba(255,255,255,0.02)" />
+                          <path d="M 100,400 L 500,100 L 900,400" fill="none" stroke="#C8A25A" strokeWidth="2.5" opacity="0.3" />
+                          <text x="500" y="240" fontFamily="system-ui, -apple-system, sans-serif" fontWeight="bold" fontSize="22" letterSpacing="0.35em" fill="#6E6B66" textAnchor="middle">VISUAL ZONE (50%) - PRODUCT / HYBRID SHOT</text>
+                        </g>
+
+                        {/* CTA Zone (bottom 20%) */}
+                        <g transform="translate(40, 880)">
+                          <rect width="1000" height="160" fill="none" stroke="rgba(200, 162, 90, 0.4)" strokeWidth="2" strokeDasharray="8 6" />
+                          <text x="50" y="90" fontFamily="system-ui, -apple-system, sans-serif" fontWeight="900" fontSize="26" letterSpacing="0.45em" fill="#F2EFE9">MIRROU</text>
+                          <rect x="650" y="30" width="300" height="90" fill="#C8A25A" />
+                          <text x="800" y="80" fontFamily="system-ui, -apple-system, sans-serif" fontWeight="bold" fontSize="16" letterSpacing="0.1em" fill="#080808" textAnchor="middle">JETZT BUCHEN →</text>
+                          <text x="50" y="130" fontFamily="system-ui, -apple-system, sans-serif" fontSize="12" letterSpacing="0.25em" fill="#C8A25A">CTA ZONE (20%)</text>
+                        </g>
+                      </svg>
+                    </div>
+                  </div>
+                  <div className="mt-6 border-t border-white/6 pt-4">
+                    <p className="text-[13px] text-body mb-4">
+                      Performance-optimiertes Ad-Grid zur strukturierten Kampagnenerstellung.
+                    </p>
+                    <AssetDownloadButton svgId="svg-fb-ad-sq" filename="facebook-ad-square-template.svg" />
+                  </div>
+                </div>
+
+                {/* Facebook D: Ad Creative - Story / Reels Format */}
+                <div className="border border-white/6 bg-surface/10 p-6 flex flex-col justify-between">
+                  <div>
+                    <div className="flex justify-between items-baseline mb-4">
+                      <p className="font-mono text-[9px] uppercase tracking-[0.3em] text-accent">
+                        Facebook Ad Creative · Story Template
+                      </p>
+                      <p className="font-mono text-[9px] text-muted">1080×1920px</p>
+                    </div>
+                    <div className="aspect-[1080/1920] w-full max-w-[180px] mx-auto border border-white/6 overflow-hidden bg-bg flex items-center justify-center">
+                      <svg
+                        id="svg-fb-ad-story"
+                        viewBox="0 0 1080 1920"
+                        className="w-full h-full"
+                      >
+                        <rect width="100%" height="100%" fill="#080808" />
+                        
+                        {/* Safe Zone Top */}
+                        <line x1="0" y1="250" x2="1080" y2="250" stroke="#EF4444" strokeWidth="2" strokeDasharray="10 5" />
+                        <rect width="1080" height="250" fill="rgba(239,68,68,0.04)" />
+                        <text x="540" y="140" fontFamily="system-ui, -apple-system, sans-serif" fontSize="22" letterSpacing="0.2em" fill="#EF4444" textAnchor="middle">UNSAFE ZONE (PROFILE / LOGO OVERLAY)</text>
+
+                        {/* Safe Zone Bottom */}
+                        <line x1="0" y1="1670" x2="1080" y2="1670" stroke="#EF4444" strokeWidth="2" strokeDasharray="10 5" />
+                        <rect y="1670" width="1080" height="250" fill="rgba(239,68,68,0.04)" />
+                        <text x="540" y="1800" fontFamily="system-ui, -apple-system, sans-serif" fontSize="22" letterSpacing="0.2em" fill="#EF4444" textAnchor="middle">UNSAFE ZONE (SYSTEM NAVIGATION OVERLAY)</text>
+
+                        {/* Safe Content Area */}
+                        <g transform="translate(100, 350)">
+                          <rect width="880" height="1220" fill="none" stroke="rgba(255,255,255,0.08)" strokeWidth="2" />
+                          <text x="440" y="100" fontFamily="system-ui, -apple-system, sans-serif" fontWeight="300" fontSize="26" letterSpacing="0.4em" fill="#C8A25A" textAnchor="middle">SAFE ZONE (1080×1420px)</text>
+                          <text x="440" y="240" fontFamily="Georgia, serif" fontStyle="italic" fontSize="56" fill="#F2EFE9" textAnchor="middle">Editorial-Grade</text>
+                          <text x="440" y="320" fontFamily="Georgia, serif" fontStyle="italic" fontSize="56" fill="#F2EFE9" textAnchor="middle">Performance Ad</text>
+                          <text x="440" y="400" fontFamily="Georgia, serif" fontStyle="italic" fontSize="56" fill="#C8A25A" textAnchor="middle">Systems.</text>
+                          <circle cx="440" cy="720" r="140" fill="none" stroke="#C8A25A" strokeWidth="1.5" />
+                          <text x="440" y="735" fontFamily="Georgia, serif" fontStyle="italic" fontSize="48" fill="#F2EFE9" textAnchor="middle">CD</text>
+                          <text x="440" y="1020" fontFamily="system-ui, -apple-system, sans-serif" fontWeight="900" fontSize="30" letterSpacing="0.4em" fill="#F2EFE9" textAnchor="middle">MIRROU</text>
+                          <text x="440" y="1070" fontFamily="system-ui, -apple-system, sans-serif" fontWeight="300" fontSize="12" letterSpacing="0.32em" fill="#6E6B66" textAnchor="middle">WWW.MIRROU.STUDIO</text>
+                        </g>
+                      </svg>
+                    </div>
+                  </div>
+                  <div className="mt-6 border-t border-white/6 pt-4">
+                    <p className="text-[13px] text-body mb-4">
+                      Vollbild-Anzeigenschablone mit visualisierten Sicherheitszonen (Safe Zones) für Meta Stories und Reels.
+                    </p>
+                    <AssetDownloadButton svgId="svg-fb-ad-story" filename="facebook-ad-story-template.svg" />
+                  </div>
+                </div>
+              </div>
+            )}
+
+            {/* PLATFORM CONTENT: WEBSITE */}
+            {activePlatformTab === "website" && (
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                {/* Website A: Navbar Logo */}
+                <div className="border border-white/6 bg-surface/10 p-6 flex flex-col justify-between">
+                  <div>
+                    <div className="flex justify-between items-baseline mb-4">
+                      <p className="font-mono text-[9px] uppercase tracking-[0.3em] text-accent">
+                        Navbar Logo (Retina Optimized)
+                      </p>
+                      <p className="font-mono text-[9px] text-muted">200×40px</p>
+                    </div>
+                    <div className="w-full py-10 border border-white/6 overflow-hidden bg-bg flex items-center justify-center">
+                      <svg
+                        id="svg-web-nav"
+                        viewBox="0 0 200 40"
+                        className="w-full max-w-[200px]"
+                      >
+                        <rect width="100%" height="100%" fill="none" />
+                        <g textAnchor="middle">
+                          <text
+                            x="100"
+                            y="22"
+                            fontFamily="system-ui, -apple-system, sans-serif"
+                            fontWeight="900"
+                            fontSize="13"
+                            letterSpacing="0.45em"
+                            fill="#F2EFE9"
+                          >
+                            MIRROU
+                          </text>
+                          <text
+                            x="100"
+                            y="33"
+                            fontFamily="system-ui, -apple-system, sans-serif"
+                            fontWeight="400"
+                            fontSize="5.2"
+                            letterSpacing="0.32em"
+                            fill="#C8A25A"
+                          >
+                            CREATIVE STUDIO
+                          </text>
+                        </g>
+                      </svg>
+                    </div>
+                  </div>
+                  <div className="mt-6 border-t border-white/6 pt-4">
+                    <p className="text-[13px] text-body mb-4">
+                      Header-Logo der Navbar. Optimierte Vektorpunkte garantieren gestochen scharfe Schrift auf Retina-Monitoren.
+                    </p>
+                    <AssetDownloadButton svgId="svg-web-nav" filename="website-navbar-logo.svg" />
+                  </div>
+                </div>
+
+                {/* Website B: Footer Logo */}
+                <div className="border border-white/6 bg-surface/10 p-6 flex flex-col justify-between">
+                  <div>
+                    <div className="flex justify-between items-baseline mb-4">
+                      <p className="font-mono text-[9px] uppercase tracking-[0.3em] text-accent">
+                        Footer Logo
+                      </p>
+                      <p className="font-mono text-[9px] text-muted">160×32px</p>
+                    </div>
+                    <div className="w-full py-10 border border-white/6 overflow-hidden bg-[#0A0A0C] flex items-center justify-center">
+                      <svg
+                        id="svg-web-foot"
+                        viewBox="0 0 160 32"
+                        className="w-full max-w-[160px]"
+                      >
+                        <rect width="100%" height="100%" fill="none" />
+                        <g textAnchor="middle">
+                          <text
+                            x="80"
+                            y="18"
+                            fontFamily="system-ui, -apple-system, sans-serif"
+                            fontWeight="900"
+                            fontSize="11"
+                            letterSpacing="0.45em"
+                            fill="#C8A25A"
+                          >
+                            MIRROU
+                          </text>
+                          <text
+                            x="80"
+                            y="27"
+                            fontFamily="system-ui, -apple-system, sans-serif"
+                            fontWeight="400"
+                            fontSize="4.2"
+                            letterSpacing="0.32em"
+                            fill="#6E6B66"
+                          >
+                            CREATIVE STUDIO
+                          </text>
+                        </g>
+                      </svg>
+                    </div>
+                  </div>
+                  <div className="mt-6 border-t border-white/6 pt-4">
+                    <p className="text-[13px] text-body mb-4">
+                      Dezent skalierte Wortmarke für den Footer-Abschluss mit Akzentuierung in Champagne.
+                    </p>
+                    <AssetDownloadButton svgId="svg-web-foot" filename="website-footer-logo.svg" />
+                  </div>
+                </div>
+
+                {/* Website C: Open Graph (OG Image) */}
+                <div className="border border-white/6 bg-surface/10 p-6 flex flex-col justify-between md:col-span-2">
+                  <div>
+                    <div className="flex justify-between items-baseline mb-4">
+                      <p className="font-mono text-[9px] uppercase tracking-[0.3em] text-accent">
+                        Open Graph Image (Social Link Preview)
+                      </p>
+                      <p className="font-mono text-[9px] text-muted">1200×630px</p>
+                    </div>
+                    <div className="w-full border border-white/6 overflow-hidden bg-bg flex items-center justify-center">
+                      <svg
+                        id="svg-web-og"
+                        viewBox="0 0 1200 630"
+                        className="w-full h-auto"
+                      >
+                        <rect width="100%" height="100%" fill="#080808" />
+                        {/* Grid pattern background */}
+                        <path d="M 0 0 L 1200 630 M 0 630 L 1200 0" stroke="rgba(200, 162, 90, 0.015)" strokeWidth="1.5" />
+                        <circle cx="600" cy="315" r="280" fill="none" stroke="rgba(200, 162, 90, 0.05)" strokeWidth="1" />
+                        <g textAnchor="middle">
+                          <text
+                            x="600"
+                            y="280"
+                            fontFamily="system-ui, -apple-system, sans-serif"
+                            fontWeight="900"
+                            fontSize="58"
+                            letterSpacing="0.45em"
+                            fill="#C8A25A"
+                          >
+                            MIRROU
+                          </text>
+                          <text
+                            x="600"
+                            y="330"
+                            fontFamily="system-ui, -apple-system, sans-serif"
+                            fontWeight="400"
+                            fontSize="16"
+                            letterSpacing="0.35em"
+                            fill="#F2EFE9"
+                          >
+                            CREATIVE STUDIO
+                          </text>
+                          <line x1="450" y1="370" x2="750" y2="370" stroke="#C8A25A" strokeWidth="1.5" opacity="0.3" />
+                          <text
+                            x="600"
+                            y="440"
+                            fontFamily="Georgia, serif"
+                            fontStyle="italic"
+                            fontSize="32"
+                            fill="#6E6B66"
+                          >
+                            Where Aesthetics becomes Algorithm.
+                          </text>
+                          <text
+                            x="600"
+                            y="490"
+                            fontFamily="system-ui, -apple-system, sans-serif"
+                            fontWeight="300"
+                            fontSize="13"
+                            letterSpacing="0.4em"
+                            fill="#C8A25A"
+                          >
+                            HAMBURG · BERLIN · WWW.MIRROU.STUDIO
+                          </text>
+                        </g>
+                      </svg>
+                    </div>
+                  </div>
+                  <div className="mt-6 border-t border-white/6 pt-4">
+                    <p className="text-[13px] text-body mb-4">
+                      Vorschau-Grafik (OG Image) für Shared Links auf Plattformen wie LinkedIn, Slack und iMessage.
+                    </p>
+                    <AssetDownloadButton svgId="svg-web-og" filename="website-og-image.svg" />
+                  </div>
+                </div>
+              </div>
+            )}
+          </div>
+
+          {/* SUBSECTION: CREATIVE PERFORMANCE IN ACTION */}
+          <div className="border border-white/6 bg-surface/20 p-8 md:p-12">
+            <p className="font-mono text-[10px] uppercase tracking-[0.4em] text-accent mb-4">
+              Creative Performance in Action
+            </p>
+            <h3 className="font-serif italic text-2xl text-ink mb-6">
+              Markenführung als präzise Wissenschaft.
+            </h3>
+            <p className="text-body max-w-3xl leading-relaxed mb-6">
+              Die Asset-Erstellung folgt demselben disziplinierten Ablauf wie unsere Kunden-Produktionen: 
+              Wir isolieren Variablen, optimieren Kontraste für verschiedene Displays und halten uns strikt an vordefinierte Raster und Schutzzonen. 
+              Unsere Marke kommuniziert durch ein konsistentes visuelles System — von der favicon-Skalierung bis zum Open-Graph-Banner.
+            </p>
+            <p className="text-[13px] text-muted">
+              Referenz: Jedes Vektor-Asset ist im Originalcode implementiert und kann direkt über den Client extrahiert werden. 
+              Für den korrekten Ablauf der Content-Pipeline siehe unseren Prozess-Leitfaden (Audit → Brief → Execution → Loop).
+            </p>
           </div>
         </section>
 
