@@ -89,7 +89,7 @@ Für jede Domäne: 1 Mensch + 1 KI-Pendant = Verdopplung ohne Headcount
 | Positionierung | ICP-Definition, Competitive Analysis, Messaging Matrix |
 | Inbound-Architektur | Website-Struktur, Lead-Qualifizierungs-System, Kontaktformular mit Ad-Spend-Segmentierung |
 | Frontier Firm System | 5 Perplexity Spaces, Space-Dokumentation (39 MD-Dateien), MCP-Architektur |
-| Website | Next.js 14, 8 Sprachen, Claude Code, GCP deployment |
+| Website | React 19 + Vite 6, 8 Sprachen, Claude Code, GCP Cloud Run deployment |
 | Compliance | EU AI Act Konzept, Trust Center, C2PA-Integration |
 | B2B-Outreach | LinkedIn-Templates, Pipeline-Struktur, Qualifizierungs-Score |
 

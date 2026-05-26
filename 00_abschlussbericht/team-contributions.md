@@ -116,8 +116,8 @@ Yahya ist der Architekt des Systems — nicht nur der Agentur, sondern der Art u
 #### Website & Tech
 | Bereich | Deliverable | Status |
 |---------|------------|--------|
-| Website-Architektur | Next.js 14, TypeScript, Tailwind CSS | ✅ |
-| Mehrsprachigkeit | 8 Sprachen mit next-intl | ✅ |
+| Website-Architektur | React 19, Vite 6, TypeScript 5.8, Tailwind CSS v4 | ✅ |
+| Mehrsprachigkeit | 8 Sprachen mit react-i18next | ✅ |
 | GCP Deployment | Cloud Run, europe-west3, CI/CD-Pipeline | ✅ |
 | Trust Center | Live auf mirrou.studio | ✅ |
 | Kontaktformular | Ad-Spend-Segmentierung als Qualifizierungs-System | ✅ |

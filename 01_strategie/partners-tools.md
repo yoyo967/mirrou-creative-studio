@@ -86,7 +86,7 @@ Claude Code ist der Grund, warum Mirrou als Agentur **ganze Websites selbst baue
 
 - **Codebase-Analyse**: Liest komplette Projekte (alle Dateien gleichzeitig), versteht Architektur
 - **Atomare Diagnose**: Semi-atomares Diagnose-System vor jeder Änderung — was existiert, was fehlt, was bricht
-- **Full-Stack-Builds**: Next.js, React, TypeScript, Tailwind — komplette Websites in einem Prompt-Workflow
+- **Full-Stack-Builds**: React 19, Vite 6, TypeScript, Tailwind CSS v4 — komplette Websites in einem Prompt-Workflow
 - **Internationalisierung**: Vollständige i18n-Implementierung (DE, EN, ES, IT, FR, TR, RU, UK — wie auf mirrou.studio)
 - **Deployment-Pipeline**: Von Code bis Google Cloud Run in einem Workflow
 - **Mirrou-Website**: Die aktuelle mirrou.studio wurde mit Claude Code gebaut und deployed
@@ -200,7 +200,7 @@ Briefing (Perplexity / Gemini Antigravity)
     ↓
 Code-Generierung (Claude Code Terminal / App)
     ↓
-Framework: Next.js · TypeScript · Tailwind CSS
+Framework: React 19 · Vite 6 · TypeScript · Tailwind CSS v4
     ↓
 Containerisierung: Docker
     ↓

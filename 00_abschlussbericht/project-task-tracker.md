@@ -40,7 +40,7 @@ version: 1.0
 
 | # | Aufgabe | Status |
 |---|---------|--------|
-| 1 | Next.js Website deployed auf GCP | 🟢 |
+| 1 | React 19 + Vite 6 Website deployed auf GCP | 🟢 |
 | 2 | 8 Sprachversionen live (DE/EN/ES/IT/FR/TR/RU/UK) | 🟢 |
 | 3 | Brandbook-Section integriert | 🟢 |
 | 4 | Trust Center live | 🟢 |
@@ -120,7 +120,7 @@ version: 1.0
 
 ## Erkenntnisse aus dem Prozess (für Abschlussbericht)
 
-- **Claude Code als Web-Builder** funktioniert für eine vollständige Next.js-App — inklusive Deployment
+- **Claude Code als Web-Builder** funktioniert für eine vollständige React/Vite-App — inklusive Deployment
 - **Perplexity Spaces als Wissens-OS** sind besser als Notion/Confluence für KI-native Teams
 - **EU AI Act Compliance ab Tag 1** ist kein Mehraufwand wenn das System richtig gebaut ist
 - **Frontier Firm Modell** erlaubt 4 Personen auf dem Niveau eines 15-Personen-Studios zu operieren

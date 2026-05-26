@@ -35,7 +35,7 @@ Dieses Skript ist für eine Gesamtzeit von **15 Minuten** optimiert (ca. 1 Minut
 ## 05. Die Frontier-Architektur (Yahya)
 * **Visual**: Slide 5 (Interaktives Nodes-Diagramm der 4 operativen Schichten, Perfect Twin)
 * **Sprecher: Yahya**
-> „Um diesen kontinuierlichen Output ohne massiven Personalüberhang zu liefern, haben wir die Frontier-Firm-Architektur implementiert. Sie basiert auf vier Schichten: Dem Intelligence Layer über Perplexity Spaces, dem Production Layer über Adobe und Midjourney, dem Infrastructure Layer auf der Google Cloud und dem Performance Layer über die Werbemanager. Wir arbeiten nach dem ‚Perfect Twin‘-Prinzip: Jeder menschliche Spezialist wird durch ein maßgeschneidertes KI-Pendant erweitert. So übersetzt Olha ihre Vision blitzschnell in KI-Hintergründe, Denys nutzt einen Claude Data Agent zur CSV-Analyse, Ralph automatisiert HubSpot-Workflows und ich steuere das Next.js-Frontend über Claude Code. Olha, wie übersetzt du diese Architektur in Ästhetik?“
+> „Um diesen kontinuierlichen Output ohne massiven Personalüberhang zu liefern, haben wir die Frontier-Firm-Architektur implementiert. Sie basiert auf vier Schichten: Dem Intelligence Layer über Perplexity Spaces, dem Production Layer über Adobe und Midjourney, dem Infrastructure Layer auf der Google Cloud und dem Performance Layer über die Werbemanager. Wir arbeiten nach dem ‚Perfect Twin‘-Prinzip: Jeder menschliche Spezialist wird durch ein maßgeschneidertes KI-Pendant erweitert. So übersetzt Olha ihre Vision blitzschnell in KI-Hintergründe, Denys nutzt einen Claude Data Agent zur CSV-Analyse, Ralph automatisiert HubSpot-Workflows und ich steuere das React-Frontend über Claude Code. Olha, wie übersetzt du diese Architektur in Ästhetik?“
 
 ---
 
@@ -113,8 +113,8 @@ Dieses Skript ist für eine Gesamtzeit von **15 Minuten** optimiert (ca. 1 Minut
 ---
 
 ## 15. Tech Stack, Live & EU AI Act (Yahya / Gemeinsam)
-* **Visual**: Slide 15 (Next.js Stack, EU AI Act Roadmap, Labeling-Matrix, Live QR-Code)
+* **Visual**: Slide 15 (React 19 + Vite 6 Stack, EU AI Act Roadmap, Labeling-Matrix, Live QR-Code)
 * **Sprecher: Yahya**
-> „Zum Abschluss möchte ich betonen: Mirrou ist voll einsatzbereit. Unsere Plattform basiert auf Next.js 14, TypeScript und Tailwind, deployed über Docker auf GCP Cloud Run in Frankfurt. Sie läuft unter der Staging-URL https://mirrou-creative-studio-180023265254.europe-west3.run.app/de, die Sie auf dieser Folie verlinkt sehen und direkt per QR-Code scannen können.
+> „Zum Abschluss möchte ich betonen: Mirrou ist voll einsatzbereit. Unsere Plattform basiert auf React 19 mit Vite 6, TypeScript und Tailwind CSS v4, deployed über Docker auf GCP Cloud Run in Frankfurt. Sie läuft unter der Staging-URL https://mirrou-creative-studio-180023265254.europe-west3.run.app/de, die Sie auf dieser Folie verlinkt sehen und direkt per QR-Code scannen können.
 > Unser größter strategischer Vorteil für die Zukunft ist proaktive Compliance. Ab August 2026 tritt die KI-Kennzeichnungspflicht des EU AI Acts für Werbemittel voll in Kraft. Mirrou ist durch C2PA-Metadaten und unsere Labeling-Matrix bereits heute vollständig compliant. Wir bieten Kunden ein rechtssicheres Trust Center und garantieren über unsere No-Training-Policy, dass Marken-Assets niemals zum KI-Modelltraining verwendet werden. Wir absorbieren die regulatorische Komplexität, damit D2C-Marken sicher wachsen können.
 > Vielen Dank für Ihre Aufmerksamkeit. Wir eröffnen nun die Fragerunde.“

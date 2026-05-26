@@ -68,6 +68,16 @@ abschlussprojekt/
 |-- 09_medien/                 Videos, Audio, Portraits
 |   +-- videoplayback.mp4, MP3s, HTM-Portraits
 |
+|-- 10_press_kit/              Mirrou Press Documentation (7 Subfolders)
+|   |-- 00-PROJECT-INDEX.md    Master-Index fuer Press Kit
+|   |-- 01-mission-deck/       Mission Deck Manuskript
+|   |-- 02-case-studies/       Case Study Compilation
+|   |-- 03-press-photo-kit/    Foto-Kit (README, Credits, Captions, Usage Rights)
+|   |-- 04-portrait-kit/       Portrait-Kit (Shotlist, Captions)
+|   |-- 05-supporting-docs/    Boilerplate, FAQ, Fact Sheet, Founder Bio
+|   |-- 06-web-implementation/ Web-Spec fuer Press Section
+|   +-- 07-image-inventory/    Bild-Inventar
+|
 |-- src/                       Website-Quellcode (React 19 + Vite 6 + TS)
 |   |-- components/            37+ React-Komponenten
 |   |-- routes/                16+ Seiten

@@ -39,7 +39,7 @@ version: 1.0
 
 ### Website (Live)
 - **URL**: https://mirrou-creative-studio-180023265254.europe-west3.run.app/de
-- **Stack**: Next.js 14 · TypeScript · Tailwind CSS · next-intl
+- **Stack**: React 19 · Vite 6 · TypeScript 5.8 · Tailwind CSS v4 · react-i18next
 - **Hosting**: Google Cloud Run · europe-west3 (Frankfurt) · DSGVO-konform
 - **Sprachen**: DE, EN, ES, IT, FR, TR, RU, UK
 - **Seiten**: Home, Über uns, Leistungen, Portfolio/Cases, Team, Kontakt, Trust Center, Brandbook

@@ -64,7 +64,7 @@ $ claude
 Prompt-Template:
 ---
 Du arbeitest an der Mirrou Creative Studio Website.
-Stack: Next.js 14, TypeScript, Tailwind CSS, i18n (next-intl).
+Stack: React 19, Vite 6, TypeScript 5.8, Tailwind CSS v4, i18n (react-i18next).
 Hosting: Google Cloud Run, europe-west3.
 
 Aufgabe: [GENAU BESCHREIBEN WAS GEBAUT WERDEN SOLL]
@@ -172,7 +172,7 @@ Was könnte brechen?
 ```
 Kontext:
 - Website: https://mirrou-creative-studio-180023265254.europe-west3.run.app/de
-- Stack: Next.js 14, TypeScript, Tailwind CSS
+- Stack: React 19, Vite 6, TypeScript 5.8, Tailwind CSS v4
 - Design: Dark Luxury (schwarz, gold, editorial)
 - Claim: "Algorithm of Soul"
 
@@ -181,7 +181,7 @@ Aufgabe: [GENAU BESCHREIBEN]
 Bitte:
 1. Bestehenden Website-Stil analysieren (Screenshot oder URL)
 2. Neue Section konsistent mit bestehendem Design erstellen
-3. Code in Next.js / Tailwind ausgeben
+3. Code in React / Vite / Tailwind ausgeben
 4. Texte auf Deutsch und Englisch vorbereiten
 5. Benchmarking: Zeige 2-3 Referenzen aus award-winning Studios als Inspiration
 

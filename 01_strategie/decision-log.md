@@ -56,11 +56,12 @@ version: 1.0
 
 ---
 
-### 2026-05 · Website: Next.js + GCP statt Website-Builder
+### 2026-05 · Website: Custom React + GCP statt Website-Builder
 **Alternativen geprüft**: Webflow / Squarespace / WordPress
-**Entscheidung**: Next.js 14 + TypeScript + Tailwind CSS + GCP Cloud Run
-**Begründung**: Volle Kontrolle über Code und Design. Mehrsprachigkeit (8 Sprachen) mit next-intl. EU-Hosting (europe-west3). Skalierbar. Passt zur Frontier Firm Positionierung — eine Agentur, die ihre eigene Website selbst baut, demonstriert Kompetenz. Kein Lock-in bei einem Website-Builder.
+**Entscheidung**: React 19 + Vite 6 + TypeScript 5.8 + Tailwind CSS v4 + GCP Cloud Run
+**Begründung**: Volle Kontrolle über Code und Design. Mehrsprachigkeit (8 Sprachen) mit react-i18next. EU-Hosting (europe-west3). Skalierbar. Passt zur Frontier Firm Positionierung — eine Agentur, die ihre eigene Website selbst baut, demonstriert Kompetenz. Kein Lock-in bei einem Website-Builder. SSG via vite-react-ssg für maximale SEO-Performance.
 **Entschieden von**: Yahya Yildirim (mit Claude Code als Umsetzungspartner)
+**Hinweis**: Ursprünglich war Next.js 14 geplant; die finale Implementierung erfolgte mit React 19 + Vite 6 für schnelleren Build und mehr Flexibilität.
 
 ---
 
