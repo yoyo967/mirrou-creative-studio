@@ -46,9 +46,10 @@ version: 1.0
 | 4 | Trust Center live | 🟢 |
 | 5 | Kontaktformular mit Ad-Spend-Segmentierung | 🟢 |
 | 6 | Google Analytics 4 (IP-anonymisiert) | 🟢 |
-| 7 | Mobile-Optimierung geprüft | 🟡 |
-| 8 | SEO-Metadaten alle Seiten (DE + EN) | ⬜ |
-| 9 | Ladezeit-Optimierung (Core Web Vitals) | ⬜ |
+| 7 | Mobile-Optimierung geprüft | 🟢 |
+| 8 | SEO-Metadaten alle Seiten (8 Sprachen) | 🟢 |
+| 9 | WCAG AA Accessibility (Lighthouse 100/100) | 🟢 |
+| 10 | Ladezeit-Optimierung (Core Web Vitals) | 🟡 |
 
 ---
 
@@ -113,10 +114,11 @@ version: 1.0
 4. ~~**Abschlusspräsentation**~~ ✅ Erledigt — PPTX (15 Slides, Dark Luxury) + HTML-Deck aktualisiert
 5. ~~**Repo-Cleanup**~~ ✅ Erledigt — 19 Scratch-Dateien entfernt, Press Kit konsolidiert, README neu
 6. ~~**Tech-Stack-Konsistenz**~~ ✅ Erledigt — Next.js→React 19+Vite 6 in allen 10+ Dateien korrigiert
-7. **Case Studies auf Website** — Olha finalisiert visuelle Darstellung
-8. **SEO-Metadaten** — alle Pages DE + EN
-9. **Mobile-Check** — alle Pages auf Mobilgerät testen
+7. ~~**SEO-Metadaten**~~ ✅ Erledigt — BrandBookPage i18n-Fix, alle 8 Sprachen vollständig
+8. ~~**WCAG AA Accessibility**~~ ✅ Erledigt — Lighthouse 100/100, alle Kontrast-Fehler behoben
+9. **Case Studies auf Website** — Olha finalisiert visuelle Darstellung
 10. **Abschlussbericht Team-Review** — Olha (Abschnitt 4), Ralph (Abschnitt 9) gegenlesen
+11. **Performance-Optimierung** — Three.js-Hero lazy-loading, Lighthouse 63/100 → Ziel 80+
 
 ---
 
@@ -146,3 +148,6 @@ version: 1.0
 | 2026-05-26 | README.md komplett neu geschrieben (EN, Full Project) | Yahya + Claude Code |
 | 2026-05-26 | PPTX-Präsentation generiert (15 Slides, Dark Luxury, Speaker Notes) | Yahya + Claude Code |
 | 2026-05-26 | HTML-Präsentation Tech-Stack-Referenzen aktualisiert | Yahya + Claude Code |
+| 2026-05-26 | BrandBookPage SEO i18n — übersetzte Meta-Tags in allen 8 Locales | Yahya + Claude Code |
+| 2026-05-26 | WCAG AA Kontrast-Fix — color-muted, MarqueeStrip, HorizontalShowcase | Yahya + Claude Code |
+| 2026-05-26 | Lighthouse: Accessibility 97→100, Best Practices 96→100, Performance 56→63 | Yahya + Claude Code |
