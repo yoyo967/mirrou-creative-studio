@@ -354,6 +354,10 @@ const es = {
       title: "Mirrou Creative Studio — Dirección Creativa & Rendimiento",
       description: "Estudio creativo de rendimiento para marcas D2C de belleza, salud y estilo de vida. Imágenes editoriales + pruebas A/B + IA. Hamburgo · Berlín.",
     },
+    brandBook: {
+      title: "Brand Book",
+      description: "El Brand Book interno de Mirrou Creative Studio — Sistema de Identidad Visual, Tono de Voz, Framework de Mensajes y Directrices de Aplicación. Algorithm of Soul.",
+    },
     breadcrumb: {
       home: "Inicio",
       studio: "Estudio",

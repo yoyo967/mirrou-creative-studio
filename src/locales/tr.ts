@@ -355,6 +355,10 @@ const tr = {
       title: "Mirrou Creative Studio — Kreatif Direktörlük & Performans",
       description: "Güzellik, Sağlık ve Yaşam Tarzı D2C markaları için performans kreatif stüdyosu. Editoryal görseller + A/B testleri + Yapay Zeka. Hamburg · Berlin.",
     },
+    brandBook: {
+      title: "Brand Book",
+      description: "Mirrou Creative Studio'nun dahili Brand Book'u — Görsel Kimlik Sistemi, Ses Tonu, Mesajlaşma Çerçevesi ve Uygulama Yönergeleri. Algorithm of Soul.",
+    },
     breadcrumb: {
       home: "Ana Sayfa",
       studio: "Stüdyo",

@@ -354,6 +354,10 @@ const fr = {
       title: "Mirrou Creative Studio — Direction Artistique & Performance",
       description: "Studio créatif de performance pour marques D2C beauté, santé & lifestyle. Visuels éditoriaux + tests A/B + IA. Hambourg · Berlin.",
     },
+    brandBook: {
+      title: "Brand Book",
+      description: "Le Brand Book interne de Mirrou Creative Studio — Système d'Identité Visuelle, Ton de Voix, Framework de Messagerie et Directives d'Application. Algorithm of Soul.",
+    },
     breadcrumb: {
       home: "Accueil",
       studio: "Studio",

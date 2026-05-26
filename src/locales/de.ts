@@ -1431,6 +1431,10 @@ const de = {
       title: "Studio · Mirrou Creative Studio",
       description: "Vier Gründer:innen aus Hamburg und Berlin. Mirrou Creative Studio — Creative Direction: Olha Yevtushenko.",
     },
+    brandBook: {
+      title: "Brand Book",
+      description: "Das interne Brand Book von Mirrou Creative Studio — Visual Identity System, Tone of Voice, Messaging Framework und Application Guidelines. Algorithm of Soul.",
+    },
     breadcrumb: {
       home: "Startseite",
       studio: "Studio",

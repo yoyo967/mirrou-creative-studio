@@ -355,6 +355,10 @@ const uk = {
       title: "Mirrou Creative Studio — Креативний напрямок & Ефективність",
       description: "Перформанс-креатив студія для D2C-брендів у сфері краси, здоров'я та стилю життя. Едіторіал-візуали + А/Б-тести + ШІ. Гамбург · Берлін.",
     },
+    brandBook: {
+      title: "Brand Book",
+      description: "Внутрішній Brand Book Mirrou Creative Studio — система візуальної ідентичності, тон голосу, фреймворк повідомлень та настанови щодо застосування. Algorithm of Soul.",
+    },
     breadcrumb: {
       home: "Головна",
       studio: "Студія",

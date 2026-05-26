@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from "react";
+import { useTranslation } from "react-i18next";
 import { Link } from "@/src/components/LocalizedLink";
 import SEO from "../components/SEO";
 import {
@@ -215,6 +216,7 @@ function BeforeAfter({
 
 /* ─── Main page ─────────────────────────────────────────────────── */
 export default function BrandBookPage() {
+  const { t: tSeo } = useTranslation("seo");
   const [activeSection, setActiveSection] = useState("foundation");
   const [tocOpen, setTocOpen] = useState(false);
   const [logoTheme, setLogoTheme] = useState<"dark" | "light">("dark");
@@ -252,8 +254,8 @@ export default function BrandBookPage() {
   return (
     <main className="min-h-screen bg-bg relative">
       <SEO
-        title="Brand Book · Mirrou Creative Studio"
-        description="Das interne Brand Book von Mirrou Creative Studio — Visual Identity System, Tone of Voice, Messaging Framework und Application Guidelines. Algorithm of Soul."
+        title={tSeo("brandBook.title")}
+        description={tSeo("brandBook.description")}
         pathname="/brand-book"
         noIndex={true}
       />
