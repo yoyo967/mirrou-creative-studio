@@ -5,23 +5,29 @@
 ```
 abschlussprojekt/
 |
-|-- 00_abschlussbericht/       Abschlussbericht + Projektsteuerung
-|   |-- Abschlussbericht_Mirrou_Creative_Studio.md  (HAUPTDOKUMENT)
+|-- 00_abschlussbericht/       Abschlussbericht + Projektsteuerung + AOS-Buch
+|   |-- Abschlussbericht_Mirrou_Creative_Studio.md  (HAUPTDOKUMENT ~50 Seiten)
+|   |-- Abschlussbericht_Mirrou_Creative_Studio.pdf  (PDF-Export)
 |   |-- abschlussbericht-struktur.md
 |   |-- project-task-tracker.md
 |   |-- project-briefing.md
 |   |-- team-contributions.md
 |   |-- mirrou_aufgabenverteilung_master.csv
-|   +-- partners-tools.md
+|   |-- partners-tools.md
+|   +-- AOS_Buch_Kapitel_*.md  (12 Kapitel + Komplett-Version)
 |
-|-- 01_strategie/              Positionierung, Markt, ICPs, Pricing
+|-- 01_strategie/              Positionierung, Markt, ICPs, Pricing, Businessplan
 |   |-- vision-mission.md
 |   |-- positioning.md
 |   |-- services.md / pricing.md
 |   |-- icp-personas.md
 |   |-- competitive-analysis.md
 |   |-- market-overview.md
-|   +-- ... (27 Dateien)
+|   |-- Businessplan.md
+|   |-- AgenturKonzept.md
+|   |-- Handout_Jobcenter.md
+|   |-- VISUAL_PRODUCTION_PLAN.md
+|   +-- ... (31 Dateien)
 |
 |-- 02_brand/                  Logo-System, Branding Kit, Case Studies
 |   |-- mirrou_branding_kit.md
@@ -34,10 +40,11 @@ abschlussprojekt/
 |   |-- ... bis 12_mirrou_investor_deck.pdf
 |   +-- Creative Layer PDFs
 |
-|-- 04_praesentationen/        HTML-Decks, PPTX, Prasentations-Notizen
+|-- 04_praesentationen/        Pitch Decks, HTML-Decks, PPTX, Notizen
 |   |-- mirrou_final_presentation.html  (FINALE VERSION)
-|   |-- Algorithm_of_Soul.pptx
-|   +-- ... (11 Dateien)
+|   |-- Algorithm of Soul Pitch Deck.pdf
+|   |-- Algorithm of Soul Pitch Deck (1).pptx
+|   +-- ... (14 Dateien)
 |
 |-- 05_sops_templates/         SOPs, Templates, Onboarding
 |   |-- sop-project-workflow.md
@@ -61,21 +68,33 @@ abschlussprojekt/
 |-- 09_medien/                 Videos, Audio, Portraits
 |   +-- videoplayback.mp4, MP3s, HTM-Portraits
 |
-+-- project x/                 React-Website (Vite + React 19 + TS)
-    |-- src/components/        37+ React-Komponenten
-    |-- src/routes/            16+ Seiten
-    |-- src/locales/           8 Sprachen
-    |-- dist/                  Gebaute statische Seite
-    +-- Dockerfile + nginx     GCP Cloud Run Deployment
+|-- src/                       Website-Quellcode (React 19 + Vite 6 + TS)
+|   |-- components/            37+ React-Komponenten
+|   |-- routes/                16+ Seiten
+|   |-- locales/               8 Sprachen (DE/EN/ES/IT/FR/TR/RU/UK)
+|   +-- content/               site-data.ts (Single Source of Truth)
+|
+|-- public/                    Statische Assets
+|-- docs/                      Technische Dokumentation
+|-- images/                    Bild-Assets
+|-- visuals/                   Visual-Production-Assets
+|-- scripts/                   Build- und Deployment-Skripte
+|
+|-- Dockerfile + nginx.conf    GCP Cloud Run Deployment
+|-- package.json               Node.js Dependencies
++-- README.md                  Projekt-README (EN)
 ```
 
 ## Kritische Dateien
 
 | Datei | Beschreibung |
 |-------|-------------|
-| `00_abschlussbericht/Abschlussbericht_Mirrou_Creative_Studio.md` | Hauptdokument (40-60 Seiten) |
+| `00_abschlussbericht/Abschlussbericht_Mirrou_Creative_Studio.md` | Hauptdokument (~50 Seiten) |
+| `00_abschlussbericht/Abschlussbericht_Mirrou_Creative_Studio.pdf` | PDF-Export |
 | `04_praesentationen/mirrou_final_presentation.html` | Finale Abschlussprasentation |
-| `project x/` | Live-Website mirrou.studio |
+| `src/` | Live-Website mirrou.studio |
+| `README.md` | Projekt-Uebersicht (EN) |
+| `PROJEKTSTRUKTUR.md` | Dieses Dokument — Navigationsguide (DE) |
 
 ## Team
 

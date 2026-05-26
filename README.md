@@ -1,67 +1,165 @@
 # Mirrou Creative Studio
 
 <p align="center">
-  <em>Performance Creatives für Beauty-, Health- & Lifestyle-Brands. High-End-Fotografie, KI-Visuals und systematisches Creative-Testing als messbare Creative-Engine.</em>
+  <strong>Algorithm of Soul</strong><br>
+  <em>Performance Creatives for Beauty, Health & Lifestyle Brands in DACH.</em><br>
+  High-end photography, AI-enhanced visuals, and systematic creative testing as a measurable creative engine.
 </p>
 
-## 📌 Project Overview
+---
+
+## About This Repository
+
 This repository serves a dual purpose:
-1. **DCI Final Project**: A full-stack web development capstone demonstrating architecture, UI/UX, SEO, and technical implementation.
-2. **Real-World Agency Website**: The actual production platform for **Mirrou Creative Studio**, functioning as a brand hub, lead generation tool, and interactive portfolio.
 
-## 🚀 The DCI Course Connection
-This project mirrors the 25-day practical agenda of the Digital Career Institute (DCI) final phase:
-- **Phase 1 (Ideation & Planning)**: Conception of the brand, target audience definition, and initial UI/UX drafting.
-- **Phase 2 (Marketing Mix & Branding)**: Establishment of the "Dark Luxury v2.0" design system. Strategy mapped within site architecture.
-- **Phase 3 (Campaigns & Rollout)**: Advanced technical implementation (React + Vite + Tailwind + SSG + Three.js), building "Pillar/Cluster" SEO architecture.
-- **Phase 4 (Final Presentation & Launch)**: Deployment readiness, robust documentation, static site generation, and performance metrics.
+1. **DCI Final Project (Abschlussprojekt)** — A full-stack web development capstone for the Digital Career Institute, demonstrating architecture, UI/UX, SEO, branding, and technical implementation.
+2. **Real-World Agency Platform** — The production website and complete knowledge base for **Mirrou Creative Studio**, a Frontier Firm operating as a KI-integrated Performance Creative Agency.
 
-For detailed DCI evaluation criteria, please see [`docs/DCI_PROJECT.md`](./docs/DCI_PROJECT.md).
+**Team:** Olha Yevtushenko · Denys Demyanyshyn · Ralph Kindermann · Yahya Yildirim
 
-## 🛠️ Features & Architecture
-- **Tech Stack**: React 19, Vite 6, Tailwind CSS 4, Motion (Framer Motion successor), Three.js (R3F) for interactive 3D hero background.
-- **Architecture**: Apex / Pillar / Cluster SEO model.
-  - **Apex**: `/` (Homepage)
-  - **4 Pillars**: Deep dives into our core services (`/performance-creative`, `/creative-engine`, etc.)
-  - **20 Clusters**: Focused blog/articles under `/blog/[slug]`.
-- **Pre-Rendering (SSG)**: Uses `vite-react-ssg` to statically pre-render all routes, ensuring massive SEO performance without requiring a Node.js server.
-- **Internationalization**: Ready for i18n (`react-i18next`).
-- **Design System**: "Dark Luxury" — deep blacks, high-contrast typography, refined animations. See [`docs/BRANDING_MIRROU.md`](./docs/BRANDING_MIRROU.md).
+---
 
-For a deep dive into the code structure, see [`docs/ARCHITECTURE.md`](./docs/ARCHITECTURE.md).
+## Project Structure
 
-## 💻 Local Development
+```
+mirrou-creative-studio/
+├── 00_abschlussbericht/    # Final report (~50 pages), AOS book chapters, task tracker
+├── 01_strategie/           # Positioning, ICP, competitive analysis, business plan
+├── 02_brand/               # Brand book, tone of voice, design tokens
+├── 03_deliverables_pdf/    # PDF exports of key documents
+├── 04_praesentationen/     # Pitch decks, presentation scripts
+├── 05_sops_templates/      # SOPs, creative briefs, learning logs, onboarding
+├── 06_perplexity_skills/   # Perplexity Space skills & prompts
+├── 07_compliance/          # EU AI Act, DSGVO, C2PA documentation
+├── 08_kursmaterial/        # DCI course-related materials
+├── 09_medien/              # Media assets
+├── docs/                   # Technical documentation (architecture, branding, DCI criteria)
+├── src/                    # Website source code (React + Vite + TypeScript)
+├── public/                 # Static assets
+├── images/                 # Image assets
+├── visuals/                # Visual production assets
+├── scripts/                # Build and deployment scripts
+├── PROJEKTSTRUKTUR.md      # Full project navigation guide (DE)
+└── 00-PROJECT-INDEX.md     # Project index
+```
+
+---
+
+## Website Tech Stack
+
+| Layer | Technology |
+|-------|-----------|
+| **Framework** | React 19 + Vite 6 |
+| **Language** | TypeScript 5.8 |
+| **Styling** | Tailwind CSS v4 |
+| **Animation** | Motion (Framer Motion successor) |
+| **3D** | Three.js / @react-three/fiber |
+| **SSG** | vite-react-ssg (static pre-rendering) |
+| **i18n** | react-i18next (8 languages: DE/EN/ES/IT/FR/TR/RU/UK) |
+| **Hosting** | GCP Cloud Run (europe-west3 Frankfurt) |
+| **Container** | Docker + nginx |
+| **Analytics** | Google Analytics 4 (IP-anonymized) |
+
+### Design System: Dark Luxury v2.0
+
+- **Background:** Deep Onyx `#080808`
+- **Accent:** Gold `#C8A25A`
+- **Text:** Ivory `#F2EFE9`
+- **Typography:** Cormorant Garamond (headings) · Inter (body) · JetBrains Mono (code)
+
+---
+
+## SEO Architecture
+
+The website follows the **Apex / Pillar / Cluster** model:
+
+- **Apex:** `/` (Homepage)
+- **4 Pillars:** Deep dives into core services (`/performance-creative`, `/creative-engine`, etc.)
+- **20 Clusters:** Focused articles under `/blog/[slug]`
+
+All routes are statically pre-rendered for maximum SEO performance.
+
+---
+
+## Local Development
+
 ### Prerequisites
 - Node.js 20+
 
-### Installation
-Clone the repository and install dependencies:
+### Setup
 ```bash
 npm install
 ```
 
-### Running the App
+### Commands
 ```bash
-npm run dev          # Start development server on port 3000
-npm run build        # Create static production build (outputs to dist/)
-npm run preview      # Preview the built production version locally
-npm run lint         # Run TypeScript checks
+npm run dev          # Development server (port 3000)
+npm run build        # Static production build → dist/
+npm run preview      # Preview production build
+npm run lint         # TypeScript checks
 ```
 
 ### Environment Variables
-Environment variables are securely managed. 
-- Do **not** commit `.env` files to this repository.
-- Use `.env.example` as a template for your local setup.
-- Any secrets or API keys belong in `.env.local` which is ignored by git.
+- Copy `.env.example` to `.env.local`
+- Never commit `.env` files
 
-## 🚀 Deployment
-This project is built for **Static Site Generation (SSG)**. 
-Running `npm run build` generates a fully static `/dist` folder. 
-- Deployment is as simple as connecting this repository to **Vercel**, **Netlify**, or **Cloudflare Pages**.
-- Configure the build command to `npm run build` and the output directory to `dist`.
-- Ensure environment variables are configured securely within your hosting provider's dashboard.
+---
 
-## 🤝 How to Contribute / Extend
-1. **Adding Pages**: See `src/routes/` and update routing in `src/entry-client.tsx` or `src/App.tsx`.
-2. **Adding Content**: Modify `src/content/site-data.ts` (Single Source of Truth). New cases or blog articles automatically generate pages if mapped correctly.
-3. **Styling**: Tailored utility classes using Tailwind CSS v4 in `src/index.css`.
+## Deployment
+
+```bash
+npm run build                    # Generates static /dist folder
+docker build -t mirrou .         # Build container
+# Deploy to GCP Cloud Run (europe-west3)
+```
+
+Compatible with Vercel, Netlify, Cloudflare Pages, or any static hosting.
+Set build command to `npm run build` and output directory to `dist`.
+
+---
+
+## Frontier Firm Architecture
+
+Mirrou operates as a **Frontier Firm** — a new organizational model where AI is not a tool but a structural layer:
+
+- **Intelligence Layer:** Perplexity Spaces (5 spaces, 44+ documents) as knowledge OS
+- **Production Layer:** Hybrid Production (real photography + AI-generated backgrounds)
+- **Infrastructure Layer:** Claude Code for web development, MCP connectors for automation
+- **Performance Layer:** Systematic creative testing, data feedback loops
+
+### EU AI Act Compliance (from Day 1)
+- Limited-Risk classification (Art. 50)
+- C2PA metadata on all AI-generated content
+- DSGVO: IP anonymization, GCP EU-region, AVV-ready
+- Trust Center on website
+
+---
+
+## Key Deliverables
+
+| Deliverable | Status |
+|-------------|--------|
+| Live Website (8 languages) | Done |
+| Abschlussbericht (~50 pages) | Done |
+| Brand Book & Design System | Done |
+| 4 Case Studies (visual) | In Progress |
+| Frontier Firm Documentation | Done |
+| Compliance Architecture | Done |
+| SOPs & Templates (7 documents) | Done |
+| Pitch Deck | Done |
+| GitHub Repository | Done |
+
+---
+
+## Contributing
+
+1. **Pages:** See `src/routes/` and `src/App.tsx`
+2. **Content:** Modify `src/content/site-data.ts` (single source of truth)
+3. **Styling:** Tailwind CSS v4 utilities in `src/index.css`
+4. **Docs:** Follow the numbered folder structure (`00_` through `09_`)
+
+---
+
+## License
+
+All rights reserved. Mirrou Creative Studio, 2026.

@@ -114,9 +114,9 @@ version: 1.0
 ### 7 · Website *(3–4 Seiten)*
 **Verantwortlich**: Yahya
 **Inhalt**:
-- Tech-Stack: Next.js 14 · TypeScript · Tailwind CSS · next-intl
-- Hosting: GCP Cloud Run · europe-west3 · DSGVO-konform
-- Mehrsprachigkeit: 8 Sprachen, Implementierung
+- Tech-Stack: React 19 · Vite 6 · TypeScript 5.8 · Tailwind CSS v4 · i18next
+- Hosting: GCP Cloud Run · europe-west3 · DSGVO-konform (Docker + nginx)
+- Mehrsprachigkeit: 8 Sprachen (DE/EN/ES/IT/FR/TR/RU/UK), Implementierung via react-i18next
 - Seiten-Struktur und Inhalte
 - Build-Prozess: Claude Code → Docker → GCP
 - Screenshots / visuelle Darstellung
