@@ -10,7 +10,7 @@ export default function MarqueeStrip({ className = "" }: { className?: string })
       <div className="marquee-track">
         {allItems.map((item, i) => (
           <span key={i} className="flex items-center gap-6 px-6">
-            <span className="font-mono text-[10px] uppercase tracking-[0.3em] text-ink/40 whitespace-nowrap">
+            <span className="font-mono text-[10px] uppercase tracking-[0.3em] text-ink/60 whitespace-nowrap">
               {item}
             </span>
             <span className="text-accent/40 text-[8px]">·</span>

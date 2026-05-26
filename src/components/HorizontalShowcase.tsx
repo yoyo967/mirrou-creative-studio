@@ -91,7 +91,7 @@ export default function HorizontalShowcase() {
                   <p className="text-body text-[15px] leading-relaxed flex-1">
                     {t(`showcase.${step.bodyKey}`)}
                   </p>
-                  <p className="font-mono text-[9px] uppercase tracking-[0.3em] text-accent/60 border-t border-white/6 pt-4 mt-auto">
+                  <p className="font-mono text-[9px] uppercase tracking-[0.3em] text-accent/80 border-t border-white/6 pt-4 mt-auto">
                     {t(`showcase.${step.tagKey}`)}
                   </p>
                 </div>
