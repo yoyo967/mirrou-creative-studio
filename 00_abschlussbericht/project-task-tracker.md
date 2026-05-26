@@ -25,7 +25,7 @@ version: 1.0
 
 | # | Aufgabe | Verantwortlich | Status | Deadline |
 |---|---------|----------------|--------|---------|
-| 1 | Abschlusspräsentation Google Slides finalisieren | Yahya | 🟡 | Vor Präsentationstermin |
+| 1 | Abschlusspräsentation PPTX + HTML (15 Slides, Dark Luxury) | Yahya | 🟢 | ✅ Erledigt (26.05.2026) |
 | 2 | Yahyas Part (Why→How→What) ausformulieren | Yahya | 🟢 | ✅ Erledigt |
 | 3 | Website live + QR-Code für Präsentation | Yahya | 🟢 | ✅ Erledigt |
 | 4 | Case Studies auf Website finalisieren | Olha + Denys | 🟡 | Vor Präsentation |
@@ -110,11 +110,13 @@ version: 1.0
 1. ~~**Abschlussbericht**~~ ✅ Erledigt — 00_abschlussbericht/Abschlussbericht_Mirrou_Creative_Studio.md + PDF
 2. ~~**Ordnerstruktur & Duplikate**~~ ✅ Erledigt — 36 Duplikate bereinigt, 10 Ordner angelegt
 3. ~~**GitHub-Repo**~~ ✅ Erledigt — https://github.com/yoyo967/mirrou-creative-studio
-4. **Abschlusspräsentation finalisieren** — Google Slides aus yahya-part-presentation.md erstellen
-5. **Case Studies auf Website** — Olha finalisiert visuelle Darstellung
-6. **SEO-Metadaten** — alle Pages DE + EN
-7. **Mobile-Check** — alle Pages auf Mobilgerät testen
-8. **Abschlussbericht Team-Review** — Olha (Abschnitt 4), Ralph (Abschnitt 9) gegenlesen
+4. ~~**Abschlusspräsentation**~~ ✅ Erledigt — PPTX (15 Slides, Dark Luxury) + HTML-Deck aktualisiert
+5. ~~**Repo-Cleanup**~~ ✅ Erledigt — 19 Scratch-Dateien entfernt, Press Kit konsolidiert, README neu
+6. ~~**Tech-Stack-Konsistenz**~~ ✅ Erledigt — Next.js→React 19+Vite 6 in allen 10+ Dateien korrigiert
+7. **Case Studies auf Website** — Olha finalisiert visuelle Darstellung
+8. **SEO-Metadaten** — alle Pages DE + EN
+9. **Mobile-Check** — alle Pages auf Mobilgerät testen
+10. **Abschlussbericht Team-Review** — Olha (Abschnitt 4), Ralph (Abschnitt 9) gegenlesen
 
 ---
 
@@ -139,3 +141,8 @@ version: 1.0
 | 2026-05-26 | GitHub-Repo mit Docs gepusht (111 Dateien) | Yahya + Claude Code |
 | 2026-05-26 | project x Ordner entfernt (840 MB freigeräumt) | Yahya + Claude Code |
 | 2026-05-26 | PDF-Export des Abschlussberichts erstellt | Yahya + Claude Code |
+| 2026-05-26 | 19 Scratch-Dateien entfernt, Press Kit in 10_press_kit/ konsolidiert | Yahya + Claude Code |
+| 2026-05-26 | Next.js→React 19+Vite 6 Referenzen in 10+ Dateien korrigiert | Yahya + Claude Code |
+| 2026-05-26 | README.md komplett neu geschrieben (EN, Full Project) | Yahya + Claude Code |
+| 2026-05-26 | PPTX-Präsentation generiert (15 Slides, Dark Luxury, Speaker Notes) | Yahya + Claude Code |
+| 2026-05-26 | HTML-Präsentation Tech-Stack-Referenzen aktualisiert | Yahya + Claude Code |
