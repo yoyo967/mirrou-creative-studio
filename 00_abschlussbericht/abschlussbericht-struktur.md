@@ -189,19 +189,19 @@ version: 1.0
 
 | Abschnitt | Verantwortlich | Status | Deadline |
 |-----------|----------------|--------|---------|
-| Executive Summary | Yahya | ⬜ | |
-| Problemstellung & Markt | Yahya + Denys | ⬜ | |
-| Konzept & Positionierung | Yahya | ⬜ | |
-| Brand Identity | Olha | ⬜ | |
-| Service-Portfolio & Methodik | Olha + Denys | ⬜ | |
-| Frontier Firm Architektur | Yahya | ⬜ | |
-| Website | Yahya | ⬜ | |
-| Compliance | Yahya | ⬜ | |
-| Team & Rollen | Ralph | ⬜ | |
-| Entscheidungen & Learnings | Yahya | ⬜ | |
-| Ausblick | Yahya | ⬜ | |
-| Anhang | Alle | ⬜ | |
-| **Gesamtdokument finalisieren** | **Yahya** | **⬜** | |
+| Executive Summary | Yahya | 🟢 | 26.05.2026 |
+| Problemstellung & Markt | Yahya + Denys | 🟢 | 26.05.2026 |
+| Konzept & Positionierung | Yahya | 🟢 | 26.05.2026 |
+| Brand Identity | Olha | 🟢 | 26.05.2026 |
+| Service-Portfolio & Methodik | Olha + Denys | 🟢 | 26.05.2026 |
+| Frontier Firm Architektur | Yahya | 🟢 | 26.05.2026 |
+| Website | Yahya | 🟢 | 26.05.2026 |
+| Compliance | Yahya | 🟢 | 26.05.2026 |
+| Team & Rollen | Ralph | 🟢 | 26.05.2026 |
+| Entscheidungen & Learnings | Yahya | 🟢 | 26.05.2026 |
+| Ausblick | Yahya | 🟢 | 26.05.2026 |
+| Anhang | Alle | 🟢 | 26.05.2026 |
+| **Gesamtdokument finalisieren** | **Yahya** | **🟢** | **26.05.2026** |
 
 ---
 
