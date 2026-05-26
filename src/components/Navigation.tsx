@@ -99,7 +99,7 @@ export default function Navigation() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -10 }}
             transition={{ duration: 0.2 }}
-            className="fixed inset-0 top-[68px] bg-bg/98 backdrop-blur-2xl z-40 md:hidden flex flex-col items-stretch px-6 pt-12 gap-2"
+            className="fixed inset-0 top-[68px] bg-bg/98 backdrop-blur-2xl z-40 md:hidden flex flex-col items-stretch px-6 pt-12 pb-10 gap-2 overflow-y-auto"
           >
             {navItems.map((item) => (
               <NavLink
@@ -121,7 +121,7 @@ export default function Navigation() {
             >
               {t("ctaFull")}
             </Link>
-            <LanguageSwitcher className="mt-6" />
+            <LanguageSwitcher className="mt-6" inline />
           </motion.div>
         )}
       </AnimatePresence>
