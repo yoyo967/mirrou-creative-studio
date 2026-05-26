@@ -4,11 +4,11 @@ import { useTranslation } from "react-i18next";
 import OptimizedImage from "./OptimizedImage";
 
 const stepImages = [
-  "/images/gallery/g-05.png",
-  "/images/gallery/g-15.png",
-  "/images/gallery/g-25.png",
-  "/images/gallery/g-35.png",
-  "/images/gallery/g-45.png",
+  "/images/gallery/g-05.webp",
+  "/images/gallery/g-15.webp",
+  "/images/gallery/g-25.webp",
+  "/images/gallery/g-35.webp",
+  "/images/gallery/g-45.webp",
 ];
 
 export default function HorizontalShowcase() {

@@ -7,7 +7,7 @@ export default function ManifestoSection() {
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
       <img
-        src="/images/gallery/g-50.png"
+        src="/images/gallery/g-50.webp"
         alt=""
         aria-hidden="true"
         className="absolute inset-0 w-full h-full object-cover"

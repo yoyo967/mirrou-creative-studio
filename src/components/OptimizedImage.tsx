@@ -59,17 +59,25 @@ export default function OptimizedImage({
     >
       <div className="img-reveal-placeholder" aria-hidden />
       {inView && (
-        <img
-          src={src}
-          alt={alt}
-          width={width}
-          height={height}
-          sizes={sizes}
-          loading={priority ? "eager" : "lazy"}
-          decoding="async"
-          className={`img-reveal-el ${imgClassName}`}
-          onLoad={() => setLoaded(true)}
-        />
+        <picture>
+          {/\.(png|jpe?g)$/i.test(src) && (
+            <source
+              srcSet={src.replace(/\.(png|jpe?g)$/i, ".webp")}
+              type="image/webp"
+            />
+          )}
+          <img
+            src={src}
+            alt={alt}
+            width={width}
+            height={height}
+            sizes={sizes}
+            loading={priority ? "eager" : "lazy"}
+            decoding="async"
+            className={`img-reveal-el ${imgClassName}`}
+            onLoad={() => setLoaded(true)}
+          />
+        </picture>
       )}
     </div>
   );

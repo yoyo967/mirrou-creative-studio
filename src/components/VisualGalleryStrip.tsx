@@ -1,7 +1,7 @@
 import { useTranslation } from "react-i18next";
 
-const row1 = Array.from({ length: 20 }, (_, i) => `/images/gallery/g-${String(i + 1).padStart(2, "0")}.png`);
-const row2 = Array.from({ length: 20 }, (_, i) => `/images/gallery/g-${String(i + 21).padStart(2, "0")}.png`);
+const row1 = Array.from({ length: 20 }, (_, i) => `/images/gallery/g-${String(i + 1).padStart(2, "0")}.webp`);
+const row2 = Array.from({ length: 20 }, (_, i) => `/images/gallery/g-${String(i + 21).padStart(2, "0")}.webp`);
 
 export default function VisualGalleryStrip() {
   const { t } = useTranslation("home");
