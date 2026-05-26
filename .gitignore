@@ -41,3 +41,15 @@ coverage/
 
 # Custom AI tracking
 .claude/
+
+# Large media files
+*.mp4
+*.mp3
+*.wav
+
+# OS files
+Thumbs.db
+desktop.ini
+
+# Temporary backup
+.gitignore.local

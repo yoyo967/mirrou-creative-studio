@@ -1,0 +1,2783 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MIRROU Creative Studio - Abschlusspräsentation DCI</title>
+  
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+  
+  <style>
+    :root {
+      /* Brand Colors from Production Branding Kit */
+      --color-bg: #080808;
+      --color-surface: #111113;
+      --color-surface-2: #1A1A1E;
+      --color-accent: #C8A25A;
+      --color-accent-light: #E4C07A;
+      --color-accent-soft: rgba(200, 162, 90, 0.08);
+      --color-ink: #F2EFE9;
+      --color-body: #B8B4AE;
+      --color-muted: #6E6B66;
+      --color-grid: rgba(242, 239, 233, 0.05);
+      --color-grid-strong: rgba(242, 239, 233, 0.10);
+      
+      /* Presenter Accent Colors */
+      --color-yahya: #C8A25A;
+      --color-olha: #E07A5F;
+      --color-denys: #4A90E2;
+      --color-ralph: #D8D3CB;
+      
+      /* Typography */
+      --font-display: 'Cormorant Garamond', Georgia, serif;
+      --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
+      
+      /* Transitions */
+      --transition-ease: cubic-bezier(0.16, 1, 0.3, 1);
+      --transition-time-slow: 0.9s;
+      --transition-time-medium: 0.4s;
+      --transition-time-fast: 0.25s;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html, body {
+      height: 100%;
+      background: var(--color-bg);
+      color: var(--color-ink);
+      font-family: var(--font-sans);
+      overflow: hidden;
+      font-size: 16px;
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    /* Ambient & Texture Overlays (Award-Winning Patterns) */
+    .grain-overlay {
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
+      pointer-events: none;
+      opacity: 0.03;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background: radial-gradient(circle at 10% 10%, rgba(200, 162, 90, 0.08), transparent 35%),
+                  radial-gradient(circle at 90% 90%, rgba(200, 162, 90, 0.05), transparent 40%);
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    .mouse-spotlight {
+      position: fixed;
+      inset: 0;
+      z-index: 2;
+      pointer-events: none;
+      background: radial-gradient(600px circle at -1000px -1000px, rgba(200, 162, 90, 0.035), transparent 45%);
+    }
+
+    .gradient-mesh {
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      overflow: hidden;
+      pointer-events: none;
+    }
+
+    .blob {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(140px);
+      opacity: 0.09;
+      animation: float-slow 25s ease-in-out infinite;
+    }
+
+    .blob-1 {
+      width: 700px;
+      height: 700px;
+      top: -250px;
+      right: -100px;
+      background: var(--color-accent);
+      animation-duration: 30s;
+    }
+
+    .blob-2 {
+      width: 500px;
+      height: 500px;
+      bottom: -150px;
+      left: -150px;
+      background: var(--color-muted);
+      animation-duration: 22s;
+      animation-direction: reverse;
+    }
+
+    @keyframes float-slow {
+      0%, 100% { transform: translate(0, 0) scale(1); }
+      50% { transform: translate(60px, -60px) scale(1.15); }
+    }
+
+    .particle-canvas {
+      position: fixed;
+      inset: 0;
+      z-index: 1;
+      pointer-events: none;
+    }
+
+    /* Main Deck Layout */
+    .deck {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      z-index: 10;
+    }
+
+    .slide {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: clamp(2rem, 5vw, 6rem);
+      opacity: 0;
+      pointer-events: none;
+      transform: translateY(30px) scale(0.985);
+      transition: opacity var(--transition-ease) 0.1s, transform var(--transition-ease) 0.1s;
+      overflow-y: auto;
+      z-index: 5;
+    }
+
+    .slide.active {
+      opacity: 1;
+      pointer-events: all;
+      transform: translateY(0) scale(1);
+      z-index: 10;
+    }
+
+    .inner {
+      max-width: 1280px;
+      width: 100%;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+    }
+
+    /* Typography & Hierarchy */
+    h1, h2, h3, h4, h5 {
+      font-family: var(--font-display);
+      font-weight: 300;
+      color: var(--color-ink);
+      letter-spacing: -0.01em;
+    }
+
+    h1 {
+      font-size: clamp(2.4rem, 5vw, 4.8rem);
+      line-height: 0.95;
+      letter-spacing: -0.02em;
+    }
+
+    h2 {
+      font-size: clamp(1.8rem, 3.8vw, 3.4rem);
+      line-height: 1.05;
+      position: relative;
+      padding-bottom: 0.5rem;
+    }
+    
+    h2::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 80px;
+      height: 1px;
+      background: var(--color-accent);
+      opacity: 0.5;
+    }
+
+    h3 {
+      font-size: clamp(1.3rem, 2.2vw, 1.8rem);
+      line-height: 1.2;
+      color: var(--color-accent);
+    }
+
+    p {
+      color: var(--color-body);
+      font-size: clamp(0.95rem, 1.1vw, 1.1rem);
+      line-height: 1.6;
+      font-weight: 300;
+    }
+    
+    strong {
+      color: var(--color-ink);
+      font-weight: 500;
+    }
+
+    /* Slide Metadata */
+    .slide-meta {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+      border-bottom: 1px solid var(--color-grid);
+      padding-bottom: 0.8rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .meta-left {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .presenter-badge {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--presenter-color, var(--color-accent));
+      border: 1px solid rgba(242, 239, 233, 0.1);
+      padding: 0.4rem 1.1rem;
+      border-radius: 99px;
+      background: var(--color-accent-soft);
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      transition: all var(--transition-time-fast) var(--transition-ease);
+    }
+
+    .presenter-badge::before {
+      content: "";
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--presenter-color, var(--color-accent));
+      display: inline-block;
+      box-shadow: 0 0 8px var(--presenter-color, var(--color-accent));
+    }
+
+    .slide-num {
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      letter-spacing: 0.25em;
+      color: var(--color-muted);
+    }
+
+    /* Glassmorphism Cards & Grids */
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1.5rem;
+      width: 100%;
+    }
+
+    .card-grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+      width: 100%;
+    }
+    
+    .card-grid-4 {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1.2rem;
+      width: 100%;
+    }
+
+    .two-col {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 2.5rem;
+      align-items: start;
+      width: 100%;
+    }
+    
+    .col-equal {
+      grid-template-columns: 1fr 1fr;
+    }
+
+    .card {
+      background: var(--color-surface);
+      border: 1px solid var(--color-grid);
+      border-radius: 12px;
+      padding: 2.2rem;
+      backdrop-filter: blur(16px);
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.45);
+      transition: border-color var(--transition-time-medium) var(--transition-ease), 
+                  transform var(--transition-time-medium) var(--transition-ease),
+                  background-color var(--transition-time-medium) var(--transition-ease);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(200, 162, 90, 0.05), transparent 40%);
+      pointer-events: none;
+      opacity: 0;
+      transition: opacity var(--transition-time-medium) var(--transition-ease);
+    }
+
+    .card:hover {
+      border-color: rgba(200, 162, 90, 0.25);
+      transform: translateY(-4px);
+      background: rgba(20, 20, 24, 0.8);
+    }
+
+    .card:hover::before {
+      opacity: 1;
+    }
+
+    .card.accented {
+      border-color: rgba(200, 162, 90, 0.2);
+      background: linear-gradient(180deg, rgba(200, 162, 90, 0.02) 0%, rgba(17, 17, 19, 0.6) 100%);
+    }
+
+    .card-label {
+      font-family: var(--font-mono);
+      font-size: 0.68rem;
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      color: var(--color-muted);
+      margin-bottom: 0.6rem;
+      display: block;
+    }
+
+    .card h4 {
+      font-size: 1.45rem;
+      margin-bottom: 0.8rem;
+      color: var(--color-accent-light);
+    }
+
+    /* Lists */
+    .list-styled {
+      list-style: none;
+      display: grid;
+      gap: 0.8rem;
+    }
+
+    .list-styled li {
+      position: relative;
+      padding-left: 1.8rem;
+      color: var(--color-body);
+      font-size: 0.98rem;
+    }
+
+    .list-styled li::before {
+      content: "✦";
+      position: absolute;
+      left: 0;
+      color: var(--color-accent);
+      font-size: 0.85rem;
+      opacity: 0.8;
+    }
+
+    /* Tables */
+    .table-container {
+      width: 100%;
+      overflow-x: auto;
+      border-radius: 12px;
+      border: 1px solid var(--color-grid);
+      background: var(--color-surface);
+      backdrop-filter: blur(16px);
+      box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      text-align: left;
+    }
+
+    th, td {
+      padding: 1.1rem 1.4rem;
+      border-bottom: 1px solid var(--color-grid);
+    }
+
+    th {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      color: var(--color-accent);
+      background: rgba(200, 162, 90, 0.04);
+      font-weight: 500;
+    }
+
+    td {
+      font-size: 0.92rem;
+      color: var(--color-body);
+      vertical-align: middle;
+    }
+
+    tr:last-child td {
+      border-bottom: none;
+    }
+    
+    tr:hover td {
+      color: var(--color-ink);
+      background: rgba(255, 255, 255, 0.01);
+    }
+
+    /* Data Visualization Metrics */
+    .metric-row {
+      display: flex;
+      align-items: baseline;
+      gap: 0.6rem;
+    }
+
+    .metric-large {
+      font-size: clamp(2rem, 3.8vw, 3.4rem);
+      font-weight: 300;
+      color: var(--color-accent-light);
+      font-family: var(--font-display);
+      line-height: 1;
+    }
+
+    .metric-unit {
+      font-family: var(--font-mono);
+      font-size: 0.78rem;
+      color: var(--color-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+    }
+
+    .bar-track {
+      height: 6px;
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 99px;
+      overflow: hidden;
+      margin-top: 0.6rem;
+      position: relative;
+    }
+
+    .bar-fill {
+      height: 100%;
+      background: linear-gradient(90deg, var(--color-accent), var(--color-accent-light));
+      border-radius: 99px;
+      width: 0%;
+      transition: width var(--transition-time-slow) var(--transition-ease);
+    }
+
+    /* Header & Navigation Bar */
+    .topbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      padding: 1.5rem 2.5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      pointer-events: none;
+    }
+
+    .topbar-logo {
+      font-family: var(--font-display);
+      font-size: 1.5rem;
+      letter-spacing: 0.15em;
+      color: var(--color-ink);
+      pointer-events: auto;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      font-weight: 400;
+    }
+
+    .topbar-logo span {
+      color: var(--color-accent);
+      text-shadow: 0 0 10px var(--color-accent);
+    }
+
+    .nav-controls {
+      display: flex;
+      align-items: center;
+      gap: 1.2rem;
+      pointer-events: auto;
+      background: rgba(17, 17, 19, 0.7);
+      border: 1px solid var(--color-grid-strong);
+      backdrop-filter: blur(16px);
+      padding: 0.5rem 1.4rem;
+      border-radius: 99px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    }
+
+    .nav-btn {
+      background: transparent;
+      border: none;
+      color: var(--color-body);
+      cursor: pointer;
+      font-size: 1.4rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: color var(--transition-time-fast) var(--transition-ease), transform var(--transition-time-fast) var(--transition-ease);
+      width: 28px;
+      height: 28px;
+    }
+
+    .nav-btn:hover {
+      color: var(--color-accent-light);
+      transform: scale(1.1);
+    }
+    
+    .nav-btn:active {
+      transform: scale(0.95);
+    }
+
+    .nav-btn:disabled {
+      color: rgba(255, 255, 255, 0.1);
+      cursor: not-allowed;
+      transform: none;
+    }
+
+    .slide-counter {
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      color: var(--color-body);
+      min-width: 50px;
+      text-align: center;
+    }
+    
+    .drawer-toggle-btn {
+      background: transparent;
+      border: 1px solid var(--color-grid-strong);
+      color: var(--color-body);
+      cursor: pointer;
+      font-size: 0.8rem;
+      font-family: var(--font-mono);
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      padding: 0.5rem 1.2rem;
+      border-radius: 99px;
+      pointer-events: auto;
+      backdrop-filter: blur(12px);
+      background-color: rgba(17, 17, 19, 0.5);
+      transition: all var(--transition-time-fast) var(--transition-ease);
+    }
+    
+    .drawer-toggle-btn:hover {
+      color: var(--color-ink);
+      border-color: var(--color-accent);
+      box-shadow: 0 0 12px var(--color-accent-soft);
+    }
+
+    .progress-bar-container {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: rgba(255, 255, 255, 0.03);
+      z-index: 100;
+    }
+
+    .progress-bar-fill {
+      height: 100%;
+      background: var(--color-accent);
+      width: 0%;
+      box-shadow: 0 0 8px var(--color-accent);
+      transition: width var(--transition-time-medium) var(--transition-ease);
+    }
+
+    /* Presenter Navigation Drawer (Sidebar) */
+    .nav-drawer {
+      position: fixed;
+      top: 0;
+      right: -320px;
+      width: 320px;
+      height: 100%;
+      background: rgba(8, 8, 10, 0.95);
+      border-left: 1px solid var(--color-grid-strong);
+      backdrop-filter: blur(24px);
+      z-index: 500;
+      padding: 6rem 1.8rem 2rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+      transition: right var(--transition-time-medium) var(--transition-ease);
+      box-shadow: -20px 0 50px rgba(0, 0, 0, 0.8);
+      overflow-y: auto;
+    }
+    
+    .nav-drawer.open {
+      right: 0;
+    }
+    
+    .drawer-header {
+      border-bottom: 1px solid var(--color-grid-strong);
+      padding-bottom: 0.8rem;
+    }
+    
+    .drawer-header h3 {
+      font-size: 1.2rem;
+      color: var(--color-ink);
+      font-family: var(--font-sans);
+      font-weight: 500;
+      letter-spacing: 0;
+    }
+    
+    .drawer-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+      list-style: none;
+    }
+    
+    .drawer-item {
+      padding: 0.6rem 0.8rem;
+      border-radius: 6px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 0.85rem;
+      color: var(--color-body);
+      transition: all var(--transition-time-fast) var(--transition-ease);
+      border: 1px solid transparent;
+    }
+    
+    .drawer-item:hover {
+      background: rgba(255, 255, 255, 0.02);
+      color: var(--color-ink);
+    }
+    
+    .drawer-item.active {
+      background: var(--color-accent-soft);
+      border-color: rgba(200, 162, 90, 0.15);
+      color: var(--color-ink);
+    }
+    
+    .drawer-item-title {
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      max-width: 170px;
+    }
+    
+    .drawer-item-meta {
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-family: var(--font-mono);
+      font-size: 0.68rem;
+    }
+    
+    .drawer-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background-color: var(--dot-color, var(--color-muted));
+      display: inline-block;
+    }
+    
+    .drawer-close-btn {
+      position: absolute;
+      top: 2rem;
+      right: 1.8rem;
+      background: transparent;
+      border: none;
+      color: var(--color-muted);
+      cursor: pointer;
+      font-size: 1.4rem;
+      transition: color var(--transition-time-fast) var(--transition-ease);
+    }
+    
+    .drawer-close-btn:hover {
+      color: var(--color-ink);
+    }
+    
+    /* Overlay backdrop when drawer open */
+    .drawer-backdrop {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.5);
+      z-index: 490;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity var(--transition-time-medium) var(--transition-ease);
+      backdrop-filter: blur(4px);
+    }
+    
+    .drawer-backdrop.active {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    /* Embedded SVG Styles */
+    .logo-svg {
+      max-width: 280px;
+      width: 100%;
+      height: auto;
+      margin-bottom: 1rem;
+      display: block;
+    }
+
+    .qr-svg {
+      width: 130px;
+      height: 130px;
+      background: white;
+      padding: 6px;
+      border-radius: 6px;
+      display: block;
+      box-shadow: 0 0 15px rgba(200, 162, 90, 0.15);
+    }
+
+    /* Interactive Sub-Tabs Visual Styles */
+    .tab-nav {
+      display: flex;
+      gap: 0.5rem;
+      border-bottom: 1px solid var(--color-grid);
+      padding-bottom: 1px;
+      margin-bottom: 1.5rem;
+      overflow-x: auto;
+      scrollbar-width: none; /* Hide scrollbar for Firefox */
+    }
+    
+    .tab-nav::-webkit-scrollbar {
+      display: none; /* Hide scrollbar for Chrome/Safari */
+    }
+    
+    .tab-btn {
+      background: transparent;
+      border: none;
+      border-bottom: 2px solid transparent;
+      color: var(--color-muted);
+      cursor: pointer;
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      padding: 0.6rem 1.2rem;
+      transition: all var(--transition-time-fast) var(--transition-ease);
+      white-space: nowrap;
+    }
+    
+    .tab-btn:hover {
+      color: var(--color-ink);
+    }
+    
+    .tab-btn.active {
+      color: var(--color-accent-light);
+      border-bottom-color: var(--color-accent);
+    }
+    
+    .tab-pane {
+      display: none;
+      animation: tabFadeIn var(--transition-time-medium) var(--transition-ease);
+    }
+    
+    .tab-pane.active {
+      display: block;
+    }
+    
+    @keyframes tabFadeIn {
+      from { opacity: 0; transform: translateY(8px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Interactive Accordion / Cards List */
+    .interactive-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0.8rem;
+    }
+    
+    .list-item-trigger {
+      background: var(--color-surface-2);
+      border: 1px solid var(--color-grid);
+      border-radius: 8px;
+      padding: 1rem 1.4rem;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      transition: all var(--transition-time-fast) var(--transition-ease);
+    }
+    
+    .list-item-trigger:hover {
+      border-color: rgba(200, 162, 90, 0.2);
+      background: rgba(255, 255, 255, 0.01);
+    }
+    
+    .list-item-trigger.active {
+      border-color: rgba(200, 162, 90, 0.3);
+      border-bottom-left-radius: 0;
+      border-bottom-right-radius: 0;
+      background: rgba(200, 162, 90, 0.02);
+    }
+    
+    .list-item-body {
+      display: none;
+      background: rgba(17, 17, 19, 0.3);
+      border: 1px solid var(--color-grid);
+      border-top: none;
+      border-bottom-left-radius: 8px;
+      border-bottom-right-radius: 8px;
+      padding: 1.4rem;
+      animation: tabFadeIn var(--transition-time-medium) var(--transition-ease);
+    }
+    
+    .list-item-body.active {
+      display: block;
+    }
+    
+    .chevron-icon {
+      transition: transform var(--transition-time-fast) var(--transition-ease);
+      display: inline-block;
+      font-size: 0.8rem;
+      color: var(--color-muted);
+    }
+    
+    .list-item-trigger.active .chevron-icon {
+      transform: rotate(90deg);
+      color: var(--color-accent);
+    }
+
+    /* Specific Layout Elements */
+    .text-center {
+      text-align: center;
+    }
+    
+    .flex-center {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+    
+    .grid-vertical-align {
+      align-items: center;
+    }
+
+    /* Custom Diagram SVGs */
+    .diagram-svg {
+      width: 100%;
+      height: auto;
+      max-height: 380px;
+    }
+    
+    .diagram-node {
+      fill: var(--color-surface);
+      stroke: var(--color-grid-strong);
+      stroke-width: 1;
+      transition: all var(--transition-time-medium) var(--transition-ease);
+      cursor: pointer;
+    }
+    
+    .diagram-node:hover {
+      stroke: var(--color-accent);
+      fill: rgba(20, 20, 24, 0.8);
+      filter: drop-shadow(0 0 10px rgba(200, 162, 90, 0.15));
+    }
+    
+    .diagram-text-main {
+      font-family: var(--font-sans);
+      font-size: 13px;
+      font-weight: 500;
+      fill: var(--color-ink);
+    }
+    
+    .diagram-text-sub {
+      font-family: var(--font-mono);
+      font-size: 9px;
+      fill: var(--color-muted);
+      letter-spacing: 0.05em;
+    }
+    
+    .diagram-line {
+      stroke: var(--color-grid-strong);
+      stroke-width: 1;
+      stroke-dasharray: 4, 4;
+      animation: dash 30s linear infinite;
+    }
+    
+    @keyframes dash {
+      to {
+        stroke-dashoffset: -1000;
+      }
+    }
+    
+    /* Interactive team selector card styles */
+    .team-tab-card {
+      border: 1px solid var(--color-grid);
+      background: var(--color-surface-2);
+      border-radius: 8px;
+      padding: 1.2rem 1.4rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 1.2rem;
+      transition: all var(--transition-time-medium) var(--transition-ease);
+    }
+    
+    .team-tab-card:hover {
+      border-color: rgba(255,255,255,0.15);
+      background: rgba(255, 255, 255, 0.01);
+    }
+    
+    .team-tab-card.active {
+      border-color: var(--team-color);
+      background: rgba(255,255,255,0.02);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+    }
+    
+    .team-avatar-placeholder {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      background: #25252b;
+      border: 1px solid rgba(255,255,255,0.05);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.1rem;
+      font-family: var(--font-display);
+      color: var(--color-ink);
+      font-weight: 500;
+      transition: all var(--transition-time-medium) var(--transition-ease);
+    }
+    
+    .team-tab-card.active .team-avatar-placeholder {
+      background: var(--team-color);
+      color: var(--color-bg);
+      font-weight: 700;
+      box-shadow: 0 0 15px var(--team-color);
+    }
+    
+    .team-tab-card-info h4 {
+      font-size: 1.1rem;
+      margin-bottom: 0.1rem;
+      color: var(--color-ink);
+      font-family: var(--font-sans);
+      font-weight: 500;
+    }
+    
+    .team-tab-card-info p {
+      font-size: 0.78rem;
+      font-family: var(--font-mono);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--color-muted);
+    }
+
+    /* Chevron navigation indicator overlay */
+    .swipe-instruction {
+      position: fixed;
+      bottom: 1.5rem;
+      right: 2.5rem;
+      font-family: var(--font-mono);
+      font-size: 0.65rem;
+      color: var(--color-muted);
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      z-index: 100;
+      opacity: 0.6;
+      pointer-events: none;
+    }
+
+    /* Responsive Design adjustments */
+    @media (max-width: 1024px) {
+      .two-col {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+      }
+      .card-grid-3 {
+        grid-template-columns: 1fr 1fr;
+      }
+      .card-grid-4 {
+        grid-template-columns: 1fr 1fr;
+      }
+      .slide {
+        padding: 5rem 2rem 4rem;
+        justify-content: flex-start;
+      }
+      .topbar {
+        padding: 1rem 1.5rem;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .card-grid-3, .card-grid-4 {
+        grid-template-columns: 1fr;
+      }
+      .topbar-logo {
+        font-size: 1.2rem;
+      }
+      .drawer-toggle-btn {
+        padding: 0.4rem 0.8rem;
+        font-size: 0.7rem;
+      }
+      .slide {
+        padding: 5.5rem 1.2rem 4rem;
+      }
+      .meta-left {
+        gap: 0.5rem;
+      }
+      .presenter-badge {
+        padding: 0.3rem 0.8rem;
+        font-size: 0.65rem;
+      }
+    }
+    
+    @media (max-height: 720px) {
+      .slide {
+        display: block;
+        padding-top: 5rem;
+        padding-bottom: 3rem;
+      }
+      .inner {
+        gap: 1.2rem;
+      }
+      .card {
+        padding: 1.4rem;
+      }
+    }
+
+    /* External Links - Luxury styling */
+    .external-link {
+      color: var(--color-accent);
+      text-decoration: none;
+      border-bottom: 1px dashed rgba(200, 162, 90, 0.4);
+      transition: all var(--transition-time-fast) var(--transition-ease);
+      display: inline-block;
+    }
+    .external-link:hover {
+      color: var(--color-accent-light);
+      border-bottom-color: var(--color-accent-light);
+      text-shadow: 0 0 10px rgba(200, 162, 90, 0.3);
+    }
+
+    /* Left Drawer for Speaker Notes */
+    .nav-drawer.left-drawer {
+      left: -380px;
+      right: auto;
+      width: 380px;
+      border-left: none;
+      border-right: 1px solid var(--color-grid-strong);
+      transition: left var(--transition-time-medium) var(--transition-ease);
+      box-shadow: 20px 0 50px rgba(0, 0, 0, 0.8);
+    }
+    .nav-drawer.left-drawer.open {
+      left: 0;
+      right: auto;
+    }
+    
+    .notes-text {
+      font-size: 0.95rem;
+      line-height: 1.75;
+      color: var(--color-body);
+      font-weight: 300;
+    }
+    .notes-text strong {
+      color: var(--color-ink);
+      font-weight: 500;
+    }
+  </style>
+</head>
+<body>
+  <!-- Ambient Design Layers -->
+  <div class="grain-overlay"></div>
+  <div class="mouse-spotlight"></div>
+  <div class="gradient-mesh">
+    <div class="blob blob-1"></div>
+    <div class="blob blob-2"></div>
+  </div>
+  <canvas class="particle-canvas" id="particles"></canvas>
+  <div class="drawer-backdrop" id="drawerBackdrop"></div>
+
+  <!-- Persistent Header -->
+  <header class="topbar">
+    <a href="#" class="topbar-logo">MIRROU<span>.</span></a>
+    <div style="display: flex; gap: 0.8rem; align-items: center;">
+      <div class="nav-controls">
+        <button class="nav-btn" id="prevBtn" aria-label="Vorherige Folie">&#8249;</button>
+        <span class="slide-counter" id="counter">1 / 15</span>
+        <button class="nav-btn" id="nextBtn" aria-label="Nächste Folie">&#8250;</button>
+      </div>
+      <button class="drawer-toggle-btn" id="notesToggle" style="border-color: rgba(200, 162, 90, 0.35); color: var(--color-accent-light);">Notizen</button>
+      <button class="drawer-toggle-btn" id="drawerToggle">Navigator</button>
+    </div>
+  </header>
+
+  <!-- Speaker Notes Drawer (Left Sidebar) -->
+  <aside class="nav-drawer left-drawer" id="notesDrawer">
+    <button class="drawer-close-btn" id="notesClose" aria-label="Notizen schließen" style="right: auto; left: 1.8rem;">&times;</button>
+    <div class="drawer-header" style="padding-left: 2rem;">
+      <h3 style="color: var(--color-accent); font-family: var(--font-display); font-size: 1.3rem; letter-spacing: 0.05em;">REFERENTEN-SPRACHTEXT</h3>
+      <div style="margin-top: 0.5rem; display: flex; align-items: center; gap: 0.5rem;">
+        <span class="card-label" style="margin-bottom: 0;">Sprecher:</span>
+        <span id="notesPresenter" class="presenter-badge" style="--presenter-color: var(--color-accent);">Yahya</span>
+      </div>
+    </div>
+    <div style="margin-top: 2rem; overflow-y: auto; max-height: calc(100vh - 180px); padding-right: 0.5rem;">
+      <p id="notesContent" class="notes-text">
+        Sprechtext wird geladen...
+      </p>
+    </div>
+  </aside>
+
+  <!-- Presenter Drawer Navigation (Sidebar) -->
+  <aside class="nav-drawer" id="navDrawer">
+    <button class="drawer-close-btn" id="drawerClose" aria-label="Navigator schließen">&times;</button>
+    <div class="drawer-header">
+      <h3>Präsentationsstruktur</h3>
+    </div>
+    <ul class="drawer-list" id="drawerList">
+      <!-- Items dynamically populated via JS to avoid mismatch -->
+    </ul>
+  </aside>
+
+  <!-- Bottom Progress & Helper -->
+  <div class="progress-bar-container">
+    <div class="progress-bar-fill" id="progressBar"></div>
+  </div>
+  <div class="swipe-instruction">Pfeiltasten zum Navigieren</div>
+
+  <!-- MAIN PRESENTATION SLIDES (15 Slides) -->
+  <main class="deck">
+    
+    <!-- SLIDE 1: Titel & Begrüßung (ALL) -->
+    <section class="slide active" data-slide="1" data-presenter="All" data-color="var(--color-accent)">
+      <div class="inner text-center flex-center" style="min-height: 80vh;">
+        <div class="reveal">
+          <svg class="logo-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 220">
+            <rect width="800" height="220" fill="transparent"/>
+            <text x="400" y="110" font-family="'Cormorant Garamond', Georgia, serif" font-size="96" font-weight="300" fill="#C8A25A" text-anchor="middle" letter-spacing="18">MIRROU</text>
+            <line x1="220" y1="135" x2="580" y2="135" stroke="#C8A25A" stroke-width="0.5" opacity="0.4"/>
+            <text x="400" y="165" font-family="'Inter', sans-serif" font-size="14" font-weight="400" fill="#F2EFE9" text-anchor="middle" letter-spacing="8" opacity="0.8">CREATIVE STUDIO</text>
+          </svg>
+        </div>
+        <h1 class="reveal reveal-delay-1" style="font-size: clamp(1.8rem, 4vw, 3.2rem); margin-bottom: 0.8rem; font-weight: 300;">
+          Aufbau einer KI-integrierten Performance Creative Agency
+        </h1>
+        <p class="subtitle reveal reveal-delay-2" style="margin-bottom: 3rem;">
+          Frontier Firm Architektur, Hybrid Production &amp; EU AI Act-Compliance als Wettbewerbsvorteil
+        </p>
+        
+        <div class="card-grid reveal reveal-delay-3" style="max-width: 1080px; width: 100%;">
+          <div class="card" style="padding: 1.2rem 1.5rem; text-align: center; border-left: 2px solid var(--color-olha);">
+            <div class="card-label" style="color: var(--color-olha);">Creative Direction</div>
+            <strong style="font-size: 0.95rem;">Olha Yevtushenko</strong>
+          </div>
+          <div class="card" style="padding: 1.2rem 1.5rem; text-align: center; border-left: 2px solid var(--color-denys);">
+            <div class="card-label" style="color: var(--color-denys);">Performance &amp; Analytics</div>
+            <strong style="font-size: 0.95rem;">Denys Demyanyshyn</strong>
+          </div>
+          <div class="card" style="padding: 1.2rem 1.5rem; text-align: center; border-left: 2px solid var(--color-ralph);">
+            <div class="card-label" style="color: var(--color-ralph);">CRM &amp; Client Success</div>
+            <strong style="font-size: 0.95rem;">Ralph Kindermann</strong>
+          </div>
+          <div class="card" style="padding: 1.2rem 1.5rem; text-align: center; border-left: 2px solid var(--color-yahya);">
+            <div class="card-label" style="color: var(--color-yahya);">Growth &amp; Project Lead</div>
+            <strong style="font-size: 0.95rem;">Yahya Yildirim</strong>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 2: Das Betriebssystem & Agenda (Ralph) -->
+    <section class="slide" data-slide="2" data-presenter="Ralph" data-color="var(--color-ralph)">
+      <div class="inner">
+        <div class="slide-meta">
+          <div class="meta-left">
+            <span class="presenter-badge">Ralph Kindermann</span>
+            <h3>Studio-Betriebssystem</h3>
+          </div>
+          <span class="slide-num">02 / 15</span>
+        </div>
+        <h2>Das Mirrou-OS: 4 Personen, 2 Standorte, 1 Engine</h2>
+        
+        <div class="two-col col-equal grid-vertical-align">
+          <div class="reveal">
+            <p style="font-size: 1.1rem; margin-bottom: 1.2rem; font-weight: 300;">
+              Wir haben Mirrou als <strong>Frontier Firm</strong> konzipiert: ein hocheffizientes, prozessgesteuertes Studio. 
+              Wir trennen die operative Basis geografisch, um Talente optimal zu nutzen, und vernetzen sie über ein zentralisiertes Informationssystem.
+            </p>
+            
+            <!-- Interactive Team Member Switcher -->
+            <div class="interactive-list" style="margin-top: 1rem;">
+              <div class="team-tab-card active" data-team="olha" style="--team-color: var(--color-olha);">
+                <div class="team-avatar-placeholder">OY</div>
+                <div class="team-tab-card-info">
+                  <h4>Olha Yevtushenko</h4>
+                  <p>Creative Direction (Hamburg)</p>
+                </div>
+              </div>
+              <div class="team-tab-card" data-team="denys" style="--team-color: var(--color-denys);">
+                <div class="team-avatar-placeholder">DD</div>
+                <div class="team-tab-card-info">
+                  <h4>Denys Demyanyshyn</h4>
+                  <p>Performance &amp; Ad-KPIs (Hamburg)</p>
+                </div>
+              </div>
+              <div class="team-tab-card" data-team="ralph" style="--team-color: var(--color-ralph);">
+                <div class="team-avatar-placeholder">RK</div>
+                <div class="team-tab-card-info">
+                  <h4>Ralph Kindermann</h4>
+                  <p>CRM, SOPs &amp; Handover (Berlin)</p>
+                </div>
+              </div>
+              <div class="team-tab-card" data-team="yahya" style="--team-color: var(--color-yahya);">
+                <div class="team-avatar-placeholder">YY</div>
+                <div class="team-tab-card-info">
+                  <h4>Yahya Yildirim</h4>
+                  <p>Growth, Tech &amp; Compliance (Berlin)</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Dynamic Content Pane for selected member -->
+          <div class="card accented reveal reveal-delay-2" id="teamDetailsPane" style="min-height: 380px; display: flex; flex-direction: column; justify-content: space-between;">
+            <div>
+              <div class="card-label" id="teamDetailsLabel" style="color: var(--color-olha);">Fokus: Produktion</div>
+              <h4 id="teamDetailsTitle" style="font-size: 1.8rem; margin-bottom: 1rem;">Kreatives Zentrum</h4>
+              <p id="teamDetailsText" style="font-size: 0.95rem; margin-bottom: 1.5rem;">
+                Verantwortet das Brandbook, die 12 Logo-SVG-Systeme sowie das Design-Konzept der 4 Demo-Cases. Entwickelt den visuellen Stil für Beauty- und Skincare-Produkte in der Hamburger Produktionsumgebung.
+              </p>
+            </div>
+            <div>
+              <div class="card-label">Tools &amp; Workflows</div>
+              <p id="teamDetailsTools" style="font-family: var(--font-mono); font-size: 0.8rem; color: var(--color-accent-light);">
+                Adobe CC · Midjourney · Firefly · Figma
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 3: WHY - Das Problem (Yahya) -->
+    <section class="slide" data-slide="3" data-presenter="Yahya" data-color="var(--color-yahya)">
+      <div class="inner">
+        <div class="slide-meta">
+          <div class="meta-left">
+            <span class="presenter-badge">Yahya Yildirim</span>
+            <h3>Die Marktlücke</h3>
+          </div>
+          <span class="slide-num">03 / 15</span>
+        </div>
+        <h2>Creative Fatigue als lautloser ROI-Killer</h2>
+        
+        <div class="two-col">
+          <div class="reveal">
+            <p style="margin-bottom: 1.5rem; font-size: 1.05rem;">
+              Beauty- &amp; Health-Marken im DACH-Raum stoßen ab einem Monats-Ad-Spend von <strong>20k€–150k€</strong> an ein unsichtbares Limit. Während Targeting-Algorithmen standardisiert sind, brennt der ROI am Flaschenhals mangelnder Content-Varianz aus.
+            </p>
+            <div class="card accented" style="margin-bottom: 1rem;">
+              <div class="card-label" style="color: var(--color-accent);">Wissenschaftliche Beobachtung</div>
+              <h4>Das Ermüdungs-Paradoxon</h4>
+              <p style="font-size: 0.92rem;">
+                Sinken die Klickraten (CTR) und steigen die Frequenzen, verringern Plattformen wie Meta stillschweigend die Reichweite. Wer in klassischen "Kampagnen-Shootings" denkt, reagiert zu langsam. Nur eine kontinuierliche Engine schützt vor dem Performance-Absturz.
+              </p>
+            </div>
+          </div>
+          
+          <div class="card reveal reveal-delay-2" style="background: rgba(20, 20, 24, 0.4);">
+            <div class="card-label">Fatigue-Onset Benchmarks (Beauty DACH 2026)</div>
+            <p style="font-size: 0.85rem; color: var(--color-muted); margin-bottom: 1.5rem;">
+              Basierend auf Meta Business &amp; WordStream Benchmark-Berichten bei &gt;30.000 € monatlichem Ad-Spend:
+            </p>
+            <div style="margin-bottom: 1.5rem;">
+              <div class="metric-row">
+                <span class="metric-large" style="color: #E07A5F;">-35% bis -55%</span>
+                <span class="metric-unit">CTR-Abfall</span>
+              </div>
+              <div class="bar-track"><div class="bar-fill" data-width="55" style="background: var(--color-olha);"></div></div>
+              <p style="font-size: 0.78rem; margin-top: 0.3rem; color: var(--color-muted);">Eintritt nach nur 14–28 Tagen Laufzeit</p>
+            </div>
+            
+            <div style="margin-bottom: 1.5rem;">
+              <div class="metric-row">
+                <span class="metric-large" style="color: #E07A5F;">+45% bis +70%</span>
+                <span class="metric-unit">CPC-Anstieg</span>
+              </div>
+              <div class="bar-track"><div class="bar-fill" data-width="70" style="background: var(--color-olha);"></div></div>
+              <p style="font-size: 0.78rem; margin-top: 0.3rem; color: var(--color-muted);">Durch nachlassendes Relevanz-Ranking</p>
+            </div>
+            
+            <div>
+              <div class="metric-row">
+                <span class="metric-large">2-4</span>
+                <span class="metric-unit">Wochen Halbwertszeit</span>
+              </div>
+              <div class="bar-track"><div class="bar-fill" data-width="85"></div></div>
+              <p style="font-size: 0.78rem; margin-top: 0.3rem; color: var(--color-muted);">Maximaler Lebenszyklus eines statischen Ad-Sets</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 4: SOLUTION & POSITIONING (Yahya) -->
+    <section class="slide" data-slide="4" data-presenter="Yahya" data-color="var(--color-yahya)">
+      <div class="inner">
+        <div class="slide-meta">
+          <div class="meta-left">
+            <span class="presenter-badge">Yahya Yildirim</span>
+            <h3>Die Positionierung</h3>
+          </div>
+          <span class="slide-num">04 / 15</span>
+        </div>
+        <h2>Positionierungs-Claim: „Algorithm of Soul“</h2>
+        
+        <div class="card-grid reveal">
+          <div class="card">
+            <div class="card-label">Unsere Nische</div>
+            <h4>D2C Beauty, Health &amp; Lifestyle</h4>
+            <p style="font-size: 0.88rem;">
+              Mikro-Texturen, sensible Compliance-Linien (HCVO) und die Identifikations-Wende auf TikTok machen diese Nische zu einem eigenen Spielfeld. Generalisten scheitern hier – wir liefern.
+            </p>
+          </div>
+          <div class="card">
+            <div class="card-label">Unser Versprechen</div>
+            <h4>Ästhetik + Performance</h4>
+            <p style="font-size: 0.88rem;">
+              Klassische Kreativagenturen ignorieren Daten; Performance-Agenturen zerstören das Marken-Image mit seelenlosen Vorlagen. Mirrou liefert beides: Editorial-grade Visuals, die mathematisch skalieren.
+            </p>
+          </div>
+          <div class="card">
+            <div class="card-label">Unsere Methode</div>
+            <h4>Algorithm of Soul</h4>
+            <p style="font-size: 0.88rem;">
+              Die operative Spannung zwischen Seele und Zahl. Die menschliche künstlerische Vision leitet das Produkt, während generative Workflows die notwendige Test-Frequenz erzeugen.
+            </p>
+          </div>
+        </div>
+        
+        <div class="table-container reveal reveal-delay-2" style="margin-top: 0.5rem;">
+          <table>
+            <thead>
+              <tr>
+                <th>Zusammenarbeitsmodell</th>
+                <th>Zielgruppe / Einsatzzweck</th>
+                <th>Inhalt &amp; Rhythmus</th>
+                <th>Preispunkt (DACH-first)</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>E-Commerce &amp; Catalog</strong></td>
+                <td>Premium-Brands vor Launch</td>
+                <td>High-End Produkt- und Ingredient-Fotografie in Hamburg, Retusche</td>
+                <td>1.500 € – 3.000 € / Shooting</td>
+              </tr>
+              <tr>
+                <td><strong>Social Media &amp; Advertising</strong></td>
+                <td>Skalierende D2C-Brands</td>
+                <td>Kampagnenset (Meta, TikTok), Hook-Testing, 3-5 Varianten pro Motiv</td>
+                <td>2.000 € – 5.000 € / Set</td>
+              </tr>
+              <tr>
+                <td><strong>Creative Retainer (Tier S/M/L)</strong></td>
+                <td>Monatlicher Spend 10k–150k€</td>
+                <td>Laufende Creative-Engine: Asset-Refresh, wöchentlicher Loop, Learning Logs</td>
+                <td>2.000 € – 15.000 € / Monat</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 5: FRONTIER FIRM ARCHITECTURE (Yahya) -->
+    <section class="slide" data-slide="5" data-presenter="Yahya" data-color="var(--color-yahya)">
+      <div class="inner">
+        <div class="slide-meta">
+          <div class="meta-left">
+            <span class="presenter-badge">Yahya Yildirim</span>
+            <h3>Die Architektur</h3>
+          </div>
+          <span class="slide-num">05 / 15</span>
+        </div>
+        <h2>Die Frontier-Architektur: Systemisiertes Skalieren</h2>
+        
+        <div class="two-col" style="grid-template-columns: 1.15fr 0.85fr;">
+          <div class="card reveal" style="padding: 1.8rem;">
+            <div class="card-label" style="color: var(--color-accent);">Die 4 operativen Schichten von Mirrou</div>
+            
+            <!-- Embedded Custom SVG Diagram for Architecture layers -->
+            <svg class="diagram-svg" viewBox="0 0 500 280">
+              <!-- Lines connecting nodes -->
+              <line x1="250" y1="40" x2="250" y2="240" class="diagram-line" />
+              <line x1="120" y1="140" x2="380" y2="140" class="diagram-line" />
+              
+              <!-- Layer 1: Intelligence -->
+              <g transform="translate(160, 10)">
+                <rect x="0" y="0" width="180" height="50" rx="6" class="diagram-node" />
+                <text x="90" y="22" text-anchor="middle" class="diagram-text-main">01. Intelligence Layer</text>
+                <text x="90" y="38" text-anchor="middle" class="diagram-text-sub">Perplexity Spaces · 5 Archive</text>
+              </g>
+              
+              <!-- Layer 2: Production -->
+              <g transform="translate(10, 115)">
+                <rect x="0" y="0" width="180" height="50" rx="6" class="diagram-node" />
+                <text x="90" y="22" text-anchor="middle" class="diagram-text-main">02. Production Layer</text>
+                <text x="90" y="38" text-anchor="middle" class="diagram-text-sub">Adobe CC · Midjourney · Firefly</text>
+              </g>
+              
+              <!-- Layer 3: Infrastructure -->
+              <g transform="translate(310, 115)">
+                <rect x="0" y="0" width="180" height="50" rx="6" class="diagram-node" />
+                <text x="90" y="22" text-anchor="middle" class="diagram-text-main">03. Infrastructure Layer</text>
+                <text x="90" y="38" text-anchor="middle" class="diagram-text-sub">GCP Cloud Run · Docker · GitHub</text>
+              </g>
+              
+              <!-- Layer 4: Performance -->
+              <g transform="translate(160, 220)">
+                <rect x="0" y="0" width="180" height="50" rx="6" class="diagram-node" />
+                <text x="90" y="22" text-anchor="middle" class="diagram-text-main">04. Performance Layer</text>
+                <text x="90" y="38" text-anchor="middle" class="diagram-text-sub">Meta/TikTok Ads Manager · GA4</text>
+              </g>
+            </svg>
+          </div>
+          
+          <div class="card reveal reveal-delay-2 accented" style="display: flex; flex-direction: column; justify-content: space-between;">
+            <div>
+              <div class="card-label">Das Perfect Twin-Prinzip</div>
+              <h4 style="margin-bottom: 0.8rem;">Mensch + Maschine</h4>
+              <p style="font-size: 0.9rem; margin-bottom: 1.2rem;">
+                Wir erweitern jeden Spezialisten im Team durch eine passgenaue KI-Instanz. Das verdoppelt den Output bei gleichbleibender Qualität.
+              </p>
+              <ul class="list-styled" style="font-size: 0.82rem; gap: 0.5rem;">
+                <li><strong>Yahya + GPT Twin:</strong> Positionierung, Copy &amp; B2B-Skripte</li>
+                <li><strong>Olha + Gen-Visuals:</strong> Hintergrund-Variationen in Sekunden</li>
+                <li><strong>Denys + Claude Code:</strong> CSV-Benchmark-Auswertungen</li>
+                <li><strong>Ralph + HubSpot API:</strong> Automatisches Lead-Routing</li>
+              </ul>
+            </div>
+            <div style="border-top: 1px solid var(--color-grid); padding-top: 1rem; margin-top: 1rem;">
+              <p style="font-size: 0.8rem; color: var(--color-muted);">
+                Ergebnis: 4-Personen Kernteam leistet den Output eines klassischen 15-Personen Content-Studios.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 6: BRAND BOOK & VISUAL IDENTITY (Olha) -->
+    <section class="slide" data-slide="6" data-presenter="Olha" data-color="var(--color-olha)">
+      <div class="inner">
+        <div class="slide-meta">
+          <div class="meta-left">
+            <span class="presenter-badge" style="--presenter-color: var(--color-olha);">Olha Yevtushenko</span>
+            <h3>Visual Identity</h3>
+          </div>
+          <span class="slide-num">06 / 15</span>
+        </div>
+        <h2>Branding: Der Dark Luxury Design Code</h2>
+        
+        <div class="two-col" style="grid-template-columns: 0.8fr 1.2fr;">
+          <div class="reveal">
+            <p style="margin-bottom: 1.5rem; font-size: 1.05rem;">
+              Für Premium-Zielgruppen im Kosmetik- und Gesundheitsmarkt wählen wir eine kontrastreiche, tiefschwarze Ästhetik. Ein restriktives visuelles System erzeugt Autorität und sticht aus der typisch hellen, beigen D2C-Flut hervor.
+            </p>
+            
+            <div class="card-label">Unsere Farb-Tokens (CSS-Standard)</div>
+            <div class="card-grid" style="grid-template-columns: repeat(2, 1fr); gap: 0.8rem; margin-top: 0.5rem;">
+              <div class="card" style="padding: 1rem; background: #080808; border: 1px solid rgba(255,255,255,0.05); text-align: center;">
+                <span style="font-family: var(--font-mono); font-size: 0.72rem; color: var(--color-muted);">Deep Onyx</span>
+                <strong style="display: block; font-size: 0.85rem; margin-top: 0.3rem;">#080808</strong>
+              </div>
+              <div class="card" style="padding: 1rem; background: #111113; border: 1px solid rgba(255,255,255,0.05); text-align: center;">
+                <span style="font-family: var(--font-mono); font-size: 0.72rem; color: var(--color-muted);">Surface</span>
+                <strong style="display: block; font-size: 0.85rem; margin-top: 0.3rem;">#111113</strong>
+              </div>
+              <div class="card" style="padding: 1rem; background: #080808; border: 1px solid var(--color-accent); text-align: center;">
+                <span style="font-family: var(--font-mono); font-size: 0.72rem; color: var(--color-accent);">Mirrou Gold</span>
+                <strong style="display: block; font-size: 0.85rem; margin-top: 0.3rem; color: var(--color-accent-light);">#C8A25A</strong>
+              </div>
+              <div class="card" style="padding: 1rem; background: #F2EFE9; border: 1px solid transparent; text-align: center;">
+                <span style="font-family: var(--font-mono); font-size: 0.72rem; color: #000; opacity: 0.6;">Ivory Text</span>
+                <strong style="display: block; font-size: 0.85rem; margin-top: 0.3rem; color: #000;">#F2EFE9</strong>
+              </div>
+            </div>
+          </div>
+          
+          <div class="card reveal reveal-delay-2 accented">
+            <div class="card-label">Unsere Typografische Hierarchie</div>
+            <div style="border-bottom: 1px solid var(--color-grid); padding-bottom: 1rem; margin-bottom: 1rem;">
+              <span class="card-label" style="font-size: 0.6rem; color: var(--color-accent);">Display-Schrift (Serif)</span>
+              <span style="font-family: var(--font-display); font-size: 2rem; display: block; line-height: 1.1; margin-top: 0.2rem;">Cormorant Garamond Light</span>
+              <p style="font-size: 0.85rem; color: var(--color-muted); margin-top: 0.3rem;">Wird exklusiv für Headlines und emotionale Claims genutzt (Gewicht 300).</p>
+            </div>
+            <div style="border-bottom: 1px solid var(--color-grid); padding-bottom: 1rem; margin-bottom: 1rem;">
+              <span class="card-label" style="font-size: 0.6rem; color: var(--color-accent);">Body-Schrift (Sans-Serif)</span>
+              <span style="font-family: var(--font-sans); font-size: 1.1rem; display: block; font-weight: 300; margin-top: 0.2rem;">Inter Regular / Light</span>
+              <p style="font-size: 0.85rem; color: var(--color-muted); margin-top: 0.3rem;">Sichert Lesbarkeit in Fließtexten auf mobilen Endgeräten.</p>
+            </div>
+            <div>
+              <span class="card-label" style="font-size: 0.6rem; color: var(--color-accent);">Meta-Schrift (Monospace)</span>
+              <span style="font-family: var(--font-mono); font-size: 0.85rem; display: block; color: var(--color-accent-light); margin-top: 0.2rem;">JetBrains Mono</span>
+              <p style="font-size: 0.85rem; color: var(--color-muted); margin-top: 0.3rem;">Für Metadaten, presenter-pills, KPIs und Code-Elemente (letter-spacing 0.15em).</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 7: CASE STUDIES (Olha) -->
+    <section class="slide" data-slide="7" data-presenter="Olha" data-color="var(--color-olha)">
+      <div class="inner">
+        <div class="slide-meta">
+          <div class="meta-left">
+            <span class="presenter-badge" style="--presenter-color: var(--color-olha);">Olha Yevtushenko</span>
+            <h3>Die 4 Visual-Systeme</h3>
+          </div>
+          <span class="slide-num">07 / 15</span>
+        </div>
+        <h2>Visueller Proof-of-Concept: Unsere Cases</h2>
+        
+        <div class="two-col col-equal grid-vertical-align">
+          <!-- Cases Selectors -->
+          <div class="reveal">
+            <p style="margin-bottom: 1rem; font-size: 1.05rem;">
+              Wir haben vier maßgeschneiderte Design-Systeme konzipiert, die unterschiedliche Ästhetiken innerhalb der Beauty- &amp; Health-Industrie abdecken. 
+            </p>
+            
+            <div class="interactive-list" style="margin-top: 1rem;">
+              <div class="list-item-trigger active" data-case="luminous">
+                <strong>01. Luminous Aura (Beauty)</strong>
+                <span class="chevron-icon">&#9656;</span>
+              </div>
+              <div class="list-item-trigger" data-case="vitality">
+                <strong>02. Vitality Pulse (Energy)</strong>
+                <span class="chevron-icon">&#9656;</span>
+              </div>
+              <div class="list-item-trigger" data-case="essence">
+                <strong>03. Essence Drift (Fragrance)</strong>
+                <span class="chevron-icon">&#9656;</span>
+              </div>
+              <div class="list-item-trigger" data-case="neural">
+                <strong>04. Neural Glow (Bio-Tech)</strong>
+                <span class="chevron-icon">&#9656;</span>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Case Detail Box -->
+          <div class="card accented reveal reveal-delay-2" id="caseDetailsPane" style="min-height: 420px; display: flex; flex-direction: column; justify-content: space-between;">
+            <div>
+              <div class="card-label" id="caseDetailsLabel">Visuelles System 01</div>
+              <h4 id="caseDetailsTitle" style="font-size: 1.8rem; margin-bottom: 0.8rem; color: var(--color-accent-light);">Luminous Aura</h4>
+              
+              <ul class="list-styled" id="caseDetailsList" style="font-size: 0.92rem; gap: 0.6rem;">
+                <li><strong>Zielgruppe:</strong> D2C Skincare, Premium Anti-Aging Serum</li>
+                <li><strong>Visuelle Welt:</strong> Dunkler Marmor, schwebende Goldpartikel, kinematische Stille</li>
+                <li><strong>Produktionstyp:</strong> Hybrid (Produkt fotografiert, Umgebung KI)</li>
+                <li><strong>Funnel-Rolle:</strong> Conversion-Stills &amp; E-Commerce Storefront</li>
+              </ul>
+            </div>
+            <div style="border-top: 1px solid var(--color-grid); padding-top: 1rem; margin-top: 1rem;">
+              <div class="card-label">Auswertung &amp; Benchmarks (LumiSkin Case)</div>
+              <p id="caseDetailsMeta" style="font-size: 0.85rem; color: var(--color-accent);">
+                CTR +82% (0.85% &rarr; 1.55%) · CPC -38% (1.42&euro; &rarr; 0.88&euro;) · ROAS +42% (1.9 &rarr; 2.7)
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 8: HYBRID PRODUCTION WORKFLOW (Olha) -->
+    <section class="slide" data-slide="8" data-presenter="Olha" data-color="var(--color-olha)">
+      <div class="inner">
+        <div class="slide-meta">
+          <div class="meta-left">
+            <span class="presenter-badge" style="--presenter-color: var(--color-olha);">Olha Yevtushenko</span>
+            <h3>Produktions-Prozess</h3>
+          </div>
+          <span class="slide-num">08 / 15</span>
+        </div>
+        <h2>Der Hybrid Production Workflow</h2>
+        
+        <div class="two-col grid-vertical-align">
+          <div class="reveal">
+            <p style="margin-bottom: 1.2rem; font-size: 1.1rem;">
+              Wir heben die finanzielle Hürde klassischer Studio-Produktionen auf. Durch die Synthese aus realer Produktfotografie und KI-gestütztem Set-Bau senken wir die Time-to-Market dramatisch.
+            </p>
+            <div class="card accented">
+              <div class="card-label" style="color: var(--color-olha);">Die Goldene Regel von Mirrou</div>
+              <h4>Das Produkt bleibt echt</h4>
+              <p style="font-size: 0.92rem;">
+                Wir generieren <strong>niemals</strong> das Produkt selbst (Uncanny Valley-Gefahr). Textur der Creme, Prägung des Flakons und Founder-Gesichter werden real fotografiert. Die KI generiert ausschließlich Lichtstimmungen, abstrakte Hintergründe und dreidimensionale Bildwelten.
+              </p>
+            </div>
+          </div>
+          
+          <div class="card reveal reveal-delay-2">
+            <div class="card-label">Vorteils-Matrix (Klassisch vs. Mirrou Hybrid)</div>
+            
+            <table style="font-size: 0.85rem; width: 100%;">
+              <thead>
+                <tr>
+                  <th>Dimension</th>
+                  <th>Klassisch</th>
+                  <th>Mirrou Hybrid</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>Set-Vorbereitung</strong></td>
+                  <td>1–2 Wochen (Studiobau)</td>
+                  <td><strong>3–5 Tage</strong> (Digitales Design)</td>
+                </tr>
+                <tr>
+                  <td><strong>Shooting bis Delivery</strong></td>
+                  <td>2–3 Wochen (Retusche)</td>
+                  <td><strong>5–8 Tage</strong> (Asset-Rendering)</td>
+                </tr>
+                <tr>
+                  <td><strong>Output pro Tag</strong></td>
+                  <td>8–15 Motive</td>
+                  <td><strong>15–25 Assets</strong> + A/B-Variationen</td>
+                </tr>
+                <tr>
+                  <td><strong>Modell-Kosten</strong></td>
+                  <td>Hoch (Buchung, Buyout)</td>
+                  <td><strong>Niedrig</strong> (Reale Gesichter + KI-Körper)</td>
+                </tr>
+                <tr>
+                  <td><strong>C2PA Provenance</strong></td>
+                  <td>Optional / Fehlend</td>
+                  <td><strong>Integrierte Metadaten</strong> (Standard)</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 9: MARKETING MIX (Denys) -->
+    <section class="slide" data-slide="9" data-presenter="Denys" data-color="var(--color-denys)">
+      <div class="inner">
+        <div class="slide-meta">
+          <div class="meta-left">
+            <span class="presenter-badge" style="--presenter-color: var(--color-denys);">Denys Demyanyshyn</span>
+            <h3>Budgetierung &amp; Kanäle</h3>
+          </div>
+          <span class="slide-num">09 / 15</span>
+        </div>
+        <h2>Der Marketing-Mix: Kanalgewichtung &amp; KPIs</h2>
+        
+        <div class="reveal">
+          <p style="margin-bottom: 1.5rem; font-size: 1.05rem;">
+            Um die Creative-Engine effizient zu steuern, verteilen wir das Mediabudget strategisch über 5 Kanäle. Jeder Kanal übernimmt eine spezifische Aufgabe im Akquise-Funnel.
+          </p>
+          
+          <!-- Custom Interactive Segmented Budget Chart -->
+          <div class="card" style="padding: 1.8rem; margin-bottom: 1.5rem;">
+            <div class="card-label">Budget-Allokation nach Relevanz</div>
+            <div class="metric-row" style="justify-content: space-between; margin-bottom: 0.5rem; font-size: 0.8rem;">
+              <span style="color: var(--color-accent);">Meta Ads (40%)</span>
+              <span style="color: #5bc0be;">TikTok (25%)</span>
+              <span style="color: #3a86c8;">Google Search (20%)</span>
+              <span style="color: #8c7853;">E-Mail (10%)</span>
+              <span style="color: #6c757d;">LinkedIn (5%)</span>
+            </div>
+            
+            <!-- Segmented horizontal bar chart representing budget weights -->
+            <div class="bar-track" style="height: 18px; display: flex;">
+              <div class="bar-fill" id="mixMeta" style="height: 100%; width: 40%; background: var(--color-accent); border-radius: 0;"></div>
+              <div class="bar-fill" id="mixTikTok" style="height: 100%; width: 25%; background: #5bc0be; border-radius: 0;"></div>
+              <div class="bar-fill" id="mixGoogle" style="height: 100%; width: 20%; background: #3a86c8; border-radius: 0;"></div>
+              <div class="bar-fill" id="mixEmail" style="height: 100%; width: 10%; background: #8c7853; border-radius: 0;"></div>
+              <div class="bar-fill" id="mixLinkedIn" style="height: 100%; width: 5%; background: #6c757d; border-radius: 0;"></div>
+            </div>
+          </div>
+          
+          <div class="table-container reveal reveal-delay-1">
+            <table style="font-size: 0.88rem;">
+              <thead>
+                <tr>
+                  <th>Kanal</th>
+                  <th>Budget</th>
+                  <th>Funnel-Rolle</th>
+                  <th>Format-Schwerpunkt</th>
+                  <th>Primäre Performance-KPI</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>Meta Ads (FB/IG)</strong></td>
+                  <td style="color: var(--color-accent);">40 %</td>
+                  <td>Awareness &amp; Consideration</td>
+                  <td>Reels Video (15–30s) · Static Composites</td>
+                  <td><strong>CTR (Ø 0,85% / Target 1,55%+) · ROAS</strong></td>
+                </tr>
+                <tr>
+                  <td><strong>TikTok Ads</strong></td>
+                  <td style="color: #5bc0be;">25 %</td>
+                  <td>Upper-Funnel &amp; Hook-Testing</td>
+                  <td>Native UGC-Style Video (≤15s) · TikTok Shop</td>
+                  <td><strong>Thumb-stop Rate (0–3s View-Rate &gt;35%)</strong></td>
+                </tr>
+                <tr>
+                  <td><strong>Google Ads</strong></td>
+                  <td style="color: #3a86c8;">20 %</td>
+                  <td>Conversion &amp; High-Intent</td>
+                  <td>Search (Text) · Performance Max (Assets)</td>
+                  <td><strong>Conversion-Rate (CPA / Lead-Booking)</strong></td>
+                </tr>
+                <tr>
+                  <td><strong>Email &amp; CRM</strong></td>
+                  <td style="color: #8c7853;">10 %</td>
+                  <td>Lead Nurturing &amp; LTV</td>
+                  <td>Automatisierte Case Breakdown-Sequenzen</td>
+                  <td><strong>Öffnungsrate (Target &gt;35%) · Buchungs-Conversion</strong></td>
+                </tr>
+                <tr>
+                  <td><strong>LinkedIn (B2B)</strong></td>
+                  <td style="color: #6c757d;">5 %</td>
+                  <td>Trust &amp; Authority</td>
+                  <td>Founder Stories · Compliance Updates</td>
+                  <td><strong>B2B Inbound Requests · Profilaufrufe</strong></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 10: TESTING MATRIX & DATA LOOP (Denys) -->
+    <section class="slide" data-slide="10" data-presenter="Denys" data-color="var(--color-denys)">
+      <div class="inner">
+        <div class="slide-meta">
+          <div class="meta-left">
+            <span class="presenter-badge" style="--presenter-color: var(--color-denys);">Denys Demyanyshyn</span>
+            <h3>Data-Driven Testing</h3>
+          </div>
+          <span class="slide-num">10 / 15</span>
+        </div>
+        <h2>Der Daten-Loop: Hypothesen statt Gefühle</h2>
+        
+        <div class="two-col grid-vertical-align">
+          <div class="reveal">
+            <p style="margin-bottom: 1rem; font-size: 1.05rem;"> Jede kreative Entscheidung ist eine testbare Hypothese. Wir strukturieren unsere Creative-Engine in einen geschlossenen Datenkreislauf, um Learning-Verluste zu verhindern.</p>
+            
+            <div class="tab-nav">
+              <button class="tab-btn active" data-tab="flow">Der 5-Schritt-Algorithmus</button>
+              <button class="tab-btn" data-tab="matrix">Testing Matrix</button>
+            </div>
+            
+            <!-- Tab Pane 1: Flow -->
+            <div class="tab-pane active" id="tab-flow">
+              <div class="interactive-list">
+                <div class="card" style="padding: 1.2rem; background: rgba(255,255,255,0.01);">
+                  <strong style="color: var(--color-accent); font-family: var(--font-mono); font-size: 0.8rem; display: block; margin-bottom: 0.3rem;">SCHRITT 01 &middot; DIAGNOSE</strong>
+                  <p style="font-size: 0.88rem;"><strong>Creative Audit</strong>: In 30 Minuten analysieren wir CTR, CPC, Frequenz und das Alter der aktiven Werbemittel des Kunden auf Fatigue-Signale.</p>
+                </div>
+                <div class="card" style="padding: 1.2rem; background: rgba(255,255,255,0.01);">
+                  <strong style="color: var(--color-accent); font-family: var(--font-mono); font-size: 0.8rem; display: block; margin-bottom: 0.3rem;">SCHRITT 02 &middot; HYPOTHESE</strong>
+                  <p style="font-size: 0.88rem;"><strong>Visual Brief</strong>: Definition von 3 klaren Test-Variablen (z. B. "Dunkler Marmor schlägt weiße Textur" oder "Zahlen-Hook schlägt Problem-Hook").</p>
+                </div>
+                <div class="card" style="padding: 1.2rem; background: rgba(255,255,255,0.01);">
+                  <strong style="color: var(--color-accent); font-family: var(--font-mono); font-size: 0.8rem; display: block; margin-bottom: 0.3rem;">SCHRITT 03 &middot; TESTING &amp; LOOP</strong>
+                  <p style="font-size: 0.88rem;"><strong>A/B-Split &amp; Learning Log</strong>: Isolierter Test mit geringem Budget (5 Tage). Gewinner werden ins Hauptkonto überführt; Erkenntnisse im Log archiviert.</p>
+                </div>
+              </div>
+            </div>
+            
+            <!-- Tab Pane 2: Matrix -->
+            <div class="tab-pane" id="tab-matrix">
+              <p style="font-size: 0.9rem; margin-bottom: 1rem; color: var(--color-muted);">
+                Unsere Testmatrix isoliert vier kreative Dimensionen (Winkel), um das Targeting auf psychologischer Ebene zu verfeinern:
+              </p>
+              <div class="list-styled" style="gap: 0.6rem;">
+                <div><strong>Craft-Winkel:</strong> Fokus auf Detail, Inhaltsstoffe, Stills. Misst CTR auf Produktebene.</div>
+                <div><strong>Data-Winkel:</strong> Wissenschaftliche Texturen, KI-Modelle. Misst Watch-Time und Scroll-Stop.</div>
+                <div><strong>Luxury-Winkel:</strong> Editorial-Look, On-Location-Ambient. Generiert Bookmarks und Marken-Saves.</div>
+                <div><strong>Results-Winkel:</strong> Vorher-Nachher (HCVO-safe), Reviews. Optimiert die finale Konversionsrate.</div>
+              </div>
+            </div>
+          </div>
+          
+          <div class="card reveal reveal-delay-2 accented">
+            <div class="card-label">Das Herzstück: Das Learning Log</div>
+            <h4 style="margin-bottom: 0.8rem;">Keine Daten gehen verloren</h4>
+            <p style="font-size: 0.9rem; margin-bottom: 1.2rem;">
+              Unser <strong>Creative Learning Log</strong> ist Data Act-konform aufgebaut. Jedes A/B-Testergebnis wird strukturiert archiviert. Dadurch verhindern wir, dass Werbewissen bei Agenturwechseln verloren geht. 
+            </p>
+            <div class="list-styled" style="font-size: 0.82rem; gap: 0.5rem;">
+              <li>Festhalten von <strong>Winner/Good/Weak</strong> Einstufungen pro Motiv</li>
+              <li>Dokumentation des exakten Zeitpunkts des Performance-Verfalls</li>
+              <li>Verhinderung des gefürchteten Lock-In-Effekts</li>
+              <li>Direkte Übertragbarkeit in Kundendatenbanksysteme</li>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 11: 25-DAY PLAN & ITT (Denys) -->
+    <section class="slide" data-slide="11" data-presenter="Denys" data-color="var(--color-denys)">
+      <div class="inner">
+        <div class="slide-meta">
+          <div class="meta-left">
+            <span class="presenter-badge" style="--presenter-color: var(--color-denys);">Denys Demyanyshyn</span>
+            <h3>Kampagnen-Launch</h3>
+          </div>
+          <span class="slide-num">11 / 15</span>
+        </div>
+        <h2>Der 25-Tage-Testplan für Kampagnenlaunches</h2>
+        
+        <div class="two-col col-equal">
+          <div class="reveal">
+            <p style="margin-bottom: 1.2rem; font-size: 1.05rem;">
+              Für Neukunden-Launches nutzen wir einen strikt getakteten 25-Tage-Plan in drei Sprints. Jede Phase ist an klare Ziel-KPIs und Budget-Schwellenwerte gebunden.
+            </p>
+            
+            <div class="tab-nav">
+              <button class="tab-btn active" data-tab="sprint1">Sprint 1 (1-8)</button>
+              <button class="tab-btn" data-tab="sprint2">Sprint 2 (9-16)</button>
+              <button class="tab-btn" data-tab="sprint3">Sprint 3 (17-25)</button>
+            </div>
+            
+            <!-- Sprint Tab 1 -->
+            <div class="tab-pane active" id="tab-sprint1">
+              <div class="card" style="padding: 1.2rem; background: rgba(255,255,255,0.01);">
+                <h4>Setup &amp; Baseline</h4>
+                <p style="font-size: 0.9rem; margin-top: 0.5rem;">
+                  Pixel-Integration auf Landingpages, Audience-Segmentierung, Import der ersten 4 Demo-Creatives, Einrichten des Dashboards und technischer Validierungs-Check.
+                </p>
+              </div>
+            </div>
+            
+            <!-- Sprint Tab 2 -->
+            <div class="tab-pane" id="tab-sprint2">
+              <div class="card" style="padding: 1.2rem; background: rgba(255,255,255,0.01);">
+                <h4>Hook &amp; Landingpage-Tests</h4>
+                <p style="font-size: 0.9rem; margin-top: 0.5rem;">
+                  Start des Hook-Testing (Video vs. Still), A/B-Testing der Lead-Magneten, tägliches Monitoring der CTR- und CPC-Entwicklung im Dashboard.
+                </p>
+              </div>
+            </div>
+            
+            <!-- Sprint Tab 3 -->
+            <div class="tab-pane" id="tab-sprint3">
+              <div class="card" style="padding: 1.2rem; background: rgba(255,255,255,0.01);">
+                <h4>Scaling &amp; Integration</h4>
+                <p style="font-size: 0.9rem; margin-top: 0.5rem;">
+                  Verschiebung des Budgets zu den A/B-Gewinnern (+25% täglich), Abschalten schwacher Winkel (Kill) und Integration des E-Mail Nurture-Flows im CRM.
+                </p>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Rules Engine IF/THEN -->
+          <div class="card reveal reveal-delay-2 accented">
+            <div class="card-label" style="color: var(--color-accent);">Die operative Entscheidungs-Logik</div>
+            <h4>If-This-Then-That (ITT) Rules</h4>
+            <p style="font-size: 0.88rem; color: var(--color-muted); margin-bottom: 1.2rem;">
+              Unser Budget-Advisor-Agent arbeitet nach starren IF-THEN-Regeln, um emotionale Fehlentscheidungen beim Skalieren auszuschließen:
+            </p>
+            
+            <div class="interactive-list" style="font-family: var(--font-mono); font-size: 0.8rem;">
+              <div style="border-left: 2px solid #E07A5F; padding-left: 0.8rem; margin-bottom: 0.8rem;">
+                <span style="color: var(--color-muted);">WENN:</span> CTR nach 72h &lt; 1,5%<br>
+                <span style="color: #E07A5F;">DANN:</span> Creative deaktivieren &amp; Hook tauschen
+              </div>
+              <div style="border-left: 2px solid #3D9970; padding-left: 0.8rem; margin-bottom: 0.8rem;">
+                <span style="color: var(--color-muted);">WENN:</span> CPL (Cost per Lead) &lt; 12 &euro;<br>
+                <span style="color: #3D9970;">DANN:</span> Budget stufenweise um 25% pro Tag erhöhen
+              </div>
+              <div style="border-left: 2px solid var(--color-accent); padding-left: 0.8rem;">
+                <span style="color: var(--color-muted);">WENN:</span> Scrolltiefe Landingpage &lt; 30%<br>
+                <span style="color: var(--color-accent-light);">DANN:</span> Page-Load optimieren, Hero-Visual wechseln
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 12: CUSTOMER JOURNEY (Ralph) -->
+    <section class="slide" data-slide="12" data-presenter="Ralph" data-color="var(--color-ralph)">
+      <div class="inner">
+        <div class="slide-meta">
+          <div class="meta-left">
+            <span class="presenter-badge">Ralph Kindermann</span>
+            <h3>Customer Journeys</h3>
+          </div>
+          <span class="slide-num">12 / 15</span>
+        </div>
+        <h2>Kundenpfade: Inbound &amp; Outbound Journeys</h2>
+        
+        <div class="two-col col-equal grid-vertical-align">
+          <!-- Selection -->
+          <div class="reveal">
+            <p style="margin-bottom: 1.5rem; font-size: 1.1rem;">
+              Wir steuern das B2B-Wachstum von Mirrou über zwei klar dokumentierte Kundenpfade im CRM. Jeder Pfad enthält definierte Lead-Event-Trigger in HubSpot.
+            </p>
+            
+            <div class="interactive-list" style="margin-top: 1rem;">
+              <div class="list-item-trigger active" data-journey="inbound">
+                <strong>Journey 1 &middot; Inbound (Website-Funnel)</strong>
+                <span class="chevron-icon">&#9656;</span>
+              </div>
+              <div class="list-item-trigger" data-journey="outbound">
+                <strong>Journey 2 &middot; Outbound (B2B-Outreach)</strong>
+                <span class="chevron-icon">&#9656;</span>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Detail Display Box -->
+          <div class="card accented reveal reveal-delay-2" id="journeyDetailsPane" style="min-height: 400px; display: flex; flex-direction: column; justify-content: space-between;">
+            <div>
+              <div class="card-label" id="journeyDetailsLabel">Inbound-Workflow</div>
+              <h4 id="journeyDetailsTitle" style="font-size: 1.8rem; margin-bottom: 1rem; color: var(--color-accent-light);">Vom Klick zum Retainer</h4>
+              
+              <div class="list-styled" id="journeyDetailsList" style="font-size: 0.88rem; gap: 0.6rem;">
+                <div><strong>01. Hook:</strong> Kunde sieht "Luminous Aura" Ad-Creative auf Meta/Instagram.</div>
+                <div><strong>02. Magnet:</strong> Landet auf Website, lädt das Mirrou "Mission Deck" herunter.</div>
+                <div><strong>03. Qualifizierung:</strong> Bucht per Calendly ein 30-minütiges Strategiegespräch.</div>
+                <div><strong>04. Pitch:</strong> Olha &amp; Denys präsentieren das vorab erstellte Creative-Audit.</div>
+                <div><strong>05. Abschluss:</strong> Ralph sendet den Vertrag inklusive AVV und DSGVO-KI-Klausel.</div>
+              </div>
+            </div>
+            <div style="border-top: 1px solid var(--color-grid); padding-top: 1rem; margin-top: 1rem;">
+              <div class="card-label">Trigger-Event (HubSpot Automation)</div>
+              <p id="journeyDetailsMeta" style="font-family: var(--font-mono); font-size: 0.8rem; color: var(--color-accent-light);">
+                Formular-Absendungs-Trigger &rarr; Lead-Qualifizierungs-Score &rarr; HubSpot Slack Notification
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 13: CRM PIPELINE & LEAD SEGMENTS (Ralph) -->
+    <section class="slide" data-slide="13" data-presenter="Ralph" data-color="var(--color-ralph)">
+      <div class="inner">
+        <div class="slide-meta">
+          <div class="meta-left">
+            <span class="presenter-badge">Ralph Kindermann</span>
+            <h3>CRM-Pipeline</h3>
+          </div>
+          <span class="slide-num">13 / 15</span>
+        </div>
+        <h2>HubSpot CRM: Pipeline &amp; Segmentierung</h2>
+        
+        <div class="two-col" style="grid-template-columns: 1.15fr 0.85fr;">
+          <div class="reveal">
+            <p style="margin-bottom: 1rem; font-size: 1.05rem;">
+              Unser Dual-Stack trennt Bewegung und Wissen: <strong>HubSpot</strong> orchestriert die Deals und automatisierten Mails; <strong>Notion</strong> dient als statisches Firmengehirn (Wiki, SOPs, Templates).
+            </p>
+            
+            <div class="tab-nav">
+              <button class="tab-btn active" data-tab="pipeline">HubSpot Pipeline (7 Stages)</button>
+              <button class="tab-btn" data-tab="crm_segments">Lead-Segmente</button>
+            </div>
+            
+            <!-- Tab Pane 1: Pipeline -->
+            <div class="tab-pane active" id="tab-pipeline">
+              <!-- Chevron Pipeline Graphic -->
+              <div style="display: flex; flex-wrap: wrap; gap: 0.4rem; font-family: var(--font-mono); font-size: 0.68rem; margin-bottom: 1.2rem;">
+                <div style="background: var(--color-accent-soft); border: 1px solid var(--color-accent); padding: 0.4rem 0.8rem; border-radius: 4px; color: var(--color-accent-light);">01 Inbound Lead</div>
+                <div style="background: rgba(255,255,255,0.03); border: 1px solid var(--color-grid); padding: 0.4rem 0.8rem; border-radius: 4px;">02 Call Booked</div>
+                <div style="background: rgba(255,255,255,0.03); border: 1px solid var(--color-grid); padding: 0.4rem 0.8rem; border-radius: 4px;">03 Creative Audit</div>
+                <div style="background: rgba(255,255,255,0.03); border: 1px solid var(--color-grid); padding: 0.4rem 0.8rem; border-radius: 4px;">04 Proposal Sent</div>
+                <div style="background: rgba(255,255,255,0.03); border: 1px solid var(--color-grid); padding: 0.4rem 0.8rem; border-radius: 4px;">05 Negotiation</div>
+                <div style="background: var(--color-accent-soft); border: 1px solid var(--color-accent); padding: 0.4rem 0.8rem; border-radius: 4px; color: var(--color-accent-light);">06 Closed Won</div>
+              </div>
+              <p style="font-size: 0.9rem;">
+                Jede Phase hat definierte Ein- und Austrittskriterien sowie feste Ownerschaften. Pflichtfelder wie monatlicher Ad-Spend (Dropdown) und LinkedIn-URL steuern die automatische Qualifizierung.
+              </p>
+            </div>
+            
+            <!-- Tab Pane 2: CRM Segments -->
+            <div class="tab-pane" id="tab-crm_segments">
+              <div class="list-styled" style="gap: 0.8rem;">
+                <div>
+                  <strong>Segment 1 &middot; D2C Scale-Up:</strong> Beauty- &amp; Health-Marken &gt;30k&euro;/Monat Spend. Ziel: Creative Retainer S/M/L.
+                </div>
+                <div>
+                  <strong>Segment 2 &middot; D2C Boutique:</strong> Premium-Nischen-Brands &lt;30k&euro;/Monat Spend. Ziel: Feste Projekt-Shooting-Pakete.
+                </div>
+                <div>
+                  <strong>Segment 3 &middot; Agency Partner:</strong> Performance-Agenturen, die White-Label High-End Visuals für Kunden zukaufen.
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <div class="card reveal reveal-delay-2 accented">
+            <div class="card-label">Qualifizierungs-Score (Foyer-Filter)</div>
+            <h4>Die Spreu vom Weizen trennen</h4>
+            <p style="font-size: 0.9rem; margin-bottom: 1rem;">
+              Unser Inbound-Kontaktformular segmentiert anfragende Leads automatisch im Hintergrund nach einem Punktesystem:
+            </p>
+            <div class="list-styled" style="font-family: var(--font-mono); font-size: 0.78rem; gap: 0.4rem;">
+              <div>Ad-Spend 10k–30k&euro; &rarr; 1 Punkt</div>
+              <div>Ad-Spend 30k–80k&euro; &rarr; 2 Punkte</div>
+              <div>Ad-Spend &gt;80k&euro; &rarr; 3 Punkte</div>
+              <div>Branche Beauty/Skincare &rarr; 2 Punkte</div>
+              <div>Creative Fatigue vorhanden &rarr; 2 Punkte</div>
+              <div>Entscheider (CMO/Founder) im Call &rarr; 2 Punkte</div>
+            </div>
+            <div style="border-top: 1px solid var(--color-grid); padding-top: 0.8rem; margin-top: 0.8rem; font-size: 0.82rem;">
+              <strong>Score &ge; 8:</strong> Sofortige Alarmierung, Zuweisung, Angebot innerhalb von 4h.
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 14: OPERATIONS & SOPS (Ralph) -->
+    <section class="slide" data-slide="14" data-presenter="Ralph" data-color="var(--color-ralph)">
+      <div class="inner">
+        <div class="slide-meta">
+          <div class="meta-left">
+            <span class="presenter-badge">Ralph Kindermann</span>
+            <h3>Standard Operating Procedures</h3>
+          </div>
+          <span class="slide-num">14 / 15</span>
+        </div>
+        <h2>SOPs &amp; Notion OS: Das operative Studio-Rückgrat</h2>
+        
+        <div class="two-col" style="grid-template-columns: 1.1fr 0.9fr;">
+          <div class="reveal">
+            <p style="margin-bottom: 1.2rem; font-size: 1.05rem;">
+              Um menschliche Fehler im schnellen Produktionsrhythmus auszuschließen, arbeiten wir nach standardisierten Checklisten (SOPs) und einer strikten Notion-Workspace-Ordnung.
+            </p>
+            
+            <div class="tab-nav">
+              <button class="tab-btn active" data-tab="notion">Notion OS Struktur</button>
+              <button class="tab-btn" data-tab="sop1">SOP Lead-Handling</button>
+              <button class="tab-btn" data-tab="sop2">SOP Onboarding</button>
+              <button class="tab-btn" data-tab="sop3">SOP Case-Study</button>
+            </div>
+            
+            <!-- Notion OS Tab -->
+            <div class="tab-pane active" id="tab-notion">
+              <p style="font-size: 0.92rem; margin-bottom: 0.8rem;">Vier Kernbereiche bilden das "Notion-Firmenhirn" von Mirrou:</p>
+              <div class="list-styled" style="font-size: 0.88rem; gap: 0.6rem;">
+                <div><strong>01_Growth_CRM:</strong> Sales-Skripte, Kalt-Email-Vorlagen, Outreach-Listen.</div>
+                <div><strong>02_Production_AI:</strong> Creative Briefs, Prompt-Archiv, C2PA Logfiles.</div>
+                <div><strong>03_Operations:</strong> SOP-Katalog, AVV-Muster, DSGVO-Checklisten.</div>
+                <div><strong>04_Client_Records:</strong> Kundendatenblätter, wöchentliche Updates.</div>
+              </div>
+            </div>
+            
+            <!-- SOP 1 Tab -->
+            <div class="tab-pane" id="tab-sop1">
+              <div class="list-styled" style="font-size: 0.85rem; gap: 0.5rem;">
+                <div>[ ] Inbound-Alert via Webhook erhalten &rarr; Spend-Check im Ad Library</div>
+                <div>[ ] Deal in HubSpot anlegen (Stage 01) &rarr; Score berechnen</div>
+                <div>[ ] Erstkontakt-Template anpassen und innerhalb von 15 Min versenden</div>
+                <div>[ ] Slack-Benachrichtigung an Olha/Denys für Creative Audit Task</div>
+              </div>
+            </div>
+            
+            <!-- SOP 2 Tab -->
+            <div class="tab-pane" id="tab-sop2">
+              <div class="list-styled" style="font-size: 0.85rem; gap: 0.5rem;">
+                <div>[ ] Deal auf Closed Won &rarr; automatische Slack-Channel-Erstellung</div>
+                <div>[ ] Onboarding-Fragebogen (Typeform) an Kunden senden</div>
+                <div>[ ] Kundenordner in Google Drive anlegen (Schnittstellen-Struktur)</div>
+                <div>[ ] Ad Account Lese-Zugriff anfragen &rarr; Kick-off-Meeting planen</div>
+              </div>
+            </div>
+            
+            <!-- SOP 3 Tab -->
+            <div class="tab-pane" id="tab-sop3">
+              <div class="list-styled" style="font-size: 0.85rem; gap: 0.5rem;">
+                <div>[ ] 14 Tage nach Live-Kampagne: Denys liefert CTR/ROAS-Metriken</div>
+                <div>[ ] Olha liefert Visuals des Winner-Motivs aus Post-Production</div>
+                <div>[ ] Ralph pflegt Daten in Case Study Template ein &rarr; Freigabe anfragen</div>
+                <div>[ ] Nach Freigabe: Upload auf <a href="https://mirrou-creative-studio-180023265254.europe-west3.run.app/de" target="_blank" class="external-link">mirrou.studio (Staging)</a> &rarr; Update Outreach list</div>
+              </div>
+            </div>
+          </div>
+          
+          <div class="card reveal reveal-delay-2 accented">
+            <div class="card-label">Unsere Naming-Conventions</div>
+            <h4 style="margin-bottom: 0.6rem; font-size: 1.25rem;">Strikte Ordner- &amp; Dateidisziplin</h4>
+            <p style="font-size: 0.88rem; margin-bottom: 1.2rem; color: var(--color-muted);">
+              Sichert schnellen Dateizugriff über Perplexity Spaces MCPs und verhindert Versionskonflikte:
+            </p>
+            <div class="list-styled" style="font-family: var(--font-mono); font-size: 0.75rem; gap: 0.8rem;">
+              <div>
+                <strong>Kunden-Ordner (Drive):</strong><br>
+                `YYYY-MM_BrandName`<br>
+                <span style="color: var(--color-muted);">Beispiel: 2026-05_LumiSkin</span>
+              </div>
+              <div>
+                <strong>Dateien (Rechnungen/Briefs):</strong><br>
+                `YYYYMMDD_BrandName_DocType`<br>
+                <span style="color: var(--color-muted);">Beispiel: 20260526_LumiSkin_Proposal</span>
+              </div>
+              <div>
+                <strong>Werbemittel (Creatives):</strong><br>
+                `Brand_Campaign_Format_Version_AI-bg`<br>
+                <span style="color: var(--color-muted);">Beispiel: LumiSkin_Launch_9x16_v2_KI-bg</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 15: TECH STACK & EU AI ACT (Yahya / All) -->
+    <section class="slide" data-slide="15" data-presenter="Yahya" data-color="var(--color-yahya)">
+      <div class="inner">
+        <div class="slide-meta">
+          <div class="meta-left">
+            <span class="presenter-badge">Yahya Yildirim</span>
+            <h3>Technik &amp; Compliance</h3>
+          </div>
+          <span class="slide-num">15 / 15</span>
+        </div>
+        <h2>Die technische Basis: Live-Deploy &amp; AI-Act</h2>
+        
+        <div class="two-col" style="grid-template-columns: 1.15fr 0.85fr;">
+          <div class="reveal">
+            <p style="margin-bottom: 1rem; font-size: 1.02rem;">
+              Mirrou ist kein Konzept – wir sind live. Unsere Plattform integriert modernste Webtechnologie mit proaktiver rechtlicher Absicherung.
+            </p>
+            
+            <div class="tab-nav">
+              <button class="tab-btn active" data-tab="tech">Tech Stack</button>
+              <button class="tab-btn" data-tab="ai_act">EU AI Act Roadmap</button>
+              <button class="tab-btn" data-tab="label_matrix">Labeling-Matrix</button>
+            </div>
+            
+            <!-- Tech Stack Tab -->
+            <div class="tab-pane active" id="tab-tech">
+              <div class="list-styled" style="font-size: 0.88rem; gap: 0.5rem;">
+                <div><strong>Frontend:</strong> Next.js 14, TypeScript, Tailwind CSS, 8 Sprachen über `next-intl`.</div>
+                <div><strong>Hosting:</strong> Google Cloud Run (Frankfurt, GDPR-compliant), Auto-Scaling.</div>
+                <div><strong>CI/CD:</strong> GitHub Actions, Google Cloud Build &amp; Docker Registry.</div>
+                <div><strong>Trust Center:</strong> Live Compliance Tracker auf <a href="https://mirrou-creative-studio-180023265254.europe-west3.run.app/de" target="_blank" class="external-link">mirrou.studio (Staging)</a>.</div>
+              </div>
+            </div>
+            
+            <!-- EU AI Act Tab -->
+            <div class="tab-pane" id="tab-ai_act">
+              <p style="font-size: 0.88rem; margin-bottom: 0.8rem; color: var(--color-muted);">Die Regulatorik bestimmt unsere Produktions-Taktung:</p>
+              <div class="list-styled" style="font-size: 0.8rem; gap: 0.4rem;">
+                <div><strong>August 2024:</strong> Inkrafttreten des EU AI Acts (Verordnung 2024/1689)</div>
+                <div><strong>Februar 2025:</strong> Verbot unzulässiger Praktiken (Manipulative KI)</div>
+                <div><strong>August 2025:</strong> Transparenzberichte für GPAI-Modelle verpflichtend</div>
+                <div><strong style="color: var(--color-accent-light);">August 2026:</strong> Stichtag der vollen Anwendbarkeit (Kennzeichnungspflicht)</div>
+                <div><strong>August 2027:</strong> Erweiterte Anforderungen für Hochrisiko-Systeme</div>
+              </div>
+            </div>
+            
+            <!-- Labeling Matrix Tab -->
+            <div class="tab-pane" id="tab-label_matrix">
+              <table style="font-size: 0.72rem; width: 100%;">
+                <thead>
+                  <tr>
+                    <th>Content-Typ</th>
+                    <th>KI-Anteil</th>
+                    <th>Kennzeichnung</th>
+                    <th>C2PA / Metadaten</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><strong>Pure AI Generation</strong> (Neural Glow)</td>
+                    <td>100 %</td>
+                    <td style="color: #E07A5F;">„AI-Generated“ (Pflicht)</td>
+                    <td>Voller Audit-Trail</td>
+                  </tr>
+                  <tr>
+                    <td><strong>AI-Assisted Hybrid</strong> (Luminous Aura)</td>
+                    <td>60–99 %</td>
+                    <td>„AI-Assisted“ (Freiwillig)</td>
+                    <td>AI-Usage-Flag</td>
+                  </tr>
+                  <tr>
+                    <td><strong>Product Integration</strong> (Produkt echt)</td>
+                    <td>20–59 %</td>
+                    <td>„AI-Assisted“ (Freiwillig)</td>
+                    <td>AI-Usage-Flag</td>
+                  </tr>
+                  <tr>
+                    <td><strong>Human-Crafted</strong></td>
+                    <td>0 %</td>
+                    <td>„100% Human-Crafted“</td>
+                    <td>Original EXIF</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          
+          <div class="card reveal reveal-delay-2 text-center accented" style="display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 2.2rem;">
+            <div class="card-label">MIRROU LIVE ERLEBEN</div>
+            <h4 style="font-size: 1.1rem; margin-bottom: 1rem; font-family: var(--font-mono); letter-spacing: -0.02em;">
+              <a href="https://mirrou-creative-studio-180023265254.europe-west3.run.app/de" target="_blank" class="external-link">mirrou-creative-studio.run.app</a>
+            </h4>
+            
+            <svg class="qr-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" style="margin-bottom: 1.2rem;">
+              <rect width="100" height="100" fill="white"/>
+              <!-- Corner Finder Patterns -->
+              <rect x="6" y="6" width="22" height="22" fill="#080808"/>
+              <rect x="10" y="10" width="14" height="14" fill="white"/>
+              <rect x="13" y="13" width="8" height="8" fill="#080808"/>
+              
+              <rect x="72" y="6" width="22" height="22" fill="#080808"/>
+              <rect x="76" y="10" width="14" height="14" fill="white"/>
+              <rect x="79" y="13" width="8" height="8" fill="#080808"/>
+              
+              <rect x="6" y="72" width="22" height="22" fill="#080808"/>
+              <rect x="10" y="76" width="14" height="14" fill="white"/>
+              <rect x="13" y="79" width="8" height="8" fill="#080808"/>
+              
+              <!-- Center branding block -->
+              <rect x="42" y="42" width="16" height="16" fill="#C8A25A"/>
+              
+              <!-- Simulated QR Code noise -->
+              <rect x="34" y="8" width="6" height="6" fill="#080808"/>
+              <rect x="52" y="12" width="10" height="4" fill="#080808"/>
+              <rect x="45" y="24" width="8" height="8" fill="#080808"/>
+              <rect x="14" y="36" width="12" height="4" fill="#080808"/>
+              <rect x="8" y="52" width="6" height="8" fill="#080808"/>
+              <rect x="62" y="34" width="8" height="6" fill="#080808"/>
+              <rect x="78" y="44" width="10" height="8" fill="#080808"/>
+              <rect x="36" y="58" width="4" height="12" fill="#080808"/>
+              <rect x="54" y="66" width="12" height="4" fill="#080808"/>
+              <rect x="76" y="66" width="8" height="8" fill="#080808"/>
+              <rect x="36" y="80" width="8" height="4" fill="#080808"/>
+              <rect x="52" y="82" width="14" height="6" fill="#080808"/>
+            </svg>
+            <p style="font-size: 0.78rem; color: var(--color-muted); line-height: 1.4;">
+              Scanne den Code, um die Live-Webseite aufzurufen und das Trust Center einzusehen.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Interactive JavaScript -->
+  <script>
+    // State management
+    const slides = Array.from(document.querySelectorAll('.slide'));
+    const prevBtn = document.getElementById('prevBtn');
+    const nextBtn = document.getElementById('nextBtn');
+    const counterEl = document.getElementById('counter');
+    const progressBar = document.getElementById('progressBar');
+    const drawerToggle = document.getElementById('drawerToggle');
+    const drawerClose = document.getElementById('drawerClose');
+    const navDrawer = document.getElementById('navDrawer');
+    const drawerBackdrop = document.getElementById('drawerBackdrop');
+    const drawerList = document.getElementById('drawerList');
+    let currentSlideIndex = 0;
+
+    // Spoken Speech Texts (Matching Speech Script 1:1)
+    const speechTexts = [
+      `„Guten Tag und herzlich willkommen zur Abschlusspräsentation von Mirrou Creative Studio. Mein Name ist Yahya Yildirim, und gemeinsam mit meinen Partnern Olha Yevtushenko, Denys Demyanyshyn und Ralph Kindermann präsentieren wir Ihnen heute den Aufbau einer KI-integrierten Performance Creative Agency. Wir zeigen Ihnen, wie wir durch unsere Frontier-Firm-Architektur, einen hybriden Produktions-Workflow und proaktive EU AI Act-Compliance eine neue Kategorie besetzen: Creative Performance für Beauty, Health und Lifestyle. Unsere Agentur verbindet zwei Welten: Produktion und Creative Direction in Hamburg sowie Performance, CRM und Inbound-Technologie in Berlin. Ralph, wie steuert unser Betriebssystem diese Zusammenarbeit?“`,
+      `„Vielen Dank, Yahya. Um ein verteiltes Team über zwei Großstädte hinweg fehlerfrei zu orchestrieren, arbeiten wir nach dem Prinzip einer Frontier Firm. Das bedeutet: Wir setzen nicht auf klassische, träge Strukturen, sondern auf ein digitales, hochgradig automatisiertes Betriebssystem. In Hamburg steuern Olha die visuelle Exzellenz und Denys die Performance-Daten. In Berlin übernehmen Yahya die Inbound-Tech-Architektur und ich das CRM-System sowie die Standard Operating Procedures. Auf Slide 2 sehen Sie unsere Agenda: Wir führen Sie heute durch das drängende Marktproblem der Creative Fatigue, erklären unsere Nischen-Positionierung, zeigen Olhas Branding-System und den hybriden Workflow, analysieren Denys' Testing-Matrix und schließen mit meiner CRM-Infrastruktur sowie Yahyas technischem Setup und dem Compliance-Framework ab. Yahya, warum brennt der Markt gerade ab?“`,
+      `„Der Grund für Mirrou liegt in einem lautlosen Killer im Paid-Social-Bereich: Creative Fatigue. Beauty-, Health- und Lifestyle-Marken im DACH-Raum stoßen ab einem Monats-Spend von 20.000 Euro an ein unsichtbares Limit. Daten aus dem Meta-Ecosystem zeigen, dass Werbemittel durch die hohe Reizüberflutung der Konsumenten bereits nach 14 bis 28 Tagen ausbrennen. Das führt zu einem dramatischen Klickraten-Einbruch von 35 bis 55 Prozent und einem gleichzeitigen Anstieg der CPC-Kosten um bis zu 70 Prozent. Klassische Kreativagenturen reagieren darauf zu langsam und zu teuer. Reine Performance-Agenturen liefern oft seelenlose Assets, die im Feed untergehen. Mirrou löst dieses Dilemma durch eine kontinuierliche Creative-Engine.“`,
+      `„Unsere Positionierung lässt sich in unserem Leitmotiv zusammenfassen: „Algorithm of Soul“. Wo Ästhetik Algorithmus wird. Wir kombinieren die emotionale, künstlerische Seele eines Premium-Markenbildes mit der kalten Datenlogik des Algorithmus. Unser Angebot richtet sich an D2C-Brands mit 10.000 bis 150.000 Euro monatlichem Ad-Spend, die keine Kompromisse zwischen Bildqualität und Performance machen wollen. Wir bieten drei standardisierte Zusammenarbeitsmodelle: Einmalige Shootings im Paket „E-Commerce & Catalog“ zur Katalog-Pflege, das „Social Media & Advertising“ Paket für gezielte Kampagnen-Launches und unseren „Creative Retainer“ in den Tiers S, M und L für eine fortlaufende Creative-Engine im Monatsrhythmus.“`,
+      `„Um diesen kontinuierlichen Output ohne massiven Personalüberhang zu liefern, haben wir die Frontier-Firm-Architektur implementiert. Sie basiert auf vier Schichten: Dem Intelligence Layer über Perplexity Spaces, dem Production Layer über Adobe und Midjourney, dem Infrastructure Layer auf der Google Cloud und dem Performance Layer über die Werbemanager. Wir arbeiten nach dem „Perfect Twin“-Prinzip: Jeder menschliche Spezialist wird durch ein maßgeschneidertes KI-Pendant erweitert. So übersetzt Olha ihre Vision blitzschnell in KI-Hintergründe, Denys nutzt einen Claude Data Agent zur CSV-Analyse, Ralph automatisiert HubSpot-Workflows und ich steuere das Next.js-Frontend über Claude Code. Olha, wie übersetzt du diese Architektur in Ästhetik?“`,
+      `„Danke, Yahya. Als Creative Director ist meine Aufgabe, Mirrous Identität visuell spürbar zu machen. Wir nutzen einen restriktiven Design Code namens „Dark Luxury“. Die Basis bildet ein sattes Deep Onyx (#080808 / #0A0A0A) für maximale visuelle Ruhe. Muted Gold (#C8A25A) setzen wir extrem kontrolliert und filigran als Akzent für Trennlinien und Typografie ein. Kontrastiert wird das System durch ein sanftes Ivory (#F2EFE9) für absolute Lesbarkeit. Unsere Typografie kombiniert die luxuriöse Display-Serif „Cormorant Garamond“ mit der präzisen serifenlosen „Inter“ und technischen Details in „JetBrains Mono“. Unsere wichtigste Regel lautet: Cinematic Low-Key-Beleuchtung stellt das Produkt plastisch in den Mittelpunkt, während der Text minimal und funktional bleibt. Wie sieht das in der Praxis aus?“`,
+      `„Um unsere visuelle und strategische Bandbreite zu beweisen, haben wir vier Demo-Cases entwickelt: 1. „Luminous Aura“ zeigt ein Premium-Serum auf dunklem Marmor mit weichem Goldstaub – optimiert für klassische Conversions. 2. „Vitality Pulse“ setzt auf kinetische Energie, Wasserspritzer und harte Schatten – perfekt für die ersten 3 Sekunden auf TikTok. 3. „Essence Drift“ nutzt Nebel und Spiegelungen für emotionales Storytelling im Fragrance-Segment. 4. Und schließlich „Neural Glow“, das biotech-orientierte Skincare über fluoreszierende Schaltkreise visualisiert. Dieser vierte Case ist vollständig KI-generiert und beweist, dass wir auch synthetische Welten fotorealistisch und rechtskonform beherrschen. Wie produzieren wir diese Welten?“`,
+      `„Unser Kernprozess ist die Hybrid Production. Wir trennen das Produkt von seiner Umgebung: Das physische Produkt – also Textur, Flakonglas und Label – wird in unserem Studio in Hamburg real fotografiert. Nur so garantieren wir absolute Echtheit. Die komplexen Hintergründe und Lichtstimmungen werden jedoch digital per Midjourney oder Adobe Firefly gerendert. Das spart uns den aufwendigen analogen Set-Bau. Die Produktion schrumpft von 6 Tagen vor Ort auf 4 Stunden digitales Composing. Zudem versehen wir alle hybriden Assets in der Post-Production mit kryptografischen C2PA-Metadaten, was uns absolute Transparenz und Rechtssicherheit nach dem kommenden EU AI Act garantiert. Denys, wie misst du den Erfolg dieser Kreation?“`,
+      `„Danke, Olha. Als Performance Manager übersetze ich Olhas Kreation in messbare Werbe-KPIs. Wir verteilen das Mediabudget strategisch auf 5 Kanäle, wie Sie auf Slide 9 an der interaktiven Budgetleiste sehen können: 40 Prozent fließen in Meta Ads für breite Awareness und Consideration über Reels-Videos und Stills. Hier ist die Klickrate (CTR) unsere Leitmetrik. 25 Prozent investieren wir in TikTok Ads, um über schnelle Schnitte und starke Hook-Variationen die Aufmerksamkeitsgrenze zu testen (Ziel: Thumb-stop Rate >35%). 20 Prozent gehen in Google Search zur Conversion-Sicherung bei Kaufabsicht. 10 Prozent steuern das E-Mail-Marketing zur Lead-Reaktivierung. 5 Prozent nutzen wir auf LinkedIn für B2B-Trust. Wie stellen wir sicher, dass dieser Mix dauerhaft funktioniert?“`,
+      `„Dafür nutzen wir unseren geschlossenen Datenkreislauf, den 5-Schritt-Algorithmus. Er startet mit dem Creative Audit zur Fatigue-Erkennung. Daraufhin formulieren wir 3 Performance-Hypothesen, die Olha im Hybrid-Workflow umsetzt. Wir testen diese gezielt mit minimalem Budget-Split über 5 Tage in einer isolierten Test-Kampagne. Erst nach statistischer Signifikanz skalieren wir die Gewinner. Um dieses Wissen zu sichern, nutzen wir das Creative Learning Log: Jedes Testergebnis wird strukturiert archiviert. Unsere Testing Matrix teilt die Ads in Craft-, Data-, Luxury- und Results-Winkel auf, um systematisch die psychologischen Hebel der Zielgruppe zu isolieren. Wie sieht die zeitliche Taktung aus?“`,
+      `„Ein Kampagnen-Launch folgt bei uns einem strikten 25-Tage-Testplan. In Sprint 1 (Tag 1–8) bauen wir das Pixel-Tracking auf, definieren Audiences und erfassen die Baseline. In Sprint 2 (Tag 9–16) starten wir die A/B-Tests für Hooks und Landingpages. In Sprint 3 (Tag 17–25) skalieren wir die Gewinner. Um menschliche Emotionen beim Media-Buying auszuschließen, nutzen wir feste Rules-Engines: Wenn die CTR nach 3 Tagen unter 1,5% liegt, stoppen wir die Ad und tauschen den Hook. Sinkt der CPL unter 12 Euro, erhöhen wir das Budget automatisch um 25% pro Tag. Ralph, wie fängt unser CRM-System diese qualifizierten Leads ab?“`,
+      `„Vielen Dank, Denys. Um die generierten Leads verlustfrei zu konvertieren, nutzen wir zwei vordefinierte Pfade im CRM. Pfad 1 ist die Inbound-Journey: Ein Kunde sieht eine Meta-Ad von Olha, landet auf mirrou.studio, lädt unser Mission Deck herunter und bucht ein Strategiegespräch. Wir qualifizieren den Lead vorab und präsentieren ihm im Erstgespräch ein individuelles Creative-Audit, was zu einer hohen Abschlussquote führt. Pfad 2 ist die Outbound-Journey: Ich recherchiere aktive Ads von Skincare-Brands, erstelle ein kurzes personalisiertes Video-Audit und kontaktiere den CMO auf LinkedIn. Wir bieten ihm ein risikoarmes 14-Tage-Testpaket an und konvertieren ihn nach erfolgreichem Performance-Beweis in den Retainer. Wie steuern wir diese Deals operativ?“`,
+      `„Dafür haben wir HubSpot Starter als CRM und Notion als Wissensdatenbank implementiert. Auf Slide 13 sehen Sie unsere 7 Pipeline-Stufen: Vom ersten Inbound Lead über den Intro Call und das Creative Audit bis zum Angebot und dem Status „Closed Won“. Um unseren Vertrieb zu fokussieren, nutzen wir einen automatisierten Qualifizierungs-Score. Sobald ein Lead unser Inbound-Formular ausfüllt, vergibt das System Punkte für Ad-Spend, Branche und Erreichbarkeit des CMs. Leads mit einem Score von 8 oder höher triggern sofort einen Slack-Alarm, sodass Yahya innerhalb von 15 Minuten antworten kann. Kleinere Budgets werden automatisch in das Boutique-Segment geleitet. Wie sichern wir die Qualität der Abwicklung?“`,
+      `„Qualität entsteht durch Wiederholbarkeit. Deshalb haben wir in Notion ein strukturiertes Betriebssystem mit 4 Kernordnern aufgebaut: Growth, Production, Operations und Client Records. Jedes Teammitglied arbeitet nach festen Standard Operating Procedures (SOPs). Auf Slide 14 sehen Sie die interaktiven Checklisten für SOP 01 (Lead-Handling), SOP 02 (Kunden-Onboarding) und SOP 03 (Case-Study-Erstellung). Unsere strengen Naming-Conventions für Ordner, Verträge und Creative-Dateien garantieren, dass unser Perplexity Space über MCP-Schnittstellen Daten in Sekundenschnelle finden und verarbeiten kann. Yahya, wie runden wir dieses System technisch und rechtlich ab?“`,
+      `„Zum Abschluss möchte ich betonen: Mirrou ist voll einsatzbereit. Unsere Plattform basiert auf Next.js 14, TypeScript und Tailwind, deployed über Docker auf GCP Cloud Run in Frankfurt. Sie läuft unter der Staging-URL https://mirrou-creative-studio-180023265254.europe-west3.run.app/de, die Sie auf dieser Folie verlinkt sehen und direkt per QR-Code scannen können. Unser größter strategischer Vorteil für die Zukunft ist proaktive Compliance. Ab August 2026 tritt die KI-Kennzeichnungspflicht des EU AI Acts für Werbemittel voll in Kraft. Mirrou ist durch C2PA-Metadaten und unsere Labeling-Matrix bereits heute vollständig compliant. Wir bieten Kunden ein rechtssicheres Trust Center und garantieren über unsere No-Training-Policy, dass Marken-Assets niemals zum KI-Modelltraining verwendet werden. Wir absorbieren die regulatorische Komplexität, damit D2C-Marken sicher wachsen können. Vielen Dank für Ihre Aufmerksamkeit. Wir eröffnen nun die Fragerunde.“`
+    ];
+
+    // Slide Titles and Presenter Mapping for Navigator Drawer
+    const slideMetadata = [
+      { num: "01", title: "Titel & Begrüßung", presenter: "All", color: "var(--color-accent)" },
+      { num: "02", title: "Das Mirrou-OS & Agenda", presenter: "Ralph", color: "var(--color-ralph)" },
+      { num: "03", title: "WHY: Das Kernproblem", presenter: "Yahya", color: "var(--color-yahya)" },
+      { num: "04", title: "Positionierung & Model", presenter: "Yahya", color: "var(--color-yahya)" },
+      { num: "05", title: "Die Frontier-Architektur", presenter: "Yahya", color: "var(--color-yahya)" },
+      { num: "06", title: "Branding & Design-Tokens", presenter: "Olha", color: "var(--color-olha)" },
+      { num: "07", title: "Die 4 Visual-Systeme", presenter: "Olha", color: "var(--color-olha)" },
+      { num: "08", title: "Hybrid-Production", presenter: "Olha", color: "var(--color-olha)" },
+      { num: "09", title: "Kanalgewichtung & KPIs", presenter: "Denys", color: "var(--color-denys)" },
+      { num: "10", title: "Der Daten-Loop", presenter: "Denys", color: "var(--color-denys)" },
+      { num: "11", title: "Der 25-Tage-Testplan", presenter: "Denys", color: "var(--color-denys)" },
+      { num: "12", title: "Customer Journeys", presenter: "Ralph", color: "var(--color-ralph)" },
+      { num: "13", title: "CRM & Segmentierung", presenter: "Ralph", color: "var(--color-ralph)" },
+      { num: "14", title: "SOPs & Notion OS", presenter: "Ralph", color: "var(--color-ralph)" },
+      { num: "15", title: "Technik & Compliance", presenter: "Yahya", color: "var(--color-yahya)" }
+    ];
+
+    // Populate Navigation Drawer Items
+    function initDrawer() {
+      drawerList.innerHTML = '';
+      slideMetadata.forEach((meta, idx) => {
+        const li = document.createElement('li');
+        li.className = `drawer-item ${idx === currentSlideIndex ? 'active' : ''}`;
+        li.innerHTML = `
+          <span class="drawer-item-title">${meta.num}. ${meta.title}</span>
+          <div class="drawer-item-meta">
+            <span>${meta.presenter}</span>
+            <span class="drawer-dot" style="--dot-color: ${meta.color}"></span>
+          </div>
+        `;
+        li.addEventListener('click', () => {
+          currentSlideIndex = idx;
+          updateDeck();
+          closeDrawer();
+        });
+        drawerList.appendChild(li);
+      });
+    }
+
+    // Toggle Drawer Navigation
+    function openDrawer() {
+      navDrawer.classList.add('open');
+      drawerBackdrop.classList.add('active');
+      closeNotes(); // Close notes if opening nav
+    }
+
+    function closeDrawer() {
+      navDrawer.classList.remove('open');
+      if (!notesDrawer.classList.contains('open')) {
+        drawerBackdrop.classList.remove('active');
+      }
+    }
+
+    // Toggle Notes Drawer
+    const notesToggle = document.getElementById('notesToggle');
+    const notesClose = document.getElementById('notesClose');
+    const notesDrawer = document.getElementById('notesDrawer');
+    const notesContent = document.getElementById('notesContent');
+    const notesPresenter = document.getElementById('notesPresenter');
+
+    function openNotes() {
+      notesDrawer.classList.add('open');
+      drawerBackdrop.classList.add('active');
+      closeDrawer(); // Close nav if opening notes
+    }
+
+    function closeNotes() {
+      notesDrawer.classList.remove('open');
+      if (!navDrawer.classList.contains('open')) {
+        drawerBackdrop.classList.remove('active');
+      }
+    }
+
+    drawerToggle.addEventListener('click', openDrawer);
+    drawerClose.addEventListener('click', closeDrawer);
+    notesToggle.addEventListener('click', openNotes);
+    notesClose.addEventListener('click', closeNotes);
+
+    drawerBackdrop.addEventListener('click', () => {
+      closeDrawer();
+      closeNotes();
+    });
+
+    // Slide navigation
+    function updateDeck() {
+      slides.forEach((slide, index) => {
+        if (index === currentSlideIndex) {
+          slide.classList.add('active');
+          animateSlide(slide);
+        } else {
+          slide.classList.remove('active');
+        }
+      });
+
+      // Update Controls
+      prevBtn.disabled = currentSlideIndex === 0;
+      nextBtn.disabled = currentSlideIndex === slides.length - 1;
+      
+      // Update Slide Counter
+      counterEl.textContent = `${currentSlideIndex + 1} / ${slides.length}`;
+      
+      // Update Progress Bar
+      const percentage = (currentSlideIndex / (slides.length - 1)) * 100;
+      progressBar.style.width = `${percentage}%`;
+
+      // Update Active Status inside Drawer
+      const items = drawerList.querySelectorAll('.drawer-item');
+      items.forEach((item, idx) => {
+        item.classList.toggle('active', idx === currentSlideIndex);
+      });
+
+      // Update Speaker Notes
+      if (notesContent && notesPresenter) {
+        notesContent.innerHTML = speechTexts[currentSlideIndex];
+        const currentMeta = slideMetadata[currentSlideIndex];
+        notesPresenter.textContent = currentMeta.presenter === 'All' ? 'Alle (Yahya)' : currentMeta.presenter;
+        notesPresenter.style.setProperty('--presenter-color', currentMeta.color);
+      }
+    }
+
+    function navigateToSlide(direction) {
+      if (direction === 'next' && currentSlideIndex < slides.length - 1) {
+        currentSlideIndex++;
+      } else if (direction === 'prev' && currentSlideIndex > 0) {
+        currentSlideIndex--;
+      }
+      updateDeck();
+    }
+
+    // Interactive Animation triggers for elements inside active slide
+    function animateSlide(slide) {
+      // Trigger reveal effects
+      const elements = slide.querySelectorAll('.reveal');
+      elements.forEach(el => {
+        el.style.opacity = '0';
+        el.style.transform = 'translateY(20px)';
+        el.offsetHeight; // trigger reflow
+        el.style.opacity = '';
+        el.style.transform = '';
+      });
+
+      // Animate custom progress metrics
+      const bars = slide.querySelectorAll('.bar-fill');
+      bars.forEach((bar, i) => {
+        const width = bar.getAttribute('data-width');
+        bar.style.width = '0%';
+        bar.offsetHeight; // trigger reflow
+        setTimeout(() => {
+          bar.style.width = `${width}%`;
+        }, 150 + (i * 100));
+      });
+    }
+
+    // Keyboard navigation
+    document.addEventListener('keydown', (e) => {
+      if (['ArrowRight', 'PageDown', ' '].includes(e.key)) {
+        e.preventDefault();
+        navigateToSlide('next');
+      }
+      if (['ArrowLeft', 'PageUp'].includes(e.key)) {
+        e.preventDefault();
+        navigateToSlide('prev');
+      }
+      if (e.key === 'Home') {
+        e.preventDefault();
+        currentSlideIndex = 0;
+        updateDeck();
+      }
+      if (e.key === 'End') {
+        e.preventDefault();
+        currentSlideIndex = slides.length - 1;
+        updateDeck();
+      }
+    });
+
+    // Interactive Mouse Spotlight
+    const spotlight = document.querySelector('.mouse-spotlight');
+    document.addEventListener('mousemove', (e) => {
+      spotlight.style.background = `radial-gradient(600px circle at ${e.clientX}px ${e.clientY}px, rgba(200, 162, 90, 0.045), transparent 45%)`;
+    });
+
+    // Touch Swipe Navigation
+    let touchStartX = 0;
+    document.addEventListener('touchstart', (e) => {
+      touchStartX = e.touches[0].clientX;
+    }, { passive: true });
+
+    document.addEventListener('touchend', (e) => {
+      const touchEndX = e.changedTouches[0].clientX;
+      const difference = touchStartX - touchEndX;
+
+      if (Math.abs(difference) > 60) {
+        if (difference > 0) {
+          navigateToSlide('next');
+        } else {
+          navigateToSlide('prev');
+        }
+      }
+    }, { passive: true });
+
+    prevBtn.addEventListener('click', () => navigateToSlide('prev'));
+    nextBtn.addEventListener('click', () => navigateToSlide('next'));
+
+    // Sub-Tabs Functionality
+    document.querySelectorAll('.tab-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const parent = btn.parentElement;
+        const targetId = btn.getAttribute('data-tab');
+        
+        // Deactivate all sister buttons
+        parent.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        
+        // Deactivate all sister panes
+        const container = parent.parentElement;
+        container.querySelectorAll('.tab-pane').forEach(pane => pane.classList.remove('active'));
+        
+        // Activate target pane
+        container.querySelector(`#tab-${targetId}`).classList.add('active');
+      });
+    });
+
+    // Accordion / Interactive Lists Trigger Functionality
+    document.querySelectorAll('.list-item-trigger').forEach(trigger => {
+      trigger.addEventListener('click', () => {
+        if (trigger.hasAttribute('data-case') || trigger.hasAttribute('data-journey')) return;
+        
+        const parentList = trigger.parentElement;
+        const isActive = trigger.classList.contains('active');
+        
+        // Deactivate all in this list
+        parentList.querySelectorAll('.list-item-trigger').forEach(t => t.classList.remove('active'));
+        parentList.querySelectorAll('.list-item-body').forEach(b => b.classList.remove('active'));
+        
+        if (!isActive) {
+          trigger.classList.add('active');
+          const sibling = trigger.nextElementSibling;
+          if(sibling && sibling.classList.contains('list-item-body')) {
+            sibling.classList.add('active');
+          }
+        }
+      });
+    });
+
+    // Slide 2: Interactive Team Member Selection Details Map
+    const teamData = {
+      olha: {
+        label: "Fokus: Produktion & Brand",
+        title: "Olha Yevtushenko &middot; Creative Director",
+        text: "Gründerin und kreatives Herz von Mirrou. Entwickelt die Design-Tokens (Deep Onyx &amp; Gold) des Premium Design-Systems. Konzipiert alle 4 Demo-Cases (Luminous Aura, Vitality Pulse, Essence Drift, Neural Glow) und den Hybrid-Production Workflow (Echtes Produkt + KI-Umgebung).",
+        tools: "Adobe Photoshop &middot; Lightroom &middot; Midjourney &middot; Adobe Firefly &middot; Figma",
+        color: "var(--color-olha)"
+      },
+      denys: {
+        label: "Fokus: Performance & Daten",
+        title: "Denys Demyanyshyn &middot; Performance &amp; Analytics",
+        text: "Verbindet Kreativität mit Messbarkeit. Entwickelt das A/B-Testing-Framework und die Testing-Matrix (Craft/Data/Luxury/Results). Führt wöchentliche Updates für die Benchmark Library durch (CTR/CPC/ROAS Benchmarks für DACH Beauty) und steuert den Daten-Loop (Learning Log).",
+        tools: "Meta Ads Manager &middot; TikTok Ads &middot; Google Analytics 4 &middot; Looker Studio &middot; Sheets",
+        color: "var(--color-denys)"
+      },
+      ralph: {
+        label: "Fokus: Operationen & CRM",
+        title: "Ralph Kindermann &middot; CRM &amp; Client Success",
+        text: "Verantwortet das operative System (Notion Workspace &amp; HubSpot CRM). Definiert den Lead Onboarding Guide, die internen FAQs sowie das Übergabe-Prozedere der Assets. Schafft standardisierte SOPs für Leads, Onboarding und Fallerstellung zur Qualitätssicherung.",
+        tools: "HubSpot CRM &middot; Notion OS &middot; Google Drive API &middot; Slack automation",
+        color: "var(--color-ralph)"
+      },
+      yahya: {
+        label: "Fokus: Strategie & Inbound-Tech",
+        title: "Yahya Yildirim &middot; Growth &amp; Project Lead",
+        text: "Architekt der Frontier Firm Struktur (Perplexity Spaces, MCPs und Perfect Twin Integration). Baut die bilinguale Website (Next.js 14, Cloud Run). Konzipiert die Inbound/Outbound Journeys und verantwortet das EU AI Act Compliance Framework (C2PA Protokolle, No-Training Policy).",
+        tools: "Next.js 14 &middot; GCP Cloud Run &middot; Docker &middot; Claude Code &middot; Perplexity Spaces",
+        color: "var(--color-yahya)"
+      }
+    };
+
+    document.querySelectorAll('[data-team]').forEach(card => {
+      card.addEventListener('click', () => {
+        document.querySelectorAll('[data-team]').forEach(c => c.classList.remove('active'));
+        card.classList.add('active');
+        
+        const member = card.getAttribute('data-team');
+        const data = teamData[member];
+        
+        const label = document.getElementById('teamDetailsLabel');
+        const title = document.getElementById('teamDetailsTitle');
+        const text = document.getElementById('teamDetailsText');
+        const tools = document.getElementById('teamDetailsTools');
+        
+        label.textContent = data.label;
+        label.style.color = data.color;
+        title.innerHTML = data.title;
+        text.innerHTML = data.text;
+        tools.innerHTML = data.tools;
+        
+        document.getElementById('teamDetailsPane').style.borderColor = data.color;
+      });
+    });
+
+    // Slide 7: Interactive Case Selector Details
+    const caseData = {
+      luminous: {
+        label: "Visuelles System 01",
+        title: "Luminous Aura",
+        list: `
+          <li><strong>Zielgruppe:</strong> D2C Skincare, Premium Anti-Aging Serum</li>
+          <li><strong>Visuelle Welt:</strong> Dunkler Marmor, schwebende Goldpartikel, kinematische Stille</li>
+          <li><strong>Produktionstyp:</strong> Hybrid (Produkt fotografiert, Umgebung KI)</li>
+          <li><strong>Funnel-Rolle:</strong> Conversion-Stills &amp; E-Commerce Storefront</li>
+        `,
+        meta: "CTR +82% (0.85% &rarr; 1.55%) &middot; CPC -38% (1.42&euro; &rarr; 0.88&euro;) &middot; ROAS +42% (1.9 &rarr; 2.7)"
+      },
+      vitality: {
+        label: "Visuelles System 02",
+        title: "Vitality Pulse",
+        list: `
+          <li><strong>Zielgruppe:</strong> Active Health, Energy-Booster &amp; Supplements</li>
+          <li><strong>Visuelle Welt:</strong> Kinetische Energie, Wassertropfen, Makroaufnahmen</li>
+          <li><strong>Produktionstyp:</strong> Hybrid (Produkt fotografiert, KI-Ambiance)</li>
+          <li><strong>Funnel-Rolle:</strong> High-Motion Reels &amp; TikTok Hooks (0-3s)</li>
+        `,
+        meta: "Fokus auf Scroll-Stop Rate (&gt;40%) &middot; Optimiert für mobile Video-Feeds"
+      },
+      essence: {
+        label: "Visuelles System 03",
+        title: "Essence Drift",
+        list: `
+          <li><strong>Zielgruppe:</strong> Nischen-Parfum-Brands, Unisex Fragrance</li>
+          <li><strong>Visuelle Welt:</strong> Weicher Nebel, Glasspiegelungen, schwebende Zeit</li>
+          <li><strong>Produktionstyp:</strong> Hybrid (Editorial Fotografie + generative Tiefe)</li>
+          <li><strong>Funnel-Rolle:</strong> Emotionales Storytelling im Consideration-Kanal</li>
+        `,
+        meta: "Starker emotionaler Differenzierungs-Winkel im Mid-Funnel"
+      },
+      neural: {
+        label: "Visuelles System 04",
+        title: "Neural Glow",
+        list: `
+          <li><strong>Zielgruppe:</strong> Tech-Beauty, biotechnologische Skincare</li>
+          <li><strong>Visuelle Welt:</strong> Neonfarbene Schaltkreise, fluoreszierende Optiken</li>
+          <li><strong>Produktionstyp:</strong> 100% KI-generiert (EU AI Act-konform deklariert)</li>
+          <li><strong>Funnel-Rolle:</strong> Innovations-Signal für disruptive Marken</li>
+        `,
+        meta: "Voller Audit-Trail &amp; C2PA Metadaten &middot; Lizensierte Adobe Firefly Generierung"
+      }
+    };
+
+    document.querySelectorAll('[data-case]').forEach(trigger => {
+      trigger.addEventListener('click', () => {
+        document.querySelectorAll('[data-case]').forEach(t => t.classList.remove('active'));
+        trigger.classList.add('active');
+        
+        const caseKey = trigger.getAttribute('data-case');
+        const data = caseData[caseKey];
+        
+        document.getElementById('caseDetailsLabel').textContent = data.label;
+        document.getElementById('caseDetailsTitle').textContent = data.title;
+        document.getElementById('caseDetailsList').innerHTML = data.list;
+        document.getElementById('caseDetailsMeta').innerHTML = data.meta;
+      });
+    });
+
+    // Slide 12: Interactive Journey Selector Details
+    const journeyData = {
+      inbound: {
+        label: "Website Inbound-Funnel",
+        title: "Vom Klick zum Retainer",
+        list: `
+          <div><strong>01. Hook:</strong> Kunde sieht "Luminous Aura" Ad-Creative auf Meta/Instagram.</div>
+          <div><strong>02. Magnet:</strong> Landet auf Website, liest das detailreiche Thought-Leadership Paper.</div>
+          <div><strong>03. Buchung:</strong> Qualifizierungs-Formular (Spend-Check) &rarr; Buchung in Calendly.</div>
+          <div><strong>04. Pitch:</strong> Olha &amp; Denys präsentieren das vorab erstellte Creative-Audit.</div>
+          <div><strong>05. Abschluss:</strong> Ralph sendet den standardisierten DCI-konformen Retainer-Vertrag.</div>
+        `,
+        meta: "Lead-Event-Trigger in HubSpot &rarr; Lead-Qualifizierungs-Score &rarr; Slack-Alert"
+      },
+      outbound: {
+        label: "B2B Outbound-Workflow",
+        title: "Vom Kaltkontakt zum Retainer",
+        list: `
+          <div><strong>01. Research:</strong> Meta Ad Library Check von Nischen-Skincare Brands.</div>
+          <div><strong>02. Outreach:</strong> Ralph kontaktiert CMO mit personalisiertem 90s Video-Audit via LinkedIn.</div>
+          <div><strong>03. Trigger:</strong> CMO bekundet Interesse an Creative Fatigue Eliminierung.</div>
+          <div><strong>04. Test:</strong> Start eines risikoarmen 14-Tage Test-Pakets (1 Shooting-Tag, 5 Assets).</div>
+          <div><strong>05. Upsell:</strong> Deutliche Übertroffenheit der CTR-Baseline führt zu Retainer-Konversion.</div>
+        `,
+        meta: "Outreach-Sequenz in HubSpot Starter &rarr; Task-Automation für Follow-Ups"
+      }
+    };
+
+    document.querySelectorAll('[data-journey]').forEach(trigger => {
+      trigger.addEventListener('click', () => {
+        document.querySelectorAll('[data-journey]').forEach(t => t.classList.remove('active'));
+        trigger.classList.add('active');
+        
+        const journeyKey = trigger.getAttribute('data-journey');
+        const data = journeyData[journeyKey];
+        
+        document.getElementById('journeyDetailsLabel').textContent = data.label;
+        document.getElementById('journeyDetailsTitle').textContent = data.title;
+        document.getElementById('journeyDetailsList').innerHTML = data.list;
+        document.getElementById('journeyDetailsMeta').innerHTML = data.meta;
+      });
+    });
+
+    // Floating Particles Canvas Implementation (High Performance)
+    const canvas = document.getElementById('particles');
+    const ctx = canvas.getContext('2d');
+    
+    let particlesArray = [];
+    const numberOfParticles = 35;
+    
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+
+    window.addEventListener('resize', () => {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    });
+
+    class Particle {
+      constructor() {
+        this.x = Math.random() * canvas.width;
+        this.y = Math.random() * canvas.height;
+        this.size = Math.random() * 1.5 + 0.4;
+        this.speedX = Math.random() * 0.2 - 0.1;
+        this.speedY = Math.random() * 0.2 - 0.1;
+        this.color = 'rgba(200, 162, 90, ' + (Math.random() * 0.25 + 0.05) + ')';
+      }
+      update() {
+        this.x += this.speedX;
+        this.y += this.speedY;
+
+        if (this.x > canvas.width) this.x = 0;
+        else if (this.x < 0) this.x = canvas.width;
+        
+        if (this.y > canvas.height) this.y = 0;
+        else if (this.y < 0) this.y = canvas.height;
+      }
+      draw() {
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+        ctx.fillStyle = this.color;
+        ctx.fill();
+      }
+    }
+
+    function initParticles() {
+      particlesArray = [];
+      for (let i = 0; i < numberOfParticles; i++) {
+        particlesArray.push(new Particle());
+      }
+    }
+
+    function animateParticles() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      for (let i = 0; i < particlesArray.length; i++) {
+        particlesArray[i].update();
+        particlesArray[i].draw();
+      }
+      requestAnimationFrame(animateParticles);
+    }
+
+    // Init Presentation Deck
+    initParticles();
+    animateParticles();
+    initDrawer();
+    updateDeck();
+  </script>
+</body>
+</html>

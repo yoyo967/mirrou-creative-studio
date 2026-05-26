@@ -1,0 +1,1753 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mirrou Phase 2 — Autonomous Growth System | Denys</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+  <style type="text/tailwindcss">
+    @theme {
+      --color-bg: #0A0A0A;
+      --color-bg-deep: #050505;
+      --color-surface: #141414;
+      --color-surface-2: #1A1A1A;
+      --color-text: #F5F3EE;
+      --color-text-secondary: #D8D3CB;
+      --color-text-muted: #9DA0A6;
+      --color-accent-1: #C6A56B;
+      --color-accent-2: #F5F3EE;
+      --color-accent-danger: #E85D5D;
+      --color-accent-success: #5DBE7D;
+      --color-glass-bg: rgba(255,255,255,0.05);
+      --color-glass-border: rgba(255,255,255,0.09);
+      --font-display: 'Cormorant Garamond', serif;
+      --font-body: 'Inter', sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
+    }
+  </style>
+  <style>
+    :root { --glow: rgba(198,165,107,0.15); }
+    * { box-sizing: border-box; }
+    html, body { background: #0A0A0A; margin: 0; color: #F5F3EE; font-family: 'Inter', sans-serif; }
+    body { overflow-x: hidden; }
+    .slide { min-height: 100vh; display: flex; flex-direction: column; justify-content: center; padding: clamp(2rem, 5vw, 4rem); position: relative; }
+    .slide-alt { background: #0D0D0D; }
+    .gradient-mesh { position: absolute; inset: 0; overflow: hidden; pointer-events: none; z-index: 0; }
+    .blob { position: absolute; border-radius: 50%; filter: blur(100px); opacity: 0.1; }
+    .pill { display: inline-block; border: 1px solid rgba(198,165,107,0.35); background: rgba(198,165,107,0.08); color: #C6A56B; padding: 6px 16px; border-radius: 999px; font-size: 0.72rem; letter-spacing: 0.14em; text-transform: uppercase; font-family: 'JetBrains Mono', monospace; }
+    .metric { font-size: clamp(2.2rem, 4vw, 3.8rem); font-weight: 800; line-height: 0.95; color: #C6A56B; font-family: 'JetBrains Mono', monospace; }
+    .card { border: 1px solid rgba(255,255,255,0.08); background: rgba(255,255,255,0.03); border-radius: 20px; padding: 24px; }
+    .card-hover { transition: all 0.3s ease; }
+    .card-hover:hover { border-color: rgba(198,165,107,0.25); background: rgba(255,255,255,0.05); transform: translateY(-2px); }
+    .tag { display: inline-block; padding: 3px 10px; border-radius: 6px; font-size: 0.7rem; font-family: 'JetBrains Mono', monospace; letter-spacing: 0.05em; }
+    .tag-kill { background: rgba(232,93,93,0.12); color: #E85D5D; border: 1px solid rgba(232,93,93,0.2); }
+    .tag-scale { background: rgba(93,190,125,0.12); color: #5DBE7D; border: 1px solid rgba(93,190,125,0.2); }
+    .tag-warn { background: rgba(198,165,107,0.12); color: #C6A56B; border: 1px solid rgba(198,165,107,0.2); }
+    .sop-box { border-left: 3px solid #C6A56B; background: rgba(198,165,107,0.04); padding: 16px 20px; border-radius: 0 12px 12px 0; }
+    .code-block { background: #0D0D0D; border: 1px solid rgba(255,255,255,0.06); border-radius: 12px; padding: 16px; font-family: 'JetBrains Mono', monospace; font-size: 0.82rem; line-height: 1.6; color: #D8D3CB; overflow-x: auto; }
+    .code-block .comment { color: #7D8087; }
+    .code-block .keyword { color: #C6A56B; }
+    .code-block .string { color: #5DBE7D; }
+    .code-block .var { color: #E85D5D; }
+    .gantt-bar { height: 28px; border-radius: 6px; display: flex; align-items: center; padding: 0 10px; font-size: 0.7rem; font-family: 'JetBrains Mono', monospace; white-space: nowrap; overflow: hidden; }
+    .table-custom { width: 100%; border-collapse: separate; border-spacing: 0 8px; }
+    .table-custom th { text-align: left; padding: 10px 14px; font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.12em; color: #9DA0A6; font-family: 'JetBrains Mono', monospace; border-bottom: 1px solid rgba(255,255,255,0.06); }
+    .table-custom td { padding: 14px; background: rgba(255,255,255,0.03); border-top: 1px solid rgba(255,255,255,0.04); border-bottom: 1px solid rgba(255,255,255,0.04); }
+    .table-custom td:first-child { border-radius: 10px 0 0 10px; border-left: 1px solid rgba(255,255,255,0.04); }
+    .table-custom td:last-child { border-radius: 0 10px 10px 0; border-right: 1px solid rgba(255,255,255,0.04); }
+    .funnel-stage { position: relative; padding-left: 24px; }
+    .funnel-stage::before { content: ''; position: absolute; left: 0; top: 8px; width: 12px; height: 12px; border-radius: 50%; }
+    .funnel-aw::before { background: #C6A56B; box-shadow: 0 0 12px rgba(198,165,107,0.4); }
+    .funnel-co::before { background: #D8D3CB; }
+    .funnel-cv::before { background: #5DBE7D; }
+    .funnel-re::before { background: #7D8087; }
+    .wireframe-box { border: 2px dashed rgba(255,255,255,0.1); border-radius: 12px; padding: 20px; background: rgba(255,255,255,0.01); text-align: center; color: #7D8087; font-size: 0.8rem; }
+    .progress-line { height: 3px; background: rgba(255,255,255,0.06); border-radius: 3px; position: relative; }
+    .progress-line::after { content: ''; position: absolute; left: 0; top: 0; height: 100%; border-radius: 3px; background: linear-gradient(90deg, #C6A56B, #F5F3EE); }
+    .section-divider { height: 1px; background: linear-gradient(90deg, transparent, rgba(198,165,107,0.3), transparent); margin: 3rem 0; }
+    .highlight-box { background: rgba(198,165,107,0.06); border: 1px solid rgba(198,165,107,0.15); border-radius: 14px; padding: 20px; }
+    .nav-dots { position: fixed; right: 24px; top: 50%; transform: translateY(-50%); z-index: 100; display: flex; flex-direction: column; gap: 8px; }
+    .nav-dot { width: 8px; height: 8px; border-radius: 50%; background: rgba(255,255,255,0.15); cursor: pointer; transition: all 0.3s; }
+    .nav-dot:hover, .nav-dot.active { background: #C6A56B; transform: scale(1.4); }
+    @media (max-width: 768px) { .nav-dots { display: none; } }
+  </style>
+</head>
+<body>
+
+<!-- NAV DOTS -->
+<div class="nav-dots">
+  <div class="nav-dot active" onclick="scrollToSection('s1')"></div>
+  <div class="nav-dot" onclick="scrollToSection('s2')"></div>
+  <div class="nav-dot" onclick="scrollToSection('s3')"></div>
+  <div class="nav-dot" onclick="scrollToSection('s4')"></div>
+  <div class="nav-dot" onclick="scrollToSection('s5')"></div>
+  <div class="nav-dot" onclick="scrollToSection('s6')"></div>
+  <div class="nav-dot" onclick="scrollToSection('s7')"></div>
+  <div class="nav-dot" onclick="scrollToSection('s8')"></div>
+  <div class="nav-dot" onclick="scrollToSection('s9')"></div>
+  <div class="nav-dot" onclick="scrollToSection('s10')"></div>
+  <div class="nav-dot" onclick="scrollToSection('s11')"></div>
+  <div class="nav-dot" onclick="scrollToSection('s12')"></div>
+  <div class="nav-dot" onclick="scrollToSection('s13')"></div>
+  <div class="nav-dot" onclick="scrollToSection('s14')"></div>
+  <div class="nav-dot" onclick="scrollToSection('s15')"></div>
+  <div class="nav-dot" onclick="scrollToSection('s16')"></div>
+</div>
+
+<!-- ==================== SLIDE 1: TITLE ==================== -->
+<section class="slide" id="s1">
+  <div class="gradient-mesh">
+    <div class="blob" style="width:600px;height:600px;top:-150px;right:-100px;background:#C6A56B;"></div>
+    <div class="blob" style="width:400px;height:400px;bottom:-100px;left:-80px;background:#7D8087;"></div>
+  </div>
+  <div class="relative z-10 text-center max-w-[900px] mx-auto">
+    <div class="pill mb-6">Phase 2 • Denys • System Architect</div>
+    <h1 class="font-display text-[clamp(2.8rem,6vw,5.5rem)] font-bold leading-[1.05] bg-gradient-to-br from-[#C6A56B] via-[#F5F3EE] to-[#C6A56B] bg-clip-text text-transparent">
+      Autonomous Growth System
+    </h1>
+    <p class="mt-6 text-[clamp(1rem,1.8vw,1.3rem)] text-[#9DA0A6] tracking-wide uppercase">Mirrou • Performance Creative Studio • DACH</p>
+    <p class="mt-8 text-lg text-[#D8D3CB] max-w-[700px] mx-auto leading-relaxed">
+      Vom Marketing-Mix zum ausführbaren AI-First Growth-System. Kanäle, Funnel, Messaging, AI-Agenten, 
+      25-Tage-Sprint-Plan, Experiment-Kalender, KPI-Framework, Dashboard-Blueprint, CRM-Schnittstellen 
+      und Übergabe-Doku für Phase 3.
+    </p>
+    <div class="mt-10 flex flex-wrap justify-center gap-4 text-sm">
+      <span class="pill">€12.500 Testbudget</span>
+      <span class="pill">16 Slides</span>
+      <span class="pill">5 Test-Hypothesen</span>
+      <span class="pill">4 AI-Agenten</span>
+      <span class="pill">3 Sprints</span>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== SLIDE 2: EXECUTIVE SUMMARY ==================== -->
+<section class="slide slide-alt" id="s2">
+  <div class="gradient-mesh">
+    <div class="blob" style="width:350px;height:350px;top:10%;right:5%;background:#C6A56B;"></div>
+  </div>
+  <div class="relative z-10 max-w-[1100px] mx-auto w-full">
+    <div class="pill mb-4">Executive Summary</div>
+    <h2 class="font-display text-[clamp(2rem,4vw,3.2rem)] font-semibold mb-8">Was Phase 2 liefern muss</h2>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
+      <div class="card card-hover">
+        <div class="metric mb-2">01</div>
+        <h3 class="font-display text-2xl text-[#C6A56B] mb-3">System statt Slides</h3>
+        <p class="text-[0.88rem] text-[#D8D3CB] leading-relaxed">
+          Kein theoretisches Kapitel, sondern eine erste Version des „Autonomous Growth Systems" 
+          für Mirrou — direkt in Kampagnen übertragbar.
+        </p>
+      </div>
+      <div class="card card-hover">
+        <div class="metric mb-2">02</div>
+        <h3 class="font-display text-2xl text-[#C6A56B] mb-3">Mensch + Agent</h3>
+        <p class="text-[0.88rem] text-[#D8D3CB] leading-relaxed">
+          Denys als „Agent Boss" — entwirft AI-Rollen, delegiert Workflows, kontrolliert Outputs. 
+          Frontier-Firm-Prinzip: Intelligence on tap.
+        </p>
+      </div>
+      <div class="card card-hover">
+        <div class="metric mb-2">03</div>
+        <h3 class="font-display text-2xl text-[#C6A56B] mb-3">Phase-3-Ready</h3>
+        <p class="text-[0.88rem] text-[#D8D3CB] leading-relaxed">
+          Jede Entscheidung als „If-this-then-that"-Regel festgehalten. 
+          Übergabe-Doku in Notion-Struktur für das gesamte Team.
+        </p>
+      </div>
+    </div>
+    <div class="highlight-box mt-8">
+      <p class="text-[0.9rem] text-[#D8D3CB]">
+        <strong class="text-[#C6A56B]">Testbudget Phase 2:</strong> €12.500 über 25 Tage. 
+        Aufgeteilt in Setup (€2.500), Testing (€5.000), Scaling (€5.000). 
+        Ziel: Message-to-Market-Fit validieren, bevor echte Pilotkunden adressiert werden.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== SLIDE 3: MARKETING MIX ==================== -->
+<section class="slide" id="s3">
+  <div class="gradient-mesh">
+    <div class="blob" style="width:300px;height:300px;top:-60px;right:-60px;background:#7D8087;"></div>
+  </div>
+  <div class="relative z-10 max-w-[1100px] mx-auto w-full">
+    <div class="pill mb-4">1 · Marketing-Mix</div>
+    <h2 class="font-display text-[clamp(2rem,4vw,3rem)] font-semibold mb-2">Kanäle, Rollen, KPIs und Budget</h2>
+    <p class="text-[#9DA0A6] text-sm mb-6">Testbudget: €12.500 | Zeitraum: 25 Tage | Zielgruppe: Beauty/Health/Lifestyle CMOs & Founders, DACH+EU</p>
+
+    <table class="table-custom">
+      <thead>
+        <tr>
+          <th>Kanal</th>
+          <th>Funnel-Rolle</th>
+          <th>Ziel</th>
+          <th>Core KPIs</th>
+          <th>Budget %</th>
+          <th>Budget €</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Meta Ads</strong><br><span class="text-[0.75rem] text-[#9DA0A6]">FB + IG</span></td>
+          <td>Awareness / Consideration</td>
+          <td>Aufmerksamkeit, Case-Interesse, Website-Traffic</td>
+          <td>CTR >1.5%, CPC <€1.20, ROAS >2.0</td>
+          <td><strong>35%</strong></td>
+          <td><strong>€4.375</strong></td>
+        </tr>
+        <tr>
+          <td><strong>TikTok Ads</strong></td>
+          <td>Awareness</td>
+          <td>Reichweite, Hook-Testing, Viral-Discovery</td>
+          <td>Thumb-Stop >25%, View-Rate >40%, CTR >1.2%</td>
+          <td><strong>25%</strong></td>
+          <td><strong>€3.125</strong></td>
+        </tr>
+        <tr>
+          <td><strong>Google Search</strong><br><span class="text-[0.75rem] text-[#9DA0A6]">Search + PMax</span></td>
+          <td>Consideration / Conversion</td>
+          <td>Qualified Leads, Intent-Capture, Anfragen</td>
+          <td>CPA <€50, Conv-Rate >2%, Leads >30</td>
+          <td><strong>20%</strong></td>
+          <td><strong>€2.500</strong></td>
+        </tr>
+        <tr>
+          <td><strong>Email / CRM</strong><br><span class="text-[0.75rem] text-[#9DA0A6]">HubSpot</span></td>
+          <td>Conversion / Retention</td>
+          <td>Nurturing, Call-Booking, Follow-up</td>
+          <td>Open >35%, Reply >8%, Close-Rate >15%</td>
+          <td><strong>12%</strong></td>
+          <td><strong>€1.500</strong></td>
+        </tr>
+        <tr>
+          <td><strong>LinkedIn / PR</strong></td>
+          <td>Consideration / Authority</td>
+          <td>Thought Leadership, Trust, Inbound</td>
+          <td>Impressions, Engagement >4%, Profile Visits</td>
+          <td><strong>8%</strong></td>
+          <td><strong>€1.000</strong></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="grid grid-cols-5 gap-3 mt-6">
+      <div class="text-center">
+        <div class="gantt-bar bg-gradient-to-r from-[#C6A56B] to-[#C6A56B]/60 text-[#0A0A0A] font-bold">Meta 35%</div>
+      </div>
+      <div class="text-center">
+        <div class="gantt-bar bg-gradient-to-r from-[#D8D3CB] to-[#D8D3CB]/60 text-[#0A0A0A] font-bold">TikTok 25%</div>
+      </div>
+      <div class="text-center">
+        <div class="gantt-bar bg-gradient-to-r from-[#5DBE7D] to-[#5DBE7D]/60 text-[#0A0A0A] font-bold">Google 20%</div>
+      </div>
+      <div class="text-center">
+        <div class="gantt-bar bg-gradient-to-r from-[#7D8087] to-[#7D8087]/60 text-[#0A0A0A] font-bold">Email 12%</div>
+      </div>
+      <div class="text-center">
+        <div class="gantt-bar bg-gradient-to-r from-[#9DA0A6] to-[#9DA0A6]/60 text-[#0A0A0A] font-bold">LI 8%</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== SLIDE 4: FUNNEL ARCHITECTURE ==================== -->
+<section class="slide slide-alt" id="s4">
+  <div class="gradient-mesh">
+    <div class="blob" style="width:400px;height:400px;bottom:-100px;right:-80px;background:#C6A56B;"></div>
+  </div>
+  <div class="relative z-10 max-w-[1100px] mx-auto w-full">
+    <div class="pill mb-4">2 · Funnel-Architektur</div>
+    <h2 class="font-display text-[clamp(2rem,4vw,3rem)] font-semibold mb-6">Customer Journey: Erstkontakt bis Deal</h2>
+
+    <!-- Funnel Visual -->
+    <div class="relative">
+      <!-- Awareness -->
+      <div class="flex items-start gap-5 mb-6">
+        <div class="flex-shrink-0 w-14 h-14 rounded-full bg-[#C6A56B]/15 border border-[#C6A56B]/30 flex items-center justify-center text-[#C6A56B] font-bold text-xl">1</div>
+        <div class="flex-1 card">
+          <div class="flex items-center gap-3 mb-3">
+            <span class="funnel-stage funnel-aw font-display text-xl text-[#C6A56B]">Awareness</span>
+            <span class="tag tag-warn">Touchpoints: 3</span>
+            <span class="tag tag-warn">AI: Trend-Scout + Hook-Gen</span>
+          </div>
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-[0.85rem]">
+            <div>
+              <strong class="text-[#F5F3EE]">Meta Ads</strong>
+              <p class="text-[#9DA0A6] mt-1">Reels / Carousels mit Case-Visuals (Luminous Aura, Neural Glow). Kernbotschaft: „Aesthetics solve for performance."</p>
+            </div>
+            <div>
+              <strong class="text-[#F5F3EE]">TikTok Ads</strong>
+              <p class="text-[#9DA0A6] mt-1">Educational Hooks: „Warum 80% deiner Ads Budget verbrennen" — 15-sec Format, scroll-stopping.</p>
+            </div>
+            <div>
+              <strong class="text-[#F5F3EE]">LinkedIn Organic</strong>
+              <p class="text-[#9DA0A6] mt-1">Thought-Leadership: „Performance Creative Studio für Beauty Brands" — Editorial Posts, Case Teaser.</p>
+            </div>
+          </div>
+          <div class="mt-3 pt-3 border-t border-white/5 text-[0.8rem] text-[#7D8087]">
+            <strong class="text-[#C6A56B]">Creative-Formate:</strong> Reels (15–30s), Carousels (3–5 Slides), Static Editorial Visuals
+            <span class="mx-3">|</span>
+            <strong class="text-[#C6A56B]">Ziel-KPI:</strong> Thumb-Stop >25%, CTR >1.5%
+          </div>
+        </div>
+      </div>
+
+      <!-- Arrow -->
+      <div class="flex justify-center mb-4"><div class="text-[#C6A56B] text-2xl">↓</div></div>
+
+      <!-- Consideration -->
+      <div class="flex items-start gap-5 mb-6">
+        <div class="flex-shrink-0 w-14 h-14 rounded-full bg-[#D8D3CB]/15 border border-[#D8D3CB]/30 flex items-center justify-center text-[#D8D3CB] font-bold text-xl">2</div>
+        <div class="flex-1 card">
+          <div class="flex items-center gap-3 mb-3">
+            <span class="funnel-stage funnel-co font-display text-xl text-[#D8D3CB]">Consideration</span>
+            <span class="tag tag-warn">Touchpoints: 4</span>
+            <span class="tag tag-warn">AI: Hook-Varianten + LP-Optimizer</span>
+          </div>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-[0.85rem]">
+            <div>
+              <strong class="text-[#F5F3EE]">Website</strong>
+              <p class="text-[#9DA0A6] mt-1">Case Study Compilation, Mission Deck Download, Service Pages. <strong>Tracking:</strong> Scroll Depth, Time on Page, Download-Events.</p>
+            </div>
+            <div>
+              <strong class="text-[#F5F3EE]">Google Search</strong>
+              <p class="text-[#9DA0A6] mt-1">Intent-Keywords: „Performance Marketing Agentur Beauty", „Creative Studio DACH". Sitelinks zu Cases.</p>
+            </div>
+          </div>
+          <div class="mt-3 pt-3 border-t border-white/5 text-[0.8rem] text-[#7D8087]">
+            <strong class="text-[#D8D3CB]">Landing Pages:</strong> Branchen-spezifisch (Beauty / Health / Lifestyle) mit Social Proof
+            <span class="mx-3">|</span>
+            <strong class="text-[#D8D3CB]">Ziel-KPI:</strong> Bounce <60%, Time on Page >90s, Download-Rate >3%
+          </div>
+        </div>
+      </div>
+
+      <div class="flex justify-center mb-4"><div class="text-[#D8D3CB] text-2xl">↓</div></div>
+
+      <!-- Conversion -->
+      <div class="flex items-start gap-5 mb-6">
+        <div class="flex-shrink-0 w-14 h-14 rounded-full bg-[#5DBE7D]/15 border border-[#5DBE7D]/30 flex items-center justify-center text-[#5DBE7D] font-bold text-xl">3</div>
+        <div class="flex-1 card">
+          <div class="flex items-center gap-3 mb-3">
+            <span class="funnel-stage funnel-cv font-display text-xl text-[#5DBE7D]">Conversion</span>
+            <span class="tag tag-warn">Touchpoints: 3</span>
+            <span class="tag tag-warn">AI: Lead-Scorer + Budget-Advisor</span>
+          </div>
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-[0.85rem]">
+            <div>
+              <strong class="text-[#F5F3EE]">Email-Nurturing</strong>
+              <p class="text-[#9DA0A6] mt-1">5-Email-Sequenz nach Mission-Deck-Download. Value → Case Study → CTA (Strategy Call).</p>
+            </div>
+            <div>
+              <strong class="text-[#F5F3EE]">Strategy Call</strong>
+              <p class="text-[#9DA0A6] mt-1">Calendly-Booking, 30-min Discovery Call, Custom Creative Pitch.</p>
+            </div>
+            <div>
+              <strong class="text-[#F5F3EE]">Proposal</strong>
+              <p class="text-[#9DA0A6] mt-1">Tailored Offer mit Case-Referenz, Budget-Plan, Timeline. AI: Predictive Scoring für Win-Probability.</p>
+            </div>
+          </div>
+          <div class="mt-3 pt-3 border-t border-white/5 text-[0.8rem] text-[#7D8087]">
+            <strong class="text-[#5DBE7D]">CRM-Integration:</strong> Lead-Score basierend auf Download + Website-Verhalten + Email-Engagement
+            <span class="mx-3">|</span>
+            <strong class="text-[#5DBE7D]">Ziel-KPI:</strong> CPL <€50, Call-Booking-Rate >8%, Close-Rate >15%
+          </div>
+        </div>
+      </div>
+
+      <div class="flex justify-center mb-4"><div class="text-[#5DBE7D] text-2xl">↓</div></div>
+
+      <!-- Retention -->
+      <div class="flex items-start gap-5">
+        <div class="flex-shrink-0 w-14 h-14 rounded-full bg-[#7D8087]/15 border border-[#7D8087]/30 flex items-center justify-center text-[#7D8087] font-bold text-xl">4</div>
+        <div class="flex-1 card">
+          <div class="flex items-center gap-3 mb-3">
+            <span class="funnel-stage funnel-re font-display text-xl text-[#7D8087]">Retention</span>
+            <span class="tag tag-warn">Touchpoints: 3</span>
+            <span class="tag tag-warn">AI: Success-Monitor + Upsell-Advisor</span>
+          </div>
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-[0.85rem]">
+            <div>
+              <strong class="text-[#F5F3EE]">Client Updates</strong>
+              <p class="text-[#9DA0A6] mt-1">Wöchentliche Performance-Updates, Creative-Optimierungen, neue Test-Ideen.</p>
+            </div>
+            <div>
+              <strong class="text-[#F5F3EE]">Case Study für Portfolio</strong>
+              <p class="text-[#9DA0A6] mt-1">Erfolgs-Story dokumentieren → neue Proof für zukünftige Kampagnen.</p>
+            </div>
+            <div>
+              <strong class="text-[#F5F3EE]">Expansion</strong>
+              <p class="text-[#9DA0A6] mt-1">Upsell: neue Kanäle, neue Märkte, größere Budgets. Advisory-Retainer.</p>
+            </div>
+          </div>
+          <div class="mt-3 pt-3 border-t border-white/5 text-[0.8rem] text-[#7D8087]">
+            <strong class="text-[#7D8087]">Ziel-KPI:</strong> NPS >50, Repeat-Rate >30%, Upsell-Rate >20%
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== SLIDE 5: MESSAGING GRID ==================== -->
+<section class="slide" id="s5">
+  <div class="gradient-mesh">
+    <div class="blob" style="width:300px;height:300px;top:-60px;right:-60px;background:#C6A56B;"></div>
+  </div>
+  <div class="relative z-10 max-w-[1100px] mx-auto w-full">
+    <div class="pill mb-4">3 · Messaging-Framework</div>
+    <h2 class="font-display text-[clamp(2rem,4vw,3rem)] font-semibold mb-2">Kernversprechen und Messaging-Grid</h2>
+    <p class="text-[#9DA0A6] text-sm mb-6">Direkter Input für AI-Prompts: Hooks, Ad Copy, Landing-Page-Sections, Email-Varianten</p>
+
+    <div class="overflow-x-auto">
+      <table class="table-custom" style="min-width: 900px;">
+        <thead>
+          <tr>
+            <th style="width:15%">Persona / Segment</th>
+            <th style="width:18%">Pain Point</th>
+            <th style="width:20%">Value Proposition</th>
+            <th style="width:18%">Hook-Angle</th>
+            <th style="width:14%">Proof</th>
+            <th style="width:15%">Tonalität</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Beauty CMO</strong><br><span class="text-[0.75rem] text-[#9DA0A6]">DACH, €500K–2M Budget, etablierte Marke</span></td>
+            <td>Fragmentierte Creatives, keine konsistente Brand-Ästhetik über Kanäle, generische Agentur-Outputs</td>
+            <td>„Editorial Precision + Performance Logic" — Press-grade Assets, die konvertieren</td>
+            <td>„Performance trifft Editorial" / „Deine Ads sehen aus wie Editorial, performen wie Performance"</td>
+            <td>4 Cases (Luminous Aura, Vitality Pulse, Essence Drift, Neural Glow), Press-Features</td>
+            <td><span class="tag tag-warn">Sophisticated</span> <span class="tag tag-warn">Direct</span></td>
+          </tr>
+          <tr>
+            <td><strong>Health Founder</strong><br><span class="text-[0.75rem] text-[#9DA0A6]">DACH/EU, €100K–500K Budget, Startup/Scale-up</span></td>
+            <td>Generische Ads, keine Brand-Differentiation, hohe CPC bei geringer Conversion</td>
+            <td>„Brand-safe generative pipelines" — AI-gestützte Creative-Produktion mit menschlicher Qualitätskontrolle</td>
+            <td>„AI-unterstütztes Creative Lab" / „10x mehr Creatives, 0% Generic"</td>
+            <td>Algorithm of Soul, Controlled Creative Systems, Sprint-Methodik</td>
+            <td><span class="tag tag-warn">Innovative</span> <span class="tag tag-warn">Energetic</span></td>
+          </tr>
+          <tr>
+            <td><strong>Lifestyle Brand Lead</strong><br><span class="text-[0.75rem] text-[#9DA0A6]">EU, €200K–1M Budget, Kultur-getriebene Marke</span></td>
+            <td>Fehlende Skalierung, Creative-Fatigue, keine systematische Testing-Kultur</td>
+            <td>„Controlled Creative Systems" — Skalierbare Creative-Engine mit Predictable Output</td>
+            <td>„Systems before campaigns" / „Baue das System, nicht nur die nächste Kampagne"</td>
+            <td>Dual-City Architecture (Hamburg + Berlin), Prozess-Doku, 25-Tage-Sprint-Plan</td>
+            <td><span class="tag tag-warn">Systemic</span> <span class="tag tag-warn">Cultural</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="section-divider"></div>
+
+    <h3 class="font-display text-2xl text-[#C6A56B] mb-4">5 Kernversprechen (für alle Personas)</h3>
+    <div class="grid grid-cols-1 md:grid-cols-5 gap-3">
+      <div class="card text-center">
+        <div class="text-[#C6A56B] text-2xl mb-2">✦</div>
+        <p class="text-[0.82rem] text-[#D8D3CB]">„A performance creative studio for beauty, lifestyle, and culture-led brands."</p>
+      </div>
+      <div class="card text-center">
+        <div class="text-[#C6A56B] text-2xl mb-2">✦</div>
+        <p class="text-[0.82rem] text-[#D8D3CB]">„Aesthetics solve for performance."</p>
+      </div>
+      <div class="card text-center">
+        <div class="text-[#C6A56B] text-2xl mb-2">✦</div>
+        <p class="text-[0.82rem] text-[#D8D3CB]">„Systems before campaigns."</p>
+      </div>
+      <div class="card text-center">
+        <div class="text-[#C6A56B] text-2xl mb-2">✦</div>
+        <p class="text-[0.82rem] text-[#D8D3CB]">„Editorial precision plus operational clarity."</p>
+      </div>
+      <div class="card text-center">
+        <div class="text-[#C6A56B] text-2xl mb-2">✦</div>
+        <p class="text-[0.82rem] text-[#D8D3CB]">„Algorithm of Soul: human craft scaled through AI logic."</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== SLIDE 6: AI PROMPTS ==================== -->
+<section class="slide slide-alt" id="s6">
+  <div class="gradient-mesh">
+    <div class="blob" style="width:350px;height:350px;bottom:-80px;left:-60px;background:#C6A56B;"></div>
+  </div>
+  <div class="relative z-10 max-w-[1100px] mx-auto w-full">
+    <div class="pill mb-4">3.1 · AI-Prompts</div>
+    <h2 class="font-display text-[clamp(2rem,4vw,3rem)] font-semibold mb-6">Prompt-Templates für AI-Agenten</h2>
+
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+      <!-- Prompt 1: Hook Generator -->
+      <div class="card">
+        <div class="flex items-center gap-3 mb-4">
+          <span class="pill">Hook-Generator</span>
+          <span class="text-[0.75rem] text-[#9DA0A6]">LLM: GPT-4 / Claude 3.5</span>
+        </div>
+        <div class="code-block">
+<span class="comment"># INPUT-FELDER</span>
+<span class="var">persona</span> = <span class="string">"Beauty CMO, DACH, €500K–2M Budget"</span>
+<span class="var">pain_point</span> = <span class="string">"Fragmentierte Creatives, keine konsistente Ästhetik"</span>
+<span class="var">tone</span> = <span class="string">"sophisticated, direct, press-grade"</span>
+<span class="var">case_ref</span> = <span class="string">"Luminous Aura — Premium Serum, +47% ROAS"</span>
+<span class="var">funnel_stage</span> = <span class="string">"Awareness"</span>
+<span class="var">output_count</span> = <span class="string">"30"</span>
+
+<span class="comment"># PROMPT</span>
+<span class="keyword">Generiere</span> {{output_count}} Ad-Hooks für {{persona}}.
+<span class="keyword">Kontext:</span> {{pain_point}}. Referenz-Case: {{case_ref}}.
+<span class="keyword">Tonalität:</span> {{tone}}. Funnel-Stage: {{funnel_stage}}.
+
+<span class="keyword">Strukturiere nach Kategorien:</span>
+1. Problem-Agitation (5 Hooks)
+2. Social Proof / Case-Based (5 Hooks)
+3. Curiosity / Pattern-Interrupt (5 Hooks)
+4. Direct CTA / Value-First (5 Hooks)
+5. Cultural / Aesthetic (5 Hooks)
+6. Contrarian / Challenge (5 Hooks)
+
+<span class="keyword">Format pro Hook:</span>
+- Hook-Text (max 120 Zeichen)
+- Primärer Winkel
+- Empfohlenes Creative-Format
+- Erwarteter Emotional Trigger
+        </div>
+        <div class="mt-3 text-[0.8rem] text-[#9DA0A6]">
+          <strong class="text-[#C6A56B]">Output:</strong> 30 strukturierte Hooks + Top-5-Ranking nach Predicted CTR
+          <span class="mx-2">|</span>
+          <strong class="text-[#C6A56B]">Frequenz:</strong> 2x/Woche
+        </div>
+      </div>
+
+      <!-- Prompt 2: Creative Variant Generator -->
+      <div class="card">
+        <div class="flex items-center gap-3 mb-4">
+          <span class="pill">Creative Variant Generator</span>
+          <span class="text-[0.75rem] text-[#9DA0A6]">LLM + Midjourney / Runway</span>
+        </div>
+        <div class="code-block">
+<span class="comment"># INPUT-FELDER</span>
+<span class="var">base_asset</span> = <span class="string">"Luminous Aura Hero Visual — Black Marble + Gold Light"</span>
+<span class="var">format_ratios</span> = <span class="string">"1:1, 4:5, 9:16, 16:9"</span>
+<span class="var">audience</span> = <span class="string">"Beauty CMO, DACH, 30–50, Female"</span>
+<span class="var">message</span> = <span class="string">"Editorial Precision + Performance Logic"</span>
+<span class="var">variant_count</span> = <span class="string">"10"</span>
+
+<span class="comment"># PROMPT</span>
+<span class="keyword">Erstelle</span> {{variant_count}} Varianten von {{base_asset}}.
+
+<span class="keyword">Varianten-Typen:</span>
+1. <span class="keyword">Format-Adaption:</span> {{format_ratios}} — gleicher Content, angepasste Komposition
+2. <span class="keyword">Text-Overlay-Varianten:</span> 3 verschiedene Headlines + 3 CTAs
+3. <span class="keyword">Color-Grading-Varianten:</span> Warm / Cool / Monochrome / High-Contrast
+4. <span class="keyword">Composition-Varianten:</span> Product-Centric / Lifestyle / Detail / Macro
+5. <span class="keyword">Motion-Varianten:</span> Static / Subtle Motion / Full Animation
+
+<span class="keyword">Output pro Variante:</span>
+- Asset-ID (z.B. LUM-001-V01)
+- Format
+- Headline + CTA
+- Color-Grade
+- Motion-Type
+- Predicted Performance Score (1–10)
+        </div>
+        <div class="mt-3 text-[0.8rem] text-[#9DA0A6]">
+          <strong class="text-[#C6A56B]">Output:</strong> 10 Varianten + Test-Setup-Doku
+          <span class="mx-2">|</span>
+          <strong class="text-[#C6A56B]">Frequenz:</strong> Pro Test
+        </div>
+      </div>
+
+      <!-- Prompt 3: Budget Advisor -->
+      <div class="card">
+        <div class="flex items-center gap-3 mb-4">
+          <span class="pill">Budget-Advisor</span>
+          <span class="text-[0.75rem] text-[#9DA0A6]">LLM + Google Sheets API</span>
+        </div>
+        <div class="code-block">
+<span class="comment"># INPUT-FELDER (täglich, 08:00 Uhr)</span>
+<span class="var">kpi_7d</span> = <span class="string">"Meta: CTR 1.8%, CPC €1.10, ROAS 1.9 | TikTok: TSR 28%, CTR 1.3% | Google: CPA €58, Conv 1.8%"</span>
+<span class="var">budget_cap</span> = <span class="string">"€12.500 total, €500/day remaining"</span>
+<span class="var">target_roas</span> = <span class="string">"2.5"</span>
+<span class="var">target_cpa</span> = <span class="string">"€50"</span>
+<span class="var">active_tests</span> = <span class="string">"H1: Reels vs Static (Meta), H2: Case-Download vs Contact (Google)"</span>
+
+<span class="comment"># PROMPT</span>
+<span class="keyword">Analysiere</span> die letzten 7 Tage. Vergleiche mit Zielen.
+<span class="keyword">Empfehle:</span>
+1. Budget-Shift pro Kanal (in % und €)
+2. Bid-Adjustments (CPC-Ziele pro Kanal)
+3. Pause-Empfehlungen (welche Tests/Ads)
+4. Scale-Empfehlungen (welche Winner)
+5. Neue Test-Vorschläge (basierend auf Daten)
+
+<span class="keyword">Regeln:</span>
+- CPA > €70 für 3+ Tage → Pause
+- ROAS > 2.2 für 3+ Tage → Scale +20%
+- CTR < 1% für 5+ Tage → Kill Creative
+- TSR < 20% für TikTok → Neue Hook-Generation
+        </div>
+        <div class="mt-3 text-[0.8rem] text-[#9DA0A6]">
+          <strong class="text-[#C6A56B]">Output:</strong> Daily Budget Shift Plan + Begründung
+          <span class="mx-2">|</span>
+          <strong class="text-[#C6A56B]">Frequenz:</strong> Täglich, 08:00 Uhr
+        </div>
+      </div>
+
+      <!-- Prompt 4: Reporting Agent -->
+      <div class="card">
+        <div class="flex items-center gap-3 mb-4">
+          <span class="pill">Reporting-Agent</span>
+          <span class="text-[0.75rem] text-[#9DA0A6]">LLM + Looker Studio API</span>
+        </div>
+        <div class="code-block">
+<span class="comment"># INPUT-FELDER (wöchentlich, Montag 09:00)</span>
+<span class="var">funnel_data</span> = <span class="string">"Awareness: 45K Impressions, 2.1% CTR | Consideration: 1.2K LP-Visits, 62s avg | Conversion: 18 Leads, €62 CPA"</span>
+<span class="var">anomalies</span> = <span class="string">"Meta CTR dropped 40% on Tag 12, Google CPA spiked €45→€78 on Tag 14"</span>
+<span class="var">trends</span> = <span class="string">"TikTok TSR consistently >30%, Email open rate declining 42%→31%"</span>
+<span class="var">experiments</span> = <span class="string">"H1: Winner (Reels), H2: Inconclusive, H3: Kill (Neural Glow underperforms)"</span>
+
+<span class="comment"># PROMPT</span>
+<span class="keyword">Generiere</span> Weekly Performance Review:
+
+<span class="keyword">1. Summary:</span> 3-Satz-Übersicht der Woche
+<span class="keyword">2. Anomalien:</span> Was ist unerwartet? Warum? (Hypothese)
+<span class="keyword">3. Trend-Analyse:</span> Welche Kanäle gewinnen/verlieren?
+<span class="keyword">4. Experiment-Status:</span> Jede Hypothese: Kill / Scale / Continue / Pivot
+<span class="keyword">5. Next Actions:</span> Konkrete To-Dos für diese Woche
+<span class="keyword">6. Alert:</span> Was braucht sofortige Aufmerksamkeit?
+
+<span class="keyword">Format:</span> Bullet Points, max 1 Seite, entscheidungsorientiert.
+        </div>
+        <div class="mt-3 text-[0.8rem] text-[#9DA0A6]">
+          <strong class="text-[#C6A56B]">Output:</strong> 1-Seiten-Weekly Review + Alert-Liste
+          <span class="mx-2">|</span>
+          <strong class="text-[#C6A56B]">Frequenz:</strong> Täglich (Alerts) + Wöchentlich (Review)
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== SLIDE 7: AI ROLES DETAIL ==================== -->
+<section class="slide" id="s7">
+  <div class="gradient-mesh">
+    <div class="blob" style="width:300px;height:300px;top:10%;right:8%;background:#C6A56B;"></div>
+  </div>
+  <div class="relative z-10 max-w-[1100px] mx-auto w-full">
+    <div class="pill mb-4">4 · AI-Rollen im Detail</div>
+    <h2 class="font-display text-[clamp(2rem,4vw,3rem)] font-semibold mb-6">AI-Agenten: Input-Felder, Output, Tools, Integrationen</h2>
+
+    <div class="space-y-5">
+      <!-- Hook Generator -->
+      <div class="card card-hover">
+        <div class="flex flex-wrap items-center gap-3 mb-4">
+          <h3 class="font-display text-2xl text-[#C6A56B]">Hook-Generator</h3>
+          <span class="pill">Primary LLM: GPT-4</span>
+          <span class="pill">Backup: Claude 3.5</span>
+          <span class="tag tag-warn">Frequenz: 2x/Woche</span>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-[0.85rem]">
+          <div class="sop-box">
+            <strong class="text-[#C6A56B]">INPUT-FELDER</strong>
+            <ul class="mt-2 space-y-1 text-[#D8D3CB]">
+              <li>• Persona_ID (Beauty_CMO / Health_Founder / Lifestyle_Lead)</li>
+              <li>• Pain_Point (aus Messaging-Grid)</li>
+              <li>• Tonalität (sophisticated / innovative / systemic)</li>
+              <li>• Case_Reference (LUM / VIT / ESS / NEU)</li>
+              <li>• Funnel_Stage (AW / CO / CV / RE)</li>
+              <li>• KPI_7d (CTR, CPC, letzte Performance)</li>
+              <li>• Creative_Notes (was hat/hat nicht funktioniert)</li>
+            </ul>
+          </div>
+          <div class="sop-box">
+            <strong class="text-[#C6A56B]">OUTPUT-FELDER</strong>
+            <ul class="mt-2 space-y-1 text-[#D8D3CB]">
+              <li>• Hook_Liste (30 Items, kategorisiert)</li>
+              <li>• Top_5_Ranking (nach Predicted_CTR)</li>
+              <li>• Empfohlenes_Format (Reel / Carousel / Static)</li>
+              <li>• Emotional_Trigger (pro Hook)</li>
+              <li>• A/B-Test-Vorschlag (welche 2 Hooks testen)</li>
+            </ul>
+          </div>
+          <div class="sop-box">
+            <strong class="text-[#C6A56B]">TOOLS & INTEGRATION</strong>
+            <ul class="mt-2 space-y-1 text-[#D8D3CB]">
+              <li>• <strong>LLM:</strong> GPT-4 API (OpenAI)</li>
+              <li>• <strong>Storage:</strong> Notion Database (Hooks)</li>
+              <li>• <strong>Export:</strong> Google Sheets → Ads Manager</li>
+              <li>• <strong>Trigger:</strong> Manuell (Denys) oder Schedule (Zapier, Mo/Do 10:00)</li>
+              <li>• <strong>Feedback-Loop:</strong> Performance-Daten → zurück in Prompt</li>
+            </ul>
+          </div>
+        </div>
+        <div class="mt-3 pt-3 border-t border-white/5 flex flex-wrap gap-4 text-[0.8rem]">
+          <span><strong class="text-[#C6A56B]">Menschliche Kontrolle:</strong> Denys kuratiert Top 5 → Creative Team produziert</span>
+          <span><strong class="text-[#C6A56B]">Kosten:</strong> ~$0.50 pro Run (API)</span>
+          <span><strong class="text-[#C6A56B]">Zeitersparnis:</strong> 4h → 30min</span>
+        </div>
+      </div>
+
+      <!-- Creative Variant Generator -->
+      <div class="card card-hover">
+        <div class="flex flex-wrap items-center gap-3 mb-4">
+          <h3 class="font-display text-2xl text-[#C6A56B]">Creative Variant Generator</h3>
+          <span class="pill">LLM: GPT-4 + Midjourney</span>
+          <span class="pill">Motion: Runway</span>
+          <span class="tag tag-warn">Frequenz: Pro Test</span>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-[0.85rem]">
+          <div class="sop-box">
+            <strong class="text-[#C6A56B]">INPUT-FELDER</strong>
+            <ul class="mt-2 space-y-1 text-[#D8D3CB]">
+              <li>• Base_Asset (Asset-ID, URL, Beschreibung)</li>
+              <li>• Format_Ratios (1:1, 4:5, 9:16, 16:9)</li>
+              <li>• Zielgruppe (Segment aus CRM)</li>
+              <li>• Message (Kernversprechen)</li>
+              <li>• Brand_Guidelines (Farben, Fonts, Tone)</li>
+              <li>• Variant_Count (8–10)</li>
+            </ul>
+          </div>
+          <div class="sop-box">
+            <strong class="text-[#C6A56B]">OUTPUT-FELDER</strong>
+            <ul class="mt-2 space-y-1 text-[#D8D3CB]">
+              <li>• Varianten-Assets (Bild/Video, jeweils mit ID)</li>
+              <li>• Headline-Varianten (pro Asset)</li>
+              <li>• CTA-Varianten (pro Asset)</li>
+              <li>• Test-Setup-Doku (A/B/n-Design)</li>
+              <li>• Predicted_Performance_Score</li>
+            </ul>
+          </div>
+          <div class="sop-box">
+            <strong class="text-[#C6A56B]">TOOLS & INTEGRATION</strong>
+            <ul class="mt-2 space-y-1 text-[#D8D3CB]">
+              <li>• <strong>Image Gen:</strong> Midjourney API / DALL-E 3</li>
+              <li>• <strong>Motion:</strong> Runway Gen-2 / Pika</li>
+              <li>• <strong>Text:</strong> GPT-4 (Headlines, CTAs)</li>
+              <li>• <strong>Storage:</strong> Google Drive / Figma</li>
+              <li>• <strong>Export:</strong> Direkt in Meta Ads / TikTok Ads</li>
+              <li>• <strong>Trigger:</strong> Base-Asset approved → Auto-Start</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Budget Advisor -->
+      <div class="card card-hover">
+        <div class="flex flex-wrap items-center gap-3 mb-4">
+          <h3 class="font-display text-2xl text-[#C6A56B]">Budget & Bid Advisor</h3>
+          <span class="pill">LLM: GPT-4</span>
+          <span class="pill">Data: Google Sheets API</span>
+          <span class="tag tag-warn">Frequenz: Täglich, 08:00</span>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-[0.85rem]">
+          <div class="sop-box">
+            <strong class="text-[#C6A56B]">INPUT-FELDER</strong>
+            <ul class="mt-2 space-y-1 text-[#D8D3CB]">
+              <li>• Vortags-KPIs (pro Kanal: Spend, CTR, CPC, ROAS, CPA)</li>
+              <li>• 7-Tage-Trend (gleiche KPIs, smoothed)</li>
+              <li>• Budget_Cap (Gesamt, verbleibend, pro Kanal)</li>
+              <li>• Ziel-ROAS (2.5)</li>
+              <li>• Ziel-CPA (€50)</li>
+              <li>• Active_Tests (Status, Budget-Allokation)</li>
+            </ul>
+          </div>
+          <div class="sop-box">
+            <strong class="text-[#C6A56B]">OUTPUT-FELDER</strong>
+            <ul class="mt-2 space-y-1 text-[#D8D3CB]">
+              <li>• Budget_Shift_Plan (pro Kanal: +€ / -€ / %)</li>
+              <li>• Bid_Guardrails (neue CPC-Ziele)</li>
+              <li>• Pause_Empfehlung (welche Ads/Campaigns)</li>
+              <li>• Scale_Empfehlung (welche Winner)</li>
+              <li>• Neue_Test_Vorschläge</li>
+              <li>• Begründung (pro Empfehlung)</li>
+            </ul>
+          </div>
+          <div class="sop-box">
+            <strong class="text-[#C6A56B]">TOOLS & INTEGRATION</strong>
+            <ul class="mt-2 space-y-1 text-[#D8D3CB]">
+              <li>• <strong>Data Source:</strong> Google Sheets (KPI-Export)</li>
+              <li>• <strong>LLM:</strong> GPT-4 mit Custom Instructions</li>
+              <li>• <strong>Schedule:</strong> Zapier (täglich 08:00)</li>
+              <li>• <strong>Output:</strong> Notion Page + Slack Alert</li>
+              <li>• <strong>Execution:</strong> Manuell (Phase 2) → API (Phase 3)</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Reporting Agent -->
+      <div class="card card-hover">
+        <div class="flex flex-wrap items-center gap-3 mb-4">
+          <h3 class="font-display text-2xl text-[#C6A56B]">Reporting-Agent</h3>
+          <span class="pill">LLM: GPT-4</span>
+          <span class="pill">Data: Looker Studio API</span>
+          <span class="tag tag-warn">Frequenz: Täglich + Wöchentlich</span>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-[0.85rem]">
+          <div class="sop-box">
+            <strong class="text-[#C6A56B]">INPUT-FELDER</strong>
+            <ul class="mt-2 space-y-1 text-[#D8D3CB]">
+              <li>• Dashboard_Metrics (Funnel-Daten, Kanal-Performance)</li>
+              <li>• Anomalien (automatisch erkannt: >20% Abweichung)</li>
+              <li>• Trends (7-Tage, 30-Tage Vergleich)</li>
+              <li>• Experiment_Status (aktive Tests, Ergebnisse)</li>
+              <li>• Ziel-KPIs (Soll-Werte pro Stufe)</li>
+            </ul>
+          </div>
+          <div class="sop-box">
+            <strong class="text-[#C6A56B]">OUTPUT-FELDER</strong>
+            <ul class="mt-2 space-y-1 text-[#D8D3CB]">
+              <li>• Daily_Summary (3-Satz-Übersicht)</li>
+              <li>• Weekly_Review (1 Seite, entscheidungsorientiert)</li>
+              <li>• Alert_List (was braucht sofortige Aufmerksamkeit)</li>
+              <li>• Next_Actions (konkrete To-Dos)</li>
+              <li>• Kill/Scale_Empfehlungen (pro Experiment)</li>
+            </ul>
+          </div>
+          <div class="sop-box">
+            <strong class="text-[#C6A56B]">TOOLS & INTEGRATION</strong>
+            <ul class="mt-2 space-y-1 text-[#D8D3CB]">
+              <li>• <strong>Dashboard:</strong> Looker Studio (Meta, Google, TikTok, Email)</li>
+              <li>• <strong>LLM:</strong> GPT-4 (Interpretation + Empfehlungen)</li>
+              <li>• <strong>Schedule:</strong> Zapier (täglich 09:00, wöchentlich Mo 09:00)</li>
+              <li>• <strong>Output:</strong> Notion Page + Slack #marketing-alerts</li>
+              <li>• <strong>Storage:</strong> Notion (Archiv aller Reviews)</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== SLIDE 8: 25-DAY SPRINT + GANTT ==================== -->
+<section class="slide slide-alt" id="s8">
+  <div class="gradient-mesh">
+    <div class="blob" style="width:400px;height:400px;bottom:-100px;right:-80px;background:#C6A56B;"></div>
+  </div>
+  <div class="relative z-10 max-w-[1100px] mx-auto w-full">
+    <div class="pill mb-4">5 · Sprint-Plan</div>
+    <h2 class="font-display text-[clamp(2rem,4vw,3rem)] font-semibold mb-2">25-Tage-Sprint: Experiment-Kalender & Gantt</h2>
+    <p class="text-[#9DA0A6] text-sm mb-6">3 Sprints: Setup → Testing → Scaling | Budget: €12.500 | Ziel: Message-to-Market-Fit</p>
+
+    <!-- Gantt Chart -->
+    <div class="card mb-6 overflow-x-auto">
+      <h3 class="font-display text-xl text-[#C6A56B] mb-4">Gantt: Tägliche Übersicht</h3>
+      <div style="min-width: 900px;">
+        <!-- Timeline Header -->
+        <div class="flex text-[0.7rem] text-[#9DA0A6] font-mono mb-2">
+          <div style="width: 200px;"></div>
+          <div class="flex-1 flex">
+            <div style="width: 32%" class="text-center border-r border-white/5">Sprint 1: Setup (Tag 1–8)</div>
+            <div style="width: 32%" class="text-center border-r border-white/5">Sprint 2: Testing (Tag 9–16)</div>
+            <div style="width: 32%" class="text-center">Sprint 3: Scaling (Tag 17–25)</div>
+          </div>
+        </div>
+
+        <!-- Sprint 1 Activities -->
+        <div class="flex items-center mb-2">
+          <div style="width: 200px;" class="text-[0.8rem] text-[#D8D3CB]"><strong>Setup & Tracking</strong></div>
+          <div class="flex-1 flex">
+            <div style="width: 32%" class="gantt-bar bg-gradient-to-r from-[#C6A56B] to-[#C6A56B]/60 text-[#0A0A0A] font-bold">Pixel, GA4, LP, Creatives, Dashboard</div>
+          </div>
+        </div>
+        <div class="flex items-center mb-2">
+          <div style="width: 200px;" class="text-[0.8rem] text-[#D8D3CB]"><strong>CRM-Integration</strong></div>
+          <div class="flex-1 flex">
+            <div style="width: 20%; margin-left: 4%" class="gantt-bar bg-gradient-to-r from-[#7D8087] to-[#7D8087]/60 text-[#0A0A0A]">Ralph Sync</div>
+          </div>
+        </div>
+
+        <!-- Sprint 2: Tests -->
+        <div class="flex items-center mb-2">
+          <div style="width: 200px;" class="text-[0.8rem] text-[#D8D3CB]"><strong>H1: Reels vs Static</strong></div>
+          <div class="flex-1 flex">
+            <div style="width: 20%; margin-left: 32%" class="gantt-bar bg-gradient-to-r from-[#E85D5D] to-[#E85D5D]/60 text-[#0A0A0A]">Meta Test</div>
+          </div>
+        </div>
+        <div class="flex items-center mb-2">
+          <div style="width: 200px;" class="text-[0.8rem] text-[#D8D3CB]"><strong>H2: Case-Download LP</strong></div>
+          <div class="flex-1 flex">
+            <div style="width: 16%; margin-left: 34%" class="gantt-bar bg-gradient-to-r from-[#E85D5D] to-[#E85D5D]/60 text-[#0A0A0A]">Google Test</div>
+          </div>
+        </div>
+        <div class="flex items-center mb-2">
+          <div style="width: 200px;" class="text-[0.8rem] text-[#D8D3CB]"><strong>H3: Neural Glow</strong></div>
+          <div class="flex-1 flex">
+            <div style="width: 20%; margin-left: 36%" class="gantt-bar bg-gradient-to-r from-[#E85D5D] to-[#E85D5D]/60 text-[#0A0A0A]">Meta Test</div>
+          </div>
+        </div>
+        <div class="flex items-center mb-2">
+          <div style="width: 200px;" class="text-[0.8rem] text-[#D8D3CB]"><strong>H4: Mission Deck Nurturing</strong></div>
+          <div class="flex-1 flex">
+            <div style="width: 20%; margin-left: 38%" class="gantt-bar bg-gradient-to-r from-[#E85D5D] to-[#E85D5D]/60 text-[#0A0A0A]">Email Test</div>
+          </div>
+        </div>
+        <div class="flex items-center mb-2">
+          <div style="width: 200px;" class="text-[0.8rem] text-[#D8D3CB]"><strong>H5: TikTok Educational</strong></div>
+          <div class="flex-1 flex">
+            <div style="width: 16%; margin-left: 32%" class="gantt-bar bg-gradient-to-r from-[#E85D5D] to-[#E85D5D]/60 text-[#0A0A0A]">TikTok Test</div>
+          </div>
+        </div>
+
+        <!-- Sprint 3: Scaling -->
+        <div class="flex items-center mb-2">
+          <div style="width: 200px;" class="text-[0.8rem] text-[#D8D3CB]"><strong>Winner-Scaling</strong></div>
+          <div class="flex-1 flex">
+            <div style="width: 32%; margin-left: 64%" class="gantt-bar bg-gradient-to-r from-[#5DBE7D] to-[#5DBE7D]/60 text-[#0A0A0A] font-bold">Budget Shift + Scale</div>
+          </div>
+        </div>
+        <div class="flex items-center mb-2">
+          <div style="width: 200px;" class="text-[0.8rem] text-[#D8D3CB]"><strong>Nurture-Optimierung</strong></div>
+          <div class="flex-1 flex">
+            <div style="width: 20%; margin-left: 68%" class="gantt-bar bg-gradient-to-r from-[#5DBE7D] to-[#5DBE7D]/60 text-[#0A0A0A]">Email Flow</div>
+          </div>
+        </div>
+        <div class="flex items-center">
+          <div style="width: 200px;" class="text-[0.8rem] text-[#D8D3CB]"><strong>Phase 3 Handoff</strong></div>
+          <div class="flex-1 flex">
+            <div style="width: 12%; margin-left: 84%" class="gantt-bar bg-gradient-to-r from-[#7D8087] to-[#7D8087]/60 text-[#0A0A0A]">Doku</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Sprint Cards -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
+      <div class="card card-hover">
+        <div class="flex items-center justify-between mb-3">
+          <span class="pill">Sprint 1</span>
+          <span class="text-[0.8rem] text-[#9DA0A6]">Tag 1–8</span>
+        </div>
+        <h3 class="font-display text-2xl text-[#C6A56B] mb-3">Setup & Baseline</h3>
+        <p class="text-[0.85rem] text-[#D8D3CB] mb-3"><strong>Budget:</strong> €2.500 | <strong>Ziel:</strong> 100% Tracking-Setup, erste Creatives live</p>
+        <ul class="text-[0.8rem] text-[#9DA0A6] space-y-1.5">
+          <li>✓ Meta Pixel + Conversions API installieren</li>
+          <li>✓ GA4 Events: page_view, scroll, download, form_submit, call_book</li>
+          <li>✓ Google Tag Manager: alle Tags + Trigger</li>
+          <li>✓ Landing Pages: 3 Varianten (Beauty/Health/Lifestyle)</li>
+          <li>✓ Creative Pack: 5 Base-Assets pro Kanal (Meta, TikTok, Google)</li>
+          <li>✓ Dashboard-Skeleton in Looker Studio</li>
+          <li>✓ CRM-Integration: Ralph sync testen (HubSpot)</li>
+          <li>✓ AI-Workflows initialisieren (Prompts, Notion-DB)</li>
+        </ul>
+        <div class="mt-4 pt-3 border-t border-white/5">
+          <span class="tag tag-scale">KPI: Setup-Completion 100%</span>
+          <span class="tag tag-warn ml-2">Kill/Scale: N/A</span>
+        </div>
+      </div>
+
+      <div class="card card-hover">
+        <div class="flex items-center justify-between mb-3">
+          <span class="pill">Sprint 2</span>
+          <span class="text-[0.8rem] text-[#9DA0A6]">Tag 9–16</span>
+        </div>
+        <h3 class="font-display text-2xl text-[#C6A56B] mb-3">Testing & Validierung</h3>
+        <p class="text-[0.85rem] text-[#D8D3CB] mb-3"><strong>Budget:</strong> €5.000 | <strong>Ziel:</strong> 5 Hypothesen testen, Daten sammeln</p>
+        <ul class="text-[0.8rem] text-[#9DA0A6] space-y-1.5">
+          <li>✓ H1: Reels vs Static (Meta, Tag 9–13, €800)</li>
+          <li>✓ H2: Case-Download vs Contact (Google, Tag 10–14, €600)</li>
+          <li>✓ H3: Neural Glow vs Generic (Meta, Tag 11–15, €700)</li>
+          <li>✓ H4: Mission Deck Nurturing (Email, Tag 12–16, €400)</li>
+          <li>✓ H5: TikTok Educational vs Meta (Tag 9–13, €500)</li>
+          <li>✓ Audience-Splits: DACH vs EU, Beauty vs Health</li>
+          <li>✓ Landing-Page-Varianten: A/B Test (3 Designs)</li>
+          <li>✓ Daily Budget-Advisor läuft (ab Tag 10)</li>
+        </ul>
+        <div class="mt-4 pt-3 border-t border-white/5">
+          <span class="tag tag-warn">KPI: Validieren oder Killen</span>
+        </div>
+      </div>
+
+      <div class="card card-hover">
+        <div class="flex items-center justify-between mb-3">
+          <span class="pill">Sprint 3</span>
+          <span class="text-[0.8rem] text-[#9DA0A6]">Tag 17–25</span>
+        </div>
+        <h3 class="font-display text-2xl text-[#C6A56B] mb-3">Scaling & Systemisierung</h3>
+        <p class="text-[0.85rem] text-[#D8D3CB] mb-3"><strong>Budget:</strong> €5.000 | <strong>Ziel:</strong> Winner skalieren, Phase 3 vorbereiten</p>
+        <ul class="text-[0.8rem] text-[#9DA0A6] space-y-1.5">
+          <li>✓ Budget auf Winner umverteilen (Kill/Scale-Entscheidungen)</li>
+          <li>✓ Nurture-Flow optimieren (Open/Reply-Rate steigern)</li>
+          <li>✓ Call-Booking-Conversion erhöhen (LP-Optimierung)</li>
+          <li>✓ Reporting-Rhythmus etablieren (Daily + Weekly)</li>
+          <li>✓ Neue Creatives auf Winner-Format produzieren</li>
+          <li>✓ Phase 3 Handoff-Doku finalisieren (Notion)</li>
+          <li>✓ Pilot-Kunden-Outreach vorbereiten (Liste, Sequenz)</li>
+          <li>✓ AI-Workflow-Refinement (Prompts optimieren)</li>
+        </ul>
+        <div class="mt-4 pt-3 border-t border-white/5">
+          <span class="tag tag-scale">KPI: ROAS stabil, Leads qualifiziert</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== SLIDE 9: 5 TEST HYPOTHESES ==================== -->
+<section class="slide" id="s9">
+  <div class="gradient-mesh">
+    <div class="blob" style="width:300px;height:300px;top:-50px;right:-50px;background:#C6A56B;"></div>
+  </div>
+  <div class="relative z-10 max-w-[1100px] mx-auto w-full">
+    <div class="pill mb-4">5.1 · Test-Hypothesen</div>
+    <h2 class="font-display text-[clamp(2rem,4vw,3rem)] font-semibold mb-2">5 Test-Hypothesen: Vollständiges Experiment-Design</h2>
+    <p class="text-[#9DA0A6] text-sm mb-6">Jede Hypothese mit Kanal, Zielgruppe, Creative-Typ, KPI-Ziel, Laufzeit, Budget und Kill/Scale-Kriterien</p>
+
+    <!-- H1 -->
+    <div class="card mb-4">
+      <div class="flex flex-wrap items-center gap-3 mb-3">
+        <span class="pill">H1</span>
+        <h3 class="font-display text-xl text-[#C6A56B]">Storytelling-Reels outperform static luxury visuals in CTR und Thumb-Stop-Rate</h3>
+        <span class="tag tag-warn">Meta + TikTok</span>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-5 gap-4 text-[0.82rem]">
+        <div>
+          <strong class="text-[#F5F3EE]">Zielgruppe</strong>
+          <p class="text-[#9DA0A6] mt-1">Beauty CMOs, DACH, 25–45, Interessen: Performance Marketing, Brand Management, Creative Direction</p>
+        </div>
+        <div>
+          <strong class="text-[#F5F3EE]">Creative-Typ</strong>
+          <p class="text-[#9DA0A6] mt-1">A: 15-sec Reel (Problem → Lösung → CTA) mit Luminous Aura Visual<br>B: Static Carousel (3 Slides, gleicher Content)</p>
+        </div>
+        <div>
+          <strong class="text-[#F5F3EE]">KPI-Ziel</strong>
+          <p class="text-[#9DA0A6] mt-1">CTR >2.2%, Thumb-Stop >25%, CPC <€1.00, View-Rate >40%</p>
+        </div>
+        <div>
+          <strong class="text-[#F5F3EE]">Laufzeit & Budget</strong>
+          <p class="text-[#9DA0A6] mt-1">Tag 9–13 (5 Tage)<br>Budget: €800<br>Split: 50/50 A/B</p>
+        </div>
+        <div>
+          <strong class="text-[#F5F3EE]">Entscheidungsregel</strong>
+          <div class="mt-1 space-y-1">
+            <div class="tag tag-kill">KILL: CTR <1.0% nach Tag 3 ODER Thumb-Stop <15%</div>
+            <div class="tag tag-scale">SCALE: CTR >2.2% + Thumb-Stop >25% nach Tag 5 → Budget +50%</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- H2 -->
+    <div class="card mb-4">
+      <div class="flex flex-wrap items-center gap-3 mb-3">
+        <span class="pill">H2</span>
+        <h3 class="font-display text-xl text-[#C6A56B]">Case-Study-Downloads generieren qualifiziertere Leads als generische Contact-Ads</h3>
+        <span class="tag tag-warn">Google Search</span>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-5 gap-4 text-[0.82rem]">
+        <div>
+          <strong class="text-[#F5F3EE]">Zielgruppe</strong>
+          <p class="text-[#9DA0A6] mt-1">High-Intent Search: „performance marketing agentur beauty", „creative studio health dach", „brand system agency"</p>
+        </div>
+        <div>
+          <strong class="text-[#F5F3EE]">Creative-Typ</strong>
+          <p class="text-[#9DA0A6] mt-1">A: Search-Ad mit Sitelinks → LP mit Case-Download (Mission Deck)<br>B: Search-Ad → Generic Contact-Form LP</p>
+        </div>
+        <div>
+          <strong class="text-[#F5F3EE]">KPI-Ziel</strong>
+          <p class="text-[#9DA0A6] mt-1">CPA <€40, Form-Completion >15%, Lead-Qualität >7/10 (1–10 Skala)</p>
+        </div>
+        <div>
+          <strong class="text-[#F5F3EE]">Laufzeit & Budget</strong>
+          <p class="text-[#9DA0A6] mt-1">Tag 10–14 (5 Tage)<br>Budget: €600<br>Split: 50/50 A/B</p>
+        </div>
+        <div>
+          <strong class="text-[#F5F3EE]">Entscheidungsregel</strong>
+          <div class="mt-1 space-y-1">
+            <div class="tag tag-kill">KILL: CPA >€70 nach Tag 3 ODER Form-Completion <8%</div>
+            <div class="tag tag-scale">SCALE: CPA <€40 + Qualität >8 → Budget +30%, auf PMax erweitern</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- H3 -->
+    <div class="card mb-4">
+      <div class="flex flex-wrap items-center gap-3 mb-3">
+        <span class="pill">H3</span>
+        <h3 class="font-display text-xl text-[#C6A56B]">Neural Glow-Angles outperform generic innovation copy in Engagement und Landing-Page-Depth</h3>
+        <span class="tag tag-warn">Meta</span>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-5 gap-4 text-[0.82rem]">
+        <div>
+          <strong class="text-[#F5F3EE]">Zielgruppe</strong>
+          <p class="text-[#9DA0A6] mt-1">Tech-Beauty Buyers, EU, Series A+, Interessen: Innovation, Biotech, Adaptive Formulas</p>
+        </div>
+        <div>
+          <strong class="text-[#F5F3EE]">Creative-Typ</strong>
+          <p class="text-[#9DA0A6] mt-1">A: Video-Ad mit Neural Glow Visual + Tech-Narrative („Wenn dein Produkt innoviert, warum nicht deine Ads?")<br>B: Generic Innovation Copy („Innovative Beauty Marketing")</p>
+        </div>
+        <div>
+          <strong class="text-[#F5F3EE]">KPI-Ziel</strong>
+          <p class="text-[#9DA0A6] mt-1">Engagement >5%, Scroll-Depth >60%, LP-Time >45s, CTR >1.8%</p>
+        </div>
+        <div>
+          <strong class="text-[#F5F3EE]">Laufzeit & Budget</strong>
+          <p class="text-[#9DA0A6] mt-1">Tag 11–15 (5 Tage)<br>Budget: €700<br>Split: 50/50 A/B</p>
+        </div>
+        <div>
+          <strong class="text-[#F5F3EE]">Entscheidungsregel</strong>
+          <div class="mt-1 space-y-1">
+            <div class="tag tag-kill">KILL: Scroll-Depth <40% nach Tag 3 ODER Engagement <3%</div>
+            <div class="tag tag-scale">SCALE: Scroll-Depth >60% + LP-Time >60s → Budget +40%, auf TikTok testen</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- H4 -->
+    <div class="card mb-4">
+      <div class="flex flex-wrap items-center gap-3 mb-3">
+        <span class="pill">H4</span>
+        <h3 class="font-display text-xl text-[#C6A56B]">Mission Deck als Lead-Magnet erhöht Strategy-Call-Buchung um 50% gegenüber Direct-CTA</h3>
+        <span class="tag tag-warn">Email + Website</span>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-5 gap-4 text-[0.82rem]">
+        <div>
+          <strong class="text-[#F5F3EE]">Zielgruppe</strong>
+          <p class="text-[#9DA0A6] mt-1">Warm Visitors (LP-Besucher, Social Follower, Newsletter-Subscriber)</p>
+        </div>
+        <div>
+          <strong class="text-[#F5F3EE]">Creative-Typ</strong>
+          <p class="text-[#9DA0A6] mt-1">A: 5-Email-Nurturing nach Mission-Deck-Download (Value → Case → CTA)<br>B: Direct CTA („Buche jetzt Strategy Call") ohne Nurturing</p>
+        </div>
+        <div>
+          <strong class="text-[#F5F3EE]">KPI-Ziel</strong>
+          <p class="text-[#9DA0A6] mt-1">Email-Open >40%, Click >12%, Call-Booking-Rate >10% (vs. Baseline 5%)</p>
+        </div>
+        <div>
+          <strong class="text-[#F5F3EE]">Laufzeit & Budget</strong>
+          <p class="text-[#9DA0A6] mt-1">Tag 12–16 (5 Tage Send, 14 Tage Tracking)<br>Budget: €400 (Email-Tool + LP-Design)</p>
+        </div>
+        <div>
+          <strong class="text-[#F5F3EE]">Entscheidungsregel</strong>
+          <div class="mt-1 space-y-1">
+            <div class="tag tag-kill">KILL: Open <25% nach Email 2 ODER Click <5%</div>
+            <div class="tag tag-scale">SCALE: Call-Booking >10% → Sequenz standardisieren, auf alle Warm Leads anwenden</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- H5 -->
+    <div class="card">
+      <div class="flex flex-wrap items-center gap-3 mb-3">
+        <span class="pill">H5</span>
+        <h3 class="font-display text-xl text-[#C6A56B]">TikTok Educational-Hooks generieren günstigeres Awareness als Meta-Ads bei gleicher Zielgruppe</h3>
+        <span class="tag tag-warn">TikTok vs Meta</span>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-5 gap-4 text-[0.82rem]">
+        <div>
+          <strong class="text-[#F5F3EE]">Zielgruppe</strong>
+          <p class="text-[#9DA0A6] mt-1">Beauty/Health CMOs, DACH+EU, 25–40, Interessen: Marketing, Brand Building, Creative Trends</p>
+        </div>
+        <div>
+          <strong class="text-[#F5F3EE]">Creative-Typ</strong>
+          <p class="text-[#9DA0A6] mt-1">A: TikTok 15-sec Educational Hook („3 Dinge, die deine Beauty-Ads killen")<br>B: Meta Static Ad (gleicher Content, Static Format)</p>
+        </div>
+        <div>
+          <strong class="text-[#F5F3EE]">KPI-Ziel</strong>
+          <p class="text-[#9DA0A6] mt-1">CPV <€0.05, Engagement >5%, CTR >1.2%, Cost-per-Reach <€0.02</p>
+        </div>
+        <div>
+          <strong class="text-[#F5F3EE]">Laufzeit & Budget</strong>
+          <p class="text-[#9DA0A6] mt-1">Tag 9–13 (5 Tage)<br>Budget: €500 (TikTok €300, Meta €200)<br>Split: Kanal-Vergleich</p>
+        </div>
+        <div>
+          <strong class="text-[#F5F3EE]">Entscheidungsregel</strong>
+          <div class="mt-1 space-y-1">
+            <div class="tag tag-kill">KILL: CPV >€0.10 nach Tag 3 ODER Engagement <3%</div>
+            <div class="tag tag-scale">SCALE: CPV <€0.05 + Engagement >5% → TikTok-Budget verdoppeln, Meta reduzieren</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== SLIDE 9: 5 TEST HYPOTHESES ==================== -->
+<section class="slide" id="s9">
+  <div class="gradient-mesh">
+    <div class="blob" style="width:300px;height:300px;top:-50px;right:-50px;background:#C6A56B;"></div>
+  </div>
+  <div class="relative z-10 max-w-[1100px] mx-auto w-full">
+    <div class="pill mb-4">5.1 · Test-Hypothesen</div>
+    <h2 class="font-display text-[clamp(2rem,4vw,3rem)] font-semibold mb-2">5 Test-Hypothesen: Vollständiges Experiment-Design</h2>
+    <p class="text-[#9DA0A6] text-sm mb-6">Jede Hypothese mit Kanal, Zielgruppe, Creative-Typ, KPI-Ziel, Laufzeit, Budget und Kill/Scale-Kriterien</p>
+
+    <!-- H1 -->
+    <div class="card mb-4">
+      <div class="flex flex-wrap items-center gap-3 mb-3">
+        <span class="pill">H1</span>
+        <h3 class="font-display text-xl text-[#C6A56B]">Storytelling-Reels outperform static luxury visuals in CTR und Thumb-Stop-Rate</h3>
+        <span class="tag tag-warn">Meta + TikTok</span>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-5 gap-4 text-[0.82rem]">
+        <div>
+          <strong class="text-[#F5F3EE]">Zielgruppe</strong>
+          <p class="text-[#9DA0A6] mt-1">Beauty CMOs, DACH, 25–45, Interessen: Performance Marketing, Brand Management, Creative Direction</p>
+        </div>
+        <div>
+          <strong class="text-[#F5F3EE]">Creative-Typ</strong>
+          <p class="text-[#9DA0A6] mt-1">A: 15-sec Reel (Problem → Lösung → CTA) mit Luminous Aura Visual<br>B: Static Carousel (3 Slides, gleicher Content)</p>
+        </div>
+        <div>
+          <strong class="text-[#F5F3EE]">KPI-Ziel</strong>
+          <p class="text-[#9DA0A6] mt-1">CTR >2.2%, Thumb-Stop >25%, CPC <€1.00, View-Rate >40%</p>
+        </div>
+        <div>
+          <strong class="text-[#F5F3EE]">Laufzeit & Budget</strong>
+          <p class="text-[#9DA0A6] mt-1">Tag 9–13 (5 Tage)<br>Budget: €800<br>Split: 50/50 A/B</p>
+        </div>
+        <div>
+          <strong class="text-[#F5F3EE]">Entscheidungsregel</strong>
+          <div class="mt-1 space-y-1">
+            <div class="tag tag-kill">KILL: CTR <1.0% nach Tag 3 ODER Thumb-Stop <15%</div>
+            <div class="tag tag-scale">SCALE: CTR >2.2% + Thumb-Stop >25% nach Tag 5 → Budget +50%</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- H2 -->
+    <div class="card mb-4">
+      <div class="flex flex-wrap items-center gap-3 mb-3">
+        <span class="pill">H2</span>
+        <h3 class="font-display text-xl text-[#C6A56B]">Case-Study-Downloads generieren qualifiziertere Leads als generische Contact-Ads</h3>
+        <span class="tag tag-warn">Google Search</span>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-5 gap-4 text-[0.82rem]">
+        <div>
+          <strong class="text-[#F5F3EE]">Zielgruppe</strong>
+          <p class="text-[#9DA0A6] mt-1">High-Intent Search: „performance marketing agentur beauty", „creative studio health dach", „brand system agency"</p>
+        </div>
+        <div>
+          <strong class="text-[#F5F3EE]">Creative-Typ</strong>
+          <p class="text-[#9DA0A6] mt-1">A: Search-Ad mit Sitelinks → LP mit Case-Download (Mission Deck)<br>B: Search-Ad → Generic Contact-Form LP</p>
+        </div>
+        <div>
+          <strong class="text-[#F5F3EE]">KPI-Ziel</strong>
+          <p class="text-[#9DA0A6] mt-1">CPA <€40, Form-Completion >15%, Lead-Qualität >7/10 (1–10 Skala)</p>
+        </div>
+        <div>
+          <strong class="text-[#F5F3EE]">Laufzeit & Budget</strong>
+          <p class="text-[#9DA0A6] mt-1">Tag 10–14 (5 Tage)<br>Budget: €600<br>Split: 50/50 A/B</p>
+        </div>
+        <div>
+          <strong class="text-[#F5F3EE]">Entscheidungsregel</strong>
+          <div class="mt-1 space-y-1">
+            <div class="tag tag-kill">KILL: CPA >€70 nach Tag 3 ODER Form-Completion <8%</div>
+            <div class="tag tag-scale">SCALE: CPA <€40 + Qualität >8 → Budget +30%, auf PMax erweitern</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- H3 -->
+    <div class="card mb-4">
+      <div class="flex flex-wrap items-center gap-3 mb-3">
+        <span class="pill">H3</span>
+        <h3 class="font-display text-xl text-[#C6A56B]">Neural Glow-Angles outperform generic innovation copy in Engagement und Landing-Page-Depth</h3>
+        <span class="tag tag-warn">Meta</span>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-5 gap-4 text-[0.82rem]">
+        <div>
+          <strong class="text-[#F5F3EE]">Zielgruppe</strong>
+          <p class="text-[#9DA0A6] mt-1">Tech-Beauty Buyers, EU, Series A+, Interessen: Innovation, Biotech, Adaptive Formulas</p>
+        </div>
+        <div>
+          <strong class="text-[#F5F3EE]">Creative-Typ</strong>
+          <p class="text-[#9DA0A6] mt-1">A: Video-Ad mit Neural Glow Visual + Tech-Narrative („Wenn dein Produkt innoviert, warum nicht deine Ads?")<br>B: Generic Innovation Copy („Innovative Beauty Marketing")</p>
+        </div>
+        <div>
+          <strong class="text-[#F5F3EE]">KPI-Ziel</strong>
+          <p class="text-[#9DA0A6] mt-1">Engagement >5%, Scroll-Depth >60%, LP-Time >45s, CTR >1.8%</p>
+        </div>
+        <div>
+          <strong class="text-[#F5F3EE]">Laufzeit & Budget</strong>
+          <p class="text-[#9DA0A6] mt-1">Tag 11–15 (5 Tage)<br>Budget: €700<br>Split: 50/50 A/B</p>
+        </div>
+        <div>
+          <strong class="text-[#F5F3EE]">Entscheidungsregel</strong>
+          <div class="mt-1 space-y-1">
+            <div class="tag tag-kill">KILL: Scroll-Depth <40% nach Tag 3 ODER Engagement <3%</div>
+            <div class="tag tag-scale">SCALE: Scroll-Depth >60% + LP-Time >60s → Budget +40%, auf TikTok testen</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- H4 -->
+    <div class="card mb-4">
+      <div class="flex flex-wrap items-center gap-3 mb-3">
+        <span class="pill">H4</span>
+        <h3 class="font-display text-xl text-[#C6A56B]">Mission Deck als Lead-Magnet erhöht Strategy-Call-Buchung um 50% gegenüber Direct-CTA</h3>
+        <span class="tag tag-warn">Email + Website</span>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-5 gap-4 text-[0.82rem]">
+        <div>
+          <strong class="text-[#F5F3EE]">Zielgruppe</strong>
+          <p class="text-[#9DA0A6] mt-1">Warm Visitors (LP-Besucher, Social Follower, Newsletter-Subscriber)</p>
+        </div>
+        <div>
+          <strong class="text-[#F5F3EE]">Creative-Typ</strong>
+          <p class="text-[#9DA0A6] mt-1">A: 5-Email-Nurturing nach Mission-Deck-Download (Value → Case → CTA)<br>B: Direct CTA („Buche jetzt Strategy Call") ohne Nurturing</p>
+        </div>
+        <div>
+          <strong class="text-[#F5F3EE]">KPI-Ziel</strong>
+          <p class="text-[#9DA0A6] mt-1">Email-Open >40%, Click >12%, Call-Booking-Rate >10% (vs. Baseline 5%)</p>
+        </div>
+        <div>
+          <strong class="text-[#F5F3EE]">Laufzeit & Budget</strong>
+          <p class="text-[#9DA0A6] mt-1">Tag 12–16 (5 Tage Send, 14 Tage Tracking)<br>Budget: €400 (Email-Tool + LP-Design)</p>
+        </div>
+        <div>
+          <strong class="text-[#F5F3EE]">Entscheidungsregel</strong>
+          <div class="mt-1 space-y-1">
+            <div class="tag tag-kill">KILL: Open <25% nach Email 2 ODER Click <5%</div>
+            <div class="tag tag-scale">SCALE: Call-Booking >10% → Sequenz standardisieren, auf alle Warm Leads anwenden</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- H5 -->
+    <div class="card">
+      <div class="flex flex-wrap items-center gap-3 mb-3">
+        <span class="pill">H5</span>
+        <h3 class="font-display text-xl text-[#C6A56B]">TikTok Educational-Hooks generieren günstigeres Awareness als Meta-Ads bei gleicher Zielgruppe</h3>
+        <span class="tag tag-warn">TikTok vs Meta</span>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-5 gap-4 text-[0.82rem]">
+        <div>
+          <strong class="text-[#F5F3EE]">Zielgruppe</strong>
+          <p class="text-[#9DA0A6] mt-1">Beauty/Health CMOs, DACH+EU, 25–40, Interessen: Marketing, Brand Building, Creative Trends</p>
+        </div>
+        <div>
+          <strong class="text-[#F5F3EE]">Creative-Typ</strong>
+          <p class="text-[#9DA0A6] mt-1">A: TikTok 15-sec Educational Hook („3 Dinge, die deine Beauty-Ads killen")<br>B: Meta Static Ad (gleicher Content, Static Format)</p>
+        </div>
+        <div>
+          <strong class="text-[#F5F3EE]">KPI-Ziel</strong>
+          <p class="text-[#9DA0A6] mt-1">CPV <€0.05, Engagement >5%, CTR >1.2%, Cost-per-Reach <€0.02</p>
+        </div>
+        <div>
+          <strong class="text-[#F5F3EE]">Laufzeit & Budget</strong>
+          <p class="text-[#9DA0A6] mt-1">Tag 9–13 (5 Tage)<br>Budget: €500 (TikTok €300, Meta €200)<br>Split: Kanal-Vergleich</p>
+        </div>
+        <div>
+          <strong class="text-[#F5F3EE]">Entscheidungsregel</strong>
+          <div class="mt-1 space-y-1">
+            <div class="tag tag-kill">KILL: CPV >€0.10 nach Tag 3 ODER Engagement <3%</div>
+            <div class="tag tag-scale">SCALE: CPV <€0.05 + Engagement >5% → TikTok-Budget verdoppeln, Meta reduzieren</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+          <li><strong class="text-[#E85D5D]">3.</strong> Case-Entry CTAs above the fold ("See how Luminous Aura grew +47%")</li>
+          <li><strong class="text-[#E85D5D]">4.</strong> Form logic + CRM fields (lead_source, download_behavior, call_intent)</li>
+          <li><strong class="text-[#E85D5D]">5.</strong> Social proof section (Client logos, Testimonials, Press mentions)</li>
+          <li><strong class="text-[#E85D5D]">6.</strong> Pricing/Package transparency ("Starter", "Growth", "Enterprise")</li>
+          <li><strong class="text-[#E85D5D]">7.</strong> FAQ section (reduces bounce, improves SEO)</li>
+          <li><strong class="text-[#E85D5D]">8.</strong> Exit-intent popup (Mission Deck offer)</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="card">
+      <h3 class="font-display text-xl text-[#C6A56B] mb-4">LP-Struktur pro Branche (Template)</h3>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <div class="sop-box">
+          <strong class="text-[#C6A56B]">Beauty LP</strong>
+          <ol class="mt-2 text-[0.82rem] text-[#D8D3CB] space-y-1">
+            <li>1. Hero: Luminous Aura Visual + "Performance trifft Editorial"</li>
+            <li>2. Problem: "Fragmentierte Creatives"</li>
+            <li>3. Solution: Editorial Precision System</li>
+            <li>4. Proof: 4 Cases + Press</li>
+            <li>5. CTA: Mission Deck Download</li>
+            <li>6. FAQ + Contact Form</li>
+          </ol>
+        </div>
+        <div class="sop-box">
+          <strong class="text-[#C6A56B]">Health LP</strong>
+          <ol class="mt-2 text-[0.82rem] text-[#D8D3CB] space-y-1">
+            <li>1. Hero: Vitality Pulse Motion + "10x Creatives, 0% Generic"</li>
+            <li>2. Problem: "Generische Ads verwässern Marke"</li>
+            <li>3. Solution: Brand-safe AI Pipelines</li>
+            <li>4. Proof: Algorithm of Soul</li>
+            <li>5. CTA: Strategy Call Booking</li>
+            <li>6. FAQ + Contact Form</li>
+          </ol>
+        </div>
+        <div class="sop-box">
+          <strong class="text-[#C6A56B]">Lifestyle LP</strong>
+          <ol class="mt-2 text-[0.82rem] text-[#D8D3CB] space-y-1">
+            <li>1. Hero: Essence Drift Mood + "Systems before campaigns"</li>
+            <li>2. Problem: "Fehlende Skalierung"</li>
+            <li>3. Solution: Controlled Creative Systems</li>
+            <li>4. Proof: Dual-City + Sprint-Methodik</li>
+            <li>5. CTA: Case Study Compilation</li>
+            <li>6. FAQ + Contact Form</li>
+          </ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== SLIDE 14: DECISION LOGIC ==================== -->
+<section class="slide slide-alt" id="s14">
+  <div class="gradient-mesh">
+    <div class="blob" style="width:350px;height:350px;bottom:-80px;left:-60px;background:#C6A56B;"></div>
+  </div>
+  <div class="relative z-10 max-w-[1100px] mx-auto w-full">
+    <div class="pill mb-4">10 · Entscheidungslogik</div>
+    <h2 class="font-display text-[clamp(2rem,4vw,3rem)] font-semibold mb-6">If-this-then-that: Regeln für autonome Phase 3</h2>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-5 mb-6">
+      <div class="card">
+        <h3 class="font-display text-xl text-[#C6A56B] mb-4">Budget-Regeln</h3>
+        <div class="space-y-3 text-[0.85rem]">
+          <div class="sop-box">
+            <strong class="text-[#5DBE7D]">IF</strong> CTR steigt + CPC fällt für 3+ Tage <strong class="text-[#5DBE7D]">THEN</strong> Scale Budget +20% auf Winner-Creative
+          </div>
+          <div class="sop-box">
+            <strong class="text-[#E85D5D]">IF</strong> CPA > €70 für 3+ Tage <strong class="text-[#E85D5D]">THEN</strong> Pause Ad-Set, Creative überarbeiten, Audience neu testen
+          </div>
+          <div class="sop-box">
+            <strong class="text-[#5DBE7D]">IF</strong> ROAS > 2.5 für 5+ Tage <strong class="text-[#5DBE7D]">THEN</strong> Budget +30%, auf neue Kanäle expandieren
+          </div>
+          <div class="sop-box">
+            <strong class="text-[#E85D5D]">IF</strong> ROAS < 1.5 für 3+ Tage <strong class="text-[#E85D5D]">THEN</strong> Kill Campaign, Budget auf Winner umverteilen
+          </div>
+          <div class="sop-box">
+            <strong class="text-[#5DBE7D]">IF</strong> Thumb-Stop > 30% + View-Rate > 45% <strong class="text-[#5DBE7D]">THEN</strong> Creative als Template für neue Varianten
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <h3 class="font-display text-xl text-[#C6A56B] mb-4">Creative-Regeln</h3>
+        <div class="space-y-3 text-[0.85rem]">
+          <div class="sop-box">
+            <strong class="text-[#E85D5D]">IF</strong> CTR < 1% für 5+ Tage <strong class="text-[#E85D5D]">THEN</strong> Kill Creative, Hook-Generator neu starten
+          </div>
+          <div class="sop-box">
+            <strong class="text-[#5DBE7D]">IF</strong> Engagement > 5% + Shares > 1% <strong class="text-[#5DBE7D]">THEN</strong> Scale auf Lookalike-Audience
+          </div>
+          <div class="sop-box">
+            <strong class="text-[#E85D5D]">IF</strong> Landing-Page-Depth < 40% <strong class="text-[#E85D5D]">THEN</strong> Hero-Section überarbeiten vor Budget-Erhöhung
+          </div>
+          <div class="sop-box">
+            <strong class="text-[#5DBE7D]">IF</strong> Download-Rate > 5% + Call-Booking < 3% <strong class="text-[#5DBE7D]">THEN</strong> Nurture-Sequenz optimieren, CTA stärken
+          </div>
+          <div class="sop-box">
+            <strong class="text-[#E85D5D]">IF</strong> Email-Open < 25% nach 2 Sends <strong class="text-[#E85D5D]">THEN</strong> Subject-Line-Test, Sender-Name-Test
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h3 class="font-display text-xl text-[#C6A56B] mb-4">Launch-Path für Phase 3</h3>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <div class="sop-box">
+          <strong class="text-[#C6A56B]">Phase 3A: Fiktive Cases (Tag 26–40)</strong>
+          <p class="text-[0.82rem] text-[#D8D3CB] mt-1">Luminous Aura, Vitality Pulse etc. als Proof-Systeme nutzen. Validierung von Creative, Funnel und AI-Workflows bei minimalem Risiko. Budget: €3.000.</p>
+        </div>
+        <div class="sop-box">
+          <strong class="text-[#C6A56B]">Phase 3B: Pilot-Kunden (Tag 41–60)</strong>
+          <p class="text-[0.82rem] text-[#D8D3CB] mt-1">Erste echte Kunden aus Zielgruppe (Beauty/Health/Lifestyle). Reduzierter Preis, volles Service-Paket. Ziel: 2–3 Pilot-Projekte. Budget: €5.000.</p>
+        </div>
+        <div class="sop-box">
+          <strong class="text-[#C6A56B]">Phase 3C: Full Scale (Tag 61+)</strong>
+          <p class="text-[0.82rem] text-[#D8D3CB] mt-1">Volles Budget, alle Kanäle, alle AI-Agenten autonom. Ziel: 5+ Kunden, €15K+ MRR. Budget: €10.000+/Monat.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== SLIDE 15: NOTION HANDOFF ==================== -->
+<section class="slide" id="s15">
+  <div class="gradient-mesh">
+    <div class="blob" style="width:300px;height:300px;top:-60px;right:-60px;background:#7D8087;"></div>
+  </div>
+  <div class="relative z-10 max-w-[1100px] mx-auto w-full">
+    <div class="pill mb-4">11 · Übergabe-Dokumentation</div>
+    <h2 class="font-display text-[clamp(2rem,4vw,3rem)] font-semibold mb-6">Notion-Struktur: Phase 3 Handoff</h2>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <div class="card">
+        <h3 class="font-display text-xl text-[#C6A56B] mb-4">Notion Workspace: Mirrou Growth System</h3>
+
+        <div class="space-y-2">
+          <div class="notion-page">
+            <span class="text-[#C6A56B]">📄</span>
+            <div>
+              <div class="text-[0.85rem] text-[#D8D3CB]"><strong>01 Marketing-Mix</strong></div>
+              <div class="text-[0.75rem] text-[#9DA0A6]">Kanäle, Rollen, KPIs, Budget, Sprint-Verteilung</div>
+            </div>
+          </div>
+          <div class="notion-page">
+            <span class="text-[#C6A56B]">📄</span>
+            <div>
+              <div class="text-[0.85rem] text-[#D8D3CB]"><strong>02 Funnel & Journeys</strong></div>
+              <div class="text-[0.75rem] text-[#9DA0A6]">4-Stufen-Funnel, Touchpoints, CRM-Events, Conversion-Targets</div>
+            </div>
+          </div>
+          <div class="notion-page">
+            <span class="text-[#C6A56B]">📄</span>
+            <div>
+              <div class="text-[0.85rem] text-[#D8D3CB]"><strong>03 Messaging-Grid</strong></div>
+              <div class="text-[0.75rem] text-[#9DA0A6]">Personas, Pain Points, Hooks, Proof, Prompt-Templates</div>
+            </div>
+          </div>
+          <div class="notion-page">
+            <span class="text-[#C6A56B]">📄</span>
+            <div>
+              <div class="text-[0.85rem] text-[#D8D3CB]"><strong>04 AI-Rollen & Prompts</strong></div>
+              <div class="text-[0.75rem] text-[#9DA0A6]">4 Agenten, I/O-Felder, Tools, Integrationen, SOPs</div>
+            </div>
+          </div>
+          <div class="notion-page">
+            <span class="text-[#C6A56B]">📄</span>
+            <div>
+              <div class="text-[0.85rem] text-[#D8D3CB]"><strong>05 Sprint-Plan & Gantt</strong></div>
+              <div class="text-[0.75rem] text-[#9DA0A6]">25-Tage-Timeline, 3 Sprints, Meilensteine</div>
+            </div>
+          </div>
+          <div class="notion-page">
+            <span class="text-[#C6A56B]">📄</span>
+            <div>
+              <div class="text-[0.85rem] text-[#D8D3CB]"><strong>06 Test-Hypothesen</strong></div>
+              <div class="text-[0.75rem] text-[#9DA0A6]">H1–H5, Test-Design, Kill/Scale-Kriterien, Ergebnisse</div>
+            </div>
+          </div>
+          <div class="notion-page">
+            <span class="text-[#C6A56B]">📄</span>
+            <div>
+              <div class="text-[0.85rem] text-[#D8D3CB]"><strong>07 KPI-Framework</strong></div>
+              <div class="text-[0.75rem] text-[#9DA0A6]">Core KPIs, Tracking-Setup, Dashboard-Blueprint, Alerts</div>
+            </div>
+          </div>
+          <div class="notion-page">
+            <span class="text-[#C6A56B]">📄</span>
+            <div>
+              <div class="text-[0.85rem] text-[#D8D3CB]"><strong>08 AI-Workflows</strong></div>
+              <div class="text-[0.75rem] text-[#9DA0A6]">4 SOPs, Trigger, Input/Output, Tools, Zeitersparnis</div>
+            </div>
+          </div>
+          <div class="notion-page">
+            <span class="text-[#C6A56B]">📄</span>
+            <div>
+              <div class="text-[0.85rem] text-[#D8D3CB]"><strong>09 CRM-Bridge</strong></div>
+              <div class="text-[0.75rem] text-[#9DA0A6]">Event-Mapping, Lead-Scoring, Ralph-Sync-Sessions</div>
+            </div>
+          </div>
+          <div class="notion-page">
+            <span class="text-[#C6A56B]">📄</span>
+            <div>
+              <div class="text-[0.85rem] text-[#D8D3CB]"><strong>10 Website-Bridge</strong></div>
+              <div class="text-[0.75rem] text-[#9DA0A6]">LP-Vorschläge, fehlende Elemente, Branchen-Templates</div>
+            </div>
+          </div>
+          <div class="notion-page">
+            <span class="text-[#C6A56B]">📄</span>
+            <div>
+              <div class="text-[0.85rem] text-[#D8D3CB]"><strong>11 Entscheidungslogik</strong></div>
+              <div class="text-[0.75rem] text-[#9DA0A6]">If-this-then-that Regeln, Launch-Path Phase 3</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <h3 class="font-display text-xl text-[#C6A56B] mb-4">Notion Databases (verknüpft)</h3>
+
+        <div class="space-y-2">
+          <div class="notion-db notion-page">
+            <span class="text-[#5DBE7D]">🗃️</span>
+            <div>
+              <div class="text-[0.85rem] text-[#D8D3CB]"><strong>DB: Hooks Library</strong></div>
+              <div class="text-[0.75rem] text-[#9DA0A6]">Alle generierten Hooks: Text, Angle, Case, Predicted CTR, Status (Approved/Rejected/Test)</div>
+            </div>
+          </div>
+          <div class="notion-db notion-page">
+            <span class="text-[#5DBE7D]">🗃️</span>
+            <div>
+              <div class="text-[0.85rem] text-[#D8D3CB]"><strong>DB: Creative Assets</strong></div>
+              <div class="text-[0.75rem] text-[#9DA0A6]">Alle Assets: ID, Format, Case, Kanal, Status, Performance-Score</div>
+            </div>
+          </div>
+          <div class="notion-db notion-page">
+            <span class="text-[#5DBE7D]">🗃️</span>
+            <div>
+              <div class="text-[0.85rem] text-[#D8D3CB]"><strong>DB: Experiment Log</strong></div>
+              <div class="text-[0.75rem] text-[#9DA0A6]">H1–H5: Status, Start, End, Budget, KPIs, Decision, Owner</div>
+            </div>
+          </div>
+          <div class="notion-db notion-page">
+            <span class="text-[#5DBE7D]">🗃️</span>
+            <div>
+              <div class="text-[0.85rem] text-[#D8D3CB]"><strong>DB: Daily Budget Plans</strong></div>
+              <div class="text-[0.75rem] text-[#9DA0A6]">Tägliche Budget-Advisor Outputs: Datum, Shifts, Begründung, Approved/Override</div>
+            </div>
+          </div>
+          <div class="notion-db notion-page">
+            <span class="text-[#5DBE7D]">🗃️</span>
+            <div>
+              <div class="text-[0.85rem] text-[#D8D3CB]"><strong>DB: Weekly Reviews</strong></div>
+              <div class="text-[0.75rem] text-[#9DA0A6]">Alle Weekly Reviews: Summary, Alerts, Next Actions, Kill/Scale</div>
+            </div>
+          </div>
+          <div class="notion-db notion-page">
+            <span class="text-[#5DBE7D]">🗃️</span>
+            <div>
+              <div class="text-[0.85rem] text-[#D8D3CB]"><strong>DB: AI Agent Runs</strong></div>
+              <div class="text-[0.75rem] text-[#9DA0A6]">Log aller AI-Agenten: Timestamp, Input, Output, Tokens, Kosten, Error-Flags</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="mt-6 pt-4 border-t border-white/5">
+          <h4 class="font-display text-lg text-[#C6A56B] mb-3">Templates (für schnelle Duplizierung)</h4>
+          <div class="space-y-2">
+            <div class="notion-template notion-page">
+              <span class="text-[#fbbf24]">📋</span>
+              <div>
+                <div class="text-[0.85rem] text-[#D8D3CB]"><strong>Template: Neues Experiment</strong></div>
+                <div class="text-[0.75rem] text-[#9DA0A6]">Hypothese, Kanal, Zielgruppe, Creative, KPI, Budget, Kill/Scale, Gantt</div>
+              </div>
+            </div>
+            <div class="notion-template notion-page">
+              <span class="text-[#fbbf24]">📋</span>
+              <div>
+                <div class="text-[0.85rem] text-[#D8D3CB]"><strong>Template: Weekly Review</strong></div>
+                <div class="text-[0.75rem] text-[#9DA0A6]">Summary, Anomalien, Trends, Experiment-Status, Next Actions, Alerts</div>
+              </div>
+            </div>
+            <div class="notion-template notion-page">
+              <span class="text-[#fbbf24]">📋</span>
+              <div>
+                <div class="text-[0.85rem] text-[#D8D3CB]"><strong>Template: AI Prompt</strong></div>
+                <div class="text-[0.75rem] text-[#9DA0A6]">Agent, Input-Felder, Output-Felder, Tools, Integration, Human Check</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== SLIDE 16: FINAL / READY FOR PHASE 3 ==================== -->
+<section class="slide slide-alt" id="s16">
+  <div class="gradient-mesh">
+    <div class="blob" style="width:500px;height:500px;top:-100px;right:-100px;background:#C6A56B;"></div>
+    <div class="blob" style="width:300px;height:300px;bottom:-80px;left:-60px;background:#7D8087;"></div>
+  </div>
+  <div class="relative z-10 text-center max-w-[900px] mx-auto">
+    <div class="pill mb-6">Phase 2 Complete</div>
+    <h1 class="font-display text-[clamp(2.5rem,5vw,4.5rem)] font-bold leading-[1.05] bg-gradient-to-br from-[#C6A56B] via-[#F5F3EE] to-[#C6A56B] bg-clip-text text-transparent">
+      Ready for Phase 3
+    </h1>
+    <p class="mt-6 text-lg text-[#D8D3CB] max-w-[700px] mx-auto leading-relaxed">
+      Dieses Deck verwandelt Mirrous Brand-System, Cases und Web-Struktur in einen 
+      klaren Ausführungsplan für Kampagnen, Experimente, CRM-Handoff und AI-gestützte Optimierung.
+    </p>
+
+    <div class="mt-10 grid grid-cols-2 md:grid-cols-4 gap-4 max-w-[800px] mx-auto">
+      <div class="card text-center">
+        <div class="metric" style="font-size:1.8rem">€12.5K</div>
+        <div class="text-[0.75rem] text-[#9DA0A6] mt-1">Testbudget</div>
+      </div>
+      <div class="card text-center">
+        <div class="metric" style="font-size:1.8rem">25</div>
+        <div class="text-[0.75rem] text-[#9DA0A6] mt-1">Tage Sprint</div>
+      </div>
+      <div class="card text-center">
+        <div class="metric" style="font-size:1.8rem">5</div>
+        <div class="text-[0.75rem] text-[#9DA0A6] mt-1">Hypothesen</div>
+      </div>
+      <div class="card text-center">
+        <div class="metric" style="font-size:1.8rem">4</div>
+        <div class="text-[0.75rem] text-[#9DA0A6] mt-1">AI-Agenten</div>
+      </div>
+    </div>
+
+    <div class="mt-8 flex flex-wrap justify-center gap-3">
+      <span class="pill">Frontier Firm Model</span>
+      <span class="pill">Agent Boss Architecture</span>
+      <span class="pill">Intelligence on Tap</span>
+      <span class="pill">Work Charts</span>
+    </div>
+
+    <p class="mt-8 uppercase tracking-[6px] text-[#9DA0A6] text-sm">Creative Engineering powered by Algorithm of Soul</p>
+  </div>
+</section>
+
+</div>
+
+<script>
+// Navigation
+const slides = document.querySelectorAll('.slide');
+const dots = document.querySelectorAll('.nav-dot');
+let currentSlide = 0;
+
+function scrollToSection(id) {
+  const el = document.getElementById(id);
+  if (el) {
+    el.scrollIntoView({ behavior: 'smooth' });
+    updateActive(id);
+  }
+}
+
+function updateActive(id) {
+  const index = Array.from(slides).findIndex(s => s.id === id);
+  dots.forEach((d, i) => d.classList.toggle('active', i === index));
+}
+
+// Intersection Observer
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      updateActive(entry.target.id);
+      // Animate reveals
+      entry.target.querySelectorAll('.reveal').forEach((el, i) => {
+        setTimeout(() => {
+          el.style.opacity = '1';
+          el.style.transform = 'translateY(0)';
+        }, i * 100);
+      });
+    }
+  });
+}, { threshold: 0.3 });
+
+slides.forEach(slide => {
+  slide.querySelectorAll('.reveal').forEach(el => {
+    el.style.opacity = '0';
+    el.style.transform = 'translateY(20px)';
+    el.style.transition = 'all 0.5s ease';
+  });
+  observer.observe(slide);
+});
+
+// Mouse spotlight
+document.addEventListener('mousemove', (e) => {
+  const spotlight = document.querySelector('.mouse-spotlight');
+  if (spotlight) {
+    spotlight.style.background = `radial-gradient(600px circle at ${e.clientX}px ${e.clientY}px, rgba(198,165,107,0.06), transparent 40%)`;
+  }
+});
+</script>
+
+</body>
+</html>

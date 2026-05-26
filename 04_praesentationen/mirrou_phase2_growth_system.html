@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="slides-format" content="viewport">
+  <title>Mirrou Phase 2 Growth System</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+  <style type="text/tailwindcss">
+    @theme {
+      --color-bg: #0A0A0A;
+      --color-bg-deep: #050505;
+      --color-surface: #141414;
+      --color-text: #F5F3EE;
+      --color-text-secondary: #D8D3CB;
+      --color-text-muted: #9DA0A6;
+      --color-accent-1: #C6A56B;
+      --color-accent-2: #F5F3EE;
+      --color-accent-3: #7D8087;
+      --color-glass-bg: rgba(255,255,255,0.05);
+      --color-glass-border: rgba(255,255,255,0.09);
+      --color-vignette: rgba(0,0,0,0.42);
+      --font-display: 'Cormorant Garamond', serif;
+      --font-body: 'Inter', sans-serif;
+    }
+  </style>
+  <style>
+    :root { --color-bg: #0A0A0A; --color-text: #F5F3EE; --glow-color-rgb: 198,165,107; --color-glass-bg: rgba(255,255,255,0.05); --color-glass-border: rgba(255,255,255,0.09); }
+    *,*::before,*::after{box-sizing:border-box}
+    html,body{background:var(--color-bg);margin:0}
+    body{font-family:var(--font-body);color:var(--color-text);overflow:hidden;height:100vh;width:100vw}
+    .deck{width:100vw;height:100vh;position:relative}
+    .slide{position:absolute;top:0;left:0;width:100%;height:100%;background:var(--color-bg);display:flex;flex-direction:column;align-items:center;justify-content:center;opacity:0;transform:scale(.95);transition:opacity .7s ease,transform .7s ease;pointer-events:none;overflow:hidden}
+    .slide.active{opacity:1;transform:scale(1);pointer-events:all}
+    .slide>.content{position:relative;z-index:2;width:100%;max-width:1180px;padding:clamp(1.5rem,4vw,4rem)}
+    .nav-controls{position:fixed;bottom:24px;left:50%;transform:translateX(-50%);display:flex;align-items:center;gap:16px;z-index:100;background:var(--color-glass-bg);backdrop-filter:blur(10px);padding:10px 24px;border-radius:40px;border:1px solid var(--color-glass-border)}
+    .nav-btn{width:40px;height:40px;border:none;background:var(--color-glass-bg);color:#C6A56B;border-radius:50%;font-size:1.2rem;cursor:pointer;display:flex;align-items:center;justify-content:center}
+    .slide-dots{display:flex;gap:8px}.slide-dots .dot{width:10px;height:10px;border-radius:50%;background:var(--color-glass-border);cursor:pointer;transition:all .3s}.slide-dots .dot.active{background:#C6A56B;transform:scale(1.3)}
+    .slide-counter{font-size:.8rem;color:#9DA0A6;min-width:44px;text-align:center}
+    .reveal{opacity:0;transform:translateY(20px)}
+    .gradient-mesh{position:absolute;inset:0;z-index:0;overflow:hidden;pointer-events:none}
+    .blob{position:absolute;border-radius:50%;filter:blur(80px);animation:float-slow 12s ease-in-out infinite}
+    .blob:nth-child(2){animation:float-drift 16s ease-in-out infinite}
+    .blob:nth-child(3){animation:float-slow 20s ease-in-out infinite reverse}
+    @keyframes float-slow{0%{transform:translate(0,0) scale(1)}25%{transform:translate(60px,-50px) scale(1.12)}50%{transform:translate(-40px,40px) scale(.9)}75%{transform:translate(50px,20px) scale(1.08)}100%{transform:translate(0,0) scale(1)}}
+    @keyframes float-drift{0%{transform:translate(0,0) scale(1) rotate(0)}33%{transform:translate(-50px,-60px) scale(1.15) rotate(3deg)}66%{transform:translate(40px,30px) scale(.88) rotate(-2deg)}100%{transform:translate(0,0) scale(1) rotate(0)}}
+    @keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-15px)}}
+    .slide::before{content:'';position:absolute;inset:0;z-index:1;pointer-events:none;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.7' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");background-repeat:repeat;background-size:256px 256px;opacity:.03;mix-blend-mode:overlay}
+    .slide::after{content:'';position:absolute;inset:0;z-index:1;pointer-events:none;background:radial-gradient(ellipse at center, transparent 50%, var(--color-vignette) 100%)}
+    .mouse-spotlight{position:fixed;inset:0;z-index:99;pointer-events:none}
+    .pill{border:1px solid rgba(198,165,107,.35);background:rgba(198,165,107,.08);color:#F5F3EE;padding:.38rem .72rem;border-radius:999px;font-size:.78rem;letter-spacing:.12em;text-transform:uppercase;font-family:'JetBrains Mono', monospace}
+    .metric{font-size:clamp(2rem,4vw,3.6rem);font-weight:800;line-height:.95;color:#C6A56B}
+    .table-lite{width:100%;border-collapse:separate;border-spacing:0 12px}.table-lite td,.table-lite th{padding:12px 14px;text-align:left}.table-lite thead th{font-size:.78rem;text-transform:uppercase;letter-spacing:.14em;color:#9DA0A6;font-family:'JetBrains Mono',monospace}.table-lite tbody tr{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.06)}
+    .bar-track{height:16px;border-radius:999px;background:rgba(255,255,255,.08);overflow:hidden}.bar-fill{height:100%;border-radius:999px;background:linear-gradient(90deg,#C6A56B,#F5F3EE);width:0}
+    .mini{font-size:.86rem;color:#D8D3CB;line-height:1.45}
+  </style>
+</head>
+<body>
+<div class="mouse-spotlight"></div>
+<div class="deck">
+  <section class="slide active" data-slide="1">
+    <div class="gradient-mesh">
+      <div class="blob" style="width:500px;height:500px;top:-100px;right:-100px;background:#C6A56B;opacity:.14"></div>
+      <div class="blob" style="width:320px;height:320px;bottom:-90px;left:-70px;background:#7D8087;opacity:.12"></div>
+      <div class="blob" style="width:220px;height:220px;top:38%;left:16%;background:#F5F3EE;opacity:.08"></div>
+    </div>
+    <canvas class="particle-canvas" style="position:absolute;inset:0;z-index:1"></canvas>
+    <div class="content text-center">
+      <div class="reveal mx-auto mb-5 flex h-[110px] w-[110px] items-center justify-center rounded-full border border-[rgba(198,165,107,.35)] bg-[rgba(255,255,255,.04)] text-[44px] animate-[float_3s_ease-in-out_infinite]">✦</div>
+      <h1 class="reveal font-display text-[clamp(2.5rem,6vw,5.3rem)] font-bold tracking-tight bg-linear-to-br from-accent-1 via-accent-2 to-accent-1 bg-clip-text text-transparent">Mirrou Phase 2 Growth System</h1>
+      <p class="reveal mt-4 text-[clamp(.9rem,1.5vw,1.2rem)] uppercase tracking-[6px] text-text-muted">Marketing Mix • AI Workflows • 25-Day Plan</p>
+      <p class="reveal mx-auto mt-8 max-w-[820px] text-lg text-text-secondary">Built for Denys as system architect: turning Mirrou’s positioning, cases, and web infrastructure into an executable growth engine for Phase 3 campaign launch.</p>
+    </div>
+  </section>
+
+  <section class="slide" data-slide="2">
+    <div class="gradient-mesh"><div class="blob" style="width:360px;height:360px;top:-80px;right:-80px;background:#C6A56B;opacity:.08"></div><div class="blob" style="width:250px;height:250px;bottom:-70px;left:-60px;background:#7D8087;opacity:.08"></div></div>
+    <div class="content">
+      <div class="pill reveal mb-5 inline-block">Purpose</div>
+      <h2 class="reveal font-display text-[clamp(2rem,4vw,3.2rem)] font-semibold">What Phase 2 must deliver</h2>
+      <div class="mt-8 grid grid-cols-2 gap-6">
+        <div class="reveal rounded-3xl border border-glass-border bg-glass-bg p-8 backdrop-blur-xl">
+          <h3 class="font-display text-3xl text-accent-1">Strategic shift</h3>
+          <p class="mini mt-4">Mirrou positions itself as a Hamburg-based performance creative studio with Berlin presence, built around editorial-grade brand systems, performance logic, and operational clarity.</p>
+          <p class="mini mt-3">Phase 2 therefore cannot be a theory chapter. It must define how that studio logic becomes channel roles, funnel architecture, testing logic, and AI-assisted execution.</p>
+        </div>
+        <div class="reveal rounded-3xl border border-glass-border bg-glass-bg p-8 backdrop-blur-xl">
+          <h3 class="font-display text-3xl text-accent-1">Output required</h3>
+          <ul class="mini mt-4 space-y-3">
+            <li>• A documented marketing mix with funnel roles, KPIs, and budget weights.</li>
+            <li>• A 25-day sprint plan with experiments, hypotheses, and kill/scale rules.</li>
+            <li>• AI workflows that can be transferred into live campaigns and reporting.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="slide" data-slide="3">
+    <div class="gradient-mesh"><div class="blob" style="width:280px;height:280px;top:10%;right:8%;background:#C6A56B;opacity:.07"></div><div class="blob" style="width:220px;height:220px;bottom:8%;left:10%;background:#F5F3EE;opacity:.05"></div></div>
+    <div class="content">
+      <div class="pill reveal mb-5 inline-block">Positioning</div>
+      <h2 class="reveal font-display text-[clamp(2rem,4vw,3rem)] font-semibold">Mirrou’s strategic spine</h2>
+      <div class="mt-8 grid grid-cols-4 gap-5">
+        <div class="reveal rounded-2xl border border-glass-border bg-glass-bg p-6 backdrop-blur-xl"><div class="metric">2</div><div class="mt-2 text-sm uppercase tracking-[.14em] text-text-muted">Cities</div><p class="mini mt-3">Hamburg anchors production discipline; Berlin adds cultural velocity and creative network density.</p></div>
+        <div class="reveal rounded-2xl border border-glass-border bg-glass-bg p-6 backdrop-blur-xl"><div class="metric">4</div><div class="mt-2 text-sm uppercase tracking-[.14em] text-text-muted">Cases</div><p class="mini mt-3">Luminous Aura, Vitality Pulse, Essence Drift, and Neural Glow function as proof systems for campaigns.</p></div>
+        <div class="reveal rounded-2xl border border-glass-border bg-glass-bg p-6 backdrop-blur-xl"><div class="metric">EN/DE</div><div class="mt-2 text-sm uppercase tracking-[.14em] text-text-muted">Language</div><p class="mini mt-3">The studio communicates in English and German across press, partner, and digital environments.</p></div>
+        <div class="reveal rounded-2xl border border-glass-border bg-glass-bg p-6 backdrop-blur-xl"><div class="metric">AI</div><div class="mt-2 text-sm uppercase tracking-[.14em] text-text-muted">DNA</div><p class="mini mt-3">Algorithm of Soul combines human art direction with controlled generative workflows.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="slide" data-slide="4">
+    <div class="gradient-mesh"><div class="blob" style="width:300px;height:300px;top:-60px;right:-50px;background:#7D8087;opacity:.08"></div><div class="blob" style="width:260px;height:260px;bottom:-60px;left:-40px;background:#C6A56B;opacity:.08"></div></div>
+    <div class="content">
+      <div class="pill reveal mb-5 inline-block">Marketing Mix</div>
+      <h2 class="reveal font-display text-[clamp(2rem,4vw,3rem)] font-semibold">Channel roles in the funnel</h2>
+      <table class="table-lite reveal mt-6">
+        <thead><tr><th>Channel</th><th>Funnel role</th><th>Main goal</th><th>Core KPIs</th><th>Budget weight</th></tr></thead>
+        <tbody>
+          <tr><td>Meta Ads</td><td>Awareness / Consideration</td><td>Drive attention to cases and studio promise</td><td>CTR, CPL, landing-page visits</td><td>40%</td></tr>
+          <tr><td>TikTok</td><td>Awareness</td><td>High-attention visual discovery</td><td>Thumb-stop rate, view rate, CTR</td><td>25%</td></tr>
+          <tr><td>Google Search</td><td>Consideration / Conversion</td><td>Capture demand for studio, creative, and case intent</td><td>Leads, CPA, conversion rate</td><td>20%</td></tr>
+          <tr><td>Email / CRM</td><td>Conversion / Retention</td><td>Nurture qualified leads into strategy calls</td><td>Open rate, reply rate, call booking rate</td><td>10%</td></tr>
+          <tr><td>LinkedIn</td><td>Consideration</td><td>Authority building among CMOs and founders</td><td>Profile visits, engagement, inbound interest</td><td>5%</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="slide" data-slide="5">
+    <div class="gradient-mesh"><div class="blob" style="width:420px;height:420px;top:-80px;right:-120px;background:#C6A56B;opacity:.1"></div><div class="blob" style="width:220px;height:220px;bottom:8%;left:8%;background:#F5F3EE;opacity:.05"></div></div>
+    <canvas class="particle-canvas-ambient" style="position:absolute;inset:0;z-index:1"></canvas>
+    <div class="content">
+      <div class="pill reveal mb-5 inline-block">Journey</div>
+      <h2 class="reveal font-display text-[clamp(2rem,4vw,3rem)] font-semibold">Mirrou customer journey</h2>
+      <div class="mt-10 grid grid-cols-4 gap-5">
+        <div class="reveal rounded-2xl border border-glass-border bg-glass-bg p-6 backdrop-blur-xl"><div class="text-sm uppercase tracking-[.14em] text-text-muted">01 Awareness</div><h3 class="mt-3 font-display text-2xl text-accent-1">Reel or visual hook</h3><p class="mini mt-3">Prospect sees Luminous Aura, Vitality Pulse, or Neural Glow creative on Meta or TikTok.</p></div>
+        <div class="reveal rounded-2xl border border-glass-border bg-glass-bg p-6 backdrop-blur-xl"><div class="text-sm uppercase tracking-[.14em] text-text-muted">02 Consideration</div><h3 class="mt-3 font-display text-2xl text-accent-1">Case and deck review</h3><p class="mini mt-3">Website visit leads to Mission Deck, Case Study Compilation, or service page exploration.</p></div>
+        <div class="reveal rounded-2xl border border-glass-border bg-glass-bg p-6 backdrop-blur-xl"><div class="text-sm uppercase tracking-[.14em] text-text-muted">03 Conversion</div><h3 class="mt-3 font-display text-2xl text-accent-1">Qualified call</h3><p class="mini mt-3">Lead requests intro call or strategy call after seeing proof, process, and offer clarity.</p></div>
+        <div class="reveal rounded-2xl border border-glass-border bg-glass-bg p-6 backdrop-blur-xl"><div class="text-sm uppercase tracking-[.14em] text-text-muted">04 Retention</div><h3 class="mt-3 font-display text-2xl text-accent-1">System expansion</h3><p class="mini mt-3">Client continues through campaign build, asset extensions, and recurring creative governance.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="slide" data-slide="6">
+    <div class="gradient-mesh"><div class="blob" style="width:280px;height:280px;top:8%;right:7%;background:#C6A56B;opacity:.08"></div><div class="blob" style="width:280px;height:280px;bottom:5%;left:8%;background:#7D8087;opacity:.07"></div></div>
+    <div class="content">
+      <div class="pill reveal mb-5 inline-block">Messaging</div>
+      <h2 class="reveal font-display text-[clamp(2rem,4vw,3rem)] font-semibold">Messaging grid for AI prompts</h2>
+      <div class="mt-8 grid grid-cols-2 gap-6">
+        <div class="reveal rounded-3xl border border-glass-border bg-glass-bg p-8 backdrop-blur-xl">
+          <h3 class="font-display text-3xl text-accent-1">Core promises</h3>
+          <ul class="mini mt-4 space-y-3">
+            <li>• A performance creative studio for beauty, lifestyle, and culture-led brands.</li>
+            <li>• Aesthetics solve for performance.</li>
+            <li>• Systems before campaigns.</li>
+            <li>• Editorial precision plus operational clarity.</li>
+            <li>• Algorithm of Soul: human craft scaled through AI logic.</li>
+          </ul>
+        </div>
+        <div class="reveal rounded-3xl border border-glass-border bg-glass-bg p-8 backdrop-blur-xl">
+          <h3 class="font-display text-3xl text-accent-1">Prompt structure</h3>
+          <ul class="mini mt-4 space-y-3">
+            <li>• Input: persona, pain point, sector, case reference, tone.</li>
+            <li>• Hook angles: broken brand expression, generic content fatigue, launch pressure.</li>
+            <li>• Proof: 4 conceptual systems, dual-city setup, press-grade asset logic.</li>
+            <li>• Output: hooks, ad copy, landing-page sections, nurture email variants.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="slide" data-slide="7">
+    <div class="gradient-mesh"><div class="blob" style="width:340px;height:340px;top:-80px;right:-100px;background:#F5F3EE;opacity:.06"></div><div class="blob" style="width:240px;height:240px;bottom:-60px;left:-40px;background:#C6A56B;opacity:.08"></div></div>
+    <div class="content">
+      <div class="pill reveal mb-5 inline-block">Case Use</div>
+      <h2 class="reveal font-display text-[clamp(2rem,4vw,3rem)] font-semibold">How the four cases support campaigns</h2>
+      <div class="mt-8 grid grid-cols-4 gap-5">
+        <div class="reveal rounded-2xl border border-glass-border bg-glass-bg p-6 backdrop-blur-xl"><h3 class="font-display text-2xl text-accent-1">Luminous Aura</h3><p class="mini mt-3">Premium serum system with black marble and gold light. Best for hero reels, landing-page visuals, and luxury conversion narratives.</p></div>
+        <div class="reveal rounded-2xl border border-glass-border bg-glass-bg p-6 backdrop-blur-xl"><h3 class="font-display text-2xl text-accent-1">Vitality Pulse</h3><p class="mini mt-3">Dynamic energy-serum language. Best for motion-led testing, kinetic hooks, and attention-grabbing paid social formats.</p></div>
+        <div class="reveal rounded-2xl border border-glass-border bg-glass-bg p-6 backdrop-blur-xl"><h3 class="font-display text-2xl text-accent-1">Essence Drift</h3><p class="mini mt-3">Soft atmospheric fragrance system. Useful for mood-driven awareness, editorial storytelling, and premium brand intrigue.</p></div>
+        <div class="reveal rounded-2xl border border-glass-border bg-glass-bg p-6 backdrop-blur-xl"><h3 class="font-display text-2xl text-accent-1">Neural Glow</h3><p class="mini mt-3">Tech-forward beauty narrative with neon circuitry cues. Useful for innovation angles and adaptive formula messaging.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="slide" data-slide="8">
+    <div class="gradient-mesh"><div class="blob" style="width:300px;height:300px;top:10%;right:10%;background:#C6A56B;opacity:.07"></div><div class="blob" style="width:260px;height:260px;bottom:10%;left:10%;background:#7D8087;opacity:.07"></div></div>
+    <div class="content">
+      <div class="pill reveal mb-5 inline-block">AI Roles</div>
+      <h2 class="reveal font-display text-[clamp(2rem,4vw,3rem)] font-semibold">AI agents inside the mix</h2>
+      <div class="mt-8 grid grid-cols-2 gap-6">
+        <div class="reveal rounded-3xl border border-glass-border bg-glass-bg p-7 backdrop-blur-xl"><h3 class="font-display text-3xl text-accent-1">Hook Generator</h3><p class="mini mt-3">Input: persona, pain point, selected case, tone, funnel stage. Output: 20-30 ad hooks and primary text angles.</p></div>
+        <div class="reveal rounded-3xl border border-glass-border bg-glass-bg p-7 backdrop-blur-xl"><h3 class="font-display text-3xl text-accent-1">Creative Variant Generator</h3><p class="mini mt-3">Input: base asset, format ratio, audience, message. Output: 8-10 format-specific variations for testing.</p></div>
+        <div class="reveal rounded-3xl border border-glass-border bg-glass-bg p-7 backdrop-blur-xl"><h3 class="font-display text-3xl text-accent-1">Budget Advisor</h3><p class="mini mt-3">Input: previous 7-day KPI trend. Output: daily channel and campaign budget shift recommendation.</p></div>
+        <div class="reveal rounded-3xl border border-glass-border bg-glass-bg p-7 backdrop-blur-xl"><h3 class="font-display text-3xl text-accent-1">Reporting Agent</h3><p class="mini mt-3">Input: dashboard metrics and funnel events. Output: anomaly summary, next action, and kill/scale recommendation.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="slide" data-slide="9">
+    <div class="gradient-mesh"><div class="blob" style="width:350px;height:350px;top:-90px;right:-90px;background:#C6A56B;opacity:.1"></div><div class="blob" style="width:240px;height:240px;bottom:-40px;left:-40px;background:#F5F3EE;opacity:.05"></div></div>
+    <div class="content">
+      <div class="pill reveal mb-5 inline-block">25 Days</div>
+      <h2 class="reveal font-display text-[clamp(2rem,4vw,3rem)] font-semibold">Sprint structure</h2>
+      <div class="mt-10 grid grid-cols-3 gap-6">
+        <div class="reveal rounded-3xl border border-glass-border bg-glass-bg p-8 backdrop-blur-xl"><div class="text-sm uppercase tracking-[.14em] text-text-muted">Sprint 1 • Days 1–8</div><h3 class="mt-3 font-display text-3xl text-accent-1">Setup</h3><p class="mini mt-4">Tracking, pixels, audiences, core landing pages, case selection, initial creative pack, dashboard skeleton.</p></div>
+        <div class="reveal rounded-3xl border border-glass-border bg-glass-bg p-8 backdrop-blur-xl"><div class="text-sm uppercase tracking-[.14em] text-text-muted">Sprint 2 • Days 9–16</div><h3 class="mt-3 font-display text-3xl text-accent-1">Testing</h3><p class="mini mt-4">Creative tests, audience split tests, landing-page variants, hook testing, mission deck and case download experiments.</p></div>
+        <div class="reveal rounded-3xl border border-glass-border bg-glass-bg p-8 backdrop-blur-xl"><div class="text-sm uppercase tracking-[.14em] text-text-muted">Sprint 3 • Days 17–25</div><h3 class="mt-3 font-display text-3xl text-accent-1">Scaling</h3><p class="mini mt-4">Reallocate budget to winners, improve call-booking conversion, tighten nurture flow, prepare handoff for live campaigns.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="slide" data-slide="10">
+    <div class="gradient-mesh"><div class="blob" style="width:260px;height:260px;top:6%;right:12%;background:#7D8087;opacity:.08"></div><div class="blob" style="width:240px;height:240px;bottom:10%;left:6%;background:#C6A56B;opacity:.08"></div></div>
+    <div class="content">
+      <div class="pill reveal mb-5 inline-block">Hypotheses</div>
+      <h2 class="reveal font-display text-[clamp(2rem,4vw,3rem)] font-semibold">Test plan with decisions</h2>
+      <table class="table-lite reveal mt-6">
+        <thead><tr><th>Hypothesis</th><th>Channel</th><th>Target</th><th>KPI goal</th><th>Decision rule</th></tr></thead>
+        <tbody>
+          <tr><td>Storytelling reels outperform static luxury visuals</td><td>Meta / TikTok</td><td>Beauty & wellness brand leads</td><td>CTR above 2.2%</td><td>Scale if CTR and CPC improve after 5 days</td></tr>
+          <tr><td>Case-study downloads create higher-quality leads than generic contact ads</td><td>Google Search</td><td>High-intent search traffic</td><td>Lower CPA and higher form completion</td><td>Keep only if assisted conversions rise</td></tr>
+          <tr><td>Neural Glow angles outperform generic innovation copy</td><td>Meta</td><td>Tech-beauty buyers</td><td>Higher engagement and landing-page depth</td><td>Kill if scroll depth remains weak</td></tr>
+          <tr><td>Mission Deck lead magnet increases strategy call bookings</td><td>Email / Website</td><td>Warm visitors</td><td>Booking rate above baseline</td><td>Retain if call bookings improve by week 2</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="slide" data-slide="11">
+    <div class="gradient-mesh"><div class="blob" style="width:300px;height:300px;top:-80px;right:-70px;background:#C6A56B;opacity:.08"></div><div class="blob" style="width:260px;height:260px;bottom:-70px;left:-50px;background:#7D8087;opacity:.08"></div></div>
+    <div class="content">
+      <div class="pill reveal mb-5 inline-block">KPIs</div>
+      <h2 class="reveal font-display text-[clamp(2rem,4vw,3rem)] font-semibold">Core KPI framework</h2>
+      <div class="mt-8 grid grid-cols-2 gap-8">
+        <div class="reveal space-y-5">
+          <div><div class="mb-2 text-sm uppercase tracking-[.14em] text-text-muted">Awareness</div><div class="bar-track"><div class="bar-fill" data-width="78"></div></div><p class="mini mt-2">Impressions, hook rate, thumb-stop rate, CTR.</p></div>
+          <div><div class="mb-2 text-sm uppercase tracking-[.14em] text-text-muted">Consideration</div><div class="bar-track"><div class="bar-fill" data-width="66"></div></div><p class="mini mt-2">Landing-page visits, case views, deck downloads, time on page.</p></div>
+          <div><div class="mb-2 text-sm uppercase tracking-[.14em] text-text-muted">Conversion</div><div class="bar-track"><div class="bar-fill" data-width="58"></div></div><p class="mini mt-2">Lead quality, CPA, booking rate, form completion rate.</p></div>
+          <div><div class="mb-2 text-sm uppercase tracking-[.14em] text-text-muted">Retention</div><div class="bar-track"><div class="bar-fill" data-width="44"></div></div><p class="mini mt-2">Reply rate, proposal progression, expansion opportunity, repeat need.</p></div>
+        </div>
+        <div class="reveal rounded-3xl border border-glass-border bg-glass-bg p-8 backdrop-blur-xl">
+          <h3 class="font-display text-3xl text-accent-1">Minimum viable tracking</h3>
+          <ul class="mini mt-4 space-y-3">
+            <li>• Meta Pixel and Google Ads tracking on all key pages.</li>
+            <li>• GA4 events for Mission Deck views, case downloads, and contact-form submissions.</li>
+            <li>• Website event bridge into CRM for lead source and high-intent actions.</li>
+            <li>• Daily KPI export feeding AI budget and reporting agents.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="slide" data-slide="12">
+    <div class="gradient-mesh"><div class="blob" style="width:380px;height:380px;top:-100px;right:-100px;background:#C6A56B;opacity:.1"></div><div class="blob" style="width:220px;height:220px;bottom:8%;left:8%;background:#F5F3EE;opacity:.05"></div></div>
+    <div class="content">
+      <div class="pill reveal mb-5 inline-block">Dashboard</div>
+      <h2 class="reveal font-display text-[clamp(2rem,4vw,3rem)] font-semibold">Reporting dashboard blueprint</h2>
+      <div class="mt-8 grid grid-cols-3 gap-5">
+        <div class="reveal rounded-2xl border border-glass-border bg-glass-bg p-6 backdrop-blur-xl"><div class="text-sm uppercase tracking-[.14em] text-text-muted">Chart 1</div><h3 class="mt-3 font-display text-2xl text-accent-1">ROAS trend</h3><p class="mini mt-3">Daily line chart by channel with 7-day smoothing and alert threshold for sudden drop-offs.</p></div>
+        <div class="reveal rounded-2xl border border-glass-border bg-glass-bg p-6 backdrop-blur-xl"><div class="text-sm uppercase tracking-[.14em] text-text-muted">Chart 2</div><h3 class="mt-3 font-display text-2xl text-accent-1">Funnel drop-off</h3><p class="mini mt-3">Stage-by-stage view from impression to booked call, highlighting friction points to investigate.</p></div>
+        <div class="reveal rounded-2xl border border-glass-border bg-glass-bg p-6 backdrop-blur-xl"><div class="text-sm uppercase tracking-[.14em] text-text-muted">Table</div><h3 class="mt-3 font-display text-2xl text-accent-1">Experiment log</h3><p class="mini mt-3">Status, start date, KPI target, owner, and decision note for every live or completed test.</p></div>
+      </div>
+      <div class="reveal mt-8 rounded-3xl border border-glass-border bg-glass-bg p-7 backdrop-blur-xl">
+        <p class="mini"><strong>Refresh frequency:</strong> daily operational review, weekly decision review. <strong>AI role:</strong> reporting agent reads trend changes, flags anomalies, and proposes next tests or budget moves.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="slide" data-slide="13">
+    <div class="gradient-mesh"><div class="blob" style="width:280px;height:280px;top:12%;right:12%;background:#7D8087;opacity:.07"></div><div class="blob" style="width:260px;height:260px;bottom:10%;left:8%;background:#C6A56B;opacity:.08"></div></div>
+    <div class="content">
+      <div class="pill reveal mb-5 inline-block">Workflows</div>
+      <h2 class="reveal font-display text-[clamp(2rem,4vw,3rem)] font-semibold">AI-assisted operating flows</h2>
+      <div class="mt-8 grid grid-cols-3 gap-6">
+        <div class="reveal rounded-3xl border border-glass-border bg-glass-bg p-7 backdrop-blur-xl"><h3 class="font-display text-3xl text-accent-1">1. Hook pipeline</h3><p class="mini mt-3">Input persona, pain, case, and tone. Generate 30 hooks. Cluster into luxury, systems, and performance angles. Export best 10 to ads.</p></div>
+        <div class="reveal rounded-3xl border border-glass-border bg-glass-bg p-7 backdrop-blur-xl"><h3 class="font-display text-3xl text-accent-1">2. Variant testing</h3><p class="mini mt-3">Input base asset and ratio. Generate 10 variants. Launch A/B/C tests. Score by CTR, CPC, landing-page depth, and conversion quality.</p></div>
+        <div class="reveal rounded-3xl border border-glass-border bg-glass-bg p-7 backdrop-blur-xl"><h3 class="font-display text-3xl text-accent-1">3. Daily budget advice</h3><p class="mini mt-3">Read previous-day KPIs. Recommend budget shifts, bid guardrails, and channel emphasis. Record decision in dashboard log.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="slide" data-slide="14">
+    <div class="gradient-mesh"><div class="blob" style="width:320px;height:320px;top:-80px;right:-80px;background:#C6A56B;opacity:.1"></div><div class="blob" style="width:220px;height:220px;bottom:-50px;left:-50px;background:#F5F3EE;opacity:.05"></div></div>
+    <div class="content">
+      <div class="pill reveal mb-5 inline-block">Website</div>
+      <h2 class="reveal font-display text-[clamp(2rem,4vw,3rem)] font-semibold">Website-to-campaign bridge</h2>
+      <div class="mt-8 grid grid-cols-2 gap-6">
+        <div class="reveal rounded-3xl border border-glass-border bg-glass-bg p-8 backdrop-blur-xl">
+          <h3 class="font-display text-3xl text-accent-1">What the site already supports</h3>
+          <ul class="mini mt-4 space-y-3">
+            <li>• Press documentation logic built around four key downloads.</li>
+            <li>• Case Study Compilation and Mission Deck as high-intent trust assets.</li>
+            <li>• Tracking event concept for press downloads and asset engagement.</li>
+          </ul>
+        </div>
+        <div class="reveal rounded-3xl border border-glass-border bg-glass-bg p-8 backdrop-blur-xl">
+          <h3 class="font-display text-3xl text-accent-1">What still needs to be added</h3>
+          <ul class="mini mt-4 space-y-3">
+            <li>• Clear service blocks tied to landing-page conversion goals.</li>
+            <li>• Stronger social proof and case-entry CTAs above the fold.</li>
+            <li>• Form logic and CRM fields for lead source, download behavior, and call intent.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="slide" data-slide="15">
+    <div class="gradient-mesh"><div class="blob" style="width:300px;height:300px;top:8%;right:8%;background:#C6A56B;opacity:.08"></div><div class="blob" style="width:300px;height:300px;bottom:6%;left:6%;background:#7D8087;opacity:.07"></div></div>
+    <div class="content">
+      <div class="pill reveal mb-5 inline-block">Rules</div>
+      <h2 class="reveal font-display text-[clamp(2rem,4vw,3rem)] font-semibold">Decision logic for Phase 3</h2>
+      <div class="mt-8 grid grid-cols-2 gap-6">
+        <div class="reveal rounded-3xl border border-glass-border bg-glass-bg p-8 backdrop-blur-xl"><h3 class="font-display text-3xl text-accent-1">If-this-then-that</h3><ul class="mini mt-4 space-y-3"><li>• If CTR rises and CPC falls for 3+ days, scale the winner.</li><li>• If landing depth is weak, rewrite hook and hero section before increasing spend.</li><li>• If downloaded assets do not lead to calls, improve nurture and offer framing.</li></ul></div>
+        <div class="reveal rounded-3xl border border-glass-border bg-glass-bg p-8 backdrop-blur-xl"><h3 class="font-display text-3xl text-accent-1">Recommended launch path</h3><ul class="mini mt-4 space-y-3"><li>• Start Phase 3 with fictional proof systems such as Luminous Aura.</li><li>• Use them to validate creative, funnel, and AI workflow mechanics at low risk.</li><li>• Move to pilot clients after message-to-market fit improves.</li></ul></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="slide" data-slide="16">
+    <div class="gradient-mesh">
+      <div class="blob" style="width:520px;height:520px;top:-110px;right:-120px;background:#C6A56B;opacity:.15"></div>
+      <div class="blob" style="width:320px;height:320px;bottom:-90px;left:-70px;background:#7D8087;opacity:.12"></div>
+      <div class="blob" style="width:220px;height:220px;top:38%;left:18%;background:#F5F3EE;opacity:.08"></div>
+    </div>
+    <canvas class="particle-canvas" style="position:absolute;inset:0;z-index:1"></canvas>
+    <div class="content text-center">
+      <div class="reveal mx-auto mb-5 flex h-[110px] w-[110px] items-center justify-center rounded-full border border-[rgba(198,165,107,.35)] bg-[rgba(255,255,255,.04)] text-[44px] animate-[float_3s_ease-in-out_infinite]">◆</div>
+      <h2 class="reveal font-display text-[clamp(2.5rem,5vw,4.6rem)] font-semibold bg-linear-to-br from-accent-1 via-accent-2 to-accent-1 bg-clip-text text-transparent">Ready for Phase 3</h2>
+      <p class="reveal mx-auto mt-5 max-w-[860px] text-xl text-text-secondary">This deck turns Mirrou’s brand system, cases, and web structure into a clear execution blueprint for campaigns, experiments, CRM handoff, and AI-assisted optimization.</p>
+      <p class="reveal mt-8 uppercase tracking-[6px] text-text-muted">Creative Engineering powered by Algorithm of Soul</p>
+    </div>
+  </section>
+</div>
+
+<div class="nav-controls">
+  <button class="nav-btn" onclick="changeSlide(-1)">&#8249;</button>
+  <div class="slide-dots" id="dots"></div>
+  <button class="nav-btn" onclick="changeSlide(1)">&#8250;</button>
+  <span class="slide-counter" id="counter">1 / 16</span>
+</div>
+
+<script>
+let current=1;const total=document.querySelectorAll('.slide').length;const dotsContainer=document.getElementById('dots');const counter=document.getElementById('counter');for(let i=1;i<=total;i++){const dot=document.createElement('div');dot.className='dot'+(i===1?' active':'');dot.onclick=()=>goToSlide(i);dotsContainer.appendChild(dot)}
+function goToSlide(n){const prev=document.querySelector('.slide.active');const next=document.querySelector(`.slide[data-slide="${n}"]`);if(prev)prev.classList.remove('active');if(next){next.classList.add('active');animateSlide(next)}current=n;updateNav()}
+function changeSlide(dir){let next=current+dir;if(next<1)next=total;if(next>total)next=1;goToSlide(next)}
+function updateNav(){document.querySelectorAll('.dot').forEach((d,i)=>d.classList.toggle('active',i+1===current));counter.textContent=current+' / '+total}
+document.addEventListener('keydown',(e)=>{if(e.key==='ArrowRight'||e.key===' '){e.preventDefault();changeSlide(1)}if(e.key==='ArrowLeft'){e.preventDefault();changeSlide(-1)}});let touchStartX=0;document.addEventListener('touchstart',(e)=>{touchStartX=e.touches[0].clientX});document.addEventListener('touchend',(e)=>{const diff=touchStartX-e.changedTouches[0].clientX;if(Math.abs(diff)>50)changeSlide(diff>0?1:-1)})
+function animateSlide(slide){slide.querySelectorAll('.reveal').forEach((el,i)=>{el.style.transition='none';el.style.opacity='0';el.style.transform='translateY(20px)';el.offsetHeight;const delay=i*.08;el.style.transition=`opacity .35s ease ${delay}s, transform .35s ease ${delay}s`;el.style.opacity='1';el.style.transform='translateY(0px)'});animateSlideEffects(slide)}
+function animateSlideEffects(slide){slide.querySelectorAll('.bar-fill:not(.fill-init)').forEach((bar,i)=>{bar.classList.add('fill-init');bar.style.width='0%';bar.style.transition=`width .6s ease ${i*.1}s`;bar.offsetHeight;bar.style.width=bar.dataset.width+'%'})}
+document.addEventListener('mousemove',(e)=>{const spotlight=document.querySelector('.mouse-spotlight');if(spotlight){const rgb='198,165,107';spotlight.style.background=`radial-gradient(600px circle at ${e.clientX}px ${e.clientY}px, rgba(${rgb},0.06), transparent 40%)`}});
+window.initParticles=function(canvas,options){if(!canvas)return;const ctx=canvas.getContext('2d');canvas.width=canvas.offsetWidth;canvas.height=canvas.offsetHeight;const interactive=options.interactive!==false;const count=options.count||(interactive?55:18);let mx=-1000,my=-1000;const particles=Array.from({length:count},()=>({x:Math.random()*canvas.width,y:Math.random()*canvas.height,vx:(Math.random()-.5)*.3,vy:(Math.random()-.5)*.3,size:Math.random()*2.5+.8,alpha:Math.random()*.35+.1}));if(interactive){canvas.addEventListener('mousemove',(e)=>{const rect=canvas.getBoundingClientRect();mx=e.clientX-rect.left;my=e.clientY-rect.top});canvas.addEventListener('mouseleave',()=>{mx=-1000;my=-1000})}(function animate(){ctx.clearRect(0,0,canvas.width,canvas.height);particles.forEach(p=>{if(interactive){const dx=p.x-mx,dy=p.y-my,dist=Math.sqrt(dx*dx+dy*dy);if(dist<120){const force=(120-dist)/120*2;p.vx+=(dx/dist)*force*.1;p.vy+=(dy/dist)*force*.1}}p.vx*=.98;p.vy*=.98;p.x+=p.vx;p.y+=p.vy;if(p.x<0)p.x=canvas.width;if(p.x>canvas.width)p.x=0;if(p.y<0)p.y=canvas.height;if(p.y>canvas.height)p.y=0;ctx.beginPath();ctx.arc(p.x,p.y,p.size,0,Math.PI*2);ctx.fillStyle=`rgba(198,165,107,${p.alpha})`;ctx.fill()});requestAnimationFrame(animate)})()};
+document.querySelectorAll('.particle-canvas').forEach(c=>window.initParticles(c,{interactive:true,count:55}));document.querySelectorAll('.particle-canvas-ambient').forEach(c=>window.initParticles(c,{interactive:false,count:18}));try{animateSlide(document.querySelector('.slide.active'))}catch(e){console.warn(e)}
+</script>
+</body>
+</html>
