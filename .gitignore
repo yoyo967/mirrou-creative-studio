@@ -51,5 +51,8 @@ coverage/
 Thumbs.db
 desktop.ini
 
+# Lighthouse reports
+lighthouse-*.json
+
 # Temporary backup
 .gitignore.local

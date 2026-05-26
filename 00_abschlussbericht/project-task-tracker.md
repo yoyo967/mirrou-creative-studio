@@ -49,7 +49,7 @@ version: 1.0
 | 7 | Mobile-Optimierung geprüft | 🟢 |
 | 8 | SEO-Metadaten alle Seiten (8 Sprachen) | 🟢 |
 | 9 | WCAG AA Accessibility (Lighthouse 100/100) | 🟢 |
-| 10 | Ladezeit-Optimierung (Core Web Vitals) | 🟡 |
+| 10 | Ladezeit-Optimierung (WebP + Bundle-Split) | 🟢 |
 
 ---
 
@@ -116,9 +116,9 @@ version: 1.0
 6. ~~**Tech-Stack-Konsistenz**~~ ✅ Erledigt — Next.js→React 19+Vite 6 in allen 10+ Dateien korrigiert
 7. ~~**SEO-Metadaten**~~ ✅ Erledigt — BrandBookPage i18n-Fix, alle 8 Sprachen vollständig
 8. ~~**WCAG AA Accessibility**~~ ✅ Erledigt — Lighthouse 100/100, alle Kontrast-Fehler behoben
-9. **Case Studies auf Website** — Olha finalisiert visuelle Darstellung
-10. **Abschlussbericht Team-Review** — Olha (Abschnitt 4), Ralph (Abschnitt 9) gegenlesen
-11. **Performance-Optimierung** — Three.js-Hero lazy-loading, Lighthouse 63/100 → Ziel 80+
+9. ~~**Performance-Optimierung**~~ ✅ Erledigt — 100 Bilder→WebP (−133MB), Bundle-Split (−76%), 5 Deps entfernt
+10. **Case Studies auf Website** — Olha finalisiert visuelle Darstellung
+11. **Abschlussbericht Team-Review** — Olha (Abschnitt 4), Ralph (Abschnitt 9) gegenlesen
 
 ---
 
@@ -151,3 +151,6 @@ version: 1.0
 | 2026-05-26 | BrandBookPage SEO i18n — übersetzte Meta-Tags in allen 8 Locales | Yahya + Claude Code |
 | 2026-05-26 | WCAG AA Kontrast-Fix — color-muted, MarqueeStrip, HorizontalShowcase | Yahya + Claude Code |
 | 2026-05-26 | Lighthouse: Accessibility 97→100, Best Practices 96→100, Performance 56→63 | Yahya + Claude Code |
+| 2026-05-26 | 100 PNG→WebP konvertiert (133MB eingespart, Ø 95% kleiner) | Yahya + Claude Code |
+| 2026-05-26 | Vite Bundle-Split: app 1.5MB→362KB, 5 Chunks (locales/motion/router/icons) | Yahya + Claude Code |
+| 2026-05-26 | 5 unbenutzte Dependencies entfernt (three, @react-three/fiber, etc.) | Yahya + Claude Code |
