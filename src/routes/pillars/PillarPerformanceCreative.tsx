@@ -14,7 +14,7 @@ export default function PillarPerformanceCreative() {
 
       <div className="my-16 rounded-sm overflow-hidden border border-white/5">
         <img
-          src="/images/apex-v1-creative-workflow-production.png"
+          src="/images/apex-v1-creative-workflow-production.webp"
           alt={t("pc.imgAlt1")}
           className="w-full h-auto"
           loading="lazy"
@@ -58,7 +58,7 @@ export default function PillarPerformanceCreative() {
 
       <div className="my-16 rounded-sm overflow-hidden border border-white/5">
         <img
-          src="/images/apex-v2-data-dashboard-metrics.png"
+          src="/images/apex-v2-data-dashboard-metrics.webp"
           alt={t("pc.imgAlt2")}
           className="w-full h-auto"
           loading="lazy"
@@ -99,7 +99,7 @@ export default function PillarPerformanceCreative() {
 
       <div className="my-16 rounded-sm overflow-hidden border border-white/5">
         <img
-          src="/images/apex-v3-team-strategy-session.png"
+          src="/images/apex-v3-team-strategy-session.webp"
           alt={t("pc.imgAlt3")}
           className="w-full h-auto"
           loading="lazy"

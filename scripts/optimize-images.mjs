@@ -8,7 +8,7 @@ import sharp from "sharp";
 import { readdir, stat } from "fs/promises";
 import { join, extname, basename } from "path";
 
-const DIRS = ["public/heroimages", "public/images/gallery"];
+const DIRS = ["public/heroimages", "public/images/gallery", "public/images", "public/images/cases"];
 const HERO_QUALITY = 78;      // hero images: balance quality vs size
 const GALLERY_QUALITY = 80;
 const MAX_WIDTH = 1920;        // cap width for hero images (mobile-first)

@@ -192,7 +192,7 @@ export default function StudioContent() {
           {Array.from({ length: 8 }, (_, i) => i + 41).map((n) => (
             <div key={n} className="img-zoom overflow-hidden">
               <OptimizedImage
-                src={`/images/gallery/g-${String(n).padStart(2, "0")}.png`}
+                src={`/images/gallery/g-${String(n).padStart(2, "0")}.webp`}
                 alt=""
                 className="aspect-square w-full"
               />
