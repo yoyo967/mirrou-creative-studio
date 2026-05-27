@@ -1422,6 +1422,751 @@ const de = {
     },
   },
 
+  brandBook: {
+    // ─── Section navigation ───────────────────────────────────────
+    sections: {
+      foundation: "01 · Foundation",
+      personality: "02 · Voice",
+      visual: "03 · Visual Identity",
+      messaging: "04 · Messaging",
+      application: "05 · Application",
+      assets: "06 · Logo & Assets",
+    },
+
+    sideNav: {
+      confidential: "Internal · Confidential",
+    },
+
+    mobileToc: {
+      label: "Brand Book · Navigation",
+    },
+
+    // ─── HERO ─────────────────────────────────────────────────────
+    hero: {
+      eyebrow: "Mirrou Creative Studio · Brand Book",
+      h1line1: "The Algorithm",
+      h1accent: "of Soul.",
+      body: "Dieses Brand Book definiert, wie Mirrou denkt, spricht, aussieht und agiert. Es ist kein Style Guide — es ist das Betriebssystem unserer Marke.",
+      audience: "Das Mirrou-Team, Freelancer-Kollaborationen, Agenturpartner. Intern. Vertraulich. Nicht für die Öffentlichkeit bestimmt.",
+      audienceLabel: "Für wen:",
+      metaVersion: "Version",
+      metaVersionValue: "1.0 · 2026",
+      metaStatus: "Status",
+      metaStatusValue: "Live · Binding",
+      metaScope: "Scope",
+      metaScopeValue: "DACH · EN",
+      metaOwner: "Owner",
+      metaOwnerValue: "Olha Yevtushenko",
+    },
+
+    // ─── SECTION 1 · BRAND FOUNDATION ─────────────────────────────
+    foundation: {
+      title: "Brand Foundation",
+
+      // Name & Bedeutung
+      nameMeaning: {
+        eyebrow: "Name & Bedeutung",
+        nameExplain: '<strong>Mirrou</strong> ist eine Komposition aus <em>Mirror</em> (Spiegel) und einer bewussten orthografischen Verschiebung — das doppelte „r" verleiht der Wortmarke visuelle Spannung und Eigenständigkeit.',
+        metaphor: "Der Spiegel ist die zentrale Metapher: Mirrou reflektiert, was in einer Marke bereits da ist — und macht es schärfer, präziser, wirksamer. Kein Aufsetzen einer fremden Identität. Destillation des Eigenen.",
+        phoneticLabel: "Phonetik",
+        phonetic: "/mɪˈruː/ — weich, klar, ein klangliches Spiegel-Bild.",
+        spellingLabel: "Schreibweise",
+        spelling: "Immer <strong>Mirrou</strong> — nie MIRROU (außer Wordmark), nie Mirrou. Kein Bindestrich, kein Punkt.",
+        studioLabel: "Studio",
+        studio: "Immer <strong>Mirrou Creative Studio</strong> im vollen Kontext. In wiederholter Nennung: Mirrou.",
+      },
+
+      // Mission · Vision · Promise · Positioning
+      mvpp: {
+        eyebrow: "Mission · Vision · Promise · Positioning",
+        mission: {
+          label: "Mission Statement",
+          headline: "Wir bauen Creative-Engines.",
+          body: "Mirrou entwickelt visuelle Systeme, die nicht nur schön sind — sondern konvertieren. Wir sind die Schnittstelle aus High-End-Fotografie, KI-Produktion und Performance-Daten. Für D2C-Brands in Beauty, Health & Lifestyle, die nicht wählen wollen zwischen Ästhetik und ROI.",
+        },
+        vision: {
+          label: "Vision Statement",
+          headline: "Das führende Performance Creative Studio im DACH-Raum.",
+          body: "In fünf Jahren ist Mirrou der Standard für Creative Excellence in der D2C-Beauty-Kategorie. Die Marke, die beweist, dass systematische Ästhetik und messbare Performance kein Widerspruch sind — sondern dasselbe Ziel.",
+        },
+        promise: {
+          label: "Brand Promise",
+          headline: "Creatives, die systematisch funktionieren.",
+          body: "Jeder Mirrou-Kunde bekommt: Editorial-Grade Qualität in jedem Frame. Eine Creative-Engine, die lernfähig ist. Volle EU-Compliance ohne Mehraufwand. Und ein Partner, der Ästhetik und Performance gleichzeitig denkt — ohne einen dieser Punkte zu opfern.",
+        },
+        positioning: {
+          label: "Positioning Statement",
+          headline: "Für D2C-Brands die skalieren wollen.",
+          body: "Mirrou Creative Studio ist das erste Boutique-Studio für Performance-Creatives, das High-End-Fotografie, KI-Hybrid-Produktion und Paid-Ads-Analytics als ein System denkt — spezialisiert auf Beauty, Health & Lifestyle im DACH-Raum, Compliance-by-Design seit Tag 1.",
+        },
+      },
+
+      // Core Values
+      values: {
+        eyebrow: "Core Values",
+        precision: {
+          label: "Präzision",
+          headline: "Kein Frame ohne Grund.",
+          body: "Jede Entscheidung — Licht, Oberfläche, Farbe, Timing — ist begründet. Mirrou produziert keine Bilder, wir konstruieren visuelle Argumente. Präzision ist nicht Perfektionismus. Es ist die Disziplin, jede Variable bewusst zu wählen und ihr Ergebnis messen zu können.",
+        },
+        performance: {
+          label: "Performance",
+          headline: "Ästhetik, die Zahlen liefert.",
+          body: "Schönheit ohne Wirkung ist Dekoration. Wirkung ohne Schönheit ist Commodity. Mirrou baut an der Schnittstelle: Visuals, die im Feed stoppen und im Funnel konvertieren. Jedes Creative wird mit einer Hypothese geschaffen und mit Daten bewertet.",
+        },
+        integrity: {
+          label: "Integrität",
+          headline: "Compliance ist kein Constraint — es ist Design.",
+          body: "EU AI Act, DSGVO, C2PA: Mirrou hat die gesamte regulatorische Infrastruktur von Anfang an in das Studio-Modell eingebaut. Transparenz über KI-Nutzung. Klare Datenprozesse. Audit-ready Deliverables. Nicht weil es Pflicht ist — sondern weil es die richtige Art ist, zu arbeiten.",
+        },
+        independence: {
+          label: "Eigenständigkeit",
+          headline: "Das Studio gehört dem Kunden — nicht umgekehrt.",
+          body: "Lock-in ist nicht Geschäftsmodell. Creative-Learning-Log, Test-Daten und Asset-Libraries werden vollständig übergeben. Kunden sollen Mirrou wählen, weil wir der beste Partner sind — nicht weil sie keine Wahl haben. Das ist die Grundlage für jede langfristige Zusammenarbeit.",
+        },
+      },
+    },
+
+    // ─── SECTION 2 · BRAND PERSONALITY & VOICE ────────────────────
+    personality: {
+      title: "Brand Personality & Voice",
+
+      // Brand Personality · 5 Adjektive
+      traits: {
+        eyebrow: "Brand Personality · 5 Adjektive",
+        precise: {
+          adj: "Präzise",
+          body: "Mirrou gibt keine groben Versprechen. Jede Aussage ist belegt, jede Empfehlung begründet. Präzision bedeutet: weniger sagen, aber präziser — und immer mit Nachweis.",
+        },
+        direct: {
+          adj: "Direkt",
+          body: "Kein Warm-up, kein Verkaufs-Jargon, kein Bullshit. Mirrou sagt, was gemeint ist. Direktheit ist Respekt — gegenüber der Zeit und der Intelligenz des Gegenübers.",
+        },
+        editorial: {
+          adj: "Editorial",
+          body: "Mirrou denkt und kommuniziert wie ein Kurator, nicht wie ein Verkäufer. Jede Entscheidung — ob visuell oder sprachlich — trifft einen ästhetischen Standard. Niemals generisch.",
+        },
+        techCreative: {
+          adj: "Technisch-kreativ",
+          body: "Mirrou lebt an der Schnittstelle aus Daten und Ästhetik. Die Sprache reflektiert das: präzise Terminologie, ohne die kreative Substanz zu verlieren. Kein False Dilemma zwischen Schönheit und Performance.",
+        },
+        confident: {
+          adj: "Souverän",
+          body: "Mirrou muss sich nicht rechtfertigen. Die Tonalität ist ruhig, nicht laut. Confidence ohne Arroganz — wir wissen, was wir können, und müssen das nicht beweisen, indem wir andere kleinmachen.",
+        },
+      },
+
+      // Tone of Voice · 5 Prinzipien
+      toneOfVoice: {
+        eyebrow: "Tone of Voice · 5 Prinzipien",
+        p01: {
+          principle: "Hypothese vor Bauchgefühl",
+          body: "Mirrou leitet Empfehlungen immer aus Daten ab. Nicht: 'Wir empfehlen dunkle Hintergründe.' Sondern: 'Schwarze Surfaces erzielen in unserer Beauty-Kategorie 2,3× mehr Scroll-Stop als helle — hier ist der Test.'",
+        },
+        p02: {
+          principle: "Kürze ist keine Arroganz",
+          body: "Ein Satz, der alles sagt, ist besser als drei, die dasselbe wiederholen. Mirrou-Texte sind verdichtet — jedes Wort verdient seinen Platz. Das gilt für Captions, Pitch-Decks, E-Mails und Webseiten-Copy gleichermaßen.",
+        },
+        p03: {
+          principle: "System vor Einzelbild",
+          body: "Mirrou spricht nie über einzelne Assets, immer über Systeme. Nicht: 'Ein schönes Produktfoto.' Sondern: 'Ein Visual-System, das Awareness, Consideration und Conversion gleichzeitig adressiert.'",
+        },
+        p04: {
+          principle: "Komplexität verdichten, nicht vereinfachen",
+          body: "Mirrou erklärt komplexe Konzepte nicht, indem es sie vereinfacht — sondern indem es die richtige Analogie findet. Kein Herunterschreiben auf ein vermeintlich niedriges Verständnisniveau. Kunden werden als Profis angesprochen.",
+        },
+        p05: {
+          principle: "Emotion durch Präzision, nicht durch Ausrufezeichen",
+          body: "Mirrou erzeugt keine künstliche Begeisterung. Emotion entsteht durch präzise Sprache: 'Creatives, die in 48 Stunden ausgeliefert werden' hat mehr Kraft als 'Wir sind super schnell!'",
+        },
+      },
+
+      // Wie Mirrou klingt — und wie nicht
+      dosDonts: {
+        eyebrow: "Wie Mirrou klingt — und wie nicht",
+        doLabel: "✓ Do",
+        dontLabel: "✗ Don't",
+        dos: [
+          "Klare Zahlen statt vager Versprechen",
+          "Kurze, dichte Sätze — aktiv, nicht passiv",
+          "Technische Begriffe, wenn sie präziser sind",
+          "Wir-Form für Studio-Aussagen",
+          "Fragen, die den Kunden weiterbringen",
+          "Kein Punkt nach einer Überschrift",
+          "Deutsche Texte auf Deutsch, keine falschen Anglizismen",
+          "EU-Konformität als Stärke kommunizieren",
+        ],
+        donts: [
+          "Superlative ohne Beweis ('das beste Studio')",
+          "Füllwörter ('eigentlich', 'irgendwie', 'sozusagen')",
+          "Englische Buzzwords ohne Substanz ('synergy', 'holistic')",
+          "Dreifach-Ausrufezeichen oder Emoji in professionellen Kontexten",
+          "Passive Konstruktionen ('es wird empfohlen')",
+          "Vage Versprechen ohne Metrik oder Beispiel",
+          "Selbstlob ohne Kontext ('wir sind kreativ')",
+          "Floskeln aus der Agenturwelt ('out of the box')",
+        ],
+      },
+
+      // Vorher / Nachher · 3 Beispiele
+      beforeAfter: {
+        eyebrow: "Vorher / Nachher · 3 Beispiele",
+        beforeLabel: "✗ Vorher",
+        afterLabel: "✓ Nachher",
+        example1: {
+          label: "Über unsere Arbeit",
+          before: "Wir erstellen kreative und ansprechende Inhalte für Social Media, die Ihre Zielgruppe begeistern.",
+          after: "Wir produzieren Ad-Creatives mit einer dokumentierten Hypothese pro Variante — so wird jeder Launch ein messbarer Test, kein Bauchgefühl.",
+        },
+        example2: {
+          label: "Bei der Angebotsvorstellung",
+          before: "Wir würden uns sehr freuen, mit Ihnen zusammenzuarbeiten und können Ihnen ein individuelles Angebot erstellen.",
+          after: "Welches Paket passt, hängt von eurem Ad-Spend ab. 30 Minuten Gespräch reichen, um das zu klären. Kostenfrei, ohne Pitch.",
+        },
+        example3: {
+          label: "Über KI-Nutzung",
+          before: "Wir nutzen modernste KI-Tools, um Ihre Visuals auf das nächste Level zu heben!",
+          after: "Jedes KI-generierte Element ist im Deliverable-Set dokumentiert und EU-AI-Act-konform gekennzeichnet. Das Produkt bleibt immer real.",
+        },
+      },
+
+      // Verbotene Wörter & Phrasen
+      forbiddenWords: {
+        eyebrow: "Verbotene Wörter & Phrasen",
+        intro: "Diese Begriffe werden im Mirrou-Kontext nie verwendet — sie widersprechen dem Tonalitätsprinzip der Präzision:",
+        words: [
+          "disruptiv",
+          "innovativ",
+          "holistisch",
+          "synergistisch",
+          "Mehrwert schaffen",
+          "out of the box",
+          "360°-Lösung",
+          "next level",
+          "skalierbar (ohne Kontext)",
+          "agil (ohne Kontext)",
+          "Storytelling (als Floskeln)",
+          "begeistern (übertrieben)",
+          "Game Changer",
+          "Win-Win",
+          "auf Augenhöhe",
+          "zielgruppengerecht",
+        ],
+      },
+    },
+
+    // ─── SECTION 3 · VISUAL IDENTITY SYSTEM ───────────────────────
+    visual: {
+      title: "Visual Identity System",
+
+      // Farbsystem
+      colors: {
+        eyebrow: "Farbsystem · Palette",
+        voidBlack: {
+          name: "Void Black",
+          role: "Primärfarbe",
+          usage: "Hintergrund aller primären Flächen. Nie durch ein anderes Schwarz ersetzt.",
+        },
+        studioGold: {
+          name: "Studio Gold",
+          role: "Akzentfarbe",
+          usage: "CTAs, Eyebrows, Metrik-Highlights, Hover-States. Sparsam einsetzen.",
+        },
+        creamWhite: {
+          name: "Cream White",
+          role: "Kontrastfarbe",
+          usage: "Primäre Textfarbe (ink) auf dunklem Ground. Alternativ: Cream-Section-Hintergrund.",
+        },
+        surface: {
+          name: "Surface",
+          role: "Sekundärfläche",
+          usage: "Cards, Hover-Flächen, zweite Ebene über Void Black.",
+        },
+        goldLight: {
+          name: "Gold Light",
+          role: "Akzent Hell",
+          usage: "Hover-State auf Gold. Nie als Primärfarbe verwenden.",
+        },
+        muted: {
+          name: "Muted",
+          role: "Tertiärtext",
+          usage: "Labels, Timestamps, sekundäre Metadaten. Nie für Fließtext.",
+        },
+        rulesLabel: "Verwendungsregeln",
+        rulesDo: [
+          "Primär: Schwarz (080808) als dominante Fläche",
+          "Akzent (Gold) nicht auf Gold — immer auf Schwarz oder Weiß",
+          "Cream als Text auf Schwarz: immer ≥ AA Kontrast-Ratio",
+          "Gold sparsam: maximal 15% einer Fläche",
+        ],
+        rulesDont: [
+          "Nie: Gold auf Cream (zu geringer Kontrast)",
+          "Nie: Farbige Hintergründe (nur Schwarz / Off-White)",
+          "Nie: Buntes Farbband zur Sektions-Trennung",
+          "Nie: Transparenzen unter 10% Opacity für Text",
+        ],
+      },
+
+      // Typografie
+      typography: {
+        eyebrow: "Typografie · System",
+        primary: {
+          role: "Primärschrift · Headlines",
+          usage: "H1, Hero-Headlines, Zitate, emotionale Statements",
+        },
+        secondary: {
+          role: "Sekundärschrift · Labels & Tags",
+          usage: "Eyebrows, Metadaten, CTAs, Navigation, Timestamps",
+        },
+        tertiary: {
+          role: "Tertiärschrift · Fließtext",
+          usage: "Body-Copy, Beschreibungen, Formularfelder",
+        },
+        scaleLabel: "Größenhierarchie",
+      },
+
+      // Logo & Wortmarke
+      logo: {
+        eyebrow: "Logo & Wortmarke · Verwendungsregeln",
+        primaryLabel: "Primäre Wortmarke",
+        logoRules: [
+          "Schutzzone: x-Höhe des M rundum",
+          "Mindestgröße: 80px Breite digital, 20mm Print",
+          "Erlaubte Hintergründe: Schwarz, Weiß, Off-White",
+          "Gold auf Schwarz: akzeptiert für Sub-Brand",
+        ],
+        forbiddenLabel: "Verbotene Verwendungen",
+        forbiddenRules: [
+          "Nie auf farbigen oder gemusterten Hintergründen",
+          "Nie skaliert unter Mindestgröße",
+          "Nie gedehnt, gestaucht oder rotiert",
+          "Nie mit Schatten oder Gloweffekten",
+          "Nie in Farbverläufen verwenden",
+          "Nie 'Mirrou' ohne 'Creative Studio' im formalen Kontext",
+          "Nie Lowercase: 'mirrou' ist falsch",
+          "Nie in konkurrierenden Plattform-Logos integrieren",
+        ],
+      },
+
+      // Bildsprache & Fotografie-Stil
+      imagery: {
+        eyebrow: "Bildsprache & Fotografie-Stil",
+        editorialLabel: "Editorial-Grade Photography",
+        editorialItems: [
+          "Präzision in jedem Frame — Makro-Details, Hauttöne, Texturen",
+          "Dunkle Hintergründe als Default (Schwarz, tiefes Grau, Marmor)",
+          "Einzelne Lichtquelle — dramatisch, kontrolliert",
+          "Produkt nie KI-generiert — immer echte Fotografie",
+          "Keine Stockfotos. Kein Lifestyle-Klischee",
+          "Quasi-Monochrom als Standard — ein einziger Farbakzent erlaubt",
+        ],
+        aiLabel: "AI-Hybrid Visual Guidelines",
+        aiItems: [
+          "KI nur für Hintergründe, Atmosphären, Partikel, Compositing",
+          "Jedes KI-Element EU-AI-Act-konform gekennzeichnet",
+          "Qualitätsprotokoll: Generierung → Kuration → Korn → Lichtphysik",
+          "Kein Blind-Output: jedes Frame besteht redaktionellen Kurations-Check",
+          "Keine gesichtslosen AI-Personen in Mirrou-Creatives",
+          "C2PA-Metadaten in jedem Export",
+        ],
+        forbiddenLabel: "Verbotene Bildstile",
+        forbiddenItems: [
+          "Helle, weiße Lifestyle-Fotografie",
+          "Unbearbeitete Rohbilder ohne Mirrou-Tonung",
+          "Stock-Diversity-Imagery",
+          "Neon-Vollsättigung ohne Disziplin",
+          "Flat-Lay ohne ästhetische Grammatik",
+          "Generische Beauty-Formulierungen im Bild",
+        ],
+      },
+
+      // Motion & Animation
+      motion: {
+        eyebrow: "Motion & Animation · Prinzipien",
+        doLabel: "Wie sich Mirrou bewegt",
+        doItems: [
+          "Easing: cubic-bezier(0.16, 1, 0.3, 1) — expo-out, nie bounce",
+          "Dauer: 300–900ms für UI-Elemente, 0.9–1.4s für Reveals",
+          "Scroll-triggered: fade + translateY(18px) → 0",
+          "Grain-Overlay: immer animated, 0.5s steps(1) infinite",
+          "Hover: subtil — scale 1.06, translateY -2px, nie dramatisch",
+          "Keine Rotation außer für dekorative Elemente",
+        ],
+        dontLabel: "Was nie animiert wird",
+        dontItems: [
+          "Partikeleffekte als primäres Design-Element",
+          "Autoplay-Videos ohne User-Intent",
+          "Bounce-Easing oder Spring-Animationen",
+          "Komplexe Page-Transitions (behindert SEO)",
+          "Vollbild-Ladeanimationen über 1.5 Sekunden",
+          "Blinkende oder pulsierende UI-Elemente",
+        ],
+      },
+    },
+
+    // ─── SECTION 4 · MESSAGING FRAMEWORK ──────────────────────────
+    messaging: {
+      title: "Messaging Framework",
+
+      // Claims & Taglines
+      claims: {
+        eyebrow: "Claims & Taglines",
+        usageLabel: "Verwendung",
+        algorithmOfSoul: {
+          claim: "Algorithm of Soul",
+          context: "Primär-Claim · Hero-Ebene",
+          body: "Steht für die Philosophie: Kreativität (Soul) + systematische Logik (Algorithm). Verwendet im Hero, als Sub-Label in der Wortmarke, als Watermark in Visuals. Nie durch andere Formulierungen ersetzt — es ist der Meta-Claim der Marke.",
+          use: "Hero, Wordmark-Sub, Watermark, Social Bio",
+        },
+        mainTagline: {
+          claim: "Wo Ästhetik Algorithmus wird.",
+          context: "Haupt-Tagline · Sub-Claim",
+          body: "Die DE-Entsprechung des Meta-Claims. Verwendet als Hero-H1 auf der Website und in deutschsprachigen Kampagnenmaterialien. Präzise Formulierung — keine Variation oder Paraphrase.",
+          use: "Website Hero, DE-Kampagnen, Pitch-Deckcover",
+        },
+        performanceTagline: {
+          claim: "Creatives, die systematisch funktionieren.",
+          context: "Leistungs-Tagline · Mid-Funnel",
+          body: "Positioniert das Mirrou-Angebot präzise: nicht schöne Bilder, sondern ein System. Verwendet in Performance-Kontexten, Angeboten, Service-Beschreibungen.",
+          use: "Service-Seiten, Angebote, LinkedIn-Copy, Mid-Funnel Ads",
+        },
+        enTagline: {
+          claim: "Three Disciplines. One Engine.",
+          context: "EN-Tagline · Pitch & International",
+          body: "Englische Variante für Pitches, internationale Partner und EN-Content. Beschreibt das Drei-Säulen-System (Fotografie · KI · Analytics) auf einer Zeile.",
+          use: "EN-Pitches, Investoren-Decks, internationale Partner",
+        },
+      },
+
+      // Elevator Pitches
+      pitches: {
+        eyebrow: "Elevator Pitches",
+        p30sec: {
+          duration: "30 Sek",
+          label: "Kurz-Pitch",
+          body: "Mirrou ist ein Performance Creative Studio aus Hamburg. Wir produzieren Ad-Creatives für D2C-Brands in Beauty, Health und Lifestyle — als Hybrid aus High-End-Fotografie und KI-Produktion, mit A/B-Testing und Analytics in jeder Phase. Kein Trade-off zwischen Ästhetik und ROI.",
+        },
+        p60sec: {
+          duration: "60 Sek",
+          label: "Standard-Pitch",
+          body: "Mirrou baut Creative-Engines für D2C-Brands. Das Problem: In Paid Social hängen bis zu 70% des Kampagnenerfolgs am Creative — aber die meisten Brands arbeiten mit Generalisten, die weder die Kategorie noch die Plattformen tief genug kennen. Wir lösen das mit einem System: echte High-End-Fotografie als Basis, KI-generierte Hintergründe für skalierbare Varianten, und systematisches A/B-Testing, das jedes Creative in eine Hypothese verwandelt. EU-AI-Act-konform von Tag 1. Boutique-Studio, Senior-Direktion in jedem Projekt.",
+        },
+        p3min: {
+          duration: "3 Min",
+          label: "Pitch-Meeting",
+          body: "Im Paid Social hat sich der Hebel verschoben. Targeting ist Commodity — Plattformen automatisieren es. Was bleibt als echter Wettbewerbsvorteil: das Creative. Aber Creatives ermüden schnell. Ab 30k€/Monat Ad-Spend brennen sie in 2–4 Wochen aus. Wer skalieren will, braucht keine einzelne Kampagne — er braucht eine Engine, die kontinuierlich produziert, testet und lernt.\n\nMirrou baut genau diese Engine. Wir arbeiten an der Schnittstelle aus drei Disziplinen: High-End-Fotografie für produktechte Basis-Visuals, KI-generierte Hintergründe für skalierbare Stilvarianten ohne Re-Shooting, und Paid-Ads Analytics, die jede Variante mit einer dokumentierten Hypothese verbindet.\n\nWas das bedeutet: Jeder Launch ist ein messbarer Test. Jeder Zyklus macht das nächste Creative besser. Und alles ist EU-AI-Act-konform dokumentiert — was 2026 Pflicht wird, ist bei uns Standard.\n\nZielgruppe: D2C Beauty-, Health- und Lifestyle-Brands im DACH-Raum, die zwischen 10k und 150k€/Monat in Paid Social investieren.",
+        },
+      },
+
+      // Key Messages per Audience
+      keyMessages: {
+        eyebrow: "Key Messages · Zielgruppen",
+        founderCmo: {
+          audience: "D2C Brand Founder / CMO",
+          label: "Hauptzielgruppe",
+          messages: [
+            "70% des Kampagnenerfolgs hängen am Creative — nicht am Budget.",
+            "Ab 30k€ Spend braucht deine Marke eine Engine, keine Kampagne.",
+            "Du bekommst Editorial-Grade Qualität und messbare Performance — kein Trade-off.",
+            "Compliance ist bei uns kein Extra. Alles EU-AI-Act-konform von Tag 1.",
+          ],
+        },
+        performanceManager: {
+          audience: "Performance Marketing Manager",
+          label: "Technisch-operativ",
+          messages: [
+            "Jedes Creative kommt mit einer dokumentierten Hypothese — direkt in die Teststruktur integrierbar.",
+            "A/B-Logik in der Produktion: Variablen-Isolation als Standard.",
+            "Deliverables sind performance-ready: Specs, Hook-Varianten, alle Formate.",
+            "Learning-Log wird mitgepflegt und übergeben — kein Wissensverlust beim Wechsel.",
+          ],
+        },
+        investor: {
+          audience: "Investor / Partner",
+          label: "Strategisch",
+          messages: [
+            "Mirrou ist im Markt positioniert, bevor Compliance-Pflichten greifen — Zeitvorsprung als struktureller Vorteil.",
+            "Beauty, Health & Lifestyle DACH: ein stark wachsendes Segment mit geringer Spezialisierung.",
+            "Boutique-Modell: Senior-Direktion in jedem Projekt — kein Volumen-Tradeoff.",
+            "Skalierbar durch KI-Hybridmodell ohne proportionale Kostensteigerung.",
+          ],
+        },
+        talent: {
+          audience: "Creative Talent · Recruiting",
+          label: "Interne Kommunikation",
+          messages: [
+            "Mirrou arbeitet an der Schnittstelle, die die meisten Studios nicht besetzen: Daten und Ästhetik gleichzeitig.",
+            "Kein Volumen-Studio. Jedes Projekt mit Senior-Direktion und klarem Brief.",
+            "KI ist kein Replacement — es ist das Werkzeug, das Kreativität skalierbar macht.",
+            "Compliance-by-Design: wir bauen, wie die Industrie in 2026 arbeiten wird.",
+          ],
+        },
+      },
+
+      // SEO & Brand Keywords
+      seoKeywords: {
+        eyebrow: "SEO & Brand Keywords",
+        topKeywordsLabel: "Top 15 Brand Keywords",
+        metaTemplateLabel: "Meta-Template · Struktur",
+        homepage: {
+          type: "Homepage",
+          title: "Mirrou Creative Studio | Performance Creatives für Beauty & Lifestyle",
+          desc: "Mirrou Creative Studio — Performance Creatives für Beauty-, Health- & Lifestyle-Brands. High-End-Fotografie, KI-Visuals und systematisches Creative-Testing. Creative Direction: Olha Yevtushenko.",
+        },
+        servicePage: {
+          type: "Service Page",
+          title: "[Service] · Mirrou Creative Studio | [Benefit]",
+          desc: "[Konkrete Leistung] für D2C-Brands in [Kategorie]. [1 Metrik oder Beweis]. Mirrou Creative Studio — Hamburg · Berlin · DACH.",
+        },
+        casePage: {
+          type: "Case Page",
+          title: "[Case Name] · Visual System · Mirrou Creative Studio",
+          desc: "[Case Tagline]. [Kategorie] · [1 Performance-Metrik]. Editorial-grade Hybrid-Produktion von Mirrou Creative Studio.",
+        },
+      },
+    },
+
+    // ─── SECTION 5 · APPLICATION GUIDELINES ───────────────────────
+    application: {
+      title: "Application Guidelines",
+
+      // Website · UI-Standards
+      website: {
+        eyebrow: "Website · UI-Standards",
+        ctaLabel: "CTA-Stil & Formulierung",
+        ctaRules: [
+          "Primär-CTA: 'Strategiegespräch buchen →' (Gold, immer rechts-Pfeil)",
+          "Sekundär-CTA: 'Wie wir arbeiten ↓' (Ghost, transparent)",
+          "Kein 'Jetzt anfragen' oder 'Kontaktieren' — zu generisch",
+          "CTAs immer UPPERCASE, JetBrains Mono, 10–11px",
+          "Hover: translateY(-2px) + overlay-shimmer",
+        ],
+        layoutLabel: "Layout-Prinzipien",
+        layoutRules: [
+          "Sektionen trennen durch Whitespace oder thin Border — nie Farbbänder",
+          "max-w-7xl mx-auto als primärer Container",
+          "Grid: immer 12-Spalten-Basis, 1px-Gap bg-white/6",
+          "Gold-Rule (.gold-rule) als dezenter Trennungs-Marker",
+          "Grain-Overlay immer aktiv (z-9998, pointer-events-none)",
+          "Sections: eyebrow → h2 → body → CTA — immer in dieser Hierarchie",
+        ],
+      },
+
+      // Social Media · Platform-Standards
+      social: {
+        eyebrow: "Social Media · Platform-Standards",
+        linkedin: {
+          platform: "LinkedIn",
+          items: [
+            "Posting-Format: Erkenntnis + Daten + CTA",
+            "Kein Emoji, keine Hashtag-Stacks am Ende",
+            "Bilder: Dark-Mode Markenfarben, niemals helle Lifestyle-Fotos",
+            "Ton: technisch-präzise, nicht motivational",
+            "Frequenz: 2–3× pro Woche max.",
+            "Immer → 'Mirrou Creative Studio' als Absender, nie anonym",
+          ],
+        },
+        instagram: {
+          platform: "Instagram",
+          items: [
+            "Grid: monochrom-editorial, Gold-Akzente sparsam",
+            "Kein Lifestyle-Mix: ausschließlich Produkt-/Visual-Content",
+            "Caption: kurz, direkt, kein Emoji-Stack",
+            "Stories: Behind-the-Scenes der Produktion — präzise Einblicke",
+            "Reels: maximal 15–30s, keine Trending-Sounds",
+            "Hashtags: 5–8, spezifisch (nie #inspo oder #design)",
+          ],
+        },
+        behance: {
+          platform: "Behance",
+          items: [
+            "Portfolioseite: System-Darstellung — nie Einzelbilder",
+            "Jedes Projekt mit: Kontext, Hypothese, Visual-System, Metriken",
+            "Projektcover: 4:3, Schwarz mit Gold-Akzent",
+            "Bildunterschriften: präzise, keine Superlative",
+            "Tags: Kategorie-spezifisch (Beauty, D2C, Performance Creative)",
+            "Sprache: EN für internationale Reichweite",
+          ],
+        },
+      },
+
+      // Präsentationen & Decks
+      presentations: {
+        eyebrow: "Präsentationen & Decks",
+        titleSlideLabel: "Titelfolie",
+        titleSlideRules: [
+          "Hintergrund: Void Black (#080808)",
+          "Logo oben links: MIRROU + Creative Studio",
+          "Haupttitel: Cormorant Garamond Italic, 48–60pt",
+          "Untertitel / Datum: JetBrains Mono Uppercase, 10pt",
+          "Gold-Rule als horizontaler Trenner",
+        ],
+        contentSlideLabel: "Content-Folien",
+        contentSlideRules: [
+          "Eyebrow (Mono) + H2 (Serif) + Body (Inter)",
+          "Max. 4 Bullet Points pro Folie",
+          "Daten immer in Serif-Italic (groß) + Mono-Label (klein)",
+          "Keine bunten Hintergründe oder Gradients",
+          "Konsistenter linker Margin: 10% der Folienbreite",
+        ],
+        closingSlideLabel: "Abschlussfolie",
+        closingSlideRules: [
+          "Algorithm of Soul · Centered",
+          "Website: mirrou.studio",
+          "E-Mail: hallo@mirrou.studio",
+          "QR-Code optional (Schwarz auf Gold oder umgekehrt)",
+          "Kein 'Danke!'-Schriftzug",
+        ],
+      },
+
+      // E-Mail Signatur
+      emailSignature: {
+        eyebrow: "E-Mail Signatur · Template",
+        templateLabel: "Standard-Vorlage (Plaintext + HTML)",
+        namePlaceholder: "[Vorname Nachname]",
+        rolePlaceholder: "[Funktion] · Mirrou Creative Studio",
+        locationLine: "Hamburg (Produktion) · Berlin (Performance, AI & Growth)",
+        complianceLine: "Algorithm of Soul · EU AI Act Compliant · DSGVO-konform",
+        rulesLabel: "Regeln",
+        rules: [
+          "Keine Bilder oder Banner in der Signatur",
+          "Kein Social-Media-Icon-Cluster",
+          "Kein Disclaimer-Block außer wenn rechtlich notwendig",
+          "Konsistente Schriftgröße: System-Standard (12–13pt)",
+        ],
+        optionalLabel: "Optional (Kontext-abhängig)",
+        optionalItems: [
+          "LinkedIn-URL für externe Kommunikation",
+          "Calendly-Link für direkte Terminbuchung",
+          "Aktueller Case-Link für Sales-Kontext",
+        ],
+      },
+    },
+
+    // ─── SECTION 6 · LOGO SYSTEM & ASSETS ─────────────────────────
+    assets: {
+      title: "Logo System & Assets",
+
+      overview: {
+        eyebrow: "Logo System & Assets · Overview",
+        headline: "Jedes Asset. Jeder Kanal. Kein Kompromiss.",
+        body1: "Als Performance Creative Studio leben wir die eigenen Prinzipien bei jeder Facette unserer Markenidentität. Jedes Logo und Social-Media-Asset wurde im exakten Seitenverhältnis und Format-Standard direkt als Vektorgrafik (SVG) gecodet.",
+        body2: "Klicke auf den Download-Button unter einem Asset, um die skalierbare Vektorgrafik direkt herunterzuladen. Keine Platzhalter, keine Verpixelung — produktionsreife Assets für maximale Markenkonsistenz.",
+      },
+
+      logoSystem: {
+        eyebrow: "Wortmarke & Monogramm · Varianten",
+        darkBg: "Dunkler Hintergrund",
+        lightBg: "Heller Hintergrund",
+        downloadSvg: "Download SVG",
+        primary: {
+          label: "01 · Primary Logo (Full)",
+          desc: "Querformat für Desktop-Navbar, Kopfzeilen und primäres Branding.",
+        },
+        stacked: {
+          label: "02 · Stacked Logo",
+          desc: "Quadratische Anordnung für zentrierte Layouts, Beutel und Verpackungen.",
+        },
+        monogram: {
+          label: "03 · Monogram Icon",
+          desc: "Prägnantes Avatar-Icon für App Icons, Favicons und Siegel.",
+        },
+        inverse: {
+          label: "04 · Inverse Logo (Transparent)",
+          desc: "Weiße Ausführung auf transparentem Grund für Overlays und Fotos.",
+        },
+        favicon: {
+          label: "05 · Favicon (32×32px)",
+          desc: "Kompakte 32×32px Ausführung, optimiert auf Pixelgenauigkeit im Browser.",
+        },
+      },
+
+      // Social Media Assets — Platform tabs
+      platformTabs: {
+        linkedin: "LinkedIn",
+        instagram: "Instagram",
+        facebook: "Facebook",
+        website: "Website Assets",
+      },
+
+      // LinkedIn assets
+      linkedin: {
+        profileLabel: "LinkedIn Profile Picture",
+        profileDesc: "Profilbild mit markantem Monogramm. Die gestrichelte Außenlinie zeigt das Kreis-Schnittfenster.",
+        bannerLabel: "LinkedIn Banner",
+        bannerDesc: "Offizieller Header-Banner für Firmen- und persönliche Accounts mit Markenwerten.",
+        postSquareLabel: "Post Template · Square",
+        postSquareDesc: "Quadratisches Template zur Präsentation von Datenberichten und Performance-Meldungen.",
+        postLandscapeLabel: "Post Template · Landscape",
+        postLandscapeDesc: "Querformat-Template für Teaser, Blog-Beiträge und Veröffentlichungs-Vorschauen.",
+      },
+
+      // Instagram assets
+      instagram: {
+        profileLabel: "Profile Picture",
+        profileDesc: "Monochromer Profil-Avatar für Instagram mit champagne-farbenem M.",
+        feedSquareLabel: "Feed Post · Square",
+        feedSquareDesc: "Visual-Template für den quadratischen Feed mit filigranen Gridlines.",
+        feedPortraitLabel: "Feed Post · Portrait",
+        feedPortraitDesc: "Portrait-Template (4:5) für Cases mit viel Platz für Textur-Details und Metriken.",
+        storyCoverLabel: "Story / Reels Cover",
+        storyCoverDesc: "Vollbild-Template (9:16) für Story-Hintergründe, Reels-Cover und Short-Videos.",
+        highlightsLabel: "Highlight Cover Icons (6er Set)",
+        highlightsSize: "Je 400×400px",
+        highlightsDesc: "Einheitliche Cover-Icons für Story-Highlights auf der Profilseite mit präziser Vektorbeschreibung.",
+        highlightLabels: {
+          services: "Services",
+          cases: "Cases",
+          process: "Process",
+          frontier: "Frontier",
+          resources: "Resources",
+          about: "About",
+        },
+      },
+
+      // Facebook assets
+      facebook: {
+        profileLabel: "Facebook Page Profile Picture",
+        profileDesc: "Profilbild für Facebook-Seiten und Social-Meta-Profile.",
+        coverLabel: "Facebook Page Cover",
+        coverDesc: "Cover-Header für die offizielle Facebook-Seite des Studios.",
+        adSquareLabel: "Facebook Ad Creative · Square Template",
+        adSquareDesc: "Performance-optimiertes Ad-Grid zur strukturierten Kampagnenerstellung.",
+        adStoryLabel: "Facebook Ad Creative · Story Template",
+        adStoryDesc: "Vollbild-Anzeigenschablone mit visualisierten Sicherheitszonen (Safe Zones) für Meta Stories und Reels.",
+      },
+
+      // Website assets
+      websiteAssets: {
+        navbarLabel: "Navbar Logo (Retina Optimized)",
+        navbarDesc: "Header-Logo der Navbar. Optimierte Vektorpunkte garantieren gestochen scharfe Schrift auf Retina-Monitoren.",
+        footerLabel: "Footer Logo",
+        footerDesc: "Dezent skalierte Wortmarke für den Footer-Abschluss mit Akzentuierung in Champagne.",
+        ogLabel: "Open Graph Image (Social Link Preview)",
+        ogDesc: "Vorschau-Grafik (OG Image) für Shared Links auf Plattformen wie LinkedIn, Slack und iMessage.",
+      },
+
+      // Creative Performance in Action
+      performanceSection: {
+        label: "Creative Performance in Action",
+        headline: "Markenführung als präzise Wissenschaft.",
+        body: "Die Asset-Erstellung folgt demselben disziplinierten Ablauf wie unsere Kunden-Produktionen: Wir isolieren Variablen, optimieren Kontraste für verschiedene Displays und halten uns strikt an vordefinierte Raster und Schutzzonen. Unsere Marke kommuniziert durch ein konsistentes visuelles System — von der favicon-Skalierung bis zum Open-Graph-Banner.",
+        reference: "Referenz: Jedes Vektor-Asset ist im Originalcode implementiert und kann direkt über den Client extrahiert werden. Für den korrekten Ablauf der Content-Pipeline siehe unseren Prozess-Leitfaden (Audit → Brief → Execution → Loop).",
+      },
+    },
+
+    // ─── CTA Footer ───────────────────────────────────────────────
+    cta: {
+      eyebrow: "Brand Book · Ende",
+      headline: "Das Betriebssystem ist dokumentiert.",
+      headlineAccent: "Jetzt wird gebaut.",
+      body: "Fragen zum Brand Book, Ausnahmen oder Erweiterungen: direkt mit dem Team klären — nicht eigenständig vom Standard abweichen. Markenintegrität ist Präzisionsarbeit.",
+      primaryCta: "Strategiegespräch buchen",
+      secondaryCta: "Team kontaktieren",
+      copyright: "© 2026 Mirrou Creative Studio · Algorithm of Soul · Intern · Vertraulich",
+    },
+  },
+
   seo: {
     home: {
       title: "Mirrou Creative Studio",

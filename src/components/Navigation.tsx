@@ -75,11 +75,8 @@ export default function Navigation() {
           ))}
         </div>
 
-        <div className="hidden md:flex items-center gap-4">
+        <div className="hidden md:flex items-center">
           <LanguageSwitcher />
-          <Link to="/kontakt" className="btn-primary text-[11px]" data-magnetic>
-            {t("cta")}
-          </Link>
         </div>
 
         <button
@@ -114,14 +111,7 @@ export default function Navigation() {
                 {t(item.nameKey)}
               </NavLink>
             ))}
-            <Link
-              to="/kontakt"
-              className="btn-primary mt-8 self-start"
-              onClick={() => setIsOpen(false)}
-            >
-              {t("ctaFull")}
-            </Link>
-            <LanguageSwitcher className="mt-6" inline />
+            <LanguageSwitcher className="mt-8" inline />
           </motion.div>
         )}
       </AnimatePresence>

@@ -1249,6 +1249,10 @@ const ru = {
       },
     },
   },
+
+  brandBook: {
+    ...en.brandBook,
+  },
 } as const;
 
 export default ru;

@@ -16,14 +16,8 @@ const reveal = (delay: number) => ({
 });
 
 export default function Hero({ onExplore }: { onExplore: () => void }) {
-  const [clipped, setClipped] = useState(false);
   const [sequenceMounted, setSequenceMounted] = useState(false);
   const { t } = useTranslation("home");
-
-  useEffect(() => {
-    const timer = setTimeout(() => setClipped(true), 180);
-    return () => clearTimeout(timer);
-  }, []);
 
   useEffect(() => { setSequenceMounted(true); }, []);
 
@@ -76,26 +70,6 @@ export default function Hero({ onExplore }: { onExplore: () => void }) {
             className="text-[10px] md:text-[12px] uppercase tracking-[0.55em] text-accent/80 block font-semibold"
           />
         </motion.div>
-
-        <div className={`clip-reveal mb-8 md:mb-10${clipped ? " in-view" : ""}`}>
-          <h1 className="display-hero font-serif italic leading-[0.85] tracking-[-0.03em] text-ink drop-shadow-2xl">
-            {t("hero.h1line1")}&nbsp;
-            <br className="md:hidden" />
-            <span
-              className="text-accent relative inline-block z-10"
-              style={{ textShadow: "0 0 70px rgba(200,162,90,0.5)" }}
-            >
-              {t("hero.h1accent")}
-            </span>
-            {t("hero.h1line3") && (
-              <>
-                <span className="hidden md:inline">&nbsp;</span>
-                <br className="md:hidden" />
-                {t("hero.h1line3")}
-              </>
-            )}
-          </h1>
-        </div>
 
         <motion.p
           {...reveal(0.52)}

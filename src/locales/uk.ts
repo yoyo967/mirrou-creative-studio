@@ -1239,6 +1239,10 @@ const uk = {
       },
     },
   },
+
+  brandBook: {
+    ...en.brandBook,
+  },
 } as const;
 
 export default uk;

@@ -1247,6 +1247,10 @@ const es = {
       },
     },
   },
+
+  brandBook: {
+    ...en.brandBook,
+  },
 } as const;
 
 export default es;

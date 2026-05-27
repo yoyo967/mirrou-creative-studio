@@ -1248,6 +1248,10 @@ const tr = {
       },
     },
   },
+
+  brandBook: {
+    ...en.brandBook,
+  },
 } as const;
 
 export default tr;
