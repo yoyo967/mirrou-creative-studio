@@ -16,11 +16,11 @@ export default defineConfig(({mode}) => {
       },
     },
     build: {
+      target: 'es2022',
       rollupOptions: {
         output: {
           manualChunks(id) {
-            // Separate locale data into its own chunk (loaded in parallel)
-            if (id.includes('/locales/')) return 'locales';
+            // Locales are dynamically imported in i18n.ts — Vite auto-splits them
             // Separate motion library into its own chunk
             if (id.includes('node_modules/motion') || id.includes('node_modules/framer-motion')) return 'motion';
             // Separate react-router into its own chunk

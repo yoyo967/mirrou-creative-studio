@@ -1,4 +1,4 @@
-import { useEffect, useState, lazy, Suspense } from "react";
+import { lazy, Suspense, useEffect, useState } from "react";
 import { motion } from "motion/react";
 import { ArrowRight, ArrowDown } from "lucide-react";
 import { Link } from "@/src/components/LocalizedLink";
@@ -7,6 +7,7 @@ import MarqueeStrip from "./MarqueeStrip";
 import ScrambleText from "./ScrambleText";
 import { SITE } from "../content/site-data";
 
+const HERO_FIRST_IMAGE = "/heroimages/228ba3d7-ccd6-4892-9673-232da4aeedc2.webp";
 const HeroImageSequence = lazy(() => import("./HeroImageSequence"));
 
 const reveal = (delay: number) => ({
@@ -16,10 +17,9 @@ const reveal = (delay: number) => ({
 });
 
 export default function Hero({ onExplore }: { onExplore: () => void }) {
-  const [sequenceMounted, setSequenceMounted] = useState(false);
   const { t } = useTranslation("home");
-
-  useEffect(() => { setSequenceMounted(true); }, []);
+  const [sequenceReady, setSequenceReady] = useState(false);
+  useEffect(() => { setSequenceReady(true); }, []);
 
   return (
     <section
@@ -33,8 +33,20 @@ export default function Hero({ onExplore }: { onExplore: () => void }) {
       {/* The Central Dynamic Canvas */}
       <div className="absolute inset-0 flex items-center justify-center p-4 md:p-8 lg:p-12 xl:p-16 opacity-40 lg:opacity-100">
         <div className="relative w-full h-full max-h-[85vh] max-w-[1400px] rounded-2xl md:rounded-3xl overflow-hidden shadow-2xl border border-white/5">
-          {sequenceMounted && (
-            <Suspense fallback={<div className="absolute inset-0 bg-surface/50" />}>
+          {/* Static LCP image — visible in SSG HTML, no JS needed */}
+          <img
+            src={HERO_FIRST_IMAGE}
+            alt=""
+            width={1200}
+            height={670}
+            // @ts-expect-error fetchPriority not yet in React types
+            fetchPriority="high"
+            decoding="async"
+            className="absolute inset-0 w-full h-full object-cover"
+          />
+          {/* Animated sequence replaces static image after hydration */}
+          {sequenceReady && (
+            <Suspense fallback={null}>
               <HeroImageSequence className="absolute inset-0 w-full h-full" />
             </Suspense>
           )}

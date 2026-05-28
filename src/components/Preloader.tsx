@@ -4,19 +4,18 @@ import { useTranslation } from "react-i18next";
 
 export default function Preloader() {
   const { t } = useTranslation("common");
-  const [show, setShow] = useState(() => {
-    if (typeof window === "undefined") return false;
-    return !sessionStorage.getItem("mirrou_visited");
-  });
+  const [show, setShow] = useState(false);
 
   useEffect(() => {
-    if (!show) return;
-    const timer = setTimeout(() => {
-      setShow(false);
-      sessionStorage.setItem("mirrou_visited", "1");
-    }, 2800);
-    return () => clearTimeout(timer);
-  }, [show]);
+    if (!sessionStorage.getItem("mirrou_visited")) {
+      setShow(true);
+      const timer = setTimeout(() => {
+        setShow(false);
+        sessionStorage.setItem("mirrou_visited", "1");
+      }, 2800);
+      return () => clearTimeout(timer);
+    }
+  }, []);
 
   return (
     <AnimatePresence>

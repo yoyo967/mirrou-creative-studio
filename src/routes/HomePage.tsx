@@ -136,10 +136,14 @@ export default function HomePage() {
       <StatsCounter />
 
       {/* ─── 04. PAIN ───────────────────────────────────────────── */}
-      <ProblemDiagnostic />
+      <div className="cv-auto">
+        <ProblemDiagnostic />
+      </div>
 
       {/* ─── 05. SOLUTION — Process ─────────────────────────────── */}
-      <HorizontalShowcase />
+      <div className="cv-auto">
+        <HorizontalShowcase />
+      </div>
 
       {/* ─── BREATHING ROOM ─────────────────────────────────────── */}
       <div className="mx-6 md:mx-12 lg:mx-16 xl:mx-20">
@@ -147,36 +151,52 @@ export default function HomePage() {
       </div>
 
       {/* ─── 06. METHOD — Deeper cut ────────────────────────────── */}
-      {/* VARIANT B HIDE: remove Frontier to collapse method into Showcase */}
-      <Frontier />
+      <div className="cv-auto">
+        <Frontier />
+      </div>
 
       {/* ─── 07. PORTFOLIO — Visual proof ───────────────────────── */}
-      <WorkGrid />
+      <div className="cv-auto">
+        <WorkGrid />
+      </div>
 
       {/* ─── 08. TEXTURE — Visual richness ──────────────────────── */}
-      <VisualGalleryStrip />
+      <div className="cv-auto">
+        <VisualGalleryStrip />
+      </div>
 
       {/* ─── 09. AUTHORITY ──────────────────────────────────────── */}
-      <PressQuoteStrip surface="home" />
+      <div className="cv-auto">
+        <PressQuoteStrip surface="home" />
+      </div>
 
       {/* ─── 10. METRICS — KPI proof (cream section) ────────────── */}
-      <CasesStrip />
+      <div className="cv-auto">
+        <CasesStrip />
+      </div>
 
       {/* ─── BREATHING ROOM ─────────────────────────────────────── */}
       <div className="py-6 md:py-10" aria-hidden />
 
       {/* ─── 11. THOUGHT LEADERSHIP ─────────────────────────────── */}
-      {/* VARIANT B HIDE: InsightsSection accessible via /blog nav */}
-      <InsightsSection />
+      <div className="cv-auto">
+        <InsightsSection />
+      </div>
 
       {/* ─── 12. SERVICES ───────────────────────────────────────── */}
-      <ServicesSection />
+      <div className="cv-auto">
+        <ServicesSection />
+      </div>
 
       {/* ─── 13. VALUES ─────────────────────────────────────────── */}
-      <ManifestoSection />
+      <div className="cv-auto">
+        <ManifestoSection />
+      </div>
 
       {/* ─── 14. PEOPLE ─────────────────────────────────────────── */}
-      <StudioContent />
+      <div className="cv-auto">
+        <StudioContent />
+      </div>
 
       {/* ─── BREATHING ROOM ─────────────────────────────────────── */}
       <div className="mx-6 md:mx-12 lg:mx-16 xl:mx-20">
@@ -184,7 +204,9 @@ export default function HomePage() {
       </div>
 
       {/* ─── 15. ACTION ─────────────────────────────────────────── */}
-      <ContactForm />
+      <div className="cv-auto">
+        <ContactForm />
+      </div>
     </>
   );
 }

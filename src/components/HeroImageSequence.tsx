@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { motion } from "motion/react";
+import { motion, AnimatePresence } from "motion/react";
 
 const IMAGES = [
   "/heroimages/228ba3d7-ccd6-4892-9673-232da4aeedc2.webp",
@@ -24,48 +24,36 @@ const IMAGES = [
   "/heroimages/fa1735ef-0952-4bdb-95d6-37a639e2f976.webp"
 ];
 
-const PRELOAD_COUNT = 3;
-
 export default function HeroImageSequence({ className = "" }: { className?: string }) {
   const [currentIndex, setCurrentIndex] = useState(0);
 
-  // Preload initial images
-  useEffect(() => {
-    IMAGES.slice(0, PRELOAD_COUNT).forEach((src) => {
-      const img = new Image();
-      img.src = src;
-    });
-  }, []);
-
-  // Preload the next image automatically
   useEffect(() => {
     const nextIndex = (currentIndex + 1) % IMAGES.length;
     const img = new Image();
     img.src = IMAGES[nextIndex];
   }, [currentIndex]);
 
-  // Handle the automatic slideshow cycle
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentIndex((prev) => (prev + 1) % IMAGES.length);
-    }, 3000); // 3 seconds per image
-
+    }, 3000);
     return () => clearInterval(interval);
   }, []);
 
   return (
     <div className={`relative overflow-hidden ${className}`}>
-      {IMAGES.map((src, idx) => (
+      <AnimatePresence mode="popLayout">
         <motion.img
-          key={src}
-          src={src}
-          alt={`Hero visual sequence ${idx + 1}`}
+          key={currentIndex}
+          src={IMAGES[currentIndex]}
+          alt=""
           className="absolute inset-0 w-full h-full object-cover"
           initial={{ opacity: 0 }}
-          animate={{ opacity: currentIndex === idx ? 1 : 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
           transition={{ duration: 1.5, ease: "easeInOut" }}
         />
-      ))}
+      </AnimatePresence>
     </div>
   );
 }

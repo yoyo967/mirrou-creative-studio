@@ -1,6 +1,8 @@
-import "./i18n"; // must be first — initialises i18next before any component renders
+import { i18nReady } from "./i18n";
 import { ViteReactSSG } from "vite-react-ssg";
 import { routes } from "./routes";
 import "./index.css";
+
+await i18nReady;
 
 export const createRoot = ViteReactSSG({ routes });

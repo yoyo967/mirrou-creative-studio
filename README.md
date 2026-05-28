@@ -81,6 +81,46 @@ All routes are statically pre-rendered for maximum SEO performance.
 
 ---
 
+## Lighthouse Audit (28.05.2026)
+
+Tested against deployed production URL on **Google Cloud Run** (europe-west3).  
+Lighthouse 13.3 — Simulated Slow 4G (150 ms RTT, 1.6 Mbps), 4× CPU throttle.
+
+| Category | Score |
+|----------|-------|
+| **Performance** | 76 |
+| **Accessibility** | 93 |
+| **Best Practices** | 96 |
+| **SEO** | 100 |
+
+<details>
+<summary>Core Web Vitals & Metrics</summary>
+
+| Metric | Value |
+|--------|-------|
+| First Contentful Paint (FCP) | 2.7 s |
+| Largest Contentful Paint (LCP) | 3.9 s |
+| Total Blocking Time (TBT) | 190 ms |
+| Cumulative Layout Shift (CLS) | 0 |
+| Speed Index (SI) | 5.7 s |
+
+</details>
+
+<details>
+<summary>Optimizations applied</summary>
+
+- **Self-hosted variable fonts** — Inter, Cormorant Garamond, JetBrains Mono (preload critical, defer decorative)
+- **Hero LCP image** — preloaded in `<head>` with `fetchpriority="high"`, compressed to 55 KB WebP
+- **SSG hydration** — static `<img>` rendered server-side for instant LCP, animated sequence lazy-loaded post-hydration
+- **Content-visibility: auto** — below-fold sections skip rendering until scrolled into view
+- **Code-splitting** — `motion`, `react-router`, `lucide-react` in separate chunks; HeroImageSequence lazy-loaded
+- **Dynamic i18n** — only the active locale bundle is loaded (not all 8)
+- **nginx gzip level 9** — maximum compression for HTML/CSS/JS/JSON
+
+</details>
+
+---
+
 ## Local Development
 
 ### Prerequisites
