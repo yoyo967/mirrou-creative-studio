@@ -182,7 +182,7 @@ Mirrou operates as a **Frontier Firm** — a new organizational model where AI i
 | Live Website (8 languages) | Done |
 | Abschlussbericht (~50 pages) | Done |
 | Brand Book & Design System | Done |
-| 4 Case Studies (visual) | In Progress |
+| 4 Case Studies (visual) | Done |
 | Frontier Firm Documentation | Done |
 | Compliance Architecture | Done |
 | SOPs & Templates (7 documents) | Done |
