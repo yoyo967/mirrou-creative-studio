@@ -498,7 +498,6 @@ export const SITE = {
       focusKey: "memberYahyaFocus",
       isFounder: false,
       linkedin: "https://www.linkedin.com/in/yahya-yildirim-417391310/",
-      externalPortfolio: "https://aistudio.google.com/apps/9e9bd6ff-2381-465e-9aa9-f9f7f07717f7?showPreview=true",
       expertise: ["AI Architecture", "Growth Marketing", "Inbound Marketing", "Project Lead", "B2B Outreach", "Digital Strategy"],
     },
   ] as const,
