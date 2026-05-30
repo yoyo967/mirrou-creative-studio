@@ -11,11 +11,13 @@
 ### Was ist Mirrou Creative Studio?
 Mirrou ist ein **AI-natives Kreativstudio** aus Berlin, das Marken, Gründer und Unternehmen dabei unterstützt, ihre visuelle Identität, Strategie und digitale Präsenz mit höchster Präzision aufzubauen. Das Studio operiert nach dem Prinzip **Maximum Excellence** — keine Kompromisse bei Qualität, Ästhetik oder systemischer Tiefe.
 
-### Tech-Stack (Stand Mai 2026)
-- **Frontend:** Vite + TypeScript + React
+### Tech-Stack (Stand 2026-05-30, verifiziert durch OPUS-PRIME-Audit)
+- **Frontend:** React 19 + Vite 6 + TypeScript 5.8 + Tailwind CSS v4 · Motion · Three.js/@react-three-fiber
+- **Rendering:** `vite-react-ssg` — statisches Pre-Rendering aller Routen (Apex/Pillar/Cluster-SEO-Modell)
 - **Hosting:** Google Cloud Run (`europe-west3`) — Container-basiert
-- **Build:** Docker (Multi-Stage)
-- **i18n:** Deutsch (`/de`) & Englisch (`/en`)
+- **Build:** Docker (Multi-Stage) → `nginx:alpine` (gzip-9, immutable Asset-Caching, Security-Header)
+- **i18n:** 8 Sprachen — DE/EN/ES/IT/FR/TR/RU/UK (`react-i18next`, dynamischer Locale-Import). **Tiefe:** DE & EN vollständig; ES/IT/FR/TR/RU/UK haben UI + SEO-Meta vollständig, aber gekürzte Long-Form-Cluster (`clusters`-Namespace ~−74 %).
+- **Analytics:** *aktuell keine* (kein GA4 im Code; Datenschutz: nur technisch notwendige Cookies zum Launch). README-Stack-Tabelle nennt GA4 — Inkonsistenz, siehe Audit-Log.
 - **CI/CD:** GCP Deploy via `deploy_gcp.ps1`
 - **Repo:** [github.com/yoyo967/mirrou-creative-studio](https://github.com/yoyo967/mirrou-creative-studio)
 - **Live-URL:** [mirrou-creative-studio-180023265254.europe-west3.run.app](https://mirrou-creative-studio-180023265254.europe-west3.run.app/de)
@@ -181,24 +183,30 @@ Nach jedem abgeschlossenen Audit oder Änderung:
 | Datum | Scope | Key Findings | Auditor |
 |-------|-------|--------------|---------|
 | 2026-05-30 | Initial Setup — memory.md erstellt | Keine memory.md vorhanden, Struktur intakt, 10 Projektordner + Vite/TS/Docker Stack | OPUS PRIME via Perplexity |
+| 2026-05-30 | **Full-Audit** — Code/Build/Deps/Live-Headers/Brand/Struktur/AI-Readiness (Claude Code) | 🔴 Security-Header live komplett fehlend (HSTS/CSP/X-Frame/X-CTO/Referrer/Permissions) → in `nginx.conf` ergänzt. 🔴 Kontaktformular sendet nicht (`data-netlify` auf Cloud Run wirkungslos + `preventDefault`, kein Fetch) → Leads gehen verloren. 🟡 i18n-Tiefe: `clusters` in 6 Sekundärsprachen ~−74 % vs DE/EN. 🟡 README nennt GA4 ohne Code/Consent. 🟡 Standort Berlin (memory.md) ↔ Hamburg (Site/Schema.org). 🟡 GEMINI_API_KEY/APP_URL = ungenutztes AI-Studio-Scaffolding. 🟡 tsconfig ohne `strict`, kein ESLint. 🟡 Perf 76 / LCP 3.9 s. 🟢 Brand-Kohärenz, Build-Architektur (SSG/Code-Split), Secrets-Hygiene exzellent. Aktion: Security-Header + Root-Duplikat-Cleanup durchgeführt; memory.md auf realen Stack aktualisiert. | OPUS PRIME (Claude Opus 4 · Claude Code) |
 
 ---
 
 ## 4. PROJEKTSTATUS
 
-### Aktueller Stand (2026-05-30)
-- ✅ Repository-Struktur vollständig und logisch organisiert
+### Aktueller Stand (2026-05-30, nach Full-Audit)
+- ✅ Repository-Struktur vollständig und logisch organisiert (00–10 + src/docs/public)
 - ✅ Docker + GCP Cloud Run Deploy konfiguriert
-- ✅ i18n (DE/EN) implementiert
-- ✅ Vite + TypeScript Build-System
-- 🟡 memory.md neu erstellt — erster vollständiger Audit durch Opus 4 steht aus
+- ✅ i18n implementiert — 8 Sprachen (DE/EN tiefen-vollständig; 6 weitere UI/SEO, Long-Form gekürzt)
+- ✅ React 19 + Vite 6 + Tailwind v4 + SSG Build-System
+- ✅ Erster vollständiger OPUS-PRIME-Audit durchgeführt (Claude Code)
+- ✅ Security-Header in `nginx.conf` ergänzt (Redeploy via `deploy_gcp.ps1` ausstehend)
+- 🔴 Kontaktformular nicht funktional auf Cloud Run (Netlify-Forms wirkungslos) — Fix offen
 - 🔵 AI-Agent-Integration (Opus Magnum Anbindung) — geplant
 
 ### Nächste geplante Meilensteine
-- [ ] Vollständiger technischer Audit durch Claude Opus 4 (Code + Live-Site)
-- [ ] Brand Consistency Audit (Website vs. 02_brand Dokumente)
-- [ ] EU Compliance Check (07_compliance aktualisieren)
-- [ ] Performance Audit (Core Web Vitals, Lighthouse)
+- [ ] **P0** Security-Header live verifizieren nach Redeploy
+- [ ] **P0** Kontaktformular auf echtes EU-konformes Backend umstellen (z. B. eigener API-Endpoint / EU-Form-Service)
+- [ ] **P1** README-GA4-Claim korrigieren oder GA4 mit Consent implementieren
+- [ ] **P1** Cluster-Long-Form ES/IT/FR/TR/RU/UK übersetzen oder Scope ehrlich kommunizieren
+- [ ] **P1** Standort Berlin/Hamburg vereinheitlichen
+- [ ] **P2** tsconfig `strict` + ESLint; LCP-Optimierung (Perf ≥ 90); AI-Studio-Scaffolding entfernen
+- [ ] **P3** `CLAUDE.md` anlegen (OPUS-PRIME-Masterprompt versioniert ins Repo)
 
 ---
 
