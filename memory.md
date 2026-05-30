@@ -4,6 +4,8 @@
 **Maintainer:** Systems Architect / AI-driven SaaS Builder · Berlin, EU  
 **Modell:** Claude Opus 4 (claude-opus-4) via Claude Code  
 
+> **Schwesterdokument:** [`AUDIT.md`](AUDIT.md) — lebendes Qualitäts-, Performance- & Compliance-Dossier (Lighthouse, Core Web Vitals, Security, Aktionsplan). **Immer zusammen mit dieser `memory.md` lesen und nach jedem Audit/Deploy aktualisieren.** `memory.md` = Strategie/Masterprompt; `AUDIT.md` = aktueller Gesundheitszustand mit echten Messwerten.
+
 ---
 
 ## 1. PROJEKT-KONTEXT
@@ -12,7 +14,7 @@
 Mirrou ist ein **AI-natives Kreativstudio** aus Berlin, das Marken, Gründer und Unternehmen dabei unterstützt, ihre visuelle Identität, Strategie und digitale Präsenz mit höchster Präzision aufzubauen. Das Studio operiert nach dem Prinzip **Maximum Excellence** — keine Kompromisse bei Qualität, Ästhetik oder systemischer Tiefe.
 
 ### Tech-Stack (Stand 2026-05-30, verifiziert durch OPUS-PRIME-Audit)
-- **Frontend:** React 19 + Vite 6 + TypeScript 5.8 + Tailwind CSS v4 · Motion · Three.js/@react-three-fiber
+- **Frontend:** React 19 + Vite 6 + TypeScript 5.8 + Tailwind CSS v4 · Motion *(kein Three.js/@react-three — per `package.json` verifiziert, frühere 3D-Angabe war falsch)*
 - **Rendering:** `vite-react-ssg` — statisches Pre-Rendering aller Routen (Apex/Pillar/Cluster-SEO-Modell)
 - **Hosting:** Google Cloud Run (`europe-west3`) — Container-basiert
 - **Build:** Docker (Multi-Stage) → `nginx:alpine` (gzip-9, immutable Asset-Caching, Security-Header)
@@ -71,7 +73,7 @@ Du bist KEIN generischer Assistent. Du bist:
 ## DEIN ARBEITSRAHMEN
 
 ### Phase 1: Kontext-Aufnahme (immer zuerst)
-1. Lies `memory.md` vollständig
+1. Lies `memory.md` vollständig — **danach `AUDIT.md`** (lebendes Mess-/Findings-Dossier)
 2. Lies `README.md` und `PROJEKTSTRUKTUR.md`
 3. Scanne alle 10 Projektordner auf ihren aktuellen Zustand
 4. Crawle die Live-Website: https://mirrou-creative-studio-180023265254.europe-west3.run.app/de
@@ -164,7 +166,7 @@ Strukturiere jeden Audit-Output so:
 2. **EU-Sovereignty:** Keine Empfehlung für US-only Tools ohne EU-Alternative anzubieten
 3. **Keine Halbheiten:** Entweder vollständige, implementierbare Lösung oder explizit "benötige mehr Kontext zu X"
 4. **Transparenz über Unsicherheit:** Wenn etwas unklar ist → explizit flaggen, nicht raten
-5. **memory.md aktuell halten:** Nach jedem Audit oder relevanter Änderung → `memory.md` aktualisieren mit Datum und Summary
+5. **memory.md + AUDIT.md aktuell halten:** Nach jedem Audit oder relevanter Änderung → `memory.md` (Datum + Summary) **und** `AUDIT.md` (Scorecard, Lighthouse, Aktionsplan, Audit-Log) aktualisieren. `AUDIT.md` ist verbindliches Schwesterdokument, das wie diese Datei stets mitgelesen wird.
 6. **Brand Protection:** Mirrou ist Premium-Positioning. Niemals billige/generische Alternativen ohne Begründung vorschlagen
 7. **Perfect Twin Principle:** Jede Empfehlung muss in das größere Ökosystem (Opus Magnum, LYGOX, Columna) passen
 
@@ -173,7 +175,8 @@ Strukturiere jeden Audit-Output so:
 Nach jedem abgeschlossenen Audit oder Änderung:
 1. Trage unter Abschnitt 3 (AUDIT-LOG) das Datum, den Scope und Key Findings ein
 2. Aktualisiere Abschnitt 4 (PROJEKTSTATUS) mit dem aktuellen Stand
-3. Committe `memory.md` mit Message: `chore(memory): update audit log [DATUM]`
+3. Aktualisiere `AUDIT.md` (Scorecard §1, Lighthouse §2, Aktionsplan §5, Audit-Log §7) — bei Perf-/A11y-/SEO-Änderungen Lighthouse neu messen (siehe `AUDIT.md` §8)
+4. Committe mit Message: `chore(memory): update audit log [DATUM]` bzw. `chore(audit): update [DATUM]`
 ```
 
 ---
@@ -184,6 +187,8 @@ Nach jedem abgeschlossenen Audit oder Änderung:
 |-------|-------|--------------|---------|
 | 2026-05-30 | Initial Setup — memory.md erstellt | Keine memory.md vorhanden, Struktur intakt, 10 Projektordner + Vite/TS/Docker Stack | OPUS PRIME via Perplexity |
 | 2026-05-30 | **Full-Audit** — Code/Build/Deps/Live-Headers/Brand/Struktur/AI-Readiness (Claude Code) | 🔴 Security-Header live komplett fehlend (HSTS/CSP/X-Frame/X-CTO/Referrer/Permissions) → in `nginx.conf` ergänzt. 🔴 Kontaktformular sendet nicht (`data-netlify` auf Cloud Run wirkungslos + `preventDefault`, kein Fetch) → Leads gehen verloren. 🟡 i18n-Tiefe: `clusters` in 6 Sekundärsprachen ~−74 % vs DE/EN. 🟡 README nennt GA4 ohne Code/Consent. 🟡 Standort Berlin (memory.md) ↔ Hamburg (Site/Schema.org). 🟡 GEMINI_API_KEY/APP_URL = ungenutztes AI-Studio-Scaffolding. 🟡 tsconfig ohne `strict`, kein ESLint. 🟡 Perf 76 / LCP 3.9 s. 🟢 Brand-Kohärenz, Build-Architektur (SSG/Code-Split), Secrets-Hygiene exzellent. Aktion: Security-Header + Root-Duplikat-Cleanup durchgeführt; memory.md auf realen Stack aktualisiert. | OPUS PRIME (Claude Opus 4 · Claude Code) |
+| 2026-05-30 | Deploy + Live-Verifikation + Leftover-Cleanup | Security-Header **live bestätigt** (6/6, CSP auf Dokument+Asset, Status 200) Rev. `00038-zk4`; Google-AI-Studio-Leftover-Link aus Team-Daten entfernt Rev. `00039-dqf`. | OPUS PRIME |
+| 2026-05-30 | **Lighthouse-Baseline + `AUDIT.md` etabliert** | Echte Lab-Werte: Mobile 77/93/96/100 · Desktop 100/97/100/100. Mobile-LCP 3.9 s / FCP 2.7 s = einzige CWV-Schwellen-Misses (CLS/TBT grün). A11y-Blocker `color-contrast`; Perf-Hebel 68 KiB unused JS. **kein Three.js** (package.json verifiziert). `AUDIT.md` als lebendes Schwesterdokument angelegt. | OPUS PRIME |
 
 ---
 
@@ -195,18 +200,24 @@ Nach jedem abgeschlossenen Audit oder Änderung:
 - ✅ i18n implementiert — 8 Sprachen (DE/EN tiefen-vollständig; 6 weitere UI/SEO, Long-Form gekürzt)
 - ✅ React 19 + Vite 6 + Tailwind v4 + SSG Build-System
 - ✅ Erster vollständiger OPUS-PRIME-Audit durchgeführt (Claude Code)
-- ✅ Security-Header in `nginx.conf` ergänzt (Redeploy via `deploy_gcp.ps1` ausstehend)
-- 🔴 Kontaktformular nicht funktional auf Cloud Run (Netlify-Forms wirkungslos) — Fix offen
+- ✅ Security-Header **live aktiv** (6/6, Rev. `00039-dqf`) — verifiziert
+- ✅ Lighthouse-Baseline gemessen + `AUDIT.md` (lebendes Dossier) etabliert
+- 🟡 Mobile-Performance 77 (Desktop 100) — LCP/FCP-Optimierung offen
+- 🔴 Kontaktformular nicht funktional auf Cloud Run — Fix über **HubSpot** geplant (~2026-06-06)
 - 🔵 AI-Agent-Integration (Opus Magnum Anbindung) — geplant
 
 ### Nächste geplante Meilensteine
-- [ ] **P0** Security-Header live verifizieren nach Redeploy
-- [ ] **P0** Kontaktformular auf echtes EU-konformes Backend umstellen (z. B. eigener API-Endpoint / EU-Form-Service)
+- [x] **P0** Security-Header live verifizieren nach Redeploy — ✅ erledigt
+- [ ] **P0** Kontaktformular auf HubSpot-Backend umstellen (DSGVO-Consent) — ETA ~2026-06-06
+- [ ] **P1** Mobile-Performance ≥ 90 (68 KiB unused JS, LCP/FCP)
+- [ ] **P1** `color-contrast` (WCAG AA) beheben → A11y 100
 - [ ] **P1** README-GA4-Claim korrigieren oder GA4 mit Consent implementieren
 - [ ] **P1** Cluster-Long-Form ES/IT/FR/TR/RU/UK übersetzen oder Scope ehrlich kommunizieren
 - [ ] **P1** Standort Berlin/Hamburg vereinheitlichen
-- [ ] **P2** tsconfig `strict` + ESLint; LCP-Optimierung (Perf ≥ 90); AI-Studio-Scaffolding entfernen
+- [ ] **P2** tsconfig `strict` + ESLint (7 `key`-Prop-Fehler); AI-Studio-Scaffolding entfernen
 - [ ] **P3** `CLAUDE.md` anlegen (OPUS-PRIME-Masterprompt versioniert ins Repo)
+
+> **Detaillierter, messdatenbasierter Stand:** siehe [`AUDIT.md`](AUDIT.md).
 
 ---
 
@@ -214,6 +225,7 @@ Nach jedem abgeschlossenen Audit oder Änderung:
 
 | Ressource | URL |
 |-----------|-----|
+| **AUDIT.md** (lebendes Qualitäts-Dossier) | [`./AUDIT.md`](AUDIT.md) |
 | Live-Website (DE) | https://mirrou-creative-studio-180023265254.europe-west3.run.app/de |
 | Live-Website (EN) | https://mirrou-creative-studio-180023265254.europe-west3.run.app/en |
 | GitHub Repo | https://github.com/yoyo967/mirrou-creative-studio |
