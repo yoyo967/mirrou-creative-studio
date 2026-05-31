@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8" />
+<title>Mirrou · Presenter-Handouts · DCI 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<style>
+:root{
+  --ink:#0D0D0F; --body:#3a3833; --muted:#6b675f; --cream:#F4F1EA; --card:#FBFAF6;
+  --gold:#9c7b32; --gold-soft:#f0e7d2; --line:#e2ddd0;
+  --serif:"Cormorant Garamond",Georgia,serif; --sans:"Inter",system-ui,sans-serif; --mono:"JetBrains Mono",monospace;
+  --r-yahya:#9c7b32; --r-olha:#b08d3e; --r-denys:#3f7d74; --r-ralph:#6f5a92;
+}
+*{box-sizing:border-box; margin:0; padding:0}
+body{background:#cfc9bc; color:var(--ink); font-family:var(--sans); font-weight:300; line-height:1.5; padding:24px;
+  -webkit-font-smoothing:antialiased}
+.sheet{width:210mm; min-height:297mm; margin:0 auto 22px; background:var(--cream); padding:18mm 18mm 14mm;
+  box-shadow:0 10px 40px rgba(0,0,0,.25); position:relative; page-break-after:always; overflow:hidden}
+.sheet:last-child{page-break-after:auto}
+
+/* header */
+.hd{display:flex; justify-content:space-between; align-items:flex-start; border-bottom:1px solid var(--line); padding-bottom:14px}
+.hd .who{display:flex; align-items:baseline; gap:14px}
+.hd .dot{width:10px; height:10px; border-radius:50%; background:var(--spk); transform:translateY(-2px)}
+.hd h1{font-family:var(--serif); font-weight:500; font-size:34px; line-height:1}
+.hd .role{font-family:var(--mono); font-size:10px; letter-spacing:.18em; text-transform:uppercase; color:var(--gold); margin-top:6px}
+.hd .meta{text-align:right; font-family:var(--mono); font-size:10px; letter-spacing:.12em; text-transform:uppercase; color:var(--muted); line-height:1.7}
+.brand{position:absolute; bottom:9mm; right:18mm; font-family:var(--mono); font-size:9px; letter-spacing:.3em; color:#a8a293}
+
+.intro{font-family:var(--serif); font-style:italic; font-size:18px; color:var(--body); margin:16px 0 4px; max-width:60ch}
+
+/* slide blocks */
+.slideblk{border:1px solid var(--line); border-left:3px solid var(--spk); border-radius:3px; background:var(--card);
+  padding:14px 16px; margin-top:12px; break-inside:avoid}
+.slideblk .top{display:flex; align-items:baseline; gap:12px; margin-bottom:7px}
+.slideblk .sn{font-family:var(--mono); font-size:11px; color:var(--gold); font-weight:500}
+.slideblk .sh{font-family:var(--serif); font-size:21px; font-weight:500; line-height:1.05}
+.slideblk .script{font-size:12.5px; color:var(--body); line-height:1.55}
+.slideblk .script b{color:var(--ink); font-weight:600}
+.slideblk .data{margin-top:8px; display:flex; flex-wrap:wrap; gap:6px}
+.chip{font-family:var(--mono); font-size:9.5px; letter-spacing:.06em; color:var(--gold); background:var(--gold-soft);
+  border:1px solid #e6d9b8; padding:3px 8px; border-radius:999px}
+
+/* footer / qa */
+.foot{margin-top:14px; border-top:1px solid var(--line); padding-top:10px; display:grid; grid-template-columns:1fr 1fr; gap:16px}
+.foot h4{font-family:var(--mono); font-size:9px; letter-spacing:.2em; text-transform:uppercase; color:var(--muted); margin-bottom:6px}
+.foot li{font-size:11.5px; color:var(--body); list-style:none; padding:3px 0}
+.foot li b{color:var(--ink)}
+.tline{font-family:var(--mono); font-size:10px; color:var(--muted); letter-spacing:.1em}
+
+.cover{background:#0D0D0F; color:var(--cream)}
+.cover h1{font-family:var(--serif); font-weight:400; font-size:64px; line-height:.9; color:var(--cream)}
+.cover .gold{color:#C8A25A}
+.cover .lead{font-size:14px; color:#cfcabf; max-width:62ch; margin-top:18px; line-height:1.6}
+.cover table{width:100%; border-collapse:collapse; margin-top:28px}
+.cover td{border-bottom:1px solid rgba(255,255,255,.12); padding:11px 4px; font-size:13px; color:#e8e4da}
+.cover td:first-child{font-family:var(--serif); font-size:20px; width:34%}
+.cover td .r{font-family:var(--mono); font-size:9px; letter-spacing:.14em; text-transform:uppercase; color:#C8A25A; display:block; margin-top:3px}
+.cover .eyebrow{font-family:var(--mono); font-size:10px; letter-spacing:.32em; text-transform:uppercase; color:#C8A25A}
+
+@media print{
+  body{background:#fff; padding:0}
+  .sheet{box-shadow:none; margin:0; width:auto; min-height:auto}
+  @page{size:A4; margin:14mm}
+}
+</style>
+</head>
+<body>
+
+<!-- COVER -->
+<section class="sheet cover">
+  <p class="eyebrow">DCI · D03 2026 · Presenter-Handouts</p>
+  <h1 style="margin-top:14px">Mirrou<br><span class="gold" style="font-style:italic; font-size:40px">Algorithm of Soul</span></h1>
+  <p class="lead">Regiebuch für die Abschlusspräsentation. 16 Folien · ~15 Minuten · vier gleichberechtigte Sprechanteile. Dramaturgie Why → How → What. Jede Person präsentiert gemäß Rolle; Übergaben sind im Skript markiert. Reihenfolge der Folien siehe Deck (`mirrou_abschlusspraesentation_2026.html`).</p>
+  <table>
+    <tr><td>Yahya Yildirim<span class="r">Growth · Inbound · Project Lead · Berlin</span></td><td>Folien 1, 3, 4, 5, 15 · Lead Folie 16 — Problem, Positionierung, Architektur, Tech & Compliance</td></tr>
+    <tr><td>Olha Yevtushenko<span class="r">Creative Director · Hamburg</span></td><td>Folien 6, 7, 8 — Branding, Visual-Systeme, Hybrid Production</td></tr>
+    <tr><td>Denys Demyanyshyn<span class="r">Performance & Analytics · Berlin</span></td><td>Folien 9, 10, 11 — Kanal/KPIs, Daten-Loop, 25-Tage-Testplan</td></tr>
+    <tr><td>Ralph Kindermann<span class="r">CRM · Client Success · Berlin</span></td><td>Folien 2, 12, 13, 14 — Betriebssystem, Journeys, Pipeline, SOPs</td></tr>
+  </table>
+  <p class="tline" style="margin-top:30px; color:#8a857a">Ton: direkt, ruhig, datenunterstützt — kein Agentur-Pitch-Sprech. Live-Demo via QR (Cloud Run). Navigation: ← → · S = Sprecher-Notizen · F = Vollbild.</p>
+</section>
+
+<!-- YAHYA -->
+<section class="sheet" style="--spk:var(--r-yahya)">
+  <div class="brand">MIRROU · AOS</div>
+  <div class="hd"><div class="who"><span class="dot"></span><div><h1>Yahya Yildirim</h1><div class="role">Growth · Inbound · Project Lead — Berlin</div></div></div>
+    <div class="meta">Folien 1 · 3 · 4 · 5 · 15<br>Lead Folie 16<br>~6–7 Min</div></div>
+  <p class="intro">Architekt des Systems — von der Positionierung bis zur KI-Infrastruktur. Eröffnet, rahmt das Problem, schließt mit dem Live-Beweis.</p>
+
+  <div class="slideblk"><div class="top"><span class="sn">01</span><span class="sh">Titel & Begrüßung</span></div>
+    <p class="script">Willkommen zur Abschlusspräsentation von Mirrou. Vorstellung des Teams (Olha, Denys, Ralph). Eine KI-integrierte Performance Creative Agency: Frontier-Firm-Architektur, hybrider Workflow, proaktive EU-AI-Act-Compliance. Produktion & Creative Direction in <b>Hamburg</b>, Performance/CRM/Inbound-Tech in <b>Berlin</b>. Übergabe → Ralph (Betriebssystem).</p>
+    <div class="data"><span class="chip">Algorithm of Soul</span><span class="chip">Hamburg · Berlin</span></div></div>
+
+  <div class="slideblk"><div class="top"><span class="sn">03</span><span class="sh">WHY — Creative Fatigue</span></div>
+    <p class="script">Lautloser Killer im Paid Social. Ab 20 k€ Monats-Spend brennen Creatives nach 14–28 Tagen aus: <b>CTR −35 bis −55 %</b>, <b>CPC +45 bis +70 %</b>. Klassische Kreativagenturen zu langsam, reine Performance-Agenturen seelenlos. Mirrou löst das mit einer kontinuierlichen Creative-Engine.</p>
+    <div class="data"><span class="chip">70 % am Creative</span><span class="chip">Fatigue 2–4 Wochen</span></div></div>
+
+  <div class="slideblk"><div class="top"><span class="sn">04</span><span class="sh">Positionierung & Claim</span></div>
+    <p class="script">„Algorithm of Soul" — wo Ästhetik Algorithmus wird. Künstlerische Markenseele + Datenlogik. Zielgruppe D2C mit <b>10–150 k€</b> Ad-Spend. Drei Modelle: E-Commerce & Catalog (1,5–3 k€/Shoot), Social Media & Advertising (2–5 k€/Set), Creative Retainer S/M/L (2–15 k€/Monat).</p>
+    <div class="data"><span class="chip">Nische: Beauty · Health · Lifestyle</span><span class="chip">Transparente Preise</span></div></div>
+
+  <div class="slideblk"><div class="top"><span class="sn">05</span><span class="sh">Frontier Firm Architektur</span></div>
+    <p class="script">Vier Schichten: Intelligence (Perplexity Spaces), Production (Adobe/Midjourney/Claude Code), Infrastructure (GCP/MCP), Performance (Meta/TikTok). <b>Perfect Twin</b>: jeder Spezialist + KI-Pendant = Verdopplung ohne Headcount. Übergabe → Olha (Ästhetik).</p>
+    <div class="data"><span class="chip">5 Perplexity Spaces</span><span class="chip">39 Wissensdokumente</span></div></div>
+
+  <div class="slideblk"><div class="top"><span class="sn">15</span><span class="sh">Tech · Live · Compliance</span></div>
+    <p class="script">Voll einsatzbereit: React 19 · Vite 6 · TypeScript · Tailwind v4 · vite-react-ssg, Docker → GCP Cloud Run (Frankfurt). Live gemessen: <b>Lighthouse Desktop 100/100/100/100</b>, 6/6 Security-Header (A-Grade), 0 Vulns. EU AI Act Art. 50, C2PA — bereits heute compliant. QR zur Live-Demo. „Vielen Dank — wir eröffnen die Fragerunde."</p>
+    <div class="data"><span class="chip">Desktop 100/100/100/100</span><span class="chip">Unused-JS 59→20 KiB</span><span class="chip">Chrome DevTools MCP</span></div></div>
+
+  <div class="foot">
+    <div><h4>Antizipierte Fragen</h4><ul>
+      <li><b>Echte Kunden?</b> „Noch nicht — aber das System ist bereit."</li>
+      <li><b>Warum GCP statt Webflow?</b> Volle Kontrolle, EU-Hosting, Skalierung, Decision-Log.</li>
+      <li><b>Kosten?</b> Transparent auf der Website (3 Pakete).</li></ul></div>
+    <div><h4>Merker</h4><ul>
+      <li><b>mirrou.studio-Domain</b> ist noch nicht live — Demo läuft über die Cloud-Run-URL/QR.</li>
+      <li>Ruhig, datenbasiert. Kein „innovativ/ganzheitlich/Full-Service".</li></ul></div></div>
+</section>
+
+<!-- OLHA -->
+<section class="sheet" style="--spk:var(--r-olha)">
+  <div class="brand">MIRROU · AOS</div>
+  <div class="hd"><div class="who"><span class="dot"></span><div><h1>Olha Yevtushenko</h1><div class="role">Creative Director — Hamburg</div></div></div>
+    <div class="meta">Folien 6 · 7 · 8<br>~3–4 Min</div></div>
+  <p class="intro">Die kreative Seele. Übersetzt die Architektur in Ästhetik — und beweist visuelle Bandbreite plus rechtssicheren Produktions-Workflow.</p>
+
+  <div class="slideblk"><div class="top"><span class="sn">06</span><span class="sh">Branding — Dark Luxury</span></div>
+    <p class="script">Restriktiver Design-Code als Gegenposition zum hellen DACH-Beauty-Markt. <b>Deep Onyx #080808</b> für visuelle Ruhe, <b>Muted Gold #C8A25A</b> filigran als Akzent, <b>Ivory #F2EFE9</b> für Lesbarkeit. Typografie: Cormorant Garamond (Display), Inter (Body), JetBrains Mono (Daten). Regel: cinematic Low-Key, Produkt im Mittelpunkt, Text minimal.</p>
+    <div class="data"><span class="chip">12 Logo-Varianten</span><span class="chip">Brandbook · 8 Sprachen</span></div></div>
+
+  <div class="slideblk"><div class="top"><span class="sn">07</span><span class="sh">Vier Visual-Systeme</span></div>
+    <p class="script"><b>Luminous Aura</b> — Premium-Serum, Marmor, Goldstaub (Conversions). <b>Vitality Pulse</b> — Energie, Wasserspritzer, harte Schatten (TikTok, erste 3 Sek.). <b>Essence Drift</b> — Nebel & Spiegelungen (Fragrance-Storytelling). <b>Neural Glow</b> — vollständig KI-generiert (Biotech-Skincare, fotorealistisch & rechtskonform).</p>
+    <div class="data"><span class="chip">3 Hybrid + 1 Pure-AI</span></div></div>
+
+  <div class="slideblk"><div class="top"><span class="sn">08</span><span class="sh">Hybrid Production Workflow</span></div>
+    <p class="script">Produkt — Textur, Flakon, Label — wird <b>real in Hamburg fotografiert</b> (garantiert Echtheit). Hintergründe/Licht per Midjourney/Firefly gerendert. Produktion schrumpft von <b>6 Tagen Set-Bau auf 4 Stunden</b> Composing. Alle hybriden Assets mit C2PA-Metadaten — Transparenz & Rechtssicherheit nach EU AI Act. Übergabe → Denys (Erfolg messen).</p>
+    <div class="data"><span class="chip">C2PA-Provenance</span><span class="chip">6 Tage → 4 h</span></div></div>
+
+  <div class="foot">
+    <div><h4>Antizipierte Fragen</h4><ul>
+      <li><b>Wird das Produkt KI-generiert?</b> Nein — nie. Nur Umgebung/Licht.</li>
+      <li><b>Wie sichert ihr Markenkonsistenz?</b> Brandbook + Visual-Brief-Prozess.</li></ul></div>
+    <div><h4>Tools</h4><ul><li>Photoshop · Lightroom · Illustrator · Premiere · Midjourney · Firefly · Figma</li></ul></div></div>
+</section>
+
+<!-- DENYS -->
+<section class="sheet" style="--spk:var(--r-denys)">
+  <div class="brand">MIRROU · AOS</div>
+  <div class="hd"><div class="who"><span class="dot"></span><div><h1>Denys Demyanyshyn</h1><div class="role">Performance &amp; Analytics — Berlin</div></div></div>
+    <div class="meta">Folien 9 · 10 · 11<br>~3–4 Min</div></div>
+  <p class="intro">Übersetzt Kreation in messbare KPIs — und macht aus einzelnen Creatives ein lernendes System.</p>
+
+  <div class="slideblk"><div class="top"><span class="sn">09</span><span class="sh">Kanalgewichtung & KPIs</span></div>
+    <p class="script">Mediabudget über 5 Kanäle: <b>40 % Meta</b> (Awareness, Leitmetrik CTR), <b>25 % TikTok</b> (Hook-Tests, Thumb-stop &gt; 35 %), <b>20 % Google</b> (Conversion bei Kaufabsicht), <b>10 % E-Mail</b> (Reaktivierung), <b>5 % LinkedIn</b> (B2B-Trust). Jede Achse mit eigener Leitmetrik, kein Streuverlust.</p>
+    <div class="data"><span class="chip">40/25/20/10/5</span></div></div>
+
+  <div class="slideblk"><div class="top"><span class="sn">10</span><span class="sh">Der Daten-Loop</span></div>
+    <p class="script">5-Schritt-Algorithmus: Creative Audit → 3 Hypothesen → Hybrid-Umsetzung → isolierter Test (5 Tage, minimaler Split) → erst nach Signifikanz skalieren. <b>Creative Learning Log</b> archiviert jedes Ergebnis. Testing-Matrix isoliert Craft-, Data-, Luxury-, Results-Winkel.</p>
+    <div class="data"><span class="chip">Learning Log</span><span class="chip">Craft/Data/Luxury/Results</span></div></div>
+
+  <div class="slideblk"><div class="top"><span class="sn">11</span><span class="sh">Der 25-Tage-Testplan</span></div>
+    <p class="script">Sprint 1 (Tag 1–8): Pixel, Audiences, Baseline. Sprint 2 (Tag 9–16): A/B-Tests Hooks & Landingpages. Sprint 3 (Tag 17–25): Gewinner skalieren. Rules-Engine schließt Emotion aus: <b>CTR &lt; 1,5 % nach 3 Tagen → Stop & Hook-Tausch</b>; <b>CPL &lt; 12 € → Budget +25 %/Tag</b>. Übergabe → Ralph (CRM fängt Leads ab).</p>
+    <div class="data"><span class="chip">3 Sprints · 25 Tage</span><span class="chip">If-This-Then-That</span></div></div>
+
+  <div class="foot">
+    <div><h4>Antizipierte Fragen</h4><ul>
+      <li><b>Woher die Benchmarks?</b> Benchmark Library (CTR/CPC/ROAS je Kanal & Branche).</li>
+      <li><b>Wie viel Budget zum Testen?</b> Minimaler Split, 5-Tage-Fenster, erst dann skalieren.</li></ul></div>
+    <div><h4>Tools</h4><ul><li>Meta Ads · TikTok Ads · Google Analytics 4 · Looker Studio · Sheets</li></ul></div></div>
+</section>
+
+<!-- RALPH -->
+<section class="sheet" style="--spk:var(--r-ralph)">
+  <div class="brand">MIRROU · AOS</div>
+  <div class="hd"><div class="who"><span class="dot"></span><div><h1>Ralph Kindermann</h1><div class="role">CRM · Client Success — Berlin</div></div></div>
+    <div class="meta">Folien 2 · 12 · 13 · 14<br>~4 Min</div></div>
+  <p class="intro">Das operative Rückgrat — stille Qualität, die alles zusammenhält. Orchestriert das verteilte Team und die Kundenkonvertierung.</p>
+
+  <div class="slideblk"><div class="top"><span class="sn">02</span><span class="sh">Das Mirrou-Betriebssystem & Agenda</span></div>
+    <p class="script">Verteiltes Team über zwei Städte, orchestriert als Frontier Firm — digitales, automatisiertes Betriebssystem statt träger Strukturen. Hamburg: Olha (Visual), Denys (Performance). Berlin: Yahya (Inbound-Tech), Ralph (CRM/SOPs). Agenda: Problem → Positionierung → Branding/Workflow → Testing → CRM → Tech/Compliance. Übergabe → Yahya (Problem).</p>
+    <div class="data"><span class="chip">Frontier Firm</span><span class="chip">2 Standorte</span></div></div>
+
+  <div class="slideblk"><div class="top"><span class="sn">12</span><span class="sh">Customer Journeys</span></div>
+    <p class="script">Zwei Pfade. <b>Inbound</b>: Meta-Ad → mirrou.studio → Mission Deck → Strategiegespräch mit Creative-Audit → Abschluss. <b>Outbound</b>: aktive Ads recherchieren → personalisiertes Video-Audit → LinkedIn-Kontakt zum CMO → risikoarmes 14-Tage-Testpaket → nach Performance-Beweis in den Retainer.</p>
+    <div class="data"><span class="chip">Inbound + Outbound</span><span class="chip">→ Retainer</span></div></div>
+
+  <div class="slideblk"><div class="top"><span class="sn">13</span><span class="sh">CRM Pipeline & Lead-Score</span></div>
+    <p class="script">HubSpot als CRM, Notion als Wissensbasis. <b>7 Pipeline-Stufen</b> (Inbound Lead → Closed Won). Automatischer Qualifizierungs-Score (Ad-Spend, Branche, Erreichbarkeit): <b>≥ 8 Punkte → Slack-Alarm, Antwort in 15 Min</b>. Kleinere Budgets → Boutique-Segment.</p>
+    <div class="data"><span class="chip">7 Stages</span><span class="chip">Score ≥ 8 → 15-Min-Alarm</span></div></div>
+
+  <div class="slideblk"><div class="top"><span class="sn">14</span><span class="sh">SOPs & Knowledge OS</span></div>
+    <p class="script">Qualität durch Wiederholbarkeit. Knowledge-OS: 5 Perplexity Spaces + Notion-Ordner (Growth, Production, Operations, Client Records). Feste SOPs: Lead-Handling, Onboarding, Case-Study. Naming-Conventions → Perplexity findet via MCP in Sekunden. Übergabe → Yahya (Tech & Compliance).</p>
+    <div class="data"><span class="chip">SOP 01/02/03</span><span class="chip">MCP-durchsuchbar</span></div></div>
+
+  <div class="foot">
+    <div><h4>Antizipierte Fragen</h4><ul>
+      <li><b>Wie viele Leads schafft ihr?</b> Score-gesteuerte Priorisierung, keine Verluste.</li>
+      <li><b>Warum HubSpot Starter?</b> Pipeline + Automation, EU-tauglich, skalierbar.</li></ul></div>
+    <div><h4>Tools</h4><ul><li>HubSpot · Notion · Google Workspace · Slack · Perplexity Ops Space</li></ul></div></div>
+</section>
+
+</body>
+</html>
