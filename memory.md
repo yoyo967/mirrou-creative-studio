@@ -203,8 +203,8 @@ Nach jedem abgeschlossenen Audit oder Änderung:
 - ✅ React 19 + Vite 6 + Tailwind v4 + SSG Build-System
 - ✅ Erster vollständiger OPUS-PRIME-Audit durchgeführt (Claude Code)
 - ✅ Security-Header **live aktiv** (6/6) — verifiziert
-- ✅ **Live-Rev. `00040-cdb`** (2026-05-31): Desktop **100/100/100/100**, Mobile 78/97/96/100; Unused-JS ~20 KiB (Route-Lazy-Splitting), color-contrast behoben
-- 🟡 Mobile-Performance 78 (Desktop 100) — LCP/FCP letzte Meile offen (native MCP-Trace)
+- ✅ **Live-Rev. `00041-pfg`** (2026-05-31): Desktop **100/100/100/100**, Mobile **81/97/100/100**; Unused-JS ~20 KiB (Route-Lazy-Splitting), color-contrast behoben, Hydration-Defer (CursorFollower/Progress via `useIdleMount`)
+- 🟡 Mobile-Performance 81 (Desktop 100) — LCP-Render-Delay strukturell (Hydration des ganzen Baums); echter Hebel = Island-/Partial-Hydration der 15 Homepage-Sektionen
 - 🟡 Mobile-A11y 97 — Rest `target-size` (Footer-Link-Abstände)
 - 🔴 Kontaktformular nicht funktional auf Cloud Run — Fix über **HubSpot** geplant (~2026-06-06)
 - 🔵 AI-Agent-Integration (Opus Magnum Anbindung) — geplant

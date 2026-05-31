@@ -3,7 +3,7 @@
 
 > **Status:** 🟢 PRODUKTIV · LIVE · AUDITIERT
 > **Zuletzt aktualisiert:** 2026-05-31
-> **Live-Revision:** `mirrou-creative-studio-00040-cdb` (Cloud Run · europe-west3) — *2026-05-31 deployed + live verifiziert*
+> **Live-Revision:** `mirrou-creative-studio-00041-pfg` (Cloud Run · europe-west3) — *2026-05-31 deployed + live verifiziert*
 > **Auditor:** OPUS PRIME (Claude Opus 4 · Claude Code)
 > **Methodik:** Google Lighthouse (lokal, lab data) · echte Live-Header · verifizierter Code/Build
 
@@ -27,9 +27,9 @@
 
 | Dimension | Mobile | Desktop | Google-Schwelle | Status |
 |-----------|:------:|:-------:|-----------------|:------:|
-| **Performance** | 78 | 100 | ≥ 90 = grün | 🟡 / 🟢 |
+| **Performance** | 81 | 100 | ≥ 90 = grün | 🟡 / 🟢 |
 | **Accessibility** | 97 | 100 | ≥ 90 = grün | 🟢 |
-| **Best Practices** | 96 | 100 | ≥ 90 = grün | 🟢 |
+| **Best Practices** | 100 | 100 | ≥ 90 = grün | 🟢 |
 | **SEO** | 100 | 100 | ≥ 90 = grün | 🟢 |
 | **Security-Header** | 6 / 6 live | 6 / 6 live | A-Grade | 🟢 |
 | **HTTPS / HSTS** | aktiv (preload) | aktiv (preload) | erforderlich | 🟢 |
@@ -46,9 +46,9 @@
 
 | Kategorie | 📱 Mobile | 🖥️ Desktop |
 |-----------|:--------:|:----------:|
-| Performance | **78** | **100** |
+| Performance | **81** | **100** |
 | Accessibility | **97** | **100** |
-| Best Practices | **96** | **100** |
+| Best Practices | **100** | **100** |
 | SEO | **100** | **100** |
 
 ### 2.2 Core Web Vitals (Google-Ampel)
@@ -199,6 +199,7 @@
 | 2026-05-30 | Leftover-Cleanup | Google-AI-Studio-Link aus Team-Daten entfernt → Rev. `00039-dqf`. | OPUS PRIME |
 | 2026-05-30 | **Lighthouse-Baseline + AUDIT.md erstellt** | Mobile 77/93/96/100 · Desktop 100/97/100/100. CWV: Mobile-LCP 3.9 s / FCP 2.7 s = einzige Schwellen-Misses; CLS/TBT grün. A11y-Blocker: `color-contrast`. Perf-Hebel: 68 KiB unused JS. **Dieses Dossier als lebendes Dokument etabliert.** | OPUS PRIME |
 | 2026-05-31 | **Deploy `00040-cdb` + Live-Verifikation** | Live-Lighthouse: Mobile **78/97**/96/100 · Desktop **100/100/100/100**. `color-contrast` **live behoben** (Desktop-A11y 97→100, Mobile 93→97); Unused-JS live ~59→**20 KiB**; LCP 3.9→3.7, FCP 2.7→2.5. Lazy-Chunks im Prod-Build bestätigt; `npm ci` → 0 vulns. Rest offen: Mobile-Perf 78 (LCP/FCP) + Mobile-`target-size` (dichte Footer-Links). | OPUS PRIME (Claude Opus 4.8) |
+| 2026-05-31 | **Deploy `00041-pfg` + Hydration-Defer-Verifikation** | Maßnahme 1 (CursorFollower + Scroll-Progress via `useIdleMount` deferred) live. Warm-Re-Trace: **Render-Delay 552→553 ms = unverändert** (LCP-Delay ist strukturell die Gesamt-Hydration, nicht die Widgets) — ehrlich dokumentiert. **Aber** Lighthouse live verbessert: **Mobile-Perf 78→81, Best-Practices 96→100** (weniger Main-Thread + Touch-Bugfix); Desktop bleibt 100/100/100/100; CLS 0, keine Regression. Nächster echter LCP-Hebel = Island-/Partial-Hydration der 15 Homepage-Sektionen. | OPUS PRIME |
 | 2026-05-31 | **Nativer Perf-Trace (Chrome DevTools MCP, mobil 4×CPU/Slow-4G)** | LCP-Element = Hero-`.webp`; Auslieferung optimal (h3, Preload greift, immutable, ~0,4 ms Download). Einzige render-blockierende Ressource = CSS-Bundle (13 ms, vernachlässigbar). **Engpass: LCP-Render-Delay 552 ms (85,6 %) = Main-Thread-Hydration** (React/i18n/Motion), nicht Netzwerk. Maßnahme 1 umgesetzt: dekorative Client-Effekte (CursorFollower, Scroll-Progress) via `useIdleMount` aus dem Hydration-Kritikpfad deferren (client-only, behebt nebenbei Touch-SSG-Mismatch). Offen: Below-the-fold-Section-Hydration (Islands), Hero-`backdrop-blur`/`mix-blend` entschärfen. `ParticleCanvas` = toter Code (nirgends importiert). | OPUS PRIME |
 | 2026-05-31 | **Chrome DevTools MCP + 8-Punkte-Härtung** (Code-Stand vor Deploy) | MCP integriert (Projekt+User, EU-safe Flags). Fixes: `color-contrast` (False-Positive via `content-visibility:auto` → `bg-bg`, verifiziert per Computed-Styles); Route-Lazy-Splitting (Unused-JS 59→22 KiB, `app` 349→107 KiB, Perf lokal 78→85); `@types/react`+ESLint (7 Lint-Fehler inkl. `rules-of-hooks`-Bug behoben, `tsc`/`eslint` grün); `ws`-Vuln gepatcht; GEMINI/AI-Studio-Scaffolding entfernt; README-GA4/Three.js korrigiert; Standort in memory.md vereinheitlicht; `CLAUDE.md` angelegt. Build + Hydration + SPA-Nav verifiziert (0 Console-Errors). **HubSpot/Kontaktformular bewusst ausgenommen.** | OPUS PRIME (Claude Opus 4.8) |
 
