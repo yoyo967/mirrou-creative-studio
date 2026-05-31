@@ -189,7 +189,8 @@ Nach jedem abgeschlossenen Audit oder Änderung:
 | 2026-05-30 | **Full-Audit** — Code/Build/Deps/Live-Headers/Brand/Struktur/AI-Readiness (Claude Code) | 🔴 Security-Header live komplett fehlend (HSTS/CSP/X-Frame/X-CTO/Referrer/Permissions) → in `nginx.conf` ergänzt. 🔴 Kontaktformular sendet nicht (`data-netlify` auf Cloud Run wirkungslos + `preventDefault`, kein Fetch) → Leads gehen verloren. 🟡 i18n-Tiefe: `clusters` in 6 Sekundärsprachen ~−74 % vs DE/EN. 🟡 README nennt GA4 ohne Code/Consent. 🟡 Standort Berlin (memory.md) ↔ Hamburg (Site/Schema.org). 🟡 GEMINI_API_KEY/APP_URL = ungenutztes AI-Studio-Scaffolding. 🟡 tsconfig ohne `strict`, kein ESLint. 🟡 Perf 76 / LCP 3.9 s. 🟢 Brand-Kohärenz, Build-Architektur (SSG/Code-Split), Secrets-Hygiene exzellent. Aktion: Security-Header + Root-Duplikat-Cleanup durchgeführt; memory.md auf realen Stack aktualisiert. | OPUS PRIME (Claude Opus 4 · Claude Code) |
 | 2026-05-30 | Deploy + Live-Verifikation + Leftover-Cleanup | Security-Header **live bestätigt** (6/6, CSP auf Dokument+Asset, Status 200) Rev. `00038-zk4`; Google-AI-Studio-Leftover-Link aus Team-Daten entfernt Rev. `00039-dqf`. | OPUS PRIME |
 | 2026-05-30 | **Lighthouse-Baseline + `AUDIT.md` etabliert** | Echte Lab-Werte: Mobile 77/93/96/100 · Desktop 100/97/100/100. Mobile-LCP 3.9 s / FCP 2.7 s = einzige CWV-Schwellen-Misses (CLS/TBT grün). A11y-Blocker `color-contrast`; Perf-Hebel 68 KiB unused JS. **kein Three.js** (package.json verifiziert). `AUDIT.md` als lebendes Schwesterdokument angelegt. | OPUS PRIME |
-| 2026-05-31 | **Chrome DevTools MCP integriert + 8-Punkte-Härtung** (lokal, Deploy ausstehend) | MCP (`chrome-devtools`) projekt- & user-scoped, EU-safe Flags (`--no-performance-crux/--no-usage-statistics/--isolated/--headless`) → [`docs/DEVTOOLS_MCP.md`](docs/DEVTOOLS_MCP.md). Behoben: `color-contrast` (False-Positive durch `content-visibility:auto`, `bg-bg`-Fix, per Computed-Styles verifiziert) · Route-Lazy-Splitting (Unused-JS 59→22 KiB, `app` 349→107 KiB, lokal Perf 78→85) · `@types/react`+ESLint (7 Lint-Fehler inkl. echtem `rules-of-hooks`-Bug → `tsc`/`eslint` grün) · `ws`-Vuln · GEMINI/AI-Studio-Scaffolding entfernt · README-GA4/Three.js korrigiert · Standort Hamburg-HQ/Berlin vereinheitlicht · `CLAUDE.md` angelegt. Build+Hydration+SPA verifiziert (0 Errors). **HubSpot bewusst ausgenommen.** | OPUS PRIME (Claude Opus 4.8) |
+| 2026-05-31 | **Deploy `00040-cdb` + Live-Verifikation** | Live-Lighthouse: Mobile **78/97/96/100** · Desktop **100/100/100/100**. `color-contrast` live behoben (Desktop-A11y → 100); Unused-JS live ~59→**20 KiB** (Lazy-Split bestätigt); LCP 3.9→3.7, FCP 2.7→2.5. Rest offen: Mobile-Perf 78 (LCP/FCP) + Mobile-`target-size`. | OPUS PRIME |
+| 2026-05-31 | **Chrome DevTools MCP integriert + 8-Punkte-Härtung** (Code-Stand vor Deploy) | MCP (`chrome-devtools`) projekt- & user-scoped, EU-safe Flags (`--no-performance-crux/--no-usage-statistics/--isolated/--headless`) → [`docs/DEVTOOLS_MCP.md`](docs/DEVTOOLS_MCP.md). Behoben: `color-contrast` (False-Positive durch `content-visibility:auto`, `bg-bg`-Fix, per Computed-Styles verifiziert) · Route-Lazy-Splitting (Unused-JS 59→22 KiB, `app` 349→107 KiB, lokal Perf 78→85) · `@types/react`+ESLint (7 Lint-Fehler inkl. echtem `rules-of-hooks`-Bug → `tsc`/`eslint` grün) · `ws`-Vuln · GEMINI/AI-Studio-Scaffolding entfernt · README-GA4/Three.js korrigiert · Standort Hamburg-HQ/Berlin vereinheitlicht · `CLAUDE.md` angelegt. Build+Hydration+SPA verifiziert (0 Errors). **HubSpot bewusst ausgenommen.** | OPUS PRIME (Claude Opus 4.8) |
 
 ---
 
@@ -201,9 +202,10 @@ Nach jedem abgeschlossenen Audit oder Änderung:
 - ✅ i18n implementiert — 8 Sprachen (DE/EN tiefen-vollständig; 6 weitere UI/SEO, Long-Form gekürzt)
 - ✅ React 19 + Vite 6 + Tailwind v4 + SSG Build-System
 - ✅ Erster vollständiger OPUS-PRIME-Audit durchgeführt (Claude Code)
-- ✅ Security-Header **live aktiv** (6/6, Rev. `00039-dqf`) — verifiziert
-- ✅ Lighthouse-Baseline gemessen + `AUDIT.md` (lebendes Dossier) etabliert
-- 🟡 Mobile-Performance 77 (Desktop 100) — LCP/FCP-Optimierung offen
+- ✅ Security-Header **live aktiv** (6/6) — verifiziert
+- ✅ **Live-Rev. `00040-cdb`** (2026-05-31): Desktop **100/100/100/100**, Mobile 78/97/96/100; Unused-JS ~20 KiB (Route-Lazy-Splitting), color-contrast behoben
+- 🟡 Mobile-Performance 78 (Desktop 100) — LCP/FCP letzte Meile offen (native MCP-Trace)
+- 🟡 Mobile-A11y 97 — Rest `target-size` (Footer-Link-Abstände)
 - 🔴 Kontaktformular nicht funktional auf Cloud Run — Fix über **HubSpot** geplant (~2026-06-06)
 - 🔵 AI-Agent-Integration (Opus Magnum Anbindung) — geplant
 
