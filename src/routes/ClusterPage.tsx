@@ -49,7 +49,6 @@ export default function ClusterPage() {
 
   const pathname = `/blog/${cluster.slug}`;
   const canonical = new URL(pathname, SITE.url).toString();
-  const tldr = cluster.tldr ?? cluster.description;
 
   const breadcrumbLd = {
     "@context": "https://schema.org",

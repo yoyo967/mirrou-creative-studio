@@ -23,7 +23,6 @@ export default function ScrambleText({
   const scramble = () => {
     if (intervalRef.current) return;
     let iter = 0;
-    const total = 18;
     intervalRef.current = setInterval(() => {
       setDisplay(
         text

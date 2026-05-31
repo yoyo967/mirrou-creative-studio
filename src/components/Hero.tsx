@@ -39,7 +39,6 @@ export default function Hero({ onExplore }: { onExplore: () => void }) {
             alt=""
             width={1200}
             height={670}
-            // @ts-expect-error fetchPriority not yet in React types
             fetchPriority="high"
             decoding="async"
             className="absolute inset-0 w-full h-full object-cover"

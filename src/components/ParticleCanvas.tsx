@@ -185,7 +185,7 @@ export default function ParticleCanvas({ className = "" }: { className?: string 
 
         // Spherical → Cartesian
         const r3 = R * (1 + p.rOff);
-        let pos = {
+        const pos = {
           x: r3 * Math.sin(phi) * Math.cos(animTheta),
           y: r3 * Math.cos(phi),
           z: r3 * Math.sin(phi) * Math.sin(animTheta),

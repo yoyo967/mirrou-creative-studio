@@ -1,4 +1,4 @@
-import { useEffect, useState, lazy, Suspense } from "react";
+import { useEffect } from "react";
 import { Outlet, useLocation } from "react-router-dom";
 import { motion, useScroll, useSpring } from "motion/react";
 import Navigation from "../components/Navigation";

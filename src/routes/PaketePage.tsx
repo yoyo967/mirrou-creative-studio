@@ -16,7 +16,7 @@ export default function PaketePage() {
     name: t("seo.title"),
     provider: { "@type": "Organization", name: "Mirrou Creative Studio" },
     serviceType: "Creative & Performance Marketing",
-    offers: pkgKeys.map((k, i) => ({
+    offers: pkgKeys.map((k) => ({
       "@type": "Offer",
       name: t(`${k}.title`),
       description: t(`${k}.headline`),
