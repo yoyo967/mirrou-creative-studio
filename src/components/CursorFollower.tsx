@@ -20,6 +20,8 @@ export default function CursorFollower() {
   const dotY = useSpring(mouseY, dotConfig);
 
   useEffect(() => {
+    // Skip entirely on touch devices — no cursor to follow.
+    if (window.matchMedia("(hover: none)").matches) return;
     // Hide system cursor
     document.documentElement.style.cursor = "none";
 
