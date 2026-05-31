@@ -2,8 +2,8 @@
 ## Lebendes Qualitäts- & Performance-Dossier · OPUS PRIME
 
 > **Status:** 🟢 PRODUKTIV · LIVE · AUDITIERT
-> **Zuletzt aktualisiert:** 2026-05-30
-> **Live-Revision:** `mirrou-creative-studio-00039-dqf` (Cloud Run · europe-west3)
+> **Zuletzt aktualisiert:** 2026-05-31
+> **Live-Revision:** `mirrou-creative-studio-00039-dqf` (Cloud Run · europe-west3) — *lokale Fixes 2026-05-31 noch nicht deployed*
 > **Auditor:** OPUS PRIME (Claude Opus 4 · Claude Code)
 > **Methodik:** Google Lighthouse (lokal, lab data) · echte Live-Header · verifizierter Code/Build
 
@@ -68,13 +68,13 @@
 
 | Hebel | Einsparung | Wirkung |
 |-------|-----------|---------|
-| Reduce unused JavaScript | ~68 KiB | senkt FCP/LCP/TBT mobil — größter Single-Lever |
+| ~~Reduce unused JavaScript~~ | ~~68 KiB~~ → **~22 KiB** | **2026-05-31 weitgehend behoben:** Route-Level-Lazy-Splitting (`src/routes/index.tsx`), `app`-Chunk 349→107 KiB (−69%); lokaler Lighthouse-Perf 78→85, LCP 3.9→3.5 s. Rest (~22 KiB in motion/router/locale) = letzte Meile, ideal via nativem MCP-Trace. Live-Wert post-Deploy bestätigen. |
 
 ### 2.4 Einzige nicht bestandene A11y-Prüfung
 
 | Prüfung | Score | WCAG-Bezug | Aktion |
 |---------|:-----:|------------|--------|
-| `color-contrast` (Vorder-/Hintergrund-Kontrast unzureichend) | 0 | WCAG 2.1 AA · 1.4.3 | Kontrastarme Text/BG-Paare auf ≥ 4.5:1 (bzw. 3:1 für große Schrift) anheben |
+| ~~`color-contrast`~~ | **1 (behoben)** | WCAG 2.1 AA · 1.4.3 | **2026-05-31:** War **False Positive** durch `content-visibility:auto` (axe sampelte Cream-BG hinter transparenter `#contact`/`#main-footer`). Verifiziert per Computed-Styles (Ivory `#F2EFE9` auf `#080808` = ~15:1). Fix: expliziter `bg-bg` auf beiden Containern (optisch null) → 0 Fehlerknoten, lokal A11y 93→97. Rest-Punkt: `target-size` (dichte Footer-Links, grenzwertig). |
 
 ---
 
@@ -148,14 +148,17 @@
 | ✅ P0 | Security-Header live | — | DEV | **erledigt 2026-05-30** |
 | ✅ P0 | Root-Duplikat / AI-Studio-Leftover entfernt | — | DEV | **erledigt 2026-05-30** |
 | 🔴 P0 | Kontaktformular → HubSpot-Backend (DSGVO-Consent) | M | Ralph / DEV | offen — ETA ~2026-06-06 |
-| 🟡 P1 | Mobile-Perf ≥ 90 (68 KiB unused JS, LCP/FCP) | M | DEV | offen |
-| 🟡 P1 | `color-contrast` → A11y 100 | S | DEV/Design | offen |
-| 🟡 P1 | README-GA4 korrigieren oder GA4 + Consent | S–M | DEV | offen |
+| 🟡 P1 | Mobile-Perf ≥ 90 (Unused JS, LCP/FCP) | M | DEV | 🟢 **2026-05-31:** Route-Lazy-Splitting, Unused-JS 59→22 KiB, `app` 349→107 KiB, lokal Perf→85. Live-Wert + letzte Meile offen |
+| ✅ P1 | `color-contrast` → A11y | S | DEV/Design | **erledigt 2026-05-31** (False-Positive root-caused + `bg-bg`-Fix) |
+| ✅ P1 | README-GA4/Three.js-Falschangaben korrigiert | S | DEV | **erledigt 2026-05-31** |
 | 🟡 P1 | Cluster-Long-Form 6 Sprachen oder Scope ehrlich kommunizieren | L | Content | offen |
-| 🟡 P1 | Standort Berlin/Hamburg vereinheitlichen | S | Brand | offen |
-| 🟢 P2 | `tsconfig strict` + ESLint (7 `key`-Prop-Fehler) | M | DEV | offen |
-| 🟢 P2 | `ws`-Vuln patchen | S | DEV | offen |
-| 🔵 P3 | `CLAUDE.md` (Masterprompt versioniert) | S | DEV | offen |
+| ✅ P1 | Standort Hamburg-HQ/Berlin vereinheitlicht (`memory.md`) | S | Brand | **erledigt 2026-05-31** (Site war konsistent) |
+| 🟡 P2 | `tsconfig strict` | M | DEV | offen — ~3.900 Folgefehler = eigener Refactor |
+| ✅ P2 | ESLint + `@types/react` + 7 Lint-Fehler (inkl. `rules-of-hooks`-Bug) | M | DEV | **erledigt 2026-05-31** |
+| ✅ P2 | `ws`-Vuln patchen | S | DEV | **erledigt 2026-05-31** (`npm audit fix` → 0 Vulns) |
+| ✅ P2 | AI-Studio-Scaffolding (GEMINI/APP_URL) entfernt | S | DEV | **erledigt 2026-05-31** |
+| ✅ P3 | `CLAUDE.md` (Masterprompt versioniert) | S | DEV | **erledigt 2026-05-31** |
+| ✅ P3 | Chrome DevTools MCP integriert (Projekt+User, EU-safe) | S | DEV | **erledigt 2026-05-31** |
 
 *Aufwand: S = Stunden · M = Tag(e) · L = mehrtägig.*
 
@@ -178,6 +181,13 @@
 
 > **Korrektur ggü. älteren Notizen:** **kein Three.js / @react-three** im Projekt (per `package.json` verifiziert). Frühere Stack-Beschreibungen, die 3D nannten, waren falsch.
 
+**Dev-Tooling-Ergänzungen (2026-05-31):**
+- **Route-Level-Code-Splitting:** Leaf-Pages via react-router `lazy` (`src/routes/index.tsx`) — `app`-Chunk 349→107 KiB.
+- **`@types/react` / `@types/react-dom` (v19)** ergänzt (waren nicht installiert → React/JSX war als `any` getypt).
+- **ESLint** (flat config, `eslint.config.js`) + Scripts `typecheck`/`lint`/`check`.
+- **Chrome DevTools MCP** (`.mcp.json`, EU-safe Flags) → Perf-Trace-Loop. Doku: [`docs/DEVTOOLS_MCP.md`](docs/DEVTOOLS_MCP.md).
+- `tsconfig` `strict`: bewusst **noch nicht** aktiviert (~3.900 Folgefehler).
+
 ---
 
 ## 7. AUDIT-LOG (append-only)
@@ -188,6 +198,7 @@
 | 2026-05-30 | Deploy + Live-Verifikation | Rev. `00038-zk4`: 6/6 Header live, CSP auf Dokument+Asset, Status 200, keine CSP-Breakage. | OPUS PRIME |
 | 2026-05-30 | Leftover-Cleanup | Google-AI-Studio-Link aus Team-Daten entfernt → Rev. `00039-dqf`. | OPUS PRIME |
 | 2026-05-30 | **Lighthouse-Baseline + AUDIT.md erstellt** | Mobile 77/93/96/100 · Desktop 100/97/100/100. CWV: Mobile-LCP 3.9 s / FCP 2.7 s = einzige Schwellen-Misses; CLS/TBT grün. A11y-Blocker: `color-contrast`. Perf-Hebel: 68 KiB unused JS. **Dieses Dossier als lebendes Dokument etabliert.** | OPUS PRIME |
+| 2026-05-31 | **Chrome DevTools MCP + 8-Punkte-Härtung** (lokal, noch nicht deployed) | MCP integriert (Projekt+User, EU-safe Flags). Fixes: `color-contrast` (False-Positive via `content-visibility:auto` → `bg-bg`, verifiziert per Computed-Styles); Route-Lazy-Splitting (Unused-JS 59→22 KiB, `app` 349→107 KiB, Perf lokal 78→85); `@types/react`+ESLint (7 Lint-Fehler inkl. `rules-of-hooks`-Bug behoben, `tsc`/`eslint` grün); `ws`-Vuln gepatcht; GEMINI/AI-Studio-Scaffolding entfernt; README-GA4/Three.js korrigiert; Standort in memory.md vereinheitlicht; `CLAUDE.md` angelegt. Build + Hydration + SPA-Nav verifiziert (0 Console-Errors). **HubSpot/Kontaktformular bewusst ausgenommen.** | OPUS PRIME (Claude Opus 4.8) |
 
 ---
 

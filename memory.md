@@ -11,7 +11,7 @@
 ## 1. PROJEKT-KONTEXT
 
 ### Was ist Mirrou Creative Studio?
-Mirrou ist ein **AI-natives Kreativstudio** aus Berlin, das Marken, Gründer und Unternehmen dabei unterstützt, ihre visuelle Identität, Strategie und digitale Präsenz mit höchster Präzision aufzubauen. Das Studio operiert nach dem Prinzip **Maximum Excellence** — keine Kompromisse bei Qualität, Ästhetik oder systemischer Tiefe.
+Mirrou ist ein **AI-natives Kreativstudio** aus Hamburg (HQ · Produktion & Creative Direction) mit zweitem Studio in Berlin (Performance, AI & Growth), das Marken, Gründer und Unternehmen dabei unterstützt, ihre visuelle Identität, Strategie und digitale Präsenz mit höchster Präzision aufzubauen. Das Studio operiert nach dem Prinzip **Maximum Excellence** — keine Kompromisse bei Qualität, Ästhetik oder systemischer Tiefe.
 
 ### Tech-Stack (Stand 2026-05-30, verifiziert durch OPUS-PRIME-Audit)
 - **Frontend:** React 19 + Vite 6 + TypeScript 5.8 + Tailwind CSS v4 · Motion *(kein Three.js/@react-three — per `package.json` verifiziert, frühere 3D-Angabe war falsch)*
@@ -189,6 +189,7 @@ Nach jedem abgeschlossenen Audit oder Änderung:
 | 2026-05-30 | **Full-Audit** — Code/Build/Deps/Live-Headers/Brand/Struktur/AI-Readiness (Claude Code) | 🔴 Security-Header live komplett fehlend (HSTS/CSP/X-Frame/X-CTO/Referrer/Permissions) → in `nginx.conf` ergänzt. 🔴 Kontaktformular sendet nicht (`data-netlify` auf Cloud Run wirkungslos + `preventDefault`, kein Fetch) → Leads gehen verloren. 🟡 i18n-Tiefe: `clusters` in 6 Sekundärsprachen ~−74 % vs DE/EN. 🟡 README nennt GA4 ohne Code/Consent. 🟡 Standort Berlin (memory.md) ↔ Hamburg (Site/Schema.org). 🟡 GEMINI_API_KEY/APP_URL = ungenutztes AI-Studio-Scaffolding. 🟡 tsconfig ohne `strict`, kein ESLint. 🟡 Perf 76 / LCP 3.9 s. 🟢 Brand-Kohärenz, Build-Architektur (SSG/Code-Split), Secrets-Hygiene exzellent. Aktion: Security-Header + Root-Duplikat-Cleanup durchgeführt; memory.md auf realen Stack aktualisiert. | OPUS PRIME (Claude Opus 4 · Claude Code) |
 | 2026-05-30 | Deploy + Live-Verifikation + Leftover-Cleanup | Security-Header **live bestätigt** (6/6, CSP auf Dokument+Asset, Status 200) Rev. `00038-zk4`; Google-AI-Studio-Leftover-Link aus Team-Daten entfernt Rev. `00039-dqf`. | OPUS PRIME |
 | 2026-05-30 | **Lighthouse-Baseline + `AUDIT.md` etabliert** | Echte Lab-Werte: Mobile 77/93/96/100 · Desktop 100/97/100/100. Mobile-LCP 3.9 s / FCP 2.7 s = einzige CWV-Schwellen-Misses (CLS/TBT grün). A11y-Blocker `color-contrast`; Perf-Hebel 68 KiB unused JS. **kein Three.js** (package.json verifiziert). `AUDIT.md` als lebendes Schwesterdokument angelegt. | OPUS PRIME |
+| 2026-05-31 | **Chrome DevTools MCP integriert + 8-Punkte-Härtung** (lokal, Deploy ausstehend) | MCP (`chrome-devtools`) projekt- & user-scoped, EU-safe Flags (`--no-performance-crux/--no-usage-statistics/--isolated/--headless`) → [`docs/DEVTOOLS_MCP.md`](docs/DEVTOOLS_MCP.md). Behoben: `color-contrast` (False-Positive durch `content-visibility:auto`, `bg-bg`-Fix, per Computed-Styles verifiziert) · Route-Lazy-Splitting (Unused-JS 59→22 KiB, `app` 349→107 KiB, lokal Perf 78→85) · `@types/react`+ESLint (7 Lint-Fehler inkl. echtem `rules-of-hooks`-Bug → `tsc`/`eslint` grün) · `ws`-Vuln · GEMINI/AI-Studio-Scaffolding entfernt · README-GA4/Three.js korrigiert · Standort Hamburg-HQ/Berlin vereinheitlicht · `CLAUDE.md` angelegt. Build+Hydration+SPA verifiziert (0 Errors). **HubSpot bewusst ausgenommen.** | OPUS PRIME (Claude Opus 4.8) |
 
 ---
 
@@ -208,14 +209,15 @@ Nach jedem abgeschlossenen Audit oder Änderung:
 
 ### Nächste geplante Meilensteine
 - [x] **P0** Security-Header live verifizieren nach Redeploy — ✅ erledigt
-- [ ] **P0** Kontaktformular auf HubSpot-Backend umstellen (DSGVO-Consent) — ETA ~2026-06-06
-- [ ] **P1** Mobile-Performance ≥ 90 (68 KiB unused JS, LCP/FCP)
-- [ ] **P1** `color-contrast` (WCAG AA) beheben → A11y 100
-- [ ] **P1** README-GA4-Claim korrigieren oder GA4 mit Consent implementieren
+- [ ] **P0** Kontaktformular auf HubSpot-Backend umstellen (DSGVO-Consent) — ETA ~2026-06-06 *(bewusst offen)*
+- [~] **P1** Mobile-Performance ≥ 90 — 2026-05-31 großer Schritt: Route-Lazy-Splitting (Unused-JS 59→22 KiB, lokal Perf→85); **Live-Wert + letzte Meile offen**
+- [x] **P1** `color-contrast` → A11y — ✅ 2026-05-31 (False-Positive root-caused + `bg-bg`-Fix)
+- [x] **P1** README-GA4/Three.js-Falschangaben korrigiert — ✅ 2026-05-31
 - [ ] **P1** Cluster-Long-Form ES/IT/FR/TR/RU/UK übersetzen oder Scope ehrlich kommunizieren
-- [ ] **P1** Standort Berlin/Hamburg vereinheitlichen
-- [ ] **P2** tsconfig `strict` + ESLint (7 `key`-Prop-Fehler); AI-Studio-Scaffolding entfernen
-- [ ] **P3** `CLAUDE.md` anlegen (OPUS-PRIME-Masterprompt versioniert ins Repo)
+- [x] **P1** Standort Hamburg-HQ/Berlin vereinheitlicht (memory.md an Site angeglichen) — ✅ 2026-05-31
+- [x] **P2** ESLint + `@types/react` + 7 Lint-Fehler (inkl. `rules-of-hooks`-Bug); AI-Studio-Scaffolding entfernt; `ws`-Vuln gepatcht — ✅ 2026-05-31
+- [ ] **P2** tsconfig `strict` — offen (~3.900 Folgefehler = eigener Refactor)
+- [x] **P3** `CLAUDE.md` anlegen + Chrome DevTools MCP integrieren — ✅ 2026-05-31
 
 > **Detaillierter, messdatenbasierter Stand:** siehe [`AUDIT.md`](AUDIT.md).
 

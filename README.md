@@ -53,12 +53,11 @@ mirrou-creative-studio/
 | **Language** | TypeScript 5.8 |
 | **Styling** | Tailwind CSS v4 |
 | **Animation** | Motion (Framer Motion successor) |
-| **3D** | Three.js / @react-three/fiber |
 | **SSG** | vite-react-ssg (static pre-rendering) |
 | **i18n** | react-i18next (8 languages: DE/EN/ES/IT/FR/TR/RU/UK) |
 | **Hosting** | GCP Cloud Run (europe-west3 Frankfurt) |
 | **Container** | Docker + nginx |
-| **Analytics** | Google Analytics 4 (IP-anonymized) |
+| **Analytics** | None at launch — only technically necessary cookies; any future analytics is consent-gated (DSGVO) |
 
 ### Design System: Dark Luxury v2.0
 
@@ -124,7 +123,7 @@ Lighthouse 13.3 — Simulated Slow 4G (150 ms RTT, 1.6 Mbps), 4× CPU throttle.
 ## Local Development
 
 ### Prerequisites
-- Node.js 20+
+- Node.js 22+ (LTS; repo is developed on Node 24)
 
 ### Setup
 ```bash
@@ -136,7 +135,9 @@ npm install
 npm run dev          # Development server (port 3000)
 npm run build        # Static production build → dist/
 npm run preview      # Preview production build
-npm run lint         # TypeScript checks
+npm run typecheck    # TypeScript checks (tsc --noEmit)
+npm run lint         # ESLint (flat config)
+npm run check        # typecheck + lint
 ```
 
 ### Environment Variables
