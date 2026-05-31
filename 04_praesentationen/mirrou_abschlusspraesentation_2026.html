@@ -1,0 +1,718 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Mirrou Creative Studio · DCI-Abschlusspräsentation 2026</title>
+<meta name="description" content="Algorithm of Soul — Aufbau einer KI-integrierten Performance Creative Agency. DCI D03 2026." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<style>
+/* ===================== DARK LUXURY DESIGN SYSTEM ===================== */
+:root{
+  --bg:#080808; --surface:#111113; --surface-2:#1A1A1E;
+  --ink:#F2EFE9; --body:#B8B4AE; --muted:#908D87; --subtle:#3A3835;
+  --gold:#C8A25A; --gold-light:#E4C07A; --gold-soft:rgba(200,162,90,.10);
+  --grid:rgba(242,239,233,.06); --grid-2:rgba(242,239,233,.12);
+  --serif:"Cormorant Garamond","Times New Roman",serif;
+  --sans:"Inter",ui-sans-serif,system-ui,sans-serif;
+  --mono:"JetBrains Mono",ui-monospace,monospace;
+  /* Rollenfarben */
+  --r-yahya:#C8A25A; --r-olha:#E4C07A; --r-denys:#7FB0A8; --r-ralph:#B89BD0;
+  --ease:cubic-bezier(.16,1,.3,1);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%}
+body{
+  background:var(--bg); color:var(--ink); font-family:var(--sans);
+  font-weight:300; overflow:hidden; -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale; text-rendering:optimizeLegibility;
+}
+::selection{background:var(--gold); color:var(--bg)}
+
+/* ----- Film grain ----- */
+.grain{position:fixed; inset:0; z-index:60; pointer-events:none; opacity:.035; mix-blend-mode:overlay;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size:240px 240px;}
+
+/* ===================== DECK / SLIDE FRAME ===================== */
+.deck{position:fixed; inset:0;}
+.slide{
+  position:absolute; inset:0; display:flex; flex-direction:column; justify-content:center;
+  padding:clamp(32px,6vw,104px); opacity:0; visibility:hidden;
+  transform:translateY(14px) scale(.992); transition:opacity .6s var(--ease),transform .8s var(--ease),visibility .6s;
+}
+.slide.active{opacity:1; visibility:visible; transform:none}
+.slide.past{transform:translateY(-14px) scale(.992)}
+.slide-inner{width:100%; max-width:1180px; margin:0 auto; position:relative}
+
+/* reveal-on-enter */
+.slide .rise{opacity:0; transform:translateY(20px); transition:opacity .7s var(--ease),transform .9s var(--ease)}
+.slide.active .rise{opacity:1; transform:none}
+.slide.active .rise:nth-child(1){transition-delay:.10s}
+.slide.active .rise:nth-child(2){transition-delay:.18s}
+.slide.active .rise:nth-child(3){transition-delay:.26s}
+.slide.active .rise:nth-child(4){transition-delay:.34s}
+.slide.active .rise:nth-child(5){transition-delay:.42s}
+.slide.active .rise:nth-child(6){transition-delay:.50s}
+
+/* ===================== TYPOGRAPHY ===================== */
+.eyebrow{font-family:var(--mono); font-size:clamp(9px,.78vw,12px); letter-spacing:.42em;
+  text-transform:uppercase; color:var(--gold); font-weight:500}
+.kicker{font-family:var(--mono); font-size:11px; letter-spacing:.3em; text-transform:uppercase; color:var(--muted)}
+h1.display{font-family:var(--serif); font-weight:300; line-height:.92; letter-spacing:-.02em;
+  font-size:clamp(46px,8.5vw,128px)}
+h2.title{font-family:var(--serif); font-weight:300; line-height:.98; letter-spacing:-.02em;
+  font-size:clamp(34px,5.4vw,82px); margin-top:.28em}
+h3{font-family:var(--serif); font-weight:400; font-size:clamp(22px,2.6vw,40px); line-height:1.05; letter-spacing:-.01em}
+.lead{font-size:clamp(15px,1.5vw,22px); line-height:1.6; color:var(--body); max-width:62ch; font-weight:300}
+.body{font-size:clamp(13px,1.05vw,17px); line-height:1.6; color:var(--body)}
+em,.italic{font-style:italic}
+.gold{color:var(--gold)} .ink{color:var(--ink)} .light{color:var(--gold-light)}
+.mono{font-family:var(--mono)}
+
+/* hairlines & rules */
+.hair{height:1px; background:var(--grid-2); border:0; width:100%}
+.goldrule{height:1px; width:64px; background:linear-gradient(90deg,var(--gold),transparent)}
+
+/* ===================== SHARED COMPONENTS ===================== */
+.grid2{display:grid; grid-template-columns:1.05fr .95fr; gap:clamp(24px,4vw,72px); align-items:center}
+.grid2.top{align-items:start}
+.stack>*+*{margin-top:18px}
+.tag{display:inline-flex; align-items:center; gap:8px; font-family:var(--mono); font-size:10px;
+  letter-spacing:.22em; text-transform:uppercase; color:var(--muted); border:1px solid var(--grid-2);
+  padding:7px 12px; border-radius:999px}
+.tags{display:flex; flex-wrap:wrap; gap:10px}
+
+/* data table */
+table.data{width:100%; border-collapse:collapse; font-size:clamp(12px,1vw,15px)}
+table.data th,table.data td{text-align:left; padding:11px 10px; border-bottom:1px solid var(--grid)}
+table.data th{font-family:var(--mono); font-size:10px; letter-spacing:.18em; text-transform:uppercase; color:var(--muted); font-weight:500}
+table.data td{color:var(--body)}
+table.data td:first-child{color:var(--ink)}
+table.data tr:last-child td{border-bottom:0}
+.num{font-family:var(--mono); color:var(--gold)}
+
+/* cards */
+.cardrow{display:grid; gap:14px}
+.card{border:1px solid var(--grid-2); background:linear-gradient(160deg,rgba(255,255,255,.018),transparent);
+  padding:clamp(16px,1.6vw,26px); border-radius:2px; position:relative; overflow:hidden}
+.card .idx{font-family:var(--mono); font-size:10px; letter-spacing:.2em; color:var(--gold)}
+.card h4{font-family:var(--serif); font-weight:400; font-size:clamp(18px,1.9vw,26px); margin:6px 0 6px}
+.card p{font-size:clamp(12px,.98vw,15px); color:var(--body); line-height:1.5}
+.card::after{content:""; position:absolute; left:0; top:0; bottom:0; width:2px; background:var(--accent,var(--gold)); opacity:.5}
+
+/* stat block */
+.stats{display:grid; grid-template-columns:repeat(4,1fr); gap:clamp(14px,2vw,40px)}
+.stat .v{font-family:var(--serif); font-size:clamp(34px,4.6vw,68px); line-height:1; color:var(--ink)}
+.stat .v small{font-size:.42em; color:var(--gold); font-family:var(--mono); letter-spacing:.05em}
+.stat .l{font-family:var(--mono); font-size:10px; letter-spacing:.18em; text-transform:uppercase; color:var(--muted); margin-top:10px}
+
+/* ===================== SPEAKER CHIP / CORNER FURNITURE ===================== */
+.chip{position:absolute; left:clamp(32px,6vw,104px); bottom:clamp(28px,4.4vh,56px); display:flex; align-items:center; gap:11px;
+  font-family:var(--mono); font-size:11px; letter-spacing:.16em; text-transform:uppercase; color:var(--muted); z-index:20}
+.chip .dot{width:9px; height:9px; border-radius:50%; background:var(--spk,var(--gold)); box-shadow:0 0 0 4px color-mix(in srgb,var(--spk,var(--gold)) 18%,transparent)}
+.chip b{color:var(--ink); font-weight:500} .chip span{color:var(--muted)}
+
+.brandmark{position:absolute; right:clamp(32px,6vw,104px); top:clamp(26px,4vh,48px); font-family:var(--mono);
+  font-size:11px; letter-spacing:.34em; color:var(--muted); z-index:20}
+.brandmark b{color:var(--gold); letter-spacing:.34em}
+
+/* ===================== HUD: progress / counter / nav ===================== */
+#progress{position:fixed; left:0; top:0; height:2px; background:linear-gradient(90deg,var(--gold),var(--gold-light)); width:0; z-index:80; transition:width .5s var(--ease)}
+#counter{position:fixed; right:clamp(28px,4vw,56px); bottom:clamp(24px,4vh,44px); font-family:var(--mono);
+  font-size:12px; letter-spacing:.2em; color:var(--muted); z-index:40}
+#counter b{color:var(--ink)}
+.navhint{position:fixed; left:50%; bottom:18px; transform:translateX(-50%); font-family:var(--mono); font-size:10px;
+  letter-spacing:.2em; color:var(--subtle); z-index:40; transition:opacity .6s; text-transform:uppercase}
+.click-zone{position:fixed; top:0; bottom:0; width:18%; z-index:30; cursor:pointer}
+.click-zone.left{left:0} .click-zone.right{right:0}
+
+/* ===================== PRESENTER NOTES OVERLAY ===================== */
+#notes{position:fixed; inset:auto 0 0 0; max-height:42vh; overflow:auto; background:rgba(8,8,8,.97);
+  border-top:1px solid var(--gold-soft); padding:24px clamp(32px,6vw,104px); z-index:90; transform:translateY(110%);
+  transition:transform .5s var(--ease); backdrop-filter:blur(8px)}
+#notes.show{transform:none}
+#notes .nlabel{font-family:var(--mono); font-size:10px; letter-spacing:.26em; text-transform:uppercase; color:var(--gold); margin-bottom:10px}
+#notes p{font-size:15px; line-height:1.6; color:var(--body); max-width:90ch}
+
+/* ===================== DIAGRAMS ===================== */
+/* layer architecture */
+.layers{display:flex; flex-direction:column; gap:10px}
+.layer{display:grid; grid-template-columns:140px 1fr; align-items:center; gap:18px; border:1px solid var(--grid-2);
+  padding:14px 18px; border-radius:2px; background:linear-gradient(90deg,var(--gold-soft),transparent)}
+.layer .ln{font-family:var(--mono); font-size:11px; letter-spacing:.18em; color:var(--gold); text-transform:uppercase}
+.layer .ld{font-size:clamp(12px,1vw,15px); color:var(--body)}
+.layer .ld b{color:var(--ink); font-weight:500}
+
+/* budget bars */
+.bars{display:flex; flex-direction:column; gap:16px}
+.bar{display:grid; grid-template-columns:120px 1fr 52px; align-items:center; gap:16px}
+.bar .bn{font-family:var(--mono); font-size:11px; letter-spacing:.12em; text-transform:uppercase; color:var(--body)}
+.bar .track{height:12px; background:var(--surface-2); border:1px solid var(--grid); border-radius:999px; overflow:hidden}
+.bar .fill{display:block; height:100%; width:0; background:linear-gradient(90deg,var(--gold),var(--gold-light)); border-radius:999px; transition:width 1.1s var(--ease)}
+.slide.active .bar .fill{width:var(--w)}
+.bar .bv{font-family:var(--mono); font-size:13px; color:var(--gold); text-align:right}
+
+/* lighthouse gauges */
+.gauges{display:grid; grid-template-columns:repeat(4,1fr); gap:clamp(16px,2.4vw,40px)}
+.gauge{text-align:center}
+.gauge .ring{--p:0; width:clamp(96px,11vw,150px); height:clamp(96px,11vw,150px); border-radius:50%; margin:0 auto;
+  background:conic-gradient(var(--gold) calc(var(--p)*1%), var(--surface-2) 0); display:grid; place-items:center; position:relative;
+  transition:background 1.4s var(--ease)}
+.gauge .ring::before{content:""; position:absolute; inset:10px; border-radius:50%; background:var(--bg)}
+.gauge .ring span{position:relative; font-family:var(--sans); font-weight:400; font-feature-settings:"tnum" 1; font-size:clamp(24px,2.6vw,40px); color:var(--ink); letter-spacing:.02em}
+.gauge .gl{font-family:var(--mono); font-size:10px; letter-spacing:.16em; text-transform:uppercase; color:var(--muted); margin-top:14px}
+
+/* CTR collapse curve */
+.curvewrap{border:1px solid var(--grid-2); border-radius:2px; padding:20px; background:linear-gradient(160deg,rgba(255,255,255,.015),transparent)}
+
+/* pipeline */
+.pipe{display:flex; gap:6px; flex-wrap:wrap}
+.pstage{flex:1; min-width:90px; border:1px solid var(--grid-2); padding:12px 10px; border-radius:2px; text-align:center; position:relative}
+.pstage .ps{font-family:var(--mono); font-size:9px; letter-spacing:.12em; color:var(--gold)}
+.pstage .pn{font-size:12px; color:var(--ink); margin-top:6px}
+.pstage:last-child{border-color:var(--gold); background:var(--gold-soft)}
+
+/* swatches */
+.swatches{display:grid; grid-template-columns:repeat(3,1fr); gap:14px}
+.sw{border:1px solid var(--grid); border-radius:2px; overflow:hidden}
+.sw .chipc{height:88px} .sw .meta{padding:12px 14px}
+.sw .hex{font-family:var(--mono); font-size:12px; color:var(--ink)}
+.sw .nm{font-family:var(--mono); font-size:9px; letter-spacing:.18em; text-transform:uppercase; color:var(--muted); margin-top:5px}
+
+/* two-path journeys */
+.paths{display:grid; grid-template-columns:1fr 1fr; gap:20px}
+.path{border:1px solid var(--grid-2); border-radius:2px; padding:22px}
+.path h4{font-family:var(--serif); font-weight:400; font-size:22px; margin-bottom:14px}
+.path ol{list-style:none; counter-reset:s}
+.path li{counter-increment:s; padding:9px 0 9px 34px; position:relative; font-size:13px; color:var(--body); border-bottom:1px solid var(--grid)}
+.path li:last-child{border-bottom:0}
+.path li::before{content:counter(s,decimal-leading-zero); position:absolute; left:0; top:9px; font-family:var(--mono); font-size:11px; color:var(--gold)}
+
+/* compare table for hybrid */
+.compare{display:grid; grid-template-columns:1fr 1fr; gap:0; border:1px solid var(--grid-2); border-radius:2px; overflow:hidden}
+.compare>div{padding:22px}
+.compare .c-ai{background:var(--gold-soft)}
+.compare h5{font-family:var(--mono); font-size:10px; letter-spacing:.2em; text-transform:uppercase; color:var(--muted); margin-bottom:14px}
+.compare .c-ai h5{color:var(--gold)}
+.compare ul{list-style:none} .compare li{font-size:13px; color:var(--body); padding:7px 0; border-bottom:1px solid var(--grid)}
+.compare li:last-child{border-bottom:0}
+
+/* quadrant */
+.quad{position:relative; aspect-ratio:1/.86; border-left:1px solid var(--grid-2); border-bottom:1px solid var(--grid-2)}
+.quad .axL,.quad .axB{position:absolute; font-family:var(--mono); font-size:9px; letter-spacing:.14em; text-transform:uppercase; color:var(--muted)}
+.quad .axL{left:-8px; top:-18px} .quad .axB{right:0; bottom:-20px}
+.quad .pt{position:absolute; transform:translate(-50%,50%); text-align:center}
+.quad .pt .d{width:10px; height:10px; border-radius:50%; background:var(--muted); margin:0 auto 8px}
+.quad .pt.us .d{background:var(--gold); box-shadow:0 0 0 6px var(--gold-soft); width:14px; height:14px}
+.quad .pt .t{font-family:var(--mono); font-size:10px; color:var(--body); white-space:nowrap}
+.quad .pt.us .t{color:var(--gold)}
+
+/* team grid */
+.team{display:grid; grid-template-columns:repeat(4,1fr); gap:16px}
+.member{border:1px solid var(--grid-2); border-radius:2px; padding:18px}
+.member .md{width:8px;height:8px;border-radius:50%;background:var(--spk);margin-bottom:14px}
+.member .mn{font-family:var(--serif); font-size:20px; color:var(--ink)}
+.member .mr{font-family:var(--mono); font-size:10px; letter-spacing:.14em; text-transform:uppercase; color:var(--gold); margin-top:6px}
+.member .ml{font-size:12px; color:var(--muted); margin-top:10px}
+
+/* agenda pills */
+.agenda{display:flex; flex-wrap:wrap; gap:10px}
+.pill{font-family:var(--mono); font-size:11px; letter-spacing:.12em; text-transform:uppercase; color:var(--body);
+  border:1px solid var(--grid-2); padding:9px 14px; border-radius:999px}
+.pill b{color:var(--gold)}
+
+/* live badge */
+.livecard{display:inline-flex; flex-direction:column; gap:6px; border:1px solid var(--gold-soft); padding:18px 22px; border-radius:2px; background:var(--gold-soft)}
+.livecard .lu{font-family:var(--mono); font-size:13px; color:var(--ink); letter-spacing:.04em}
+.livedot{display:inline-flex; align-items:center; gap:8px; font-family:var(--mono); font-size:10px; letter-spacing:.2em; text-transform:uppercase; color:var(--gold)}
+.livedot::before{content:""; width:7px; height:7px; border-radius:50%; background:#7FB0A8; box-shadow:0 0 0 4px rgba(127,176,168,.18)}
+
+/* big closing */
+.closing{align-items:center; text-align:center}
+.closing .wm{font-family:var(--serif); font-size:clamp(60px,13vw,200px); line-height:.86; letter-spacing:.02em}
+
+/* small note */
+.note{font-family:var(--mono); font-size:10px; letter-spacing:.1em; color:var(--muted)}
+
+@media (max-width:820px){
+  .grid2,.paths,.compare,.stats,.gauges,.team,.swatches{grid-template-columns:1fr !important}
+  .stats,.gauges{grid-template-columns:1fr 1fr !important}
+}
+@media (prefers-reduced-motion:reduce){
+  *{transition:none !important; animation:none !important}
+  .slide{transform:none}
+}
+</style>
+</head>
+<body>
+<div class="grain" aria-hidden="true"></div>
+<div id="progress"></div>
+
+<main class="deck" id="deck" aria-live="polite">
+
+  <!-- 01 · TITEL -->
+  <section class="slide closing" data-spk="Yahya Yildirim" data-role="Growth · Inbound · Project Lead" data-color="--r-yahya"
+    data-notes="Yahya: Guten Tag und herzlich willkommen zur Abschlusspräsentation von Mirrou Creative Studio. Gemeinsam mit Olha, Denys und Ralph präsentieren wir den Aufbau einer KI-integrierten Performance Creative Agency — Frontier-Firm-Architektur, hybrider Produktions-Workflow, proaktive EU-AI-Act-Compliance. Produktion & Creative Direction in Hamburg, Performance, CRM und Inbound-Tech in Berlin.">
+    <div class="slide-inner">
+      <p class="eyebrow rise">DCI · D03 2026 · Abschlusspräsentation</p>
+      <h1 class="display rise" style="margin-top:.2em">Mirrou</h1>
+      <p class="rise" style="font-family:var(--serif); font-style:italic; font-size:clamp(22px,3.4vw,52px); color:var(--gold); margin-top:.1em">Algorithm of Soul</p>
+      <div class="rise" style="margin:30px auto 0; max-width:60ch">
+        <p class="lead" style="margin:0 auto">Aufbau einer KI-integrierten Performance Creative Agency — Frontier-Firm-Architektur, Hybrid Production und EU-AI-Act-Compliance als Wettbewerbsstrategie.</p>
+      </div>
+      <div class="rise" style="margin-top:40px; display:flex; gap:26px; justify-content:center; flex-wrap:wrap" >
+        <span class="tag">Olha Yevtushenko</span><span class="tag">Denys Demyanyshyn</span>
+        <span class="tag">Ralph Kindermann</span><span class="tag">Yahya Yildirim</span>
+      </div>
+      <p class="kicker rise" style="margin-top:26px">Hamburg · Produktion & Creative Direction &nbsp;—&nbsp; Berlin · Performance, AI & Growth</p>
+    </div>
+  </section>
+
+  <!-- 02 · BETRIEBSSYSTEM & AGENDA -->
+  <section class="slide" data-spk="Ralph Kindermann" data-role="CRM · Client Success" data-color="--r-ralph"
+    data-notes="Ralph: Um ein verteiltes Team über zwei Städte fehlerfrei zu orchestrieren, arbeiten wir nach dem Prinzip einer Frontier Firm — ein digitales, hochautomatisiertes Betriebssystem statt träger Strukturen. In Hamburg steuern Olha die visuelle Exzellenz, in Berlin Yahya die Inbound-Tech und ich das CRM & die SOPs. Heute führen wir Sie durch Problem, Positionierung, Branding, Workflow, Testing, CRM und Tech/Compliance.">
+    <div class="slide-inner stack">
+      <p class="eyebrow rise">02 · Das Mirrou-Betriebssystem</p>
+      <h2 class="title rise" style="max-width:18ch">Ein Studio, das sich selbst orchestriert.</h2>
+      <p class="lead rise">Vier Menschen, zwei Standorte, ein digitales Betriebssystem. Kein Agentur-Overhead — eine Frontier Firm, in der jede Domäne ein menschliches und ein KI-Pendant hat.</p>
+      <div class="team rise" style="margin-top:8px">
+        <div class="member" style="--spk:var(--r-olha)"><div class="md"></div><div class="mn">Olha</div><div class="mr">Creative Director</div><div class="ml">Hamburg · Visuelle Identität, Produktion</div></div>
+        <div class="member" style="--spk:var(--r-denys)"><div class="md"></div><div class="mn">Denys</div><div class="mr">Performance & Analytics</div><div class="ml">Berlin · Daten, Kampagnen, Benchmarks</div></div>
+        <div class="member" style="--spk:var(--r-ralph)"><div class="md"></div><div class="mn">Ralph</div><div class="mr">CRM & Client Success</div><div class="ml">Berlin · Prozesse, Onboarding, SOPs</div></div>
+        <div class="member" style="--spk:var(--r-yahya)"><div class="md"></div><div class="mn">Yahya</div><div class="mr">Growth & Project Lead</div><div class="ml">Berlin · Strategie, Architektur, Tech</div></div>
+      </div>
+      <div class="agenda rise" style="margin-top:20px">
+        <span class="pill"><b>WHY</b> · Creative Fatigue</span>
+        <span class="pill"><b>HOW</b> · Positionierung & Architektur</span>
+        <span class="pill">Branding & Hybrid Production</span>
+        <span class="pill">Testing & Daten-Loop</span>
+        <span class="pill">CRM & SOPs</span>
+        <span class="pill"><b>WHAT</b> · Tech, Live & Compliance</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- 03 · WHY · CREATIVE FATIGUE -->
+  <section class="slide" data-spk="Yahya Yildirim" data-role="Growth · Inbound · Project Lead" data-color="--r-yahya"
+    data-notes="Yahya: Der Grund für Mirrou ist ein lautloser Killer im Paid Social — Creative Fatigue. Beauty/Health/Lifestyle-Marken im DACH stoßen ab 20.000 € Monats-Spend an ein unsichtbares Limit: Werbemittel brennen nach 14–28 Tagen aus. Folge: CTR-Einbruch 35–55 %, CPC-Anstieg bis 70 %. Klassische Kreativagenturen reagieren zu langsam, reine Performance-Agenturen liefern seelenlose Assets. Mirrou löst das mit einer kontinuierlichen Creative-Engine.">
+    <div class="slide-inner">
+      <p class="eyebrow rise">03 · Why — Das Kernproblem</p>
+      <div class="grid2 top" style="margin-top:18px">
+        <div class="stack">
+          <h2 class="title rise" style="font-size:clamp(30px,4.6vw,66px); max-width:16ch">70 % des Kampagnen­erfolgs hängen am Creative.</h2>
+          <p class="lead rise">Targeting ist Commodity. Was im Feed über Klick und Conversion entscheidet, ist das Asset. Doch ab 20–50 k€ Ad-Spend setzt nach 2–4 Wochen <em>Creative Fatigue</em> ein — und niemand hat dafür ein System gebaut.</p>
+          <div class="tags rise"><span class="tag">Meta · TikTok</span><span class="tag">Beauty · Health · Lifestyle</span><span class="tag">DACH</span></div>
+        </div>
+        <div class="rise curvewrap">
+          <p class="kicker" style="margin-bottom:14px">CTR-Verlauf nach Launch</p>
+          <svg viewBox="0 0 320 150" width="100%" style="height:auto;display:block" aria-label="CTR bricht nach Woche 3 ein">
+            <defs><linearGradient id="cg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#C8A25A" stop-opacity=".35"/><stop offset="1" stop-color="#C8A25A" stop-opacity="0"/></linearGradient></defs>
+            <line x1="0" y1="120" x2="320" y2="120" stroke="rgba(242,239,233,.12)"/>
+            <path d="M0,40 L90,42 L150,52 L210,92 L270,112 L320,118" fill="none" stroke="#C8A25A" stroke-width="2"/>
+            <path d="M0,40 L90,42 L150,52 L210,92 L270,112 L320,118 L320,120 L0,120 Z" fill="url(#cg)"/>
+            <circle cx="150" cy="52" r="3.5" fill="#E4C07A"/>
+            <text x="150" y="44" fill="#908D87" font-family="JetBrains Mono" font-size="8" text-anchor="middle">Woche 3 · Fatigue-Onset</text>
+          </svg>
+          <table class="data" style="margin-top:14px">
+            <tr><td>CTR-Rückgang</td><td class="num">−35 bis −55 %</td></tr>
+            <tr><td>CPC-Anstieg</td><td class="num">+45 bis +70 %</td></tr>
+            <tr><td>Fatigue-Onset</td><td class="num">2–4 Wochen</td></tr>
+          </table>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 04 · POSITIONIERUNG & CLAIM -->
+  <section class="slide" data-spk="Yahya Yildirim" data-role="Growth · Inbound · Project Lead" data-color="--r-yahya"
+    data-notes="Yahya: Unsere Positionierung lautet 'Algorithm of Soul' — wo Ästhetik Algorithmus wird. Wir verbinden die künstlerische Seele eines Premium-Markenbildes mit der Datenlogik des Algorithmus. Zielgruppe: D2C-Brands mit 10–150 k€ Monats-Ad-Spend, die keine Kompromisse zwischen Bildqualität und Performance wollen. Drei Modelle: E-Commerce & Catalog, Social Media & Advertising, Creative Retainer S/M/L.">
+    <div class="slide-inner">
+      <p class="eyebrow rise">04 · Positionierung & Claim</p>
+      <div class="grid2 top" style="margin-top:18px">
+        <div class="stack">
+          <h2 class="title rise"><span class="gold italic">Algorithm</span><br>of Soul.</h2>
+          <p class="lead rise">Der einzige Quadrant, den im DACH-Raum niemand besetzt: hohe Ästhetik <em>und</em> starkes Performance-Denken — spezialisiert auf Beauty, Health & Lifestyle.</p>
+          <div class="rise" style="margin-top:6px">
+            <table class="data">
+              <thead><tr><th>Paket</th><th>Preis</th></tr></thead>
+              <tbody>
+                <tr><td>E-Commerce & Catalog</td><td class="num">1.500–3.000 € / Shoot</td></tr>
+                <tr><td>Social Media & Advertising</td><td class="num">2.000–5.000 € / Set</td></tr>
+                <tr><td>Creative Retainer S/M/L</td><td class="num">2.000–15.000 € / Monat</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div class="rise" style="padding:10px 30px 30px 10px">
+          <div class="quad">
+            <span class="axL">Ästhetik ↑</span><span class="axB">Performance →</span>
+            <div class="pt" style="left:26%; top:30%"><div class="d"></div><div class="t">Boutique Studios</div></div>
+            <div class="pt" style="left:74%; top:74%"><div class="d"></div><div class="t">Performance Agencies</div></div>
+            <div class="pt" style="left:40%; top:64%"><div class="d"></div><div class="t">In-House Teams</div></div>
+            <div class="pt us" style="left:80%; top:22%"><div class="d"></div><div class="t">Mirrou</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 05 · FRONTIER FIRM ARCHITEKTUR -->
+  <section class="slide" data-spk="Yahya Yildirim" data-role="Growth · Inbound · Project Lead" data-color="--r-yahya"
+    data-notes="Yahya: Um kontinuierlichen Output ohne Personalüberhang zu liefern, haben wir die Frontier-Firm-Architektur implementiert — vier Schichten: Intelligence (Perplexity Spaces), Production (Adobe/Midjourney/Claude Code), Infrastructure (GCP/MCP) und Performance (Meta/TikTok). Wir arbeiten nach dem Perfect-Twin-Prinzip: jeder Spezialist wird durch ein KI-Pendant erweitert — Verdopplung ohne Headcount.">
+    <div class="slide-inner">
+      <p class="eyebrow rise">05 · How — Frontier Firm Architektur</p>
+      <div class="grid2 top" style="margin-top:16px">
+        <div class="stack">
+          <h2 class="title rise" style="font-size:clamp(28px,4.2vw,58px); max-width:14ch">Eine Agentur, die selbst eine Frontier Firm ist.</h2>
+          <p class="lead rise">KI ist keine Abkürzung, sondern die operative Schicht des gesamten Betriebs. Das System, das wir für Kunden bauen, ist das System, mit dem wir arbeiten.</p>
+          <p class="body rise"><b class="ink">Perfect Twin:</b> Olha → KI-Hintergründe · Denys → Data-Agent · Ralph → Workflow-Automation · Yahya → Claude Code. 5 Perplexity Spaces · 39 Wissensdokumente.</p>
+        </div>
+        <div class="layers rise">
+          <div class="layer"><span class="ln">Intelligence</span><span class="ld"><b>Perplexity Spaces</b> · Claude · Research, Strategie, Reasoning</span></div>
+          <div class="layer"><span class="ln">Production</span><span class="ld"><b>Adobe CC · Midjourney · Claude Code</b> · Foto, KI-Visuals, Web</span></div>
+          <div class="layer"><span class="ln">Infrastructure</span><span class="ld"><b>GCP · MCP · CLI</b> · Hosting, Konnektoren, Automatisierung</span></div>
+          <div class="layer"><span class="ln">Performance</span><span class="ld"><b>Meta · TikTok · Google Ads</b> · Analytics, Distribution, Reporting</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 06 · BRANDING DARK LUXURY -->
+  <section class="slide" data-spk="Olha Yevtushenko" data-role="Creative Director · Hamburg" data-color="--r-olha"
+    data-notes="Olha: Als Creative Director mache ich Mirrous Identität visuell spürbar — über den restriktiven Code 'Dark Luxury'. Deep Onyx (#080808) für visuelle Ruhe, Muted Gold (#C8A25A) extrem kontrolliert als Akzent, Ivory (#F2EFE9) für Lesbarkeit. Typografie: Cormorant Garamond als luxuriöse Display-Serif, Inter präzise serifenlos, JetBrains Mono für technische Details. Regel: cinematic Low-Key, Produkt im Mittelpunkt, Text minimal.">
+    <div class="slide-inner">
+      <p class="eyebrow rise">06 · Branding — Dark Luxury</p>
+      <div class="grid2 top" style="margin-top:16px">
+        <div class="stack">
+          <h2 class="title rise">Dark Luxury.</h2>
+          <p class="lead rise">Eine bewusste Gegenposition zum hell-minimalistischen DACH-Beauty-Markt. Schwarz mit Gold kommuniziert Premium ohne Aggressivität — und fällt im Feed auf.</p>
+          <div class="rise">
+            <p class="kicker" style="margin-bottom:12px">Typografie</p>
+            <div class="stack" style="--space:8px">
+              <div style="font-family:var(--serif); font-size:30px; color:var(--ink)">Cormorant Garamond <span class="note">— Display / Claim</span></div>
+              <div style="font-family:var(--sans); font-size:18px; color:var(--body)">Inter <span class="note">— Body / UI</span></div>
+              <div style="font-family:var(--mono); font-size:14px; color:var(--muted)">JetBrains Mono <span class="note">— Daten / Eyebrows</span></div>
+            </div>
+          </div>
+        </div>
+        <div class="rise">
+          <div class="swatches">
+            <div class="sw"><div class="chipc" style="background:#080808; border-bottom:1px solid var(--grid)"></div><div class="meta"><div class="hex">#080808</div><div class="nm">Deep Onyx</div></div></div>
+            <div class="sw"><div class="chipc" style="background:#C8A25A"></div><div class="meta"><div class="hex">#C8A25A</div><div class="nm">Muted Gold</div></div></div>
+            <div class="sw"><div class="chipc" style="background:#F2EFE9"></div><div class="meta"><div class="hex">#F2EFE9</div><div class="nm">Ivory</div></div></div>
+          </div>
+          <p class="body" style="margin-top:18px">12 Logo-Varianten · vollständiges Brandbook mit CSS-Tokens, Motion-Specs und Lokalisierungsregeln für 8 Sprachen.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 07 · VIER VISUAL-SYSTEME -->
+  <section class="slide" data-spk="Olha Yevtushenko" data-role="Creative Director · Hamburg" data-color="--r-olha"
+    data-notes="Olha: Vier Demo-Cases beweisen Bandbreite. Luminous Aura — Premium-Serum auf dunklem Marmor, Goldstaub, für Conversions. Vitality Pulse — kinetische Energie, Wasserspritzer, harte Schatten, für die ersten 3 Sekunden TikTok. Essence Drift — Nebel und Spiegelungen, emotionales Fragrance-Storytelling. Neural Glow — vollständig KI-generiert, biotech-Skincare, beweist: synthetische Welten fotorealistisch und rechtskonform.">
+    <div class="slide-inner stack">
+      <p class="eyebrow rise">07 · Vier Visual-Systeme</p>
+      <h2 class="title rise" style="font-size:clamp(28px,4vw,56px)">Vier Welten, eine Handschrift.</h2>
+      <div class="cardrow rise" style="grid-template-columns:repeat(4,1fr); margin-top:8px">
+        <div class="card" style="--accent:var(--gold)"><div class="idx">01</div><h4>Luminous Aura</h4><p>Premium-Serum auf dunklem Marmor, weicher Goldstaub. Optimiert für klassische Conversions.</p></div>
+        <div class="card" style="--accent:var(--r-denys)"><div class="idx">02</div><h4>Vitality Pulse</h4><p>Kinetische Energie, Wasserspritzer, harte Schatten. Für die ersten 3 Sekunden auf TikTok.</p></div>
+        <div class="card" style="--accent:var(--r-ralph)"><div class="idx">03</div><h4>Essence Drift</h4><p>Nebel und Spiegelungen für emotionales Storytelling im Fragrance-Segment.</p></div>
+        <div class="card" style="--accent:var(--gold-light)"><div class="idx">04</div><h4>Neural Glow</h4><p>Vollständig KI-generiert. Biotech-Skincare über fluoreszierende Schaltkreise — fotorealistisch & rechtskonform.</p></div>
+      </div>
+      <p class="note rise" style="margin-top:6px">Drei Hybrid-Cases (echtes Produkt + KI-Umgebung) · ein Pure-AI-Case als Proof of Concept.</p>
+    </div>
+  </section>
+
+  <!-- 08 · HYBRID PRODUCTION -->
+  <section class="slide" data-spk="Olha Yevtushenko" data-role="Creative Director · Hamburg" data-color="--r-olha"
+    data-notes="Olha: Unser Kernprozess ist Hybrid Production. Das physische Produkt — Textur, Flakonglas, Label — fotografieren wir real im Studio Hamburg, das garantiert Echtheit. Hintergründe und Lichtstimmungen rendern wir digital per Midjourney/Firefly. Produktion schrumpft von 6 Tagen Set-Bau auf 4 Stunden Composing. Alle hybriden Assets erhalten kryptografische C2PA-Metadaten — Transparenz und Rechtssicherheit nach EU AI Act.">
+    <div class="slide-inner">
+      <p class="eyebrow rise">08 · Hybrid Production Workflow</p>
+      <div class="grid2 top" style="margin-top:16px">
+        <div class="stack">
+          <h2 class="title rise" style="font-size:clamp(28px,4.2vw,58px); max-width:15ch">Das Produkt ist echt. Die Welt ist skalierbar.</h2>
+          <p class="lead rise">Produkt real fotografiert in Hamburg — Hintergründe per KI gerendert. Kein Re-Shooting für Varianten, volle Provenance per C2PA.</p>
+          <div class="stats rise" style="grid-template-columns:1fr 1fr; margin-top:6px">
+            <div class="stat"><div class="v" data-count="6"><span>6</span></div><div class="l">Tage Set-Bau · klassisch</div></div>
+            <div class="stat"><div class="v"><span class="gold">4 h</span></div><div class="l">Digitales Composing · hybrid</div></div>
+          </div>
+        </div>
+        <div class="rise">
+          <div class="compare">
+            <div class="c-real"><h5>Klassisch</h5><ul><li>4–8 Wochen Vorlaufzeit</li><li>Re-Shooting je Variante</li><li>Hohe Set-Kosten</li><li>Keine Provenance</li></ul></div>
+            <div class="c-ai"><h5>Mirrou Hybrid</h5><ul><li>Echtes Produkt + KI-Welt</li><li>Varianten ohne Re-Shoot</li><li>4 h Composing</li><li>C2PA-Metadaten · EU-AI-Act-ready</li></ul></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 09 · KANALGEWICHTUNG & KPIs -->
+  <section class="slide" data-spk="Denys Demyanyshyn" data-role="Performance & Analytics · Berlin" data-color="--r-denys"
+    data-notes="Denys: Ich übersetze Olhas Kreation in messbare KPIs. Wir verteilen das Mediabudget auf 5 Kanäle: 40 % Meta (Awareness/Consideration, Leitmetrik CTR), 25 % TikTok (Hook-Tests, Thumb-stop > 35 %), 20 % Google Search (Conversion bei Kaufabsicht), 10 % E-Mail (Reaktivierung), 5 % LinkedIn (B2B-Trust).">
+    <div class="slide-inner">
+      <p class="eyebrow rise">09 · Kanalgewichtung & KPIs</p>
+      <div class="grid2 top" style="margin-top:18px">
+        <div class="stack">
+          <h2 class="title rise" style="font-size:clamp(28px,4.2vw,58px)">Budget folgt der Hypothese.</h2>
+          <p class="lead rise">Strategischer 5-Kanal-Mix — jede Achse mit eigener Leitmetrik, kein Streuverlust.</p>
+        </div>
+        <div class="rise bars">
+          <div class="bar" style="--w:100%"><span class="bn">Meta</span><span class="track"><span class="fill"></span></span><span class="bv">40%</span></div>
+          <div class="bar" style="--w:62.5%"><span class="bn">TikTok</span><span class="track"><span class="fill"></span></span><span class="bv">25%</span></div>
+          <div class="bar" style="--w:50%"><span class="bn">Google</span><span class="track"><span class="fill"></span></span><span class="bv">20%</span></div>
+          <div class="bar" style="--w:25%"><span class="bn">E-Mail</span><span class="track"><span class="fill"></span></span><span class="bv">10%</span></div>
+          <div class="bar" style="--w:12.5%"><span class="bn">LinkedIn</span><span class="track"><span class="fill"></span></span><span class="bv">5%</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 10 · DATEN-LOOP -->
+  <section class="slide" data-spk="Denys Demyanyshyn" data-role="Performance & Analytics · Berlin" data-color="--r-denys"
+    data-notes="Denys: Unser geschlossener Datenkreislauf ist der 5-Schritt-Algorithmus: Creative Audit → 3 Hypothesen → Hybrid-Umsetzung → isolierter Test (5 Tage, minimaler Split) → erst nach Signifikanz skalieren. Das Creative Learning Log archiviert jedes Ergebnis. Die Testing-Matrix isoliert Craft-, Data-, Luxury- und Results-Winkel.">
+    <div class="slide-inner stack">
+      <p class="eyebrow rise">10 · Der Daten-Loop</p>
+      <h2 class="title rise" style="font-size:clamp(28px,4vw,56px)">Aus Creatives wird ein lernendes System.</h2>
+      <div class="pipe rise" style="margin-top:10px">
+        <div class="pstage"><div class="ps">01</div><div class="pn">Creative Audit</div></div>
+        <div class="pstage"><div class="ps">02</div><div class="pn">Visual Brief</div></div>
+        <div class="pstage"><div class="ps">03</div><div class="pn">Hybrid Execution</div></div>
+        <div class="pstage"><div class="ps">04</div><div class="pn">Performance Layer</div></div>
+        <div class="pstage"><div class="ps">05</div><div class="pn">Data Feedback Loop</div></div>
+      </div>
+      <div class="grid2 rise" style="margin-top:22px; align-items:start">
+        <p class="body">Nach 2–3 Wochen Live-Schaltung: Gewinner identifizieren, Hypothesen validieren, Learning Log aktualisieren — bei Retainer-Kunden startet automatisch der nächste Zyklus.</p>
+        <div class="tags"><span class="tag">Craft</span><span class="tag">Data</span><span class="tag">Luxury</span><span class="tag">Results</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 11 · 25-TAGE-TESTPLAN -->
+  <section class="slide" data-spk="Denys Demyanyshyn" data-role="Performance & Analytics · Berlin" data-color="--r-denys"
+    data-notes="Denys: Ein Launch folgt einem 25-Tage-Testplan. Sprint 1 (Tag 1–8): Pixel-Tracking, Audiences, Baseline. Sprint 2 (Tag 9–16): A/B-Tests für Hooks und Landingpages. Sprint 3 (Tag 17–25): Gewinner skalieren. Feste Rules-Engines schließen Emotion aus: CTR < 1,5 % nach 3 Tagen → Ad stoppen, Hook tauschen. CPL < 12 € → Budget automatisch +25 % pro Tag.">
+    <div class="slide-inner stack">
+      <p class="eyebrow rise">11 · Der 25-Tage-Testplan</p>
+      <h2 class="title rise" style="font-size:clamp(28px,4vw,56px)">Drei Sprints. Null Bauchgefühl.</h2>
+      <div class="cardrow rise" style="grid-template-columns:repeat(3,1fr); margin-top:8px">
+        <div class="card" style="--accent:var(--r-denys)"><div class="idx">Sprint 1 · Tag 1–8</div><h4>Setup & Baseline</h4><p>Pixel-Tracking, Audience-Definition, Baseline-Erfassung.</p></div>
+        <div class="card" style="--accent:var(--r-denys)"><div class="idx">Sprint 2 · Tag 9–16</div><h4>A/B-Test</h4><p>Hook- und Landingpage-Tests in isolierten Kampagnen.</p></div>
+        <div class="card" style="--accent:var(--gold)"><div class="idx">Sprint 3 · Tag 17–25</div><h4>Scale</h4><p>Statistisch signifikante Gewinner skalieren.</p></div>
+      </div>
+      <div class="rise" style="margin-top:16px; display:flex; gap:14px; flex-wrap:wrap">
+        <span class="tag"><span class="mono">IF</span> CTR &lt; 1,5 % @ 3d → Stop & Hook-Tausch</span>
+        <span class="tag"><span class="mono">IF</span> CPL &lt; 12 € → Budget +25 % / Tag</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- 12 · CUSTOMER JOURNEYS -->
+  <section class="slide" data-spk="Ralph Kindermann" data-role="CRM · Client Success · Berlin" data-color="--r-ralph"
+    data-notes="Ralph: Zwei Pfade konvertieren Leads verlustfrei. Inbound: Kunde sieht Meta-Ad → mirrou.studio → Mission Deck → Strategiegespräch mit individuellem Creative-Audit → hohe Abschlussquote. Outbound: Ich recherchiere aktive Ads, erstelle ein personalisiertes Video-Audit, kontaktiere den CMO auf LinkedIn, biete ein risikoarmes 14-Tage-Testpaket — nach Performance-Beweis Konversion in den Retainer.">
+    <div class="slide-inner stack">
+      <p class="eyebrow rise">12 · Customer Journeys</p>
+      <h2 class="title rise" style="font-size:clamp(28px,4vw,56px)">Zwei Pfade, ein Ziel: der Retainer.</h2>
+      <div class="paths rise" style="margin-top:8px">
+        <div class="path"><h4 class="gold">Inbound</h4><ol>
+          <li>Meta-Ad weckt Aufmerksamkeit</li><li>Landing auf mirrou.studio</li><li>Mission Deck Download</li><li>Strategiegespräch + Creative-Audit</li><li>Abschluss → Retainer</li></ol></div>
+        <div class="path"><h4 class="light">Outbound</h4><ol>
+          <li>Recherche aktiver Skincare-Ads</li><li>Personalisiertes Video-Audit</li><li>LinkedIn-Kontakt zum CMO</li><li>14-Tage-Testpaket (risikoarm)</li><li>Performance-Beweis → Retainer</li></ol></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 13 · CRM PIPELINE & SCORE -->
+  <section class="slide" data-spk="Ralph Kindermann" data-role="CRM · Client Success · Berlin" data-color="--r-ralph"
+    data-notes="Ralph: Wir nutzen HubSpot als CRM und Notion als Wissensdatenbank. Sieben Pipeline-Stufen vom Inbound Lead bis Closed Won. Ein automatisierter Qualifizierungs-Score vergibt Punkte für Ad-Spend, Branche und Erreichbarkeit. Score ≥ 8 → sofortiger Slack-Alarm, Antwort in 15 Minuten. Kleinere Budgets gehen automatisch ins Boutique-Segment.">
+    <div class="slide-inner stack">
+      <p class="eyebrow rise">13 · CRM Pipeline & Lead-Score</p>
+      <h2 class="title rise" style="font-size:clamp(28px,4vw,56px)">Kein Lead geht verloren.</h2>
+      <div class="pipe rise" style="margin-top:8px">
+        <div class="pstage"><div class="ps">01</div><div class="pn">Inbound Lead</div></div>
+        <div class="pstage"><div class="ps">02</div><div class="pn">Intro Call</div></div>
+        <div class="pstage"><div class="ps">03</div><div class="pn">Creative Audit</div></div>
+        <div class="pstage"><div class="ps">04</div><div class="pn">Proposal</div></div>
+        <div class="pstage"><div class="ps">05</div><div class="pn">Negotiation</div></div>
+        <div class="pstage"><div class="ps">06</div><div class="pn">Onboarding</div></div>
+        <div class="pstage"><div class="ps">07</div><div class="pn">Closed Won</div></div>
+      </div>
+      <div class="grid2 rise" style="margin-top:22px; align-items:start">
+        <p class="body">Automatischer Qualifizierungs-Score über neun Kriterien (Ad-Spend, Branche, Erreichbarkeit). <b class="ink">≥ 8 Punkte</b> → Slack-Alarm, Antwort in 15 Minuten.</p>
+        <div class="tags"><span class="tag">HubSpot · CRM</span><span class="tag">Notion · Knowledge</span><span class="tag">Slack-Alerts</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 14 · SOPs & KNOWLEDGE OS -->
+  <section class="slide" data-spk="Ralph Kindermann" data-role="CRM · Client Success · Berlin" data-color="--r-ralph"
+    data-notes="Ralph: Qualität entsteht durch Wiederholbarkeit. Unser Knowledge-OS umfasst 5 Perplexity Spaces und Notion-Ordner (Growth, Production, Operations, Client Records). Jedes Mitglied arbeitet nach festen SOPs: Lead-Handling, Onboarding, Case-Study-Erstellung. Strenge Naming-Conventions sorgen dafür, dass der Perplexity Space über MCP-Schnittstellen Daten in Sekunden findet.">
+    <div class="slide-inner stack">
+      <p class="eyebrow rise">14 · SOPs & Knowledge OS</p>
+      <h2 class="title rise" style="font-size:clamp(28px,4vw,56px)">Wiederholbarkeit als Qualität.</h2>
+      <div class="cardrow rise" style="grid-template-columns:repeat(3,1fr); margin-top:8px">
+        <div class="card" style="--accent:var(--r-ralph)"><div class="idx">SOP 01</div><h4>Lead-Handling</h4><p>Qualifizierung, Score, Slack-Routing, Erstkontakt-Standard.</p></div>
+        <div class="card" style="--accent:var(--r-ralph)"><div class="idx">SOP 02</div><h4>Kunden-Onboarding</h4><p>Vertrag, AVV, Briefing, Zugänge, Kick-off-Checkliste.</p></div>
+        <div class="card" style="--accent:var(--r-ralph)"><div class="idx">SOP 03</div><h4>Case-Study-Erstellung</h4><p>Delivery-Standard, Learning Log, Übergabe-Protokoll.</p></div>
+      </div>
+      <p class="body rise" style="margin-top:16px"><b class="ink">5 Perplexity Spaces · 39 Wissensdokumente</b> — über MCP-Konnektoren in Sekunden durchsuchbar. Das Wissen ist Infrastruktur, nicht Ablage.</p>
+    </div>
+  </section>
+
+  <!-- 15 · TECH · LIVE · COMPLIANCE  (verifizierte Kennzahlen) -->
+  <section class="slide" data-spk="Yahya Yildirim" data-role="Growth · Inbound · Project Lead" data-color="--r-yahya"
+    data-notes="Yahya: Mirrou ist voll einsatzbereit. React 19, Vite 6, TypeScript, Tailwind v4, statisch vorgerendert via vite-react-ssg, deployed über Docker auf GCP Cloud Run in Frankfurt. Live gemessen: Lighthouse Desktop 100/100/100/100, sechs Security-Header im A-Grade. Performance-Engineering im geschlossenen Loop mit dem Chrome DevTools MCP. Compliance: EU AI Act Art. 50, C2PA, ab August 2026 voll greifend — wir sind bereits heute compliant. Vielen Dank — wir eröffnen die Fragerunde.">
+    <div class="slide-inner">
+      <p class="eyebrow rise">15 · What — Tech · Live · Compliance</p>
+      <div class="grid2 top" style="margin-top:14px">
+        <div class="stack">
+          <h2 class="title rise" style="font-size:clamp(26px,3.8vw,52px)">Nicht ein Konzept. Eine gemessene Realität.</h2>
+          <p class="lead rise">React 19 · Vite 6 · TypeScript 5.8 · Tailwind v4 · vite-react-ssg · Docker → nginx · GCP Cloud Run (europe-west3). 8 Sprachen, 345 vorgerenderte Seiten, 0 npm-Vulns.</p>
+          <div class="rise" style="display:flex; gap:14px; flex-wrap:wrap; margin-top:4px">
+            <span class="tag">6/6 Security-Header · A-Grade</span>
+            <span class="tag">Unused-JS 59 → 20 KiB</span>
+            <span class="tag">Chrome DevTools MCP · EU-safe</span>
+            <span class="tag">EU AI Act · Art. 50 · C2PA</span>
+          </div>
+          <div class="rise livecard" style="margin-top:8px">
+            <span class="livedot">Live · Cloud Run · Frankfurt</span>
+            <span class="lu">mirrou.studio</span>
+          </div>
+        </div>
+        <div class="rise">
+          <p class="kicker" style="margin-bottom:18px">Google Lighthouse · Desktop · live verifiziert</p>
+          <div class="gauges">
+            <div class="gauge"><div class="ring" data-p="100"><span>100</span></div><div class="gl">Performance</div></div>
+            <div class="gauge"><div class="ring" data-p="100"><span>100</span></div><div class="gl">Accessibility</div></div>
+            <div class="gauge"><div class="ring" data-p="100"><span>100</span></div><div class="gl">Best Practices</div></div>
+            <div class="gauge"><div class="ring" data-p="100"><span>100</span></div><div class="gl">SEO</div></div>
+          </div>
+          <p class="note" style="margin-top:18px; text-align:center">Mobile 78 / 97 / 96 / 100 · Rev. 00040-cdb · reproduzierbar via <span class="mono">npx lighthouse</span></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 16 · CLOSING -->
+  <section class="slide closing" data-spk="Mirrou Team" data-role="Olha · Denys · Ralph · Yahya" data-color="--r-yahya"
+    data-notes="Gemeinsam: Mirrou ist der Beweis, dass ein 4-Personen-Team mit dem richtigen System wie ein Studio mit 20 Personen operieren kann. Kein Effizienz-Hack — ein neues Modell. Vielen Dank für Ihre Aufmerksamkeit. Wir freuen uns auf Ihre Fragen. mirrou.studio.">
+    <div class="slide-inner">
+      <p class="eyebrow rise">Algorithm of Soul</p>
+      <h1 class="wm rise gold" style="margin-top:.1em">Mirrou</h1>
+      <p class="lead rise" style="margin:18px auto 0; max-width:54ch">Ein 4-Personen-Team. Ein System, das sich selbst orchestriert. Eine Agentur, die ihre eigene These beweist.</p>
+      <div class="rise" style="margin-top:34px; display:flex; gap:16px; justify-content:center; flex-wrap:wrap; align-items:center">
+        <span class="livedot">Live</span>
+        <span class="mono" style="font-size:15px; color:var(--ink); letter-spacing:.06em">mirrou.studio</span>
+      </div>
+      <p class="kicker rise" style="margin-top:26px">Danke · Fragerunde</p>
+    </div>
+  </section>
+
+</main>
+
+<!-- HUD -->
+<div class="chip" id="chip"><span class="dot"></span><b id="chip-name">—</b><span id="chip-role"></span></div>
+<div class="brandmark">MIRROU · <b>AOS</b></div>
+<div id="counter"><b id="cur">01</b> / <span id="tot">16</span></div>
+<div class="navhint" id="navhint">← → navigieren · S Sprecher-Notizen · F Vollbild</div>
+<div class="click-zone left" id="zl" aria-label="Zurück"></div>
+<div class="click-zone right" id="zr" aria-label="Weiter"></div>
+
+<!-- Presenter notes -->
+<div id="notes" aria-hidden="true">
+  <div class="nlabel" id="notes-spk">Sprecher-Notizen</div>
+  <p id="notes-text"></p>
+</div>
+
+<script>
+(function(){
+  "use strict";
+  var slides = Array.prototype.slice.call(document.querySelectorAll('.slide'));
+  var total = slides.length, idx = 0, notesOpen = false;
+  var elCur = document.getElementById('cur'), elTot = document.getElementById('tot'),
+      elProg = document.getElementById('progress'), elChipN = document.getElementById('chip-name'),
+      elChipR = document.getElementById('chip-role'), elChip = document.getElementById('chip'),
+      elNotes = document.getElementById('notes'), elNotesT = document.getElementById('notes-text'),
+      elNotesS = document.getElementById('notes-spk'), elHint = document.getElementById('navhint');
+  elTot.textContent = String(total).padStart(2,'0');
+
+  function pad(n){return String(n+1).padStart(2,'0');}
+
+  function render(){
+    slides.forEach(function(s,i){
+      s.classList.remove('active','past');
+      if(i===idx) s.classList.add('active');
+      else if(i<idx) s.classList.add('past');
+    });
+    var s = slides[idx];
+    elCur.textContent = pad(idx);
+    elProg.style.width = ((idx)/(total-1)*100)+'%';
+    // speaker chip
+    var color = s.getAttribute('data-color') || '--gold';
+    elChip.style.setProperty('--spk','var('+color+')');
+    elChipN.textContent = s.getAttribute('data-spk') || '';
+    elChipR.textContent = s.getAttribute('data-role') ? '· '+s.getAttribute('data-role') : '';
+    // notes
+    elNotesT.textContent = s.getAttribute('data-notes') || '';
+    elNotesS.textContent = (s.getAttribute('data-spk')||'Sprecher')+' · Notizen';
+    // animate gauges
+    s.querySelectorAll('.ring').forEach(function(r){
+      var p = +r.getAttribute('data-p')||0;
+      r.style.setProperty('--p','0');
+      requestAnimationFrame(function(){ setTimeout(function(){ r.style.setProperty('--p',p); },120); });
+    });
+    // count-up
+    s.querySelectorAll('[data-count]').forEach(function(el){ countUp(el); });
+  }
+
+  function countUp(el){
+    var target = +el.getAttribute('data-count'); if(isNaN(target)) return;
+    var span = el.querySelector('span')||el, t0=null, dur=900;
+    function step(t){ if(!t0)t0=t; var k=Math.min((t-t0)/dur,1);
+      span.textContent = Math.round(target*(1-Math.pow(1-k,3)));
+      if(k<1) requestAnimationFrame(step); }
+    requestAnimationFrame(step);
+  }
+
+  function go(n){ idx = Math.max(0, Math.min(total-1, n)); render(); }
+  function next(){ go(idx+1); } function prev(){ go(idx-1); }
+
+  function toggleNotes(){ notesOpen=!notesOpen; elNotes.classList.toggle('show',notesOpen); elNotes.setAttribute('aria-hidden', !notesOpen); }
+
+  document.addEventListener('keydown', function(e){
+    switch(e.key){
+      case 'ArrowRight': case 'PageDown': case ' ': e.preventDefault(); next(); break;
+      case 'ArrowLeft': case 'PageUp': prev(); break;
+      case 'Home': go(0); break; case 'End': go(total-1); break;
+      case 's': case 'S': case 'n': case 'N': toggleNotes(); break;
+      case 'f': case 'F':
+        if(!document.fullscreenElement && document.documentElement.requestFullscreen) document.documentElement.requestFullscreen();
+        else if(document.exitFullscreen) document.exitFullscreen();
+        break;
+      default:
+        if(e.key>='1'&&e.key<='9'){ go(parseInt(e.key,10)-1); }
+    }
+  });
+  document.getElementById('zr').addEventListener('click', next);
+  document.getElementById('zl').addEventListener('click', prev);
+
+  // hide nav hint after a while
+  setTimeout(function(){ elHint.style.opacity='0'; }, 5200);
+  document.addEventListener('mousemove', function(){ elHint.style.opacity='.0'; });
+
+  // swipe (touch)
+  var x0=null;
+  document.addEventListener('touchstart',function(e){ x0=e.touches[0].clientX; },{passive:true});
+  document.addEventListener('touchend',function(e){ if(x0===null)return; var dx=e.changedTouches[0].clientX-x0;
+    if(Math.abs(dx)>50){ dx<0?next():prev(); } x0=null; });
+
+  // hash deep-link (#3)
+  function fromHash(){ var h=parseInt((location.hash||'').replace('#',''),10); if(!isNaN(h)) idx=Math.max(0,Math.min(total-1,h-1)); }
+  fromHash();
+  render();
+})();
+</script>
+</body>
+</html>
