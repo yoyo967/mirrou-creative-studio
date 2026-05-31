@@ -29,7 +29,7 @@ export default function ContactForm() {
   return (
     <section
       id="contact"
-      className="py-20 md:py-32 px-6 md:px-10 max-w-7xl mx-auto border-t border-white/6"
+      className="py-20 md:py-32 px-6 md:px-10 max-w-7xl mx-auto border-t border-white/6 bg-bg"
     >
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16">
         <div className="lg:col-span-5">

@@ -9,7 +9,7 @@ export default function Footer() {
   const { t } = useTranslation("footer");
 
   return (
-    <footer id="main-footer" className="border-t border-white/6 mt-32">
+    <footer id="main-footer" className="border-t border-white/6 mt-32 bg-bg">
       {/* ── Conversion CTA ─────────────────────────────────────────── */}
       <div className="border-b border-white/6">
         <div className="max-w-7xl mx-auto px-6 md:px-10 py-24 md:py-32 flex flex-col md:flex-row items-start md:items-end justify-between gap-10">
@@ -69,7 +69,7 @@ export default function Footer() {
           <ul className="space-y-3 text-[15px]">
             {PILLARS.map((p) => (
               <li key={p.slug}>
-                <Link to={`/${p.slug}`} className="text-ink/85 hover:text-accent transition">
+                <Link to={`/${p.slug}`} className="text-ink/85 hover:text-accent transition inline-block py-1">
                   {p.shortLabel}
                 </Link>
               </li>
@@ -80,14 +80,14 @@ export default function Footer() {
         <div className="md:col-span-2">
           <h2 className="eyebrow text-muted mb-5">{t("studioHeading")}</h2>
           <ul className="space-y-3 text-[15px]">
-            <li><Link to="/studio" className="text-ink/85 hover:text-accent transition">{t("about")}</Link></li>
-            <li><Link to="/pakete" className="text-ink/85 hover:text-accent transition">{t("packages")}</Link></li>
-            <li><Link to="/cases" className="text-ink/85 hover:text-accent transition">{t("cases")}</Link></li>
-            <li><Link to="/press" className="text-ink/85 hover:text-accent transition">{t("press")}</Link></li>
-            <li><Link to="/blog" className="text-ink/85 hover:text-accent transition">{t("resources")}</Link></li>
-            <li><Link to="/trust" className="text-ink/85 hover:text-accent transition">{t("trustCenter")}</Link></li>
-            <li><Link to="/brand-book" className="text-ink/85 hover:text-accent transition">{t("brandBook")}</Link></li>
-            <li><Link to="/kontakt" className="text-ink/85 hover:text-accent transition">{t("contact")}</Link></li>
+            <li><Link to="/studio" className="text-ink/85 hover:text-accent transition inline-block py-1">{t("about")}</Link></li>
+            <li><Link to="/pakete" className="text-ink/85 hover:text-accent transition inline-block py-1">{t("packages")}</Link></li>
+            <li><Link to="/cases" className="text-ink/85 hover:text-accent transition inline-block py-1">{t("cases")}</Link></li>
+            <li><Link to="/press" className="text-ink/85 hover:text-accent transition inline-block py-1">{t("press")}</Link></li>
+            <li><Link to="/blog" className="text-ink/85 hover:text-accent transition inline-block py-1">{t("resources")}</Link></li>
+            <li><Link to="/trust" className="text-ink/85 hover:text-accent transition inline-block py-1">{t("trustCenter")}</Link></li>
+            <li><Link to="/brand-book" className="text-ink/85 hover:text-accent transition inline-block py-1">{t("brandBook")}</Link></li>
+            <li><Link to="/kontakt" className="text-ink/85 hover:text-accent transition inline-block py-1">{t("contact")}</Link></li>
           </ul>
         </div>
 
@@ -95,22 +95,22 @@ export default function Footer() {
           <h2 className="eyebrow text-muted mb-5">{t("connectHeading")}</h2>
           <ul className="space-y-3 text-[15px]">
             <li>
-              <a href={SITE.social.instagram} rel="noopener" className="text-ink/85 hover:text-accent transition">
+              <a href={SITE.social.instagram} rel="noopener" className="text-ink/85 hover:text-accent transition inline-block py-1">
                 Instagram
               </a>
             </li>
             <li>
-              <a href={SITE.social.linkedin} rel="noopener" className="text-ink/85 hover:text-accent transition">
+              <a href={SITE.social.linkedin} rel="noopener" className="text-ink/85 hover:text-accent transition inline-block py-1">
                 LinkedIn
               </a>
             </li>
             <li>
-              <a href={SITE.social.facebook} rel="noopener" className="text-ink/85 hover:text-accent transition">
+              <a href={SITE.social.facebook} rel="noopener" className="text-ink/85 hover:text-accent transition inline-block py-1">
                 Facebook
               </a>
             </li>
             <li>
-              <a href={`mailto:${SITE.email}`} className="text-ink/85 hover:text-accent transition">
+              <a href={`mailto:${SITE.email}`} className="text-ink/85 hover:text-accent transition inline-block py-1">
                 {SITE.email}
               </a>
             </li>
