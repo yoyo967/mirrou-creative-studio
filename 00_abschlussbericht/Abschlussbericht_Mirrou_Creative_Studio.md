@@ -56,7 +56,7 @@ Im Rahmen dieser Abschlussarbeit wurde Mirrou vollstandig konzipiert, dokumentie
 
 **Das zentrale Ergebnis:**
 
-Mirrou ist nicht nur ein Konzept auf Papier. Die Website ist live, die Infrastruktur steht, die Prozesse sind dokumentiert, die Compliance ist implementiert. Ein Vier-Personen-Team hat durch systematische KI-Orchestrierung ein Projekt realisiert, das in Umfang und Tiefe dem Output eines deutlich grosseren Studios entspricht.
+Mirrou ist nicht nur ein Konzept auf Papier. Die Website ist live und in Referenzqualitat gemessen (Lighthouse Desktop 100/100/100/100, sechs Security-Header im A-Grade, EU-gehostet), die Infrastruktur steht, die Prozesse sind dokumentiert, die Compliance ist implementiert. Ein Vier-Personen-Team hat durch systematische KI-Orchestrierung ein Projekt realisiert, das in Umfang und Tiefe dem Output eines deutlich grosseren Studios entspricht.
 
 **Die zentrale Erkenntnis:**
 
@@ -366,7 +366,17 @@ Live in unter 10 Minuten
 
 ### 6.6 MCP-Server-Architektur
 
-Das Model Context Protocol (MCP) verbindet KI-Modelle mit externen Tools. Mirrou nutzt MCP-Konnektoren fur Google Drive, GitHub, Filesystem-Zugriff und Web-Fetching. Das bedeutet: Perplexity kann direkt auf Drive-Dokumente zugreifen, Claude Code hat Vollzugriff auf lokale Projektordner, und Canva kann Slides aus dem KI-Kontext heraus generieren.
+Das Model Context Protocol (MCP) verbindet KI-Modelle mit externen Tools. Mirrou nutzt MCP-Konnektoren fur Google Drive, GitHub, Filesystem-Zugriff, Web-Fetching, Notion und Canva. Das bedeutet: Perplexity kann direkt auf Drive-Dokumente zugreifen, Claude Code hat Vollzugriff auf lokale Projektordner, und Canva kann Slides aus dem KI-Kontext heraus generieren.
+
+Ein strategisch zentraler Konnektor ist der **Chrome DevTools MCP** — ein offizieller, quelloffener MCP-Server von Google/Chrome, der dem Coding-Agent die volle DevTools-Maschine gibt: Performance-Traces mit Core Web Vitals (LCP, INP, CLS), Lighthouse-Audits, Netzwerk- und Console-Inspektion sowie Geraete-Emulation. Damit wird Performance-Optimierung zu einem geschlossenen Loop direkt in der Entwicklungsumgebung: messen, Engpass identifizieren, im Code beheben, erneut messen. Der Konnektor ist projekt-versioniert (`.mcp.json`) und EU-konform konfiguriert — kein Datenabfluss an Google-Telemetrie- oder CrUX-Endpunkte (Flags `--no-performance-crux`, `--no-usage-statistics`, `--isolated`, `--headless`).
+
+| MCP-Konnektor | Funktion |
+|---------------|----------|
+| Filesystem | Vollzugriff Claude Code auf Projektordner |
+| GitHub | Versionierung, Commits, Repo-Operationen |
+| Google Drive | Dokumentenzugriff fur Perplexity und Claude |
+| Chrome DevTools | Performance-Traces, Lighthouse, CWV, Netzwerk-Debugging (EU-safe) |
+| Canva / Notion | Slide- und Wissens-Generierung aus dem KI-Kontext |
 
 ### 6.7 Co-Creation Matrix
 
@@ -394,13 +404,14 @@ Die Mirrou-Website wurde als vollstandige React-Applikation mit Static Site Gene
 | Komponente | Technologie |
 |------------|-------------|
 | Framework | React 19 + Vite 6 |
-| Sprache | TypeScript 5.8 |
+| Sprache | TypeScript 5.8 (typsicher via @types/react 19) |
 | Styling | Tailwind CSS v4 |
-| SSG | vite-react-ssg |
-| Internationalisierung | i18next + react-i18next |
-| 3D-Effekte | Three.js + @react-three/fiber |
-| Animationen | Motion (Framer Motion Nachfolger) |
-| Containerisierung | Docker + nginx |
+| Rendering | vite-react-ssg — statisches Pre-Rendering aller Routen |
+| Code-Splitting | Route-Level-Lazy-Loading (react-router) + Vendor-Chunks (Motion, Router, Icons) |
+| Internationalisierung | i18next + react-i18next (8 Sprachen, dynamischer Locale-Import) |
+| Visuelle Effekte | Motion (Framer-Motion-Nachfolger) + Canvas-2D-Partikelsystem (kein Three.js) |
+| Code-Qualitat | ESLint (Flat Config) + tsc-Typecheck als Build-Gates |
+| Containerisierung | Docker (Multi-Stage) + nginx:alpine (gzip-9, Security-Header) |
 | Hosting | GCP Cloud Run (europe-west3 Frankfurt) |
 
 ### 7.2 Seitenstruktur
@@ -424,7 +435,7 @@ Die Website ist in acht Sprachen verfugbar: Deutsch, Englisch, Spanisch, Italien
 
 ### 7.4 Hosting und DSGVO
 
-Die Entscheidung fur GCP Cloud Run in der Region europe-west3 (Frankfurt) ist DSGVO-begrundet: Alle Daten bleiben in der EU. Google Analytics 4 wird mit IP-Anonymisierung betrieben. Die Website lauft als Docker-Container hinter einem nginx-Reverse-Proxy.
+Die Entscheidung fur GCP Cloud Run in der Region europe-west3 (Frankfurt) ist DSGVO-begrundet: Alle Daten bleiben in der EU. Die Website setzt zum Launch ausschliesslich technisch notwendige Cookies und betreibt kein Tracking — kunftiges Analytics wird ausschliesslich uber ein DSGVO-konformes Consent-Gate aktiviert. Die Website lauft als Docker-Container hinter nginx, das sechs Security-Header live ausliefert: HSTS mit Preload, restriktive Content-Security-Policy (ohne `unsafe-eval`), X-Frame-Options DENY, X-Content-Type-Options, Referrer-Policy und Permissions-Policy.
 
 ### 7.5 SEO-Architektur
 
@@ -436,13 +447,34 @@ Der vollstandige Build-und-Deployment-Prozess — von Code-Anderung bis Live-Web
 
 ### 7.7 Technische Kennzahlen
 
+**Struktur:**
+
 | Metrik | Wert |
 |--------|------|
 | React-Komponenten | 37+ |
-| Route-Dateien | 16+ |
+| Route-Dateien | 16 |
 | Lokalisierungsdateien | 8 Sprachen |
 | Blog-Artikel | 20 |
-| Build-Grosse (dist) | ~577 MB inkl. Assets |
+| Statisch vorgerenderte Seiten | 345 (alle Routen x 8 Sprachen) |
+| Sitemap-URLs | 280 |
+| npm-Sicherheitslucken | 0 |
+
+**Gemessene Qualitat (Google Lighthouse, Live-Revision `00040-cdb`, Stand 2026-05-31):**
+
+| Kategorie | Desktop | Mobile | Google-Schwelle |
+|-----------|:-------:|:------:|:---------------:|
+| Performance | 100 | 78 | >= 90 |
+| Accessibility | 100 | 97 | >= 90 |
+| Best Practices | 100 | 96 | >= 90 |
+| SEO | 100 | 100 | >= 90 |
+
+Desktop erreicht auf allen vier Achsen Referenzqualitat (100/100/100/100). Core Web Vitals: Desktop LCP 0,6 s / CLS 0,011; Mobile LCP 3,7 s / FCP 2,5 s / CLS 0. Die verbleibende Mobile-Lucke ist rein Lade-/Render-Geschwindigkeit auf gedrosselter Verbindung — kein struktureller Defekt. Alle Werte sind uber `npx lighthouse` reproduzierbar und werden in einem lebenden Audit-Dossier (`AUDIT.md`) bei jeder Anderung fortgeschrieben.
+
+### 7.8 Performance Engineering
+
+Die Website wird nicht einmalig optimiert, sondern in einem messdatengetriebenen Loop gepflegt. Eine Route-Level-Code-Splitting-Architektur stellt sicher, dass jede Seite nur ihr eigenes JavaScript ladt: Der initiale App-Chunk wurde von 349 KiB auf 107 KiB reduziert (−69 %), das ungenutzte JavaScript der Startseite von rund 59 KiB auf etwa 20 KiB. Die Mehrsprachigkeit ist dynamisch — nur das aktive Sprachpaket wird geladen, nicht alle acht.
+
+Der Optimierungs-Loop nutzt den Chrome DevTools MCP (siehe Abschnitt 6.6): Performance-Trace gegen die Live-URL, Insight-Analyse des LCP-Pfads, gezielter Code-Fix, erneute Messung. Qualitatssicherung erfolgt uber zwei automatisierte Gates — strenger TypeScript-Typecheck (`tsc --noEmit`) und ESLint (Flat Config) — die vor jedem Build laufen mussen.
 
 ---
 
@@ -490,7 +522,8 @@ Mirrou archiviert uber drei Jahre folgende obligatorische Log-Files:
 | Massnahme | Umsetzung |
 |-----------|-----------|
 | Hosting | GCP europe-west3 (Frankfurt) |
-| Analytics | GA4 mit IP-Anonymisierung |
+| Website-Analytics | Kein Tracking zum Launch — nur technisch notwendige Cookies; kunftiges Analytics nur uber Consent-Gate |
+| Security-Header | 6/6 live (A-Grade): HSTS-Preload, CSP, X-Frame-Options, X-Content-Type-Options, Referrer-/Permissions-Policy |
 | Vertragswerk | AVV als Standardbestandteil jedes Vertrags |
 | Unterauftragsverarbeiter | Dokumentiert: GCP, Adobe, Perplexity, Anthropic |
 | KI-Transparenzklausel | Bestandteil jedes Kundenvertrags |
@@ -652,7 +685,7 @@ Begrundung: Ein Space wird uberladen. Space pro Person verhindert Team-Wissen. F
 
 ### 10.2 Was hat funktioniert
 
-**Claude Code als Web-Builder:** Eine vollstandige React-Website mit Mehrsprachigkeit, 3D-Effekten, 20 Blog-Artikeln und GCP-Deployment — gebaut ohne externe Entwickler. Das beweist die Frontier Firm These operativ.
+**Claude Code als Web-Builder:** Eine vollstandige React-Website mit Mehrsprachigkeit (8 Sprachen), statischem Pre-Rendering, 20 Blog-Artikeln und automatisiertem GCP-Deployment — gebaut ohne externe Entwickler, mit live gemessener Desktop-Referenzqualitat (Lighthouse 100/100/100/100). Das beweist die Frontier Firm These operativ.
 
 **Perplexity Spaces als Wissens-OS:** Effektiver als Notion oder Confluence fur KI-native Teams. Die Kombination aus kuratierten Dokumenten und Echtzeit-Recherche eliminiert den Bruch zwischen Wissensbasis und aktuellem Marktgeschehen.
 
@@ -662,9 +695,9 @@ Begrundung: Ein Space wird uberladen. Space pro Person verhindert Team-Wissen. F
 
 ### 10.3 Was wir anders machen wurden
 
-**Fruhere Ordnerstruktur:** Das Projekt hat organisch gewachsen — mit der Folge von Datei-Duplikaten und fehlender Versionskontrolle. Git hatte von Beginn an eingesetzt werden sollen.
+**Fruhere Ordnerstruktur:** Das Projekt ist organisch gewachsen — mit der Folge von Datei-Duplikaten. Inzwischen steht das Repository unter durchgehender Git-Versionskontrolle, erganzt um ein lebendes Audit-Dossier (`AUDIT.md`) und eine projektgebundene Agent-Instruktion (`CLAUDE.md`) als Single Source of Truth fur den Systemzustand.
 
-**Tech-Stack-Dokumentation im Bericht:** Der Abschlussbericht referenziert teilweise Next.js, wahrend die Website tatsachlich mit Vite und React gebaut wurde. Konsistenz in der Dokumentation hatte fruher hergestellt werden sollen.
+**Tech-Stack-Dokumentation im Bericht:** Fruhe Entwurfe referenzierten teilweise einen anderen Stack (u. a. Next.js, Three.js), wahrend die Website tatsachlich mit Vite, React und vite-react-ssg gebaut ist. Die Dokumentation wurde inzwischen gegen den realen Code verifiziert und korrigiert — Konsistenz zwischen Code und Bericht ist seitdem ein gepflegter Prozess.
 
 **Echte Kunden-Daten:** Alle Case Studies sind konzeptionell. Ein echter Kunden-Case mit Live-Daten hatte die Glaubwurdigkeit signifikant erhoht.
 
@@ -691,8 +724,8 @@ Das Projekt hat ein vollstandig operationsfähiges Studio geschaffen. Die nachst
 **Kurzfristig (0–3 Monate):**
 - Erste echte Kundenakquise uber LinkedIn und Inbound
 - Erster bezahlter Case fur Portfolio mit echten Performance-Daten
-- SEO-Optimierung der Website (Core Web Vitals, Metadaten)
-- Mobile-Optimierung aller Seiten
+- Kontaktformular-Anbindung an HubSpot (DSGVO-Consent) zur Lead-Erfassung
+- Mobile-Performance auf >= 90 heben (LCP/FCP-Pfad) — gefuhrt durch den Chrome-DevTools-MCP-Trace-Loop; Desktop-Core-Web-Vitals bereits auf Bestwert
 
 **Mittelfristig (3–12 Monate):**
 - Aufbau einer echten Case-Study-Bibliothek mit Live-Daten
@@ -756,6 +789,8 @@ Das Mirrou Knowledge System umfasst 39 Markdown-Dokumente, organisiert in vier P
 **16 Route-Dateien:** HomePage, StudioPage, PaketePage, CasesPage, TeamMemberPage, BlogIndex, BrandBookPage, TrustPage, KontaktPage, DatenschutzPage, ImpressumPage, PillarPage, ClusterPage, PressPage, NotFoundPage, CaseDetailPage
 
 **8 Lokalisierungsdateien:** de.ts, en.ts, es.ts, fr.ts, it.ts, tr.ts, ru.ts, uk.ts
+
+**Code-Splitting:** Alle Leaf-Pages werden per react-router `lazy` als eigene Chunks geladen; nur das aktive Sprachpaket wird ausgeliefert. Ergebnis: schlanker initialer Payload, jede Route ladt nur ihr eigenes JavaScript.
 
 ### 12.4 Logo-System
 
