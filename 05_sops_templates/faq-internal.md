@@ -125,7 +125,7 @@ Demo-Case LumiSkin Berlin (D2C Skincare, DACH · 20 k€/Monat Ad-Spend, Creativ
 **Wo ist Mirrou aktiv?**
 - Website: [mirrou.studio](https://mirrou-creative-studio-180023265254.europe-west3.run.app/de)
 - Instagram: [@mirrou.studio](https://www.instagram.com/mirrou.studio/)
-- LinkedIn: [linkedin.com/company/mirrou-studio](https://linkedin.com/company/mirrou-studio)
+- LinkedIn: [www.linkedin.com/company/123233907](https://www.linkedin.com/company/123233907)
 - Facebook: [Mirrou Creative Studio](https://www.facebook.com/profile.php?id=61589455194800)
 
 **In welchen Sprachen ist die Website verfügbar?**

@@ -104,7 +104,7 @@ menschliches und ein KI-Pendant („Perfect Twin").
 
 ---
 
-### Olha Yevtushenko – Creative Director & Founder
+### Olha Yevtushenko – Creative Director & Founder · Performance Marketing
 
 **Standort:** Hamburg (HQ · Produktion & Creative Direction)  
 **Funktion im Unternehmen:** Kreative Gesamtleitung — jedes Asset, das das Studio verlässt, geht durch ihre Direction  

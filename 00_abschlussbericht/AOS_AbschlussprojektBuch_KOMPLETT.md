@@ -16,7 +16,7 @@ Frontier Firm Architektur, Hybrid Production und EU AI Act-Compliance als Wettbe
 
 | Name | Rolle | E-Mail | Standort |
 |------|-------|--------|----------|
-| Olha Yevtushenko | Creative Director & Founder | olhayevtushenko57@gmail.com | Hamburg |
+| Olha Yevtushenko | Creative Director & Founder · Performance Marketing | olhayevtushenko57@gmail.com | Hamburg |
 | Denys Demyanyshyn | Performance & Analytics | denys.demyanyshyn@dci-student.org | Berlin |
 | Ralph Kindermann | CRM & Client Success | info.ralphkindermann@gmail.com | Berlin |
 | Yahya Yildirim | Systems Architect & Growth Lead | yildirimyahya716@gmail.com | Berlin |
@@ -148,7 +148,7 @@ warum wir uns als „Performance Creative Studio" und nicht als klassische Fotog
 | Creative Campaign & Analytics Retainer | Laufende Creative-Engine + Testing | Brands mit 10–150k € Ad-Spend/Monat |
 
 **Das Gründerteam:**
-Olha Yevtushenko (Creative Director & Founder), Denys Demyanyshyn (Performance & Analytics),
+Olha Yevtushenko (Creative Director & Founder · Performance Marketing), Denys Demyanyshyn (Performance & Analytics),
 Ralph Kindermann (CRM & Client Success), Yahya Yildirim (Systems Architect & Growth Lead).
 
 Die Website ist nicht Konzept, sondern **live und produktiv** unter
@@ -270,7 +270,7 @@ menschliches und ein KI-Pendant („Perfect Twin").
 
 ---
 
-### Olha Yevtushenko – Creative Director & Founder
+### Olha Yevtushenko – Creative Director & Founder · Performance Marketing
 
 **Standort:** Hamburg (HQ · Produktion & Creative Direction)  
 **Funktion im Unternehmen:** Kreative Gesamtleitung — jedes Asset, das das Studio verlässt, geht durch ihre Direction  

@@ -284,7 +284,7 @@ const en = {
       memberOlhaFocus: "\"I don't just photograph products. I capture their soul's intention.\" Photography, AI visuals, creative direction — the algorithm behind Mirrou's visual language is Olha's.",
       memberDenysFocus: "Performance, A/B tests, data logic.",
       memberRalphFocus: "Structure, documentation, business planning.",
-      roleOlha: "Founder & Creative Director",
+      roleOlha: "Founder & Creative Director · Performance Marketing",
       roleDenys: "Campaign Manager & Marketing-AI",
       roleRalph: "CRM & Lifecycle Marketing",
       roleYahya: "Growth & Inbound Marketing",

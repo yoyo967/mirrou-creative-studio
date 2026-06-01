@@ -554,12 +554,12 @@ Mirrou operiert als Vier-Personen-Team an zwei Standorten:
 
 | Name | Rolle | Standort | Schwerpunkt |
 |------|-------|---------|-------------|
-| Olha Yevtushenko | Founder und Creative Director | Hamburg | Visuelle Identitat, Produktion, Asthetik |
+| Olha Yevtushenko | Founder und Creative Director · Performance Marketing | Hamburg | Visuelle Identitat, Produktion, Asthetik |
 | Denys Demyanyshyn | Performance und Analytics | Berlin | Daten, Kampagnen, Benchmarks |
 | Ralph Kindermann | CRM und Client Success | Berlin | Prozesse, Onboarding, Dokumentation |
 | Yahya Yildirim | Growth, Inbound und Project Lead | Berlin | Strategie, Architektur, Inbound, Koordination |
 
-### 9.2 Olha Yevtushenko — Creative Director
+### 9.2 Olha Yevtushenko — Creative Director · Performance Marketing
 
 Olha ist die kreative Seele von Mirrou. Jedes Asset, das das Studio verlasst, geht durch ihre Direktion. Ihre Kernbeitrage im Projekt:
 

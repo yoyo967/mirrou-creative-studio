@@ -400,7 +400,7 @@ const tr = {
       memberOlhaFocus: "\"Sadece ürün fotoğraflamıyorum. Ruhlarının niyetini yakalıyorum.\" Fotoğrafçılık, AI görseller, kreatif direktörlük — Mirrou'nun görsel dilinin arkasındaki algoritma Olha'nın algoritmasıdır.",
       memberDenysFocus: "Performans, A/B testleri, veri mantığı.",
       memberRalphFocus: "Yapı, dokümantasyon, iş planlaması.",
-      roleOlha: "Kurucu & Kreatif Direktor",
+      roleOlha: "Kurucu & Kreatif Direktor · Performance Marketing",
       roleDenys: "Kampanya Yöneticisi & Pazarlama-YZ",
       roleRalph: "CRM & Yaşam Döngüsü Pazarlaması",
       roleYahya: "Büyüme & Gelen Pazarlama",

@@ -9,7 +9,7 @@ version: 1.0
 Mirrou ist ein Studio. Die Vision ist Olhas. Hamburg ist Produktion und Creative Direction. Berlin ist Performance, AI und Growth.
 
 > „Mirrou ist nicht im Co-Working-Space entstanden — sondern aus der Notwendigkeit, eine ungewisse Situation in eine konkrete, eigenständige Zukunft zu verwandeln."
-> — Olha Yevtushenko, Founder & Creative Director
+> — Olha Yevtushenko, Founder & Creative Director · Performance Marketing
 
 ---
 
@@ -85,7 +85,7 @@ Projektlead, Positionierung, B2B-Outreach. Yahya verantwortet das Wachstum des S
 | E-Mail (allgemein) | hallo@mirrou.studio |
 | E-Mail (Presse) | press@mirrou.studio |
 | Instagram | [@mirrou.studio](https://www.instagram.com/mirrou.studio/) |
-| LinkedIn | [linkedin.com/company/mirrou-studio](https://linkedin.com/company/mirrou-studio) |
+| LinkedIn | [www.linkedin.com/company/123233907](https://www.linkedin.com/company/123233907) |
 | Facebook | [Mirrou Creative Studio](https://www.facebook.com/profile.php?id=61589455194800) |
 | Website | [mirrou.studio/de/kontakt](https://mirrou-creative-studio-180023265254.europe-west3.run.app/de/kontakt) |
 

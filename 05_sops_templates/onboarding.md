@@ -117,7 +117,7 @@ Weitere Spaces:
 | E-Mail | hallo@mirrou.studio |
 | Website | [mirrou.studio](https://mirrou-creative-studio-180023265254.europe-west3.run.app/de) |
 | Instagram | [@mirrou.studio](https://www.instagram.com/mirrou.studio/) |
-| LinkedIn | [linkedin.com/company/mirrou-studio](https://linkedin.com/company/mirrou-studio) |
+| LinkedIn | [www.linkedin.com/company/123233907](https://www.linkedin.com/company/123233907) |
 | Cases | [mirrou.studio/de/cases](https://mirrou-creative-studio-180023265254.europe-west3.run.app/de/cases) |
 | Trust Center | [mirrou.studio/de/trust](https://mirrou-creative-studio-180023265254.europe-west3.run.app/de/trust) |
 

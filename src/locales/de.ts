@@ -297,7 +297,7 @@ const de = {
       memberOlhaFocus: '„Ich fotografiere nicht einfach Produkte. Ich fange die Intention ihrer Seele ein.“ Fotografie, KI-Visuals, Creative Direction — der Algorithmus hinter der visuellen Sprache von Mirrou ist Olhas.',
       memberDenysFocus: "Performance, A/B-Tests, Datenlogik.",
       memberRalphFocus: "Struktur, Dokumentation, Businessplanung.",
-      roleOlha: "Gründerin & Creative Director",
+      roleOlha: "Gründerin & Creative Director · Performance Marketing",
       roleDenys: "Campaign Manager & Marketing-KI",
       roleRalph: "CRM & Lifecycle Marketing",
       roleYahya: "Growth & Inbound Marketing",

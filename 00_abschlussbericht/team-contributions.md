@@ -14,14 +14,14 @@ version: 1.0
 
 | Name | Rolle | Standort | Schwerpunkt |
 |------|-------|---------|-------------|
-| **Olha Yevtushenko** | Creative Director | Hamburg | Visuelle Identität, Produktion, Ästhetik |
+| **Olha Yevtushenko** | Creative Director · Performance Marketing | Hamburg | Visuelle Identität, Produktion, Ästhetik |
 | **Denys Demyanyshyn** | Performance & Analytics | Berlin | Daten, Kampagnen, Benchmarks |
 | **Ralph Kindermann** | CRM & Client Success | Berlin | Prozesse, Onboarding, Dokumentation |
 | **Yahya Yildirim** | Growth, Inbound & Project Lead | Berlin | Strategie, Architektur, Inbound, Koordination |
 
 ---
 
-## Olha Yevtushenko · Creative Director
+## Olha Yevtushenko · Creative Director · Performance Marketing
 
 ### Kernverantwortung
 Visuelle Exzellenz von der Konzeption bis zur Auslieferung. Olha ist die kreative Seele von Mirrou — jedes Asset, das Mirrou produziert, geht durch ihre Direktion.

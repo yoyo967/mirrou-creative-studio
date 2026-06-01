@@ -440,7 +440,7 @@ export const SITE = {
   social: {
     instagram: "https://www.instagram.com/mirrou.studio/",
     facebook: "https://www.facebook.com/profile.php?id=61589455194800",
-    linkedin: "https://linkedin.com/company/mirrou-studio",
+    linkedin: "https://www.linkedin.com/company/123233907",
   },
   locations: [
     { city: "Hamburg", role: "Produktion & Creative Direction" },
@@ -448,7 +448,7 @@ export const SITE = {
   ],
   creativeDirection: {
     name: "Olha Yevtushenko",
-    role: "Founder & Creative Director",
+    role: "Founder & Creative Director · Performance Marketing",
     instagram: "https://www.instagram.com/olhayevtushenko/",
     portfolio: "https://olhayevtushenko.com",
     linkedin: "https://www.linkedin.com/in/olha-yevtushenko-41a801395/",
@@ -526,7 +526,7 @@ export const PRESS_QUOTES: PressQuote[] = [
     id: "soul-intention",
     text: "I don't just photograph products. I capture their soul's intention.",
     attribution: "Olha Yevtushenko",
-    role: "Founder & Creative Director",
+    role: "Founder & Creative Director · Performance Marketing",
     surfaces: ["home", "studio"],
   },
   {
@@ -539,7 +539,7 @@ export const PRESS_QUOTES: PressQuote[] = [
     id: "conversion-emotion",
     text: "Conversion is an emotional response to logical excellence.",
     attribution: "Olha Yevtushenko",
-    role: "Founder & Creative Director",
+    role: "Founder & Creative Director · Performance Marketing",
     surfaces: ["studio", "cases"],
   },
 ];

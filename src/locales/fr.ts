@@ -399,7 +399,7 @@ const fr = {
       memberOlhaFocus: "\"Je ne photographie pas seulement des produits. Je capture l'intention de leur âme.\" Photographie, visuels IA, direction artistique — l'algorithme derrière le langage visuel de Mirrou est celui d'Olha.",
       memberDenysFocus: "Performance, tests A/B, logique de données.",
       memberRalphFocus: "Structure, documentation, planification stratégique.",
-      roleOlha: "Fondatrice & Directrice Créative",
+      roleOlha: "Fondatrice & Directrice Créative · Performance Marketing",
       roleDenys: "Responsable Campagnes & Marketing-IA",
       roleRalph: "CRM & Marketing Cycle de Vie",
       roleYahya: "Croissance & Inbound Marketing",
