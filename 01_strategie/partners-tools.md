@@ -11,10 +11,13 @@ version: 2.0
 
 ---
 
-## Architektur-Übersicht: Die vier Schichten
+## Architektur-Übersicht: Vier Schichten + ein OS
 
 ```
 ┌─────────────────────────────────────────────────────────┐
+│  OS-LAYER · GITHUB              Repo · Actions · Audit-Trail
+│  Versionierung · Single Source of Truth · Orchestrierung
+╞═════════════════════════════════════════════════════════╡
 │  LAYER 1 · INTELLIGENCE         Perplexity · Claude · Gemini
 │  Research · Wissen · Strategie · Reasoning
 ├─────────────────────────────────────────────────────────┤
@@ -28,6 +31,31 @@ version: 2.0
 │  Analytics · Distribution · Reporting
 └─────────────────────────────────────────────────────────┘
 ```
+
+> Das **OS-Layer (GitHub)** ist kein fünftes Tool, sondern das Substrat, das die vier
+> Layer versioniert, orchestriert und auditierbar macht. Details: [`github-frontier-firm-os.md`](github-frontier-firm-os.md).
+
+---
+
+## OS-LAYER · GITHUB — Orchestration & Audit OS
+
+GitHub ist bei Mirrou die **unsichtbare Betriebsschicht**: Das Repository ist die Single
+Source of Truth des gesamten Studios (Live-Website `src/`, 39 Wissensdokumente, Compliance,
+Präsentationen). Jeder Commit ist ein Audit-Trail — und deckt damit direkt die EU-AI-Act-
+Anforderung des 3-Jahres-Audit-Logs ab (Compliance-Schicht 7).
+
+| Funktion | Rolle bei Mirrou | Status |
+|----------|------------------|--------|
+| **Repository** | Single Source of Truth (Code + Doku + Deck + Compliance) | ✅ live |
+| **Commits** | Kryptografischer Audit-Trail (wer/wann/was) · Konvention `feat/docs/chore…` | ✅ live |
+| **GitHub Actions** | Process-Engine: Quality-Gate (typecheck/lint/build) → später Deploy + agentic Creative-Pipelines | ✅ CI live · 🔵 Rest Roadmap |
+| **Issues** | Ticketsystem (Briefs, Revisionen) mit Labels/Assignees | 🟡 Konvention definiert |
+| **Pull Requests** | Approval-Gate: Creative geht erst live, wenn PR approved & gemerged | 🟡 |
+| **Asset-Architektur** | Repo-Pointer + GCS (`mirrou-assets-prod`) via OIDC, asset-registry.json | 🔵 Roadmap |
+
+> **Frontier-Firm-Vorteil:** ein versioniertes System statt Tool-Ping-Pong zwischen
+> Asana/Slack/Notion/Drive. Versioniert, auditierbar, automatisierbar, beliebig skalierbar
+> auf viele Kundenprojekte.
 
 ---
 
@@ -248,6 +276,7 @@ Ergebnis: Jede Entscheidung ist informiert.
 | CRM & Prozesse | Ralph | Ops & Playbooks Space |
 | Web-Entwicklung | Team | Claude Code + GCP Pipeline |
 | Research & Intelligence | Team | Strategy & Intelligence Space |
+| Orchestrierung & Audit | Team | GitHub (Repo · Actions · Audit-Trail) |
 
 ---
 

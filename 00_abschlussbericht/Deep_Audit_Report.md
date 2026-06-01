@@ -162,8 +162,11 @@ Drei nicht verhandelbare Prinzipien:
 ---
 
 ### VII. Frontier Firm Architektur — Der strukturelle Moat
-#### 4-Layer-Stack: Vollständige KI-Orchestrierung
+#### Stack: GitHub-OS + 4 Layer · Vollständige KI-Orchestrierung
 ```text
+OS-LAYER · GITHUB         Repo (Single Source of Truth) · Actions · Audit-Trail
+                          Versionierung, Orchestrierung, Compliance-Audit-Log
+
 LAYER 1 · INTELLIGENCE    Perplexity Spaces · Claude · Gemini
                           Research, Wissen, Strategie, Reasoning
 

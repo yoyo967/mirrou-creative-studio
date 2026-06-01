@@ -20,7 +20,8 @@ Mirrou ist ein **AI-natives Kreativstudio** aus Hamburg (HQ · Produktion & Crea
 - **Build:** Docker (Multi-Stage) → `nginx:alpine` (gzip-9, immutable Asset-Caching, Security-Header)
 - **i18n:** 8 Sprachen — DE/EN/ES/IT/FR/TR/RU/UK (`react-i18next`, dynamischer Locale-Import). **Tiefe:** DE & EN vollständig; ES/IT/FR/TR/RU/UK haben UI + SEO-Meta vollständig, aber gekürzte Long-Form-Cluster (`clusters`-Namespace ~−74 %).
 - **Analytics:** *aktuell keine* (kein GA4 im Code; Datenschutz: nur technisch notwendige Cookies zum Launch). README-Stack-Tabelle nennt GA4 — Inkonsistenz, siehe Audit-Log.
-- **CI/CD:** GCP Deploy via `deploy_gcp.ps1`
+- **CI/CD:** GCP Deploy via `deploy_gcp.ps1` · **GitHub Actions CI-Quality-Gate** (`.github/workflows/ci.yml`: typecheck/lint/build).
+- **GitHub als Orchestration & Audit OS** (5. Schicht der Frontier Firm): Repo = Single Source of Truth (Website+Doku+Deck), Commit-History = EU-AI-Act-Audit-Trail. Doku: `01_strategie/github-frontier-firm-os.md`.
 - **Repo:** [github.com/yoyo967/mirrou-creative-studio](https://github.com/yoyo967/mirrou-creative-studio)
 - **Live-URL:** [mirrou-creative-studio-180023265254.europe-west3.run.app](https://mirrou-creative-studio-180023265254.europe-west3.run.app/de)
 

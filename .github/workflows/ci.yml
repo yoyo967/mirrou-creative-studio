@@ -1,0 +1,45 @@
+name: CI · Quality Gate
+
+# GitHub Actions als Prozess-Engine der Frontier Firm:
+# Jeder Push/PR auf main durchläuft dieselben Qualitäts-Gates, die sonst
+# manuell laufen — typecheck, lint, SSG-Build. Erster konkreter Schritt der
+# "GitHub als Orchestration & Audit OS"-Architektur (siehe
+# 01_strategie/github-frontier-firm-os.md).
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  quality:
+    name: typecheck · lint · build
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node 20
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Install dependencies (clean)
+        run: npm ci
+
+      - name: Typecheck + Lint (npm run check)
+        run: npm run check
+
+      - name: SSG Build (alle Routen × 8 Sprachen)
+        run: npm run build
