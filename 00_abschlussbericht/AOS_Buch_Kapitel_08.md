@@ -18,7 +18,7 @@ ein DCI-Abschlussprojekt, das überzeugt – und eine Agentur, die startklar ist
 
 | # | Ziel | Erfolgskriterium | Deadline |
 |---|------|-----------------|---------|
-| 1 | Abschlussprojektbuch fertiggestellt | Alle 11 Kapitel vollständig, formatiert, abgabebereit | Ende Woche 4 |
+| 1 | Abschlussprojektbuch fertiggestellt | Alle 12 Kapitel vollständig, formatiert, abgabebereit | Ende Woche 4 |
 | 2 | Pitch-Deck fertig | 12 Slides, präsentationsfertig (Canva/Google Slides) | Ende Woche 3 |
 | 3 | Pilot-Kampagne dokumentiert | Kapitel 7 vollständig, Creatives produziert oder konzipiert | Ende Woche 3 |
 | 4 | Mindestens 3 Ad-Creatives produziert | Echte Visuals von Olha (für Portfolio + Buch) | Ende Woche 2 |
@@ -157,8 +157,12 @@ ein DCI-Abschlussprojekt, das überzeugt – und eine Agentur, die startklar ist
 | Arbeits-Sessions | nach Bedarf | je 2 Personen | Deep-Work an Kapiteln/Tasks |
 | Pitch-Probe | Woche 3 + 4 | Alle | Präsentations-Training |
 
-**Tools:**
-- **Notion** (oder Google Docs): Gemeinsames Dokument-Repository für alle Kapitel
+**Tools (Frontier-Firm-Stack):**
+- **Perplexity Spaces**: 5 KI-Spaces als Intelligence-Betriebssystem (HQ, Strategy & Intelligence, Ops & Playbooks, PROJECT, Command Center)
+- **Claude Code + GCP**: Die Website selbst — Build, Code, Deployment auf Google Cloud Run (europe-west3)
+- **Midjourney + Adobe Firefly**: KI-Visuals und Hintergründe (C2PA-signiert)
+- **MCP-Konnektoren**: Filesystem, GitHub, Google Drive, Chrome DevTools MCP (EU-safe) als Konnektivitäts-Layer
+- **Notion (oder Google Docs)**: Gemeinsames Dokument-Repository für alle Kapitel
 - **WhatsApp-Gruppe**: Schnelle Kommunikation, Abstimmungen
 - **Google Drive**: Datei-Sharing (Creatives, PDFs, Exports)
 - **Canva / Google Slides**: Pitch-Deck
@@ -205,4 +209,4 @@ Er erzwingt Fokus, verhindert Perfektionismus und schafft Momentum.
 ---
 
 *Kapitel 9 folgt: Förder- & Zukunftsperspektive*
-*Stand: Mai 2026 | Version 1.0*
+*Stand: Juni 2026 | Version 2.0*

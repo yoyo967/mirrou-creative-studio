@@ -112,6 +112,14 @@ Plattformen wie Shopify.
   deutlich in Richtung messbarer Performance-Outcomes verschoben. Das erhöht den Druck auf
   Kreativagenturen, Ergebnisse zu liefern – und den Bedarf an Partnern, die beides können:
   Kreation und Messung.
+- **Creative ist der entscheidende Hebel:** Targeting ist zur Commodity geworden — Meta und
+  TikTok automatisieren die Zielgruppenansprache algorithmisch. Branchen-Benchmarks zeigen
+  konsistent, dass bis zu **70 % des Kampagnenerfolgs am Creative** hängen, während die CAC in
+  der D2C-Zielgruppe zuletzt um bis zu 60 % gestiegen sind — primär getrieben durch Creative Fatigue.
+- **EU AI Act als Marktselektor:** Ab dem **2. August 2026** gilt die volle Anwendbarkeit
+  inklusive Transparenzpflichten für KI-generierte Inhalte (Art. 50). Der Markt segmentiert sich
+  in vorbereitet und nicht vorbereitet — ein 6–12-Monate-First-Mover-Fenster, in dem Mirrou ab
+  Tag 1 compliant ist (Details in Kapitel 12).
 
 ---
 
@@ -232,4 +240,4 @@ spezialisierten Nische (Beauty/Health/Lifestyle) ist unser struktureller Verteid
 ---
 
 *Kapitel 4 folgt: Lösung – Die Agentur „Mirrou Creative Studio"*
-*Stand: Mai 2026 | Version 1.0*
+*Stand: Juni 2026 | Version 2.0*

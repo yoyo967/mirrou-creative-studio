@@ -223,6 +223,7 @@ Das Retainer-Modell ist aus mehreren Gründen unser strategisch wichtigstes Erl�
 | Strategy-Session | 90-Min-Workshop: Creative-Briefing und Hypothesen-Entwicklung | 500–800 € |
 | Creative-Audit | Einmalige Analyse des bestehenden Creative-Portfolios | 800–1.500 € |
 | KI-Only-Paket | Hintergrundgenerierung für bereits existierende Produktfotos | 300–800 € |
+| Compliance-Paket | EU AI Act-Dokumentation + C2PA-Setup (v. a. für Health/Supplement) | 500–1.500 € |
 
 ---
 
@@ -296,4 +297,4 @@ realistisch erreichbar ist.
 ---
 
 *Kapitel 6 folgt: Marketingstrategie & Online-Marketing-Konzept*
-*Stand: Mai 2026 | Version 1.0*
+*Stand: Juni 2026 | Version 2.0*

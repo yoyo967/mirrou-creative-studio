@@ -357,6 +357,29 @@ Wir haben sie getroffen.
 
 ---
 
-*Stand: Mai 2026 | Version 1.0*
+## 12.7 Die 7-Schichten-Compliance-Architektur im Überblick
+
+Was dieses Kapitel beschreibt, ist kein Add-on, sondern eine vollständige, audit-ready
+Compliance-Architektur aus sieben Schichten. Kein identifizierter Wettbewerber im DACH-Raum
+kommuniziert proaktive EU AI Act-Compliance — das First-Mover-Fenster ist bis August 2026 offen.
+
+| # | Schicht | Kern | Status bei Mirrou |
+|---|---------|------|-------------------|
+| 1 | EU AI Act (VO 2024/1689) | Limited-Risk-Klassifizierung (Art. 50), volle Anwendung 2. Aug 2026 | ab Tag 1 vorbereitet |
+| 2 | KI-Labeling-Matrix | 4 Stufen: Pure AI / AI-Assisted / Product Integration / Human-Crafted | Standard (tlw. freiwillig) |
+| 3 | C2PA | Kryptografisch signierte Medien-Provenienz (Adobe Firefly automatisch) | auf allen KI-Assets |
+| 4 | DSGVO | GCP europe-west3, AVV, 6/6 Security-Header, kein Tracking ohne Consent | live |
+| 5 | EU Data Act (2023/2854) | Offene Formate, vollständige Asset-Übergabe, kein Lock-in | vertraglich |
+| 6 | HCVO (Health Claims VO) | HCVO-Checkliste im Creative-Brief für Health/Supplement-Kunden | im Prozess |
+| 7 | 3-Jahres-Audit-Log | KI-System-, Prompt-, Output-, Review- & Kunden-Kommunikations-Log | aufgesetzt |
+
+Die Schichten 1, 4 und 5 sind oben ausführlich beschrieben; die Schichten 2, 3, 6 und 7
+ergänzen sie zu einem lückenlosen, auditierbaren System — von der Datei-Ebene (C2PA,
+Dateinamenskonvention) bis zum dreijährigen Audit-Trail. Für ICP 2 (Health/Supplement)
+ist die HCVO-Schicht kein Nice-to-have, sondern operative Grundvoraussetzung.
+
+---
+
+*Stand: Juni 2026 | Version 2.0*
 *Team: Olha Yevtushenko · Denys Demyanyshyn · Ralph Kindermann · Yahya Yildirim*
 *Mirrou Creative Studio · Hamburg & Berlin*

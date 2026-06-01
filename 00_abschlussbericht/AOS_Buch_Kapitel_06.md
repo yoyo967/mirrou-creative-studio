@@ -39,10 +39,12 @@ unser Grund zu existieren.
 
 Das Narrativ unserer Marke folgt drei Ebenen:
 
-**Ebene 1 – Der Name:**
-„Algorithm" steht für Logik, Wiederholbarkeit, Mess- und Lernbarkeit.
-„Soul" steht für das Menschliche: die Intuition des Bildmachens, die Ästhetik,
-die Emotion. Beides zusammen ergibt unsere Identität.
+**Ebene 1 – Der Claim „Algorithm of Soul":**
+„Algorithm" steht für Logik, Wiederholbarkeit, Mess- und Lernbarkeit (CTR-Hypothesen,
+A/B-Testing-Struktur, Data Feedback Loop). „Soul" steht für das Menschliche: die Intuition
+des Bildmachens, die editorial-grade Ästhetik („Dark Luxury"), die Emotion. Beides zusammen
+ist kein Marketing-Slogan, sondern die Methodenbeschreibung von Mirrou Creative Studio —
+und in DACH kommuniziert kein Wettbewerber diesen Spannungsbogen kohärent.
 
 **Ebene 2 – Der Ursprung:**
 Wir sind nicht in einem Hamburger Co-Working-Space entstanden.
@@ -62,11 +64,13 @@ Jeder Monat bringt eurer Marke mehr, als der letzte.
 
 | Kontext | Claim |
 |---------|-------|
+| Methoden-Claim | Algorithm of Soul. |
+| Website-Hero | Wo Ästhetik Algorithmus wird. |
 | Tagline | Performance. Kreativität. System. |
 | Primäres Nutzenversprechen | Creatives, die in 2 Sekunden stoppen – und messen, warum. |
 | B2B-Ansprache | Der Creative-Partner, der in euren Ad-Account schaut – und trotzdem fotografiert. |
 | Retainer-Ansprache | Kein Shooting ohne Daten. Keine Daten ohne Strategie. |
-| Herkunfts-Claim | Aus Hamburg. Für Europe. Mit Seele. |
+| Herkunfts-Claim | Aus Hamburg. Für Europa. Mit Seele. |
 
 ### Ton der Marke (Brand Voice)
 
@@ -199,7 +203,7 @@ Unser Content folgt drei Kernprinzipien:
 | LinkedIn (Yahya) | 3×/Woche |
 | LinkedIn (Olha) | 2×/Woche |
 | LinkedIn (Denys, Ralph) | 1×/Woche |
-| Instagram (AOS-Account) | 5×/Woche |
+| Instagram (Mirrou-Account) | 5×/Woche |
 | TikTok (ab Monat 3) | 3×/Woche |
 | Website (Blog/Cases) | 1×/2 Wochen |
 
@@ -256,4 +260,4 @@ CONVERSION (Bottom of Funnel)
 ---
 
 *Kapitel 7 folgt: Kampagne / Pilot-Projekt*
-*Stand: Mai 2026 | Version 1.0*
+*Stand: Juni 2026 | Version 2.0*

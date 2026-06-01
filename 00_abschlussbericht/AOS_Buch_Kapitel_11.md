@@ -30,6 +30,13 @@ Das Team ist komplementär. Olha, Denys, Ralph und Yahya bringen vier unterschie
 Kernkompetenzen mit, die sich nicht überlappen, sondern verstärken.
 Das ist selten – und es ist ein struktureller Vorteil.
 
+Das System steht – und ist nicht Konzept, sondern live. Die Website ist unter
+[mirrou.studio](https://mirrou.studio) produktiv: statisch vorgerendert, in 8 Sprachen,
+EU-gehostet auf Google Cloud Run, mit Lighthouse-Desktop-Score 100/100/100/100 und
+6/6 Security-Headern. Dahinter liegt eine Frontier-Firm-Architektur (5 KI-Spaces, MCP-Stack)
+und eine 7-schichtige Compliance-Architektur. Das einzige substanzielle Gap ist der erste
+bezahlte Case mit echten Live-Daten – das Fundament, der Stack und die Infrastruktur sind bereit.
+
 ### Was realistisch bleibt
 
 Tragfähigkeit entsteht nicht durch das Aufschreiben eines Konzepts.
@@ -138,7 +145,8 @@ ersten sieben Tage nach der Abschlusspräsentation.
 
 ## Abschluss
 
-Dieses Buch hat elf Kapitel. Es hat Marktanalysen, Finanzszenarien, Kampagnenkonzepte,
+Dieses Buch hat zwölf Kapitel. Es hat Marktanalysen, Finanzszenarien, Kampagnenkonzepte,
+eine Frontier-Firm-Architektur, eine 7-schichtige Compliance-Architektur,
 Fördertabellen und persönliche Reflexionen.
 
 Aber was es wirklich ist, lässt sich in einem Satz sagen:
@@ -155,6 +163,6 @@ Das ist Online-Marketing. Das ist Unternehmertum. Das ist Mirrou Creative Studio
 ---
 
 *Ende des AbschlussprojektBuchs*
-*Stand: Mai 2026 | Version 1.0*
+*Stand: Juni 2026 | Version 2.0*
 *Team: Olha Yevtushenko · Denys Demyanyshyn · Ralph Kindermann · Yahya Yildirim*
 *Mirrou Creative Studio · Hamburg & Berlin*

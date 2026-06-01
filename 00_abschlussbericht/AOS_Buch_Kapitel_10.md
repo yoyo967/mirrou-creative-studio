@@ -220,4 +220,4 @@ verloren, bis klar war, in welcher Sprache wir was festhalten.
 ---
 
 *Kapitel 11 folgt: Fazit*
-*Stand: Mai 2026 | Version 1.0*
+*Stand: Juni 2026 | Version 2.0*

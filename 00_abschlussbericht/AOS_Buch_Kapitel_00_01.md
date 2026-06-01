@@ -7,7 +7,8 @@
 
 **Projekttitel:**
 Mirrou Creative Studio
-*Von der Ausbildung zur Gründung: Ein reales Agenturprojekt als DCI-Abschlussarbeit*
+*Von der Ausbildung zur Gründung: Aufbau einer KI-integrierten Performance Creative Agency —
+Frontier Firm Architektur, Hybrid Production und EU AI Act-Compliance als Wettbewerbsstrategie*
 
 ---
 
@@ -15,10 +16,10 @@ Mirrou Creative Studio
 
 | Name | Rolle | E-Mail | Standort |
 |------|-------|--------|----------|
-| Olha Yevtushenko | Performance Marketerin & Creative Strategin | _________________ | Hamburg |
-| Denys Demyanyshyn | Campaign Manager & Marketing-AI | _________________ | _________________ |
-| Ralph Kindermann | CRM & Lifecycle Marketing | _________________ | _________________ |
-| Yahya Yildirim | Growth & Inbound Marketing / Projektlead | _________________ | Berlin |
+| Olha Yevtushenko | Creative Director & Founder | _________________ | Hamburg |
+| Denys Demyanyshyn | Performance & Analytics | _________________ | Berlin |
+| Ralph Kindermann | CRM & Client Success | _________________ | Berlin |
+| Yahya Yildirim | Systems Architect & Growth Lead | _________________ | Berlin |
 
 ---
 
@@ -113,13 +114,16 @@ Online-Marketing-Kompetenz direkt in wirtschaftliche Selbstständigkeit überset
 
 ## 1.3 Kurzüberblick über „Mirrou Creative Studio"
 
-**Mirrou Creative Studio** ist eine spezialisierte Kreativagentur
-mit Sitz in Hamburg und starkem Bezug zu Berlin.
+**Mirrou Creative Studio** ist ein **AI-natives Performance Creative Studio** —
+HQ in **Hamburg** (Produktion & Creative Direction), zweites Studio in **Berlin**
+(Performance, AI & Growth). Unser Claim: **„Algorithm of Soul"** — algorithmische
+Präzision (CTR-Hypothesen, A/B-Testing-Struktur, Data Feedback Loop) verbunden mit
+kreativer Intuition (editorial-grade Visuals, „Dark Luxury", menschliche Direction).
 
 Wir stehen an der Schnittstelle von:
 
-- **High-End-Fotografie** für Beauty-, Health- und Lifestyle-Produkte
-- **KI-generierten Hintergründen und Visuals** (Midjourney und vergleichbare Tools)
+- **High-End-Fotografie** für Beauty-, Health- und Lifestyle-Produkte (das Produkt wird nie KI-generiert)
+- **KI-generierten Hintergründen und Visuals** (Midjourney, Adobe Firefly), C2PA-signiert und EU AI Act-konform
 - **Paid-Ads-Analytics und Creative-Testing** auf Meta, TikTok und Google
 
 Unsere Zielkunden sind D2C- und E-Commerce-Marken im DACH- und EU-Raum, die aktiv in
@@ -146,12 +150,15 @@ warum wir uns als „Performance Creative Studio" und nicht als klassische Fotog
 | Creative Campaign & Analytics Retainer | Laufende Creative-Engine + Testing | Brands mit 10–150k € Ad-Spend/Monat |
 
 **Das Gründerteam:**
-Olha Yevtushenko (Creative & Performance), Denys Demyanyshyn (Kampagnen & AI),
-Ralph Kindermann (CRM & Dokumentation), Yahya Yildirim (Growth & Projektlead).
+Olha Yevtushenko (Creative Director & Founder), Denys Demyanyshyn (Performance & Analytics),
+Ralph Kindermann (CRM & Client Success), Yahya Yildirim (Systems Architect & Growth Lead).
 
-„Mirrou Creative Studio" ist unser Abschluss – und unser Anfang.
+Die Website ist nicht Konzept, sondern **live und produktiv** unter
+[mirrou.studio](https://mirrou.studio) — statisch vorgerendert, in 8 Sprachen,
+auf Google Cloud Run in der EU (Frankfurt) gehostet, mit Lighthouse-Desktop-Score
+100/100/100/100. „Mirrou Creative Studio" ist unser Abschluss – und unser Anfang.
 
 ---
 
 *Kapitel 2 folgt: Projektumfeld & Team*
-*Stand: Mai 2026 | Version 1.0*
+*Stand: Juni 2026 | Version 2.0*

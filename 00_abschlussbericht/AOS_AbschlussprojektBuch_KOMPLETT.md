@@ -7,7 +7,8 @@
 
 **Projekttitel:**
 Mirrou Creative Studio
-*Von der Ausbildung zur Gründung: Ein reales Agenturprojekt als DCI-Abschlussarbeit*
+*Von der Ausbildung zur Gründung: Aufbau einer KI-integrierten Performance Creative Agency —
+Frontier Firm Architektur, Hybrid Production und EU AI Act-Compliance als Wettbewerbsstrategie*
 
 ---
 
@@ -15,10 +16,10 @@ Mirrou Creative Studio
 
 | Name | Rolle | E-Mail | Standort |
 |------|-------|--------|----------|
-| Olha Yevtushenko | Performance Marketerin & Creative Strategin | _________________ | Hamburg |
-| Denys Demyanyshyn | Campaign Manager & Marketing-AI | _________________ | _________________ |
-| Ralph Kindermann | CRM & Lifecycle Marketing | _________________ | _________________ |
-| Yahya Yildirim | Growth & Inbound Marketing / Projektlead | _________________ | Berlin |
+| Olha Yevtushenko | Creative Director & Founder | _________________ | Hamburg |
+| Denys Demyanyshyn | Performance & Analytics | _________________ | Berlin |
+| Ralph Kindermann | CRM & Client Success | _________________ | Berlin |
+| Yahya Yildirim | Systems Architect & Growth Lead | _________________ | Berlin |
 
 ---
 
@@ -113,13 +114,16 @@ Online-Marketing-Kompetenz direkt in wirtschaftliche Selbstständigkeit überset
 
 ## 1.3 Kurzüberblick über „Mirrou Creative Studio"
 
-**Mirrou Creative Studio** ist eine spezialisierte Kreativagentur
-mit Sitz in Hamburg und starkem Bezug zu Berlin.
+**Mirrou Creative Studio** ist ein **AI-natives Performance Creative Studio** —
+HQ in **Hamburg** (Produktion & Creative Direction), zweites Studio in **Berlin**
+(Performance, AI & Growth). Unser Claim: **„Algorithm of Soul"** — algorithmische
+Präzision (CTR-Hypothesen, A/B-Testing-Struktur, Data Feedback Loop) verbunden mit
+kreativer Intuition (editorial-grade Visuals, „Dark Luxury", menschliche Direction).
 
 Wir stehen an der Schnittstelle von:
 
-- **High-End-Fotografie** für Beauty-, Health- und Lifestyle-Produkte
-- **KI-generierten Hintergründen und Visuals** (Midjourney und vergleichbare Tools)
+- **High-End-Fotografie** für Beauty-, Health- und Lifestyle-Produkte (das Produkt wird nie KI-generiert)
+- **KI-generierten Hintergründen und Visuals** (Midjourney, Adobe Firefly), C2PA-signiert und EU AI Act-konform
 - **Paid-Ads-Analytics und Creative-Testing** auf Meta, TikTok und Google
 
 Unsere Zielkunden sind D2C- und E-Commerce-Marken im DACH- und EU-Raum, die aktiv in
@@ -146,15 +150,18 @@ warum wir uns als „Performance Creative Studio" und nicht als klassische Fotog
 | Creative Campaign & Analytics Retainer | Laufende Creative-Engine + Testing | Brands mit 10–150k € Ad-Spend/Monat |
 
 **Das Gründerteam:**
-Olha Yevtushenko (Creative & Performance), Denys Demyanyshyn (Kampagnen & AI),
-Ralph Kindermann (CRM & Dokumentation), Yahya Yildirim (Growth & Projektlead).
+Olha Yevtushenko (Creative Director & Founder), Denys Demyanyshyn (Performance & Analytics),
+Ralph Kindermann (CRM & Client Success), Yahya Yildirim (Systems Architect & Growth Lead).
 
-„Mirrou Creative Studio" ist unser Abschluss – und unser Anfang.
+Die Website ist nicht Konzept, sondern **live und produktiv** unter
+[mirrou.studio](https://mirrou.studio) — statisch vorgerendert, in 8 Sprachen,
+auf Google Cloud Run in der EU (Frankfurt) gehostet, mit Lighthouse-Desktop-Score
+100/100/100/100. „Mirrou Creative Studio" ist unser Abschluss – und unser Anfang.
 
 ---
 
 *Kapitel 2 folgt: Projektumfeld & Team*
-*Stand: Mai 2026 | Version 1.0*
+*Stand: Juni 2026 | Version 2.0*
 
 
 ---
@@ -258,19 +265,25 @@ Creatives produziert, verliert Marktanteile an schnellere und kreativere Mitbewe
 
 „Mirrou Creative Studio" wird von vier Gründer:innen getragen, die komplementäre Kompetenzen
 einbringen. Die Rollenverteilung ist nicht zufällig: Sie folgt der Logik des Geschäftsmodells –
-von der kreativen Strategie über die Kampagnenumsetzung bis hin zu Kundenbindung und Wachstum.
+von der kreativen Direction über Performance & Analytics bis hin zu Client Success und
+Growth. Als **Frontier Firm** orchestriert das Team KI-Systeme so, dass vier Menschen den
+Output eines deutlich größeren klassischen Studios erreichen — jede Domäne hat ein
+menschliches und ein KI-Pendant („Perfect Twin").
 
 ---
 
-### Olha Yevtushenko – Performance Marketerin & Creative Strategin
+### Olha Yevtushenko – Creative Director & Founder
 
-**Standort:** Hamburg  
-**Funktion im Unternehmen:** Strategische und kreative Leitung
+**Standort:** Hamburg (HQ · Produktion & Creative Direction)  
+**Funktion im Unternehmen:** Kreative Gesamtleitung — jedes Asset, das das Studio verlässt, geht durch ihre Direction  
+**Projektbeitrag:** ca. 120 h / 29 %
 
-Olha ist die Initiatorin und kreativ-strategische Seele von „Mirrou Creative Studio".
-Als ausgebildete Fotografin und Performance Marketerin bringt sie die seltene Kombination
-aus visuellem Feingefühl und Datenkompetenz mit. Ihre Arbeit beginnt nicht beim Auslöser
-der Kamera, sondern bei der Frage: Was muss dieses Bild leisten?
+Olha ist die Initiatorin und kreative Seele von „Mirrou Creative Studio".
+Als ausgebildete Fotografin und Creative Director bringt sie die seltene Kombination
+aus visuellem Feingefühl und Performance-Denken mit. Ihre Arbeit beginnt nicht beim Auslöser
+der Kamera, sondern bei der Frage: Was muss dieses Bild leisten? Sie verantwortet das
+„Dark Luxury"-Designsystem (Deep Onyx + Gold), das Brandbook, 12 Logo-Varianten und
+die vier Demo-Case-Studies.
 
 **Kernaufgaben:**
 - Entwicklung der Performance-Marketing-Strategie für Kundenprojekte (Ziele, Kanäle, Funnel)
@@ -286,14 +299,17 @@ zentrales Differenzierungsmerkmal.
 
 ---
 
-### Denys Demyanyshyn – Campaign Manager & Marketing-AI-Spezialist
+### Denys Demyanyshyn – Performance & Analytics
 
-**Funktion im Unternehmen:** Technische und operative Kampagnenführung
+**Standort:** Berlin (Performance, AI & Growth)  
+**Funktion im Unternehmen:** Die Brücke zwischen kreativem Output und messbarem Ergebnis  
+**Projektbeitrag:** ca. 80 h / 20 %
 
-Denys verantwortet die operative Seite der Kampagnen: Er setzt auf, was Olha strategisch
-plant, misst, was funktioniert, und übersetzt Zahlen in klare Entscheidungen.
-Sein Spezialgebiet liegt in der Verbindung von Kampagnenmanagement und KI-gestützten
-Analyse- und Produktionstools.
+Denys verantwortet die Performance- und Analytics-Seite: Er setzt auf, was kreativ
+geplant wird, misst, was funktioniert, und übersetzt Zahlen in klare Entscheidungen.
+Sein Spezialgebiet liegt in der Verbindung von Kampagnenmanagement, Benchmark-Bibliothek
+(CTR/CPC/ROAS je Kanal) und KI-gestützten Analyse- und Produktionstools — er erfüllt
+zugleich die KI-Literacy-Anforderung des EU AI Act als nachweisbares Asset.
 
 **Kernaufgaben:**
 - Kampagnen-Setup und -Steuerung auf Meta, TikTok und Google (Struktur, Targeting, Budgets)
@@ -308,14 +324,17 @@ der aus Kreativität eine wiederholbare, messbare Engine macht.
 
 ---
 
-### Ralph Kindermann – CRM & Lifecycle Marketing Lead
+### Ralph Kindermann – CRM & Client Success
 
-**Funktion im Unternehmen:** Kundenbindung, Kommunikation, Dokumentation
+**Standort:** Berlin (Performance, AI & Growth)  
+**Funktion im Unternehmen:** Das operative Rückgrat des Studios — Onboarding, Pipeline, Retainer-Rhythmus  
+**Projektbeitrag:** ca. 60 h / 15 %
 
 Ralph denkt über den einzelnen Klick hinaus: Ihn interessiert, was nach dem ersten
 Kauf passiert – wie Kunden gebunden werden, wie Creatives in E-Mail-Strecken und
 CRM-Systeme eingebettet werden und wie die Kommunikation über den gesamten
-Customer Lifecycle konsistent bleibt.
+Customer Lifecycle konsistent bleibt. Er verantwortet das Onboarding-System, die
+CRM-/Pipeline-Struktur, den Compliance-Vertragsrahmen (AVV) und den Kunden-Übergabestandard.
 
 **Kernaufgaben:**
 - CRM-Strategie und E-Mail-Marketing für Kundenprojekte (Sequenzen, Segmente, Triggers)
@@ -331,14 +350,17 @@ sondern sich in eine langfristige Kundenbeziehung und einen messbaren Customer L
 
 ---
 
-### Yahya Yildirim – Growth & Inbound Marketing / Projektlead
+### Yahya Yildirim – Systems Architect & Growth Lead
 
-**Standort:** Berlin  
-**Funktion im Unternehmen:** Agentur-Wachstum, Positionierung, Projektführung
+**Standort:** Berlin (Performance, AI & Growth)  
+**Funktion im Unternehmen:** Architekt des Systems — Strategie, Frontier-Firm-Architektur, Website & Tech, Compliance, Growth  
+**Projektbeitrag:** ca. 150 h / 37 %
 
-Yahya trägt zwei Hüte: Er ist Projektlead (organisiert Sprints, Deadlines, Entscheidungen)
-und gleichzeitig verantwortlich dafür, dass „Mirrou Creative Studio" selbst nach außen sichtbar
-und attraktiv ist. Er denkt in Funnels, Netzwerken und Narrativen.
+Yahya trägt mehrere Hüte: Er ist Projektlead (organisiert Sprints, Deadlines, Entscheidungen),
+Systems Architect (Frontier-Firm-Architektur, 5 Perplexity-Spaces, MCP-Stack, die Website
+selbst — React/TypeScript/Tailwind, 8 Sprachen, GCP-Deployment, Trust Center) und Growth Lead
+(Positionierung, ICP-Definition, 4-Kanal-Inbound, B2B-Outreach). Er denkt in Systemen,
+Funnels, Netzwerken und Narrativen.
 
 **Kernaufgaben:**
 - Projektsteuerung: Wochenplanung, Aufgabenverteilung, Meilenstein-Tracking
@@ -362,7 +384,20 @@ Menschen davon erfahren – und sich melden, bevor wir sie ansprechen müssen.
 | CRM & Retention | ⬜ | ⬜ | ✅ Lead | ⬜ |
 | Wachstum & Präsenz | ⬜ | ⬜ | ⬜ | ✅ Lead |
 | Projektsteuerung | ⬜ | ⬜ | ✅ Doku | ✅ Lead |
-| AI & Tools | ⬜ | ✅ Lead | ⬜ | ⬜ |
+| AI & Tools | ⬜ | ✅ Lead | ⬜ | ✅ Architektur |
+
+### Perfect Twin: Mensch + KI-Pendant je Domäne
+
+Jede Kernrolle wird durch ein KI-Pendant verdoppelt — das ist der strukturelle Hebel,
+der ein Vier-Personen-Team wie ein 15–20-köpfiges klassisches Studio produzieren lässt:
+
+| Domäne | Mensch | KI-Pendant |
+|--------|--------|------------|
+| Brand & Strategie | Yahya | Perplexity HQ Space |
+| Creative Direction | Olha | Midjourney + Adobe Firefly |
+| Performance | Denys | Claude + Meta Analytics |
+| CRM & Ops | Ralph | Ops & Playbooks Space |
+| Web-Entwicklung | Team | Claude Code + GCP Pipeline |
 
 ---
 
@@ -411,7 +446,7 @@ ohne jeden Endkunden einzeln akquirieren zu müssen.
 ---
 
 *Kapitel 3 folgt: Problem & Marktanalyse*
-*Stand: Mai 2026 | Version 1.0*
+*Stand: Juni 2026 | Version 2.0*
 
 
 ---
@@ -530,6 +565,14 @@ Plattformen wie Shopify.
   deutlich in Richtung messbarer Performance-Outcomes verschoben. Das erhöht den Druck auf
   Kreativagenturen, Ergebnisse zu liefern – und den Bedarf an Partnern, die beides können:
   Kreation und Messung.
+- **Creative ist der entscheidende Hebel:** Targeting ist zur Commodity geworden — Meta und
+  TikTok automatisieren die Zielgruppenansprache algorithmisch. Branchen-Benchmarks zeigen
+  konsistent, dass bis zu **70 % des Kampagnenerfolgs am Creative** hängen, während die CAC in
+  der D2C-Zielgruppe zuletzt um bis zu 60 % gestiegen sind — primär getrieben durch Creative Fatigue.
+- **EU AI Act als Marktselektor:** Ab dem **2. August 2026** gilt die volle Anwendbarkeit
+  inklusive Transparenzpflichten für KI-generierte Inhalte (Art. 50). Der Markt segmentiert sich
+  in vorbereitet und nicht vorbereitet — ein 6–12-Monate-First-Mover-Fenster, in dem Mirrou ab
+  Tag 1 compliant ist (Details in Kapitel 12).
 
 ---
 
@@ -650,7 +693,7 @@ spezialisierten Nische (Beauty/Health/Lifestyle) ist unser struktureller Verteid
 ---
 
 *Kapitel 4 folgt: Lösung – Die Agentur „Mirrou Creative Studio"*
-*Stand: Mai 2026 | Version 1.0*
+*Stand: Juni 2026 | Version 2.0*
 
 
 ---
@@ -668,13 +711,15 @@ spezialisierten Nische (Beauty/Health/Lifestyle) ist unser struktureller Verteid
 
 ### Positionierung
 
-„Mirrou Creative Studio" positioniert sich als **Performance Creative Studio** –
-ein Anbieter, der die Lücke zwischen visueller Kreation und datengetriebenem
-Paid Advertising schließt.
+„Mirrou Creative Studio" positioniert sich als **AI-natives Performance Creative Studio** –
+ein Anbieter, der die Lücke zwischen editorial-grade visueller Kreation und datengetriebenem
+Paid Advertising schließt, und der dabei als **Frontier Firm** arbeitet: ein Vier-Personen-Team,
+das KI über den gesamten Stack orchestriert (Intelligence · Production · Infrastructure · Performance).
 
 Wir sind keine Fotografie-Agentur, die nebenbei Ads versteht.
 Wir sind keine Performance-Agentur, die nebenbei Bilder kauft.
-Wir sind beides – in einem integrierten, iterativen System.
+Wir sind beides – in einem integrierten, iterativen System. Der unbesetzte Quadrant im
+DACH-Markt: editorial-grade Ästhetik **und** Performance-Denken **und** EU-Compliance ab Tag 1.
 
 **Positionierungsstatement:**
 
@@ -776,6 +821,12 @@ Analyse → Hypothesen → Produktion → Testing → Learning
     ↑                                               ↓
     └──────────────────────────────────────────────┘
 ```
+
+Im externen Sprachgebrauch (Website, Pitch, Kundenbriefing) heißt dieser Loop der
+**5-Schritt-Algorithmus**: Creative Audit → Visual Brief → Hybrid Execution →
+Performance Layer → Data Feedback Loop. Erstprojekt-Durchlaufzeit: **9–20 Tage**
+gegenüber 4–8 Wochen bei klassischen Boutique-Studios — möglich durch die hybride
+Foto-+-KI-Pipeline und die Frontier-Firm-Orchestrierung.
 
 ### Schritt 1: Analyse
 
@@ -934,7 +985,7 @@ Das ist unser Graben.
 ---
 
 *Kapitel 5 folgt: Geschäftsmodell & Angebote*
-*Stand: Mai 2026 | Version 1.0*
+*Stand: Juni 2026 | Version 2.0*
 
 
 ---
@@ -1164,6 +1215,7 @@ Das Retainer-Modell ist aus mehreren Gründen unser strategisch wichtigstes Erl�
 | Strategy-Session | 90-Min-Workshop: Creative-Briefing und Hypothesen-Entwicklung | 500–800 € |
 | Creative-Audit | Einmalige Analyse des bestehenden Creative-Portfolios | 800–1.500 € |
 | KI-Only-Paket | Hintergrundgenerierung für bereits existierende Produktfotos | 300–800 € |
+| Compliance-Paket | EU AI Act-Dokumentation + C2PA-Setup (v. a. für Health/Supplement) | 500–1.500 € |
 
 ---
 
@@ -1237,7 +1289,7 @@ realistisch erreichbar ist.
 ---
 
 *Kapitel 6 folgt: Marketingstrategie & Online-Marketing-Konzept*
-*Stand: Mai 2026 | Version 1.0*
+*Stand: Juni 2026 | Version 2.0*
 
 
 ---
@@ -1283,10 +1335,12 @@ unser Grund zu existieren.
 
 Das Narrativ unserer Marke folgt drei Ebenen:
 
-**Ebene 1 – Der Name:**
-„Algorithm" steht für Logik, Wiederholbarkeit, Mess- und Lernbarkeit.
-„Soul" steht für das Menschliche: die Intuition des Bildmachens, die Ästhetik,
-die Emotion. Beides zusammen ergibt unsere Identität.
+**Ebene 1 – Der Claim „Algorithm of Soul":**
+„Algorithm" steht für Logik, Wiederholbarkeit, Mess- und Lernbarkeit (CTR-Hypothesen,
+A/B-Testing-Struktur, Data Feedback Loop). „Soul" steht für das Menschliche: die Intuition
+des Bildmachens, die editorial-grade Ästhetik („Dark Luxury"), die Emotion. Beides zusammen
+ist kein Marketing-Slogan, sondern die Methodenbeschreibung von Mirrou Creative Studio —
+und in DACH kommuniziert kein Wettbewerber diesen Spannungsbogen kohärent.
 
 **Ebene 2 – Der Ursprung:**
 Wir sind nicht in einem Hamburger Co-Working-Space entstanden.
@@ -1306,11 +1360,13 @@ Jeder Monat bringt eurer Marke mehr, als der letzte.
 
 | Kontext | Claim |
 |---------|-------|
+| Methoden-Claim | Algorithm of Soul. |
+| Website-Hero | Wo Ästhetik Algorithmus wird. |
 | Tagline | Performance. Kreativität. System. |
 | Primäres Nutzenversprechen | Creatives, die in 2 Sekunden stoppen – und messen, warum. |
 | B2B-Ansprache | Der Creative-Partner, der in euren Ad-Account schaut – und trotzdem fotografiert. |
 | Retainer-Ansprache | Kein Shooting ohne Daten. Keine Daten ohne Strategie. |
-| Herkunfts-Claim | Aus Hamburg. Für Europe. Mit Seele. |
+| Herkunfts-Claim | Aus Hamburg. Für Europa. Mit Seele. |
 
 ### Ton der Marke (Brand Voice)
 
@@ -1443,7 +1499,7 @@ Unser Content folgt drei Kernprinzipien:
 | LinkedIn (Yahya) | 3×/Woche |
 | LinkedIn (Olha) | 2×/Woche |
 | LinkedIn (Denys, Ralph) | 1×/Woche |
-| Instagram (AOS-Account) | 5×/Woche |
+| Instagram (Mirrou-Account) | 5×/Woche |
 | TikTok (ab Monat 3) | 3×/Woche |
 | Website (Blog/Cases) | 1×/2 Wochen |
 
@@ -1500,7 +1556,7 @@ CONVERSION (Bottom of Funnel)
 ---
 
 *Kapitel 7 folgt: Kampagne / Pilot-Projekt*
-*Stand: Mai 2026 | Version 1.0*
+*Stand: Juni 2026 | Version 2.0*
 
 
 ---
@@ -1721,7 +1777,7 @@ Formate: 1:1, 4:5, 9:16
 ### Kampagnenstruktur (Meta)
 
 ```
-Kampagne: LumiSkin – AOS Pilot Mai 2026
+Kampagne: LumiSkin – Mirrou Pilot Mai 2026
 │
 ├── Ad Set 1: Cold Audience (Interessen-Targeting)
 │   ├── Ad 1a: Hyp. A – Textur (1:1)
@@ -1829,7 +1885,7 @@ für Beauty D2C auf Meta (DACH, 2025/2026).
 ---
 
 *Kapitel 8 folgt: Projektmanagement & 4-Wochen-Plan*
-*Stand: Mai 2026 | Version 1.0*
+*Stand: Juni 2026 | Version 2.0*
 
 
 ---
@@ -1854,7 +1910,7 @@ ein DCI-Abschlussprojekt, das überzeugt – und eine Agentur, die startklar ist
 
 | # | Ziel | Erfolgskriterium | Deadline |
 |---|------|-----------------|---------|
-| 1 | Abschlussprojektbuch fertiggestellt | Alle 11 Kapitel vollständig, formatiert, abgabebereit | Ende Woche 4 |
+| 1 | Abschlussprojektbuch fertiggestellt | Alle 12 Kapitel vollständig, formatiert, abgabebereit | Ende Woche 4 |
 | 2 | Pitch-Deck fertig | 12 Slides, präsentationsfertig (Canva/Google Slides) | Ende Woche 3 |
 | 3 | Pilot-Kampagne dokumentiert | Kapitel 7 vollständig, Creatives produziert oder konzipiert | Ende Woche 3 |
 | 4 | Mindestens 3 Ad-Creatives produziert | Echte Visuals von Olha (für Portfolio + Buch) | Ende Woche 2 |
@@ -1993,8 +2049,12 @@ ein DCI-Abschlussprojekt, das überzeugt – und eine Agentur, die startklar ist
 | Arbeits-Sessions | nach Bedarf | je 2 Personen | Deep-Work an Kapiteln/Tasks |
 | Pitch-Probe | Woche 3 + 4 | Alle | Präsentations-Training |
 
-**Tools:**
-- **Notion** (oder Google Docs): Gemeinsames Dokument-Repository für alle Kapitel
+**Tools (Frontier-Firm-Stack):**
+- **Perplexity Spaces**: 5 KI-Spaces als Intelligence-Betriebssystem (HQ, Strategy & Intelligence, Ops & Playbooks, PROJECT, Command Center)
+- **Claude Code + GCP**: Die Website selbst — Build, Code, Deployment auf Google Cloud Run (europe-west3)
+- **Midjourney + Adobe Firefly**: KI-Visuals und Hintergründe (C2PA-signiert)
+- **MCP-Konnektoren**: Filesystem, GitHub, Google Drive, Chrome DevTools MCP (EU-safe) als Konnektivitäts-Layer
+- **Notion (oder Google Docs)**: Gemeinsames Dokument-Repository für alle Kapitel
 - **WhatsApp-Gruppe**: Schnelle Kommunikation, Abstimmungen
 - **Google Drive**: Datei-Sharing (Creatives, PDFs, Exports)
 - **Canva / Google Slides**: Pitch-Deck
@@ -2041,7 +2101,7 @@ Er erzwingt Fokus, verhindert Perfektionismus und schafft Momentum.
 ---
 
 *Kapitel 9 folgt: Förder- & Zukunftsperspektive*
-*Stand: Mai 2026 | Version 1.0*
+*Stand: Juni 2026 | Version 2.0*
 
 
 ---
@@ -2294,7 +2354,7 @@ DCI-Abschluss  Case Studies      Break-Even      Skalierung
 ---
 
 *Kapitel 10 folgt: Reflexion & Lessons Learned*
-*Stand: Mai 2026 | Version 1.0*
+*Stand: Juni 2026 | Version 2.0*
 
 
 ---
@@ -2521,7 +2581,7 @@ verloren, bis klar war, in welcher Sprache wir was festhalten.
 ---
 
 *Kapitel 11 folgt: Fazit*
-*Stand: Mai 2026 | Version 1.0*
+*Stand: Juni 2026 | Version 2.0*
 
 
 ---
@@ -2557,6 +2617,13 @@ und datengetriebene Creative-Strategie. Das ist kein Zufall. Das ist Positionier
 Das Team ist komplementär. Olha, Denys, Ralph und Yahya bringen vier unterschiedliche
 Kernkompetenzen mit, die sich nicht überlappen, sondern verstärken.
 Das ist selten – und es ist ein struktureller Vorteil.
+
+Das System steht – und ist nicht Konzept, sondern live. Die Website ist unter
+[mirrou.studio](https://mirrou.studio) produktiv: statisch vorgerendert, in 8 Sprachen,
+EU-gehostet auf Google Cloud Run, mit Lighthouse-Desktop-Score 100/100/100/100 und
+6/6 Security-Headern. Dahinter liegt eine Frontier-Firm-Architektur (5 KI-Spaces, MCP-Stack)
+und eine 7-schichtige Compliance-Architektur. Das einzige substanzielle Gap ist der erste
+bezahlte Case mit echten Live-Daten – das Fundament, der Stack und die Infrastruktur sind bereit.
 
 ### Was realistisch bleibt
 
@@ -2666,7 +2733,8 @@ ersten sieben Tage nach der Abschlusspräsentation.
 
 ## Abschluss
 
-Dieses Buch hat elf Kapitel. Es hat Marktanalysen, Finanzszenarien, Kampagnenkonzepte,
+Dieses Buch hat zwölf Kapitel. Es hat Marktanalysen, Finanzszenarien, Kampagnenkonzepte,
+eine Frontier-Firm-Architektur, eine 7-schichtige Compliance-Architektur,
 Fördertabellen und persönliche Reflexionen.
 
 Aber was es wirklich ist, lässt sich in einem Satz sagen:
@@ -2683,6 +2751,395 @@ Das ist Online-Marketing. Das ist Unternehmertum. Das ist Mirrou Creative Studio
 ---
 
 *Ende des AbschlussprojektBuchs*
-*Stand: Mai 2026 | Version 1.0*
+*Stand: Juni 2026 | Version 2.0*
+*Team: Olha Yevtushenko · Denys Demyanyshyn · Ralph Kindermann · Yahya Yildirim*
+*Mirrou Creative Studio · Hamburg & Berlin*
+
+
+---
+
+# AbschlussprojektBuch – Mirrou Creative Studio
+## Kapitel 12: EU-Regulierung als strategischer Vorteil (EU AI Act, DSGVO, Data Act)
+
+---
+
+# 12. EU-Regulierung als strategischer Vorteil
+
+---
+
+> *Die meisten Gründer:innen sehen Regulierung als Bürde.*
+> *Mirrou Creative Studio sieht sie als Markteintrittsbeschleuniger.*
+> *Dieses Kapitel erklärt warum – und wie wir es konkret nutzen.*
+
+---
+
+## 12.1 Überblick: Das EU-Regulierungsumfeld 2025/2026
+
+Drei Regelwerke prägen ab sofort das digitale Marketing- und KI-Umfeld in der EU:
+
+| Regelwerk | Gültig seit / ab | Kern-Anforderung für uns |
+|-----------|-----------------|--------------------------|
+| DSGVO | Mai 2018 (vollständig) | Kundendaten sicher verarbeiten, AVV mit Kunden |
+| EU AI Act | Feb 2025 (Literacy-Pflicht) / Aug 2026 (Kennzeichnung) | KI-Inhalte transparent kennzeichnen, Literacy nachweisen |
+| EU Data Act | 12. September 2025 | Daten-Ownership der Kunden stärken, KMU-Erleichterungen |
+
+Für eine junge Agentur wie Mirrou Creative Studio – klein, spezialisiert, EU-basiert –
+ist dieses Regelwerk kein Kostenfaktor. Es ist ein Selektionsmechanismus:
+Er trennt professionelle Partner von unkompliant agierenden Mitbewerbern.
+Und er tut das genau in dem Moment, in dem wir starten.
+
+---
+
+## 12.2 EU AI Act: KI-Transparenz als Wettbewerbsmerkmal
+
+### Was der EU AI Act für uns bedeutet
+
+Der EU AI Act ist das weltweit erste umfassende Gesetz zur Regulierung
+künstlicher Intelligenz. Für Mirrou Creative Studio sind zwei Zeitpunkte entscheidend:
+
+- **Februar 2025 (bereits gültig):** KI-Literacy-Pflicht.
+  Unternehmen müssen sicherstellen, dass ihre Mitarbeiter:innen
+  ausreichend KI-kompetent sind, um die eingesetzten Tools zu verstehen und verantwortungsvoll zu nutzen.
+
+- **August 2026 (kommend):** Vollständige Kennzeichnungspflicht für
+  KI-generierte Inhalte in der Werbung. Wer Bilder oder Texte mit KI erzeugt
+  und in bezahlten Ads einsetzt, muss dies transparent machen.
+
+### Risikoklassifizierung: Wo stehen wir?
+
+Der EU AI Act teilt KI-Anwendungen in vier Risikokategorien ein:
+
+| Kategorie | Beispiele | Anforderungen |
+|-----------|----------|--------------|
+| Inakzeptables Risiko | Social Scoring, Manipulation | Verboten |
+| Hochrisiko | Bewerbungsauswahl, Kreditscoring, medizinische KI | Zertifizierung, Dokumentation, Audit |
+| Begrenztes Risiko | Chatbots, KI-generierte Inhalte in Werbung | Transparenzpflicht, Kennzeichnung |
+| Minimales Risiko | KI-Filter, Spam-Erkennung | Keine spezifischen Pflichten |
+
+**Mirrou Creative Studio arbeitet ausschließlich im Bereich „Begrenztes Risiko".**
+Unsere KI-generierten Hintergründe (Midjourney, Adobe Firefly), KI-gestützte
+Creative-Analyse und Hypothesen-Generierung fallen nicht unter Hochrisiko –
+sie erfordern primär Transparenz, keine aufwendige Zertifizierung.
+
+Das ist ein struktureller Vorteil: Wir erhalten alle Wettbewerbsvorteile
+der KI-Nutzung, ohne den regulatorischen Aufwand von Hochrisiko-Anwendungen.
+
+### Konkrete Vorteile für Mirrou Creative Studio
+
+**1. „AI-Transparent"-Policy als Teil des Creative-OS**
+
+Wir integrieren die Kennzeichnungspflicht nicht als Nachgedanke,
+sondern als Standardbestandteil unseres Produktionsprozesses:
+
+- Jedes KI-generierte Visual erhält eine interne Kennzeichnung im Dateinamen
+  (z. B. `lumiskin_hintergrund_botanisch_KI_v1.jpg`)
+- Im Kundenreporting dokumentieren wir transparent, welche Elemente
+  KI-generiert und welche fotografisch entstanden sind
+- Im Kundengespräch kommunizieren wir offen: „Unser Hybrid-Ansatz –
+  echtes Foto + KI-Hintergrund – ist vollständig EU AI Act-konform.
+  Wir kennzeichnen alle KI-Inhalte entsprechend der ab August 2026
+  geltenden Anforderungen."
+
+**2. Differenzierung gegenüber Mitbewerbern**
+
+Viele Freelancer und kleine Studios, die KI-Tools einsetzen, ignorieren
+aktuell die Kennzeichnungspflichten – aus Unwissenheit oder bewusst.
+Ab August 2026 werden D2C-Brands, die selbst gegenüber Endkunden compliant
+auftreten müssen, explizit nach KI-konformen Creative-Partnern suchen.
+
+Wir sind bereit. Unsere Mitbewerber möglicherweise nicht.
+
+**3. KI-Literacy als nachweisbares Asset**
+
+Denys Demyanyshyn als Marketing-AI-Spezialist und das gesamte Team
+erfüllen die KI-Literacy-Anforderungen des EU AI Acts bereits –
+durch Ausbildung, Praxis und dokumentierte Tool-Kompetenz.
+
+Dieses Argument nutzen wir aktiv in Kundengesprächen:
+> „Wir haben einen dedizierten KI-Spezialisten im Team, der nicht nur
+> Tools bedient, sondern versteht, wie KI-Modelle funktionieren,
+> wo ihre Grenzen liegen und wie wir sie compliant einsetzen.
+> Das ist unsere KI-Literacy – nachweisbar, nicht nur behauptet."
+
+**4. Schutz des Kerngeschäftsmodells**
+
+Der EU AI Act verbietet fotorealistische KI-Visuals in der Werbung ausdrücklich nicht.
+Er rahmt sie ein. Das bedeutet: Unser Hybridmodell (echte Fotografie + KI-Hintergründe)
+ist nicht nur erlaubt – es ist das Modell, das am besten in den Regulierungsrahmen passt:
+die menschliche kreative Kontrolle (Olhas Fotografie) kombiniert mit KI als Produktionshebel.
+
+### Integration ins Creative-OS: AI-Compliance-Schritt
+
+Wir ergänzen unseren 5-Schritte-Loop um einen expliziten Compliance-Ankerpunkt:
+
+```
+Analyse → Hypothesen → Produktion → [AI-Kennzeichnung] → Testing → Learning
+```
+
+Im Produktionsschritt wird standardmäßig dokumentiert:
+- Welche Bildelemente sind fotografischen Ursprungs?
+- Welche wurden KI-generiert oder KI-bearbeitet?
+- Welche Kennzeichnung erhält das finale Ad-Creative?
+
+Dieser Schritt kostet uns drei Minuten pro Creative.
+Er spart unseren Kunden potenzielle Abmahnrisiken ab August 2026.
+
+---
+
+## 12.3 DSGVO: Vertrauen als Conversion-Treiber
+
+### Warum DSGVO für eine Creative-Agentur relevant ist
+
+Mirrou Creative Studio verarbeitet im Rahmen seiner Dienstleistungen
+zwei Kategorien von Daten, die DSGVO-relevant sind:
+
+**Kategorie 1 – Kundendaten (B2B):**
+Namen, E-Mail-Adressen, Unternehmensinformationen unserer Kunden
+und deren Ansprechpartner – verarbeitet für Kommunikation,
+Rechnungsstellung und Reporting.
+
+**Kategorie 2 – Kampagnendaten (indirekt personenbezogen):**
+Im Rahmen des Creative Retainers (Paket 3) erhalten wir Zugang
+zu den Ad-Accounts unserer Kunden. Die Kampagnendaten dort enthalten
+aggregierte Zielgruppen-Insights, die unter bestimmten Umständen
+als personenbezogene Daten eingestuft werden können.
+
+### Konkrete DSGVO-Maßnahmen für Mirrou Creative Studio
+
+**1. Auftragsverarbeitungsvertrag (AVV) als Standard**
+
+Jeder Retainer-Vertrag (Paket 3) enthält automatisch einen AVV.
+Das ist für Enterprise-Kunden (50+ Mitarbeiter, 10k+ € Ad-Spend/Monat)
+keine optionale Ergänzung, sondern Vertragsvoraussetzung.
+
+Wir nutzen den AVV proaktiv im Verkaufsgespräch:
+> „Unser Retainer-Paket enthält standardmäßig einen DSGVO-konformen
+> Auftragsverarbeitungsvertrag. Sie müssen nichts anfordern – wir liefern es mit."
+
+Das ist für größere Kunden ein echtes Kaufargument – weil es ihnen
+einen internen Prozessschritt abnimmt.
+
+**2. Datensparsamkeit als Arbeitsprinzip**
+
+Wir erheben nur die Daten, die wir für unsere Dienstleistung brauchen.
+Kein „Mehr-ist-mehr"-Ansatz bei Kunden-Onboarding.
+Klare Daten-Retention-Policy: Kampagnendaten werden nach Vertragsende
+innerhalb von 30 Tagen gelöscht oder dem Kunden übergeben.
+
+**3. DSGVO-konforme Inbound-Kommunikation**
+
+Auf unserer Website und in unserem Newsletter (ab Monat 4–6)
+nutzen wir ausschließlich Double-Opt-in, klare Widerrufsoptionen
+und keine Third-Party-Tracking-Cookies ohne explizite Zustimmung.
+
+Das kommunizieren wir offen auf LinkedIn und Website:
+> „Unsere eigene Datenstrategie folgt denselben Standards,
+> die wir für unsere Kunden empfehlen. DSGVO ist bei uns kein
+> Rechtshinweis im Footer – es ist unser Arbeitsprinzip."
+
+**4. Vertrauensaufbau im Beauty-/Health-Segment**
+
+Im Beauty- und Health-Segment ist Datensensibilität besonders hoch:
+Zielgruppen werden auf Basis von Gesundheits- und Schönheitsinteressen
+getargeted – das berührt sensible Verhaltensdaten.
+
+Kunden in diesem Segment suchen explizit nach Agenturen,
+die ihnen DSGVO-Risiken abnehmen, nicht aufbürden.
+Unsere dokumentierte DSGVO-Konformität ist im Verkaufsgespräch
+kein Pflichtpunkt – sie ist ein Differenzierungsargument.
+
+### DSGVO-Checkliste für Mirrou Creative Studio (Gründungsphase)
+
+| Maßnahme | Status | Verantwortlich |
+|---------|--------|---------------|
+| Datenschutzerklärung Website | Bei Website-Launch | Yahya + Rechtsvorlage |
+| AVV-Template erstellen | Vor erstem Retainer-Kunden | Ralph + Rechtsvorlage |
+| Daten-Retention-Policy intern | Monat 1 | Ralph |
+| Double-Opt-in für Newsletter | Bei Newsletter-Start | Ralph |
+| Ad-Account-Zugang via sicherer Methode (Business Manager, nie Passwort) | Ab erstem Kunden | Denys |
+
+---
+
+## 12.4 EU Data Act: Daten-Ownership als Retainer-Fundament
+
+### Was der EU Data Act bedeutet
+
+Der EU Data Act ist seit dem 12. September 2025 verbindlich gültig.
+Er gibt denjenigen, die Daten erzeugen oder für deren Entstehung bezahlen,
+das Recht auf Zugang zu diesen Daten – und begrenzt die Macht von
+Plattformen und Agenturen, diese Daten zu monopolisieren.
+
+Für unsere Kunden bedeutet das konkret:
+Die A/B-Test-Ergebnisse, die CTR-Daten, die Creative-Rankings –
+all diese Daten gehören dem Kunden, der dafür bezahlt hat.
+Nicht Meta. Nicht uns. Dem Kunden.
+
+### Wie wir den Data Act strategisch nutzen
+
+**1. Transparentes Reporting als Differenzierungsmerkmal**
+
+Mirrou Creative Studio liefert im Creative Retainer (Paket 3) monatlich
+ein vollständiges Creative-Report – mit allen Kampagnendaten,
+KPI-Tabellen, Creative-Rankings und Learnings.
+
+Das ist nicht selbstverständlich: Viele Agenturen halten Kampagnendaten
+zurück, um Kunden in Abhängigkeit zu halten. Wir tun das Gegenteil.
+
+Wir kommunizieren das aktiv:
+> „Ihre Kampagnendaten gehören Ihnen. Unser monatliches Reporting
+> stellt sicher, dass Sie vollständige Transparenz über alle KPIs,
+> Testresultate und Learnings haben – jederzeit exportierbar,
+> jederzeit Ihnen gehörend. Das ist Data Act-konform. Und das ist unser Standard."
+
+**2. Creative-Learning-Log als formalisiertes Daten-Asset**
+
+Das Creative-Learning-Log, das wir im Rahmen des Retainers führen,
+ist rechtlich gesehen ein Daten-Asset des Kunden – nicht unseres.
+Wir strukturieren es von Anfang an als Übergabe-fähiges Dokument:
+- Klar datiert, klar zugeordnet
+- Exportierbar als CSV und PDF
+- Vollständig übertragbar bei Vertragsende
+
+Das schafft Vertrauen – und bindet paradoxerweise stärker,
+als wenn wir die Daten zurückhalten würden. Kunden, die wissen,
+dass sie ihre Daten jederzeit mitnehmen könnten, und es nicht tun,
+bleiben freiwillig. Das ist echte Kundenbindung.
+
+**3. KMU-Erleichterungen nutzen**
+
+Als Unternehmen mit weniger als 50 Mitarbeiter:innen und weniger als
+10 Millionen Euro Jahresumsatz profitiert Mirrou Creative Studio von
+signifikanten Erleichterungen unter dem EU Data Act:
+- Längere Übergangsfristen für bestimmte Verpflichtungen
+- Vereinfachte Anforderungen an Datenzugangs-Schnittstellen
+- Kein Zwang zu technisch aufwendigen Datenportabilitätslösungen
+
+Praktisch bedeutet das: Wir können die Prinzipien des Data Acts
+umsetzen (Transparenz, Daten-Ownership der Kunden) ohne den
+Compliance-Aufwand eines Großunternehmens tragen zu müssen.
+
+**4. Plattformabhängigkeit strategisch reduzieren**
+
+Im Businessplan (Kapitel 8) haben wir Plattformabhängigkeit als Risiko
+identifiziert: Was passiert, wenn Meta seinen Algorithmus ändert?
+Wenn TikTok in der EU eingeschränkt wird?
+
+Der EU Data Act ist ein direktes Gegenmittel:
+Er stärkt das Recht der Kunden, ihre Daten von Plattformen zu erhalten
+und zu portieren. Für Mirrou Creative Studio bedeutet das mittel- bis langfristig:
+Wir helfen unseren Kunden, ihre Creative-Learnings plattformunabhängig
+zu strukturieren – als Asset, das funktioniert, unabhängig davon,
+welche Plattform morgen dominiert.
+
+Das ist ein Beratungsargument im Kundengespräch:
+> „Ihr Creative-Learning-Log gehört Ihnen – nicht Meta, nicht TikTok.
+> Wenn morgen eine neue Plattform dominant wird, haben Sie Ihre Daten,
+> Ihre Hypothesen und Ihre Erkenntnisse bereits strukturiert.
+> Wir bauen Ihre Creative-Intelligence – nicht unsere."
+
+---
+
+## 12.5 EU-First als USP: Die Gesamtstrategie
+
+### Warum EU-First ein echter Vorteil ist
+
+Die meisten Agenturen und Studios, die mit KI-Tools arbeiten, tun das
+ohne regulatorischen Rahmen: keine Kennzeichnung, kein AVV, kein
+strukturiertes Daten-Ownership. Das ist heute noch ohne Konsequenz.
+Ab August 2026 nicht mehr.
+
+Mirrou Creative Studio startet in dem Moment, in dem dieser Wandel beginnt.
+Wir sind nicht die Ersten, die KI in der Creative-Produktion einsetzen.
+Aber wir können eine der Ersten sein, die es compliant tun –
+und das als Standard, nicht als Zusatzleistung kommunizieren.
+
+### Die drei Kernbotschaften für Kundengespräche
+
+**Botschaft 1 – EU AI Act:**
+> „Unsere KI-generierten Visuals sind ab sofort EU AI Act-konform gekennzeichnet –
+> damit Sie als Marke gegenüber Ihren Kunden keine Risiken eingehen."
+
+**Botschaft 2 – DSGVO:**
+> „Jeder unserer Retainer-Verträge enthält einen AVV.
+> Ihre Kampagnendaten werden ausschließlich für Ihre Projekte verarbeitet
+> und nach Vertragsende vollständig gelöscht oder übergeben."
+
+**Botschaft 3 – Data Act:**
+> „Ihr Creative-Learning-Log gehört Ihnen.
+> Wir bauen Ihre Creative-Intelligence – und geben sie Ihnen zurück."
+
+### Gesamtbewertung: Regulierung als Markteintrittsbeschleuniger
+
+| Regelwerk | Risiko für Mitbewerber | Vorteil für Mirrou Creative Studio |
+|-----------|----------------------|------------------------------|
+| EU AI Act | Abmahnrisiko ab Aug 2026 für unkompliant kennzeichnende Studios | Proaktive Compliance = Vertrauensvorsprung |
+| DSGVO | Fehlende AVVs kosten Enterprise-Kunden | Standard-AVV = Türöffner für größere Kunden |
+| Data Act | Daten-Monopolisierung wird schwerer | Transparenz-Positionierung = Kundenbindung durch Vertrauen |
+
+Das EU-First-Regelwerk ist für eine Agentur im DACH-Raum kein Hindernis.
+Es ist ein Filter – der Agenturen, die professionell und transparent arbeiten,
+von denen trennt, die es nicht tun. Auf der richtigen Seite dieses Filters
+zu stehen ist keine Selbstverständlichkeit. Es ist eine Entscheidung.
+
+Wir haben sie getroffen.
+
+---
+
+## 12.6 Compliance-Roadmap für Mirrou Creative Studio
+
+### Phase 1: Gründungsmonat (Mai–Juni 2026)
+
+| Maßnahme | Beschreibung | Verantwortlich |
+|---------|-------------|---------------|
+| AI-Kennzeichnungs-Policy intern | Dokumentationsstandard für alle KI-Outputs | Denys + Olha |
+| AVV-Template erstellen | Rechtssicheres Template für Retainer-Kunden | Ralph + Vorlage (IHK/Gründungscoach) |
+| Datenschutzerklärung Website | DSGVO-konforme Privacy Policy | Yahya + Vorlage |
+| Internes Daten-Retention-Dokument | Wann werden welche Daten wie lange gespeichert? | Ralph |
+| Creative-Learning-Log-Struktur | Als Übergabe-fähiges, Kunden-eigenes Asset aufsetzen | Denys |
+
+### Phase 2: Erste Kunden (Monat 2–4)
+
+| Maßnahme | Beschreibung | Verantwortlich |
+|---------|-------------|---------------|
+| AVV mit erstem Retainer-Kunden unterzeichnen | Vor Kampagnenzugang | Ralph |
+| Ad-Account-Zugang nur via Business Manager | Keine Passwort-Weitergabe | Denys |
+| Erstes Compliance-Statement auf LinkedIn | „Warum wir EU AI Act-konform produzieren" | Yahya |
+| KI-Kennzeichnung in erstem Client-Report | Als Standard-Element einführen | Denys + Olha |
+
+### Phase 3: Vor August 2026 (vollständige AI Act-Gültigkeit)
+
+| Maßnahme | Beschreibung | Verantwortlich |
+|---------|-------------|---------------|
+| Alle bisherigen Clients über Kennzeichnungspflicht informieren | Proaktives Kunden-Update | Yahya + Ralph |
+| Kennzeichnungsstandard in Creative-Briefing-Template integrieren | Als festes Feld | Denys |
+| „EU AI Act Compliant"-Siegel / Formulierung auf Website ergänzen | Sichtbare Positionierung | Yahya |
+| Interne KI-Literacy-Dokumentation (für Audit-Nachweis) | Belegt Literacy-Pflicht Feb 2025 | Denys |
+
+---
+
+## 12.7 Die 7-Schichten-Compliance-Architektur im Überblick
+
+Was dieses Kapitel beschreibt, ist kein Add-on, sondern eine vollständige, audit-ready
+Compliance-Architektur aus sieben Schichten. Kein identifizierter Wettbewerber im DACH-Raum
+kommuniziert proaktive EU AI Act-Compliance — das First-Mover-Fenster ist bis August 2026 offen.
+
+| # | Schicht | Kern | Status bei Mirrou |
+|---|---------|------|-------------------|
+| 1 | EU AI Act (VO 2024/1689) | Limited-Risk-Klassifizierung (Art. 50), volle Anwendung 2. Aug 2026 | ab Tag 1 vorbereitet |
+| 2 | KI-Labeling-Matrix | 4 Stufen: Pure AI / AI-Assisted / Product Integration / Human-Crafted | Standard (tlw. freiwillig) |
+| 3 | C2PA | Kryptografisch signierte Medien-Provenienz (Adobe Firefly automatisch) | auf allen KI-Assets |
+| 4 | DSGVO | GCP europe-west3, AVV, 6/6 Security-Header, kein Tracking ohne Consent | live |
+| 5 | EU Data Act (2023/2854) | Offene Formate, vollständige Asset-Übergabe, kein Lock-in | vertraglich |
+| 6 | HCVO (Health Claims VO) | HCVO-Checkliste im Creative-Brief für Health/Supplement-Kunden | im Prozess |
+| 7 | 3-Jahres-Audit-Log | KI-System-, Prompt-, Output-, Review- & Kunden-Kommunikations-Log | aufgesetzt |
+
+Die Schichten 1, 4 und 5 sind oben ausführlich beschrieben; die Schichten 2, 3, 6 und 7
+ergänzen sie zu einem lückenlosen, auditierbaren System — von der Datei-Ebene (C2PA,
+Dateinamenskonvention) bis zum dreijährigen Audit-Trail. Für ICP 2 (Health/Supplement)
+ist die HCVO-Schicht kein Nice-to-have, sondern operative Grundvoraussetzung.
+
+---
+
+*Stand: Juni 2026 | Version 2.0*
 *Team: Olha Yevtushenko · Denys Demyanyshyn · Ralph Kindermann · Yahya Yildirim*
 *Mirrou Creative Studio · Hamburg & Berlin*

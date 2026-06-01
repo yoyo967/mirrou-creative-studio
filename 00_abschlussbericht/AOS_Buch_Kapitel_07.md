@@ -214,7 +214,7 @@ Formate: 1:1, 4:5, 9:16
 ### Kampagnenstruktur (Meta)
 
 ```
-Kampagne: LumiSkin – AOS Pilot Mai 2026
+Kampagne: LumiSkin – Mirrou Pilot Mai 2026
 │
 ├── Ad Set 1: Cold Audience (Interessen-Targeting)
 │   ├── Ad 1a: Hyp. A – Textur (1:1)
@@ -322,4 +322,4 @@ für Beauty D2C auf Meta (DACH, 2025/2026).
 ---
 
 *Kapitel 8 folgt: Projektmanagement & 4-Wochen-Plan*
-*Stand: Mai 2026 | Version 1.0*
+*Stand: Juni 2026 | Version 2.0*

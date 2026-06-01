@@ -97,19 +97,25 @@ Creatives produziert, verliert Marktanteile an schnellere und kreativere Mitbewe
 
 „Mirrou Creative Studio" wird von vier Gründer:innen getragen, die komplementäre Kompetenzen
 einbringen. Die Rollenverteilung ist nicht zufällig: Sie folgt der Logik des Geschäftsmodells –
-von der kreativen Strategie über die Kampagnenumsetzung bis hin zu Kundenbindung und Wachstum.
+von der kreativen Direction über Performance & Analytics bis hin zu Client Success und
+Growth. Als **Frontier Firm** orchestriert das Team KI-Systeme so, dass vier Menschen den
+Output eines deutlich größeren klassischen Studios erreichen — jede Domäne hat ein
+menschliches und ein KI-Pendant („Perfect Twin").
 
 ---
 
-### Olha Yevtushenko – Performance Marketerin & Creative Strategin
+### Olha Yevtushenko – Creative Director & Founder
 
-**Standort:** Hamburg  
-**Funktion im Unternehmen:** Strategische und kreative Leitung
+**Standort:** Hamburg (HQ · Produktion & Creative Direction)  
+**Funktion im Unternehmen:** Kreative Gesamtleitung — jedes Asset, das das Studio verlässt, geht durch ihre Direction  
+**Projektbeitrag:** ca. 120 h / 29 %
 
-Olha ist die Initiatorin und kreativ-strategische Seele von „Mirrou Creative Studio".
-Als ausgebildete Fotografin und Performance Marketerin bringt sie die seltene Kombination
-aus visuellem Feingefühl und Datenkompetenz mit. Ihre Arbeit beginnt nicht beim Auslöser
-der Kamera, sondern bei der Frage: Was muss dieses Bild leisten?
+Olha ist die Initiatorin und kreative Seele von „Mirrou Creative Studio".
+Als ausgebildete Fotografin und Creative Director bringt sie die seltene Kombination
+aus visuellem Feingefühl und Performance-Denken mit. Ihre Arbeit beginnt nicht beim Auslöser
+der Kamera, sondern bei der Frage: Was muss dieses Bild leisten? Sie verantwortet das
+„Dark Luxury"-Designsystem (Deep Onyx + Gold), das Brandbook, 12 Logo-Varianten und
+die vier Demo-Case-Studies.
 
 **Kernaufgaben:**
 - Entwicklung der Performance-Marketing-Strategie für Kundenprojekte (Ziele, Kanäle, Funnel)
@@ -125,14 +131,17 @@ zentrales Differenzierungsmerkmal.
 
 ---
 
-### Denys Demyanyshyn – Campaign Manager & Marketing-AI-Spezialist
+### Denys Demyanyshyn – Performance & Analytics
 
-**Funktion im Unternehmen:** Technische und operative Kampagnenführung
+**Standort:** Berlin (Performance, AI & Growth)  
+**Funktion im Unternehmen:** Die Brücke zwischen kreativem Output und messbarem Ergebnis  
+**Projektbeitrag:** ca. 80 h / 20 %
 
-Denys verantwortet die operative Seite der Kampagnen: Er setzt auf, was Olha strategisch
-plant, misst, was funktioniert, und übersetzt Zahlen in klare Entscheidungen.
-Sein Spezialgebiet liegt in der Verbindung von Kampagnenmanagement und KI-gestützten
-Analyse- und Produktionstools.
+Denys verantwortet die Performance- und Analytics-Seite: Er setzt auf, was kreativ
+geplant wird, misst, was funktioniert, und übersetzt Zahlen in klare Entscheidungen.
+Sein Spezialgebiet liegt in der Verbindung von Kampagnenmanagement, Benchmark-Bibliothek
+(CTR/CPC/ROAS je Kanal) und KI-gestützten Analyse- und Produktionstools — er erfüllt
+zugleich die KI-Literacy-Anforderung des EU AI Act als nachweisbares Asset.
 
 **Kernaufgaben:**
 - Kampagnen-Setup und -Steuerung auf Meta, TikTok und Google (Struktur, Targeting, Budgets)
@@ -147,14 +156,17 @@ der aus Kreativität eine wiederholbare, messbare Engine macht.
 
 ---
 
-### Ralph Kindermann – CRM & Lifecycle Marketing Lead
+### Ralph Kindermann – CRM & Client Success
 
-**Funktion im Unternehmen:** Kundenbindung, Kommunikation, Dokumentation
+**Standort:** Berlin (Performance, AI & Growth)  
+**Funktion im Unternehmen:** Das operative Rückgrat des Studios — Onboarding, Pipeline, Retainer-Rhythmus  
+**Projektbeitrag:** ca. 60 h / 15 %
 
 Ralph denkt über den einzelnen Klick hinaus: Ihn interessiert, was nach dem ersten
 Kauf passiert – wie Kunden gebunden werden, wie Creatives in E-Mail-Strecken und
 CRM-Systeme eingebettet werden und wie die Kommunikation über den gesamten
-Customer Lifecycle konsistent bleibt.
+Customer Lifecycle konsistent bleibt. Er verantwortet das Onboarding-System, die
+CRM-/Pipeline-Struktur, den Compliance-Vertragsrahmen (AVV) und den Kunden-Übergabestandard.
 
 **Kernaufgaben:**
 - CRM-Strategie und E-Mail-Marketing für Kundenprojekte (Sequenzen, Segmente, Triggers)
@@ -170,14 +182,17 @@ sondern sich in eine langfristige Kundenbeziehung und einen messbaren Customer L
 
 ---
 
-### Yahya Yildirim – Growth & Inbound Marketing / Projektlead
+### Yahya Yildirim – Systems Architect & Growth Lead
 
-**Standort:** Berlin  
-**Funktion im Unternehmen:** Agentur-Wachstum, Positionierung, Projektführung
+**Standort:** Berlin (Performance, AI & Growth)  
+**Funktion im Unternehmen:** Architekt des Systems — Strategie, Frontier-Firm-Architektur, Website & Tech, Compliance, Growth  
+**Projektbeitrag:** ca. 150 h / 37 %
 
-Yahya trägt zwei Hüte: Er ist Projektlead (organisiert Sprints, Deadlines, Entscheidungen)
-und gleichzeitig verantwortlich dafür, dass „Mirrou Creative Studio" selbst nach außen sichtbar
-und attraktiv ist. Er denkt in Funnels, Netzwerken und Narrativen.
+Yahya trägt mehrere Hüte: Er ist Projektlead (organisiert Sprints, Deadlines, Entscheidungen),
+Systems Architect (Frontier-Firm-Architektur, 5 Perplexity-Spaces, MCP-Stack, die Website
+selbst — React/TypeScript/Tailwind, 8 Sprachen, GCP-Deployment, Trust Center) und Growth Lead
+(Positionierung, ICP-Definition, 4-Kanal-Inbound, B2B-Outreach). Er denkt in Systemen,
+Funnels, Netzwerken und Narrativen.
 
 **Kernaufgaben:**
 - Projektsteuerung: Wochenplanung, Aufgabenverteilung, Meilenstein-Tracking
@@ -201,7 +216,20 @@ Menschen davon erfahren – und sich melden, bevor wir sie ansprechen müssen.
 | CRM & Retention | ⬜ | ⬜ | ✅ Lead | ⬜ |
 | Wachstum & Präsenz | ⬜ | ⬜ | ⬜ | ✅ Lead |
 | Projektsteuerung | ⬜ | ⬜ | ✅ Doku | ✅ Lead |
-| AI & Tools | ⬜ | ✅ Lead | ⬜ | ⬜ |
+| AI & Tools | ⬜ | ✅ Lead | ⬜ | ✅ Architektur |
+
+### Perfect Twin: Mensch + KI-Pendant je Domäne
+
+Jede Kernrolle wird durch ein KI-Pendant verdoppelt — das ist der strukturelle Hebel,
+der ein Vier-Personen-Team wie ein 15–20-köpfiges klassisches Studio produzieren lässt:
+
+| Domäne | Mensch | KI-Pendant |
+|--------|--------|------------|
+| Brand & Strategie | Yahya | Perplexity HQ Space |
+| Creative Direction | Olha | Midjourney + Adobe Firefly |
+| Performance | Denys | Claude + Meta Analytics |
+| CRM & Ops | Ralph | Ops & Playbooks Space |
+| Web-Entwicklung | Team | Claude Code + GCP Pipeline |
 
 ---
 
@@ -250,4 +278,4 @@ ohne jeden Endkunden einzeln akquirieren zu müssen.
 ---
 
 *Kapitel 3 folgt: Problem & Marktanalyse*
-*Stand: Mai 2026 | Version 1.0*
+*Stand: Juni 2026 | Version 2.0*

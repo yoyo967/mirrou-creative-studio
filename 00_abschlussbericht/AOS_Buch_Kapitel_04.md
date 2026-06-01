@@ -11,13 +11,15 @@
 
 ### Positionierung
 
-„Mirrou Creative Studio" positioniert sich als **Performance Creative Studio** –
-ein Anbieter, der die Lücke zwischen visueller Kreation und datengetriebenem
-Paid Advertising schließt.
+„Mirrou Creative Studio" positioniert sich als **AI-natives Performance Creative Studio** –
+ein Anbieter, der die Lücke zwischen editorial-grade visueller Kreation und datengetriebenem
+Paid Advertising schließt, und der dabei als **Frontier Firm** arbeitet: ein Vier-Personen-Team,
+das KI über den gesamten Stack orchestriert (Intelligence · Production · Infrastructure · Performance).
 
 Wir sind keine Fotografie-Agentur, die nebenbei Ads versteht.
 Wir sind keine Performance-Agentur, die nebenbei Bilder kauft.
-Wir sind beides – in einem integrierten, iterativen System.
+Wir sind beides – in einem integrierten, iterativen System. Der unbesetzte Quadrant im
+DACH-Markt: editorial-grade Ästhetik **und** Performance-Denken **und** EU-Compliance ab Tag 1.
 
 **Positionierungsstatement:**
 
@@ -119,6 +121,12 @@ Analyse → Hypothesen → Produktion → Testing → Learning
     ↑                                               ↓
     └──────────────────────────────────────────────┘
 ```
+
+Im externen Sprachgebrauch (Website, Pitch, Kundenbriefing) heißt dieser Loop der
+**5-Schritt-Algorithmus**: Creative Audit → Visual Brief → Hybrid Execution →
+Performance Layer → Data Feedback Loop. Erstprojekt-Durchlaufzeit: **9–20 Tage**
+gegenüber 4–8 Wochen bei klassischen Boutique-Studios — möglich durch die hybride
+Foto-+-KI-Pipeline und die Frontier-Firm-Orchestrierung.
 
 ### Schritt 1: Analyse
 
@@ -277,4 +285,4 @@ Das ist unser Graben.
 ---
 
 *Kapitel 5 folgt: Geschäftsmodell & Angebote*
-*Stand: Mai 2026 | Version 1.0*
+*Stand: Juni 2026 | Version 2.0*

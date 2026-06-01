@@ -246,4 +246,4 @@ DCI-Abschluss  Case Studies      Break-Even      Skalierung
 ---
 
 *Kapitel 10 folgt: Reflexion & Lessons Learned*
-*Stand: Mai 2026 | Version 1.0*
+*Stand: Juni 2026 | Version 2.0*
