@@ -27,7 +27,7 @@
 ## 2. Eure Rollen & Positionen
 
 ### 👑 Olha Yevtushenko — Creative Director & Founder · Hamburg · 120 h / 29 %
-- **Du verantwortest:** Dark-Luxury-Designsystem (Onyx + Gold), Brandbook, 12 Logo-Varianten, alle Visuals, die 4 Demo-Case-Studies (Luminous Aura, Vitality Pulse, Essence Drift, Neural Glow), Hybrid Production.
+- **Du verantwortest (alles real im Repo):** Dark-Luxury-Designsystem (Onyx + Gold — `02_brand/brand-assets.md`, live im Code), Brandbook (`02_brand/mirrou_branding_kit.md` + Live-`BrandBookPage`), **12 Logo-Varianten** (`02_brand/*.svg` + `visuals/mirrou-logo-*`), **25 Case-Visuals** (`public/images/cases/`) zu 4 **Demo-Brands** (Luminous Aura, Vitality Pulse, Essence Drift, Neural Glow — Neural Glow bewusst 100 % KI), hunderte produzierte Visuals (`visuals/`, `public/images/gallery/`), Hybrid Production.
 - **Dein Merksatz:** „Jedes Asset, das das Studio verlässt, geht durch meine Direction. Das **Produkt wird nie KI-generiert** — nur die Welt drumherum."
 - **Du präsentierst:** Brand Identity & das Creative-System (Hybrid Production) + die Case Studies.
 
