@@ -16,10 +16,10 @@ Frontier Firm Architektur, Hybrid Production und EU AI Act-Compliance als Wettbe
 
 | Name | Rolle | E-Mail | Standort |
 |------|-------|--------|----------|
-| Olha Yevtushenko | Creative Director & Founder | _________________ | Hamburg |
-| Denys Demyanyshyn | Performance & Analytics | _________________ | Berlin |
-| Ralph Kindermann | CRM & Client Success | _________________ | Berlin |
-| Yahya Yildirim | Systems Architect & Growth Lead | _________________ | Berlin |
+| Olha Yevtushenko | Creative Director & Founder | olhayevtushenko57@gmail.com | Hamburg |
+| Denys Demyanyshyn | Performance & Analytics | denys.demyanyshyn@dci-student.org | Berlin |
+| Ralph Kindermann | CRM & Client Success | info.ralphkindermann@gmail.com | Berlin |
+| Yahya Yildirim | Systems Architect & Growth Lead | yildirimyahya716@gmail.com | Berlin |
 
 ---
 
@@ -29,9 +29,9 @@ Kurs: Online Marketing Manager/in
 Kursstart: _________________
 Kursende: _________________
 
-**Dozent:in:** _________________
+**Dozent:in:** Steffany Fischer
 
-**Datum Abgabe:** _________________
+**Datum Abgabe:** 19.06.2026
 **Projektzeitraum:** Mai 2026 – Juni 2026
 
 ---

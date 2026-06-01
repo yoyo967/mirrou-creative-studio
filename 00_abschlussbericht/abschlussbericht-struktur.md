@@ -17,9 +17,9 @@ version: 1.0
 | **Titel** | Mirrou Creative Studio – Aufbau einer KI-integrierten Performance Creative Agency |
 | **Untertitel** | Frontier Firm Architektur, Hybrid Production und EU AI Act-Compliance als Wettbewerbsstrategie |
 | **Team** | Olha Yevtushenko · Denys Demyanyshyn · Ralph Kindermann · Yahya Yildirim |
-| **Kurs / Institution** | [Eintragen] |
-| **Betreuung** | [Eintragen] |
-| **Abgabedatum** | [Eintragen] |
+| **Kurs / Institution** | D03 2026 · DCI Digital Career Institute |
+| **Betreuung** | Steffany Fischer |
+| **Abgabedatum** | 19.06.2026 |
 | **Umfang (gesamt)** | ca. 40–60 Seiten |
 
 ---
