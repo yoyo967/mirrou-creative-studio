@@ -1,0 +1,86 @@
+name: Agentic PoC · Brief → Copy-Draft
+
+# Proof of Concept der "GitHub als OS"-Roadmap:
+# Kunden-Brief als GitHub Issue (Label "brief-ready") → Claude generiert einen
+# Copy-Entwurf in Mirrou-Tonalitaet → als Issue-Kommentar zurueck.
+#
+# SICHERHEIT: laeuft NUR wenn ein Issue das Label "brief-ready" bekommt (bewusste
+# menschliche Aktion). Dormant, solange das Secret ANTHROPIC_API_KEY fehlt — dann
+# wird statt eines API-Calls nur ein Hinweis kommentiert. Kein Auto-Lauf bei Push.
+
+on:
+  issues:
+    types: [labeled]
+
+permissions:
+  issues: write
+  contents: read
+
+jobs:
+  draft:
+    if: github.event.label.name == 'brief-ready'
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Key-Guard
+        id: guard
+        run: |
+          if [ -z "${{ secrets.ANTHROPIC_API_KEY }}" ]; then
+            echo "ready=false" >> "$GITHUB_OUTPUT"
+          else
+            echo "ready=true" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Hinweis (Key fehlt)
+        if: steps.guard.outputs.ready == 'false'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            await github.rest.issues.createComment({
+              owner: context.repo.owner, repo: context.repo.repo,
+              issue_number: context.issue.number,
+              body: '⚙️ **Agentic-PoC aktiv** — aber das Secret `ANTHROPIC_API_KEY` ist noch nicht gesetzt.\nSobald hinterlegt (Settings → Secrets → Actions), generiere ich hier bei jedem `brief-ready`-Label automatisch einen Copy-Entwurf.'
+            })
+
+      - name: Claude · Copy-Entwurf generieren
+        if: steps.guard.outputs.ready == 'true'
+        id: claude
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          MODEL: ${{ vars.ANTHROPIC_MODEL }}
+          TITLE: ${{ github.event.issue.title }}
+          BRIEF: ${{ github.event.issue.body }}
+        run: |
+          set -euo pipefail
+          MODEL="${MODEL:-claude-sonnet-4-5}"
+          SYS="Du bist die Copy-Engine von Mirrou Creative Studio. Tonalitaet: praezise, direkt, selbstbewusst ohne Arroganz, nuechtern-elegant (Claim: Algorithm of Soul). Erzeuge aus dem Brief: (1) drei Hook-Varianten (max. 8 Woerter), (2) einen Primary Text (2-3 Saetze), (3) einen CTA. Keine Floskeln, kein 'innovativ/ganzheitlich'. Deutsch."
+          USER=$(printf 'Titel: %s\n\nBrief:\n%s' "$TITLE" "$BRIEF")
+          REQ=$(jq -n --arg m "$MODEL" --arg s "$SYS" --arg u "$USER" \
+            '{model:$m, max_tokens:1024, system:$s, messages:[{role:"user", content:$u}]}')
+          RESP=$(curl -sS https://api.anthropic.com/v1/messages \
+            -H "x-api-key: $ANTHROPIC_API_KEY" \
+            -H "anthropic-version: 2023-06-01" \
+            -H "content-type: application/json" \
+            -d "$REQ")
+          DRAFT=$(printf '%s' "$RESP" | jq -r '.content[0].text // .error.message // "Unerwartete API-Antwort."')
+          { echo 'draft<<__EOF__'; printf '%s\n' "$DRAFT"; echo '__EOF__'; } >> "$GITHUB_OUTPUT"
+
+      - name: Entwurf als Kommentar posten
+        if: steps.guard.outputs.ready == 'true'
+        uses: actions/github-script@v7
+        env:
+          DRAFT: ${{ steps.claude.outputs.draft }}
+        with:
+          script: |
+            await github.rest.issues.createComment({
+              owner: context.repo.owner, repo: context.repo.repo,
+              issue_number: context.issue.number,
+              body: '## ✍️ Copy-Entwurf (Claude · PoC)\n\n' + process.env.DRAFT +
+                    '\n\n---\n_Automatisch generiert aus dem Brief. Review durch Olha/Yahya → bei Freigabe Label `approved`._'
+            });
+            try {
+              await github.rest.issues.addLabels({
+                owner: context.repo.owner, repo: context.repo.repo,
+                issue_number: context.issue.number, labels: ['copy-drafted']
+              });
+            } catch (e) { core.info('Label copy-drafted noch nicht angelegt — uebersprungen.'); }

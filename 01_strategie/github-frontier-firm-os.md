@@ -131,6 +131,12 @@ Action: Assets → GCS, Delivery-Webhook an Kunde
 Der Agent taggt Briefs, prüft PRs auf **Brand-Konsistenz**, eskaliert liegengebliebene
 Issues. Das ist die operative Einlösung des Perfect-Twin-Prinzips auf Prozessebene.
 
+**Erster PoC bereits im Repo:** [`.github/workflows/brief-to-copy.yml`](../.github/workflows/brief-to-copy.yml)
+(Trigger: Issue-Label `brief-ready`) + Issue-Template `creative-brief.md`. Aus dem Brief
+generiert Claude **3 Hook-Varianten + Primary Text + CTA** in Mirrou-Tonalität und postet
+sie als Issue-Kommentar. Läuft nur bei bewusstem Label-Setzen; dormant bis `ANTHROPIC_API_KEY`
+gesetzt ist — kein Auto-Lauf.
+
 ---
 
 ## 6. Status: live vs. Roadmap (ehrlich)
@@ -141,13 +147,15 @@ Issues. Das ist die operative Einlösung des Perfect-Twin-Prinzips auf Prozesseb
 | Commit-Audit-Trail (Git-History) | ✅ **live** |
 | Commit-Konvention (`feat/docs/chore/fix…`) | ✅ **live** (in Nutzung) |
 | **CI-Quality-Gate** (`.github/workflows/ci.yml` — typecheck/lint/build) | ✅ **live** (erster Actions-Schritt) |
+| **Deploy-as-Action** (`deploy.yml`, OIDC → Cloud Run, ersetzt `deploy_gcp.ps1`) | 🟡 Workflow vorhanden · aktiv nach WIF-Setup (`docs/DEPLOY_OIDC_SETUP.md`) |
+| **Agentic PoC** Brief-Issue → Claude-Copy (`brief-to-copy.yml` + Issue-Template) | 🟡 PoC vorhanden · dormant bis `ANTHROPIC_API_KEY` |
 | Issues-als-Tickets · PRs-als-Approval-Gate | 🟡 Konvention definiert, Einführung pending |
 | GCS-Asset-Sync (OIDC) · asset-registry.json | 🔵 Roadmap |
-| Agentic Creative-Pipelines (Claude/Gemini in Actions) | 🔵 Roadmap (post erste Kunden) |
 | LFS→GCS-Migration | 🔵 Roadmap (bei Asset-Volumen) |
 
-> Deployment heute: weiterhin `deploy_gcp.ps1` (Cloud Build → Cloud Run). Nächster Schritt
-> Richtung OS: Deploy als GitHub Action (OIDC → Cloud Run) statt manuell.
+> Deployment heute: noch `deploy_gcp.ps1`. Der OS-Schritt steht **bereit im Repo**:
+> `deploy.yml` (OIDC → Cloud Run) — aktiv, sobald die einmalige WIF-Einrichtung erfolgt ist
+> (`docs/DEPLOY_OIDC_SETUP.md`, ~5 gcloud-Befehle + 2 Repo-Secrets). Kein statischer Key.
 
 ---
 

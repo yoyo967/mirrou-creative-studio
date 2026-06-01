@@ -158,6 +158,7 @@ ein DCI-Abschlussprojekt, das überzeugt – und eine Agentur, die startklar ist
 | Pitch-Probe | Woche 3 + 4 | Alle | Präsentations-Training |
 
 **Tools (Frontier-Firm-Stack):**
+- **GitHub (Orchestration & Audit OS)**: Repo = Single Source of Truth (Code + Doku + Deck), Commit-History = Audit-Trail, GitHub Actions als Process-Engine (CI live) — die verbindende 5. Schicht.
 - **Perplexity Spaces**: 5 KI-Spaces als Intelligence-Betriebssystem (HQ, Strategy & Intelligence, Ops & Playbooks, PROJECT, Command Center)
 - **Claude Code + GCP**: Die Website selbst — Build, Code, Deployment auf Google Cloud Run (europe-west3)
 - **Midjourney + Adobe Firefly**: KI-Visuals und Hintergründe (C2PA-signiert)

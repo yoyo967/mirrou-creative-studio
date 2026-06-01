@@ -394,8 +394,12 @@ Performance- oder Digital-Agenturen in DACH, die kein eigenes Creative-Team auf 
 <p>Das Frontier Firm Modell beschreibt eine Organisationsform, in der KI nicht als Werkzeug fur einzelne Aufgaben, sondern als operative Schicht des gesamten Betriebs eingesetzt wird. Im Gegensatz zu klassischen Agenturen, die KI als Add-on nutzen, ist bei Mirrou jeder Arbeitsbereich durch ein KI-Pendant erweitert.</p>
 <p>Die Grundthese: Ein kleines Team kann durch systematische KI-Orchestrierung auf dem Niveau eines deutlich grosseren Studios operieren — nicht durch Abkurzungen, sondern durch informiertere Entscheidungen, konsistentere Outputs und schnellere Iterationszyklen.</p>
 <h3>6.2 Die vier Schichten</h3>
-<p>Die Frontier Firm Architektur besteht aus vier funktionalen Schichten:</p>
-<pre><code>LAYER 1 · INTELLIGENCE       Perplexity Spaces · Claude · Gemini
+<p>Die Frontier Firm Architektur besteht aus vier funktionalen Schichten, die durch eine
+OS-Schicht (GitHub) versioniert, orchestriert und auditierbar gemacht werden:</p>
+<pre><code>OS-LAYER · GITHUB            Repo (Single Source of Truth) · Actions · Audit-Trail
+                              Versionierung, Orchestrierung, Compliance-Audit-Log
+
+LAYER 1 · INTELLIGENCE       Perplexity Spaces · Claude · Gemini
                               Research, Wissen, Strategie, Reasoning
 
 LAYER 2 · PRODUCTION          Adobe CC · Midjourney · Runway · Claude Code
@@ -407,6 +411,7 @@ LAYER 3 · INFRASTRUCTURE      GCP · Google Drive · CLI · MCP
 LAYER 4 · PERFORMANCE         Meta · TikTok · Google Ads · GA4
                               Analytics, Distribution, Reporting
 </code></pre>
+<p>Die OS-Schicht ist kein funftes Tool, sondern das Substrat: Das gesamte Studio — Live-Website, 39 Wissensdokumente, Compliance-Architektur und Prasentationen — liegt versioniert in einem GitHub-Repository (Single Source of Truth). Jeder Commit ist ein Audit-Trail und deckt damit direkt die EU AI Act-Anforderung eines 3-Jahres-Audit-Logs ab. GitHub Actions dient als Process-Engine — das CI-Quality-Gate (typecheck/lint/build) ist live, Deploy-as-Action (OIDC, Cloud Run) und agentic Creative-Pipelines (Brief-Issue zu Claude-Copy-Draft) sind als naechste Schritte bereits als Workflow-Geruest im Repo angelegt.</p>
 <h3>6.3 Perplexity Space-Architektur</h3>
 <p>Perplexity Spaces bilden das Intelligence-Betriebssystem von Mirrou. Im Gegensatz zu klassischen Wissensmanagement-Tools wie Notion oder Confluence kombinieren Spaces kuratiertes Wissen (hochgeladene Dokumente) mit Echtzeit-Web-Recherche in einem System.</p>
 <p>Mirrou betreibt funf Spaces mit klar definierten Funktionen:</p>
@@ -490,6 +495,11 @@ LAYER 4 · PERFORMANCE         Meta · TikTok · Google Ads · GA4
 <td>Research und Intelligence</td>
 <td>Team</td>
 <td>Strategy und Intelligence Space</td>
+</tr>
+<tr>
+<td>Orchestrierung und Audit</td>
+<td>Team</td>
+<td>GitHub (Repo, Actions, Audit-Trail)</td>
 </tr>
 </tbody></table>
 <p>Das Ergebnis: Jede Entscheidung ist informiert, jeder Output ist konsistent, jede Iteration ist schneller als die vorherige.</p>

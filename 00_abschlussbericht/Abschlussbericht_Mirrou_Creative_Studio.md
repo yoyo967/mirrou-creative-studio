@@ -299,9 +299,13 @@ Die Grundthese: Ein kleines Team kann durch systematische KI-Orchestrierung auf 
 
 ### 6.2 Die vier Schichten
 
-Die Frontier Firm Architektur besteht aus vier funktionalen Schichten:
+Die Frontier Firm Architektur besteht aus vier funktionalen Schichten, die durch eine
+OS-Schicht (GitHub) versioniert, orchestriert und auditierbar gemacht werden:
 
 ```
+OS-LAYER · GITHUB            Repo (Single Source of Truth) · Actions · Audit-Trail
+                              Versionierung, Orchestrierung, Compliance-Audit-Log
+
 LAYER 1 · INTELLIGENCE       Perplexity Spaces · Claude · Gemini
                               Research, Wissen, Strategie, Reasoning
 
@@ -314,6 +318,8 @@ LAYER 3 · INFRASTRUCTURE      GCP · Google Drive · CLI · MCP
 LAYER 4 · PERFORMANCE         Meta · TikTok · Google Ads · GA4
                               Analytics, Distribution, Reporting
 ```
+
+Die OS-Schicht ist kein funftes Tool, sondern das Substrat: Das gesamte Studio — Live-Website, 39 Wissensdokumente, Compliance-Architektur und Prasentationen — liegt versioniert in einem GitHub-Repository (Single Source of Truth). Jeder Commit ist ein Audit-Trail und deckt damit direkt die EU AI Act-Anforderung eines 3-Jahres-Audit-Logs ab. GitHub Actions dient als Process-Engine — das CI-Quality-Gate (typecheck/lint/build) ist live, Deploy-as-Action (OIDC, Cloud Run) und agentic Creative-Pipelines (Brief-Issue zu Claude-Copy-Draft) sind als naechste Schritte bereits als Workflow-Geruest im Repo angelegt.
 
 ### 6.3 Perplexity Space-Architektur
 
@@ -343,6 +349,7 @@ Fur jede Arbeitsdomane gibt es ein menschliches und ein KI-Pendant — nicht als
 | CRM und Prozesse | Ralph | Ops und Playbooks Space |
 | Web-Entwicklung | Team | Claude Code + GCP Pipeline |
 | Research und Intelligence | Team | Strategy und Intelligence Space |
+| Orchestrierung und Audit | Team | GitHub (Repo, Actions, Audit-Trail) |
 
 Das Ergebnis: Jede Entscheidung ist informiert, jeder Output ist konsistent, jede Iteration ist schneller als die vorherige.
 
