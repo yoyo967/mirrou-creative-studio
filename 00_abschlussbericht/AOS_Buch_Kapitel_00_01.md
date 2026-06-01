@@ -26,8 +26,6 @@ Frontier Firm Architektur, Hybrid Production und EU AI Act-Compliance als Wettbe
 **Kurs & Institution:**
 Digital Career Institute (DCI)
 Kurs: Online Marketing Manager/in
-Kursstart: _________________
-Kursende: _________________
 
 **Dozent:in:** Steffany Fischer
 
