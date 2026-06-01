@@ -381,8 +381,11 @@ Alle vier Case Studies sind konzeptionell. Das erste bezahlte Projekt mit echten
 
 ### Follow-ups
 
-*   **6-Wochen-Roadmap:** MIRROU Creative zum 'Frontier Firm' entwickeln — inkl. EU-KI-Compliance und TikTok-Social-Commerce-Setup
-*   **ICP-Audit & Mandanten-Akquise:** Strategisches Targeting für MIRROU — mit Fokus auf High-End-Marken und Skalierung bis Aug 2026
-*   **Checkliste für die ersten 30 Tage der operativen Skalierung**
-*   **Vertriebs-Roadmap zur Gewinnung des ersten zahlenden Kunden**
-*   **Strategische Preismodellierung für Performance Creative Services**
+Diese fünf Follow-ups sind als eigenständige Strategiedokumente ausgearbeitet
+(`00_abschlussbericht/follow_ups/`, je als Markdown + PDF):
+
+1.  **[6-Wochen-Roadmap: Frontier Firm entwickeln](follow_ups/1_Roadmap_Frontier_Firm.md)** — inkl. EU-KI-Compliance und TikTok-Social-Commerce-Setup
+2.  **[ICP-Audit & Mandanten-Akquise](follow_ups/2_ICP_Audit_Mandanten_Akquise.md)** — strategisches Targeting mit Fokus auf High-End-Marken und Skalierung bis Aug 2026
+3.  **[Checkliste: erste 30 Tage operative Skalierung](follow_ups/3_Checkliste_Operative_Skalierung.md)**
+4.  **[Vertriebs-Roadmap zum ersten zahlenden Kunden](follow_ups/4_Vertriebs_Roadmap_Zahlender_Kunde.md)**
+5.  **[Strategische Preismodellierung für Performance Creative Services](follow_ups/5_Strategische_Preismodellierung.md)**
