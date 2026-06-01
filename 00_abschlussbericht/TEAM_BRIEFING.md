@@ -29,7 +29,8 @@
 ### 👑 Olha Yevtushenko — Creative Director & Founder · Performance Marketing · Hamburg · 120 h / 29 %
 - **Du verantwortest (alles real im Repo):** Dark-Luxury-Designsystem (Onyx + Gold — `02_brand/brand-assets.md`, live im Code), Brandbook (`02_brand/mirrou_branding_kit.md` + Live-`BrandBookPage`), **12 Logo-Varianten** (`02_brand/*.svg` + `visuals/mirrou-logo-*`), **25 Case-Visuals** (`public/images/cases/`) zu 4 **Demo-Brands** (Luminous Aura, Vitality Pulse, Essence Drift, Neural Glow — Neural Glow bewusst 100 % KI), hunderte produzierte Visuals (`visuals/`, `public/images/gallery/`), Hybrid Production.
 - **Dein Merksatz:** „Jedes Asset, das das Studio verlässt, geht durch meine Direction. Das **Produkt wird nie KI-generiert** — nur die Welt drumherum."
-- **Du präsentierst:** Brand Identity & das Creative-System (Hybrid Production) + die Case Studies.
+- **Du präsentierst:** Brand Identity & das Creative-System (Hybrid Production) + die Case Studies — **und die Brücke Creative → Performance** (Data Feedback Loop).
+- 📎 **Doppelrollen-Guide:** [`OLHA_DOPPELROLLE.md`](OLHA_DOPPELROLLE.md) — Performance-Grundlagen, Creative→Performance-Logik, Benchmarks, neue Q&A-Fragen.
 
 ### 📊 Denys Demyanyshyn — Performance & Analytics · Berlin · 80 h / 20 %
 - **Du verantwortest:** Benchmark-Bibliothek (`01_strategie/benchmark-library.md`) und Platform Intelligence — **echte, ausgearbeitete Dateien**; die A/B-Testing-**Methodik** (Buch Kap. 7.5); den Data Feedback Loop als **Learning-Log-Template** (`05_sops_templates/template-learning-log.md` — Struktur steht, echte Zahlen kommen mit dem ersten Kunden); den **LumiSkin-Pilot als Benchmark-Simulation**; den KI-Literacy-Nachweis (`07_compliance/ki-literacy-nachweis.md`).
