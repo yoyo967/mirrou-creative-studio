@@ -5,10 +5,14 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Mirrou Creative Studio — Why · How · What</title>
 <meta name="description" content="Mirrou Creative Studio — Performance Creative Studio aus Hamburg & Berlin. Präsentation nach dem Golden-Circle-Prinzip: Why, How, What.">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<meta name="robots" content="noindex">
 <style>
+  /* Self-hosted brand fonts (CSP font-src 'self'-konform; relative Pfade — live & lokal) */
+  @font-face{font-family:'Cormorant Garamond';font-weight:300 700;font-style:normal;font-display:swap;src:url('fonts/cormorant-garamond-latin-wght-normal.woff2') format('woff2-variations')}
+  @font-face{font-family:'Cormorant Garamond';font-weight:300 700;font-style:italic;font-display:swap;src:url('fonts/cormorant-garamond-latin-wght-italic.woff2') format('woff2-variations')}
+  @font-face{font-family:'Inter';font-weight:100 900;font-style:normal;font-display:swap;src:url('fonts/inter-latin-wght-normal.woff2') format('woff2-variations')}
+  @font-face{font-family:'JetBrains Mono';font-weight:300 800;font-style:normal;font-display:swap;src:url('fonts/jetbrains-mono-latin-wght-normal.woff2') format('woff2-variations')}
+
   :root{
     --bg:#080808; --surface:#111113; --surface2:#1A1A1E;
     --gold:#C8A25A; --gold-light:#E4C07A; --gold-soft:rgba(200,162,90,.10);
@@ -17,20 +21,16 @@
     --why:#C8A25A; --how:#9CC2D6; --what:#E0A98F;
     --serif:'Cormorant Garamond',Georgia,serif;
     --sans:'Inter',system-ui,-apple-system,sans-serif;
-    --mono:'JetBrains Mono',monospace;
+    --mono:'JetBrains Mono',ui-monospace,monospace;
     --ease:cubic-bezier(.16,1,.3,1);
   }
   *{box-sizing:border-box;margin:0;padding:0}
   html,body{height:100%;background:var(--bg);color:var(--ink);font-family:var(--sans);overflow:hidden;-webkit-font-smoothing:antialiased;font-size:clamp(14px,1.45vw,19px);line-height:1.5}
-  body::before{/* grain + vignette */
-    content:"";position:fixed;inset:0;pointer-events:none;z-index:60;
-    background:radial-gradient(120% 90% at 50% 0%,transparent 55%,rgba(0,0,0,.55) 100%);
-    mix-blend-mode:multiply;}
+  body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:60;background:radial-gradient(120% 90% at 50% 0%,transparent 55%,rgba(0,0,0,.55) 100%);mix-blend-mode:multiply}
 
-  /* ---------- Deck ---------- */
   .deck{position:fixed;inset:0}
   .slide{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:center;
-    padding:clamp(32px,6vw,110px);opacity:0;visibility:hidden;transform:translateY(14px);
+    padding:clamp(30px,5.5vw,104px);opacity:0;visibility:hidden;transform:translateY(14px);
     transition:opacity .6s var(--ease),transform .6s var(--ease),visibility .6s;pointer-events:none}
   .slide.active{opacity:1;visibility:visible;transform:none;pointer-events:auto}
   .slide.active .stagger>*{animation:rise .7s var(--ease) backwards}
@@ -43,77 +43,117 @@
   @keyframes rise{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
 
   .wrap{width:100%;max-width:1180px;margin:0 auto}
-  .kicker{font-family:var(--mono);font-size:.72rem;letter-spacing:.34em;text-transform:uppercase;color:var(--gold);margin-bottom:1.4rem;display:flex;align-items:center;gap:.9rem}
+  .kicker{font-family:var(--mono);font-size:.72rem;letter-spacing:.34em;text-transform:uppercase;color:var(--gold);margin-bottom:1.3rem;display:flex;align-items:center;gap:.9rem}
   .kicker::before{content:"";width:34px;height:1px;background:var(--gold)}
   h1{font-family:var(--serif);font-weight:500;line-height:1.02;letter-spacing:-.01em;font-size:clamp(2.6rem,6.6vw,5.6rem)}
-  h2{font-family:var(--serif);font-weight:500;line-height:1.06;letter-spacing:-.01em;font-size:clamp(2rem,4.6vw,3.7rem)}
-  .lead{font-size:clamp(1.05rem,1.7vw,1.45rem);color:var(--body);font-weight:300;max-width:46ch;margin-top:1.4rem}
+  h2{font-family:var(--serif);font-weight:500;line-height:1.06;letter-spacing:-.01em;font-size:clamp(1.9rem,4.4vw,3.6rem)}
+  .lead{font-size:clamp(1.02rem,1.65vw,1.42rem);color:var(--body);font-weight:300;max-width:48ch;margin-top:1.3rem}
   .lead strong{color:var(--ink);font-weight:500}
   em{color:var(--gold-light);font-style:italic}
   .serif-quote{font-family:var(--serif);font-style:italic;font-weight:300;font-size:clamp(1.5rem,3.2vw,2.6rem);line-height:1.25;color:var(--ink);max-width:24ch}
   .small{font-size:.82rem;color:var(--muted);font-family:var(--mono);letter-spacing:.04em}
 
-  /* ---------- Act dividers ---------- */
   .act{align-items:flex-start}
   .act .num{font-family:var(--mono);color:var(--gold);font-size:.8rem;letter-spacing:.3em}
-  .act .word{font-family:var(--serif);font-weight:300;font-size:clamp(5rem,21vw,17rem);line-height:.9;letter-spacing:-.02em;
-    background:linear-gradient(180deg,var(--ink),var(--muted));-webkit-background-clip:text;background-clip:text;color:transparent}
-  .act .sub{font-size:clamp(1.1rem,2vw,1.7rem);color:var(--body);font-weight:300;margin-top:1.2rem;max-width:40ch}
+  .act .word{font-family:var(--serif);font-weight:300;font-size:clamp(5rem,21vw,17rem);line-height:.9;letter-spacing:-.02em;background:linear-gradient(180deg,var(--ink),var(--muted));-webkit-background-clip:text;background-clip:text;color:transparent}
+  .act .sub{font-size:clamp(1.1rem,2vw,1.7rem);color:var(--body);font-weight:300;margin-top:1.1rem;max-width:40ch}
   .act .sub b{color:var(--gold-light);font-weight:500}
 
-  /* ---------- Golden circle (framework slide) ---------- */
   .gc{display:grid;grid-template-columns:1.1fr .9fr;gap:clamp(28px,5vw,80px);align-items:center}
-  .gc-rings{position:relative;aspect-ratio:1;width:100%;max-width:420px;justify-self:center}
+  .gc-rings{position:relative;aspect-ratio:1;width:100%;max-width:400px;justify-self:center}
   .ring{position:absolute;inset:0;border-radius:50%;border:1px solid var(--line);display:flex;align-items:flex-start;justify-content:center;padding-top:.7rem}
   .ring span{font-family:var(--mono);font-size:.66rem;letter-spacing:.28em;color:var(--muted)}
   .ring.r2{inset:16%}.ring.r3{inset:33%;border-color:var(--gold);background:var(--gold-soft)}
   .ring.r3 span{color:var(--gold)}
-  .gc-list{display:flex;flex-direction:column;gap:1.3rem}
+  .gc-list{display:flex;flex-direction:column;gap:1.2rem}
   .gc-item{border-left:2px solid var(--line);padding-left:1.1rem}
   .gc-item h3{font-family:var(--mono);font-size:.74rem;letter-spacing:.26em;text-transform:uppercase;margin-bottom:.35rem}
   .gc-item.why h3{color:var(--why)}.gc-item.how h3{color:var(--how)}.gc-item.what h3{color:var(--what)}
   .gc-item p{color:var(--body);font-weight:300;font-size:1rem}
 
-  /* ---------- Cards / grids ---------- */
-  .grid{display:grid;gap:1px;background:var(--line-soft);border:1px solid var(--line-soft);margin-top:2rem}
+  .grid{display:grid;gap:1px;background:var(--line-soft);border:1px solid var(--line-soft);margin-top:1.8rem}
   .g3{grid-template-columns:repeat(3,1fr)} .g2{grid-template-columns:repeat(2,1fr)} .g4{grid-template-columns:repeat(4,1fr)}
-  .cell{background:var(--bg);padding:clamp(18px,2vw,30px)}
+  .cell{background:var(--bg);padding:clamp(16px,1.9vw,28px)}
   .cell .n{font-family:var(--mono);color:var(--gold);font-size:.72rem;letter-spacing:.2em}
-  .cell h3{font-family:var(--serif);font-weight:500;font-size:1.5rem;margin:.5rem 0 .5rem}
-  .cell p{color:var(--body);font-weight:300;font-size:.95rem}
-  .cell .price{font-family:var(--mono);color:var(--gold-light);font-size:.9rem;margin-top:.8rem}
+  .cell h3{font-family:var(--serif);font-weight:500;font-size:1.45rem;margin:.45rem 0 .5rem}
+  .cell p{color:var(--body);font-weight:300;font-size:.93rem}
+  .cell .price{font-family:var(--mono);color:var(--gold-light);font-size:.88rem;margin-top:.8rem}
 
-  .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:clamp(16px,3vw,48px);margin-top:2.2rem}
-  .stat .v{font-family:var(--serif);font-size:clamp(2.2rem,4.6vw,3.6rem);font-weight:500;color:var(--gold-light);line-height:1}
-  .stat .l{font-size:.82rem;color:var(--muted);margin-top:.5rem;letter-spacing:.02em}
+  .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:clamp(16px,3vw,48px);margin-top:2rem}
+  .stat .v{font-family:var(--serif);font-size:clamp(2.1rem,4.4vw,3.5rem);font-weight:500;color:var(--gold-light);line-height:1}
+  .stat .l{font-size:.81rem;color:var(--muted);margin-top:.5rem}
 
-  .steps{display:grid;grid-template-columns:repeat(5,1fr);gap:1px;background:var(--line-soft);margin-top:2.2rem;border:1px solid var(--line-soft)}
+  .steps{display:grid;grid-template-columns:repeat(5,1fr);gap:1px;background:var(--line-soft);margin-top:2rem;border:1px solid var(--line-soft)}
   .step{background:var(--bg);padding:clamp(14px,1.6vw,24px)}
   .step .s{font-family:var(--mono);color:var(--gold);font-size:.72rem;letter-spacing:.16em}
-  .step h4{font-family:var(--sans);font-weight:600;font-size:.92rem;margin:.5rem 0 .4rem;text-transform:uppercase;letter-spacing:.04em}
-  .step p{color:var(--muted);font-size:.8rem;font-weight:300}
+  .step h4{font-weight:600;font-size:.9rem;margin:.5rem 0 .4rem;text-transform:uppercase;letter-spacing:.04em}
+  .step p{color:var(--muted);font-size:.78rem;font-weight:300}
 
-  .rows{margin-top:1.8rem;border-top:1px solid var(--line)}
-  .row{display:grid;grid-template-columns:.5fr 1.5fr;gap:1.5rem;padding:1rem 0;border-bottom:1px solid var(--line);align-items:baseline}
+  .rows{margin-top:1.6rem;border-top:1px solid var(--line)}
+  .row{display:grid;grid-template-columns:.5fr 1.5fr;gap:1.5rem;padding:.95rem 0;border-bottom:1px solid var(--line);align-items:baseline}
   .row .k{font-family:var(--mono);color:var(--gold);font-size:.82rem;letter-spacing:.1em}
   .row .vv{color:var(--body);font-weight:300}
   .row .vv b{color:var(--ink);font-weight:500}
 
-  .tag{display:inline-block;font-family:var(--mono);font-size:.66rem;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);border:1px solid var(--gold);border-radius:100px;padding:.32em .8em;margin-bottom:1.3rem}
-  .note{font-family:var(--mono);font-size:.72rem;color:var(--muted);margin-top:1.6rem;letter-spacing:.03em}
+  .tag{display:inline-block;font-family:var(--mono);font-size:.66rem;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);border:1px solid var(--gold);border-radius:100px;padding:.32em .8em;margin-bottom:1.2rem}
+  .note{font-family:var(--mono);font-size:.72rem;color:var(--muted);margin-top:1.5rem;letter-spacing:.03em}
 
-  .team{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line-soft);border:1px solid var(--line-soft);margin-top:2rem}
-  .member{background:var(--bg);padding:clamp(16px,1.8vw,26px)}
-  .member .role{font-family:var(--mono);font-size:.68rem;letter-spacing:.14em;color:var(--gold);text-transform:uppercase}
-  .member h4{font-family:var(--serif);font-weight:500;font-size:1.35rem;margin:.5rem 0 .3rem}
-  .member p{color:var(--muted);font-size:.82rem;font-weight:300}
-  .member .h{font-family:var(--mono);color:var(--body);font-size:.78rem;margin-top:.7rem}
+  .team{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line-soft);border:1px solid var(--line-soft);margin-top:1.8rem}
+  .member{background:var(--bg);padding:clamp(15px,1.7vw,24px)}
+  .member .role{font-family:var(--mono);font-size:.66rem;letter-spacing:.12em;color:var(--gold);text-transform:uppercase}
+  .member h4{font-family:var(--serif);font-weight:500;font-size:1.3rem;margin:.5rem 0 .3rem}
+  .member p{color:var(--muted);font-size:.8rem;font-weight:300}
+  .member .h{font-family:var(--mono);color:var(--body);font-size:.76rem;margin-top:.6rem}
 
   .two{display:grid;grid-template-columns:1fr 1fr;gap:clamp(28px,5vw,72px);align-items:center}
   .cta{font-family:var(--serif);font-size:clamp(1.4rem,2.4vw,2rem);color:var(--ink);font-weight:300}
-  .contact{font-family:var(--mono);color:var(--gold-light);font-size:1rem;letter-spacing:.04em;margin-top:1.4rem;line-height:2}
+  .contact{font-family:var(--mono);color:var(--gold-light);font-size:1rem;letter-spacing:.04em;margin-top:1.3rem;line-height:2}
 
-  /* ---------- Chrome (fixed UI) ---------- */
+  /* personas */
+  .persona{background:var(--bg);padding:clamp(18px,2vw,30px)}
+  .persona .n{font-family:var(--mono);color:var(--gold);font-size:.72rem;letter-spacing:.18em}
+  .persona h3{font-family:var(--serif);font-weight:500;font-size:1.5rem;margin:.4rem 0 .2rem}
+  .persona .meta{font-family:var(--mono);font-size:.74rem;color:var(--muted);margin-bottom:.9rem}
+  .persona .q{font-family:var(--serif);font-style:italic;color:var(--ink);font-size:1.1rem;line-height:1.35;border-left:2px solid var(--gold);padding-left:.9rem}
+  .persona .o{color:var(--body);font-weight:300;font-size:.9rem;margin-top:.9rem}
+
+  /* quadrant */
+  .quad{position:relative;aspect-ratio:1.25;width:100%;max-width:460px;border:1px solid var(--line);justify-self:center}
+  .quad .axis{position:absolute;font-family:var(--mono);font-size:.6rem;letter-spacing:.16em;color:var(--muted);text-transform:uppercase}
+  .quad .ax-top{top:8px;left:50%;transform:translateX(-50%)}
+  .quad .ax-bot{bottom:8px;left:50%;transform:translateX(-50%)}
+  .quad .ax-l{left:8px;top:50%;transform:translateY(-50%) rotate(180deg);writing-mode:vertical-rl}
+  .quad .ax-r{right:8px;top:50%;transform:translateY(-50%);writing-mode:vertical-rl}
+  .quad::before,.quad::after{content:"";position:absolute;background:var(--line-soft)}
+  .quad::before{left:50%;top:0;bottom:0;width:1px}
+  .quad::after{top:50%;left:0;right:0;height:1px}
+  .dot{position:absolute;transform:translate(-50%,-50%);text-align:center}
+  .dot i{display:block;width:11px;height:11px;border-radius:50%;background:var(--muted);margin:0 auto .4rem}
+  .dot span{font-family:var(--mono);font-size:.64rem;color:var(--body);letter-spacing:.04em;white-space:nowrap}
+  .dot.me i{background:var(--gold);box-shadow:0 0 0 6px var(--gold-soft),0 0 22px rgba(200,162,90,.5)}
+  .dot.me span{color:var(--gold-light)}
+
+  /* gallery */
+  .gallery{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:1.6rem}
+  .tile{position:relative;aspect-ratio:3/4;overflow:hidden;border:1px solid var(--line);background:var(--surface)}
+  .tile img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .8s var(--ease);filter:saturate(.96)}
+  .tile:hover img{transform:scale(1.04)}
+  .tile .cap{position:absolute;left:0;right:0;bottom:0;padding:.9rem 1rem .8rem;background:linear-gradient(transparent,rgba(8,8,8,.9))}
+  .tile .cap b{display:block;font-family:var(--serif);font-size:1.15rem;font-weight:500;color:var(--ink)}
+  .tile .cap small{font-family:var(--mono);font-size:.62rem;letter-spacing:.12em;color:var(--gold);text-transform:uppercase}
+  .strip{display:grid;grid-template-columns:repeat(6,1fr);gap:8px;margin-top:8px}
+  .strip .t{aspect-ratio:1;overflow:hidden;border:1px solid var(--line-soft)}
+  .strip img{width:100%;height:100%;object-fit:cover;filter:saturate(.92) brightness(.92)}
+
+  /* roadmap */
+  .roadmap{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line-soft);border:1px solid var(--line-soft);margin-top:1.8rem}
+  .phase{background:var(--bg);padding:clamp(18px,2vw,30px)}
+  .phase .when{font-family:var(--mono);color:var(--gold);font-size:.72rem;letter-spacing:.14em}
+  .phase h3{font-family:var(--serif);font-weight:500;font-size:1.45rem;margin:.4rem 0 .8rem}
+  .phase ul{list-style:none}
+  .phase li{color:var(--body);font-weight:300;font-size:.9rem;padding:.3rem 0 .3rem 1.1rem;position:relative}
+  .phase li::before{content:"→";position:absolute;left:0;color:var(--gold);font-family:var(--mono);font-size:.8rem}
+
   .progress{position:fixed;top:0;left:0;height:2px;background:var(--gold);width:0;z-index:50;transition:width .5s var(--ease)}
   .actbar{position:fixed;top:clamp(20px,3vh,34px);right:clamp(22px,4vw,56px);display:flex;gap:.5rem;z-index:50}
   .actbar span{font-family:var(--mono);font-size:.66rem;letter-spacing:.22em;color:var(--muted);padding:.3em .7em;border:1px solid var(--line-soft);border-radius:100px;transition:.4s var(--ease)}
@@ -127,9 +167,8 @@
   .hint{position:fixed;bottom:clamp(64px,9vh,84px);left:50%;transform:translateX(-50%);font-family:var(--mono);font-size:.64rem;letter-spacing:.18em;color:var(--muted);z-index:50;opacity:.7;transition:opacity 1s}
   .hint.hide{opacity:0}
 
-  @media(max-width:860px){
-    .gc,.two{grid-template-columns:1fr}.g3,.g4,.stats,.steps,.team{grid-template-columns:1fr 1fr}
-    .gc-rings{max-width:280px}.row{grid-template-columns:1fr}
+  @media(max-width:880px){
+    .gc,.two{grid-template-columns:1fr}.g3,.g4,.stats,.steps,.team,.gallery,.roadmap{grid-template-columns:1fr 1fr}.strip{grid-template-columns:repeat(3,1fr)}.row{grid-template-columns:1fr}.quad{max-width:320px}
   }
   @media print{html,body{overflow:visible}.slide{position:relative;opacity:1;visibility:visible;transform:none;page-break-after:always;min-height:100vh}.progress,.nav,.hint,.actbar,.counter{display:none}}
 </style>
@@ -138,7 +177,7 @@
 <div class="progress" id="progress"></div>
 <div class="actbar"><span data-act="WHY">WHY</span><span data-act="HOW">HOW</span><span data-act="WHAT">WHAT</span></div>
 <div class="brandmark">MIRROU · ALGORITHM OF SOUL</div>
-<div class="counter"><b id="cur">01</b> / <span id="total">20</span></div>
+<div class="counter"><b id="cur">01</b> / <span id="total">24</span></div>
 
 <main class="deck" id="deck">
 
@@ -148,11 +187,11 @@
       <div class="kicker">Mirrou Creative Studio · Hamburg / Berlin · MMXXVI</div>
       <h1>Algorithm<br>of Soul.</h1>
       <p class="lead"><strong>Wo Ästhetik Algorithmus wird.</strong> Ein Performance Creative Studio für D2C-Brands in Beauty, Health & Lifestyle — erklärt von innen nach außen: <em>Why · How · What</em>.</p>
-      <p class="small" style="margin-top:2.2rem">DCI-Abschlusspräsentation · für Investoren, Management, Studierende & Partner</p>
+      <p class="small" style="margin-top:2.1rem">DCI-Abschlusspräsentation · für Investoren, Management, Studierende & Partner</p>
     </div>
   </section>
 
-  <!-- 2 · GOLDEN CIRCLE FRAMEWORK -->
+  <!-- 2 · GOLDEN CIRCLE -->
   <section class="slide" data-act="">
     <div class="wrap">
       <div class="kicker">Das Prinzip dieser Präsentation</div>
@@ -167,7 +206,7 @@
           <div class="ring r3"><span>WHY</span></div>
         </div>
       </div>
-      <div class="gc-list" style="grid-column:1/-1;margin-top:2.4rem;display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem">
+      <div style="grid-column:1/-1;margin-top:2.2rem;display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem">
         <div class="gc-item why"><h3>Why — Überzeugung</h3><p>Schöne Bilder reichen nicht mehr. Kreativität ist die wichtigste Performance-Variable.</p></div>
         <div class="gc-item how"><h3>How — Methode</h3><p>Hybrid Production, ein 5-Schritt-Algorithmus, Frontier-Firm-Betrieb, Compliance by Design.</p></div>
         <div class="gc-item what"><h3>What — Angebot</h3><p>Drei Pakete, eine laufende Creative-Engine — und eine live messbare Infrastruktur.</p></div>
@@ -175,7 +214,7 @@
     </div>
   </section>
 
-  <!-- 3 · DIE ARBEIT VOR DER ARBEIT -->
+  <!-- 3 · ARBEIT VOR DER ARBEIT -->
   <section class="slide" data-act="">
     <div class="wrap stagger">
       <div class="kicker">Die Arbeit vor der Arbeit</div>
@@ -187,7 +226,7 @@
         <div class="stat"><div class="v">12</div><div class="l">nummerierte<br>PDF-Deliverables</div></div>
         <div class="stat"><div class="v">5</div><div class="l">KI-Spaces als<br>Wissens-Betriebssystem</div></div>
       </div>
-      <p class="note">Das ist der unsichtbare Teil — und der eigentliche Unterschied zwischen einem Foto-Dienstleister und einem Studio, das skaliert.</p>
+      <p class="note">Der unsichtbare Teil — und der eigentliche Unterschied zwischen Foto-Dienstleister und einem Studio, das skaliert.</p>
     </div>
   </section>
 
@@ -200,7 +239,7 @@
     </div>
   </section>
 
-  <!-- 5 · WHY — BELIEF -->
+  <!-- 5 · WHY BELIEF -->
   <section class="slide" data-act="WHY">
     <div class="wrap stagger">
       <div class="kicker">Unsere Überzeugung</div>
@@ -215,22 +254,22 @@
     </div>
   </section>
 
-  <!-- 6 · WHY — ORIGIN -->
+  <!-- 6 · WHY ORIGIN -->
   <section class="slide" data-act="WHY">
     <div class="wrap two">
       <div class="stagger">
         <div class="kicker">Die Herkunft</div>
         <p class="serif-quote">„Mirrou ist nicht im Co-Working-Space entstanden — sondern aus der Notwendigkeit, eine ungewisse Situation in eine konkrete, eigenständige Zukunft zu verwandeln."</p>
-        <p class="small" style="margin-top:1.4rem">— Olha Yevtushenko · Founder & Creative Director</p>
+        <p class="small" style="margin-top:1.3rem">— Olha Yevtushenko · Founder & Creative Director</p>
       </div>
       <div class="stagger">
         <p class="lead" style="max-width:none"><strong>Keine Illusion, keine Überhöhung</strong> — sondern Arbeit, die funktioniert. Das ist der Ursprung, und er ist bis heute in der DNA des Studios spürbar.</p>
-        <p class="lead" style="max-width:none;margin-top:1.2rem"><em>„Ich fotografiere nicht einfach Produkte. Ich fange die Intention ihrer Seele ein."</em></p>
+        <p class="lead" style="max-width:none;margin-top:1.1rem"><em>„Ich fotografiere nicht einfach Produkte. Ich fange die Intention ihrer Seele ein."</em></p>
       </div>
     </div>
   </section>
 
-  <!-- 7 · PROBLEM — CREATIVE FATIGUE (educational) -->
+  <!-- 7 · CREATIVE FATIGUE -->
   <section class="slide" data-act="WHY">
     <div class="wrap stagger">
       <div class="kicker">Das Marktproblem · kurz erklärt</div>
@@ -245,7 +284,7 @@
     </div>
   </section>
 
-  <!-- 8 · MARKET — OPPORTUNITY -->
+  <!-- 8 · MARKET -->
   <section class="slide" data-act="WHY">
     <div class="wrap stagger">
       <div class="kicker">Der Markt · warum jetzt</div>
@@ -261,7 +300,32 @@
     </div>
   </section>
 
-  <!-- 9 · HOW DIVIDER -->
+  <!-- 9 · ICP PERSONAS (neu) -->
+  <section class="slide" data-act="WHY">
+    <div class="wrap stagger">
+      <div class="kicker">Für wen wir bauen · Ideal Customer Profiles</div>
+      <h2>Zwei Kunden.<br>Ein Schmerz.</h2>
+      <div class="grid g2">
+        <div class="persona">
+          <div class="n">ICP 01 · Höchste Priorität</div>
+          <h3>D2C Skincare / Beauty Founder</h3>
+          <div class="meta">28–45 J. · DACH · 20–80 k€ Ad-Spend/Monat · Meta + TikTok</div>
+          <p class="q">„Unsere Creatives sehen nach 3 Wochen aus wie alle anderen — und ich weiß nicht, welches wirklich funktioniert."</p>
+          <p class="o">→ Mirrou liefert den reproduzierbaren Prozess. <strong>Creative Retainer S/M.</strong></p>
+        </div>
+        <div class="persona">
+          <div class="n">ICP 02 · Hohe Priorität</div>
+          <h3>D2C Health / Supplement Brand</h3>
+          <div class="meta">30–50 J. · DACH · 15–60 k€ Ad-Spend/Monat · Compliance-sensibel</div>
+          <p class="q">„Health-Creatives müssen legal korrekt sein — und seit KI weiß ich nicht mehr, was erlaubt ist."</p>
+          <p class="o">→ Compliance ist hier Grundbedingung, nicht Bonus. <strong>HCVO + EU AI Act ab Tag 1.</strong></p>
+        </div>
+      </div>
+      <p class="note">Sekundär: Performance-Agenturen als White-Label-Partner. Anti-ICP: „nur Bilder" ohne System, kein physisches Produkt, Compliance-Verweigerer.</p>
+    </div>
+  </section>
+
+  <!-- 10 · HOW DIVIDER -->
   <section class="slide act" data-act="HOW">
     <div class="wrap stagger">
       <div class="num">02 — DER GOLDEN CIRCLE</div>
@@ -270,7 +334,7 @@
     </div>
   </section>
 
-  <!-- 10 · HOW — ALGORITHM OF SOUL -->
+  <!-- 11 · ALGORITHM OF SOUL -->
   <section class="slide" data-act="HOW">
     <div class="wrap two">
       <div class="stagger">
@@ -286,7 +350,35 @@
     </div>
   </section>
 
-  <!-- 11 · HOW — HYBRID PRODUCTION -->
+  <!-- 12 · WETTBEWERB / QUADRANT (neu) -->
+  <section class="slide" data-act="HOW">
+    <div class="wrap">
+      <div class="kicker">Der Wettbewerb · der unbesetzte Quadrant</div>
+      <div class="gc">
+        <div class="stagger">
+          <h2>Drei Arenen.<br>Eine leere Ecke.</h2>
+          <p class="lead">Boutique-Studios haben Ästhetik ohne Performance. Performance-Agenturen haben Daten ohne Ästhetik. In-House-Teams sind teuer und langsam. <strong>Der Quadrant aus beidem — in der Beauty/Health-Nische — ist unbesetzt.</strong></p>
+          <div class="gc-list" style="margin-top:1.4rem">
+            <div class="gc-item why"><h3>Boutique Studios</h3><p>Hohe Ästhetik · kein Performance-System · 4–8 Wochen.</p></div>
+            <div class="gc-item how"><h3>Performance Agencies</h3><p>Starke Daten · generisch/visuell schwach · Junior-Teams.</p></div>
+            <div class="gc-item what"><h3>In-House Teams</h3><p>Markenwissen · hohe Fixkosten · 3–6 Monate Ramp-up.</p></div>
+          </div>
+        </div>
+        <div class="quad stagger">
+          <div class="axis ax-top">Performance-Denken</div>
+          <div class="axis ax-bot">Ästhetik-Fokus</div>
+          <div class="axis ax-l">Generalist</div>
+          <div class="axis ax-r">Beauty / Health-Nische</div>
+          <div class="dot me" style="left:76%;top:22%"><i></i><span>Mirrou</span></div>
+          <div class="dot" style="left:26%;top:32%"><i></i><span>Performance Agencies</span></div>
+          <div class="dot" style="left:72%;top:74%"><i></i><span>Boutique Studios</span></div>
+          <div class="dot" style="left:40%;top:60%"><i></i><span>In-House</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 13 · HYBRID PRODUCTION -->
   <section class="slide" data-act="HOW">
     <div class="wrap stagger">
       <div class="kicker">Hybrid Production</div>
@@ -300,7 +392,7 @@
     </div>
   </section>
 
-  <!-- 12 · HOW — 5-STEP ALGORITHM -->
+  <!-- 14 · 5-STEP -->
   <section class="slide" data-act="HOW">
     <div class="wrap stagger">
       <div class="kicker">Der Algorithmus · 5 Schritte</div>
@@ -316,7 +408,7 @@
     </div>
   </section>
 
-  <!-- 13 · HOW — FRONTIER FIRM (educational) -->
+  <!-- 15 · FRONTIER FIRM -->
   <section class="slide" data-act="HOW">
     <div class="wrap stagger">
       <div class="kicker">Das Betriebsmodell · erklärt</div>
@@ -332,7 +424,7 @@
     </div>
   </section>
 
-  <!-- 14 · HOW — COMPLIANCE -->
+  <!-- 16 · COMPLIANCE -->
   <section class="slide" data-act="HOW">
     <div class="wrap stagger">
       <div class="kicker">Compliance by Design</div>
@@ -347,7 +439,7 @@
     </div>
   </section>
 
-  <!-- 15 · WHAT DIVIDER -->
+  <!-- 17 · WHAT DIVIDER -->
   <section class="slide act" data-act="WHAT">
     <div class="wrap stagger">
       <div class="num">03 — DER GOLDEN CIRCLE</div>
@@ -356,7 +448,7 @@
     </div>
   </section>
 
-  <!-- 16 · WHAT — PACKAGES -->
+  <!-- 18 · PACKAGES -->
   <section class="slide" data-act="WHAT">
     <div class="wrap stagger">
       <div class="kicker">Drei Wege, mit uns zu arbeiten</div>
@@ -370,7 +462,29 @@
     </div>
   </section>
 
-  <!-- 17 · WHAT — PROOF (live product) -->
+  <!-- 19 · CASE GALLERY (echte Bilder) -->
+  <section class="slide" data-act="WHAT">
+    <div class="wrap stagger">
+      <div class="kicker">Visuelle Systeme · 2026 · editorial-grade</div>
+      <div class="gallery">
+        <div class="tile"><img src="images/cases/luminous-aura-1.webp" alt="Luminous Aura" loading="lazy" decoding="async"><div class="cap"><small>Skincare</small><b>Luminous Aura</b></div></div>
+        <div class="tile"><img src="images/cases/vitality-pulse-1.webp" alt="Vitality Pulse" loading="lazy" decoding="async"><div class="cap"><small>Health</small><b>Vitality Pulse</b></div></div>
+        <div class="tile"><img src="images/cases/essence-drift-2.webp" alt="Essence Drift" loading="lazy" decoding="async"><div class="cap"><small>Fragrance</small><b>Essence Drift</b></div></div>
+        <div class="tile"><img src="images/cases/neural-glow-cover.webp" alt="Neural Glow" loading="lazy" decoding="async"><div class="cap"><small>Biotech</small><b>Neural Glow</b></div></div>
+      </div>
+      <div class="strip">
+        <div class="t"><img src="images/cases/luminous-aura-3.webp" alt="" loading="lazy" decoding="async"></div>
+        <div class="t"><img src="images/cases/vitality-pulse-4.webp" alt="" loading="lazy" decoding="async"></div>
+        <div class="t"><img src="images/cases/essence-drift-5.webp" alt="" loading="lazy" decoding="async"></div>
+        <div class="t"><img src="images/cases/neural-glow-3.webp" alt="" loading="lazy" decoding="async"></div>
+        <div class="t"><img src="images/cases/luminous-aura-5.webp" alt="" loading="lazy" decoding="async"></div>
+        <div class="t"><img src="images/cases/neural-glow-5.webp" alt="" loading="lazy" decoding="async"></div>
+      </div>
+      <p class="note">Vier visuelle Systeme für Beauty, Fragrance & Tech-forward Skincare — Hybrid produziert. Neural Glow bewusst 100 % KI als Kontrast-Proof.</p>
+    </div>
+  </section>
+
+  <!-- 20 · PROOF live -->
   <section class="slide" data-act="WHAT">
     <div class="wrap stagger">
       <div class="tag">Kein Konzept · Live</div>
@@ -382,37 +496,58 @@
         <div class="stat"><div class="v">6/6</div><div class="l">Security-Header ·<br>EU-gehostet (Frankfurt)</div></div>
         <div class="stat"><div class="v">0</div><div class="l">npm-Sicherheits-<br>lücken</div></div>
       </div>
-      <p class="note">React 19 · Vite · TypeScript · Tailwind · statisch vorgerendert · Google Cloud Run.</p>
+      <p class="note">React 19 · Vite · TypeScript · Tailwind · statisch vorgerendert · Google Cloud Run. Diese Präsentation liegt selbst unter mirrou.studio/deck.</p>
     </div>
   </section>
 
-  <!-- 18 · WHAT — CASES -->
+  <!-- 21 · DEMO CASE NUMBERS -->
   <section class="slide" data-act="WHAT">
     <div class="wrap stagger">
-      <div class="kicker">Visuelle Systeme · 2026</div>
-      <h2>Editorial-grade.<br>Performance-engineered.</h2>
-      <div class="grid g4">
-        <div class="cell"><div class="n">Skincare</div><h3>Luminous Aura</h3><p>Dunkler Marmor, schwebende Goldpartikel, kinematische Stille.</p></div>
-        <div class="cell"><div class="n">Health</div><h3>Vitality Pulse</h3><p>Kinetische Spannung, dynamische Komposition.</p></div>
-        <div class="cell"><div class="n">Fragrance</div><h3>Essence Drift</h3><p>Atmosphärische Erzählung, Glasreflexionen, schwebende Zeit.</p></div>
-        <div class="cell"><div class="n">Biotech</div><h3>Neural Glow</h3><p>Neon, Schaltkreise, Biotech trifft Luxus-Skincare. (100 % KI als Kontrast-Proof.)</p></div>
-      </div>
-      <div class="stats" style="grid-template-columns:repeat(3,1fr);margin-top:1.6rem">
-        <div class="stat"><div class="v">+82 %</div><div class="l">CTR (0,85 % → 1,55 %)</div></div>
-        <div class="stat"><div class="v">−38 %</div><div class="l">CPC (1,42 € → 0,88 €)</div></div>
-        <div class="stat"><div class="v">+42 %</div><div class="l">ROAS (1,9 → 2,7)</div></div>
+      <div class="kicker">Was eine Engine in zwei Wochen schafft</div>
+      <h2>Methodik, sichtbar gemacht.</h2>
+      <p class="lead">3 Hypothesen · 1 Shooting-Tag · 21 finale Creatives. Nach 14 Tagen Testing gewinnt der Problem-Hook — und setzt die neue Baseline.</p>
+      <div class="stats" style="grid-template-columns:repeat(3,1fr)">
+        <div class="stat"><div class="v">+82 %</div><div class="l">CTR · 0,85 % → 1,55 %</div></div>
+        <div class="stat"><div class="v">−38 %</div><div class="l">CPC · 1,42 € → 0,88 €</div></div>
+        <div class="stat"><div class="v">+42 %</div><div class="l">ROAS · 1,9 → 2,7</div></div>
       </div>
       <p class="note">Demo-Case · methodisch repräsentativ · KPIs basieren auf Branchen-Benchmarks (noch keine Live-Kundendaten).</p>
     </div>
   </section>
 
-  <!-- 19 · WHAT — TEAM -->
+  <!-- 22 · ROADMAP (neu) -->
+  <section class="slide" data-act="WHAT">
+    <div class="wrap stagger">
+      <div class="kicker">Ausblick · Roadmap</div>
+      <h2>Das Fundament steht.<br>Jetzt kommt der Kunde.</h2>
+      <div class="roadmap">
+        <div class="phase">
+          <div class="when">NOW · 0–3 Monate</div>
+          <h3>Foundation → Erste Kunden</h3>
+          <ul><li>LinkedIn-Outreach, priorisiert ICP 1</li><li>Erster bezahlter Case mit Live-Daten</li><li>HubSpot-Anbindung (DSGVO-Consent)</li><li>Mobile-Performance auf ≥ 90</li></ul>
+        </div>
+        <div class="phase">
+          <div class="when">NEXT · 3–12 Monate</div>
+          <h3>Traction → Skalierung</h3>
+          <ul><li>Echte Case-Study-Bibliothek (ROAS/CTR)</li><li>Erste Retainer-Verträge (MRR)</li><li>Agency Partner Program (White-Label)</li><li>TikTok Shop DACH als First-Mover</li></ul>
+        </div>
+        <div class="phase">
+          <div class="when">LATER · 12 Monate +</div>
+          <h3>Stabilität → Studio</h3>
+          <ul><li>3–5 aktive Retainer, Break-even</li><li>Freelancer-Netzwerk (Foto/Motion)</li><li>Pricing-Headroom nach oben</li><li>Mirrou als DACH-Referenz Beauty/Health</li></ul>
+        </div>
+      </div>
+      <p class="note">Drei Marktmechaniken begünstigen uns direkt: EU AI Act · TikTok Shop DACH · UGC-Fatigue.</p>
+    </div>
+  </section>
+
+  <!-- 23 · TEAM -->
   <section class="slide" data-act="WHAT">
     <div class="wrap stagger">
       <div class="kicker">Das Team · 410 h · 6 Wochen</div>
       <h2>Vier Rollen. Eine Engine.</h2>
       <div class="team">
-        <div class="member"><div class="role">Creative Director &amp; Founder · Performance Mktg</div><h4>Olha Yevtushenko</h4><p>Hamburg · Design-System, Brand, Produktion</p><div class="h">120 h · 29 %</div></div>
+        <div class="member"><div class="role">Creative Director &amp; Founder · Perf. Mktg</div><h4>Olha Yevtushenko</h4><p>Hamburg · Design-System, Brand, Produktion</p><div class="h">120 h · 29 %</div></div>
         <div class="member"><div class="role">Performance &amp; Analytics</div><h4>Denys Demyanyshyn</h4><p>Berlin · Benchmarks, A/B, Data Loop</p><div class="h">80 h · 20 %</div></div>
         <div class="member"><div class="role">CRM &amp; Client Success</div><h4>Ralph Kindermann</h4><p>Berlin · Onboarding, Pipeline, Retainer</p><div class="h">60 h · 15 %</div></div>
         <div class="member"><div class="role">Systems Architect &amp; Growth Lead</div><h4>Yahya Yildirim</h4><p>Berlin · Architektur, Website, Compliance</p><div class="h">150 h · 37 %</div></div>
@@ -420,7 +555,7 @@
     </div>
   </section>
 
-  <!-- 20 · CLOSE -->
+  <!-- 24 · CLOSE -->
   <section class="slide" data-act="">
     <div class="wrap two">
       <div class="stagger">
@@ -430,7 +565,7 @@
       </div>
       <div class="stagger" style="text-align:right">
         <h1 style="font-size:clamp(2rem,5vw,3.6rem)">Algorithm<br>of Soul.</h1>
-        <p class="small" style="margin-top:1.4rem">Wo Ästhetik Algorithmus wird.</p>
+        <p class="small" style="margin-top:1.3rem">Wo Ästhetik Algorithmus wird.</p>
       </div>
     </div>
   </section>
@@ -449,17 +584,15 @@
         prog=document.getElementById('progress'),hint=document.getElementById('hint'),
         actSpans=[...document.querySelectorAll('.actbar span')];
   tot.textContent=String(total).padStart(2,'0');
-
   function render(){
     slides.forEach((s,n)=>s.classList.toggle('active',n===i));
     cur.textContent=String(i+1).padStart(2,'0');
-    prog.style.width=((i)/(total-1)*100)+'%';
+    prog.style.width=(i/(total-1)*100)+'%';
     const act=slides[i].dataset.act;
     actSpans.forEach(sp=>sp.classList.toggle('on',sp.dataset.act===act));
   }
   function go(n){i=Math.max(0,Math.min(total-1,n));render();if(i>0)hint.classList.add('hide');}
   const next=()=>go(i+1), prev=()=>go(i-1);
-
   document.getElementById('next').onclick=next;
   document.getElementById('prev').onclick=prev;
   window.addEventListener('keydown',e=>{
@@ -467,7 +600,6 @@
     else if(['ArrowLeft','ArrowUp','PageUp','Backspace'].includes(e.key)){e.preventDefault();prev();}
     else if(e.key==='Home'){go(0);} else if(e.key==='End'){go(total-1);}
   });
-  // touch
   let x0=null;
   window.addEventListener('touchstart',e=>x0=e.touches[0].clientX,{passive:true});
   window.addEventListener('touchend',e=>{if(x0===null)return;const dx=e.changedTouches[0].clientX-x0;if(Math.abs(dx)>50){dx<0?next():prev();}x0=null;},{passive:true});
