@@ -19,6 +19,8 @@
 5. Das ist **kein Konzept** — die Website ist **live** unter **mirrou.studio**, EU-gehostet, mit Lighthouse-Desktop-Score **100/100/100/100**, und wir sind ab Tag 1 **EU AI Act-compliant**.
 
 > **Fürs gemeinsame Auftreten:** Buch und Bericht erzählen jetzt **eine** kohärente Geschichte (Frontier Firm). Tretet selbstbewusst, aber ehrlich auf — das einzige offene Gap ist der erste bezahlte Kunde mit echten Live-Daten.
+>
+> ⚠️ **Ehrlichkeits-Regel (wichtig fürs Q&A):** Alle Case Studies — **Luminous Aura, Vitality Pulse, Essence Drift, Neural Glow** (Olha) und der **LumiSkin-Pilot** (Denys) — sind **konzeptionell bzw. Benchmark-basierte Simulationen**, keine realen Kundenergebnisse. Genau so präsentieren. Das ist **kein** Schwachpunkt: System, Stack, Methodik und die Live-Website stehen real — es fehlt nur der erste zahlende Kunde.
 
 ---
 
@@ -30,9 +32,9 @@
 - **Du präsentierst:** Brand Identity & das Creative-System (Hybrid Production) + die Case Studies.
 
 ### 📊 Denys Demyanyshyn — Performance & Analytics · Berlin · 80 h / 20 %
-- **Du verantwortest:** Benchmark-Bibliothek (CTR/CPC/ROAS), Platform Intelligence (Meta/TikTok/Google), A/B-Testing-Framework, Data Feedback Loop, den LumiSkin-Pilot-Case. Du belegst die **KI-Literacy-Pflicht** des EU AI Act.
+- **Du verantwortest:** Benchmark-Bibliothek (`01_strategie/benchmark-library.md`) und Platform Intelligence — **echte, ausgearbeitete Dateien**; die A/B-Testing-**Methodik** (Buch Kap. 7.5); den Data Feedback Loop als **Learning-Log-Template** (`05_sops_templates/template-learning-log.md` — Struktur steht, echte Zahlen kommen mit dem ersten Kunden); den **LumiSkin-Pilot als Benchmark-Simulation**; den KI-Literacy-Nachweis (`07_compliance/ki-literacy-nachweis.md`).
 - **Dein Merksatz:** „Ich mache aus Kreativität eine **wiederholbare, messbare Engine**."
-- **Du präsentierst:** Marktproblem (Creative Fatigue + Benchmarks), Methodik (5-Schritt-Algorithmus), den Pilot-Case mit Zahlen.
+- **Du präsentierst:** Marktproblem (Creative Fatigue + Benchmarks), Methodik (5-Schritt-Algorithmus), den Pilot-Case **als Benchmark-basierte Simulation** (ehrlich benennen — noch keine Live-Daten).
 
 ### 🤝 Ralph Kindermann — CRM & Client Success · Berlin · 60 h / 15 %
 - **Du verantwortest:** Onboarding-System, CRM/Pipeline, Retainer-Rhythmus-SOP, Compliance-Vertragsrahmen (AVV), Kunden-Übergabestandard, Redaktion/Konsistenz des Buches.
