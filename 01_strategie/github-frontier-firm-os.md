@@ -168,4 +168,5 @@ gesetzt ist — kein Auto-Lauf.
 ---
 
 *Lebendes Architektur-Dokument · Teil der Frontier-Firm-Edition (siehe `partners-tools.md`).*
+*Vertiefung & Recherche (Möglichkeiten, KI-Integrationen, Visionen): [`github-masterclass.md`](github-masterclass.md).*
 *Mirrou Creative Studio · Hamburg & Berlin.*
