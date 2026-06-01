@@ -1,6 +1,6 @@
 # MEMORY.MD — Mirrou Creative Studio
 ## Claude Opus 4 · Projekt-Intelligenz & Masterprompt
-**Zuletzt aktualisiert:** 2026-05-30  
+**Zuletzt aktualisiert:** 2026-06-01  
 **Maintainer:** Systems Architect / AI-driven SaaS Builder · Berlin, EU  
 **Modell:** Claude Opus 4 (claude-opus-4) via Claude Code  
 
@@ -191,6 +191,7 @@ Nach jedem abgeschlossenen Audit oder Änderung:
 | 2026-05-30 | **Lighthouse-Baseline + `AUDIT.md` etabliert** | Echte Lab-Werte: Mobile 77/93/96/100 · Desktop 100/97/100/100. Mobile-LCP 3.9 s / FCP 2.7 s = einzige CWV-Schwellen-Misses (CLS/TBT grün). A11y-Blocker `color-contrast`; Perf-Hebel 68 KiB unused JS. **kein Three.js** (package.json verifiziert). `AUDIT.md` als lebendes Schwesterdokument angelegt. | OPUS PRIME |
 | 2026-05-31 | **Deploy `00040-cdb` + Live-Verifikation** | Live-Lighthouse: Mobile **78/97/96/100** · Desktop **100/100/100/100**. `color-contrast` live behoben (Desktop-A11y → 100); Unused-JS live ~59→**20 KiB** (Lazy-Split bestätigt); LCP 3.9→3.7, FCP 2.7→2.5. Rest offen: Mobile-Perf 78 (LCP/FCP) + Mobile-`target-size`. | OPUS PRIME |
 | 2026-05-31 | **Chrome DevTools MCP integriert + 8-Punkte-Härtung** (Code-Stand vor Deploy) | MCP (`chrome-devtools`) projekt- & user-scoped, EU-safe Flags (`--no-performance-crux/--no-usage-statistics/--isolated/--headless`) → [`docs/DEVTOOLS_MCP.md`](docs/DEVTOOLS_MCP.md). Behoben: `color-contrast` (False-Positive durch `content-visibility:auto`, `bg-bg`-Fix, per Computed-Styles verifiziert) · Route-Lazy-Splitting (Unused-JS 59→22 KiB, `app` 349→107 KiB, lokal Perf 78→85) · `@types/react`+ESLint (7 Lint-Fehler inkl. echtem `rules-of-hooks`-Bug → `tsc`/`eslint` grün) · `ws`-Vuln · GEMINI/AI-Studio-Scaffolding entfernt · README-GA4/Three.js korrigiert · Standort Hamburg-HQ/Berlin vereinheitlicht · `CLAUDE.md` angelegt. Build+Hydration+SPA verifiziert (0 Errors). **HubSpot bewusst ausgenommen.** | OPUS PRIME (Claude Opus 4.8) |
+| 2026-06-01 | **Strategie-Deliverables eingepflegt + Doku-Konsistenz** | Neue Dokumente registriert: `00_abschlussbericht/Deep_Audit_Report.md`+`.pdf` (Founders/Investors-Audit) sowie 5 Strategie-Follow-ups unter `00_abschlussbericht/follow_ups/` (1 Roadmap Frontier Firm · 2 ICP-Audit/Akquise · 3 30-Tage-Checkliste · 4 Vertriebs-Roadmap · 5 Preismodellierung, je `.md`+`.pdf`) + PDF-Build-Skripte (`scripts/generate_pdf.py`, `scripts/generate_all_pdfs.py`, Playwright→Chromium). **Faktenkonflikt behoben:** Deep Audit Report §VIII zitierte veraltete Live-Werte (Rev. `00040-cdb`, Mobile-Perf 78 / BP 96) → auf verifizierten Live-Stand `00041-pfg` (Mobile **81/97/100/100**) korrigiert + PDF neu generiert. Follow-ups inhaltlich konsistent mit AUDIT.md (HubSpot-P0, Mobile-Perf ≥90, EU AI Act Aug 2026). Keine Code-/Deploy-Änderung. | OPUS PRIME (Claude Opus 4.8) |
 
 ---
 
@@ -208,6 +209,7 @@ Nach jedem abgeschlossenen Audit oder Änderung:
 - 🟡 Mobile-A11y 97 — Rest `target-size` (Footer-Link-Abstände)
 - 🔴 Kontaktformular nicht funktional auf Cloud Run — Fix über **HubSpot** geplant (~2026-06-06)
 - 🔵 AI-Agent-Integration (Opus Magnum Anbindung) — geplant
+- 📘 **Strategie-/Go-to-Market-Ebene dokumentiert** (2026-06-01): [`Deep_Audit_Report.md`](00_abschlussbericht/Deep_Audit_Report.md) (Founders/Investors) + 5 operative Follow-up-Playbooks unter [`00_abschlussbericht/follow_ups/`](00_abschlussbericht/follow_ups/) (6-Wochen-Roadmap, ICP-Akquise, 30-Tage-Checkliste, Vertriebs-Roadmap, Preismodellierung) — überführen die offenen P0/P1-Punkte in einen konkreten Umsetzungsplan ab Juni 2026.
 
 ### Nächste geplante Meilensteine
 - [x] **P0** Security-Header live verifizieren nach Redeploy — ✅ erledigt

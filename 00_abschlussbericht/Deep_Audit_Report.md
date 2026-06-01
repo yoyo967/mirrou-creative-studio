@@ -229,17 +229,17 @@ Bevor ein Tool eingeführt wird: EU AI Act-Konformität, DSGVO-Konformität, Exp
 | **Container** | Docker Multi-Stage + nginx:alpine (gzip-9) | Optimale Bundle-Größe |
 | **Hosting** | GCP Cloud Run, europe-west3 Frankfurt | DSGVO-begründet |
 
-#### Gemessene Qualität (Live, Revision `00040-cdb`, 31. Mai 2026)
+#### Gemessene Qualität (Live, Revision `00041-pfg`, 31. Mai 2026)
 
 | Kategorie | Desktop | Mobile | Google-Schwelle |
 |---|:---:|:---:|:---:|
-| **Performance** | 100 | 78 | ≥90 |
+| **Performance** | 100 | 81 | ≥90 |
 | **Accessibility** | 100 | 97 | ≥90 |
-| **Best Practices** | 100 | 96 | ≥90 |
+| **Best Practices** | 100 | 100 | ≥90 |
 | **SEO** | 100 | 100 | ≥90 |
 | **Security-Header** | 6/6 A-Grade | — | — |
 
-*Desktop LCP: 0,6s / CLS: 0,011. Die Mobile-Lücke (Performance 78) ist ausschließlich Render-Geschwindigkeit auf gedrosselter Verbindung — adressiert durch den DevTools-MCP-Loop als kurzfristiges To-Do (Ziel ≥90).*
+*Desktop LCP: 0,6s / CLS: 0,011. Die Mobile-Lücke (Performance 81) ist ausschließlich Render-Geschwindigkeit auf gedrosselter Verbindung — adressiert durch den DevTools-MCP-Loop als kurzfristiges To-Do (Ziel ≥90).*
 
 #### Technische Kennzahlen (vollständig)
 *   **React-Komponenten:** 37+ (inkl. ParticleCanvas, PreLoader, ScrollWordReveal, StatsCounter, CursorFollower, GrainOverlay)

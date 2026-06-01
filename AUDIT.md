@@ -2,7 +2,7 @@
 ## Lebendes Qualitäts- & Performance-Dossier · OPUS PRIME
 
 > **Status:** 🟢 PRODUKTIV · LIVE · AUDITIERT
-> **Zuletzt aktualisiert:** 2026-05-31
+> **Zuletzt aktualisiert:** 2026-06-01
 > **Live-Revision:** `mirrou-creative-studio-00041-pfg` (Cloud Run · europe-west3) — *2026-05-31 deployed + live verifiziert*
 > **Auditor:** OPUS PRIME (Claude Opus 4 · Claude Code)
 > **Methodik:** Google Lighthouse (lokal, lab data) · echte Live-Header · verifizierter Code/Build
@@ -202,6 +202,7 @@
 | 2026-05-31 | **Deploy `00041-pfg` + Hydration-Defer-Verifikation** | Maßnahme 1 (CursorFollower + Scroll-Progress via `useIdleMount` deferred) live. Warm-Re-Trace: **Render-Delay 552→553 ms = unverändert** (LCP-Delay ist strukturell die Gesamt-Hydration, nicht die Widgets) — ehrlich dokumentiert. **Aber** Lighthouse live verbessert: **Mobile-Perf 78→81, Best-Practices 96→100** (weniger Main-Thread + Touch-Bugfix); Desktop bleibt 100/100/100/100; CLS 0, keine Regression. Nächster echter LCP-Hebel = Island-/Partial-Hydration der 15 Homepage-Sektionen. | OPUS PRIME |
 | 2026-05-31 | **Nativer Perf-Trace (Chrome DevTools MCP, mobil 4×CPU/Slow-4G)** | LCP-Element = Hero-`.webp`; Auslieferung optimal (h3, Preload greift, immutable, ~0,4 ms Download). Einzige render-blockierende Ressource = CSS-Bundle (13 ms, vernachlässigbar). **Engpass: LCP-Render-Delay 552 ms (85,6 %) = Main-Thread-Hydration** (React/i18n/Motion), nicht Netzwerk. Maßnahme 1 umgesetzt: dekorative Client-Effekte (CursorFollower, Scroll-Progress) via `useIdleMount` aus dem Hydration-Kritikpfad deferren (client-only, behebt nebenbei Touch-SSG-Mismatch). Offen: Below-the-fold-Section-Hydration (Islands), Hero-`backdrop-blur`/`mix-blend` entschärfen. `ParticleCanvas` = toter Code (nirgends importiert). | OPUS PRIME |
 | 2026-05-31 | **Chrome DevTools MCP + 8-Punkte-Härtung** (Code-Stand vor Deploy) | MCP integriert (Projekt+User, EU-safe Flags). Fixes: `color-contrast` (False-Positive via `content-visibility:auto` → `bg-bg`, verifiziert per Computed-Styles); Route-Lazy-Splitting (Unused-JS 59→22 KiB, `app` 349→107 KiB, Perf lokal 78→85); `@types/react`+ESLint (7 Lint-Fehler inkl. `rules-of-hooks`-Bug behoben, `tsc`/`eslint` grün); `ws`-Vuln gepatcht; GEMINI/AI-Studio-Scaffolding entfernt; README-GA4/Three.js korrigiert; Standort in memory.md vereinheitlicht; `CLAUDE.md` angelegt. Build + Hydration + SPA-Nav verifiziert (0 Console-Errors). **HubSpot/Kontaktformular bewusst ausgenommen.** | OPUS PRIME (Claude Opus 4.8) |
+| 2026-06-01 | **Doku-Konsistenz: Strategie-Deliverables eingepflegt** | Neue Dokumente registriert: `Deep_Audit_Report.md`+`.pdf` (Founders/Investors) + 5 Strategie-Follow-ups (`follow_ups/`, je `.md`+`.pdf`) + PDF-Build-Skripte (Playwright). **Faktenkonflikt korrigiert:** Deep Audit Report §VIII zitierte veraltete Live-Werte (Rev. `00040-cdb`, Mobile-Perf **78** / Best-Practices **96**) — angeglichen an den hier verifizierten Live-Stand Rev. `00041-pfg` (Mobile **81/97/100/100**) und PDF neu generiert. Scorecard §1/§2 unverändert (keine neue Messung, keine Code-/Deploy-Änderung). Follow-up-Playbooks konsistent mit Aktionsplan §5 (HubSpot-P0, Mobile-Perf-P1, EU AI Act Aug 2026). | OPUS PRIME (Claude Opus 4.8) |
 
 ---
 
