@@ -690,7 +690,7 @@ Live in unter 10 Minuten
 <td>0</td>
 </tr>
 </tbody></table>
-<p><strong>Gemessene Qualitat (Google Lighthouse, Live-Revision <code>00041-pfg</code>, Stand 2026-05-31):</strong></p>
+<p><strong>Gemessene Qualitat (Google Lighthouse, Median aus 3 Mobile-Laufen, Live-Revision <code>00046-bk4</code>, Stand 2026-06-02):</strong></p>
 <table>
 <thead>
 <tr>
@@ -703,7 +703,7 @@ Live in unter 10 Minuten
 <tbody><tr>
 <td>Performance</td>
 <td align="center">100</td>
-<td align="center">81</td>
+<td align="center">82</td>
 <td align="center">&gt;= 90</td>
 </tr>
 <tr>
@@ -725,7 +725,7 @@ Live in unter 10 Minuten
 <td align="center">&gt;= 90</td>
 </tr>
 </tbody></table>
-<p>Desktop erreicht auf allen vier Achsen Referenzqualitat (100/100/100/100). Core Web Vitals: Desktop LCP 0,6 s / CLS 0,011; Mobile LCP 3,7 s / FCP 2,5 s / CLS 0. Die verbleibende Mobile-Lucke ist rein Lade-/Render-Geschwindigkeit auf gedrosselter Verbindung — kein struktureller Defekt. Alle Werte sind uber <code>npx lighthouse</code> reproduzierbar und werden in einem lebenden Audit-Dossier (<code>AUDIT.md</code>) bei jeder Anderung fortgeschrieben.</p>
+<p>Desktop erreicht auf allen vier Achsen Referenzqualitat (100/100/100/100). Core Web Vitals: Desktop LCP 0,7 s / CLS 0,011; Mobile LCP 3,6 s / FCP 2,5 s / CLS 0. Die verbleibende Mobile-Lucke ist rein Lade-/Render-Geschwindigkeit auf gedrosselter Verbindung — kein struktureller Defekt. Alle Werte sind uber <code>npx lighthouse</code> reproduzierbar und werden in einem lebenden Audit-Dossier (<code>AUDIT.md</code>) bei jeder Anderung fortgeschrieben.</p>
 <h3>7.8 Performance Engineering</h3>
 <p>Die Website wird nicht einmalig optimiert, sondern in einem messdatengetriebenen Loop gepflegt. Eine Route-Level-Code-Splitting-Architektur stellt sicher, dass jede Seite nur ihr eigenes JavaScript ladt: Der initiale App-Chunk wurde von 349 KiB auf 107 KiB reduziert (−69 %), das ungenutzte JavaScript der Startseite von rund 59 KiB auf etwa 20 KiB. Die Mehrsprachigkeit ist dynamisch — nur das aktive Sprachpaket wird geladen, nicht alle acht.</p>
 <p>Der Optimierungs-Loop nutzt den Chrome DevTools MCP (siehe Abschnitt 6.6): Performance-Trace gegen die Live-URL, Insight-Analyse des LCP-Pfads, gezielter Code-Fix, erneute Messung. Qualitatssicherung erfolgt uber zwei automatisierte Gates — strenger TypeScript-Typecheck (<code>tsc --noEmit</code>) und ESLint (Flat Config) — die vor jedem Build laufen mussen.</p>

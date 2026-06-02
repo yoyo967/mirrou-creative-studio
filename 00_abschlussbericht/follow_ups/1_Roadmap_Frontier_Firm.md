@@ -11,7 +11,7 @@ Diese Roadmap beginnt nach dem Projektabschluss — also ab sofort (Juni 2026). 
 #### Tech & Ops:
 *   **HubSpot-Anbindung:** Kontaktformular → CRM-Pipeline (DSGVO-Consent-Gate)
 *   **Systemdokumentation:** `CLAUDE.md` + `AUDIT.md` ins Repository einbinden
-*   **Lighthouse Performance:** Chrome DevTools MCP Loop starten, um Mobile Lighthouse Performance von 78 auf ≥90 zu heben (LCP/FCP-Pfad)
+*   **Lighthouse Performance:** Chrome DevTools MCP Loop starten, um Mobile Lighthouse Performance von 82 auf ≥90 zu heben (LCP/FCP-Pfad)
 *   **Sicherheit:** 0 npm-Sicherheitslücken bestätigen (bereits erreicht — Monitoring einrichten)
 *   **Analytics:** GA4 Consent-Gate aktivieren (nur nach Zustimmung, DSGVO-konform)
 

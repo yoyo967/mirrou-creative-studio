@@ -468,16 +468,16 @@ Der vollstandige Build-und-Deployment-Prozess — von Code-Anderung bis Live-Web
 | Sitemap-URLs | 280 |
 | npm-Sicherheitslucken | 0 |
 
-**Gemessene Qualitat (Google Lighthouse, Live-Revision `00041-pfg`, Stand 2026-05-31):**
+**Gemessene Qualitat (Google Lighthouse, Median aus 3 Mobile-Laufen, Live-Revision `00046-bk4`, Stand 2026-06-02):**
 
 | Kategorie | Desktop | Mobile | Google-Schwelle |
 |-----------|:-------:|:------:|:---------------:|
-| Performance | 100 | 81 | >= 90 |
+| Performance | 100 | 82 | >= 90 |
 | Accessibility | 100 | 97 | >= 90 |
 | Best Practices | 100 | 100 | >= 90 |
 | SEO | 100 | 100 | >= 90 |
 
-Desktop erreicht auf allen vier Achsen Referenzqualitat (100/100/100/100). Core Web Vitals: Desktop LCP 0,6 s / CLS 0,011; Mobile LCP 3,7 s / FCP 2,5 s / CLS 0. Die verbleibende Mobile-Lucke ist rein Lade-/Render-Geschwindigkeit auf gedrosselter Verbindung — kein struktureller Defekt. Alle Werte sind uber `npx lighthouse` reproduzierbar und werden in einem lebenden Audit-Dossier (`AUDIT.md`) bei jeder Anderung fortgeschrieben.
+Desktop erreicht auf allen vier Achsen Referenzqualitat (100/100/100/100). Core Web Vitals: Desktop LCP 0,7 s / CLS 0,011; Mobile LCP 3,6 s / FCP 2,5 s / CLS 0. Die verbleibende Mobile-Lucke ist rein Lade-/Render-Geschwindigkeit auf gedrosselter Verbindung — kein struktureller Defekt. Alle Werte sind uber `npx lighthouse` reproduzierbar und werden in einem lebenden Audit-Dossier (`AUDIT.md`) bei jeder Anderung fortgeschrieben.
 
 ### 7.8 Performance Engineering
 

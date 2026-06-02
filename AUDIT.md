@@ -2,7 +2,7 @@
 ## Lebendes Qualitäts- & Performance-Dossier · OPUS PRIME
 
 > **Status:** 🟢 PRODUKTIV · LIVE · AUDITIERT
-> **Zuletzt aktualisiert:** 2026-06-01
+> **Zuletzt aktualisiert:** 2026-06-02 (frische Lighthouse-Messung, Median aus 3 Mobile-Läufen)
 > **Live-Revision:** `mirrou-creative-studio-00046-bk4` (Cloud Run · europe-west3) — *2026-06-01 deployed + live verifiziert (GitHub als Orchestration & Audit OS integriert)*
 > **Auditor:** OPUS PRIME (Claude Opus 4 · Claude Code)
 > **Methodik:** Google Lighthouse (lokal, lab data) · echte Live-Header · verifizierter Code/Build
@@ -27,26 +27,26 @@
 
 | Dimension | Mobile | Desktop | Google-Schwelle | Status |
 |-----------|:------:|:-------:|-----------------|:------:|
-| **Performance** | 81 | 100 | ≥ 90 = grün | 🟡 / 🟢 |
+| **Performance** | 82 | 100 | ≥ 90 = grün | 🟡 / 🟢 |
 | **Accessibility** | 97 | 100 | ≥ 90 = grün | 🟢 |
 | **Best Practices** | 100 | 100 | ≥ 90 = grün | 🟢 |
 | **SEO** | 100 | 100 | ≥ 90 = grün | 🟢 |
 | **Security-Header** | 6 / 6 live | 6 / 6 live | A-Grade | 🟢 |
 | **HTTPS / HSTS** | aktiv (preload) | aktiv (preload) | erforderlich | 🟢 |
 
-**Gesamturteil (live `00040-cdb`, 2026-05-31):** Desktop = **Referenzqualität 100/100/100/100**. Mobile = exzellent in SEO/BP, A11y 97 (Rest = `target-size` Footer-Links), **einzige reale Baustelle ist Mobile-Performance (78)** — getrieben von LCP/FCP über Schwelle (letzte Meile via nativem MCP-Trace). Unused-JS durch Route-Lazy-Splitting auf ~20 KiB gesenkt.
+**Gesamturteil (live `00046-bk4`, gemessen 2026-06-02 · Median aus 3 Mobile-Läufen):** Desktop = **Referenzqualität 100/100/100/100**. Mobile = exzellent in SEO/BP, A11y 97 (Rest = `target-size` Footer-Links), **einzige reale Baustelle ist Mobile-Performance (82)** — getrieben von LCP/FCP über Schwelle (letzte Meile via nativem MCP-Trace). Unused-JS durch Route-Lazy-Splitting auf ~20 KiB gesenkt.
 
 ---
 
 ## 2. LIGHTHOUSE-DIAGNOSE (echte Lab-Daten)
 
-**Gemessen:** 2026-05-30 · `npx lighthouse` (Headless Chrome) gegen Live-URL `/de` · Methodik in §8.
+**Gemessen:** 2026-06-02 · `npx lighthouse` v13.3.0 (Headless Chrome) gegen Live-URL `/de` (Rev. `00046-bk4`) · **Mobile = Median aus 3 Läufen (79/82/82)** · Methodik in §8.
 
 ### 2.1 Kategorie-Scores
 
 | Kategorie | 📱 Mobile | 🖥️ Desktop |
 |-----------|:--------:|:----------:|
-| Performance | **81** | **100** |
+| Performance | **82** | **100** |
 | Accessibility | **97** | **100** |
 | Best Practices | **100** | **100** |
 | SEO | **100** | **100** |
@@ -55,11 +55,11 @@
 
 | Metrik | 📱 Mobile | 🖥️ Desktop | Good ≤ | Bewertung Mobile |
 |--------|:--------:|:----------:|:------:|:----------------:|
-| **LCP** (Largest Contentful Paint) | 3.7 s | 0.6 s | 2.5 s | 🟡 Needs Improvement |
+| **LCP** (Largest Contentful Paint) | 3.6 s | 0.7 s | 2.5 s | 🟡 Needs Improvement |
 | **CLS** (Cumulative Layout Shift) | 0 | 0.011 | 0.1 | 🟢 Good |
 | **TBT** (Total Blocking Time · INP-Proxy) | 200 ms | 0 ms | 200 ms | 🟢 Good |
 | **FCP** (First Contentful Paint) | 2.5 s | 0.5 s | 1.8 s | 🟡 Needs Improvement |
-| **Speed Index** | 6.0 s | 0.9 s | 3.4 s | 🟡 Needs Improvement |
+| **Speed Index** | 5.8 s | 0.8 s | 3.4 s | 🟡 Needs Improvement |
 | **TTI** (Time to Interactive) | 3.9 s | 0.7 s | 3.8 s | 🟡 grenzwertig |
 
 **Lesart:** Layout-Stabilität (CLS) und Interaktivität (TBT) sind mobil bereits perfekt. Die Mobile-Lücke ist rein **Lade-/Render-Geschwindigkeit** (LCP/FCP/SI) auf gedrosselter Mobilverbindung — kein struktureller Defekt.
@@ -83,8 +83,8 @@
 ### 3.1 Core Web Vitals
 - 🟢 CLS ≤ 0.1 (Mobile 0 · Desktop 0.011)
 - 🟢 TBT/INP-Proxy < 200 ms (Mobile 160 · Desktop 0)
-- 🟡 LCP ≤ 2.5 s — Desktop ✓ (0.7 s) · Mobile ✗ (3.9 s)
-- 🟡 FCP ≤ 1.8 s — Desktop ✓ (0.5 s) · Mobile ✗ (2.7 s)
+- 🟡 LCP ≤ 2.5 s — Desktop ✓ (0.7 s) · Mobile ✗ (3.6 s)
+- 🟡 FCP ≤ 1.8 s — Desktop ✓ (0.6 s) · Mobile ✗ (2.5 s)
 
 ### 3.2 SEO (Score 100 / 100)
 - 🟢 SSG-Pre-Rendering aller Routen (vite-react-ssg) — crawlbares HTML ohne JS-Ausführung
@@ -148,7 +148,7 @@
 | ✅ P0 | Security-Header live | — | DEV | **erledigt 2026-05-30** |
 | ✅ P0 | Root-Duplikat / AI-Studio-Leftover entfernt | — | DEV | **erledigt 2026-05-30** |
 | 🔴 P0 | Kontaktformular → HubSpot-Backend (DSGVO-Consent) | M | Ralph / DEV | offen — ETA ~2026-06-06 |
-| 🟡 P1 | Mobile-Perf ≥ 90 (Unused JS, LCP/FCP) | M | DEV | 🟢 **2026-05-31:** Route-Lazy-Splitting, Unused-JS 59→22 KiB, `app` 349→107 KiB, lokal Perf→85. Live-Wert + letzte Meile offen |
+| 🟡 P1 | Mobile-Perf ≥ 90 (Unused JS, LCP/FCP) | M | DEV | 🟢 **2026-05-31:** Route-Lazy-Splitting, Unused-JS 59→22 KiB, `app` 349→107 KiB, lokal Perf→85. **2026-06-02 frisch live gemessen: Mobile 82** (Median 3 Läufe, LCP 3,6 s). Letzte Meile = Island-/Partial-Hydration offen |
 | ✅ P1 | `color-contrast` → A11y | S | DEV/Design | **erledigt 2026-05-31** (False-Positive root-caused + `bg-bg`-Fix) |
 | ✅ P1 | README-GA4/Three.js-Falschangaben korrigiert | S | DEV | **erledigt 2026-05-31** |
 | 🟡 P1 | Cluster-Long-Form 6 Sprachen oder Scope ehrlich kommunizieren | L | Content | offen |
@@ -207,6 +207,7 @@
 | 2026-06-01 | **GitHub als Orchestration & Audit OS integriert** | GitHub von Versionsspeicher zur 5. Frontier-Firm-Schicht erhoben: kanonisches Doku `01_strategie/github-frontier-firm-os.md` + echter CI-Quality-Gate `.github/workflows/ci.yml` (typecheck/lint/build) + OS-Layer in `partners-tools.md`, Deep Audit §VII, memory.md, Deck-Slide. Repo=SSoT, Commit-History=EU-AI-Act-Audit-Trail. Deploy `00045-qf5`→`00046-bk4`. | OPUS PRIME (Claude Opus 4.8) |
 | 2026-06-01 | **Why/How/What-Präsentation als `/deck`-Route** | Hyperprofessionelle Golden-Circle-Präsentation (24 Slides, Dark Luxury) für Dritte erstellt → `public/deck.html`, live unter `mirrou.studio/deck` (nginx `try_files $uri.html`). CSP-konform (selbst-gehostete Fonts via `@font-face`, relative Pfade — live & lokal). Echte Case-Visuals (`public/images/cases/`, 4 Hero + 6 Filmstrip), neue Slides (ICP-Personas, Wettbewerbs-Quadrant, Roadmap). Aus `01_strategie/` gegroundet. **Erweitert (`00045-qf5`):** Case-Bilder inline base64 (bulletproof), 4 on-brand Daten-Visualisierungen (ICP-Radar/Revenue-Bars/6-Wo-Gantt/Team-Bars), Socials. SSG-Build grün, `/deck` live verifiziert. Scorecard §1/§2 unverändert. | OPUS PRIME (Claude Opus 4.8) |
 | 2026-06-01 | **Buch-Alignment + Team-Material + Social/Rollen-Deploy** | Gesamtes AbschlussprojektBuch (12 Kap. + KOMPLETT) + Abschlussbericht auf Frontier-Firm-Narrativ angeglichen; Team-Briefing + KI-Literacy-Nachweis (`07_compliance/ki-literacy-nachweis.md`) + Olha-Doppelrollen-Guide erstellt; alle 4 Deliverable-Sets gegen Repo verifiziert (real vs. Konzept/Template/extern). **Deploy `00041-pfg`→`00043-ppt`:** LinkedIn-Company-Link korrigiert (Platzhalter `mirrou-studio`→ID `123233907`, inkl. statischem JSON-LD in `index.html`); Olha-Rolle „Performance Marketing" ergänzt (8 Locales + site-data + Strukturdaten). `typecheck` + SSG-Build grün, live verifiziert. Scorecard §1/§2 unverändert (reine Content-/SEO-Änderung). | OPUS PRIME (Claude Opus 4.8) |
+| 2026-06-02 | **Abgabe-Check: frische Lighthouse-Messung + Doku-Konsistenz** | Frische Live-Messung (`npx lighthouse` v13.3.0 gegen `00046-bk4`, Median 3 Mobile-Läufe 79/82/82): **Mobile 82/97/100/100 · Desktop 100/100/100/100** (LCP mobil 3,6 s / FCP 2,5 s, CLS 0). Veraltete Werte in Abgabe-Deliverables korrigiert: Roadmap-Follow-up nannte Mobile-Perf **78** (→82); Abschlussbericht/Deep-Audit/TEAM_BRIEFING zitierten Rev. `00041-pfg` als „live" (→`00046-bk4`, 2026-06-02). HTML + 3 PDFs neu gerendert (Quelle=`.md`). AUDIT.md war selbst inkonsistent (Gesamturteil nannte noch `00040-cdb`/78) → §1/§2/§3/§5 vereinheitlicht. **+ `claude.yml`-Halbheit behoben** (@claude via Vertex/WIF; fehlendes `docs/CLAUDE_VERTEX_SETUP.md` ergänzt + committed). Kein Deploy, Live-Rev bleibt `00046-bk4`. | OPUS PRIME (Claude Opus 4.8) |
 
 ---
 
