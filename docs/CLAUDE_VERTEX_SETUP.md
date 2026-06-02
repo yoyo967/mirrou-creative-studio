@@ -15,6 +15,39 @@
 
 ---
 
+## ✅ STATUS 2026-06-02 — GCP-Seite eingerichtet
+
+Die **GCP-Konfiguration ist erledigt** (per `gcloud`, Projekt `studio-4188712377-b3681`).
+Hinweis: das WIF/OIDC-Setup war *noch nicht* vorhanden (kein SA, 0 Pools) — es wurde
+hier **vollständig neu aufgebaut**, nicht nur „eine Rolle ergänzt":
+
+- ✅ `aiplatform.googleapis.com` aktiv (war bereits an).
+- ✅ Service-Account **`github-deployer`** angelegt.
+- ✅ Rolle **`roles/aiplatform.user`** erteilt (Vertex-Inferenz).
+- ✅ Workload Identity Pool **`github-pool`** + OIDC-Provider **`github-provider`**, per
+  `attribute-condition` auf `yoyo967/mirrou-creative-studio` beschränkt.
+- ✅ SA an das Repo gebunden (`roles/iam.workloadIdentityUser`).
+
+**Werte für die GitHub-Secrets/Variables (Schritt 2/3):**
+| Eintrag | Typ | Wert |
+|---------|-----|------|
+| `WIF_PROVIDER` | Secret | `projects/180023265254/locations/global/workloadIdentityPools/github-pool/providers/github-provider` |
+| `GCP_SA_EMAIL` | Secret | `github-deployer@studio-4188712377-b3681.iam.gserviceaccount.com` |
+| `VERTEX_REGION` | Variable | `europe-west1` (Sonnet 4.5 dort verfügbar ✓, EU-Residenz) |
+| `CLAUDE_VERTEX_MODEL` | Variable | `claude-sonnet-4-5@20250929` (Default, optional) |
+
+**Noch offen (nicht in GCP machbar):**
+1. **GitHub-Secrets/Variables** oben setzen (`gh` ist hier nicht installiert → manuell in
+   den Repo-Settings, oder `gh` lokal installieren).
+2. **Model Garden:** Claude in der Cloud Console freischalten (Console-Klick, EULA) —
+   Console → Vertex AI → Model Garden → *Anthropic Claude Sonnet 4.5* → **Enable**.
+3. *(Nur falls auch `deploy.yml` aktiviert werden soll:)* der SA hat aktuell **nur**
+   `aiplatform.user`, **nicht** die Deploy-Rollen (`run.admin`, `cloudbuild.builds.editor`,
+   `storage.admin`, `iam.serviceAccountUser`) aus `DEPLOY_OIDC_SETUP.md` §1 — die separat
+   ergänzen, wenn der Deploy-as-Action live gehen soll.
+
+---
+
 ## 0. STATUS & Sicherheit (warum das ungefährlich dormant liegt)
 
 - Der Workflow läuft **nur bei einer `@claude`-Mention** in einem Issue- oder
@@ -70,7 +103,7 @@ Vertex-Doku gegenprüfen.
 
 | Variable | Empfehlung | Wirkung |
 |----------|-----------|---------|
-| `VERTEX_REGION` | `europe-west1` (sofern Modell dort verfügbar) | Region für Inferenz → Daten bleiben in der EU |
+| `VERTEX_REGION` | `europe-west1` (Sonnet 4.5 dort bestätigt ✓; regional ~+10 % ggü. global) | Region für Inferenz → Daten bleiben in der EU |
 | `CLAUDE_VERTEX_MODEL` | z. B. `claude-sonnet-4-5@20250929` (Default) | überschreibbares Vertex-Modell-ID |
 
 > **Hinweis zur Modell-Wahl:** Der Workflow setzt `VERTEX_REGION_CLAUDE_4_5_SONNET` auf
