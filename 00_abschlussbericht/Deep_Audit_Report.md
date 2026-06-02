@@ -9,7 +9,7 @@
 ---
 
 ### I. Executive Signal — Was hier vorliegt
-Dies ist kein Schulprojekt. Ein Vier-Personen-Team hat in sechs Wochen ein vollständig operatives Performance Creative Studio von null auf produktionsbereit aufgebaut — mit laufender Website, vollständiger AI-Infrastruktur, sieben Compliance-Schichten und zwölf nummerierten PDF-Deliverables. Das Gesamtvolumen — 410 Stunden, 39 Markdown-Wissensdokumente, 50+ PDFs, 345 statisch vorgerenderte Seiten, 5 KI-Spaces, Lighthouse Desktop 100/100/100/100 — entspricht dem Output eines 15–20-köpfigen klassischen Studios.
+Dies ist kein Schulprojekt. Ein Vier-Personen-Team hat in sechs Wochen ein vollständig operatives Performance Creative Studio von null auf produktionsbereit aufgebaut — mit laufender Website, vollständiger AI-Infrastruktur, sieben Compliance-Schichten und zwölf nummerierten PDF-Deliverables. Das Gesamtvolumen — 410 Stunden, 39 Markdown-Wissensdokumente, 50+ PDFs, 346 statisch vorgerenderte Seiten, 5 KI-Spaces, Lighthouse Desktop 100/100/100/100 — entspricht dem Output eines 15–20-köpfigen klassischen Studios.
 
 Das Frontier Firm Modell, das Microsoft in seinem Work Trend Index beschreibt — „powered by intelligence on tap, run by human-agent teams" — ist hier nicht zitiert, sondern operativ bewiesen.
 
@@ -226,7 +226,7 @@ Bevor ein Tool eingeführt wird: EU AI Act-Konformität, DSGVO-Konformität, Exp
 | **Framework** | React 19 + Vite 6 | Kein Overhead, maximale Performance |
 | **Sprache** | TypeScript 5.8 | Volle Typsicherheit, Build-Gate |
 | **Styling** | Tailwind CSS v4 | Design-Token-Kompatibilität |
-| **Rendering** | vite-react-ssg | Statisches Pre-Rendering aller 345 Seiten |
+| **Rendering** | vite-react-ssg | Statisches Pre-Rendering aller 346 Seiten |
 | **Animationen** | Motion (Framer Motion Nachf.) + Canvas-2D | Kein Three.js-Overhead |
 | **Code-Qualität** | ESLint (Flat Config) + tsc als Build-Gates | Null Sicherheitslücken |
 | **Container** | Docker Multi-Stage + nginx:alpine (gzip-9) | Optimale Bundle-Größe |
@@ -245,11 +245,11 @@ Bevor ein Tool eingeführt wird: EU AI Act-Konformität, DSGVO-Konformität, Exp
 *Desktop LCP: 0,7s / CLS: 0,011. Die Mobile-Lücke (Performance 82) ist ausschließlich Render-Geschwindigkeit auf gedrosselter Verbindung — adressiert durch den DevTools-MCP-Loop als kurzfristiges To-Do (Ziel ≥90).*
 
 #### Technische Kennzahlen (vollständig)
-*   **React-Komponenten:** 37+ (inkl. ParticleCanvas, PreLoader, ScrollWordReveal, StatsCounter, CursorFollower, GrainOverlay)
+*   **React-Komponenten:** 34 (inkl. Hero, Frontier, ProblemDiagnostic, ScrollWordReveal, StatsCounter, CursorFollower, GrainOverlay)
 *   **Routen:** 16 (HomePage, StudioPage, PaketePage, CasesPage, TeamMemberPage, BlogIndex, BrandBookPage, TrustPage, KontaktPage, DatenschutzPage, ImpressumPage, PillarPage, ClusterPage, PressPage, NotFoundPage, CaseDetailPage)
 *   **Sprachen:** 8 (DE, EN, ES, FR, IT, TR, RU, UA)
 *   **Blog-Artikel:** 20
-*   **Statisch vorgerenderte Seiten:** 345 (alle Routen × 8 Sprachen)
+*   **Statisch vorgerenderte Seiten:** 346 (43 Routen-Instanzen × 8 Sprachen + Root-Redirect + /deck)
 *   **Sitemap-URLs:** 280
 *   **npm-Sicherheitslücken:** 0
 *   **Initial App-Chunk (optimiert):** 107 KiB (−69% von 349 KiB)
@@ -367,7 +367,7 @@ KI-System-Beschreibung (Modelle + Versionen), anonymisierte Prompt-Logs, Output-
 
 ### XIV. Audit-Urteil
 #### Was dieses Projekt beweist
-Ein 4-Personen-Team hat in sechs Wochen durch systematische KI-Orchestrierung das Äquivalent eines operativen Studios aufgebaut — mit Desktop Lighthouse 100/100/100/100, 7 Compliance-Schichten, 39 Wissensdokumenten, 12 PDF-Deliverables, 345 statisch vorgerenderten Seiten in 8 Sprachen und einem marktvalidierten Geschäftsmodell. Nicht als Demo. Als live messbare, auditierbare Infrastruktur.
+Ein 4-Personen-Team hat in sechs Wochen durch systematische KI-Orchestrierung das Äquivalent eines operativen Studios aufgebaut — mit Desktop Lighthouse 100/100/100/100, 7 Compliance-Schichten, 39 Wissensdokumenten, 12 PDF-Deliverables, 346 statisch vorgerenderten Seiten in 8 Sprachen und einem marktvalidierten Geschäftsmodell. Nicht als Demo. Als live messbare, auditierbare Infrastruktur.
 
 #### Was Investoren sehen sollten
 *   Der Moat ist die Systemarchitektur — nicht replizierbar ohne denselben Stack. Talent alleine reicht nicht.

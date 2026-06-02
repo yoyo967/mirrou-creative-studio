@@ -43,7 +43,7 @@
 - **Du präsentierst:** Geschäftsmodell & Pricing, Team & Rollen, Onboarding/Retainer-Prozess, Förderperspektive.
 
 ### 🧠 Yahya Yildirim — Systems Architect & Growth Lead · Berlin · 150 h / 37 %
-- **Du verantwortest (real im Repo):** die **Website selbst** (`src/` — 34 Komponenten, 30 Routen, 8 Sprachen, GCP, Lighthouse 100), Compliance-Architektur (`07_compliance/`), MCP-Stack (`.mcp.json` + `docs/DEVTOOLS_MCP.md`), Frontier-Firm-Architektur (Doku + `src/components/Frontier.tsx`), Positionierung/ICP, Growth/Outreach, Projektsteuerung. **Die 5 Perplexity-Spaces laufen extern in Perplexity** — im Repo liegen ihre Konfiguration/Skill-Prompts/Briefings (`06_perplexity_skills/`).
+- **Du verantwortest (real im Repo):** die **Website selbst** (`src/` — 34 Komponenten, 16 Routen, 8 Sprachen, GCP, Lighthouse 100), Compliance-Architektur (`07_compliance/`), MCP-Stack (`.mcp.json` + `docs/DEVTOOLS_MCP.md`), Frontier-Firm-Architektur (Doku + `src/components/Frontier.tsx`), Positionierung/ICP, Growth/Outreach, Projektsteuerung. **Die 5 Perplexity-Spaces laufen extern in Perplexity** — im Repo liegen ihre Konfiguration/Skill-Prompts/Briefings (`06_perplexity_skills/`).
 - **Dein Merksatz:** „Ich bin der **Architekt des Systems** — nicht nur der Agentur, sondern der Art, wie sie denkt und skaliert."
 - **Du präsentierst:** Frontier-Firm-Architektur, Website/Tech (**Live-Demo!**), Compliance, Strategie & Ausblick.
 
@@ -73,7 +73,7 @@ Das Repo **ist** die Website **und** die komplette Projektdoku. Lest in dieser R
 ## 4. Faktenblatt — das können alle auswendig
 
 - **Positionierung:** AI-natives Performance Creative Studio · Frontier Firm · HQ Hamburg + Studio Berlin · Claim „Algorithm of Soul"
-- **Live & Tech:** mirrou.studio · React 19 + Vite 6 + TypeScript + Tailwind v4 · statisch vorgerendert (vite-react-ssg) · GCP Cloud Run (Frankfurt, EU) · **8 Sprachen** · **345 vorgerenderte Seiten** · 280 Sitemap-URLs
+- **Live & Tech:** mirrou.studio · React 19 + Vite 6 + TypeScript + Tailwind v4 · statisch vorgerendert (vite-react-ssg) · GCP Cloud Run (Frankfurt, EU) · **8 Sprachen** · **346 vorgerenderte Seiten** · 280 Sitemap-URLs
 - **Qualität:** Lighthouse **Desktop 100/100/100/100**, **Mobile 82/97/100/100** (gemessen 2026-06-02, Median aus 3 Läufen, Rev. `00046-bk4`) · **6/6 Security-Header** · 0 npm-Sicherheitslücken
 - **Frontier Firm:** 4 Personen ≈ Output von 15–20 · 5 Perplexity-Spaces · MCP-Stack · „Perfect Twin" (Mensch + KI je Domäne)
 - **Compliance:** **7 Schichten** — EU AI Act (volle Anwendung **2. Aug 2026**), KI-Labeling-Matrix, **C2PA**, DSGVO, Data Act, **HCVO**, 3-Jahres-Audit-Log

@@ -35,7 +35,7 @@
 
 #### Content:
 *   **Blog-Artikel:** Blog-Artikel #1 live: „Creative Fatigue bei D2C-Beauty-Brands — wie ein System das Problem löst" (SEO-optimiert).
-*   **LinkedIn Post:** Frontier Firm Beweise (Lighthouse 100/100/100/100, 345 Seiten, 6 Wochen).
+*   **LinkedIn Post:** Frontier Firm Beweise (Lighthouse 100/100/100/100, 346 Seiten, 6 Wochen).
 
 #### Compliance:
 *   **Trust Center:** EU AI Act-Artikel für Trust Center finalisieren (Stichtag 2. August 2026 prominent nennen).

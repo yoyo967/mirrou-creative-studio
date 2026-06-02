@@ -460,11 +460,11 @@ Der vollstandige Build-und-Deployment-Prozess — von Code-Anderung bis Live-Web
 
 | Metrik | Wert |
 |--------|------|
-| React-Komponenten | 37+ |
+| React-Komponenten | 34 |
 | Route-Dateien | 16 |
 | Lokalisierungsdateien | 8 Sprachen |
 | Blog-Artikel | 20 |
-| Statisch vorgerenderte Seiten | 345 (alle Routen x 8 Sprachen) |
+| Statisch vorgerenderte Seiten | 346 (43 Routen-Instanzen x 8 Sprachen + Root-Redirect + /deck) |
 | Sitemap-URLs | 280 |
 | npm-Sicherheitslucken | 0 |
 
@@ -793,7 +793,7 @@ Das Mirrou Knowledge System umfasst 39 Markdown-Dokumente, organisiert in vier P
 
 ### 12.3 Website-Architektur
 
-**37 React-Komponenten:** Hero, Navigation, ContactForm, Footer, CaseLightbox, ServicesSection, BrandLogos, AILabel, CursorFollower, GrainOverlay, ParticleCanvas, Preloader, ScrollWordReveal, StatsCounter, und weitere
+**34 React-Komponenten:** Hero, Navigation, ContactForm, Footer, CaseLightbox, ServicesSection, Frontier, AILabel, CursorFollower, GrainOverlay, ProblemDiagnostic, Preloader, ScrollWordReveal, StatsCounter, und weitere
 
 **16 Route-Dateien:** HomePage, StudioPage, PaketePage, CasesPage, TeamMemberPage, BlogIndex, BrandBookPage, TrustPage, KontaktPage, DatenschutzPage, ImpressumPage, PillarPage, ClusterPage, PressPage, NotFoundPage, CaseDetailPage
 
