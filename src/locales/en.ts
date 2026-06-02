@@ -570,6 +570,8 @@ const en = {
       dsgvoSuffix: "and consent to the processing of my data to handle this enquiry.",
       submit: "Send Request",
       submitSent: "Sent ✓",
+      submitting: "Sending...",
+      submitError: "Failed to send. Please try again or contact us directly via email.",
       honeypot: "Please leave blank:",
     },
 

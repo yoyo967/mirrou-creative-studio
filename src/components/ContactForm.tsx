@@ -7,7 +7,7 @@ import { useTranslation } from "react-i18next";
 import { SITE } from "../content/site-data";
 
 export default function ContactForm() {
-  const [sent, setSent] = useState(false);
+  const [status, setStatus] = useState<"idle" | "submitting" | "success" | "error">("idle");
   const { t } = useTranslation("contact");
   const f = (key: string) => t(`form.${key}`);
 
@@ -20,11 +20,48 @@ export default function ContactForm() {
     { value: "over-150k", label: f("spend5") },
   ];
 
-  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setSent(true);
-    setTimeout(() => setSent(false), 3000);
+    if (status === "submitting" || status === "success") return;
+
+    setStatus("submitting");
+
+    const formEl = e.currentTarget;
+    const formData = new FormData(formEl);
+    const data = {
+      name: (formData.get("name") as string) || "",
+      email: (formData.get("email") as string) || "",
+      brand: (formData.get("brand") as string) || "",
+      website: (formData.get("website") as string) || undefined,
+      ad_spend: (formData.get("ad_spend") as string) || undefined,
+      message: (formData.get("message") as string) || "",
+      consent: formData.get("dsgvo") === "on",
+      company_website: (formData.get("company-website") as string) || undefined,
+    };
+
+    try {
+      const response = await fetch(`${SITE.api}/api/lead`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+      });
+
+      if (!response.ok) {
+        throw new Error("Failed to submit lead");
+      }
+
+      setStatus("success");
+      formEl.reset();
+    } catch (err) {
+      console.error("Error submitting lead form:", err);
+      setStatus("error");
+    }
   };
+
+  const isSubmitting = status === "submitting";
+  const isSuccess = status === "success";
 
   return (
     <section
@@ -69,39 +106,35 @@ export default function ContactForm() {
         <div className="lg:col-span-7">
           <form
             name="lead"
-            method="POST"
-            data-netlify="true"
-            netlify-honeypot="company-website"
             onSubmit={handleSubmit}
             className="space-y-8"
           >
-            <input type="hidden" name="form-name" value="lead" />
             <p className="hidden">
               <label>
-                {f("honeypot")} <input name="company-website" autoComplete="off" />
+                {f("honeypot")} <input name="company-website" autoComplete="off" disabled={isSubmitting || isSuccess} />
               </label>
             </p>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
               <Field id="cf-name" label={f("fieldName")}>
-                <input id="cf-name" type="text" name="name" required autoComplete="name" className="input-line" />
+                <input id="cf-name" type="text" name="name" required autoComplete="name" className="input-line" disabled={isSubmitting || isSuccess} />
               </Field>
               <Field id="cf-email" label={f("fieldEmail")}>
-                <input id="cf-email" type="email" name="email" required autoComplete="email" className="input-line" />
+                <input id="cf-email" type="email" name="email" required autoComplete="email" className="input-line" disabled={isSubmitting || isSuccess} />
               </Field>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
               <Field id="cf-brand" label={f("fieldBrand")}>
-                <input id="cf-brand" type="text" name="brand" required autoComplete="organization" className="input-line" />
+                <input id="cf-brand" type="text" name="brand" required autoComplete="organization" className="input-line" disabled={isSubmitting || isSuccess} />
               </Field>
               <Field id="cf-website" label={f("fieldWebsite")}>
-                <input id="cf-website" type="url" name="website" placeholder="https://" autoComplete="url" className="input-line" />
+                <input id="cf-website" type="url" name="website" placeholder="https://" autoComplete="url" className="input-line" disabled={isSubmitting || isSuccess} />
               </Field>
             </div>
 
             <Field id="cf-spend" label={f("fieldSpend")}>
-              <select id="cf-spend" name="ad_spend" required className="input-line bg-bg">
+              <select id="cf-spend" name="ad_spend" required className="input-line bg-bg" disabled={isSubmitting || isSuccess}>
                 {adSpendOptions.map((o) => (
                   <option key={o.value} value={o.value} disabled={o.value === ""}>
                     {o.label}
@@ -118,11 +151,12 @@ export default function ContactForm() {
                 rows={5}
                 placeholder={f("messagePlaceholder")}
                 className="input-line resize-y"
+                disabled={isSubmitting || isSuccess}
               />
             </Field>
 
             <label className="flex items-start gap-3 text-[14px] text-body">
-              <input type="checkbox" name="dsgvo" required className="mt-1 accent-accent w-4 h-4" />
+              <input type="checkbox" name="dsgvo" required className="mt-1 accent-accent w-4 h-4" disabled={isSubmitting || isSuccess} />
               <span>
                 {f("dsgvoLabel")}{" "}
                 <Link to="/datenschutz" className="underline hover:text-accent">
@@ -132,10 +166,27 @@ export default function ContactForm() {
               </span>
             </label>
 
-            <motion.button type="submit" whileHover={{ x: 4 }} className="btn-primary">
-              {sent ? f("submitSent") : f("submit")}
-              <ArrowRight size={14} aria-hidden />
-            </motion.button>
+            <div className="flex flex-col items-start gap-3">
+              <motion.button
+                type="submit"
+                whileHover={isSubmitting || isSuccess ? undefined : { x: 4 }}
+                className="btn-primary"
+                disabled={isSubmitting || isSuccess}
+                style={{
+                  opacity: isSubmitting || isSuccess ? 0.7 : 1,
+                  cursor: isSubmitting || isSuccess ? "not-allowed" : "pointer"
+                }}
+              >
+                {isSuccess ? f("submitSent") : isSubmitting ? f("submitting") : f("submit")}
+                <ArrowRight size={14} aria-hidden />
+              </motion.button>
+
+              {status === "error" && (
+                <p className="text-[#EF4444] font-sans text-[14px] mt-2 font-light">
+                  {f("submitError")}
+                </p>
+              )}
+            </div>
           </form>
         </div>
       </div>

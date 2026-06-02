@@ -585,6 +585,8 @@ const de = {
       dsgvoSuffix: "gelesen und stimme der Verarbeitung meiner Angaben zur Bearbeitung dieser Anfrage zu.",
       submit: "Anfrage senden",
       submitSent: "Gesendet ✓",
+      submitting: "Wird gesendet...",
+      submitError: "Fehler beim Senden. Bitte versuchen Sie es erneut oder kontaktieren Sie uns direkt per E-Mail.",
       honeypot: "Bitte leer lassen:",
     },
 

@@ -432,6 +432,7 @@ export const SITE = {
   name: "Mirrou Creative Studio",
   shortName: "Mirrou",
   tagline: "Performance Creative Studio",
+  api: "https://opus-magnum-ai-backend-923137317598.europe-west3.run.app",
   description:
     "Mirrou Creative Studio — Performance Creatives für Beauty-, Health- & Lifestyle-Brands. High-End-Fotografie, KI-Visuals und systematisches Creative-Testing als messbare Creative-Engine. Creative Direction: Olha Yevtushenko.",
   url: "https://mirrou.studio",
