@@ -110,6 +110,40 @@ Opus-Magnum-Repo ausgeweitet (eigene lebende Doku statt generischem AI-Studio-RE
 
 ---
 
+## 4a. Zwei-Seiten-Tenant-Modell (Mirrou-Tenant + Mandanten-SaaS)
+
+**Entscheidung (2026-06-02):** Opus Magnum ist ein **Multi-Tenant-Produkt** mit zwei Seiten:
+
+- **Seite A — Mirrou als Tenant #1 (intern, Dogfooding):** Das Studio betreibt seine
+  Operations auf der Plattform. **Geteilter Team-Key** (`keyStrategy: 'shared'`).
+- **Seite B — Mandanten-SaaS (extern, zahlend):** D2C-Brands als eigene Tenants +
+  **Pricing-System**. Key pro Tenant: `byok` (Default — Kunden-Key/-Kosten, sauberste
+  Marge & Compliance) oder `metered` (wir stellen Key + Usage-Billing, Premium).
+
+**Architektur-Schlüssel:** Key-Auflösung **pro aktivem Tenant** (`tenant.config.keyStrategy`),
+nicht global. Der `useGeminiClient()`-Helper (P1.1) liest den Key aus der Tenant-Config →
+vereint Mirrou-Shared-Key und Kunden-BYOK ohne Sonderfall. **Wird ab P1.1 so gebaut** →
+SaaS-Pivot = Config-, nicht Rewrite-Frage.
+
+**Sequenzierung (kritisch):** Erst **A** (Mirrou läuft täglich drauf), *dann* **B**
+(Mandanten öffnen). Die SaaS-Maschine (Billing, Onboarding, Tenant-Isolation-Härtung)
+**nicht** bauen, bevor Mirrou dogfooded. Häufigster Fehler: Agentur baut SaaS nebenbei,
+beides verhungert.
+
+**Neue Workstreams vor externem Launch (Seite B):**
+- **Tenant-Isolation & Security** — wasserdichte Firestore-Rules pro Tenant (P2.4); ein
+  Isolation-Bug = Cross-Tenant-Breach.
+- **DSGVO-Auftragsverarbeitung** — Mirrou wird **Processor** für Kundendaten → AVV/DPA,
+  EU-Region (✓ europe-west3), Löschkonzept, Audit.
+- **EU-Billing** — Stripe (EU) oder Merchant-of-Record (Paddle/Lemon Squeezy) für EU-MwSt;
+  reconcile mit [`pricing.md`](pricing.md).
+
+**Verdict:** Kohärent & stark (Dogfooding-Glaubwürdigkeit, ein Asset → zwei Erlösmodelle,
+Multi-Tenant-Gerüst existiert). Aber es macht aus dem „internen Cockpit" ein **SaaS-
+Unternehmen** — eigene Disziplin neben der Agentur. Tragbar nur mit harter Sequenzierung.
+
+---
+
 ## 5. Phasen-Roadmap
 
 | Phase | Inhalt | Ergebnis |
@@ -125,8 +159,11 @@ Opus-Magnum-Repo ausgeweitet (eigene lebende Doku statt generischem AI-Studio-RE
 ## 6. Offene Entscheidungen (brauchen dich)
 
 1. **GCP-Projekte:** föderieren (empfohlen) oder fusionieren?
-2. **Identität:** Opus Magnum *als Mirrou rebranden* — oder als eigenständige Schwester-Marke
-   im Ökosystem (Opus Magnum / LYGOX / Columna) führen und Mirrou nur *darin* abbilden?
+2. ~~**Identität:** Rebrand vs. Schwester-Marke?~~ **✅ entschieden (§4a):** Multi-Tenant —
+   Mirrou = Tenant #1 (`shared`-Key), Mandanten = eigene Tenants (`byok`/`metered`); Opus
+   Magnum bleibt die Plattform-Marke. **Key-Frage gelöst:** Strategie pro Tenant.
+5. **SaaS-Go/No-Go für Seite B:** Wollt ihr wirklich SaaS-Anbieter *neben* der Agentur
+   werden — und wann (erst nach Mirrou-Dogfooding)?
 3. **Repo-Tippfehler** „Porject" → umbenennen (sauberer Audit-Trail) ja/nein?
 4. **Umfang Phase 2:** alle ~40 Operatoren übernehmen oder auf einen Mirrou-Kern (Stratege,
    Visionär, Analytiker, Markenwächter, Berichterstatter) reduzieren?
