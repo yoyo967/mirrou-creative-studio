@@ -140,5 +140,5 @@ Jeder Agent bekommt seinen Audit-Trail über GitHub (Issue/PR/Commit) — Perfec
 
 ---
 
-*Lebendes Architektur-Dokument · Schwester zu [`github-frontier-firm-os.md`](github-frontier-firm-os.md).*
+*Lebendes Architektur-Dokument · OS-Familie: [`github-frontier-firm-os.md`](github-frontier-firm-os.md) (Governance) · dieses Doc (Compute) · [`opus-magnum-project-os.md`](opus-magnum-project-os.md) (Application-Cockpit).*
 *Live-Stand verifiziert 2026-06-02 (OPUS PRIME). Mirrou Creative Studio · Hamburg & Berlin.*
