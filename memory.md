@@ -211,13 +211,13 @@ Nach jedem abgeschlossenen Audit oder Änderung:
 - ✅ **Live-Rev. `00046-bk4`** (2026-06-01; + Präsentations-Route `/deck` = `public/deck.html`, Golden-Circle-Deck mit echten Case-Bildern). Perf zuletzt gemessen **2026-06-02 auf `00046-bk4`** (Median aus 3 Mobile-Läufen): Desktop **100/100/100/100**, Mobile **82/97/100/100** (LCP mobil 3,6 s); Unused-JS ~20 KiB (Route-Lazy-Splitting), color-contrast behoben, Hydration-Defer (CursorFollower/Progress via `useIdleMount`)
 - 🟡 Mobile-Performance 82 (Desktop 100) — LCP-Render-Delay strukturell (Hydration des ganzen Baums); echter Hebel = Island-/Partial-Hydration der 15 Homepage-Sektionen
 - 🟡 Mobile-A11y 97 — Rest `target-size` (Footer-Link-Abstände)
-- 🔴 Kontaktformular nicht funktional auf Cloud Run — Fix über **HubSpot** geplant (~2026-06-06)
+- 🔴 Kontaktformular nicht funktional auf Cloud Run — Fix über **eigenes EU-E-Mail-System** (kein HubSpot) + GitHub-als-CRM (DSGVO-Abwägung) bzw. Fallback eigenes EU-CRM; Architektur 2026-06-02 in Abstimmung. Siehe [[project-contact-form-backend]]
 - 🔵 AI-Agent-Integration (Opus Magnum Anbindung) — geplant
 - 📘 **Strategie-/Go-to-Market-Ebene dokumentiert** (2026-06-01): [`Deep_Audit_Report.md`](00_abschlussbericht/Deep_Audit_Report.md) (Founders/Investors) + 5 operative Follow-up-Playbooks unter [`00_abschlussbericht/follow_ups/`](00_abschlussbericht/follow_ups/) (6-Wochen-Roadmap, ICP-Akquise, 30-Tage-Checkliste, Vertriebs-Roadmap, Preismodellierung) — überführen die offenen P0/P1-Punkte in einen konkreten Umsetzungsplan ab Juni 2026.
 
 ### Nächste geplante Meilensteine
 - [x] **P0** Security-Header live verifizieren nach Redeploy — ✅ erledigt
-- [ ] **P0** Kontaktformular auf HubSpot-Backend umstellen (DSGVO-Consent) — ETA ~2026-06-06 *(bewusst offen)*
+- [ ] **P0** Kontaktformular an **eigenes EU-E-Mail-System** anbinden (kein HubSpot; DSGVO-Consent) + GitHub-als-CRM oder eigenes EU-CRM — Architektur 2026-06-02 in Abstimmung
 - [~] **P1** Mobile-Performance ≥ 90 — 2026-05-31 großer Schritt: Route-Lazy-Splitting (Unused-JS 59→22 KiB, lokal Perf→85); **Live-Wert + letzte Meile offen**
 - [x] **P1** `color-contrast` → A11y — ✅ 2026-05-31 (False-Positive root-caused + `bg-bg`-Fix)
 - [x] **P1** README-GA4/Three.js-Falschangaben korrigiert — ✅ 2026-05-31

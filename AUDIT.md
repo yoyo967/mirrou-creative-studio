@@ -131,7 +131,7 @@
 - **npm-Vulns: 0** (zuletzt `npm audit fix` 2026-05-31; `ws`-Vuln gepatcht).
 
 ### 🔴 KRITISCHE FINDINGS
-- **Kontaktformular nicht funktional** auf Cloud Run (`data-netlify` wirkungslos + `preventDefault` ohne Fetch) → Leads gehen verloren. **Fix geplant über HubSpot (~KW 2026-06).** Bis dahin bewusste, akzeptierte Lücke. → `src/components/ContactForm.tsx`.
+- **Kontaktformular nicht funktional** auf Cloud Run (`data-netlify` wirkungslos + `preventDefault` ohne Fetch) → Leads gehen verloren. **Fix-Richtung (2026-06-02 entschieden): eigenes EU-E-Mail-System** (kein HubSpot) an die Website angebunden, möglichst mit **GitHub als CRM** (Issues=Leads — DSGVO-Abwägung, da GitHub US/Microsoft), sonst **eigenes EU-CRM** (Cloud SQL/Firestore `europe-west3`). Architektur in Abstimmung. → `src/components/ContactForm.tsx`.
 
 ### 🔵 STRATEGISCHE EMPFEHLUNGEN
 - **GA4-Inkonsistenz:** README nennt GA4, kein Code/Consent vorhanden → entweder DSGVO-konform (Consent-Gate) implementieren oder Claim entfernen.
@@ -147,7 +147,7 @@
 |-----------|----------|---------|-------|--------|
 | ✅ P0 | Security-Header live | — | DEV | **erledigt 2026-05-30** |
 | ✅ P0 | Root-Duplikat / AI-Studio-Leftover entfernt | — | DEV | **erledigt 2026-05-30** |
-| 🔴 P0 | Kontaktformular → HubSpot-Backend (DSGVO-Consent) | M | Ralph / DEV | offen — ETA ~2026-06-06 |
+| 🔴 P0 | Kontaktformular → **eigenes EU-E-Mail-System** (DSGVO-Consent) + GitHub-als-CRM, sonst eigenes EU-CRM | M | DEV | offen — Architektur in Abstimmung (2026-06-02, kein HubSpot) |
 | 🟡 P1 | Mobile-Perf ≥ 90 (Unused JS, LCP/FCP) | M | DEV | 🟢 **2026-05-31:** Route-Lazy-Splitting, Unused-JS 59→22 KiB, `app` 349→107 KiB, lokal Perf→85. **2026-06-02 frisch live gemessen: Mobile 82** (Median 3 Läufe, LCP 3,6 s). Letzte Meile = Island-/Partial-Hydration offen |
 | ✅ P1 | `color-contrast` → A11y | S | DEV/Design | **erledigt 2026-05-31** (False-Positive root-caused + `bg-bg`-Fix) |
 | ✅ P1 | README-GA4/Three.js-Falschangaben korrigiert | S | DEV | **erledigt 2026-05-31** |

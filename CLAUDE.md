@@ -46,5 +46,5 @@ Deploy: `deploy_gcp.ps1` (gcloud builds + run deploy). **Vor Live-Deploy validie
 - **Chrome DevTools MCP** (`chrome-devtools`, EU-safe Flags in `.mcp.json`) — Performance-Traces/CWV/`lighthouse_audit` für den Perf-Fix-Loop. Tools erst nach Claude-Code-Reload verfügbar.
 
 ## Offen (Stand: siehe AUDIT.md §5)
-- **P0:** Kontaktformular → HubSpot (DSGVO-Consent) — `src/components/ContactForm.tsx`.
+- **P0:** Kontaktformular → eigenes EU-E-Mail-System (kein HubSpot; DSGVO-Consent) + GitHub-als-CRM bzw. eigenes EU-CRM — `src/components/ContactForm.tsx`.
 - **P1:** Mobile-Perf letzte Meile auf ≥90 (Rest-Unused-JS, LCP-Bild) · Cluster-Long-Form 6 Sprachen.
