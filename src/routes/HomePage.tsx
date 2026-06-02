@@ -1,21 +1,24 @@
+import { lazy, Suspense } from "react";
 import Hero from "../components/Hero";
-import PressQuoteStrip from "../components/PressQuoteStrip";
 import TrustStrip from "../components/TrustStrip";
-import ProblemDiagnostic from "../components/ProblemDiagnostic";
-import Frontier from "../components/Frontier";
-import WorkGrid from "../components/WorkGrid";
-import CasesStrip from "../components/CasesStrip";
-import InsightsSection from "../components/InsightsSection";
-import ServicesSection from "../components/ServicesSection";
-import StudioContent from "../components/StudioContent";
-import ContactForm from "../components/ContactForm";
-import VisualGalleryStrip from "../components/VisualGalleryStrip";
-import ManifestoSection from "../components/ManifestoSection";
-import HorizontalShowcase from "../components/HorizontalShowcase";
 import StatsCounter from "../components/StatsCounter";
 import SEO from "../components/SEO";
 import { SITE } from "../content/site-data";
 import { useTranslation } from "react-i18next";
+
+// Lazy-load below-the-fold components to improve mobile hydration performance (TBT / LCP)
+const PressQuoteStrip = lazy(() => import("../components/PressQuoteStrip"));
+const ProblemDiagnostic = lazy(() => import("../components/ProblemDiagnostic"));
+const Frontier = lazy(() => import("../components/Frontier"));
+const WorkGrid = lazy(() => import("../components/WorkGrid"));
+const CasesStrip = lazy(() => import("../components/CasesStrip"));
+const InsightsSection = lazy(() => import("../components/InsightsSection"));
+const ServicesSection = lazy(() => import("../components/ServicesSection"));
+const StudioContent = lazy(() => import("../components/StudioContent"));
+const ContactForm = lazy(() => import("../components/ContactForm"));
+const VisualGalleryStrip = lazy(() => import("../components/VisualGalleryStrip"));
+const ManifestoSection = lazy(() => import("../components/ManifestoSection"));
+const HorizontalShowcase = lazy(() => import("../components/HorizontalShowcase"));
 
 /**
  * HomePage - "Full Editorial Issue"
@@ -137,12 +140,16 @@ export default function HomePage() {
 
       {/* ─── 04. PAIN ───────────────────────────────────────────── */}
       <div className="cv-auto">
-        <ProblemDiagnostic />
+        <Suspense fallback={null}>
+          <ProblemDiagnostic />
+        </Suspense>
       </div>
 
       {/* ─── 05. SOLUTION — Process ─────────────────────────────── */}
       <div className="cv-auto">
-        <HorizontalShowcase />
+        <Suspense fallback={null}>
+          <HorizontalShowcase />
+        </Suspense>
       </div>
 
       {/* ─── BREATHING ROOM ─────────────────────────────────────── */}
@@ -152,27 +159,37 @@ export default function HomePage() {
 
       {/* ─── 06. METHOD — Deeper cut ────────────────────────────── */}
       <div className="cv-auto">
-        <Frontier />
+        <Suspense fallback={null}>
+          <Frontier />
+        </Suspense>
       </div>
 
       {/* ─── 07. PORTFOLIO — Visual proof ───────────────────────── */}
       <div className="cv-auto">
-        <WorkGrid />
+        <Suspense fallback={null}>
+          <WorkGrid />
+        </Suspense>
       </div>
 
       {/* ─── 08. TEXTURE — Visual richness ──────────────────────── */}
       <div className="cv-auto">
-        <VisualGalleryStrip />
+        <Suspense fallback={null}>
+          <VisualGalleryStrip />
+        </Suspense>
       </div>
 
       {/* ─── 09. AUTHORITY ──────────────────────────────────────── */}
       <div className="cv-auto">
-        <PressQuoteStrip surface="home" />
+        <Suspense fallback={null}>
+          <PressQuoteStrip surface="home" />
+        </Suspense>
       </div>
 
       {/* ─── 10. METRICS — KPI proof (cream section) ────────────── */}
       <div className="cv-auto">
-        <CasesStrip />
+        <Suspense fallback={null}>
+          <CasesStrip />
+        </Suspense>
       </div>
 
       {/* ─── BREATHING ROOM ─────────────────────────────────────── */}
@@ -180,22 +197,30 @@ export default function HomePage() {
 
       {/* ─── 11. THOUGHT LEADERSHIP ─────────────────────────────── */}
       <div className="cv-auto">
-        <InsightsSection />
+        <Suspense fallback={null}>
+          <InsightsSection />
+        </Suspense>
       </div>
 
       {/* ─── 12. SERVICES ───────────────────────────────────────── */}
       <div className="cv-auto">
-        <ServicesSection />
+        <Suspense fallback={null}>
+          <ServicesSection />
+        </Suspense>
       </div>
 
       {/* ─── 13. VALUES ─────────────────────────────────────────── */}
       <div className="cv-auto">
-        <ManifestoSection />
+        <Suspense fallback={null}>
+          <ManifestoSection />
+        </Suspense>
       </div>
 
       {/* ─── 14. PEOPLE ─────────────────────────────────────────── */}
       <div className="cv-auto">
-        <StudioContent />
+        <Suspense fallback={null}>
+          <StudioContent />
+        </Suspense>
       </div>
 
       {/* ─── BREATHING ROOM ─────────────────────────────────────── */}
@@ -205,7 +230,9 @@ export default function HomePage() {
 
       {/* ─── 15. ACTION ─────────────────────────────────────────── */}
       <div className="cv-auto">
-        <ContactForm />
+        <Suspense fallback={null}>
+          <ContactForm />
+        </Suspense>
       </div>
     </>
   );
