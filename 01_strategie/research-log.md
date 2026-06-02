@@ -19,6 +19,16 @@ version: 1.0
 
 ---
 
+## Juni 2026 · Plattform & Measurement
+
+### 2026-06-02 · Qualified Future Conversions (QFC) — GML 2026
+**Quelle**: Google (business.google.com/accelerate · blog.google) + Recaps (Search Engine Land, WordStream) — verifiziert 2026-06-02.
+**Erkenntnis**: Neue Gemini-gestützte Google-Ads-Metrik für Demand Gen/YouTube. Prognostiziert profitable Conversions bis zu 6 Monate voraus aus Leading User Actions (Branded Search, Video Views, Site-Visits) nach Ad-Kontakt — außerhalb der 7/30-Tage-Fenster. Aktuell restricted Pilot, Beta später 2026. Künftig Meridian-(MMM-)Integration. **Wichtig: Prognose, kein realisierter Umsatz; Plattform misst eigenen Spend.**
+**Implikation**: Google-natives Mess-Argument für den Langzeitwert von Creative — trifft Mirrous Kernthese (ICP 1 & 2, lange D2C-Journeys). Gegenargument zum Creative-Fatigue-Skeptizismus.
+**Aktion**: Pilot-Zugang beantragen (Denys); First-Mover-SEO-Blogartikel (Yahya); QFC-Benchmark aufbauen sobald Daten (Denys); als *Signal* in Pitch/Sales mit Caveat (Yahya/Ralph). Vollständig → [`qfc-qualified-future-conversions.md`](qfc-qualified-future-conversions.md).
+
+---
+
 ## Mai 2026 · Markt & Wettbewerb
 
 ### 2026-05-24 · Creative Fatigue Onset Benchmarks

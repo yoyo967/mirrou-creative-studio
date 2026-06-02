@@ -6,7 +6,7 @@ version: 1.0
 
 # Trend Radar – Mirrou Creative Studio · 2026
 
-> Lebendiges Dokument. Quartalsweise aktualisieren. Letzte Aktualisierung: Mai 2026.
+> Lebendiges Dokument. Quartalsweise aktualisieren. Letzte Aktualisierung: Juni 2026.
 
 ---
 
@@ -54,6 +54,13 @@ Plattformen (Meta, TikTok) entwickeln Tools für vollständig KI-generierte Ads.
 9:16 wird das primäre Format — auch auf Desktop-Feeds. Alle anderen Formate werden sekundär.
 
 **Implikation für Mirrou**: Shooting-Setup für 9:16 als Standard (nicht als Variante) produzieren.
+
+---
+
+### ⚡ IN 6 MONATEN: Qualified Future Conversions (QFC) — Google Demand Gen
+Neue Gemini-gestützte Google-Ads-Metrik (GML 2026): prognostiziert profitable Conversions **bis zu 6 Monate voraus** aus Leading User Actions (Branded Search, Video Views, engagierte Site-Visits) nach Ad-Kontakt. Aktuell **restricted Pilot**, Beta später 2026. **Prognose (Gemini-modelliert), kein realisierter Umsatz.**
+
+**Implikation für Mirrou**: Direktes Mess-Argument für den Langzeitwert von Creative (ICP 1 & 2, lange Journeys). Pilot-Zugang beantragen, eigene DACH-Beauty-Benchmarks früh aufbauen, First-Mover-SEO-Content. **Aber** als Richtungs-Signal kommunizieren, nicht als ROI-Beweis (Plattform misst eigenen Spend → triangulieren). Vollständige Einordnung → [`qfc-qualified-future-conversions.md`](qfc-qualified-future-conversions.md).
 
 ---
 

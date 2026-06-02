@@ -6,7 +6,13 @@ version: 1.0
 
 # Benchmark Library – Mirrou Creative Studio
 
-> Zentrale Referenz für alle Performance-KPIs. Basis für Hypothesen, Briefings, Kunden-Reporting und Pitch-Argumente. Letzte Aktualisierung: Mai 2026.
+> Zentrale Referenz für alle Performance-KPIs. Basis für Hypothesen, Briefings, Kunden-Reporting und Pitch-Argumente. Letzte Aktualisierung: Juni 2026.
+
+---
+
+## Measurement-Innovation: Qualified Future Conversions (QFC)
+
+Neue Gemini-gestützte Google-Ads-Metrik (GML 2026) für Demand Gen: prognostiziert profitable Conversions bis zu 6 Monate voraus (Leading User Actions → spätere Conversion). **Noch keine eigenen Werte** — QFC ist restricted Pilot. **To-build:** sobald Pilot-Daten vorliegen, eine **DACH-Beauty/Health-QFC-Rate** als eigene Benchmark-Dimension etablieren (First-Mover, bevor der Markt standardisiert). Caveat: Prognose, kein realisierter Umsatz → als Richtungswert führen. Einordnung → [`qfc-qualified-future-conversions.md`](qfc-qualified-future-conversions.md).
 
 ---
 

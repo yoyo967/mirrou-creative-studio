@@ -23,6 +23,15 @@ Zentrale Quelle für konsistente Kommunikation. Alle approbierten Formulierungen
 
 ---
 
+## Proof & Measurement (QFC)
+
+> ⚠️ Vorsichtig einsetzen: QFC ist ein **Prognose-Signal**, kein bewiesener ROI — und erst ab Beta/GA verfügbar (siehe [`qfc-qualified-future-conversions.md`](qfc-qualified-future-conversions.md)). Als *Signal* framen, nie als Garantie.
+
+- „Wir messen nicht nur den Klick. Mit Qualified Future Conversions machen wir den Funnel-Beitrag eines Creatives sichtbar — von der Discovery bis zur Entscheidung." *(ab QFC-Verfügbarkeit; als Signal, nicht als Beweis)*
+- „Awareness-Creative ist keine Vanity-Metrik: QFC verbindet die frühe Markensuche mit dem späteren Umsatz." *(Richtungsaussage, mit unabhängiger Messung triangulieren)*
+
+---
+
 ## Website
 
 ### Hero-Headlines
