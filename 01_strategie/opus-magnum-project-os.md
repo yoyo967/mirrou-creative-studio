@@ -158,7 +158,7 @@ Unternehmen** — eigene Disziplin neben der Agentur. Tragbar nur mit harter Seq
 
 ## 6. Offene Entscheidungen (brauchen dich)
 
-1. **GCP-Projekte:** föderieren (empfohlen) oder fusionieren?
+1. ~~**GCP-Projekte:** föderieren oder fusionieren?~~ **✅ entschieden (2026-06-02): föderieren** — beide Projekte (`923137317598` Opus Magnum · `180023265254` Mirrou) unter einer GCP-Org, geteilte WIF/OIDC + Secret-Manager-Standard, konsolidiertes Billing. (Gatet Firebase-Integration + Deploy.)
 2. ~~**Identität:** Rebrand vs. Schwester-Marke?~~ **✅ entschieden (§4a):** Multi-Tenant —
    Mirrou = Tenant #1 (`shared`-Key), Mandanten = eigene Tenants (`byok`/`metered`); Opus
    Magnum bleibt die Plattform-Marke. **Key-Frage gelöst:** Strategie pro Tenant.
