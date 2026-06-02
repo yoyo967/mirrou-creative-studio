@@ -43,7 +43,7 @@
 - **Du präsentierst:** Geschäftsmodell & Pricing, Team & Rollen, Onboarding/Retainer-Prozess, Förderperspektive.
 
 ### 🧠 Yahya Yildirim — Systems Architect & Growth Lead · Berlin · 150 h / 37 %
-- **Du verantwortest (real im Repo):** die **Website selbst** (`src/` — 34 Komponenten, 16 Routen, 8 Sprachen, GCP, Lighthouse 100), Compliance-Architektur (`07_compliance/`), MCP-Stack (`.mcp.json` + `docs/DEVTOOLS_MCP.md`), Frontier-Firm-Architektur (Doku + `src/components/Frontier.tsx`), Positionierung/ICP, Growth/Outreach, Projektsteuerung. **Die 5 Perplexity-Spaces laufen extern in Perplexity** — im Repo liegen ihre Konfiguration/Skill-Prompts/Briefings (`06_perplexity_skills/`).
+- **Du verantwortest (real im Repo):** die **Website selbst** (`src/` — 32 Komponenten, 16 Routen, 8 Sprachen, GCP, Lighthouse 100), Compliance-Architektur (`07_compliance/`), MCP-Stack (`.mcp.json` + `docs/DEVTOOLS_MCP.md`), Frontier-Firm-Architektur (Doku + `src/components/Frontier.tsx`), Positionierung/ICP, Growth/Outreach, Projektsteuerung. **Die 5 Perplexity-Spaces laufen extern in Perplexity** — im Repo liegen ihre Konfiguration/Skill-Prompts/Briefings (`06_perplexity_skills/`).
 - **Dein Merksatz:** „Ich bin der **Architekt des Systems** — nicht nur der Agentur, sondern der Art, wie sie denkt und skaliert."
 - **Du präsentierst:** Frontier-Firm-Architektur, Website/Tech (**Live-Demo!**), Compliance, Strategie & Ausblick.
 

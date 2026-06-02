@@ -245,7 +245,7 @@ Bevor ein Tool eingeführt wird: EU AI Act-Konformität, DSGVO-Konformität, Exp
 *Desktop LCP: 0,7s / CLS: 0,011. Die Mobile-Lücke (Performance 82) ist ausschließlich Render-Geschwindigkeit auf gedrosselter Verbindung — adressiert durch den DevTools-MCP-Loop als kurzfristiges To-Do (Ziel ≥90).*
 
 #### Technische Kennzahlen (vollständig)
-*   **React-Komponenten:** 34 (inkl. Hero, Frontier, ProblemDiagnostic, ScrollWordReveal, StatsCounter, CursorFollower, GrainOverlay)
+*   **React-Komponenten:** 32 (inkl. Hero, Frontier, ProblemDiagnostic, ScrollWordReveal, StatsCounter, CursorFollower, GrainOverlay)
 *   **Routen:** 16 (HomePage, StudioPage, PaketePage, CasesPage, TeamMemberPage, BlogIndex, BrandBookPage, TrustPage, KontaktPage, DatenschutzPage, ImpressumPage, PillarPage, ClusterPage, PressPage, NotFoundPage, CaseDetailPage)
 *   **Sprachen:** 8 (DE, EN, ES, FR, IT, TR, RU, UA)
 *   **Blog-Artikel:** 20
