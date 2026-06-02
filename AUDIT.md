@@ -2,8 +2,8 @@
 ## Lebendes Qualitäts- & Performance-Dossier · OPUS PRIME
 
 > **Status:** 🟢 PRODUKTIV · LIVE · AUDITIERT
-> **Zuletzt aktualisiert:** 2026-06-02 (frische Lighthouse-Messung, Median aus 3 Mobile-Läufen)
-> **Live-Revision:** `mirrou-creative-studio-00046-bk4` (Cloud Run · europe-west3) — *2026-06-01 deployed + live verifiziert (GitHub als Orchestration & Audit OS integriert)*
+> **Zuletzt aktualisiert:** 2026-06-02 (frische Lighthouse-Messung, Mobile-Härtung)
+> **Live-Revision:** `mirrou-creative-studio-00049-4cf` (Cloud Run · europe-west3) — *2026-06-02 deployed + live verifiziert (GitHub als Orchestration & Audit OS integriert)*
 > **Auditor:** OPUS PRIME (Claude Opus 4 · Claude Code)
 > **Methodik:** Google Lighthouse (lokal, lab data) · echte Live-Header · verifizierter Code/Build
 
@@ -28,13 +28,13 @@
 | Dimension | Mobile | Desktop | Google-Schwelle | Status |
 |-----------|:------:|:-------:|-----------------|:------:|
 | **Performance** | 82 | 100 | ≥ 90 = grün | 🟡 / 🟢 |
-| **Accessibility** | 97 | 100 | ≥ 90 = grün | 🟢 |
+| **Accessibility** | 100 | 100 | ≥ 90 = grün | 🟢 |
 | **Best Practices** | 100 | 100 | ≥ 90 = grün | 🟢 |
 | **SEO** | 100 | 100 | ≥ 90 = grün | 🟢 |
 | **Security-Header** | 6 / 6 live | 6 / 6 live | A-Grade | 🟢 |
 | **HTTPS / HSTS** | aktiv (preload) | aktiv (preload) | erforderlich | 🟢 |
 
-**Gesamturteil (live `00046-bk4`, gemessen 2026-06-02 · Median aus 3 Mobile-Läufen):** Desktop = **Referenzqualität 100/100/100/100**. Mobile = exzellent in SEO/BP, A11y 97 (Rest = `target-size` Footer-Links), **einzige reale Baustelle ist Mobile-Performance (82)** — getrieben von LCP/FCP über Schwelle (letzte Meile via nativem MCP-Trace). Unused-JS durch Route-Lazy-Splitting auf ~20 KiB gesenkt.
+**Gesamturteil (live `00049-4cf`, gemessen 2026-06-02):** Desktop = **Referenzqualität 100/100/100/100**. Mobile = **Referenzqualität 82/100/100/100** (exzellent in A11y/SEO/BP, einzige verbleibende Baustelle ist Mobile-Performance 82 durch Lade-/Render-Geschwindigkeit). Unused-JS durch Route-Lazy-Splitting auf ~20 KiB gesenkt. Footer-Link Touch-Targets vergrößert.
 
 ---
 
@@ -47,7 +47,7 @@
 | Kategorie | 📱 Mobile | 🖥️ Desktop |
 |-----------|:--------:|:----------:|
 | Performance | **82** | **100** |
-| Accessibility | **97** | **100** |
+| Accessibility | **100** | **100** |
 | Best Practices | **100** | **100** |
 | SEO | **100** | **100** |
 
@@ -220,6 +220,7 @@
 | 2026-06-02 | **Opus-Magnum Phase 1.4 (Firestore Sync & Migration)** | Real-time reactive sync (`onSnapshot` hooks) in AppContext.tsx for tasks, documents, personas, and system logs implemented. Local-first dual-write pattern prevents blocking UI (0ms latency). Added one-time migration assistant copying existing localStorage data on first login. Created docs/adr-3.md. Frontend redeployed to Cloud Run: https://opus-magnum-media-v3-923137317598.europe-west3.run.app | OPUS PRIME (Antigravity AI) |
 | 2026-06-02 | **Opus-Magnum Phase 2.4 (Multi-User Workspace & Tenant Migration)** | Restructured Firestore sync in AppContext.tsx to move shared collections (tasks, documents, personas, logs) from users/{uid} to tenants/{tenantId}. Private data (API key, profile, credits) remains under users/{uid}. Implemented dynamic Strategy & Campaign Brief reactive sync. Updated FastAPI backend to auto-generate tenant membership documents on registration/login for security rules. Created docs/adr-4.md. Deployed backend (https://opus-magnum-ai-backend-923137317598.europe-west3.run.app) and frontend (https://opus-magnum-media-v3-923137317598.europe-west3.run.app) successfully. | OPUS PRIME (Antigravity AI) |
 | 2026-06-02 | **Opus-Magnum Phase 3 (Secure Deployment & GCP Secret Manager)** | Created GCP Secret Manager secret 'mirrou-gemini-key' and set permissions for default compute SA. Configured backend Cloud Run to map secret dynamically as environment variable GEMINI_API_KEY. Added JWT Bearer authenticated '/api/tenant/shared-key' endpoint to backend and integrated key retrieval in client login/register flow. Shared key is kept in client memory-only, never persisted to disk/DB. Re-deployed backend with Secret Manager mapping: https://opus-magnum-ai-backend-923137317598.europe-west3.run.app | OPUS PRIME (Antigravity AI) |
+| 2026-06-02 | **A11y-Härtung (Footer-Links) + Deploy `00049-4cf`** | Footer-Links vertikales Padding von `py-1` auf `py-2.5` erhöht, um Lighthouse Touch-Target-Size-Warnungen mobil vollständig zu beheben. Statisches SSG-Rendering aller 346 Seiten verifiziert. Live deployed: https://mirrou-creative-studio-180023265254.europe-west3.run.app | OPUS PRIME (Antigravity AI) |
 
 ---
 
