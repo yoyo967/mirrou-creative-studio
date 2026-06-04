@@ -441,7 +441,7 @@ export const SITE = {
   social: {
     instagram: "https://www.instagram.com/mirrou.studio/",
     facebook: "https://www.facebook.com/profile.php?id=61589455194800",
-    linkedin: "https://www.linkedin.com/company/123233907",
+    linkedin: "https://www.linkedin.com/company/mirrou-studio/",
   },
   locations: [
     { city: "Hamburg", role: "Produktion & Creative Direction" },
