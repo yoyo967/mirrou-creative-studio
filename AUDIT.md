@@ -2,7 +2,7 @@
 ## Lebendes Qualitäts- & Performance-Dossier · OPUS PRIME
 
 > **Status:** 🟢 PRODUKTIV · LIVE · AUDITIERT
-> **Zuletzt aktualisiert:** 2026-06-02 (frische Lighthouse-Messung, Mobile-Härtung)
+> **Zuletzt aktualisiert:** 2026-06-04 (Doku-Reconciliation nach Antigravity-Phase: Contact-Form-Status, A11y/BP-Scores, `.env`)
 > **Live-Revision:** `mirrou-creative-studio-00049-4cf` (Cloud Run · europe-west3) — *2026-06-02 deployed + live verifiziert (GitHub als Orchestration & Audit OS integriert)*
 > **Auditor:** OPUS PRIME (Claude Opus 4 · Claude Code)
 > **Methodik:** Google Lighthouse (lokal, lab data) · echte Live-Header · verifizierter Code/Build
@@ -94,11 +94,11 @@
 - 🟢 Meta-Title/Description, Canonical, OpenGraph vorhanden
 
 ### 3.3 Accessibility (WCAG)
-- 🟢 93 (Mobile) / 97 (Desktop)
-- 🔴 Einziger Blocker: `color-contrast` (siehe §2.4)
+- 🟢 100 (Mobile) / 100 (Desktop)
+- 🟢 `color-contrast` behoben (war False-Positive, siehe §2.4) · Footer-Tap-Targets vergrößert (Deploy `00049-4cf`)
 
 ### 3.4 Best Practices
-- 🟢 96 (Mobile) / 100 (Desktop)
+- 🟢 100 (Mobile) / 100 (Desktop)
 - 🟢 HTTPS erzwungen · keine Console-Errors im Lab · keine veralteten APIs
 
 ### 3.5 Security-Header (live verifiziert 2026-05-30)
@@ -129,13 +129,16 @@
 - **npm-Vulns: 0** (zuletzt `npm audit fix` 2026-05-31; `ws`-Vuln gepatcht).
 
 ### 🔴 KRITISCHE FINDINGS
-- **Kontaktformular nicht funktional** auf Cloud Run (`data-netlify` wirkungslos + `preventDefault` ohne Fetch) → Leads gehen verloren. **Fix-Richtung (2026-06-02 entschieden): eigenes EU-E-Mail-System** (kein HubSpot) an die Website angebunden, möglichst mit **GitHub als CRM** (Issues=Leads — DSGVO-Abwägung, da GitHub US/Microsoft), sonst **eigenes EU-CRM** (Cloud SQL/Firestore `europe-west3`). Architektur in Abstimmung. → `src/components/ContactForm.tsx`.
+- **Keine offenen kritischen Findings.** Der frühere P0-Blocker (Kontaktformular ohne Backend → Leads gingen verloren) ist behoben (Antigravity-Phase, 2026-06-02): Form postet jetzt per `fetch` an `${SITE.api}/api/lead` — FastAPI-Backend des Opus-Magnum-Repos (`…923137317598…europe-west3`). Live `00049-4cf`, CORS-Preflight verifiziert (HTTP 200, 2026-06-04). Honeypot + DSGVO-Consent-Checkbox vorhanden. → `src/components/ContactForm.tsx:43`.
+
+### 🟡 VERBLEIBENDE VERIFIKATION (Contact-Form)
+- **End-to-End noch nicht bewiesen:** kein echter Test-Lead durchgereicht. Persistenz in Firestore + DSGVO-Speicherort (EU `eur3`/`europe-west3` statt `us-central1`-Default) sind aus *diesem* Repo nicht verifizierbar (Backend lebt im Repo `yoyo967/Opus-Magnum-Media-Porject-OS`). Vor „erledigt": 1 Test-Lead senden → Firestore-Eintrag + EU-Region bestätigen.
 
 ### 🔵 STRATEGISCHE EMPFEHLUNGEN
 - **GA4-Inkonsistenz:** README nennt GA4, kein Code/Consent vorhanden → entweder DSGVO-konform (Consent-Gate) implementieren oder Claim entfernen.
 - **Standort Berlin ↔ Hamburg** zwischen `memory.md`/Schema.org/Boilerplate vereinheitlichen.
 - **Toolchain härten:** `tsconfig` `strict` + ESLint (aktuell 7 bekannte `key`-Prop-TS-Fehler als P2-Tech-Debt).
-- **AI-Agent-Anbindung** (Opus-Magnum-Ökosystem) als nächste Ebene vorbereiten.
+- **AI-Agent-Anbindung** (Opus-Magnum-Ökosystem) — teilweise umgesetzt: Antigravity-Phasen 1–3 im separaten Repo `Opus-Magnum-Media-Porject-OS` (Firebase/Firestore-EU `opus-eu`, Multi-Tenant `tenants/{tenantId}`, GCP Secret Manager). Website konsumiert dessen Backend bereits via `/api/lead`. Stand des SaaS-Backends im eigenen Repo auditieren.
 
 ---
 
@@ -145,7 +148,7 @@
 |-----------|----------|---------|-------|--------|
 | ✅ P0 | Security-Header live | — | DEV | **erledigt 2026-05-30** |
 | ✅ P0 | Root-Duplikat / AI-Studio-Leftover entfernt | — | DEV | **erledigt 2026-05-30** |
-| 🔴 P0 | Kontaktformular → **eigenes EU-E-Mail-System** (DSGVO-Consent) + GitHub-als-CRM, sonst eigenes EU-CRM | M | DEV | offen — Architektur in Abstimmung (2026-06-02, kein HubSpot) |
+| 🟡 P0 | Kontaktformular → EU-Backend (DSGVO-Consent) | M | DEV | **2026-06-04 weitgehend erledigt:** Form verbunden mit FastAPI `/api/lead` (Opus-Magnum-Backend, `europe-west3`), live `00049-4cf`, CORS 200 verifiziert. **Rest:** E2E-Lead-Persistenz + EU-Firestore-Speicherort (DSGVO) bestätigen → dann ✅ |
 | 🟡 P1 | Mobile-Perf ≥ 90 (Unused JS, LCP/FCP) | M | DEV | 🟢 **2026-05-31:** Route-Lazy-Splitting, Unused-JS 59→22 KiB, `app` 349→107 KiB, lokal Perf→85. **2026-06-02 frisch live gemessen: Mobile 82** (Median 3 Läufe, LCP 3,6 s). Letzte Meile = Island-/Partial-Hydration offen |
 | ✅ P1 | `color-contrast` → A11y | S | DEV/Design | **erledigt 2026-05-31** (False-Positive root-caused + `bg-bg`-Fix) |
 | ✅ P1 | README-GA4/Three.js-Falschangaben korrigiert | S | DEV | **erledigt 2026-05-31** |
@@ -221,6 +224,7 @@
 | 2026-06-02 | **Opus-Magnum Phase 2.4 (Multi-User Workspace & Tenant Migration)** | Restructured Firestore sync in AppContext.tsx to move shared collections (tasks, documents, personas, logs) from users/{uid} to tenants/{tenantId}. Private data (API key, profile, credits) remains under users/{uid}. Implemented dynamic Strategy & Campaign Brief reactive sync. Updated FastAPI backend to auto-generate tenant membership documents on registration/login for security rules. Created docs/adr-4.md. Deployed backend (https://opus-magnum-ai-backend-923137317598.europe-west3.run.app) and frontend (https://opus-magnum-media-v3-923137317598.europe-west3.run.app) successfully. | OPUS PRIME (Antigravity AI) |
 | 2026-06-02 | **Opus-Magnum Phase 3 (Secure Deployment & GCP Secret Manager)** | Created GCP Secret Manager secret 'mirrou-gemini-key' and set permissions for default compute SA. Configured backend Cloud Run to map secret dynamically as environment variable GEMINI_API_KEY. Added JWT Bearer authenticated '/api/tenant/shared-key' endpoint to backend and integrated key retrieval in client login/register flow. Shared key is kept in client memory-only, never persisted to disk/DB. Re-deployed backend with Secret Manager mapping: https://opus-magnum-ai-backend-923137317598.europe-west3.run.app | OPUS PRIME (Antigravity AI) |
 | 2026-06-02 | **A11y-Härtung (Footer-Links) + Deploy `00049-4cf`** | Footer-Links vertikales Padding von `py-1` auf `py-2.5` erhöht, um Lighthouse Touch-Target-Size-Warnungen mobil vollständig zu beheben. Statisches SSG-Rendering aller 346 Seiten verifiziert. Live deployed: https://mirrou-creative-studio-180023265254.europe-west3.run.app | OPUS PRIME (Antigravity AI) |
+| 2026-06-04 | **Doku-Reconciliation nach Antigravity-Phase (kein Deploy)** | Re-Sync nach Rückwechsel zu Claude Code (Nutzungslimit-Pause). **Verifiziert:** Repo lokal=Remote (`7c5317c`, sauber), Website live HTTP 200 (0,21 s), Opus-Magnum-Backend `/api/lead` CORS-Preflight HTTP 200 (Root `/` 404 = normaler FastAPI-Cold-Start). **Schlüssel-Erkenntnis:** Die Architektur-Arbeit (Firebase-EU, Custom-Token-Bridge, Multi-Tenant, Secret Manager, FastAPI) liegt im **separaten Repo `yoyo967/Opus-Magnum-Media-Porject-OS`** (GCP `923137317598`), *nicht* hier — dieses Repo bekam nur Contact-Form-Verkabelung (`7edaf77`), Homepage-Lazy-Load (`d74cc1c`) + Footer-A11y/`00049-4cf`. **Stale-Korrekturen (Selbst-Update-Lücke geschlossen):** §3.3 A11y `93/97`→`100/100` (+ color-contrast-Blocker entfernt, war längst behoben), §3.4 BP `96/100`→`100/100` (beides widersprach Scorecard §1); §4 Kontaktformular von 🔴 „nicht funktional" → behoben (verbunden; E2E-Verifikation als 🟡 offen); §5 P0 🔴→🟡. `.env.example` entstaubt (HubSpot raus, `/api/lead`-Endpoint dokumentiert). Live-Rev unverändert `00049-4cf`. | OPUS PRIME (Claude Opus 4.8) |
 
 ---
 
