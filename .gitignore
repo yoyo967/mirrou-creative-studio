@@ -42,6 +42,9 @@ coverage/
 # Custom AI tracking
 .claude/
 
+# Firebase CLI cache
+.firebase/
+
 # Large media files
 *.mp4
 *.mp3
