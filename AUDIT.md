@@ -2,7 +2,7 @@
 ## Lebendes Qualitäts- & Performance-Dossier · OPUS PRIME
 
 > **Status:** 🟢 PRODUKTIV · LIVE · AUDITIERT
-> **Zuletzt aktualisiert:** 2026-06-04 (Doku-Reconciliation nach Antigravity-Phase: Contact-Form-Status, A11y/BP-Scores, `.env`)
+> **Zuletzt aktualisiert:** 2026-06-05 (frische Lighthouse-Messung auf der Firebase-Hosting-Front: Mobile 82→**87**)
 > **Live-Revision:** `mirrou-creative-studio-00049-4cf` (Cloud Run · europe-west3) — *2026-06-02 deployed + live verifiziert (GitHub als Orchestration & Audit OS integriert)*
 > **Auditor:** OPUS PRIME (Claude Opus 4 · Claude Code)
 > **Methodik:** Google Lighthouse (lokal, lab data) · echte Live-Header · verifizierter Code/Build
@@ -27,7 +27,7 @@
 
 | Dimension | Mobile | Desktop | Google-Schwelle | Status |
 |-----------|:------:|:-------:|-----------------|:------:|
-| **Performance** | 82 | 100 | ≥ 90 = grün | 🟡 / 🟢 |
+| **Performance** | 87 | 99 | ≥ 90 = grün | 🟡 / 🟢 |
 | **Accessibility** | 100 | 100 | ≥ 90 = grün | 🟢 |
 | **Best Practices** | 100 | 100 | ≥ 90 = grün | 🟢 |
 | **SEO** | 100 | 100 | ≥ 90 = grün | 🟢 |
@@ -40,13 +40,13 @@
 
 ## 2. LIGHTHOUSE-DIAGNOSE (echte Lab-Daten)
 
-**Gemessen:** 2026-06-02 · `npx lighthouse` v13.3.0 (Headless Chrome) gegen Live-URL `/de` (Rev. `00046-bk4`) · **Mobile = Median aus 3 Läufen (79/82/82)** · Methodik in §8.
+**Gemessen:** 2026-06-05 · `npx lighthouse` (Headless Chrome) gegen die **Firebase-Hosting-Front** `studio-4188712377-b3681.web.app/de` · je 1 frischer Lauf (Mobile schwankt ±3–5) · Methodik in §8. *(Mobile-CWV: LCP 3,3 s · FCP 2,6 s · CLS 0 · TBT 0 ms · SI 3,5 s — SI ggü. Cloud Run 5,8→3,5 s deutlich besser durch CDN. §2.2-Detailtabelle unten spiegelt noch die 06-02-Cloud-Run-Werte.)*
 
 ### 2.1 Kategorie-Scores
 
 | Kategorie | 📱 Mobile | 🖥️ Desktop |
 |-----------|:--------:|:----------:|
-| Performance | **82** | **100** |
+| Performance | **87** | **99** |
 | Accessibility | **100** | **100** |
 | Best Practices | **100** | **100** |
 | SEO | **100** | **100** |
@@ -229,6 +229,7 @@
 | 2026-06-04 | **Domain `mirrou.studio`: Firebase-Hosting-Vorbereitung + CSP-Bug-Fix (Code-Stand vor Deploy)** | Domain bei **IONOS** gekauft (nur Domain, kein Hosting); Entscheidung: phasiert — Phase 1 Firebase Hosting (statisch, `dist/`) für `mirrou.studio`+`www`, DNS über **IONOS** (kostenlos inkl., kein Cloudflare nötig), E-Mail-Weiterleitung via IONOS (oder Fallback Cloudflare Email Routing), Phase 2 Global Load Balancer + Cloud Armor für `app.`/`api.` (schließt CORS+Rate-Limit). **🔴 CSP-Bug gefunden:** `connect-src 'self'` blockte den Cross-Origin-`fetch` des Kontaktformulars an `…run.app` (Browser-only, daher von curl nicht sichtbar) → erklärt die nie bestätigte E2E-Zustellung. **Fix:** `connect-src` um API-Origin erweitert in `nginx.conf` (4×) + neue `firebase.json` (6 Security-Header 1:1 portiert, `cleanUrls`/Cache-Control wie nginx) + `.firebaserc` (`studio-4188712377-b3681`). Kein Deploy (firebase deploy + DNS + Konsole stehen aus). Offen rechtlich: Impressum-Anschrift (§5 DDG) vor Go-Live. | OPUS PRIME (Claude Opus 4.8) |
 | 2026-06-04 | **Doku-Reconciliation nach Antigravity-Phase (kein Deploy)** | Re-Sync nach Rückwechsel zu Claude Code (Nutzungslimit-Pause). **Verifiziert:** Repo lokal=Remote (`7c5317c`, sauber), Website live HTTP 200 (0,21 s), Opus-Magnum-Backend `/api/lead` CORS-Preflight HTTP 200 (Root `/` 404 = normaler FastAPI-Cold-Start). **Schlüssel-Erkenntnis:** Die Architektur-Arbeit (Firebase-EU, Custom-Token-Bridge, Multi-Tenant, Secret Manager, FastAPI) liegt im **separaten Repo `yoyo967/Opus-Magnum-Media-Porject-OS`** (GCP `923137317598`), *nicht* hier — dieses Repo bekam nur Contact-Form-Verkabelung (`7edaf77`), Homepage-Lazy-Load (`d74cc1c`) + Footer-A11y/`00049-4cf`. **Stale-Korrekturen (Selbst-Update-Lücke geschlossen):** §3.3 A11y `93/97`→`100/100` (+ color-contrast-Blocker entfernt, war längst behoben), §3.4 BP `96/100`→`100/100` (beides widersprach Scorecard §1); §4 Kontaktformular von 🔴 „nicht funktional" → behoben (verbunden; E2E-Verifikation als 🟡 offen); §5 P0 🔴→🟡. `.env.example` entstaubt (HubSpot raus, `/api/lead`-Endpoint dokumentiert). Live-Rev unverändert `00049-4cf`. | OPUS PRIME (Claude Opus 4.8) |
 | 2026-06-04 | **Kontaktformular E2E verifiziert — P0 geschlossen** | Test-Lead via `POST /api/lead` → HTTP 200 → in Firestore `tenants/mirrou/leads` persistiert (per Firestore-REST-API gegengelesen, danach mein Test-Lead **und** der Antigravity-Integrationstest-Lead vom 02.06. gelöscht → Sammlung sauber). Bestätigt: **Cross-Project-IAM** (Backend `923137317598` → Firestore-Projekt `180023265254`) funktioniert; **DB `opus-eu` = `europe-west3`** (EU, DSGVO). Der ursprüngliche P0 („Leads gehen verloren") ist damit endgültig erledigt. Offen nur Komfort (kein P0): E-Mail-Benachrichtigung (Brevo-Plan) + Lead-Inbox-UI. Kein Deploy. | OPUS PRIME (Claude Opus 4.8) |
+| 2026-06-05 | **Frische Lighthouse-Messung (Firebase-Hosting-Front)** | `npx lighthouse` gegen `studio-4188712377-b3681.web.app/de` (je 1 Lauf): **Mobile 87/100/100/100 · Desktop 99/100/100/100** (LCP mobil 3,3 s, FCP 2,6 s, SI 3,5 s, CLS 0, TBT 0). Mobile **82→87** durch Umzug Cloud Run → Firebase Hosting (globales CDN). §1 + §2.1 angeglichen; §2.2-Detailtabelle spiegelt noch die 06-02-Cloud-Run-Werte. Kein Code-Deploy. | OPUS PRIME (Claude Opus 4.8) |
 
 ---
 
