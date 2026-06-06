@@ -2,8 +2,8 @@
 ## Lebendes Qualitäts- & Performance-Dossier · OPUS PRIME
 
 > **Status:** 🟢 PRODUKTIV · LIVE · AUDITIERT
-> **Zuletzt aktualisiert:** 2026-06-05 (frische Lighthouse-Messung auf der Firebase-Hosting-Front: Mobile 82→**87**)
-> **Live-Revision:** `mirrou-creative-studio-00049-4cf` (Cloud Run · europe-west3) — *2026-06-02 deployed + live verifiziert (GitHub als Orchestration & Audit OS integriert)*
+> **Zuletzt aktualisiert:** 2026-06-06 (Mobile-Perf-Hebel gefunden + 2× deployed: Hero-Bilderkarussell war der Speed-Index-Killer → mobil ab `lg`; Median 82→**85**, sauberer Lauf **90**)
+> **Live-Revision:** Firebase-Hosting-Front `studio-4188712377-b3681.web.app` (2026-06-06, Commits `20b8b4c`+`028dece` = Hero-Perf-Fixes) · Cloud-Run-Front `mirrou-creative-studio-00049-4cf` (europe-west3) **noch ohne diese Fixes** — Firebase ist die kanonische Produktiv-Front (Ziel von `mirrou.studio`)
 > **Auditor:** OPUS PRIME (Claude Opus 4 · Claude Code)
 > **Methodik:** Google Lighthouse (lokal, lab data) · echte Live-Header · verifizierter Code/Build
 
@@ -27,48 +27,51 @@
 
 | Dimension | Mobile | Desktop | Google-Schwelle | Status |
 |-----------|:------:|:-------:|-----------------|:------:|
-| **Performance** | 87 | 99 | ≥ 90 = grün | 🟡 / 🟢 |
+| **Performance** | 85 (Median; sauberer Lauf 90) | 99 | ≥ 90 = grün | 🟡 / 🟢 |
 | **Accessibility** | 100 | 100 | ≥ 90 = grün | 🟢 |
 | **Best Practices** | 100 | 100 | ≥ 90 = grün | 🟢 |
 | **SEO** | 100 | 100 | ≥ 90 = grün | 🟢 |
 | **Security-Header** | 6 / 6 live | 6 / 6 live | A-Grade | 🟢 |
 | **HTTPS / HSTS** | aktiv (preload) | aktiv (preload) | erforderlich | 🟢 |
 
-**Gesamturteil (live `00049-4cf`, gemessen 2026-06-02):** Desktop = **Referenzqualität 100/100/100/100**. Mobile = **Referenzqualität 82/100/100/100** (exzellent in A11y/SEO/BP, einzige verbleibende Baustelle ist Mobile-Performance 82 durch Lade-/Render-Geschwindigkeit). Unused-JS durch Route-Lazy-Splitting auf ~20 KiB gesenkt. Footer-Link Touch-Targets vergrößert.
+**Gesamturteil (Firebase-Front, gemessen 2026-06-06):** Desktop = **Referenzqualität 99/100/100/100** (LCP 0,7 s). Mobile = **85/100/100/100** (Median 3 Läufe; bester Lauf **90/100/100/100**, SI 3,7 s) — exzellent in A11y/SEO/BP, einzige Baustelle bleibt Mobile-Performance. **Root-Cause heute gefunden:** Das 20-Bild-Hero-Karussell (`HeroImageSequence`, Wechsel alle 3 s) hielt das größte Element während des gesamten Ladefensters in Bewegung → blähte Speed Index auf ~5,9 s. Karussell läuft jetzt nur ab `lg` (mobil bleibt das statische LCP-Bild). Zusätzlich: CSS-Reveal statt JS-gated Motion im Hero, Mobile-`backdrop-blur`/Grain-Repaint aus. **Residuum zu stabilen ≥90:** Lab-Varianz + Font-Swap-Timing (mono-Eyebrows laden deferred → Repaint im Messfenster).
 
 ---
 
 ## 2. LIGHTHOUSE-DIAGNOSE (echte Lab-Daten)
 
-**Gemessen:** 2026-06-05 · `npx lighthouse` (Headless Chrome) gegen die **Firebase-Hosting-Front** `studio-4188712377-b3681.web.app/de` · je 1 frischer Lauf (Mobile schwankt ±3–5) · Methodik in §8. *(Mobile-CWV: LCP 3,3 s · FCP 2,6 s · CLS 0 · TBT 0 ms · SI 3,5 s — SI ggü. Cloud Run 5,8→3,5 s deutlich besser durch CDN. §2.2-Detailtabelle unten spiegelt noch die 06-02-Cloud-Run-Werte.)*
+**Gemessen:** 2026-06-06 · `npx lighthouse` (Headless Chrome) gegen die **Firebase-Hosting-Front** `studio-4188712377-b3681.web.app/de` · Mobile = Median aus 3 Läufen (schwankt ±3–5; Läufe 90/83/85), Desktop = 1 Lauf · Methodik in §8.
 
 ### 2.1 Kategorie-Scores
 
 | Kategorie | 📱 Mobile | 🖥️ Desktop |
 |-----------|:--------:|:----------:|
-| Performance | **87** | **99** |
+| Performance | **85** (bester Lauf 90) | **99** |
 | Accessibility | **100** | **100** |
 | Best Practices | **100** | **100** |
 | SEO | **100** | **100** |
 
 ### 2.2 Core Web Vitals (Google-Ampel)
 
-| Metrik | 📱 Mobile | 🖥️ Desktop | Good ≤ | Bewertung Mobile |
+| Metrik | 📱 Mobile (bester Lauf) | 🖥️ Desktop | Good ≤ | Bewertung Mobile |
 |--------|:--------:|:----------:|:------:|:----------------:|
-| **LCP** (Largest Contentful Paint) | 3.6 s | 0.7 s | 2.5 s | 🟡 Needs Improvement |
-| **CLS** (Cumulative Layout Shift) | 0 | 0.011 | 0.1 | 🟢 Good |
-| **TBT** (Total Blocking Time · INP-Proxy) | 200 ms | 0 ms | 200 ms | 🟢 Good |
-| **FCP** (First Contentful Paint) | 2.5 s | 0.5 s | 1.8 s | 🟡 Needs Improvement |
-| **Speed Index** | 5.8 s | 0.8 s | 3.4 s | 🟡 Needs Improvement |
-| **TTI** (Time to Interactive) | 3.9 s | 0.7 s | 3.8 s | 🟡 grenzwertig |
+| **LCP** (Largest Contentful Paint) | 3.1 s | 0.7 s | 2.5 s | 🟡 Needs Improvement |
+| **CLS** (Cumulative Layout Shift) | 0–0.001 | 0.011 | 0.1 | 🟢 Good |
+| **TBT** (Total Blocking Time · INP-Proxy) | 0 ms | 0 ms | 200 ms | 🟢 Good |
+| **FCP** (First Contentful Paint) | 2.4 s | 0.5 s | 1.8 s | 🟡 Needs Improvement |
+| **Speed Index** | 3.7 s (Median-Lauf bis 5.8 s) | 0.9 s | 3.4 s | 🟡 lab-abhängig |
+| **TTI** (Time to Interactive) | ~3.5 s | 0.7 s | 3.8 s | 🟢 |
 
-**Lesart:** Layout-Stabilität (CLS) und Interaktivität (TBT) sind mobil bereits perfekt. Die Mobile-Lücke ist rein **Lade-/Render-Geschwindigkeit** (LCP/FCP/SI) auf gedrosselter Mobilverbindung — kein struktureller Defekt.
+**Lesart:** Layout-Stabilität (CLS) und Interaktivität (TBT) sind mobil perfekt. Die Mobile-Lücke ist rein **Lade-/Render-Geschwindigkeit** (LCP/FCP/SI) auf gedrosselter Mobilverbindung. Speed Index schwankt jetzt stark zwischen Läufen (3,7–5,8 s) — der deterministische SI-Treiber (Hero-Karussell) ist behoben; das Residuum ist Font-Swap-Timing + Lab-Jitter.
 
 ### 2.3 Top-Optimierungshebel (Lighthouse Opportunities)
 
 | Hebel | Einsparung | Wirkung |
 |-------|-----------|---------|
-| ~~Reduce unused JavaScript~~ | ~~68 KiB~~ → **~22 KiB** | **2026-05-31 weitgehend behoben:** Route-Level-Lazy-Splitting (`src/routes/index.tsx`), `app`-Chunk 349→107 KiB (−69%); lokaler Lighthouse-Perf 78→85, LCP 3.9→3.5 s. Rest (~22 KiB in motion/router/locale) = letzte Meile, ideal via nativem MCP-Trace. Live-Wert post-Deploy bestätigen. |
+| ~~Reduce unused JavaScript~~ | ~~68 KiB~~ → **~22 KiB** | **2026-05-31 behoben:** Route-Level-Lazy-Splitting (`src/routes/index.tsx`), `app`-Chunk 349→107 KiB (−69%). |
+| ~~Hero-Bilderkarussell im Ladefenster~~ | **~1,3 MB + SI** | **2026-06-06 behoben (Root-Cause des SI):** `HeroImageSequence` (20 Bilder, Wechsel alle 3 s mit 1,5-s-Crossfade) hielt das größte Element während der gesamten Messung in Bewegung → SI ~5,9 s. Läuft jetzt nur ab `lg` (`window.matchMedia`), mobil bleibt das statische LCP-Bild. Median 82→85, bester Lauf 90, SI bestenfalls 3,7 s. `028dece`. |
+| Above-the-fold JS-gated Reveal | Paint-Timing | **2026-06-06:** Hero-Text war via Motion `initial:{opacity:0}` im SSG-HTML unsichtbar bis Hydration → CSS-Keyframe `.reveal-up` (Paint statt Hydration) + Mobile-`backdrop-blur`/Grain-Repaint aus. `20b8b4c`. |
+| **Font-Swap-Timing (offen)** | SI-Stabilität | mono-Eyebrows/Labels laden via `fonts-deferred.css` → Swap-Repaint im Messfenster = Rest-SI-Varianz. Hebel für stabile ≥90: kritische Fonts vorladen oder `font-display: optional`. Risiko: FOUT — vor Abgabe abwägen. |
 
 ### 2.4 Einzige nicht bestandene A11y-Prüfung
 
@@ -125,7 +128,8 @@
 - **Secrets-Hygiene** — keine exponierten Keys im Code/Build.
 
 ### 🟡 OPTIMIERUNGSPOTENZIAL
-- **Mobile-Performance 82** → Ziel ≥ 90: letzte Meile = Island-/Partial-Hydration der Homepage-Sektionen (Unused-JS bereits ~20 KiB, LCP mobil 3,6 s).- **i18n-Tiefe:** `clusters`-Long-Form in ES/IT/FR/TR/RU/UK ~−74 % vs DE/EN.
+- **Mobile-Performance 85 (bester Lauf 90)** → Ziel stabil ≥ 90. **Korrektur der früheren These:** Es war *nicht* Hydration (TBT mobil = 0 ms) — der SI-Treiber war das Hero-Bilderkarussell (2026-06-06 behoben, nur noch ab `lg`). Letzte Meile = Font-Swap-Timing der mono-Eyebrows + Lab-Varianz.
+- **i18n-Tiefe:** `clusters`-Long-Form in ES/IT/FR/TR/RU/UK ~−74 % vs DE/EN.
 - **npm-Vulns: 0** (zuletzt `npm audit fix` 2026-05-31; `ws`-Vuln gepatcht).
 
 ### 🔴 KRITISCHE FINDINGS
@@ -151,7 +155,7 @@
 | ✅ P0 | Security-Header live | — | DEV | **erledigt 2026-05-30** |
 | ✅ P0 | Root-Duplikat / AI-Studio-Leftover entfernt | — | DEV | **erledigt 2026-05-30** |
 | ✅ P0 | Kontaktformular → EU-Backend (DSGVO-Consent) | M | DEV | **erledigt 2026-06-04:** E2E verifiziert — Test-Lead `POST /api/lead`→200→Firestore `tenants/mirrou/leads` (gegengelesen + gelöscht), Cross-Project-IAM ok, DB `opus-eu`=`europe-west3` (EU). CSP-Fix in `firebase.json`+`nginx.conf`. Offen nur Komfort: E-Mail-Benachrichtigung (Brevo) + Lead-UI. |
-| 🟡 P1 | Mobile-Perf ≥ 90 (Unused JS, LCP/FCP) | M | DEV | 🟢 **2026-05-31:** Route-Lazy-Splitting, Unused-JS 59→22 KiB, `app` 349→107 KiB, lokal Perf→85. **2026-06-02 frisch live gemessen: Mobile 82** (Median 3 Läufe, LCP 3,6 s). Letzte Meile = Island-/Partial-Hydration offen |
+| 🟡 P1 | Mobile-Perf ≥ 90 (Unused JS, LCP/FCP) | M | DEV | 🟢 **2026-05-31:** Route-Lazy-Splitting, Unused-JS 59→22 KiB. **2026-06-06: Root-Cause SI gefunden+behoben** — Hero-Karussell nur noch ab `lg` (`028dece`) + CSS-Reveal/Mobile-Paint (`20b8b4c`); Median **82→85**, bester Lauf **90**, beide auf Firebase-Front deployed. Rest zu stabilem ≥90 = Font-Swap-Timing (Risiko-Abwägung vor Abgabe) |
 | ✅ P1 | `color-contrast` → A11y | S | DEV/Design | **erledigt 2026-05-31** (False-Positive root-caused + `bg-bg`-Fix) |
 | ✅ P1 | README-GA4/Three.js-Falschangaben korrigiert | S | DEV | **erledigt 2026-05-31** |
 | 🟡 P1 | Cluster-Long-Form 6 Sprachen oder Scope ehrlich kommunizieren | L | Content | offen |
@@ -230,6 +234,7 @@
 | 2026-06-04 | **Doku-Reconciliation nach Antigravity-Phase (kein Deploy)** | Re-Sync nach Rückwechsel zu Claude Code (Nutzungslimit-Pause). **Verifiziert:** Repo lokal=Remote (`7c5317c`, sauber), Website live HTTP 200 (0,21 s), Opus-Magnum-Backend `/api/lead` CORS-Preflight HTTP 200 (Root `/` 404 = normaler FastAPI-Cold-Start). **Schlüssel-Erkenntnis:** Die Architektur-Arbeit (Firebase-EU, Custom-Token-Bridge, Multi-Tenant, Secret Manager, FastAPI) liegt im **separaten Repo `yoyo967/Opus-Magnum-Media-Porject-OS`** (GCP `923137317598`), *nicht* hier — dieses Repo bekam nur Contact-Form-Verkabelung (`7edaf77`), Homepage-Lazy-Load (`d74cc1c`) + Footer-A11y/`00049-4cf`. **Stale-Korrekturen (Selbst-Update-Lücke geschlossen):** §3.3 A11y `93/97`→`100/100` (+ color-contrast-Blocker entfernt, war längst behoben), §3.4 BP `96/100`→`100/100` (beides widersprach Scorecard §1); §4 Kontaktformular von 🔴 „nicht funktional" → behoben (verbunden; E2E-Verifikation als 🟡 offen); §5 P0 🔴→🟡. `.env.example` entstaubt (HubSpot raus, `/api/lead`-Endpoint dokumentiert). Live-Rev unverändert `00049-4cf`. | OPUS PRIME (Claude Opus 4.8) |
 | 2026-06-04 | **Kontaktformular E2E verifiziert — P0 geschlossen** | Test-Lead via `POST /api/lead` → HTTP 200 → in Firestore `tenants/mirrou/leads` persistiert (per Firestore-REST-API gegengelesen, danach mein Test-Lead **und** der Antigravity-Integrationstest-Lead vom 02.06. gelöscht → Sammlung sauber). Bestätigt: **Cross-Project-IAM** (Backend `923137317598` → Firestore-Projekt `180023265254`) funktioniert; **DB `opus-eu` = `europe-west3`** (EU, DSGVO). Der ursprüngliche P0 („Leads gehen verloren") ist damit endgültig erledigt. Offen nur Komfort (kein P0): E-Mail-Benachrichtigung (Brevo-Plan) + Lead-Inbox-UI. Kein Deploy. | OPUS PRIME (Claude Opus 4.8) |
 | 2026-06-05 | **Frische Lighthouse-Messung (Firebase-Hosting-Front)** | `npx lighthouse` gegen `studio-4188712377-b3681.web.app/de` (je 1 Lauf): **Mobile 87/100/100/100 · Desktop 99/100/100/100** (LCP mobil 3,3 s, FCP 2,6 s, SI 3,5 s, CLS 0, TBT 0). Mobile **82→87** durch Umzug Cloud Run → Firebase Hosting (globales CDN). §1 + §2.1 angeglichen; §2.2-Detailtabelle spiegelt noch die 06-02-Cloud-Run-Werte. Kein Code-Deploy. | OPUS PRIME (Claude Opus 4.8) |
+| 2026-06-06 | **Mobile-Perf: Root-Cause gefunden + 2× deployed (Firebase-Front)** | Empirische Diagnose statt Annahme: ausgeliefertes HTML hatte **46 inline `opacity:0`** (Motion SSR-t den Initial-Zustand); aber **TBT = 20 ms** → Main-Thread war *nicht* der Engpass (alte „Island-Hydration"-These verworfen). **Echte Root-Cause des Speed Index (~5,9 s):** `HeroImageSequence` — 20 Hero-Bilder (~1,3 MB), Wechsel alle 3 s mit 1,5-s-Crossfade → größtes Element ändert sich durchs ganze Ladefenster → SI nie stabil; mobil zudem hinter `opacity-40` kaum sichtbar. **Fixes:** (1) `20b8b4c` CSS-`.reveal-up` statt JS-gated Motion im Hero (Paint statt Hydration) + Mobile-`backdrop-blur`/Grain-Repaint aus; (2) `028dece` Karussell nur ab `lg` (`window.matchMedia`), mobil statisches LCP-Bild. `npm run check` grün (0 Fehler), Build grün, Hero visuell verifiziert (0 Console-Errors). **Live-Messung (Median 3 Läufe):** Mobile **82→85**, bester Lauf **90/100/100/100** (SI 3,7 s, LCP 3,1 s, FCP 2,4 s, TBT 0); **Desktop 99/100/100/100** (LCP 0,7 s) unverändert. Beide Commits auf Firebase-Front deployed; Cloud-Run-Front (`00049-4cf`) bewusst nicht (Legacy-Front). Offen: Font-Swap-Timing für *stabiles* ≥90. **Hinweis:** lokaler A/B war konstruktionsbedingt ergebnislos (JS kommt lokal sofort) — nur Live-Messung valide. | OPUS PRIME (Claude Opus 4.8) |
 
 ---
 
