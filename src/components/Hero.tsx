@@ -19,7 +19,14 @@ const revealDelay = (seconds: number) =>
 export default function Hero({ onExplore }: { onExplore: () => void }) {
   const { t } = useTranslation("home");
   const [sequenceReady, setSequenceReady] = useState(false);
-  useEffect(() => { setSequenceReady(true); }, []);
+  useEffect(() => {
+    // Only run the 20-image carousel on large screens. On mobile/tablet the
+    // hero image sits at opacity-40 behind dark overlays (barely visible), yet
+    // the 3 s crossfade keeps the largest element changing throughout the load
+    // window — wrecking Speed Index — and pulls ~1.3 MB of imagery for almost
+    // no visual gain. Below lg, the static LCP image stays.
+    if (window.matchMedia("(min-width: 1024px)").matches) setSequenceReady(true);
+  }, []);
 
   return (
     <section
