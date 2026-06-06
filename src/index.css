@@ -232,6 +232,12 @@ html {
   100% { transform: translate(3%, -1%); }
 }
 
+/* Mobile: keep the grain texture but stop the continuous full-screen
+   repaint (mix-blend every 0.5s) — protects Speed Index on throttled CPUs. */
+@media (max-width: 767px) {
+  .grain-overlay { animation: none; }
+}
+
 /* ─── MARQUEE ───────────────────────────────────────────────────── */
 .marquee-track {
   display: flex;
@@ -284,6 +290,20 @@ html {
 }
 .line-reveal.in-view {
   width: 100%;
+}
+
+/* ─── LOAD-TIME REVEAL (CSS-only — paints without JS/hydration) ──── */
+/* Above-the-fold (hero) entrance. A CSS keyframe starts at first paint
+   instead of waiting for Motion to hydrate (~2 s later on throttled
+   mobile), so the content is LCP-eligible immediately. Stagger via the
+   per-element `--reveal-delay` custom property. */
+@keyframes reveal-up {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.reveal-up {
+  animation: reveal-up 0.7s cubic-bezier(0.16, 1, 0.3, 1) both;
+  animation-delay: var(--reveal-delay, 0s);
 }
 
 /* ─── PARALLAX IMAGE ────────────────────────────────────────────── */
@@ -560,6 +580,7 @@ html {
   .grain-overlay { animation: none; }
   .marquee-track { animation: none; }
   .img-reveal-placeholder { animation: none; }
+  .reveal-up { animation: none; opacity: 1; }
 }
 
 /* ─── LOCALE-SPECIFIC TYPOGRAPHY & STANDARDS ────────────────────── */

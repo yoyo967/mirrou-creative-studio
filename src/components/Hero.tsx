@@ -1,5 +1,5 @@
 import { lazy, Suspense, useEffect, useState } from "react";
-import { motion } from "motion/react";
+import type { CSSProperties } from "react";
 import { ArrowRight, ArrowDown } from "lucide-react";
 import { Link } from "@/src/components/LocalizedLink";
 import { useTranslation } from "react-i18next";
@@ -10,11 +10,11 @@ import { SITE } from "../content/site-data";
 const HERO_FIRST_IMAGE = "/heroimages/228ba3d7-ccd6-4892-9673-232da4aeedc2.webp";
 const HeroImageSequence = lazy(() => import("./HeroImageSequence"));
 
-const reveal = (delay: number) => ({
-  initial:    { opacity: 0, y: 18 },
-  animate:    { opacity: 1, y: 0  },
-  transition: { delay, duration: 1, ease: [0.16, 1, 0.3, 1] as [number,number,number,number] },
-});
+// CSS-only staggered entrance (see `.reveal-up` in index.css). Unlike the
+// previous Motion-based reveal, this paints at first render instead of waiting
+// for hydration — the decisive fix for mobile LCP/FCP/Speed-Index.
+const revealDelay = (seconds: number) =>
+  ({ "--reveal-delay": `${seconds}s` } as CSSProperties);
 
 export default function Hero({ onExplore }: { onExplore: () => void }) {
   const { t } = useTranslation("home");
@@ -52,7 +52,9 @@ export default function Hero({ onExplore }: { onExplore: () => void }) {
           
           {/* Cinematic Vignette / Overlay to ensure perfect text readability */}
           <div className="absolute inset-0 bg-gradient-to-t from-bg/95 via-bg/40 to-bg/80 mix-blend-multiply" />
-          <div className="absolute inset-0 bg-black/30 backdrop-blur-[2px] md:backdrop-blur-[1px]" />
+          {/* backdrop-blur only from md+; on mobile the image is already at
+              opacity-40, so the blur adds paint cost with no visible benefit. */}
+          <div className="absolute inset-0 bg-black/30 md:backdrop-blur-[1px]" />
           
           {/* Subtle noise over the image canvas */}
           <div className="absolute inset-0 grain-overlay opacity-[0.05]" />
@@ -62,44 +64,38 @@ export default function Hero({ onExplore }: { onExplore: () => void }) {
       {/* Typography Overlay (Centered) */}
       <div className="relative z-10 flex flex-col items-center justify-center text-center px-6 md:px-12 max-w-4xl mx-auto mt-12 lg:mt-0">
 
-        <motion.div {...reveal(0.1)} className="flex items-center justify-center gap-4 mb-6 md:mb-8">
+        <div className="reveal-up flex items-center justify-center gap-4 mb-6 md:mb-8" style={revealDelay(0)}>
           <span className="w-8 md:w-12 h-px bg-accent/60 flex-shrink-0" />
           <p className="eyebrow tracking-[0.38em]">{t("hero.eyebrow")}</p>
           <span className="w-8 md:w-12 h-px bg-accent/60 flex-shrink-0" />
-        </motion.div>
+        </div>
 
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.28, duration: 0.6 }}
-          className="mb-6 md:mb-8"
-        >
+        <div className="reveal-up mb-6 md:mb-8" style={revealDelay(0.06)}>
           <ScrambleText
             text={t("hero.scramble", { ns: "common", defaultValue: "ALGORITHM OF SOUL" })}
             triggerOnLoad
             loadDelay={700}
             className="text-[10px] md:text-[12px] uppercase tracking-[0.55em] text-accent/80 block font-semibold"
           />
-        </motion.div>
+        </div>
 
-        <motion.p
-          {...reveal(0.52)}
-          className="font-mono text-[9px] md:text-[11px] uppercase tracking-[0.35em] text-ink/75 mb-6 md:mb-8 max-w-xl mx-auto"
+        <p
+          className="reveal-up font-mono text-[9px] md:text-[11px] uppercase tracking-[0.35em] text-ink/75 mb-6 md:mb-8 max-w-xl mx-auto"
+          style={revealDelay(0.12)}
         >
           {t("hero.tagline")}
-        </motion.p>
+        </p>
 
-        <motion.p
-          {...reveal(0.62)}
-          className="text-body-lg text-ink/90 text-pretty max-w-2xl mx-auto mb-10 md:mb-12"
-          style={{ textShadow: "0 2px 10px rgba(0,0,0,0.4)" }}
+        <p
+          className="reveal-up text-body-lg text-ink/90 text-pretty max-w-2xl mx-auto mb-10 md:mb-12"
+          style={{ ...revealDelay(0.18), textShadow: "0 2px 10px rgba(0,0,0,0.4)" }}
         >
           {t("hero.body")}
-        </motion.p>
+        </p>
 
-        <motion.div
-          {...reveal(0.76)}
-          className="flex flex-col sm:flex-row items-center justify-center gap-4 w-full sm:w-auto"
+        <div
+          className="reveal-up flex flex-col sm:flex-row items-center justify-center gap-4 w-full sm:w-auto"
+          style={revealDelay(0.24)}
         >
           <Link to="/kontakt" className="btn-primary w-full sm:w-auto justify-center" data-magnetic>
             {t("hero.ctaPrimary")}
@@ -113,14 +109,9 @@ export default function Hero({ onExplore }: { onExplore: () => void }) {
             {t("hero.ctaSecondary")}
             <ArrowDown size={13} aria-hidden />
           </button>
-        </motion.div>
+        </div>
 
-        <motion.p
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 1.0, duration: 0.8 }}
-          className="eyebrow text-ink/50 mt-14 md:mt-16"
-        >
+        <p className="reveal-up eyebrow text-ink/50 mt-14 md:mt-16" style={revealDelay(0.3)}>
           {t("hero.creditPrefix")}{" "}
           <a
             href={SITE.creativeDirection.instagram}
@@ -129,7 +120,7 @@ export default function Hero({ onExplore }: { onExplore: () => void }) {
           >
             {SITE.creativeDirection.name}
           </a>
-        </motion.p>
+        </p>
       </div>
 
       {/* Marquee at the very bottom */}
