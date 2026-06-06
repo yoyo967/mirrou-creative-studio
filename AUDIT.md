@@ -138,10 +138,11 @@
 ### 🟢 CONTACT-FORM E2E VERIFIZIERT (2026-06-04)
 - **Lead-Pfad funktioniert end-to-end:** Test-Lead via `POST /api/lead` → HTTP 200 → in Firestore `tenants/mirrou/leads` persistiert (per Firestore-REST-API gegengelesen, danach Test-Daten wieder gelöscht). **Cross-Project-IAM** (Backend `923137317598` → Firestore-Projekt `180023265254`) funktioniert. **DSGVO:** DB `opus-eu` = **`europe-west3`** (EU) bestätigt.
 - **CSP-Root-Cause behoben:** alte CSP `connect-src 'self'` hätte den Cross-Origin-`fetch` im Browser geblockt → `connect-src` um die API-Origin erweitert in `firebase.json` (live auf `…web.app`) + `nginx.conf` (run.app-Pfad, noch nicht redeployed). Browser-Pfad auf Firebase Hosting damit offen.
-- **Rest (nur Komfort, kein P0):** keine Lead-Benachrichtigung per E-Mail (Brevo-Plan in `docs/CONTACT_FORM_BACKEND.md` unimplementiert) + kein Lead-Inbox-UI → Leads liegen still in Firestore.
+- **Lead-Inbox-UI vorhanden + live (verifiziert 2026-06-06):** im Opus-Magnum-Cockpit (`pages/LeadInbox.tsx`, Header → „Lead Inbox"), 2026-06-06 um CSV-Export + Neu-Lead-Badge erweitert (Rev `opus-magnum-media-v3-00023-fcs`). Siehe [[contact-form-backend]].
+- **Rest (nur Komfort, kein P0):** keine Lead-Benachrichtigung per E-Mail (Brevo-Plan in `docs/CONTACT_FORM_BACKEND.md` unimplementiert) → Leads liegen still in Firestore, bis jemand die Inbox öffnet.
 
 ### 🔵 STRATEGISCHE EMPFEHLUNGEN
-- **GA4-Inkonsistenz:** README nennt GA4, kein Code/Consent vorhanden → entweder DSGVO-konform (Consent-Gate) implementieren oder Claim entfernen.
+- ~~**GA4-Inkonsistenz**~~ **(erledigt/verifiziert 2026-06-06):** README (Zeile 60) ist ehrlich — „None at launch … any future analytics is consent-gated (DSGVO)"; kein gtag/Analytics-Code im `src/`. Keine Inkonsistenz mehr.
 - **Standort Berlin ↔ Hamburg** zwischen `memory.md`/Schema.org/Boilerplate vereinheitlichen.
 - **Toolchain härten:** `tsconfig` `strict` + ESLint (aktuell 7 bekannte `key`-Prop-TS-Fehler als P2-Tech-Debt).
 - **AI-Agent-Anbindung** (Opus-Magnum-Ökosystem) — teilweise umgesetzt: Antigravity-Phasen 1–3 im separaten Repo `Opus-Magnum-Media-Porject-OS` (Firebase/Firestore-EU `opus-eu`, Multi-Tenant `tenants/{tenantId}`, GCP Secret Manager). Website konsumiert dessen Backend bereits via `/api/lead`. Stand des SaaS-Backends im eigenen Repo auditieren.
