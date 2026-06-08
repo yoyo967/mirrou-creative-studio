@@ -5305,7 +5305,7 @@ function toggleTheaterMode() {
                 backgroundColor: '#030303',
                 scale: 3,                       // high-res (fixes "compressed")
                 useCORS: true,
-                allowTaint: true,
+                allowTaint: false,              // keep canvas exportable (taint blocks toDataURL)
                 logging: false,
                 width: stage.scrollWidth,       // full element, not clipped (fixes "incomplete")
                 height: stage.scrollHeight,
@@ -5324,7 +5324,10 @@ function toggleTheaterMode() {
                 showCustomToast("📥 PNG Heruntergeladen", `Bilddatei für Folie ${slideDeck[currentSlide].num} wurde gespeichert.`);
             }).catch(err => {
                 console.error("html2canvas error:", err);
-                showCustomToast("❌ Fehler beim Rendern", "Das Bild konnte nicht generiert werden.");
+                const fileProto = location.protocol === 'file:';
+                showCustomToast("❌ Bild-Export blockiert", fileProto
+                    ? "Browser-Sicherheit (file://) blockiert den Export bildhaltiger Folien. Öffne das Deck über die Live-URL (…/deck.html) für pixelgenauen Export."
+                    : "Das Bild konnte nicht generiert werden. Bitte erneut versuchen.");
             });
         };
 
@@ -5406,15 +5409,64 @@ function toggleTheaterMode() {
         showCustomToast("📥 HTML Exportiert", "Gesamte Präsentation (inklusive aller Anpassungen) wurde heruntergeladen.");
     }
 
-    function exportPresentationPDF() {
-        showCustomToast(
-            `<svg class="w-5 h-5 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"></path></svg>`,
-            "Drucker-Layout bereit",
-            "Nutze das Querformat (Landscape) und deaktiviere Kopf-/Fußzeilen im Druckmenü."
-        );
-        setTimeout(() => {
-            window.print();
-        }, 1000);
+    let pdfExportRunning = false;
+    async function exportPresentationPDF() {
+        if (pdfExportRunning) return;
+        if (location.protocol === 'file:') {
+            showCustomToast("ℹ️ PDF: bitte Live-URL nutzen", "Der All-Slides-PDF-Export braucht http(s) (Browser-Sicherheit blockiert bildhaltige Folien unter file://). Öffne das Deck über die Live-URL (…/deck.html). Lokal funktioniert 'Folie (PNG)' für text-/SVG-Folien.");
+            return;
+        }
+        const pdfIcon = `<svg class="w-5 h-5 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"></path></svg>`;
+        const loadLib = (src, ready) => new Promise((resolve, reject) => {
+            if (ready()) return resolve();
+            const s = document.createElement('script');
+            s.src = src;
+            s.onload = () => ready() ? resolve() : reject(new Error('lib not ready'));
+            s.onerror = () => reject(new Error('load failed'));
+            document.head.appendChild(s);
+        });
+
+        showCustomToast(pdfIcon, "PDF wird erstellt", "Lade Render-Engine & rendere alle Folien…");
+        try {
+            await loadLib('https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js', () => typeof html2canvas !== 'undefined');
+            await loadLib('https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js', () => !!(window.jspdf && window.jspdf.jsPDF));
+        } catch (e) {
+            showCustomToast("❌ Offline?", "PDF-Export aller Folien benötigt einmalig Internet (html2canvas + jsPDF). Einzelne Folie geht offline via 'Folie (PNG)'.");
+            return;
+        }
+
+        pdfExportRunning = true;
+        const original = currentSlide;
+        const stage = document.getElementById('slide-stage');
+        const { jsPDF } = window.jspdf;
+        let pdf = null;
+        try {
+            try { if (document.fonts && document.fonts.ready) await document.fonts.ready; } catch (e) {}
+            for (let i = 0; i < slideDeck.length; i++) {
+                goToSlideIndex(i);
+                await new Promise(r => setTimeout(r, 900)); // let render + enter-animations finish
+                showCustomToast(pdfIcon, "PDF wird erstellt", `Folie ${i + 1} / ${slideDeck.length} gerendert…`);
+                const canvas = await html2canvas(stage, {
+                    backgroundColor: '#030303', scale: 2, useCORS: true, allowTaint: false, logging: false,
+                    width: stage.scrollWidth, height: stage.scrollHeight,
+                    windowWidth: stage.scrollWidth, windowHeight: stage.scrollHeight, scrollX: 0, scrollY: 0
+                });
+                const img = canvas.toDataURL('image/jpeg', 0.92);
+                const w = canvas.width, h = canvas.height;
+                const orient = w >= h ? 'landscape' : 'portrait';
+                if (!pdf) pdf = new jsPDF({ orientation: orient, unit: 'px', format: [w, h] });
+                else pdf.addPage([w, h], orient);
+                pdf.addImage(img, 'JPEG', 0, 0, w, h);
+            }
+            pdf.save('mirrou_presentation_full.pdf');
+            showCustomToast("📕 PDF fertig", `Alle ${slideDeck.length} Folien als PDF heruntergeladen.`);
+        } catch (err) {
+            console.error('PDF export error:', err);
+            showCustomToast("❌ PDF-Fehler", "Beim Rendern ist ein Fehler aufgetreten. Bitte erneut versuchen.");
+        } finally {
+            goToSlideIndex(original);
+            pdfExportRunning = false;
+        }
     }
 
     window.toggleInlineEditMode = toggleInlineEditMode;
@@ -5532,8 +5584,8 @@ function toggleTheaterMode() {
                         </button>
                         <button onclick="exportPresentationPDF()" class="p-3 bg-[#030303] hover:bg-[#A855F7]/10 border border-[#2A2A32] hover:border-[#A855F7]/50 rounded-lg text-center transition-all group">
                             <div class="text-lg mb-1 group-hover:scale-110 transition-transform">📕</div>
-                            <div class="text-[10px] font-mono text-[#F5F5F5] font-semibold">Druck/PDF</div>
-                            <div class="text-[8px] font-mono text-[#9CA3AF] mt-0.5">Print-Layout</div>
+                            <div class="text-[10px] font-mono text-[#F5F5F5] font-semibold">PDF (alle Folien)</div>
+                            <div class="text-[8px] font-mono text-[#9CA3AF] mt-0.5">37 Seiten · 1:1</div>
                         </button>
                     </div>
                 </div>
