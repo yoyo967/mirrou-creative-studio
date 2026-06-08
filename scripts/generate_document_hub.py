@@ -413,6 +413,39 @@ button{font-family:inherit}
 .slide-dot{width:8px;height:8px;border-radius:50%;background:var(--border);transition:all .2s;cursor:pointer}
 .slide-dot.active{background:var(--gold);box-shadow:0 0 8px rgba(201,168,76,.4)}
 
+/* Slide Editor Styles */
+.slide-edit-area {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  width: 100%;
+  height: 100%;
+}
+.slide-edit-textarea {
+  flex: 1;
+  background: rgba(8, 8, 10, 0.6);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  color: var(--text);
+  font-family: var(--font-mono);
+  font-size: 0.9rem;
+  padding: 16px;
+  resize: none;
+  outline: none;
+  line-height: 1.6;
+  transition: border-color 0.25s, box-shadow 0.25s;
+  min-height: 250px;
+}
+.slide-edit-textarea:focus {
+  border-color: var(--gold);
+  box-shadow: 0 0 12px rgba(168, 85, 247, 0.15);
+}
+.slide-edit-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+}
+
 /* ═══════════════════════════════════════
    MARKDOWN
    ═══════════════════════════════════════ */
@@ -830,6 +863,308 @@ body.theme-amber {
   text-overflow: ellipsis;
   max-width: 100%;
 }
+
+/* Lightbox Overlay */
+.lightbox-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(8, 8, 10, 0.95);
+  backdrop-filter: blur(16px);
+  z-index: 9999;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  pointer-events: none;
+}
+.lightbox-overlay.open {
+  opacity: 1;
+  pointer-events: auto;
+}
+.lightbox-content {
+  max-width: 90vw;
+  max-height: 80vh;
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  box-shadow: 0 24px 64px rgba(0,0,0,0.8);
+  transform: scale(0.95);
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  cursor: zoom-out;
+}
+.lightbox-overlay.open .lightbox-content {
+  transform: scale(1);
+}
+.lightbox-caption {
+  font-family: var(--font-serif);
+  font-size: 1.05rem;
+  color: var(--gold-light);
+  margin-top: 20px;
+  text-align: center;
+  max-width: 800px;
+  padding: 0 24px;
+  opacity: 0;
+  transform: translateY(8px);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1) 0.05s;
+  line-height: 1.4;
+}
+.lightbox-overlay.open .lightbox-caption {
+  opacity: 1;
+  transform: translateY(0);
+}
+.lightbox-close {
+  position: absolute;
+  top: 24px;
+  right: 24px;
+  background: rgba(255,255,255,0.03);
+  border: 1px solid var(--border);
+  color: var(--text-2);
+  border-radius: 50%;
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s;
+  padding: 0;
+  outline: none;
+}
+.lightbox-close:hover {
+  background: rgba(168,85,247,0.08);
+  border-color: var(--gold);
+  color: var(--gold-light);
+}
+
+/* Make reader view images look clickable and premium */
+#md-output img {
+  cursor: zoom-in;
+  transition: transform 0.25s var(--ease-out), border-color 0.25s;
+  border: 1px solid transparent;
+}
+#md-output img:hover {
+  transform: translateY(-2px);
+  border-color: var(--gold-dim);
+  box-shadow: 0 12px 32px rgba(0,0,0,0.4);
+}
+
+/* --- Suggested Questions Widget (FAQ) --- */
+.faq-widget {
+  background: rgba(255, 255, 255, 0.015);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 16px 20px;
+  margin-bottom: 24px;
+}
+.faq-title {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.faq-pills {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.faq-pill {
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 10px 14px;
+  font-size: 0.8rem;
+  color: var(--text-2);
+  cursor: pointer;
+  transition: all 0.15s;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  text-align: left;
+  width: 100%;
+}
+.faq-pill:hover {
+  border-color: var(--border-active);
+  color: var(--gold-light);
+  background: var(--gold-glow);
+  transform: translateX(2px);
+}
+.faq-pill svg {
+  width: 12px;
+  height: 12px;
+  color: var(--text-3);
+  transition: color 0.15s;
+}
+.faq-pill:hover svg {
+  color: var(--gold);
+}
+
+/* --- Slide Presenter Mode Layout --- */
+.slide-workspace {
+  display: flex;
+  flex: 1;
+  width: 100%;
+  height: calc(100% - 108px);
+  overflow: hidden;
+}
+.slide-main-view {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  overflow: hidden;
+  transition: all 0.3s var(--ease);
+}
+#slide-overlay.presenter-active .slide-main-view {
+  flex: 0.65;
+  border-right: 1px solid var(--border);
+}
+.slide-presenter-panel {
+  display: none;
+  flex: 0.35;
+  background: var(--surface-2);
+  flex-direction: column;
+  padding: 24px;
+  gap: 20px;
+  overflow-y: auto;
+  border-left: 1px solid var(--border);
+}
+#slide-overlay.presenter-active .slide-presenter-panel {
+  display: flex;
+}
+
+/* Presenter Widgets */
+.pres-widget-title {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  letter-spacing: 1.5px;
+  color: var(--gold);
+  text-transform: uppercase;
+  margin-bottom: 8px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.pres-timer-widget {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 16px;
+  text-align: center;
+}
+.pres-timer-display {
+  font-family: var(--font-mono);
+  font-size: 2.2rem;
+  font-weight: 700;
+  color: var(--text);
+  margin: 6px 0 12px;
+  text-shadow: 0 0 10px var(--gold-glow);
+}
+.pres-timer-controls {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+.pres-timer-controls button {
+  background: var(--surface-3);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  color: var(--text-2);
+  padding: 6px 12px;
+  font-size: 0.75rem;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+.pres-timer-controls button:hover {
+  border-color: var(--gold);
+  color: var(--gold-light);
+}
+.pres-next-preview {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 16px;
+  min-height: 120px;
+  display: flex;
+  flex-direction: column;
+  max-height: 160px;
+  overflow: hidden;
+}
+.pres-next-card {
+  font-size: 0.8rem;
+  color: var(--text-3);
+  line-height: 1.5;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
+}
+.pres-next-card h1, .pres-next-card h2, .pres-next-card h3 {
+  font-family: var(--font-serif);
+  font-size: 1.1rem;
+  color: var(--gold-light);
+  margin-bottom: 6px;
+}
+.pres-notes-widget {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 16px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+.pres-notes-content {
+  font-size: 0.82rem;
+  color: var(--text-2);
+  line-height: 1.6;
+  overflow-y: auto;
+  flex: 1;
+}
+.pres-notes-textarea {
+  flex: 1;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  color: var(--text);
+  font-size: 0.82rem;
+  padding: 8px;
+  resize: none;
+  outline: none;
+  font-family: var(--font-mono);
+}
+.pres-notes-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+  margin-top: 10px;
+}
+.pres-notes-actions button {
+  background: none;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  color: var(--text-2);
+  padding: 5px 10px;
+  font-size: 0.75rem;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+.pres-notes-actions button:hover {
+  border-color: var(--gold);
+  color: var(--gold-light);
+}
+.pres-notes-actions button.hidden {
+  display: none;
+}
+.pres-notes-textarea.hidden {
+  display: none;
+}
 </style>
 </head>
 <body>
@@ -912,6 +1247,8 @@ body.theme-amber {
         <button onclick="zoom(1)" title="Groesser">A+</button>
       </div>
       <div class="divider-v"></div>
+      <button class="tb" id="btn-summary" onclick="triggerSummary()" title="Zusammenfassung generieren"><i data-lucide="sparkles"></i><span class="tb-label">Zusammenfassung</span></button>
+      <div class="divider-v"></div>
       <button class="tb" id="btn-toc" onclick="toggleToc()" title="Inhaltsverzeichnis (T)"><i data-lucide="list-tree"></i></button>
       <button class="tb" id="btn-slides" onclick="enterSlideMode()" title="Folien-Modus (P)"><i data-lucide="presentation"></i></button>
       <button class="tb" onclick="toggleFullscreen()" title="Vollbild (F)"><i data-lucide="maximize-2"></i></button>
@@ -927,6 +1264,7 @@ body.theme-amber {
       <div class="reader-scroll" id="reader-scroll">
         <div class="reader-card">
           <div class="doc-meta" id="doc-meta"></div>
+          <div id="faq-widget-container"></div>
           <div class="md" id="md-output"></div>
           <div class="doc-nav" id="doc-nav"></div>
         </div>
@@ -943,12 +1281,47 @@ body.theme-amber {
 <!-- Slide Overlay -->
 <div id="slide-overlay">
   <div class="slide-toolbar">
-    <button class="tb" onclick="exitSlideMode()"><i data-lucide="x"></i> Schliessen</button>
+    <div style="display:flex; align-items:center; gap:12px;">
+      <button class="tb" onclick="exitSlideMode()"><i data-lucide="x"></i> Schliessen</button>
+      <button class="tb" id="btn-slide-edit" onclick="toggleSlideEdit()"><i data-lucide="edit-3"></i> Bearbeiten</button>
+      <button class="tb" id="btn-slide-presenter" onclick="togglePresenterMode()"><i data-lucide="tv"></i> Referenten-Ansicht</button>
+    </div>
     <span class="st-title" id="slide-title"></span>
     <span class="st-pos" id="slide-pos"></span>
   </div>
-  <div class="slide-area">
-    <div class="slide-card"><div class="md" id="slide-content"></div></div>
+  <div class="slide-workspace" id="slide-workspace">
+    <div class="slide-main-view">
+      <div class="slide-area">
+        <div class="slide-card"><div class="md" id="slide-content"></div></div>
+      </div>
+    </div>
+    <div class="slide-presenter-panel" id="slide-presenter-panel">
+      <!-- Presenter Controls -->
+      <div class="pres-timer-widget">
+        <div class="pres-widget-title"><i data-lucide="clock"></i> PRÄSENTATIONS-TIMER</div>
+        <div class="pres-timer-display" id="pres-timer">00:00:00</div>
+        <div class="pres-timer-controls">
+          <button onclick="startPresTimer()">Start</button>
+          <button onclick="pausePresTimer()">Pause</button>
+          <button onclick="resetPresTimer()">Reset</button>
+        </div>
+      </div>
+      <!-- Next Slide Preview -->
+      <div class="pres-next-preview">
+        <div class="pres-widget-title"><i data-lucide="eye"></i> NÄCHSTE FOLIE</div>
+        <div class="pres-next-card" id="pres-next-content">Keine weitere Folie</div>
+      </div>
+      <!-- Speaker Notes -->
+      <div class="pres-notes-widget">
+        <div class="pres-widget-title"><i data-lucide="file-text"></i> REFERENTEN-NOTIZEN</div>
+        <div class="pres-notes-content" id="pres-notes">Keine Notizen vorhanden.</div>
+        <textarea id="pres-notes-editor" class="pres-notes-textarea hidden" placeholder="Notizen für diese Folie eingeben..."></textarea>
+        <div class="pres-notes-actions">
+          <button id="btn-edit-notes" onclick="toggleEditNotes()"><i data-lucide="edit-2"></i> Notizen bearbeiten</button>
+          <button id="btn-save-notes" class="hidden" onclick="saveNotesOverride()">Speichern</button>
+        </div>
+      </div>
+    </div>
   </div>
   <div class="slide-nav">
     <button onclick="slideNav(-1)"><i data-lucide="chevron-left"></i> Zurueck</button>
@@ -979,6 +1352,241 @@ const DOC_KEYS=Object.keys(DB);
 let activeKey=null,zoomLvl=0,tocVisible=true,searchQ='';
 let recentKeys=[];
 let slides=[],slideIdx=0,slideActive=false;
+
+const SUGGESTED_QUESTIONS = {
+  "abschlussbericht": [
+    "Was sind die Kern-Ergebnisse der Positionierung?",
+    "Wie hoch war der ROAS für den Luminous Aura Launch?",
+    "Welche Skalierungs-Szenarien wurden für Mirrou modelliert?"
+  ],
+  "aos_buch": [
+    "Welche 12 Kapitel umfasst das AOS-Buch?",
+    "Welche Rolle spielt die 'Brand Soul' im Marketing?",
+    "Wie wird das Marketing Mix Framework definiert?"
+  ],
+  "deep_audit": [
+    "Welche GCP-Ressourcen wurden auditiert?",
+    "Welche Sicherheitsmängel wurden identifiziert?",
+    "Wie sieht die Roadmap für die DNS-Migration aus?"
+  ],
+  "system_urls": [
+    "Welche Repositories und GCP-Projekte gibt es?",
+    "Welche DNS-Einträge sind bei IONOS konfiguriert?",
+    "Wie ist der HTTPS-Zertifikatsstatus?"
+  ],
+  "eu_ai_act": [
+    "Wie stuft der EU AI Act das Mirrou-System ein?",
+    "Welche Pflichten gelten für Hochrisiko-Systeme?",
+    "Was ist der Zeitplan für die AI-Act-Compliance?"
+  ],
+  "team_briefing": [
+    "Was sind die Ziele des Team-Briefings?",
+    "Welche Kernkompetenzen werden benötigt?",
+    "Wie sieht der Onboarding-Zeitplan aus?"
+  ],
+  "aufgabenverteilung": [
+    "Wer übernimmt die Hauptverantwortung für Design?",
+    "Wie sind die Support-Rollen verteilt?",
+    "Welche GTM-Aufgaben fallen unter die Hauptverantwortung?"
+  ],
+  "speech_script": [
+    "Was sind die Kernbotschaften der Abschlussrede?",
+    "Wie wird das Storytelling strukturiert?",
+    "Welche Meilensteine werden besonders hervorgehoben?"
+  ],
+  "playbook_1": [
+    "Wie sieht die 6-Wochen-Roadmap aus?",
+    "Was sind die Meilensteine für die Transformation?",
+    "Welche KPIs werden wöchentlich getrackt?"
+  ],
+  "playbook_2": [
+    "Wer ist das ideale Kundenprofil (ICP)?",
+    "Welche Outbound-Strategien werden empfohlen?",
+    "Wie sieht die Qualifizierungskette aus?"
+  ],
+  "playbook_3": [
+    "Welche operativen Schritte stehen in den ersten 30 Tagen an?",
+    "Wie wird die HubSpot-Integration aufgesetzt?",
+    "Welche wöchentlichen Jour Fixes werden benötigt?"
+  ],
+  "playbook_4": [
+    "Wie gewinnen wir den ersten Retainer-Kunden?",
+    "Wie sieht das Cold-Outbound-Skript aus?",
+    "Welche Einwandbehandlungen werden vorgeschlagen?"
+  ],
+  "playbook_5": [
+    "Wie sind die Service-Pakete kalkuliert?",
+    "Was kostet das Pilot-Paket?",
+    "Wie sieht die Provisionierung für Partner aus?"
+  ],
+  "deliv_asset": [
+    "Welche Visual-Assets wurden für den Launch produziert?",
+    "Wie sind die Bildgrößen spezifiziert?",
+    "Welche Stockfoto-Lizenzen wurden genutzt?"
+  ],
+  "deliv_review": [
+    "Welche Kriterien umfasst die Review-Checkliste?",
+    "Wer führt die finale Freigabe durch?",
+    "Wie läuft der Freigabeprozess ab?"
+  ],
+  "deliv_prompts": [
+    "Wie lauten die Midjourney Prompts für Hero-Visuals?",
+    "Welche Parameter werden in Adobe Firefly empfohlen?",
+    "Wie wird die Marken-Ästhetik in Prompts übersetzt?"
+  ],
+  "deliv_video": [
+    "Wie lautet das Drehbuch für das Launch-Video?",
+    "Welche Musik und Easing-Werte werden verwendet?",
+    "Wie lang ist die geplante Laufzeit?"
+  ],
+  "deliv_layer": [
+    "Wie sind die Layout-Spastermengen festgelegt?",
+    "Welches Farbsystem wird im Creative Layer definiert?",
+    "Welche Schriftkombinationen sind vorgeschrieben?"
+  ],
+  "deliv_proposal": [
+    "Was beinhaltet das Go-To-Market Kampagnen-Proposal?",
+    "Wie hoch ist das empfohlene Media-Budget?",
+    "Welche Phasen hat die Launch-Kampagne?"
+  ],
+  "deliv_icp": [
+    "Welche demografischen Merkmale hat die Zielgruppe?",
+    "Welche Pain Points haben D2C Beauty Brands?",
+    "Welche Kauf-Trigger wurden identifiziert?"
+  ],
+  "deliv_msg": [
+    "Welche Ansprachen und Hooks werden empfohlen?",
+    "Wie unterscheidet sich die Tonalität je Kanal?",
+    "Welche Text-Blueprints gibt es für LinkedIn?"
+  ],
+  "deliv_brief": [
+    "Wie lauten die Anweisungen für das Fotoshooting?",
+    "Welche Beleuchtung und Props werden benötigt?",
+    "Wie sieht der Zeitplan für das Shooting aus?"
+  ],
+  "deliv_price": [
+    "Wie sind die B2B-Konditionen strukturiert?",
+    "Welche Rabattstaffeln gibt es?",
+    "Welche Zahlungsbedingungen gelten?"
+  ],
+  "deliv_growth": [
+    "Welche Phasen umfasst das 90-Tage-Launch-Playbook?",
+    "Wie wird das organische Wachstum initiiert?",
+    "Welche Performance-Kanäle werden genutzt?"
+  ],
+  "deliv_compliance": [
+    "Welche DSGVO-Anforderungen müssen erfüllt sein?",
+    "Wie wird das Opt-in verarbeitet?",
+    "Welche Vorgaben macht das Compliance Framework?"
+  ],
+  "deliv_tech": [
+    "Wie sieht die Firebase & Cloud Run Architektur aus?",
+    "Welche API-Endpunkte sind spezifiziert?",
+    "Wie läuft die Daten-Synchronisierung?"
+  ],
+  "deliv_case1": [
+    "Was waren die Erfolge der Luminous Aura Case Study?",
+    "Welche Kampagnen-Struktur führte zum Erfolg?",
+    "Wie hoch war die Steigerung des ROAS?"
+  ],
+  "deliv_case2": [
+    "Welche Ergebnisse brachte Vitality Pulse?",
+    "Wie wurde die Zielgruppenansprache optimiert?",
+    "Welche KPIs wurden im Reporting gemessen?"
+  ],
+  "deliv_partner": [
+    "Wie funktioniert das White-Label-Partnerprogramm?",
+    "Welche Umsatzbeteiligungen erhalten Partner?",
+    "Welche Marketingmaterialien werden bereitgestellt?"
+  ],
+  "deliv_investor": [
+    "Wie ist das Investor Deck aufgebaut?",
+    "Wie sieht der Finanzplan für das erste Jahr aus?",
+    "Welche GTM-Phasen werden Investoren präsentiert?"
+  ],
+  "deliv_gtm": [
+    "Welche Vertriebskanäle werden vorrangig genutzt?",
+    "Wie sieht die Sales Pipeline aus?",
+    "Welche Conversion-Raten sind prognostiziert?"
+  ],
+  "deliv_playbook2": [
+    "Wie stufen wir das Growth Playbook ein?",
+    "Welche organischen Loops sind eingebaut?",
+    "Wie hoch ist das Viralitätsziel?"
+  ],
+  "deck_aos": [
+    "Wie ist das Algorithm of Soul Pitch Deck gegliedert?",
+    "Was ist das Alleinstellungsmerkmal (USP) des Projekts?",
+    "Welches finanzielle Ziel verfolgt das Pitch Deck?"
+  ],
+  "deck_grad": [
+    "Welchen Inhalt zeigt die Abschlusspräsentation 2026?",
+    "Wie wird die Storyline aufgebaut?",
+    "Wie sieht das Abschlussfazit aus?"
+  ],
+  "deck_hand": [
+    "Welche Keyfacts enthält das Presenter Handout?",
+    "Welche Handlungsanweisungen gibt es?",
+    "Wie lautet das finale Prüfungsfazit?"
+  ],
+  "perp_best": [
+    "Welche Best Practices gelten für Perplexity Spaces?",
+    "Wie wird the Team-Workflow koordiniert?",
+    "Welche Qualitätssicherungs-Schritte gibt es?"
+  ],
+  "perp_conf": [
+    "Wie sieht die Perplexity-Konfiguration aus?",
+    "Welche Quellen werden bevorzugt abgefragt?",
+    "Wie lauten die vordefinierten System-Prompts?"
+  ],
+  "onboard": [
+    "Wie sieht the Onboarding-Plan für neue Consultants aus?",
+    "Welche Tools und Zugänge müssen eingerichtet werden?",
+    "Welche Trainingsmodule müssen absolviert werden?"
+  ]
+};
+
+const DOCUMENT_SUMMARIES = {
+  "abschlussbericht": `### 📘 DCI Abschlussbericht — Zusammenfassung
+* **Fokus**: Vollständige Dokumentation und Abschlusspräsentation des Mirrou Creative Studio-Projekts.
+* **Kernpunkte**:
+  - **Markenidentität**: Entwicklung des "Algorithm of Soul" Frameworks.
+  - **Technologie**: Umsetzung eines High-End, offline-fähigen Document Hubs sowie Firebase/Cloud Run Deployments.
+  - **Ergebnisse**: Signifikante Performance-Steigerung durch harmonisierten B2B/D2C Marketing-Mix.
+* **Wichtigstes Takeaway**: Erfolgreiche Orchestrierung aller Brand- und Tech-Säulen des Projekts unter Einhaltung strenger AI-Act-Richtlinien.`,
+
+  "aos_buch": `### 📘 AOS Buch (Komplett) — Zusammenfassung
+* **Fokus**: Strategisches Werk über die Synergie von menschlicher Kreativität und Künstlicher Intelligenz im Brand Building.
+* **Kernpunkte**:
+  - **Kreativ-Philosophie**: Verschmelzung von "Soul" (menschlicher Emotion) und "Algorithm" (technologischer Präzision).
+  - **Marketing-Frameworks**: Innovative Ansätze für generative Brand-Assets.
+  - **Zukunftsblick**: Ethische Leitlinien und Positionierung im post-generativen Zeitalter.
+* **Wichtigstes Takeaway**: Markenführung erfordert die Balance aus KI-gestützter Skalierung und emotionaler Tiefe.`,
+
+  "deep_audit": `### 📘 Deep Audit Report — Zusammenfassung
+* **Fokus**: System- und Infrastruktur-Audit der genutzten Google Cloud Platform (GCP) Ressourcen und Git-Repositories.
+* **Kernpunkte**:
+  - **DNS & Domains**: DNS-Konfiguration bei IONOS (mirrou.de, etc.) und DNS-Migration.
+  - **Sicherheit & Berechtigungen**: Rollen-Audit (IAM) für GCP Service Accounts.
+  - **Code-Qualität**: Git-Verlaufsanalyse, CI/CD-Pipelines und Code-Reviews.
+* **Wichtigstes Takeaway**: Strukturierte Behebung von Sicherheitsmängeln und DNS-Konsolidierung zur Gewehrleistung maximaler Stabilität.`,
+
+  "eu_ai_act": `### 📘 EU AI Act Positionspapier — Zusammenfassung
+* **Fokus**: Strategische und operative Einordnung des Mirrou Systems unter die EU-Verordnung 2024/1689.
+* **Kernpunkte**:
+  - **Risikoklassifizierung**: Einstufung als minimales Risiko; Ausschluss von Hochrisiko-Praktiken.
+  - **Compliance-Säulen**: Data Governance, Transparenz (Kennzeichnung generierter Medien) und menschliche Aufsicht.
+  - **Praktische Umsetzung**: Standard-Operating-Procedures (SOPs) zur Einhaltung aller EU AI Act Deadlines.
+* **Wichtigstes Takeaway**: Proaktive Einhaltung sorgt für Marktvorteile und minimiert regulatorische Risiken im B2B-Vertrieb.`,
+
+  "playbook_5": `### 🚀 Playbook 5: Strategische Preismodellierung — Zusammenfassung
+* **Fokus**: Preisgestaltungs- und Paketierungsstruktur für das B2B-Skalierungsmodell von Mirrou.
+* **Kernpunkte**:
+  - **Preiskalkulation**: Wertbasierte Bepreisung (Value-Based Pricing) anstelle von Stundenabrechnung.
+  - **Modelle**: 3 klare Pakete (Standard Pilot, Growth Core, Enterprise Elite).
+  - **Musterrechnung**: Detaillierte Darstellung der Umsatzbeteiligung und des ROI-Rechners für Neukunden.
+* **Wichtigstes Takeaway**: Ein transparenter, ROI-getriebener Pricing-Ansatz verkürzt den Vertriebszyklus signifikant.`
+};
 
 const LOCAL_LUCIDE_ICONS = {
   "activity": "<path d=\"M22 12h-2.48a2 2 0 0 0-1.93 1.46l-2.35 8.36a.25.25 0 0 1-.48 0L9.24 2.18a.25.25 0 0 0-.48 0l-2.35 8.36A2 2 0 0 1 4.49 12H2\" />",
@@ -1101,6 +1709,8 @@ function init(){
   renderStats();
   renderNav();
   renderWelcome();
+  initCopilotSearch();
+  initLightbox();
   createIcons();
   document.addEventListener('keydown',onKey);
   const rs=document.getElementById('reader-scroll');
@@ -1378,6 +1988,29 @@ function openDoc(key){
     addCopyButtons();
   }
 
+  // Render FAQs
+  const faqContainer = document.getElementById('faq-widget-container');
+  if (faqContainer) {
+    const questions = SUGGESTED_QUESTIONS[key];
+    if (questions && questions.length > 0) {
+      faqContainer.innerHTML = `
+        <div class="faq-widget">
+          <div class="faq-title"><i data-lucide="help-circle"></i> Häufig gestellte Fragen</div>
+          <div class="faq-pills">
+            ${questions.map(q => `
+              <button class="faq-pill" onclick="askFAQ('${q.replace(/'/g, "\\\\'")}')">
+                <span>${q}</span>
+                <i data-lucide="chevron-right"></i>
+              </button>
+            `).join('')}
+          </div>
+        </div>
+      `;
+    } else {
+      faqContainer.innerHTML = '';
+    }
+  }
+
   // Prev/Next nav
   renderDocNav(idx);
 
@@ -1473,6 +2106,8 @@ function toggleToc(){
 // ════════════════════════════════════════════════
 // SLIDE MODE
 // ════════════════════════════════════════════════
+let isEditingSlide = false;
+
 function enterSlideMode(){
   if(!activeKey||!DB[activeKey])return;
   const d=DB[activeKey];
@@ -1480,6 +2115,8 @@ function enterSlideMode(){
   const parts=d.content.split(/(?=^#{1,2}\s)/m).filter(s=>s.trim());
   if(parts.length<2){toast('Zu wenig Abschnitte fuer Folien','alert-circle');return}
   slides=parts;slideIdx=0;slideActive=true;
+  isEditingSlide = false;
+  resetSlideEditBtnState();
   document.getElementById('slide-title').textContent=d.title;
   renderSlide();
   document.getElementById('slide-overlay').classList.add('visible');
@@ -1487,21 +2124,124 @@ function enterSlideMode(){
 }
 function exitSlideMode(){
   slideActive=false;
+  isEditingSlide = false;
+  isPresenterMode = false;
+  isEditingNotes = false;
+  pausePresTimer();
+  const overlay = document.getElementById('slide-overlay');
+  if (overlay) overlay.classList.remove('presenter-active');
+  const btn = document.getElementById('btn-slide-presenter');
+  if (btn) btn.classList.remove('active-tb');
+  resetSlideEditBtnState();
   document.getElementById('slide-overlay').classList.remove('visible');
 }
 function renderSlide(){
-  document.getElementById('slide-content').innerHTML=marked.parse(slides[slideIdx]);
+  const slideMarkdown = localStorage.getItem('omm-slide-' + activeKey + '-' + slideIdx) || slides[slideIdx];
+  const cleanMd = stripSpeakerNotes(slideMarkdown);
+  document.getElementById('slide-content').innerHTML=marked.parse(cleanMd);
   document.getElementById('slide-pos').textContent=`${slideIdx+1} / ${slides.length}`;
   // Dots
   const dots=document.getElementById('slide-dots');
-  dots.innerHTML=slides.map((_,i)=>`<div class="slide-dot${i===slideIdx?' active':''}" onclick="slideIdx=${i};renderSlide()"></div>`).join('');
+  dots.innerHTML=slides.map((_,i)=>`<div class="slide-dot${i===slideIdx?' active':''}" onclick="isEditingSlide=false; isEditingNotes=false; resetSlideEditBtnState(); slideIdx=${i}; renderSlide()"></div>`).join('');
+  
+  // Update speaker notes display
+  const notes = parseSpeakerNotes(slideMarkdown);
+  const savedNotes = localStorage.getItem('omm-notes-' + activeKey + '-' + slideIdx);
+  const finalNotes = savedNotes !== null ? savedNotes : notes;
+  const notesDiv = document.getElementById('pres-notes');
+  if (notesDiv) {
+    notesDiv.innerHTML = finalNotes ? marked.parse(finalNotes) : '<div style="color:var(--text-3); font-style:italic;">Keine Referenten-Notizen vorhanden.</div>';
+  }
+  
+  // Update preview next
+  updateNextSlidePreview();
+  
   // Re-animate
   const card=document.querySelector('.slide-card');
-  card.style.animation='none';card.offsetHeight;card.style.animation='slideIn .3s var(--ease-out)';
+  if (card) {
+    card.style.animation='none';card.offsetHeight;card.style.animation='slideIn .3s var(--ease-out)';
+  }
 }
 function slideNav(dir){
+  isEditingSlide = false;
+  isEditingNotes = false;
+  resetSlideEditBtnState();
+  
+  // Reset notes edit UI
+  const display = document.getElementById('pres-notes');
+  const editor = document.getElementById('pres-notes-editor');
+  const btnEdit = document.getElementById('btn-edit-notes');
+  const btnSave = document.getElementById('btn-save-notes');
+  if (editor) editor.classList.add('hidden');
+  if (display) display.classList.remove('hidden');
+  if (btnEdit) btnEdit.innerHTML = '<i data-lucide="edit-2"></i> Notizen bearbeiten';
+  if (btnSave) btnSave.classList.add('hidden');
+  
   slideIdx=Math.max(0,Math.min(slides.length-1,slideIdx+dir));
   renderSlide();
+}
+
+function resetSlideEditBtnState() {
+  const btn = document.getElementById('btn-slide-edit');
+  if (btn) {
+    btn.innerHTML = '<i data-lucide="edit-3"></i> Bearbeiten';
+    btn.classList.remove('active-tb');
+  }
+}
+
+function toggleSlideEdit() {
+  const card = document.querySelector('.slide-card');
+  const btn = document.getElementById('btn-slide-edit');
+  if (!card || !btn) return;
+  
+  isEditingSlide = !isEditingSlide;
+  
+  if (isEditingSlide) {
+    btn.innerHTML = '<i data-lucide="eye"></i> Vorschau';
+    btn.classList.add('active-tb');
+    
+    const currentMarkdown = localStorage.getItem('omm-slide-' + activeKey + '-' + slideIdx) || slides[slideIdx];
+    
+    document.getElementById('slide-content').innerHTML = `
+      <div class="slide-edit-area">
+        <div style="font-size:11px; text-transform:uppercase; color:var(--gold); font-family:var(--font-mono); letter-spacing:1px; margin-bottom:-4px;">Folie bearbeiten (Markdown unterstützt)</div>
+        <textarea id="slide-editor-input" class="slide-edit-textarea" placeholder="Geben Sie hier den Inhalt für diese Folie ein...">${currentMarkdown}</textarea>
+        <div class="slide-edit-actions">
+          <button class="tb" onclick="resetSlideOverride()" style="border-color:#EF4444; color:#FCA5A5;">Zurücksetzen</button>
+          <button class="tb" onclick="saveSlideOverride()" style="border-color:var(--gold); color:var(--gold-light); background:rgba(168,85,247,0.08); font-weight:600;">Speichern</button>
+        </div>
+      </div>
+    `;
+  } else {
+    btn.innerHTML = '<i data-lucide="edit-3"></i> Bearbeiten';
+    btn.classList.remove('active-tb');
+    renderSlide();
+  }
+  createIcons();
+}
+
+function saveSlideOverride() {
+  const textarea = document.getElementById('slide-editor-input');
+  if (!textarea) return;
+  
+  const val = textarea.value;
+  localStorage.setItem('omm-slide-' + activeKey + '-' + slideIdx, val);
+  toast('Folie angepasst & im Speicher gesichert', 'save');
+  
+  isEditingSlide = false;
+  resetSlideEditBtnState();
+  renderSlide();
+}
+
+function resetSlideOverride() {
+  if (confirm('Möchten Sie diese Folie wirklich auf das Original zurücksetzen?')) {
+    localStorage.removeItem('omm-slide-' + activeKey + '-' + slideIdx);
+    toast('Folie auf Original zurückgesetzt', 'trash-2');
+    
+    isEditingSlide = false;
+    resetSlideEditBtnState();
+    renderSlide();
+  }
 }
 
 // ════════════════════════════════════════════════
@@ -1692,88 +2432,212 @@ function changeTheme(theme, showToast = true) {
 // ════════════════════════════════════════════════
 // CO-PILOT
 // ════════════════════════════════════════════════
-const COPILOT_KB = [
-  {
-    keys: ['kpi', 'roas', 'ctr', 'conversion', 'zahlen', 'erfolg', 'luminous', 'vitality', 'aura', 'pulse'],
-    answer: `### 📊 Leistungskennzahlen & Case Studies
+let copilotSearchBlocks = [];
 
-- **Case Study: Luminous Aura** (D2C Beauty/Skincare):
-  - **ROAS**: Anstieg von 2.4x auf **4.8x**
-  - **CTR**: Steigerung um **118%**
-  - **CPA**: Senkung um **42%**
-- **Case Study: Vitality Pulse** (Wellness/Nutrition):
-  - **ROAS**: Erreichte **3.9x** (Ziel: 3.0x)
-  - **Conversion Rate**: Anstieg um **2.3%**
-  - **Lead-Kosten**: Reduziert um **35%**
-
-Diese Ergebnisse wurden durch den OMM Creative Layer und dynamisches Ad-Testing erzielt.`
-  },
-  {
-    keys: ['preis', 'preise', 'kosten', 'tier', 'budget', 'angebot', 'modell', 'paket', 'pricing'],
-    answer: `### 💳 B2B Pricing & Modellierung
-
-1. **Standard Pilot (Local Heroes)**:
-   - **Setup**: einmalig 4.900 €
-   - **Retainer**: 3.500 € / Monat (ab 3 Monaten)
-   - **Fokus**: Regionale Skalierung, Core-Assets.
-2. **Growth Core (National Scale)**:
-   - **Setup**: einmalig 8.900 €
-   - **Retainer**: 6.200 € / Monat (ab 6 Monaten)
-   - **Fokus**: Multi-Channel Funnel, Automation.
-3. **Enterprise Elite (Frontier Brand)**:
-   - **Setup**: einmalig 14.500 €
-   - **Retainer**: 9.800 € / Monat + 5-10% Performance Share
-   - **Fokus**: Full-Scale Omnichannel, OMM Integration.`
-  },
-  {
-    keys: ['compliance', 'eu ai act', 'ai act', 'verordnung', 'dsgvo', 'risiko', 'gesetz', 'recht'],
-    answer: `### ⚖️ EU AI Act Compliance & Governance
-
-- **Klassifizierung**: Die Mirrou OMM-Systeme sind primär als **Low-Risk AI** (Transparenzpflichten nach Art. 52) eingestuft.
-- **Risiko-Minimierung**: Etablierung eines 3-stufigen Prüfprozesses (SOP 03) für generierte Marketing-Assets zur Einhaltung von Urheberrecht und DSGVO.
-- **Datenhoheit**: Vollständige Einhaltung des EU Data Act. Alle Daten verbleiben auf verschlüsselten Cloud-Instanzen in der Region <code>europe-west3</code> (Frankfurt).`
-  },
-  {
-    keys: ['timeline', 'roadmap', 'zeitplan', 'ablauf', 'onboarding', 'schritte', 'phase'],
-    answer: `### 📅 Implementierung & Onboarding Timeline
-
-- **25-Tage Client Onboarding**:
-  - **Tag 1-5**: Tech Stack Setup & API-Integration.
-  - **Tag 6-12**: ICP Scoring & Brand DNA Synchronisation.
-  - **Tag 13-20**: Asset-Produktion (Creative Layer Core).
-  - **Tag 21-25**: QA, Compliance Check & Kampagnen-Launch.
-- **6-Wochen Frontier Firm Roadmap**:
-  - **Woche 1-2**: Audit & Infrastruktur-Konsolidierung.
-  - **Woche 3-4**: Skalierung & Automatisierung.
-  - **Woche 5-6**: Multiplikation & Mandanten-Expansion.`
-  },
-  {
-    keys: ['omm', 'engine', 'tech', 'infrastruktur', 'cloud run', 'fastapi', 'firestore', 'agenten', 'architecture'],
-    answer: `### 🤖 OMM Engine Tech Architecture
-
-- **Backend**: Python FastAPI Services deployt auf **GCP Cloud Run** (auto-scaling, containerisiert).
-- **Datenbank**: Firebase/Firestore für Echtzeit-Datenspeicherung und Overrides.
-- **Multi-Agenten-System**: 49 autonome Betreiber-Agenten für automatisierte Content-Generierung, Qualitätssicherung und ICP-Analyse.
-- **DNS**: Authoritative Verwaltung via IONOS Nameserver.`
-  },
-  {
-    keys: ['team', 'mitglieder', 'denys', 'olha', 'ralph', 'yahya', 'rollen'],
-    answer: `### 👥 Mirrou Creative Studio Core Team
-
-- **Denys** (Creative Director): Führend in Branding, Motion Design & UI/UX Ästhetik.
-- **Olha** (Lead Strategist): GTM-Strategie, ICP Research & Marktanalyse.
-- **Ralph** (Lead Architect & Compliance): Tech Stack, GCP Cloud, Firebase & AI Act Konformität.
-- **Yahya** (Outbound Sales & Operations): Lead-Generierung, Vertriebskanäle & Client Onboarding.`
-  },
-  {
-    keys: ['prompt', 'midjourney', 'firefly', 'prompting', 'style', 'visual'],
-    answer: `### 🎨 AI Prompt Blueprints (Midjourney/Firefly)
-
-- **Core Aesthetic**: High-End Beauty & Skincare Visuals mit HSL-abgestimmten Farben.
-- **Prompt-Struktur**: <code>[Subject] in front of minimalist concrete and frosted glass background, soft purple neon glow, strategy blue accents, studio lighting, Hasselblad 8k, detailed skin texture --ar 16:9 --style raw</code>
-- **SOP 02**: Richtlinien zur Wahrung der visuellen Konsistenz bei KI-gestützter Asset-Generierung.`
+function initCopilotSearch() {
+  copilotSearchBlocks = [];
+  for (const key of Object.keys(DB)) {
+    const doc = DB[key];
+    const content = doc.content || '';
+    const lines = content.split('\n');
+    
+    let currentSection = 'Einleitung';
+    let currentText = [];
+    
+    let virtualKeywords = '';
+    const titleLower = doc.title.toLowerCase();
+    const catLower = doc.cat.toLowerCase();
+    
+    if (titleLower.includes('case study')) {
+      virtualKeywords += ' kpi kpis leistungskennzahlen roas ctr cvr cpa conversion zahlen erfolg metrik metrics case cases luminous vitality aura pulse';
+    }
+    if (titleLower.includes('abschlussbericht')) {
+      virtualKeywords += ' abschlussbericht dci digital career institute bericht';
+    }
+    if (titleLower.includes('preis') || titleLower.includes('pricing') || titleLower.includes('kosten')) {
+      virtualKeywords += ' preis preise kosten tier budget angebot modell paket pricing retainer setup';
+    }
+    if (titleLower.includes('compliance') || titleLower.includes('ai act') || titleLower.includes('dsgvo') || titleLower.includes('positionspapier') || catLower.includes('compliance')) {
+      virtualKeywords += ' compliance eu ai act dsgvo risiko gesetz recht transparent audit verordnung governance';
+    }
+    if (titleLower.includes('timeline') || titleLower.includes('roadmap') || titleLower.includes('zeitplan') || titleLower.includes('onboarding')) {
+      virtualKeywords += ' timeline roadmap zeitplan ablauf onboarding schritte phase';
+    }
+    if (titleLower.includes('architecture') || titleLower.includes('tech') || titleLower.includes('url') || titleLower.includes('infrastruktur') || titleLower.includes('perplexity')) {
+      virtualKeywords += ' omm engine backend database fastapi cloud run agenten architecture firestore tech links dns';
+    }
+    
+    const flushBlock = () => {
+      const text = currentText.join('\n').trim();
+      if (text && text.length > 20) {
+        copilotSearchBlocks.push({
+          docKey: key,
+          docTitle: doc.title,
+          docCat: doc.cat,
+          section: currentSection,
+          text: text,
+          searchText: (text + ' ' + doc.title + ' ' + doc.cat + ' ' + currentSection + ' ' + virtualKeywords).toLowerCase()
+        });
+      }
+      currentText = [];
+    };
+    
+    lines.forEach(line => {
+      const trimmedLine = line.trim();
+      if (trimmedLine.startsWith('#')) {
+        flushBlock();
+        currentSection = trimmedLine.replace(/^#+\s+/, '');
+      } else if (trimmedLine === '') {
+        flushBlock();
+      } else {
+        currentText.push(line);
+      }
+    });
+    flushBlock();
   }
-];
+}
+
+function searchCopilot(query) {
+  if (!query) return [];
+  
+  const stopWords = new Set([
+    'der', 'die', 'das', 'und', 'ist', 'in', 'im', 'für', 'von', 'mit', 'den', 'dem', 'des', 'ein', 'eine', 'einer', 'eines', 'einem', 'einen', 'oder',
+    'the', 'and', 'is', 'in', 'of', 'to', 'with', 'for', 'a', 'an', 'on', 'at', 'by', 'this', 'that', 'it', 'from', 'as', 'are', 'was', 'were', 'or'
+  ]);
+  
+  const terms = query.toLowerCase()
+    .replace(/[.,\/#!$%\^&\*;:{}=\-_`~()?]/g, ' ')
+    .split(/\s+/)
+    .map(t => t.trim())
+    .filter(t => t.length > 1 && !stopWords.has(t));
+    
+  if (terms.length === 0) {
+    const fallback = query.toLowerCase().split(/\s+/).map(t => t.trim()).filter(t => t.length > 0);
+    if (fallback.length > 0) terms.push(...fallback);
+  }
+  
+  const queryLower = query.toLowerCase();
+  const results = [];
+  
+  copilotSearchBlocks.forEach(block => {
+    let score = 0;
+    const textLower = block.searchText;
+    const sectionLower = block.section.toLowerCase();
+    const docTitleLower = block.docTitle.toLowerCase();
+    const docCatLower = block.docCat.toLowerCase();
+    
+    let matchedTerms = 0;
+    
+    terms.forEach(term => {
+      const termRegex = new RegExp(term.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&'), 'g');
+      const textMatches = (textLower.match(termRegex) || []).length;
+      if (textMatches > 0) {
+        score += textMatches * 2;
+        matchedTerms++;
+      }
+      
+      if (sectionLower.includes(term)) {
+        score += 15;
+        matchedTerms++;
+      }
+      
+      if (docTitleLower.includes(term)) {
+        score += 10;
+        matchedTerms++;
+      }
+      
+      if (docCatLower.includes(term)) {
+        score += 5;
+      }
+    });
+    
+    if (terms.length > 1 && textLower.includes(queryLower)) {
+      score += 20;
+    }
+    
+    if (matchedTerms > 1) {
+      score += matchedTerms * 4;
+    }
+    
+    if (score > 2) {
+      results.push({
+        block: block,
+        score: score
+      });
+    }
+  });
+  
+  results.sort((a, b) => b.score - a.score);
+  return results;
+}
+
+function highlightTerms(html, terms) {
+  if (!terms || terms.length === 0) return html;
+  let tempEl = document.createElement('div');
+  tempEl.innerHTML = html;
+  
+  const walk = (node) => {
+    if (node.nodeType === 3) {
+      let text = node.nodeValue;
+      let newHtml = text;
+      terms.forEach(term => {
+        const regex = new RegExp('(' + term.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&') + ')', 'gi');
+        newHtml = newHtml.replace(regex, '<span class="hl">$1</span>');
+      });
+      if (newHtml !== text) {
+        let span = document.createElement('span');
+        span.innerHTML = newHtml;
+        node.parentNode.replaceChild(span, node);
+      }
+    } else if (node.nodeType === 1 && node.childNodes && !['SCRIPT', 'STYLE', 'CODE', 'PRE'].includes(node.nodeName)) {
+      for (let i = node.childNodes.length - 1; i >= 0; i--) {
+        walk(node.childNodes[i]);
+      }
+    }
+  };
+  
+  walk(tempEl);
+  return tempEl.innerHTML;
+}
+
+function jumpToCitation(docKey, sectionTitle, excerptText) {
+  openDoc(docKey);
+  
+  setTimeout(() => {
+    const mdOut = document.getElementById('md-output');
+    if (!mdOut) return;
+    
+    let targetEl = null;
+    const headings = mdOut.querySelectorAll('h1, h2, h3, h4, h5, h6');
+    for (const h of headings) {
+      if (h.textContent.includes(sectionTitle)) {
+        targetEl = h;
+        break;
+      }
+    }
+    
+    if (!targetEl) {
+      const paragraphs = mdOut.querySelectorAll('p, li, tr, pre');
+      const excerptSnippet = excerptText.substring(0, 50).trim();
+      for (const p of paragraphs) {
+        if (p.textContent.includes(excerptSnippet)) {
+          targetEl = p;
+          break;
+        }
+      }
+    }
+    
+    if (targetEl) {
+      targetEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      targetEl.style.transition = 'background-color 0.5s ease';
+      targetEl.style.backgroundColor = 'rgba(168, 85, 247, 0.25)';
+      targetEl.style.borderRadius = '4px';
+      setTimeout(() => {
+        targetEl.style.backgroundColor = 'transparent';
+      }, 2500);
+    }
+  }, 200);
+}
 
 function toggleCopilot() {
   const drawer = document.getElementById('copilot-drawer');
@@ -1840,37 +2704,147 @@ function askCopilot() {
     const typingEl = document.getElementById('copilot-typing');
     if (typingEl) typingEl.remove();
     
-    const norm = val.toLowerCase();
-    let match = COPILOT_KB.find(item => item.keys.some(k => norm.includes(k)));
-    let textReply = '';
-    
-    if (match) {
-      textReply = marked.parse(match.answer);
+    const matches = searchCopilot(val);
+    if (matches.length > 0) {
+      const introText = "Basierend auf Ihrer Anfrage habe ich relevante Informationen in den Projektdokumenten gefunden:";
+      
+      const aiMsg = document.createElement('div');
+      aiMsg.className = 'chat-msg ai';
+      aiMsg.innerHTML = `<p><strong>OMM AI Co-Pilot</strong></p><span class="stream-text"></span>`;
+      msgs.appendChild(aiMsg);
+      msgs.scrollTop = msgs.scrollHeight;
+      
+      const textSpan = aiMsg.querySelector('.stream-text');
+      const words = introText.split(' ');
+      let wIdx = 0;
+      
+      function typeWord() {
+        if (wIdx < words.length) {
+          textSpan.textContent += words[wIdx] + ' ';
+          wIdx++;
+          msgs.scrollTop = msgs.scrollHeight;
+          setTimeout(typeWord, 20);
+        } else {
+          let mIdx = 0;
+          const stopWords = new Set([
+            'der', 'die', 'das', 'und', 'ist', 'in', 'im', 'für', 'von', 'mit', 'den', 'dem', 'des', 'ein', 'eine', 'einer', 'eines', 'einem', 'einen', 'oder'
+          ]);
+          const terms = val.toLowerCase().split(/\s+/).map(t => t.trim()).filter(t => t.length > 1 && !stopWords.has(t));
+          
+          function nextMatch() {
+            if (mIdx < Math.min(matches.length, 3)) {
+              const item = matches[mIdx];
+              const block = item.block;
+              
+              const matchContainer = document.createElement('div');
+              matchContainer.style.opacity = '0';
+              matchContainer.style.transform = 'translateY(10px)';
+              matchContainer.style.transition = 'all 0.4s var(--ease-out)';
+              matchContainer.style.marginTop = '12px';
+              
+              let mdHtml = '';
+              if (typeof marked !== 'undefined') {
+                mdHtml = marked.parse(block.text);
+              } else {
+                mdHtml = `<p>${block.text}</p>`;
+              }
+              
+              const highlightedHtml = highlightTerms(mdHtml, terms);
+              
+              matchContainer.innerHTML = `
+                <div style="font-size: 0.65rem; color: var(--gold); font-family: var(--font-mono); text-transform: uppercase; letter-spacing: 1px; display:flex; justify-content:space-between; margin-bottom:4px;">
+                  <span>📍 ${block.docTitle} &rsaquo; ${block.section}</span>
+                  <span style="opacity:0.6;">Score: ${item.score}</span>
+                </div>
+                <div class="callout callout-important" style="margin: 0; padding: 12px 16px;">
+                  <div class="callout-content" style="font-size: 0.82rem; color: var(--text-2);">
+                    ${highlightedHtml}
+                  </div>
+                </div>
+              `;
+              
+              aiMsg.appendChild(matchContainer);
+              
+              setTimeout(() => {
+                matchContainer.style.opacity = '1';
+                matchContainer.style.transform = 'translateY(0)';
+                msgs.scrollTop = msgs.scrollHeight;
+              }, 50);
+              
+              mIdx++;
+              setTimeout(nextMatch, 300);
+            } else {
+              const citContainer = document.createElement('div');
+              citContainer.style.opacity = '0';
+              citContainer.style.transform = 'translateY(10px)';
+              citContainer.style.transition = 'all 0.4s var(--ease-out)';
+              citContainer.style.marginTop = '16px';
+              citContainer.style.borderTop = '1px solid var(--border)';
+              citContainer.style.paddingTop = '10px';
+              
+              let listHtml = '';
+              const seenDocs = new Set();
+              
+              matches.slice(0, 3).forEach(item => {
+                const block = item.block;
+                const key = `${block.docKey}-${block.section}`;
+                if (seenDocs.has(key)) return;
+                seenDocs.add(key);
+                
+                const escapedText = block.text.replace(/'/g, "\\'").replace(/"/g, '&quot;');
+                listHtml += `
+                  <div onclick="jumpToCitation('${block.docKey}', '${block.section.replace(/'/g, "\\'")}', '${escapedText.substring(0, 80)}')" 
+                       style="font-size: 0.72rem; color: var(--gold-light); cursor: pointer; padding: 6px 10px; border-radius: 6px; background: rgba(168,85,247,0.03); border: 1px solid var(--border); margin-bottom: 6px; display: flex; align-items: center; justify-content: space-between; transition: all 0.15s;"
+                       onmouseover="this.style.borderColor='var(--gold)'; this.style.background='rgba(168,85,247,0.08)'"
+                       onmouseout="this.style.borderColor='var(--border)'; this.style.background='rgba(168,85,247,0.03)'">
+                    <span>📘 <strong>${block.docTitle}</strong> &mdash; ${block.section}</span>
+                    <i data-lucide="external-link" style="width:11px; height:11px; opacity:0.6;"></i>
+                  </div>
+                `;
+              });
+              
+              citContainer.innerHTML = `
+                <div style="font-size: 0.65rem; color: var(--text-3); font-family: var(--font-mono); text-transform: uppercase; letter-spacing: 1.2px; margin-bottom: 6px; font-weight: 700;">Zitate & Verweise:</div>
+                ${listHtml}
+              `;
+              
+              aiMsg.appendChild(citContainer);
+              
+              setTimeout(() => {
+                citContainer.style.opacity = '1';
+                citContainer.style.transform = 'translateY(0)';
+                createIcons();
+                msgs.scrollTop = msgs.scrollHeight;
+              }, 50);
+            }
+          }
+          nextMatch();
+        }
+      }
+      typeWord();
+      
     } else {
-      textReply = `<p>Ich konnte in den Projektdokumenten keine direkte Antwort auf Ihre Frage finden.</p>
-                   <p>Fragen Sie mich gerne nach:</p>
-                   <ul>
-                     <li><strong>Performance KPIs</strong> (ROAS, CTR, CPA)</li>
-                     <li><strong>B2B Pricing</strong> (Paketstrukturen, Setup-Kosten)</li>
-                     <li><strong>Compliance</strong> (EU AI Act, DSGVO)</li>
-                     <li><strong>Timeline</strong> (25-Tage Client Onboarding)</li>
-                     <li><strong>Tech Stack</strong> (FastAPI, Cloud Run, WIF)</li>
-                   </ul>`;
+      const textReply = `<p>Ich konnte in den Projektdokumenten keine direkte Antwort auf Ihre Frage finden.</p>
+                         <p>Fragen Sie mich gerne nach:</p>
+                         <ul>
+                           <li><strong>Performance KPIs</strong> (ROAS, CTR, CPA)</li>
+                           <li><strong>B2B Pricing</strong> (Paketstrukturen, Setup-Kosten)</li>
+                           <li><strong>Compliance</strong> (EU AI Act, DSGVO)</li>
+                           <li><strong>Timeline</strong> (25-Tage Client Onboarding)</li>
+                           <li><strong>Tech Stack</strong> (FastAPI, Cloud Run, WIF)</li>
+                         </ul>`;
+      
+      const aiMsg = document.createElement('div');
+      aiMsg.className = 'chat-msg ai';
+      aiMsg.innerHTML = `<p><strong>OMM AI Co-Pilot</strong></p>`+textReply;
+      msgs.appendChild(aiMsg);
+      msgs.scrollTop = msgs.scrollHeight;
+      createIcons();
     }
-    
-    const aiMsg = document.createElement('div');
-    aiMsg.className = 'chat-msg ai';
-    aiMsg.innerHTML = `<p><strong>OMM AI Doc Co-Pilot</strong></p>`+textReply;
-    msgs.appendChild(aiMsg);
-    
-    msgs.scrollTop = msgs.scrollHeight;
-    createIcons();
   }, 600);
 }
 
-// ════════════════════════════════════════════════
-// STORAGE INSPECTOR
-// ════════════════════════════════════════════════
+
 function toggleStorageDrawer() {
   const drawer = document.getElementById('storage-drawer');
   const isOpening = !drawer.classList.contains('open');
@@ -2072,6 +3046,20 @@ function openAnalytics(){
                 <option value="Enterprise Elite">Enterprise Elite (Dark Luxury Theme)</option>
               </select>
             </div>
+            <div style="display:flex; flex-direction:column; gap:4px;">
+              <label style="font-size:9px; font-family:var(--font-mono); text-transform:uppercase; color:var(--text-3);">Branding Akzentfarbe (Live)</label>
+              <div style="display:flex; gap:6px; align-items:center;">
+                <select id="clone-brand-color" onchange="updateLiveBrandColor()" style="flex:1; background:var(--bg); border:1px solid var(--border); border-radius:var(--radius); padding:8px; color:var(--text); font-size:11px; outline:none; font-family:var(--font-sans);">
+                  <option value="purple" selected>Purple Royalty (Default)</option>
+                  <option value="matrix">Obsidian Matrix (Green)</option>
+                  <option value="amber">Solarized Amber (Gold)</option>
+                  <option value="blue">Electric Strategy (Blue)</option>
+                  <option value="rose">Velvet Rose (Pink)</option>
+                  <option value="custom">Custom Color...</option>
+                </select>
+                <input type="color" id="clone-custom-color" value="#A855F7" style="width:28px; height:28px; border:1px solid var(--border); border-radius:6px; background:none; padding:0; cursor:pointer; display:none;" onchange="updateCustomColorLive(this.value)">
+              </div>
+            </div>
           </div>
         </div>
         <button class="tb" onclick="exportClientHub()" style="width:100%; justify-content:center; padding:10px; border-color:var(--gold); color:var(--gold-light); background:rgba(168,85,247,0.08); font-weight:600;">
@@ -2093,14 +3081,12 @@ function openAnalytics(){
             <button class="tb" onclick="selectAllReportDocs(false)" style="font-size:9px; padding:3px 6px;">Keine auswählen</button>
           </div>
           <div style="max-height:120px; overflow-y:auto; border:1px solid var(--border); border-radius:6px; padding:8px; background:var(--surface-2); display:flex; flex-direction:column; gap:6px; margin-bottom:16px;">
-            \${DOC_KEYS.map(k => {
+            ${DOC_KEYS.map(k => {
               const d = DB[k];
-              return \`
-                <label style="display:flex; align-items:center; gap:8px; font-size:10.5px; color:var(--text-2); cursor:pointer;">
-                  <input type="checkbox" class="report-checkbox" value="\${k}" checked style="accent-color:var(--gold);">
-                  <span style="white-space:nowrap; overflow:hidden; text-overflow:ellipsis;" title="\${d.title}">\${d.title}</span>
-                </label>
-              \`;
+              return '<label style="display:flex; align-items:center; gap:8px; font-size:10.5px; color:var(--text-2); cursor:pointer;">' +
+                     '<input type="checkbox" class="report-checkbox" value="' + k + '" checked style="accent-color:var(--gold);">' +
+                     '<span style="white-space:nowrap; overflow:hidden; text-overflow:ellipsis;" title="' + d.title + '">' + d.title + '</span>' +
+                     '</label>';
             }).join('')}
           </div>
         </div>
@@ -2123,17 +3109,15 @@ function openAnalytics(){
         </tr>
       </thead>
       <tbody>
-        \${DOC_KEYS.map(k=>{
-          const d=DB[k];
-          return \`
-            <tr style="cursor:pointer;" onclick="openDoc('\${k}')">
-              <td style="font-weight:600; color:var(--text);">\${d.title}</td>
-              <td style="color:var(--text-2);">\${d.cat}</td>
-              <td style="font-family:var(--font-mono);">\${d.words.toLocaleString('de-DE')}</td>
-              <td style="font-family:var(--font-mono);">\${d.readMin} Min</td>
-              <td style="font-family:var(--font-mono); font-size:10px; color:var(--text-3);">\${d.file}</td>
-            </tr>
-          \`;
+        ${DOC_KEYS.map(k => {
+          const d = DB[k];
+          return '<tr style="cursor:pointer;" onclick="openDoc(\'' + k + '\')">' +
+                 '<td style="font-weight:600; color:var(--text);">' + d.title + '</td>' +
+                 '<td style="color:var(--text-2);">' + d.cat + '</td>' +
+                 '<td style="font-family:var(--font-mono);">' + d.words.toLocaleString('de-DE') + '</td>' +
+                 '<td style="font-family:var(--font-mono);">' + d.readMin + ' Min</td>' +
+                 '<td style="font-family:var(--font-mono); font-size:10px; color:var(--text-3);">' + d.file + '</td>' +
+                 '</tr>';
         }).join('')}
       </tbody>
     </table>
@@ -2177,23 +3161,75 @@ function exportClientHub() {
     return;
   }
   
-  let htmlContent = document.documentElement.outerHTML;
+  // Clean the DOM programmatically to remove administrative elements
+  const parser = new DOMParser();
+  const cloneDoc = parser.parseFromString(document.documentElement.outerHTML, 'text/html');
   
-  // Reset initial active page views in HTML markup so cloner opens clean
-  htmlContent = htmlContent.replace('id="welcome" class="hidden"', 'id="welcome"');
-  htmlContent = htmlContent.replace('id="reader-wrap" class="visible"', 'id="reader-wrap" class="hidden"');
-  htmlContent = htmlContent.replace('id="reader-wrap" class=""', 'id="reader-wrap" class="hidden"');
+  // Remove admin sidebar button wrapper
+  const sbFooter = cloneDoc.querySelector('.sb-footer');
+  if (sbFooter) sbFooter.remove();
+  
+  // Remove storage inspector button from toolbar
+  const btnStorage = cloneDoc.querySelector('#btn-storage');
+  if (btnStorage) btnStorage.remove();
+  
+  // Remove storage overrides drawer
+  const storageDrawer = cloneDoc.querySelector('#storage-drawer');
+  if (storageDrawer) storageDrawer.remove();
+  
+  // Reset active drawer states if open
+  const drawers = cloneDoc.querySelectorAll('.copilot-drawer');
+  drawers.forEach(d => d.classList.remove('open'));
+  
+  const activeTbs = cloneDoc.querySelectorAll('.active-tb');
+  activeTbs.forEach(b => b.classList.remove('active-tb'));
+  
+  // Clear any existing toasts
+  const toastContainer = cloneDoc.querySelector('#toast-container');
+  if (toastContainer) toastContainer.innerHTML = '';
+  
+  // Reset views
+  const welcome = cloneDoc.querySelector('#welcome');
+  if (welcome) {
+    welcome.classList.remove('hidden');
+    welcome.style.display = '';
+  }
+  const readerWrap = cloneDoc.querySelector('#reader-wrap');
+  if (readerWrap) {
+    readerWrap.classList.add('hidden');
+    readerWrap.classList.remove('visible');
+    readerWrap.style.opacity = '0';
+  }
+  
+  let htmlContent = cloneDoc.documentElement.outerHTML;
   
   let defaultTheme = 'dark';
   if (packageType === 'Standard Pilot') defaultTheme = 'amber';
   else if (packageType === 'Growth Core') defaultTheme = 'matrix';
   
-  // In-memory brand text replacements
+  // Custom brand color injection
+  const brandColorSelect = document.getElementById('clone-brand-color').value;
+  let customStyleTag = '';
+  if (brandColorSelect === 'blue') {
+    customStyleTag = `<style>:root{--gold:#3B82F6;--gold-light:#60A5FA;--gold-dim:rgba(59,130,246,0.30);--gold-glow:rgba(59,130,246,0.07);--border-active:#3B82F6;}</style>`;
+  } else if (brandColorSelect === 'rose') {
+    customStyleTag = `<style>:root{--gold:#EC4899;--gold-light:#F472B6;--gold-dim:rgba(236,72,153,0.30);--gold-glow:rgba(236,72,153,0.07);--border-active:#EC4899;}</style>`;
+  } else if (brandColorSelect === 'custom') {
+    const hex = document.getElementById('clone-custom-color').value;
+    const hexLight = lightenColor(hex, 30);
+    const glow = hexToRgba(hex, 0.07);
+    const dim = hexToRgba(hex, 0.30);
+    customStyleTag = `<style>:root{--gold:${hex};--gold-light:${hexLight};--gold-dim:${dim};--gold-glow:${glow};--border-active:${hex};}</style>`;
+  }
+  
+  if (customStyleTag) {
+    htmlContent = htmlContent.replace('</head>', `${customStyleTag}\n</head>`);
+  }
+  
+  // Replace names and default theme
   htmlContent = htmlContent.replaceAll('Mirrou Hub', clientName + ' Hub');
   htmlContent = htmlContent.replaceAll('Mirrou Creative Studio', clientName + ' Creative Studio');
   htmlContent = htmlContent.replaceAll('Mirrou', clientName);
-  
-  // Set default theme config
   htmlContent = htmlContent.replace("const defaultTheme = '__DEFAULT_THEME__';", `const defaultTheme = '${defaultTheme}';`);
   
   const fullHtml = '<!DOCTYPE html>\n' + htmlContent;
@@ -2227,195 +3263,722 @@ function compileReport() {
     return;
   }
   
-  let docsHtml = '';
-  selectedKeys.forEach((key, index) => {
-    const doc = DB[key];
-    if (!doc) return;
-    
-    let docContent = '';
-    if (typeof marked !== 'undefined') {
-      docContent = marked.parse(doc.content);
-    } else {
-      docContent = `<pre style="white-space: pre-wrap;">${escapeHtml(doc.content)}</pre>`;
-    }
-    
-    docsHtml += `
-      <section class="pdf-section" style="padding: 1.2in 1in; page-break-after: always; position:relative; min-height:100vh; display:flex; flex-direction:column; justify-content:flex-start;">
-        <div class="pdf-doc-header" style="border-bottom: 2px solid #111; padding-bottom: 12px; margin-bottom: 30px;">
-          <span class="pdf-doc-cat" style="font-family: 'JetBrains Mono', monospace; font-size: 8pt; color: #A855F7; text-transform: uppercase; letter-spacing: 1.5px; display: block; margin-bottom: 5px;">\${doc.cat}</span>
-          <h2 class="pdf-doc-title" style="font-family: 'Cormorant Garamond', serif; font-size: 24pt; font-weight: 700; color: #111; line-height:1.2;">\${doc.title}</h2>
-        </div>
-        <div class="pdf-doc-body md" style="flex:1;">
-          \${docContent}
-        </div>
-      </section>
-    `;
-  });
+  const docsData = selectedKeys.map(k => ({
+    key: k,
+    title: DB[k].title,
+    cat: DB[k].cat,
+    content: DB[k].content
+  }));
   
-  const today = new Date().toLocaleDateString('de-DE', { year: 'numeric', month: 'long', day: 'numeric' });
+  const docsDataJson = JSON.stringify(docsData);
   
   const compilerHtml = `<!DOCTYPE html>
 <html lang="de">
 <head>
   <meta charset="UTF-8">
-  <title>OPUS MAGNUM MEDIA — Compiled Dossier</title>
+  <title>OPUS MAGNUM MEDIA — Interactive Dossier Compiler</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300..700;1,300..700&family=Inter:wght@300..700&family=JetBrains+Mono&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"><\/script>
   <style>
     :root {
       --primary: #A855F7;
-      --text: #111111;
-      --bg: #ffffff;
-      --border: #e2e8f0;
-      --muted: #64748b;
+      --primary-light: #D8B4FE;
+      --bg: #0c0c0e;
+      --surface: #121215;
+      --border: rgba(255,255,255,0.08);
+      --text: #F5F5F5;
+      --text-muted: #9a9aa3;
     }
     * { box-sizing: border-box; margin: 0; padding: 0; }
     body {
       font-family: 'Inter', sans-serif;
       color: var(--text);
+      background: #18181b;
+      display: flex;
+      height: 100vh;
+      overflow: hidden;
+    }
+    .compiler-sidebar {
+      width: 340px;
       background: var(--bg);
-      line-height: 1.6;
-      padding: 0;
-      font-size: 11pt;
+      border-right: 1px solid var(--border);
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+      flex-shrink: 0;
+      padding: 24px;
+      overflow-y: auto;
+    }
+    .sidebar-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.6rem;
+      font-weight: 700;
+      color: var(--primary-light);
+      margin-bottom: 4px;
+      letter-spacing: 0.5px;
+    }
+    .sidebar-sub {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 8px;
+      letter-spacing: 1.5px;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      margin-bottom: 24px;
+    }
+    .control-group {
+      margin-bottom: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    .control-label {
+      font-size: 10px;
+      font-family: 'JetBrains Mono', monospace;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      letter-spacing: 1px;
+    }
+    select, input[type="text"] {
+      width: 100%;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 10px;
+      color: var(--text);
+      font-size: 12px;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+    select:focus, input[type="text"]:focus {
+      border-color: var(--primary);
+    }
+    .doc-list {
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      background: var(--surface);
+      max-height: 220px;
+      overflow-y: auto;
+      padding: 8px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .doc-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 6px 8px;
+      background: rgba(255,255,255,0.02);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      font-size: 11px;
+    }
+    .doc-item-title {
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      max-width: 160px;
+      cursor: pointer;
+    }
+    .doc-item-actions {
+      display: flex;
+      gap: 4px;
+    }
+    .action-btn {
+      background: none;
+      border: 1px solid var(--border);
+      color: var(--text-muted);
+      border-radius: 4px;
+      padding: 2px 6px;
+      cursor: pointer;
+      font-size: 10px;
+      transition: all 0.15s;
+    }
+    .action-btn:hover {
+      border-color: var(--primary);
+      color: var(--primary-light);
+    }
+    .btn-compile {
+      width: 100%;
+      background: var(--primary);
+      color: #fff;
+      border: none;
+      border-radius: 6px;
+      padding: 12px;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      margin-top: 10px;
+      transition: background 0.2s;
+    }
+    .btn-compile:hover {
+      background: #9333ea;
     }
     
-    /* Cover Page */
-    .cover-page {
-      height: 100vh;
+    /* Preview Area */
+    .preview-canvas {
+      flex: 1;
+      height: 100%;
+      overflow-y: auto;
+      padding: 40px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      background: #18181b;
+    }
+    .preview-title-bar {
+      width: 100%;
+      max-width: 210mm;
+      margin: 0 auto 16px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 11px;
+      color: var(--text-muted);
+      font-family: 'JetBrains Mono', monospace;
+    }
+    .page-preview {
+      background: #ffffff;
+      color: #111111;
+      width: 210mm;
+      min-height: 297mm;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.5);
+      margin-bottom: 40px;
+      box-sizing: border-box;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      transition: padding 0.2s;
+      page-break-after: always;
+    }
+    
+    /* Cover Styles */
+    .cover-luxury {
+      background: #030303 !important;
+      color: #ffffff !important;
+      border: 20px solid #030303;
+      position: relative;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
-      padding: 2in;
-      page-break-after: always;
-      background: #030303;
-      color: #ffffff;
-      -webkit-print-color-adjust: exact;
-      print-color-adjust: exact;
+      padding: 2in !important;
     }
-    .cover-header {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 10pt;
-      letter-spacing: 3px;
-      color: var(--primary);
+    .cover-luxury::before {
+      content: '';
+      position: absolute;
+      inset: 20px;
+      border: 1px solid rgba(168, 85, 247, 0.3);
+      pointer-events: none;
     }
-    .cover-body {
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      gap: 15px;
-    }
-    .cover-title {
+    .cover-luxury .cover-title {
       font-family: 'Cormorant Garamond', serif;
       font-size: 38pt;
       font-weight: 300;
-      line-height: 1.1;
       color: #ffffff;
+      line-height: 1.1;
     }
-    .cover-subtitle {
+    .cover-luxury .cover-subtitle {
       font-size: 13pt;
       color: #94a3b8;
-      max-width: 500px;
     }
-    .cover-footer {
+    .cover-luxury .cover-header {
+      font-family: 'JetBrains Mono', monospace;
       font-size: 9pt;
-      color: #64748b;
-      border-top: 1px solid #1e293b;
-      padding-top: 15px;
-      display: flex;
-      justify-content: space-between;
+      letter-spacing: 3px;
+      color: var(--primary);
     }
     
-    /* Markdown Styles */
-    .md h1, .md h2, .md h3, .md h4 {
-      font-family: 'Cormorant Garamond', serif;
-      color: #000;
-      margin-top: 25px;
-      margin-bottom: 10px;
+    .cover-minimal {
+      background: #ffffff !important;
+      color: #111111 !important;
+      border: 1px solid #111;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 2in !important;
     }
-    .md h1 { font-size: 20pt; border-bottom: 1px solid var(--border); padding-bottom: 5px; }
-    .md h2 { font-size: 16pt; }
-    .md h3 { font-size: 13pt; }
-    .md p { margin-bottom: 12px; text-align: justify; }
-    .md ul, .md ol { margin-bottom: 15px; padding-left: 20px; }
-    .md li { margin-bottom: 5px; }
-    .md table {
+    .cover-minimal .cover-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 36pt;
+      font-weight: 700;
+      color: #111111;
+      line-height: 1.1;
+      border-bottom: 4px solid #111111;
+      padding-bottom: 20px;
+    }
+    .cover-minimal .cover-subtitle {
+      font-size: 12pt;
+      color: #475569;
+    }
+    .cover-minimal .cover-header {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 9pt;
+      letter-spacing: 2px;
+      color: #111111;
+    }
+    
+    .cover-blue {
+      background: #0f172a !important;
+      color: #ffffff !important;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 2in !important;
+      border-left: 24px solid #3b82f6;
+    }
+    .cover-blue .cover-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 40pt;
+      font-weight: 400;
+      color: #ffffff;
+      line-height: 1.1;
+    }
+    .cover-blue .cover-subtitle {
+      font-size: 13pt;
+      color: #94a3b8;
+    }
+    .cover-blue .cover-header {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 9pt;
+      letter-spacing: 3px;
+      color: #3b82f6;
+    }
+    
+    /* Markdown formatting in print preview */
+    .pdf-content {
+      font-size: 11pt;
+      line-height: 1.6;
+      color: #111111;
+    }
+    .pdf-content h1, .pdf-content h2, .pdf-content h3, .pdf-content h4 {
+      font-family: 'Cormorant Garamond', serif;
+      color: #000000;
+      margin-top: 24px;
+      margin-bottom: 8px;
+    }
+    .pdf-content h1 { font-size: 20pt; border-bottom: 1px solid #cbd5e1; padding-bottom: 6px; }
+    .pdf-content h2 { font-size: 16pt; margin-top: 28px; }
+    .pdf-content h3 { font-size: 13pt; }
+    .pdf-content p { margin-bottom: 12px; text-align: justify; }
+    .pdf-content ul, .pdf-content ol { margin-bottom: 15px; padding-left: 20px; }
+    .pdf-content li { margin-bottom: 4px; }
+    .pdf-content table {
       width: 100%;
       border-collapse: collapse;
       margin: 20px 0;
       font-size: 9.5pt;
       page-break-inside: avoid;
     }
-    .md th, .md td {
+    .pdf-content th, .pdf-content td {
       border: 1px solid #cbd5e1;
       padding: 8px 12px;
       text-align: left;
     }
-    .md th {
-      background: #f1f5f9;
-      font-weight: 700;
-    }
-    .md blockquote {
+    .pdf-content th { background: #f1f5f9; font-weight: 700; }
+    
+    .pdf-content blockquote {
       border-left: 3px solid var(--primary);
       background: #f8fafc;
       padding: 10px 15px;
       margin: 15px 0;
       font-style: italic;
     }
-    .md code {
+    .pdf-content code {
       font-family: 'JetBrains Mono', monospace;
       background: #f1f5f9;
       padding: 2px 4px;
       border-radius: 3px;
       font-size: 8.5pt;
     }
-    .md pre {
+    .pdf-content pre {
       background: #f8fafc;
-      border: 1px solid var(--border);
+      border: 1px solid #cbd5e1;
       padding: 12px;
       border-radius: 6px;
       overflow-x: auto;
       margin: 15px 0;
       page-break-inside: avoid;
     }
-    .md pre code { background: transparent; padding: 0; }
+    .pdf-content pre code { background: transparent; padding: 0; }
     
-    @page {
-      size: A4 portrait;
-      margin: 0;
+    /* Callouts in PDF */
+    .pdf-content .callout {
+      margin: 20px 0;
+      padding: 12px 16px;
+      border-radius: 6px;
+      border-left: 4px solid #cbd5e1;
+      background: #f8fafc;
     }
+    .pdf-content .callout-note { border-left-color: #3b82f6; background: rgba(59,130,246,0.03); }
+    .pdf-content .callout-tip { border-left-color: #10b981; background: rgba(16,185,129,0.03); }
+    .pdf-content .callout-warning { border-left-color: #f59e0b; background: rgba(245,158,11,0.03); }
+    .pdf-content .callout-important { border-left-color: #a855f7; background: rgba(168,85,247,0.03); }
+    .pdf-content .callout-caution { border-left-color: #ef4444; background: rgba(239,68,68,0.03); }
+    .pdf-content .callout-header { font-weight: bold; font-size: 8.5pt; text-transform: uppercase; margin-bottom: 6px; }
+    .pdf-content .callout-note .callout-header { color: #2563eb; }
+    .pdf-content .callout-tip .callout-header { color: #059669; }
+    .pdf-content .callout-warning .callout-header { color: #d97706; }
+    .pdf-content .callout-important .callout-header { color: #7c3aed; }
+    .pdf-content .callout-caution .callout-header { color: #dc2626; }
+    
+    /* Header and Footer */
+    .pdf-doc-header {
+      border-bottom: 1px solid #cbd5e1;
+      padding-bottom: 10px;
+      margin-bottom: 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+    }
+    .pdf-header-cat {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 8pt;
+      color: var(--primary);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+    .pdf-header-title {
+      font-size: 8pt;
+      color: #64748b;
+    }
+    .pdf-footer {
+      position: absolute;
+      bottom: 0.5in;
+      left: 0.75in;
+      right: 0.75in;
+      border-top: 1px solid #e2e8f0;
+      padding-top: 8px;
+      display: flex;
+      justify-content: space-between;
+      font-size: 8pt;
+      color: #64748b;
+    }
+    
+    /* Landscape Support */
+    .landscape .page-preview {
+      width: 297mm;
+      min-height: 210mm;
+    }
+    
+    /* Media Print */
     @media print {
-      body { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
-      .cover-page { height: 100vh; background: #030303 !important; color: #ffffff !important; }
-      .cover-title { color: #ffffff !important; }
+      body {
+        background: #ffffff !important;
+        color: #000000 !important;
+      }
+      .compiler-sidebar {
+        display: none !important;
+      }
+      .preview-canvas {
+        padding: 0 !important;
+        background: transparent !important;
+        overflow: visible !important;
+      }
+      .page-preview {
+        box-shadow: none !important;
+        margin: 0 !important;
+        width: 100% !important;
+        min-height: 100vh !important;
+      }
+      .preview-title-bar {
+        display: none !important;
+      }
     }
   </style>
 </head>
-<body>
+<body class="portrait">
 
-  <!-- Cover Page -->
-  <div class="cover-page">
-    <div class="cover-header">OPUS MAGNUM MEDIA // DOSSIER COMPILER</div>
-    <div class="cover-body">
-      <div style="font-size: 11pt; text-transform: uppercase; letter-spacing: 2px; color: var(--primary); font-weight: bold;">Systemische Berichte</div>
-      <h1 class="cover-title">Projekt-Dossier</h1>
-      <p class="cover-subtitle">Kompilierte Zusammenstellung strategischer, technischer und compliance-bezogener Berichte für Mandanten und Partner.</p>
+  <div class="compiler-sidebar">
+    <h1 class="sidebar-title">Dossier Compiler</h1>
+    <div class="sidebar-sub">Interactive Preview Workspace</div>
+    
+    <div class="control-group">
+      <label class="control-label">Cover Page Design</label>
+      <select id="cover-style" onchange="updateSettings()">
+        <option value="luxury">Luxury Dark</option>
+        <option value="minimal">Minimal White</option>
+        <option value="blue">Strategy Blue</option>
+      </select>
     </div>
-    <div class="cover-footer">
-      <div>Datum: \${today}</div>
-      <div>Zusammenstellung: OMM Compiler Engine</div>
+    
+    <div class="control-group">
+      <label class="control-label">Ausrichtung (Page Size)</label>
+      <select id="orientation" onchange="updateSettings()">
+        <option value="portrait">A4 Hochformat (Portrait)</option>
+        <option value="landscape">A4 Querformat (Landscape)</option>
+      </select>
     </div>
+    
+    <div class="control-group">
+      <label class="control-label">Seitenränder (Margins)</label>
+      <select id="margins" onchange="updateSettings()">
+        <option value="0.5">Schmal (0.5 Zoll)</option>
+        <option value="0.75" selected>Normal (0.75 Zoll)</option>
+        <option value="1.0">Breit (1.0 Zoll)</option>
+      </select>
+    </div>
+    
+    <div class="control-group">
+      <label class="control-label">Dossier Titel</label>
+      <input type="text" id="pdf-title" value="Projekt-Dossier" oninput="updateSettings()" style="background:var(--surface); border:1px solid var(--border); border-radius:6px; padding:10px; color:var(--text); font-size:12px; outline:none;">
+    </div>
+    
+    <div class="control-group">
+      <label class="control-label">Untertitel</label>
+      <input type="text" id="pdf-subtitle" value="Kompilierte Zusammenstellung strategischer Berichte" oninput="updateSettings()" style="background:var(--surface); border:1px solid var(--border); border-radius:6px; padding:10px; color:var(--text); font-size:12px; outline:none;">
+    </div>
+    
+    <div class="control-group">
+      <label class="control-label">Herausgeber & Vertraulichkeit</label>
+      <input type="text" id="pdf-confidential" value="Mirrou Hub &mdash; Vertraulich" oninput="updateSettings()" style="background:var(--surface); border:1px solid var(--border); border-radius:6px; padding:10px; color:var(--text); font-size:12px; outline:none;">
+    </div>
+    
+    <div class="control-group">
+      <label class="control-label">Vorwort / Einleitung (Optional)</label>
+      <textarea id="pdf-preface" placeholder="Geben Sie ein optionales Vorwort ein, das als Seite 2 eingefügt wird..." oninput="updateSettings()" style="width:100%; background:var(--surface); border:1px solid var(--border); border-radius:6px; padding:10px; color:var(--text); font-size:12px; outline:none; font-family:var(--font-sans); height:70px; resize:vertical;"></textarea>
+    </div>
+    
+    <div class="control-group" style="flex:1; min-height: 150px; display:flex; flex-direction:column;">
+      <label class="control-label">Reihenfolge & Auswahl</label>
+      <div class="doc-list" id="doc-list-container"></div>
+    </div>
+    
+    <div class="control-group" style="flex-direction:row; gap:10px; margin-top:10px;">
+      <label style="display:flex; align-items:center; gap:8px; font-size:11px; cursor:pointer;">
+        <input type="checkbox" id="show-headers" checked onchange="updateSettings()" style="accent-color:var(--primary);">
+        Kopfzeilen anzeigen
+      </label>
+    </div>
+    
+    <div class="control-group" style="flex-direction:row; gap:10px;">
+      <label style="display:flex; align-items:center; gap:8px; font-size:11px; cursor:pointer;">
+        <input type="checkbox" id="show-footers" checked onchange="updateSettings()" style="accent-color:var(--primary);">
+        Seitenzahlen anzeigen
+      </label>
+    </div>
+    
+    <button class="btn-compile" onclick="window.print()">
+      🖨️ PDF Dossier drucken
+    </button>
+  </div>
+  
+  <div class="preview-canvas">
+    <div class="preview-title-bar">
+      <span>🖥️ VORSCHAU-MODUS (Print Preview)</span>
+      <span>TIPP: Zum Speichern als PDF im Druckdialog "Als PDF speichern" wählen.</span>
+    </div>
+    <div id="preview-pages-container" style="display:contents;"></div>
   </div>
 
-  <!-- Content -->
-  \${docsHtml}
-
   <script>
-    window.onload = function() {
-      setTimeout(() => {
-        window.print();
-      }, 600);
+    const docs = ` + docsDataJson + `;
+    
+    function init() {
+      renderDocList();
+      updateSettings();
     }
+    
+    function renderDocList() {
+      const container = document.getElementById('doc-list-container');
+      container.innerHTML = '';
+      
+      docs.forEach((doc, idx) => {
+        const item = document.createElement('div');
+        item.className = 'doc-item';
+        item.innerHTML = \`
+          <label style="display:flex; align-items:center; gap:6px; cursor:pointer; flex:1; min-width:0;">
+            <input type="checkbox" class="doc-checkbox" data-key="\${doc.key}" \${doc.active !== false ? 'checked' : ''} onchange="toggleDoc('\${doc.key}')" style="accent-color:var(--primary);">
+            <span class="doc-item-title" title="\${doc.title}">\${doc.title}</span>
+          </label>
+          <div class="doc-item-actions">
+            <button class="action-btn" onclick="moveDoc(\${idx}, -1)" \${idx === 0 ? 'disabled' : ''}>&uarr;</button>
+            <button class="action-btn" onclick="moveDoc(\${idx}, 1)" \${idx === docs.length - 1 ? 'disabled' : ''}>&darr;</button>
+          </div>
+        \`;
+        container.appendChild(item);
+      });
+    }
+    
+    function toggleDoc(key) {
+      const doc = docs.find(d => d.key === key);
+      if (doc) {
+        doc.active = !doc.active;
+        renderPreview();
+      }
+    }
+    
+    function moveDoc(idx, dir) {
+      if (idx + dir < 0 || idx + dir >= docs.length) return;
+      const temp = docs[idx];
+      docs[idx] = docs[idx + dir];
+      docs[idx + dir] = temp;
+      renderDocList();
+      renderPreview();
+    }
+    
+    function updateSettings() {
+      const orientation = document.getElementById('orientation').value;
+      const styleEl = document.getElementById('orientation-style') || document.createElement('style');
+      styleEl.id = 'orientation-style';
+      
+      const margin = document.getElementById('margins').value;
+      const showHeaders = document.getElementById('show-headers').checked;
+      const showFooters = document.getElementById('show-footers').checked;
+      
+      document.body.className = orientation;
+      
+      styleEl.innerHTML = \\\`
+        @page {
+          size: A4 \\\${orientation};
+          margin: \\\${margin}in;
+        }
+        .page-preview {
+          padding: \\\${margin}in;
+        }
+        \\\${!showHeaders ? '.pdf-doc-header { display:none !important; }' : ''}
+        \\\${!showFooters ? '.pdf-footer { display:none !important; }' : ''}
+      \\\`;
+      
+      if (!styleEl.parentNode) document.head.appendChild(styleEl);
+      
+      renderPreview();
+    }
+    
+    function escapeHtml(str) {
+      return str.replace(/&/g, '&amp;')
+                .replace(/</g, '&lt;')
+                .replace(/>/g, '&gt;')
+                .replace(/"/g, '&quot;')
+                .replace(/'/g, '&#039;');
+    }
+
+    function renderPreview() {
+      const container = document.getElementById('preview-pages-container');
+      container.innerHTML = '';
+      
+      const coverStyle = document.getElementById('cover-style').value;
+      const showHeaders = document.getElementById('show-headers').checked;
+      const showFooters = document.getElementById('show-footers').checked;
+      
+      const dossierTitle = document.getElementById('pdf-title').value.trim() || 'Projekt-Dossier';
+      const dossierSubtitle = document.getElementById('pdf-subtitle').value.trim() || '';
+      const publisherLabel = document.getElementById('pdf-confidential').value.trim() || 'Mirrou Hub &mdash; Vertraulich';
+      const prefaceText = document.getElementById('pdf-preface').value.trim();
+      
+      const coverPage = document.createElement('div');
+      coverPage.className = \\\`page-preview cover-\\\${coverStyle}\\\`;
+      
+      const today = new Date().toLocaleDateString('de-DE', { year: 'numeric', month: 'long', day: 'numeric' });
+      
+      if (coverStyle === 'luxury') {
+        coverPage.innerHTML = \\\`
+          <div class="cover-header">OPUS MAGNUM MEDIA // DOSSIER COMPILER</div>
+          <div class="cover-body">
+            <div style="font-size: 11pt; text-transform: uppercase; letter-spacing: 2px; color: var(--primary); font-weight: bold;">Systemische Berichte</div>
+            <h1 class="cover-title">\\\${escapeHtml(dossierTitle)}</h1>
+            \\\${dossierSubtitle ? \\\`<p class="cover-subtitle">\\\${escapeHtml(dossierSubtitle)}</p>\\\` : ''}
+          </div>
+          <div class="cover-footer">
+            <div>Datum: \\\${today}</div>
+            <div>Zusammenstellung: OMM Compiler Engine</div>
+          </div>
+        \\\`;
+      } else if (coverStyle === 'minimal') {
+        coverPage.innerHTML = \\\`
+          <div class="cover-header">OPUS MAGNUM MEDIA — SYSTEM ARCHIVE</div>
+          <div class="cover-body" style="padding-top:100px;">
+            <h1 class="cover-title" style="border-bottom: 4px solid #111; padding-bottom: 20px; font-weight:700;">\\\${escapeHtml(dossierTitle.toUpperCase())}</h1>
+            \\\${dossierSubtitle ? \\\`<p class="cover-subtitle" style="margin-top:20px; color:#475569;">\\\${escapeHtml(dossierSubtitle)}</p>\\\` : ''}
+          </div>
+          <div class="cover-footer" style="border-top:1px solid #111; padding-top:15px; color:#111; font-weight:600;">
+            <div>Datum: \\\${today}</div>
+            <div>Compiler Engine v3.0</div>
+          </div>
+        \\\`;
+      } else if (coverStyle === 'blue') {
+        coverPage.innerHTML = \\\`
+          <div class="cover-header">MIRROU CREATIVE STUDIO // STRATEGY REPORT</div>
+          <div class="cover-body">
+            <div style="font-size: 10pt; text-transform: uppercase; letter-spacing: 2px; color: #3b82f6; font-weight: bold; font-family:'JetBrains Mono', monospace;">CLIENT WORKSPACE</div>
+            <h1 class="cover-title" style="font-size:38pt; font-weight:bold; margin-top:10px;">\\\${escapeHtml(dossierTitle)}</h1>
+            \\\${dossierSubtitle ? \\\`<p class="cover-subtitle" style="margin-top:15px; color:#94a3b8; font-size:12pt;">\\\${escapeHtml(dossierSubtitle)}</p>\\\` : ''}
+          </div>
+          <div class="cover-footer" style="border-top: 1px solid #1e293b; color:#64748b;">
+            <div>Datum: \\\${today}</div>
+            <div>Branding DNA Document Hub</div>
+          </div>
+        \\\`;
+      }
+      container.appendChild(coverPage);
+      
+      if (prefaceText) {
+        const prefacePage = document.createElement('div');
+        prefacePage.className = 'page-preview';
+        
+        let prefaceHtml = '';
+        if (typeof marked !== 'undefined') {
+          prefaceHtml = marked.parse(prefaceText);
+        } else {
+          prefaceHtml = \\\`<p style="white-space:pre-wrap;">\\\${escapeHtml(prefaceText)}</p>\\\`;
+        }
+        
+        prefacePage.innerHTML = \\\`
+          <div class="pdf-doc-header">
+            <span class="pdf-header-cat">Präambel</span>
+            <span class="pdf-header-title">Vorwort & Einleitung</span>
+          </div>
+          <div class="pdf-content" style="flex:1; display:flex; flex-direction:column; justify-content:center; max-width:600px; margin:0 auto;">
+            <h2 style="font-family:'Cormorant Garamond', serif; font-size:24pt; font-weight:400; text-align:center; margin-bottom:24px; color:#111;">Geleitwort</h2>
+            <div style="font-size:11.5pt; line-height:1.8; color:#333; font-style:italic; text-align:justify;">
+              \\\${prefaceHtml}
+            </div>
+            <div style="margin-top:48px; border-top:1px solid #cbd5e1; padding-top:12px; display:flex; justify-content:space-between; font-size:10pt; color:#475569;">
+              <div>Herausgegeben durch: OMM Engine</div>
+              <div style="text-align:right; font-family:'Cormorant Garamond', serif; font-style:italic;">Freigegeben am \\\${today}</div>
+            </div>
+          </div>
+          <div class="pdf-footer">
+            <span>\\\${publisherLabel}</span>
+            <span>Vorwort</span>
+          </div>
+        \\\`;
+        container.appendChild(prefacePage);
+      }
+      
+      let activeCount = 0;
+      docs.forEach((doc) => {
+        if (doc.active === false) return;
+        activeCount++;
+        
+        const page = document.createElement('div');
+        page.className = 'page-preview';
+        
+        let docContent = '';
+        if (typeof marked !== 'undefined') {
+          docContent = marked.parse(doc.content);
+        } else {
+          docContent = \\\`<pre style="white-space: pre-wrap;">\\\${doc.content}</pre>\\\`;
+        }
+        
+        page.innerHTML = \\\`
+          <div class="pdf-doc-header">
+            <span class="pdf-header-cat">\\\${doc.cat}</span>
+            <span class="pdf-header-title">\\\${doc.title}</span>
+          </div>
+          <div class="pdf-content" style="flex:1;">
+            \\\${docContent}
+          </div>
+          <div class="pdf-footer">
+            <span>\\\${publisherLabel}</span>
+            <span>Dokument \\\${activeCount}</span>
+          </div>
+        \\\`;
+        container.appendChild(page);
+      });
+    }
+    
+    window.onload = init;
   <\/script>
 </body>
 </html>`;
@@ -2423,10 +3986,363 @@ function compileReport() {
   pWin.document.open();
   pWin.document.write(compilerHtml);
   pWin.document.close();
-  toast('Dossier wird im neuen Tab generiert...', 'printer');
+  toast('Dossier-Compiler geladen', 'printer');
 }
-</script>
-<script>
+
+// ════════════════════════════════════════════════
+// PREMIUM UPGRADE UTILITIES
+// ════════════════════════════════════════════════
+
+// FAQ Widget Trigger
+function askFAQ(questionText) {
+  const drawer = document.getElementById('copilot-drawer');
+  if (drawer && !drawer.classList.contains('open')) {
+    toggleCopilot();
+  }
+  const input = document.getElementById('copilot-input');
+  if (input) {
+    input.value = questionText;
+    askCopilot();
+  }
+}
+
+// Auto-Summary Generator
+function getSummaryMarkdown(key) {
+  if (DOCUMENT_SUMMARIES[key]) {
+    return DOCUMENT_SUMMARIES[key];
+  }
+  const d = DB[key];
+  if (!d) return '';
+  return `### ✨ \${d.badge || '📄'} \${d.title} — Zusammenfassung
+* **Kategorie**: \${d.cat}
+* **Beschreibung**: \${d.desc}
+* **Umfang**: \${d.words.toLocaleString('de-DE')} Wörter (ca. \${d.readMin} Min. Lesezeit)
+* **Kernaussage**: Dieses Dokument befasst sich intensiv mit Aspekten aus dem Bereich *\${d.cat}*. Es stellt grundlegende Konzepte und operative Leitlinien bereit, um die Skalierung, Compliance und Effizienz des Systems zu unterstützen.
+* **Empfohlene Aktion**: Nutzen Sie die Suchfunktion des Co-Pilots oder klicken Sie auf die häufig gestellten Fragen, um tiefer in spezifische Abschnitte einzutauchen.`;
+}
+
+function triggerSummary() {
+  if (!activeKey || !DB[activeKey]) return;
+  
+  const drawer = document.getElementById('copilot-drawer');
+  if (drawer && !drawer.classList.contains('open')) {
+    toggleCopilot();
+  }
+  
+  const msgs = document.getElementById('copilot-messages');
+  if (!msgs) return;
+  
+  const userDiv = document.createElement('div');
+  userDiv.className = 'chat-msg user';
+  userDiv.innerHTML = `<p><i data-lucide="sparkles"></i> Zusammenfassung anfordern...</p>`;
+  msgs.appendChild(userDiv);
+  
+  const aiDiv = document.createElement('div');
+  aiDiv.className = 'chat-msg ai';
+  aiDiv.innerHTML = `<p><em>Generiere Zusammenfassung...</em></p>`;
+  msgs.appendChild(aiDiv);
+  msgs.scrollTop = msgs.scrollHeight;
+  createIcons();
+  
+  const summaryText = getSummaryMarkdown(activeKey);
+  let idx = 0;
+  aiDiv.innerHTML = '';
+  
+  const words = summaryText.split(' ');
+  function streamWord() {
+    if (idx < words.length) {
+      aiDiv.innerHTML = marked.parse(words.slice(0, idx + 1).join(' '));
+      idx++;
+      msgs.scrollTop = msgs.scrollHeight;
+      setTimeout(streamWord, 15);
+    } else {
+      createIcons();
+    }
+  }
+  setTimeout(streamWord, 350);
+}
+
+// Presenter Mode Stopwatch Timer
+let presTimerId = null;
+let presTimeElapsed = 0;
+
+function startPresTimer() {
+  if (presTimerId) return;
+  presTimerId = setInterval(() => {
+    presTimeElapsed++;
+    updatePresTimerDisplay();
+  }, 1000);
+}
+
+function pausePresTimer() {
+  if (presTimerId) {
+    clearInterval(presTimerId);
+    presTimerId = null;
+  }
+}
+
+function resetPresTimer() {
+  pausePresTimer();
+  presTimeElapsed = 0;
+  updatePresTimerDisplay();
+}
+
+function updatePresTimerDisplay() {
+  const display = document.getElementById('pres-timer');
+  if (!display) return;
+  const hrs = Math.floor(presTimeElapsed / 3600).toString().padStart(2, '0');
+  const mins = Math.floor((presTimeElapsed % 3600) / 60).toString().padStart(2, '0');
+  const secs = (presTimeElapsed % 60).toString().padStart(2, '0');
+  display.textContent = `\${hrs}:\${mins}:\${secs}`;
+}
+
+// Speaker Notes Parser & Stripper
+function parseSpeakerNotes(md) {
+  const commentMatch = md.match(/<!--\s*notes:([\s\S]*?)-->/i);
+  if (commentMatch) return commentMatch[1].trim();
+  
+  const lineMatch = md.match(/(?:^|\n)(?:Note|Notes|Notiz|Notizen):\s*([\s\S]*?)$/i);
+  if (lineMatch) return lineMatch[1].trim();
+  
+  return '';
+}
+
+function stripSpeakerNotes(md) {
+  let stripped = md.replace(/<!--\s*notes:([\s\S]*?)-->/gi, '');
+  stripped = stripped.replace(/(?:^|\n)(?:Note|Notes|Notiz|Notizen):\s*([\s\S]*?)$/i, '');
+  return stripped.trim();
+}
+
+// Presenter View Next Slide Preview
+function updateNextSlidePreview() {
+  const container = document.getElementById('pres-next-content');
+  if (!container) return;
+  if (slideIdx + 1 < slides.length) {
+    const nextMarkdown = localStorage.getItem('omm-slide-' + activeKey + '-' + (slideIdx + 1)) || slides[slideIdx + 1];
+    const cleanMd = stripSpeakerNotes(nextMarkdown);
+    container.innerHTML = marked.parse(cleanMd);
+  } else {
+    container.innerHTML = '<div style="color:var(--text-3); font-style:italic;">Ende der Präsentation</div>';
+  }
+}
+
+// Presenter Mode Toggle
+let isPresenterMode = false;
+let isEditingNotes = false;
+
+function togglePresenterMode() {
+  isPresenterMode = !isPresenterMode;
+  const overlay = document.getElementById('slide-overlay');
+  const btn = document.getElementById('btn-slide-presenter');
+  if (!overlay || !btn) return;
+  
+  if (isPresenterMode) {
+    overlay.classList.add('presenter-active');
+    btn.classList.add('active-tb');
+    startPresTimer();
+    updateNextSlidePreview();
+    renderSlide(); // Re-render to load notes
+  } else {
+    overlay.classList.remove('presenter-active');
+    btn.classList.remove('active-tb');
+    pausePresTimer();
+  }
+  createIcons();
+}
+
+// Speaker Notes Editing
+function toggleEditNotes() {
+  const display = document.getElementById('pres-notes');
+  const editor = document.getElementById('pres-notes-editor');
+  const btnEdit = document.getElementById('btn-edit-notes');
+  const btnSave = document.getElementById('btn-save-notes');
+  if (!display || !editor || !btnEdit || !btnSave) return;
+  
+  isEditingNotes = !isEditingNotes;
+  if (isEditingNotes) {
+    const slideMarkdown = localStorage.getItem('omm-slide-' + activeKey + '-' + slideIdx) || slides[slideIdx];
+    const notes = parseSpeakerNotes(slideMarkdown);
+    const savedNotes = localStorage.getItem('omm-notes-' + activeKey + '-' + slideIdx);
+    const finalNotes = savedNotes !== null ? savedNotes : notes;
+    
+    editor.value = finalNotes;
+    editor.classList.remove('hidden');
+    display.classList.add('hidden');
+    btnEdit.innerHTML = '<i data-lucide="x"></i> Abbrechen';
+    btnSave.classList.remove('hidden');
+  } else {
+    editor.classList.add('hidden');
+    display.classList.remove('hidden');
+    btnEdit.innerHTML = '<i data-lucide="edit-2"></i> Notizen bearbeiten';
+    btnSave.classList.add('hidden');
+  }
+  createIcons();
+}
+
+function saveNotesOverride() {
+  const editor = document.getElementById('pres-notes-editor');
+  if (!editor) return;
+  
+  const val = editor.value.trim();
+  localStorage.setItem('omm-notes-' + activeKey + '-' + slideIdx, val);
+  toast('Referenten-Notiz gespeichert', 'save');
+  
+  isEditingNotes = false;
+  const display = document.getElementById('pres-notes');
+  const btnEdit = document.getElementById('btn-edit-notes');
+  const btnSave = document.getElementById('btn-save-notes');
+  
+  if (editor) editor.classList.add('hidden');
+  if (display) {
+    display.classList.remove('hidden');
+    display.innerHTML = val ? marked.parse(val) : '<div style="color:var(--text-3); font-style:italic;">Keine Referenten-Notizen vorhanden.</div>';
+  }
+  if (btnEdit) btnEdit.innerHTML = '<i data-lucide="edit-2"></i> Notizen bearbeiten';
+  if (btnSave) btnSave.classList.add('hidden');
+  createIcons();
+}
+
+// Cloner Color Customizer live updates
+function updateLiveBrandColor() {
+  const selection = document.getElementById('clone-brand-color').value;
+  const customPicker = document.getElementById('clone-custom-color');
+  if (!customPicker) return;
+  
+  if (selection === 'custom') {
+    customPicker.style.display = 'block';
+    updateCustomColorLive(customPicker.value);
+  } else {
+    customPicker.style.display = 'none';
+    
+    document.body.className = ''; // reset themes
+    if (selection === 'matrix') {
+      document.body.className = 'theme-matrix';
+    } else if (selection === 'amber') {
+      document.body.className = 'theme-amber';
+    } else if (selection === 'blue') {
+      applyCustomColorsLive('#3B82F6', '#60A5FA', 'rgba(59,130,246,0.30)', 'rgba(59,130,246,0.07)');
+    } else if (selection === 'rose') {
+      applyCustomColorsLive('#EC4899', '#F472B6', 'rgba(236,72,153,0.30)', 'rgba(236,72,153,0.07)');
+    } else { // purple
+      resetCustomColorsLive();
+    }
+  }
+}
+
+function updateCustomColorLive(hex) {
+  const hexLight = lightenColor(hex, 30);
+  const glow = hexToRgba(hex, 0.07);
+  const dim = hexToRgba(hex, 0.30);
+  applyCustomColorsLive(hex, hexLight, dim, glow);
+}
+
+function applyCustomColorsLive(primary, light, dim, glow) {
+  const root = document.documentElement;
+  root.style.setProperty('--gold', primary);
+  root.style.setProperty('--gold-light', light);
+  root.style.setProperty('--gold-dim', dim);
+  root.style.setProperty('--gold-glow', glow);
+  root.style.setProperty('--border-active', primary);
+}
+
+function resetCustomColorsLive() {
+  const root = document.documentElement;
+  root.style.removeProperty('--gold');
+  root.style.removeProperty('--gold-light');
+  root.style.removeProperty('--gold-dim');
+  root.style.removeProperty('--gold-glow');
+  root.style.removeProperty('--border-active');
+}
+
+function lightenColor(col, amt) {
+  let usePound = false;
+  if (col[0] == "#") {
+    col = col.slice(1);
+    usePound = true;
+  }
+  let num = parseInt(col, 16);
+  let r = (num >> 16) + amt;
+  if (r > 255) r = 255;
+  else if (r < 0) r = 0;
+  let b = ((num >> 8) & 0x00FF) + amt;
+  if (b > 255) b = 255;
+  else if (b < 0) b = 0;
+  let g = (num & 0x0000FF) + amt;
+  if (g > 255) g = 255;
+  else if (g < 0) g = 0;
+  return (usePound ? "#" : "") + (g | (b << 8) | (r << 16)).toString(16).padStart(6, '0');
+}
+
+function hexToRgba(hex, alpha) {
+  let c = hex.substring(1);
+  if (c.length === 3) c = c[0] + c[0] + c[1] + c[1] + c[2] + c[2];
+  let r = parseInt(c.substring(0, 2), 16);
+  let g = parseInt(c.substring(2, 4), 16);
+  let b = parseInt(c.substring(4, 6), 16);
+  return `rgba(\${r}, \${g}, \${b}, \${alpha})`;
+}
+
+// ════════════════════════════════════════════════
+// IMAGE LIGHTBOX
+// ════════════════════════════════════════════════
+function initLightbox() {
+  let overlay = document.getElementById('lightbox-overlay');
+  if (!overlay) {
+    overlay = document.createElement('div');
+    overlay.id = 'lightbox-overlay';
+    overlay.className = 'lightbox-overlay';
+    overlay.innerHTML = `
+      <button class="lightbox-close" aria-label="Schließen"><i data-lucide="x"></i></button>
+      <img class="lightbox-content" src="" alt="">
+      <div class="lightbox-caption"></div>
+    `;
+    document.body.appendChild(overlay);
+    
+    overlay.addEventListener('click', (e) => {
+      if (!e.target.closest('.lightbox-content')) {
+        closeLightbox();
+      }
+    });
+  }
+  
+  // Bind clicks to md-output images
+  const mdOut = document.getElementById('md-output');
+  if (mdOut) {
+    mdOut.addEventListener('click', (e) => {
+      const img = e.target.closest('img');
+      if (img) {
+        openLightbox(img.src, img.alt);
+      }
+    });
+  }
+}
+
+function openLightbox(src, alt) {
+  const overlay = document.getElementById('lightbox-overlay');
+  if (!overlay) return;
+  const img = overlay.querySelector('.lightbox-content');
+  const caption = overlay.querySelector('.lightbox-caption');
+  
+  if (img) {
+    img.src = src;
+    img.alt = alt || '';
+  }
+  if (caption) {
+    caption.textContent = alt || '';
+  }
+  
+  overlay.classList.add('open');
+  createIcons();
+}
+
+function closeLightbox() {
+  const overlay = document.getElementById('lightbox-overlay');
+  if (overlay) {
+    overlay.classList.remove('open');
+  }
+}
+
+
 /* OMM BOOT SEQUENCE */
 (function(){
   var boot=document.getElementById('omm-boot');if(!boot)return;
