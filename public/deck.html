@@ -1636,7 +1636,7 @@ function toggleTheaterMode() {
             title: 'Strategic Inbound Setup',
             visualType: 'Split Narrative',
             target: 'Aufzeigen der automatisierten Neukundengewinnung über LinkedIn & Meta.',
-            notes: "Wir testen dieses System am eigenen Leib. Unsere eigene Inbound-Architektur fängt Leads über LinkedIn, Facebook und Instagram ein und schleust sie vollautomatisch über unsere GCP-Plattform in unsere HubSpot-Pipeline. Wir nutzen dazu hochgradig konvertierende Social Ad Creatives, die direkt auf unsere Buchungsseite leiten.",
+            notes: "Wir testen dieses System am eigenen Leib. Unsere eigene Inbound-Architektur fängt Leads über LinkedIn, Facebook und Instagram ein und schleust sie vollautomatisch über unsere GCP-Plattform in unsere eigene EU-Lead-Pipeline (FastAPI /api/lead → Firestore in der EU, verwaltet im Opus-Magnum-Cockpit). Wir nutzen dazu hochgradig konvertierende Social Ad Creatives, die direkt auf unsere Buchungsseite leiten.",
             render: () => `
                 <div class="grid md:grid-cols-2 gap-6 items-center">
                     <div class="space-y-4 text-left">
@@ -2520,7 +2520,7 @@ function toggleTheaterMode() {
                         <div class="bg-[#0e0e0e] border border-[#222] rounded-lg p-3 flex items-center gap-3">
                             <div class="h-8 w-8 rounded-full bg-[#D8D3CB]/10 border border-[#D8D3CB]/20 flex items-center justify-center text-xs">📋</div>
                             <div>
-                                <span class="text-[9px] font-mono text-[#9CA3AF] block">HubSpot Starter CRM</span>
+                                <span class="text-[9px] font-mono text-[#9CA3AF] block">EU-Lead-CRM · Opus-Magnum-Cockpit</span>
                                 <span class="text-[11px] font-mono text-[#F5F5F5] font-bold">Pipeline: Active · 7 Stages · DSGVO-konform</span>
                             </div>
                         </div>
@@ -2562,10 +2562,10 @@ function toggleTheaterMode() {
             num: 27,
             speaker: speakers.RALPH,
             chapter: 'CRM & Client Operations',
-            title: 'HubSpot Starter CRM & Sales Pipeline',
+            title: 'Eigenes EU-CRM & Sales Pipeline',
             visualType: 'Product UI Showcase',
-            target: 'Interaktive Simulation des HubSpot Kanban-Board CRM Setups.',
-            notes: "Wir verwalten unsere Opportunities in HubSpot Starter. Vom Erstkontakt über das Erstgespräch, das Audit und die Angebotserstellung bis zur Verhandlung und dem Closing durchläuft jeder Deal eine von Ralph exakt definierte Pipeline aus 7 Stages.",
+            target: 'Interaktive Simulation des eigenen EU-CRM Kanban-Boards (Cockpit Lead-Inbox).',
+            notes: "Wir verwalten unsere Opportunities im eigenen EU-CRM — der Lead-Inbox unseres Opus-Magnum-Cockpits, bewusst statt HubSpot für volle DSGVO-Datenhoheit. Vom Erstkontakt über das Erstgespräch, das Audit und die Angebotserstellung bis zur Verhandlung und dem Closing durchläuft jeder Deal eine von Ralph exakt definierte Pipeline aus 7 Stages.",
             render: () => `
                 <div class="space-y-3 py-1">
                     <p class="text-[9px] text-center text-[#9CA3AF] uppercase font-mono">Click card to advance it sequentially through our 7 CRM pipeline stages:</p>
@@ -2826,7 +2826,7 @@ function toggleTheaterMode() {
                         <h4 class="text-sm font-sans font-bold text-[#F5F5F5]">Inbound Pillar-Cluster</h4>
                         <ul class="text-[11px] text-[#9CA3AF] leading-relaxed space-y-1 list-none">
                             <li>→ 20 Fachartikel · Pillar-Pages (Performance, Foto-KI-Hybrid, EU AI Act)</li>
-                            <li>→ Lead-Magnete: HCVO-Checkliste, Case Study PDF → HubSpot-Liste</li>
+                            <li>→ Lead-Magnete: HCVO-Checkliste, Case Study PDF → eigene EU-Lead-Liste</li>
                             <li>→ Schema.org, 8 Sprachen, Sitemap automatisiert</li>
                         </ul>
                     </div>
@@ -2878,7 +2878,7 @@ function toggleTheaterMode() {
                     <div class="p-3 rounded-xl bg-[#0e0e0e]/80 border border-[#A855F7]/25 space-y-1.5 premium-hover" style="animation: counterUp 0.45s ease 0.05s both; opacity:0;">
                         <span class="text-[#A855F7] font-mono text-[9px] font-bold uppercase tracking-widest">Woche 1–2</span>
                         <h4 class="text-[13px] font-sans font-bold text-[#F5F5F5]">Infrastruktur &amp; Quick Wins</h4>
-                        <p class="text-[10px] text-[#9CA3AF] leading-relaxed">HubSpot-Pipeline live · Mobile-Lighthouse 82→≥90 · GA4-Consent-Gate · LinkedIn-Page · 20 ICP-1-Targets.</p>
+                        <p class="text-[10px] text-[#9CA3AF] leading-relaxed">Eigene EU-Lead-Pipeline live · Mobile-Lighthouse 85→≥90 · GA4-Consent-Gate · LinkedIn-Page · 20 ICP-1-Targets.</p>
                         <p class="text-[9px] font-mono text-[#A855F7]/80">KPI: Web ≥90 · Pipeline live · 20 Targets</p>
                     </div>
                     <div class="p-3 rounded-xl bg-[#0e0e0e]/80 border border-[#3B82F6]/25 space-y-1.5 premium-hover" style="animation: counterUp 0.45s ease 0.12s both; opacity:0;">
@@ -3523,7 +3523,7 @@ function toggleTheaterMode() {
     const vennDescriptions = {
         asthetik: { title: "Arena 1: Ästhetik (Luxury Identity)", desc: "Entwicklung von Premium 'Dark Luxury' Visuals, die Markenwert und High-End Produktplatzierungen optisch rechtfertigen." },
         performance: { title: "Arena 2: Performance (Data Analytics)", desc: "Strikte conversion-getriebene Metriken gesteuert von Meta/Google API-Feeds für mathematisch validierten ROAS." },
-        automation: { title: "Arena 3: Automation (SaaS Operating System)", desc: "Workflow-Beschleunigung durch Agentic Co-Piloten, HubSpot Integrationen und lückenlose Slack-Notification Pipelines." },
+        automation: { title: "Arena 3: Automation (SaaS Operating System)", desc: "Workflow-Beschleunigung durch Agentic Co-Piloten, ein eigenes EU-CRM und lückenlose Slack-Notification Pipelines." },
         mirrou: { title: "MIRROU Core System Integration", desc: "Die vollständige Synthese aus allen drei Arenen -- Das exklusive Premium 'Design- & KI-Betriebssystem' für moderne Marken." }
     };
     function showVennDetails(key) {
@@ -5126,6 +5126,7 @@ function toggleTheaterMode() {
     }
 
     function resetSlideOverrides() {
+        if (!confirm("Änderungen dieser Folie (Titel, Sprechtext, Bild, Canvas) unwiderruflich zurücksetzen?")) return;
         localStorage.removeItem(`omm-title-${currentSlide}`);
         localStorage.removeItem(`omm-notes-${currentSlide}`);
         localStorage.removeItem(`omm-canvas-${currentSlide}`);
