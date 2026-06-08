@@ -78,10 +78,42 @@ CATEGORY_META = {
 }
 
 
+def resolve_repo_path(filename):
+    if filename == "URLS.md":
+        return "docs/URLS.md"
+    elif filename == "Positionspapier_Compliance_Architektur_EU_AI_Act.md":
+        return "07_compliance/Positionspapier_Compliance_Architektur_EU_AI_Act.md"
+    elif filename in [
+        "Abschlussbericht_Mirrou_Creative_Studio.md",
+        "AOS_AbschlussprojektBuch_KOMPLETT.md",
+        "Deep_Audit_Report.md",
+        "TEAM_BRIEFING.md",
+        "mirrou_aufgabenverteilung_master.md"
+    ]:
+        return os.path.join("00_abschlussbericht", filename)
+    elif filename == "graduation_speech_script.md":
+        return "04_praesentationen/graduation_speech_script.md"
+    elif filename.startswith("03_deliverables_pdf_"):
+        return os.path.join("03_deliverables_pdf", filename[20:])
+    elif filename.startswith("04_praesentationen_"):
+        return os.path.join("04_praesentationen", filename[19:])
+    elif filename.startswith("06_perplexity_skills_"):
+        return os.path.join("06_perplexity_skills", filename[21:])
+    elif len(filename) > 0 and filename[0].isdigit() and "_" in filename:
+        return os.path.join("00_abschlussbericht/follow_ups", filename)
+    return None
+
+
 def load_documents():
     db = {}
     for item in DOCS:
-        fp = os.path.join(ARTIFACTS_DIR, item["file"])
+        rel_path = resolve_repo_path(item["file"])
+        fp = rel_path if rel_path and os.path.exists(rel_path) else None
+        
+        # Fallback to absolute brain artifacts folder
+        if not fp:
+            fp = os.path.join(ARTIFACTS_DIR, item["file"])
+            
         if os.path.exists(fp):
             try:
                 with open(fp, "r", encoding="utf-8") as f:
@@ -102,12 +134,13 @@ def load_documents():
                     "readMin": max(1, round(words / 230)),
                     "content": content,
                 }
-                print(f"  > {item['title']} ({words:,} words)")
+                print(f"  > {item['title']} ({words:,} words) [loaded from: {fp}]")
             except Exception as e:
                 print(f"  X Error: {item['file']}: {e}")
         else:
             print(f"  ! Missing: {item['file']}")
     return db
+
 
 
 # ──────────────────────────────────────────────
@@ -2468,6 +2501,31 @@ def build():
                     print(f">> Copied {src} to {dest}")
         else:
             print(f"!! Warning: Slide source {src} not found for copying.")
+
+    # Synchronize the visuals directory to all output targets
+    src_visuals = "visuals"
+    if os.path.exists(src_visuals):
+        for dest_parent in ["public", "00_abschlussbericht", ARTIFACTS_DIR]:
+            dest_visuals = os.path.join(dest_parent, "visuals")
+            if os.path.abspath(src_visuals) != os.path.abspath(dest_visuals):
+                os.makedirs(dest_visuals, exist_ok=True)
+                # Copy files inside visuals
+                for f_name in os.listdir(src_visuals):
+                    src_f = os.path.join(src_visuals, f_name)
+                    dest_f = os.path.join(dest_visuals, f_name)
+                    if os.path.isfile(src_f):
+                        shutil.copy2(src_f, dest_f)
+                # Copy files inside visuals/team if exists
+                src_team = os.path.join(src_visuals, "team")
+                if os.path.exists(src_team):
+                    dest_team = os.path.join(dest_visuals, "team")
+                    os.makedirs(dest_team, exist_ok=True)
+                    for f_name in os.listdir(src_team):
+                        src_f = os.path.join(src_team, f_name)
+                        dest_f = os.path.join(dest_team, f_name)
+                        if os.path.isfile(src_f):
+                            shutil.copy2(src_f, dest_f)
+                print(f">> Synced visuals folder to {dest_visuals}")
 
     print("\n>> Document Hub v3 generated successfully!")
 

@@ -21,8 +21,8 @@ Reihenfolge der Sprecher:
 > „Guten Tag und herzlich willkommen zur Abschlusspräsentation von Mirrou Creative Studio. Mein Name ist Yahya Yildirim. Gemeinsam mit Olha, Denys und Ralph zeigen wir Ihnen heute den Aufbau einer KI-integrierten Performance Creative Agency. Unser Abschlussprojekt besteht aus zwei eigenständigen, nahtlos integrierten Repositories: dem öffentlichen Frontend von Mirrou und dem internen AI-Marketing-Cockpit Opus Magnum Media. Wir zeigen Ihnen heute die Synthese beider Codebases zu einem voll funktionsfähigen Betriebssystem, mit dem wir die Leistung einer 20-Personen-Agentur erbringen. Lassen Sie uns das Team und die Rollen ansehen.“
 
 ### 02. The Frontier-Team & Mission (Sprecher: Yahya)
-* **Visual**: Slide 2 (Frontier Team, 4 Partner, 410h Build-Stunden)
-> „Als Frontier Firm arbeiten wir extrem fokussiert an zwei Standorten. In Hamburg verantworte ich, Olha, als Creative Director die visuelle Marken-Identität und Produktion. Denys leitet das Performance Marketing und die Daten-Analyse. In Berlin steuert Ralph das CRM und die operativen SOPs, während Yahya das Inbound-Wachstum und die technische Architektur leitet. In dieses Projekt haben wir 410 reale, gemessene Entwicklungsstunden gesteckt – um ein voll operationalisiertes System live aufzubauen. Doch welches Marktproblem lösen wir damit?“
+* **Visual**: Slide 2 (Frontier Team mit vier Kerndisziplinen und B2B-Infrastruktur)
+> „Als Frontier Firm arbeiten wir extrem fokussiert und partnergeführt an zwei Standorten. In Hamburg leitet Olha als Creative Director die visuelle Markenidentität und Kreation, während Denys das Performance Marketing und die Datenanalyse steuert. In Berlin verantwortet Ralph das CRM und die operativen Workflows, und Yahya leitet das Inbound-Wachstum sowie die technische Cloud-Infrastruktur. Durch diese Verteilung decken wir alle vier entscheidenden Disziplinen – Growth, Creative, Performance und Operations – lückenlos ab und erzielen durch smarte KI-Orchestrierung einen Hebeleffekt, der die Arbeitskraft von 15 bis 20 Fachkräften multipliziert. Doch welches Marktproblem lösen wir damit?“
 
 ### 03. Das Marktproblem: Creative Fatigue (Sprecher: Yahya)
 * **Visual**: Slide 3 (Creative Fatigue, Klickraten-Einbruch, CPC-Anstieg)
@@ -62,7 +62,7 @@ Reihenfolge der Sprecher:
 
 ### 10. Brand Identity System (Sprecher: Olha)
 * **Visual**: Slide 10 (Farb-Tokens, Typografie-Tokens, SVG Vector-Assets)
-> „Konsistenz ist programmatisch. Jedes Corporate-Design-Element ist als JSON-Token im System hinterlegt. Die visuelle Identität basiert auf Deep Onyx für maximale Eleganz, Muted Gold für kontrollierte Akzente, und Ivory für ideale Lesbarkeit. Unsere Typografie verbindet die luxuriöse Display-Serif Cormorant Garamond für Überschriften mit der hochpräzisen Inter für Fließtexte und JetBrains Mono für Systemwerte.“
+> „Konsistenz ist programmatisch. Jedes Corporate-Design-Element ist als JSON-Token im System hinterlegt. Die visuelle Identität basiert auf Void Black für maximale Eleganz, Studio Gold für luxuriöse Akzente, Cream White für ideale Lesbarkeit, und Muted Grey für dezente Systemwerte. Unsere Typografie verbindet die luxuriöse Display-Serif Cormorant Garamond für Überschriften mit der hochpräzisen Inter für Fließtexte und JetBrains Mono für System- und Codezeilen.“
 
 ### 11. The Brandbook & Editorial Guidelines (Sprecher: Olha)
 * **Visual**: Slide 11 (Vorschau Grid-Systeme, Brandbook-Seiten-Flipping)

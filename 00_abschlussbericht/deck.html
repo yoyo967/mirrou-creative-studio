@@ -3394,6 +3394,8 @@ function toggleTheaterMode() {
         
         if (canvasOverride) {
             canvas.innerHTML = canvasOverride;
+            // innerHTML drops event listeners — re-bind drag/delete on restored custom elements
+            canvas.querySelectorAll('.custom-text-node, .custom-image-node').forEach(el => makeElementDraggable(el));
         } else {
             canvas.innerHTML = slide.render();
             if (imageOverride) {

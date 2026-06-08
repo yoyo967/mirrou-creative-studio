@@ -1,3 +1,5 @@
+![Mirrou Creative Studio Primary Logo](visuals/mirrou-logo-horizontal-2000x600%20(4).png)
+
 # Mirrou Creative Studio
 
 ## Aufbau einer KI-integrierten Performance Creative Agency
