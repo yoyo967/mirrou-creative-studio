@@ -5312,6 +5312,7 @@ function toggleTheaterMode() {
             const script = document.createElement('script');
             script.src = 'https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js';
             script.onload = captureImage;
+            script.onerror = () => showCustomToast("❌ Offline?", "Bild-Export benötigt einmalig Internet (html2canvas). Bitte online erneut versuchen.");
             document.head.appendChild(script);
         } else {
             captureImage();
