@@ -835,9 +835,9 @@
             payload.systemInstruction = { parts: [{ text: systemInstruction }] };
         }
 
-        // Exponential backoff configuration (1s, 2s, 4s, 8s, 16s)
-        let delay = 1000;
-        for (let i = 0; i < 5; i++) {
+        // Fast-fail backoff for live presentation (3 attempts, ~2.4s max — avoids long hangs)
+        let delay = 800;
+        for (let i = 0; i < 3; i++) {
             try {
                 const response = await fetch(url, {
                     method: 'POST',
@@ -850,8 +850,8 @@
                 if (responseText) return responseText;
                 throw new Error("Invalid response format received from LLM.");
             } catch (error) {
-                if (i === 4) {
-                    throw new Error("Verbindungsfehler zur Gemini API nach 5 Versuchen. Bitte prüfen Sie Ihre Netzwerkverbindung.");
+                if (i === 2) {
+                    throw new Error("Gemini API nicht erreichbar (3 Versuche). Prüfe API-Key & Netzwerk — die Präsentation läuft ohne KI-Feature normal weiter.");
                 }
                 await new Promise(resolve => setTimeout(resolve, delay));
                 delay *= 2;
@@ -1186,7 +1186,7 @@ function toggleTheaterMode() {
 
                         <div>
                             <h3 class="font-sans text-2xl font-bold tracking-tight text-[#F5F5F5] leading-snug" id="morphed-title">Abschlusspräsentation<br><span class="text-[#C8A25A]">DCI Online Marketing Manager</span></h3>
-                            <p class="text-[#9CA3AF] font-mono text-xs mt-2 tracking-wider" id="morphed-desc">Kurs D03 2026 · Mirrou Studio &amp; Opus Magnum Media · Zwei Integrierte Repositories</p>
+                            <p class="text-[#9CA3AF] font-mono text-xs mt-2 tracking-wider" id="morphed-desc">Kurs D03 2026 · Mirrou Studio &amp; Opus Magnum Media · Zwei integrierte Repositories</p>
                             <p class="text-[#5a5a63] font-mono text-[10px] mt-1.5 tracking-wider">DCI Digital Career Institute · Dozentin: Steffany Fischer · Abgabe 19.06.2026</p>
                         </div>
 
@@ -4439,7 +4439,7 @@ function toggleTheaterMode() {
 
         const systemInstruction = `Du bist ein brillanter, erfahrener Präsentationscoach und Senior Strategist für Design- und KI-Systeme. Deine Aufgabe ist es, dem Prüfling zu helfen, seine DCI Abschlusspräsentation mit Bestnote zu bestehen. Beantworte alle Fragen prägnant, hochprofessionell, strategisch fundiert und ausschließlich auf Deutsch. Beziehe dich direkt auf die Metadaten, Sprechtexte und das angegebene Ziel der aktuellen Folie.`;
         
-        const contextQuery = `Aktuelle Foliennummer: ${activeSlideData.num} von 32
+        const contextQuery = `Aktuelle Foliennummer: ${activeSlideData.num} von ${slideDeck.length}
         Folientitel: "${activeSlideData.title}"
         Vortragender: ${activeSlideData.speaker.name}
         Foliengruppe/Phase: "${activeSlideData.chapter}"
@@ -4487,7 +4487,16 @@ function toggleTheaterMode() {
         const stopBtn = document.getElementById('ai-tts-stop-btn');
         const visualizer = document.getElementById('tts-audio-visualizer');
 
+        if (!getApiKey()) {
+            statusIndicator.classList.remove('hidden');
+            statusIndicator.textContent = "TTS benötigt einen Gemini-API-Key (oben rechts: 🔑 API Key).";
+            statusIndicator.className = "text-amber-400 text-[10px] font-mono text-center";
+            setTimeout(() => statusIndicator.classList.add('hidden'), 5000);
+            return;
+        }
+
         statusIndicator.classList.remove('hidden');
+        statusIndicator.className = "text-[#A855F7] text-[10px] font-mono text-center";
         statusIndicator.textContent = "Verbinde mit OMM Voice Engine...";
         stopBtn.classList.remove('hidden');
 
@@ -4516,13 +4525,13 @@ function toggleTheaterMode() {
             }
         };
 
-        let delay = 1000;
+        let delay = 800;
         let success = false;
         let resultData = null;
 
-        for (let i = 0; i < 5; i++) {
+        for (let i = 0; i < 3; i++) {
             try {
-                statusIndicator.textContent = `Generiere Audio (Versuch ${i+1}/5)...`;
+                statusIndicator.textContent = `Generiere Audio (Versuch ${i+1}/3)...`;
                 const response = await fetch(url, {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
@@ -4533,7 +4542,7 @@ function toggleTheaterMode() {
                 success = true;
                 break;
             } catch (err) {
-                if (i === 4) {
+                if (i === 2) {
                     statusIndicator.textContent = "Voice Engine fehlgeschlagen.";
                     statusIndicator.className = "text-red-400 text-[10px] font-mono text-center";
                     setTimeout(() => statusIndicator.classList.add('hidden'), 5000);
