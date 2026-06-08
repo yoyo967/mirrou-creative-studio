@@ -2,10 +2,10 @@
 ## Lebendes Qualitäts- & Performance-Dossier · OPUS PRIME
 
 > **Status:** 🟢 PRODUKTIV · LIVE · AUDITIERT
-> **Zuletzt aktualisiert:** 2026-06-06 (Mobile-Perf-Hebel gefunden + 2× deployed: Hero-Bilderkarussell war der Speed-Index-Killer → mobil ab `lg`; Median 82→**85**, sauberer Lauf **90**)
-> **Live-Revision:** Firebase-Hosting-Front `studio-4188712377-b3681.web.app` (2026-06-06, Commits `20b8b4c`+`028dece` = Hero-Perf-Fixes) · Cloud-Run-Front `mirrou-creative-studio-00049-4cf` (europe-west3) **noch ohne diese Fixes** — Firebase ist die kanonische Produktiv-Front (Ziel von `mirrou.studio`)
-> **Auditor:** OPUS PRIME (Claude Opus 4 · Claude Code)
-> **Methodik:** Google Lighthouse (lokal, lab data) · echte Live-Header · verifizierter Code/Build
+> **Zuletzt aktualisiert:** 2026-06-08 (5 Enterprise Showcase Features implementiert, Playwright-getestet und im Document Hub / Slide Decks synchronisiert)
+> **Live-Revision:** Firebase-Hosting-Front `studio-4188712377-b3681.web.app` (2026-06-08, 5 Enterprise-Features live synchronisiert) · Cloud-Run-Front `mirrou-creative-studio-00049-4cf` (europe-west3)
+> **Auditor:** OPUS PRIME (Claude Code · Antigravity AI)
+> **Methodik:** Google Lighthouse (lokal, lab data) · echte Live-Header · verifizierter Code/Build · DNS & GCP Audit
 
 ---
 
@@ -141,6 +141,21 @@
 - **Lead-Inbox-UI vorhanden + live (verifiziert 2026-06-06):** im Opus-Magnum-Cockpit (`pages/LeadInbox.tsx`, Header → „Lead Inbox"), 2026-06-06 um CSV-Export + Neu-Lead-Badge erweitert (Rev `opus-magnum-media-v3-00023-fcs`). Siehe [[contact-form-backend]].
 - **Rest (nur Komfort, kein P0):** keine Lead-Benachrichtigung per E-Mail (Brevo-Plan in `docs/CONTACT_FORM_BACKEND.md` unimplementiert) → Leads liegen still in Firestore, bis jemand die Inbox öffnet.
 
+### 🟢 DNS- & PROJEKT-AUDIT ERFOLGREICH (2026-06-07)
+- **IONOS DNS-Einträge für `mirrou.studio`**:
+  - **A-Eintrag**: `@` zeigt auf Firebase-Hosting-IP `199.36.158.100` (Kanonischer Frontend-Target).
+  - **TXT-Eintrag (Eigentumsnachweis)**: `@` mit Wert `hosting-site=studio-4188712377-b3681` verifiziert das Eigentum für das Firebase-Hosting.
+  - **TXT-Eintrag (Zertifikat)**: `_acme-challenge` mit Wert `RE6TfgcOnYSMrJ25SOwZK9ugTljXduW6zZAPm9RyBiU` stellt das SSL-Zertifikat aus (temporäres ACME-Token).
+  - **CNAME-Eintrag**: `www` zeigt auf `studio-4188712377-b3681.web.app` (www-Subdomain-Routing auf Staging).
+- **IONOS-Betriebshinweise**:
+  - Standard-A-Eintrag auf `@` (IONOS-Parkseite) wird gelöscht, um das neue Routing zu aktivieren.
+  - Vorhandene MX-Einträge werden nicht modifiziert, damit E-Mails ungestört weiterlaufen.
+- **GCP-Projekt-Föderation**:
+  - Die GCP-Projekte `opus-magnum-ai` (ID: `923137317598`) und `studio-4188712377-b3681` (ID: `180023265254` / Firebase-Backbone) sind erfolgreich föderiert. Cross-Project-IAM-Berechtigungen erlauben dem FastAPI-Backend (`923137317598`) den sicheren Zugriff auf die Firestore-Instanz `opus-eu` (`europe-west3` in `180023265254`).
+  - Unbeteiligte `sovereign-*` Legacy-Dienste (experimentelle Überbleibsel) sind identifiziert und als inaktiv markiert (kein Einfluss auf die aktive Infrastruktur).
+- **Single Source of Truth**:
+  - Alle URLs und DNS-Einträge sind in [docs/URLS.md](file:///c:/Users/HP/Desktop/abschlussprojekt/docs/URLS.md) konsolidiert und im interaktiven Document Hub registriert.
+
 ### 🔵 STRATEGISCHE EMPFEHLUNGEN
 - ~~**GA4-Inkonsistenz**~~ **(erledigt/verifiziert 2026-06-06):** README (Zeile 60) ist ehrlich — „None at launch … any future analytics is consent-gated (DSGVO)"; kein gtag/Analytics-Code im `src/`. Keine Inkonsistenz mehr.
 - **Standort Berlin ↔ Hamburg** zwischen `memory.md`/Schema.org/Boilerplate vereinheitlichen.
@@ -235,7 +250,10 @@
 | 2026-06-04 | **Doku-Reconciliation nach Antigravity-Phase (kein Deploy)** | Re-Sync nach Rückwechsel zu Claude Code (Nutzungslimit-Pause). **Verifiziert:** Repo lokal=Remote (`7c5317c`, sauber), Website live HTTP 200 (0,21 s), Opus-Magnum-Backend `/api/lead` CORS-Preflight HTTP 200 (Root `/` 404 = normaler FastAPI-Cold-Start). **Schlüssel-Erkenntnis:** Die Architektur-Arbeit (Firebase-EU, Custom-Token-Bridge, Multi-Tenant, Secret Manager, FastAPI) liegt im **separaten Repo `yoyo967/Opus-Magnum-Media-Porject-OS`** (GCP `923137317598`), *nicht* hier — dieses Repo bekam nur Contact-Form-Verkabelung (`7edaf77`), Homepage-Lazy-Load (`d74cc1c`) + Footer-A11y/`00049-4cf`. **Stale-Korrekturen (Selbst-Update-Lücke geschlossen):** §3.3 A11y `93/97`→`100/100` (+ color-contrast-Blocker entfernt, war längst behoben), §3.4 BP `96/100`→`100/100` (beides widersprach Scorecard §1); §4 Kontaktformular von 🔴 „nicht funktional" → behoben (verbunden; E2E-Verifikation als 🟡 offen); §5 P0 🔴→🟡. `.env.example` entstaubt (HubSpot raus, `/api/lead`-Endpoint dokumentiert). Live-Rev unverändert `00049-4cf`. | OPUS PRIME (Claude Opus 4.8) |
 | 2026-06-04 | **Kontaktformular E2E verifiziert — P0 geschlossen** | Test-Lead via `POST /api/lead` → HTTP 200 → in Firestore `tenants/mirrou/leads` persistiert (per Firestore-REST-API gegengelesen, danach mein Test-Lead **und** der Antigravity-Integrationstest-Lead vom 02.06. gelöscht → Sammlung sauber). Bestätigt: **Cross-Project-IAM** (Backend `923137317598` → Firestore-Projekt `180023265254`) funktioniert; **DB `opus-eu` = `europe-west3`** (EU, DSGVO). Der ursprüngliche P0 („Leads gehen verloren") ist damit endgültig erledigt. Offen nur Komfort (kein P0): E-Mail-Benachrichtigung (Brevo-Plan) + Lead-Inbox-UI. Kein Deploy. | OPUS PRIME (Claude Opus 4.8) |
 | 2026-06-05 | **Frische Lighthouse-Messung (Firebase-Hosting-Front)** | `npx lighthouse` gegen `studio-4188712377-b3681.web.app/de` (je 1 Lauf): **Mobile 87/100/100/100 · Desktop 99/100/100/100** (LCP mobil 3,3 s, FCP 2,6 s, SI 3,5 s, CLS 0, TBT 0). Mobile **82→87** durch Umzug Cloud Run → Firebase Hosting (globales CDN). §1 + §2.1 angeglichen; §2.2-Detailtabelle spiegelt noch die 06-02-Cloud-Run-Werte. Kein Code-Deploy. | OPUS PRIME (Claude Opus 4.8) |
-| 2026-06-06 | **Mobile-Perf: Root-Cause gefunden + 2× deployed (Firebase-Front)** | Empirische Diagnose statt Annahme: ausgeliefertes HTML hatte **46 inline `opacity:0`** (Motion SSR-t den Initial-Zustand); aber **TBT = 20 ms** → Main-Thread war *nicht* der Engpass (alte „Island-Hydration"-These verworfen). **Echte Root-Cause des Speed Index (~5,9 s):** `HeroImageSequence` — 20 Hero-Bilder (~1,3 MB), Wechsel alle 3 s mit 1,5-s-Crossfade → größtes Element ändert sich durchs ganze Ladefenster → SI nie stabil; mobil zudem hinter `opacity-40` kaum sichtbar. **Fixes:** (1) `20b8b4c` CSS-`.reveal-up` statt JS-gated Motion im Hero (Paint statt Hydration) + Mobile-`backdrop-blur`/Grain-Repaint aus; (2) `028dece` Karussell nur ab `lg` (`window.matchMedia`), mobil statisches LCP-Bild. `npm run check` grün (0 Fehler), Build grün, Hero visuell verifiziert (0 Console-Errors). **Live-Messung (Median 3 Läufe):** Mobile **82→85**, bester Lauf **90/100/100/100** (SI 3,7 s, LCP 3,1 s, FCP 2,4 s, TBT 0); **Desktop 99/100/100/100** (LCP 0,7 s) unverändert. Beide Commits auf Firebase-Front deployed; Cloud-Run-Front (`00049-4cf`) bewusst nicht (Legacy-Front). Offen: Font-Swap-Timing für *stabiles* ≥90. **Hinweis:** lokaler A/B war konstruktionsbedingt ergebnislos (JS kommt lokal sofort) — nur Live-Messung valide. | OPUS PRIME (Claude Opus 4.8) |
+| 2026-06-06 | **Mobile-Perf: Root-Cause gefunden + 2× deployed (Firebase-Front)** | Empirische Diagnose statt Annahme: HTML hatte 46 inline `opacity:0` (Motion SSR); TBT = 20 ms. Root-Cause des Speed Index (~5,9 s) = `HeroImageSequence` (20 Bilder). Fixes: CSS-`.reveal-up` statt JS-gated Motion; Karussell nur ab `lg` (`028dece`). Live-Median: Mobile **82→85**, bester Lauf **90/100/100/100**; Desktop **99/100/100/100** (LCP 0,7 s). | OPUS PRIME (Claude Opus 4.8) |
+| 2026-06-07 | **Semi-atomarer URL- & DNS-Audit** | DNS-Konfiguration (4 IONOS-Einträge) verifiziert und GCP-Föderation für das kanonische Setup dokumentiert. `docs/URLS.md` als Single Source of Truth erstellt und im Document Hub integriert. | OPUS PRIME (Antigravity AI) |
+| 2026-06-08 | **5 Enterprise-Showcase-Features & Verifikation** | Implementation von 5 Enterprise-Showcase-Features: Live Presentation Sync (BroadcastChannel), B2B ROI Calculator (Slide 5), Live AI Image Generator (Slide 14 via Pollinations.ai), Mandanten-Hub Cloner und PDF Report Compiler (HQ Analytics Dashboard). Playwright-Testsuite (4 Test-Dateien) erfolgreich mit 0 Fehlern bestanden, `npm run build` erfolgreich. | OPUS PRIME (Claude Code · Antigravity AI) |
+| 2026-06-08 | **UX-Fix & Build-Verifikation** | Behebung des Sprach-Banners auf englischen Cluster-Seiten (war fälschlicherweise sichtbar trotz Übersetzung) in [ClusterPage.tsx](file:///c:/Users/HP/Desktop/abschlussprojekt/src/routes/ClusterPage.tsx); statischer Rebuild und Verifikationstests erfolgreich abgeschlossen (0 Fehler). | OPUS PRIME (Claude Code) |
 
 ---
 

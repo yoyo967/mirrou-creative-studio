@@ -141,7 +141,7 @@ export default function ClusterPage() {
           <span aria-current="page">{c("breadcrumbArticle")}</span>
         </nav>
 
-        {i18n.language !== "de" && (
+        {i18n.language !== "de" && i18n.language !== "en" && (
           <div className="mb-8 border border-accent/30 bg-accent/5 px-5 py-3 text-[12px] text-muted font-mono uppercase tracking-[0.15em]">
             {c("contentLangNote")}
           </div>
