@@ -403,5 +403,26 @@ Implemented 5 new enterprise-grade showcase features across the Presentation Dec
   - Recompiled the Document Hub using `python scripts/generate_document_hub.py` and built the production bundles via `npm run build`.
   - Ran the comprehensive test suite in [test_hub_features_full.py](file:///c:/Users/HP/Desktop/abschlussprojekt/scratch/test_hub_features_full.py), validating **0 Page Errors**, **0 Console Errors**, and **0 Console Warnings** in headless Chromium.
 
+---
+
+## 20. Formatting Polish, Table Restructuring & Visuals Injection (2026-06-08)
+
+- **OCR Ligature Cleanup**:
+  - Implemented an automated cleanup process in [scripts/polish_docs.py](file:///c:/Users/HP/Desktop/abschlussprojekt/scripts/polish_docs.py) to target OCR extraction and ligature artifacts (replacing `ﬀ`, `ﬃ`, `ﬁ`, `ﬂ` with standard letters `ff`, `ffi`, `fi`, `fl` and cleaning up broken word splits like `A/B-T esting` -> `A/B-Testing`, `V ersion` -> `Version`, etc.) across all 38 Markdown source files.
+- **Premium Table Conversion**:
+  - Converted flat text lists in the Luminous Aura and Vitality Pulse Case Studies (such as Kunden-Profil, Hypothesen, Creative-Varianten, Test-Struktur, Performance-Metriken, and Business Impact tables) into beautifully formatted, responsive Markdown tables.
+- **Showcase Visuals Injection**:
+  - Injected high-resolution design system graphics and product packshots (e.g., `Loumina 2/3/4/6.png`, `Vitality Pulse 1/4/6.png`, system architecture diagrams, and brand logo markers) directly into the corresponding Markdown files to enrich reader immersion.
+- **Automated Directory Synchronization**:
+  - Modified the Document Hub compiler script [scripts/generate_document_hub.py](file:///c:/Users/HP/Desktop/abschlussprojekt/scripts/generate_document_hub.py) to automatically copy the entire `visuals/` assets directory to target compilation folders (`public/`, `00_abschlussbericht/`, and the brain directory). This ensures relative image paths (`![Packshot](visuals/...)`) render correctly in all local staging and deployment views.
+- **Repository Portability & Git Sync**:
+  - Synchronized all 38 polished markdown files from the machine-specific absolute brain directory back to the repository's native subdirectories (`00_abschlussbericht/`, `03_deliverables_pdf/`, `06_perplexity_skills/`, `04_praesentationen/`, `07_compliance/` etc.).
+  - Updated `scripts/generate_document_hub.py`'s `load_documents()` logic to resolve and load documents from these local repository folders first, ensuring the repository build is completely portable, offline-ready, and independent of machine-specific absolute artifact paths.
+- **Verification & Test Success**:
+  - Recompiled the Document Hub and verified that all 38 documents load correctly from their respective repository paths.
+  - Successfully executed `npm run build` and verified the Vite compiler and static page generator complete with 0 warnings or errors.
+  - Ran the browser test suite [scratch/test_hub_features_full.py](file:///c:/Users/HP/Desktop/abschlussprojekt/scratch/test_hub_features_full.py), achieving **0 Page Errors**, **0 Console Errors**, and **0 Warnings**.
+
+
 
 
