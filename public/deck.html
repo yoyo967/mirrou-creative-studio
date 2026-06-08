@@ -5203,23 +5203,35 @@ function toggleTheaterMode() {
         
         const title = titleOverride || slide.title;
         const notesHtml = notesOverride || slide.notes;
-        
+
         const tempDiv = document.createElement('div');
         tempDiv.innerHTML = notesHtml;
-        const notesText = tempDiv.textContent || tempDiv.innerText || "";
-        
-        const content = `SLIDE ${slide.num}: ${title}\n========================================\n\nSPRECHTEXT:\n${notesText}\n`;
-        
+        const notesText = (tempDiv.textContent || tempDiv.innerText || "").trim();
+
+        // Full visible slide content from the rendered canvas — not just the note
+        const canvasEl = document.getElementById('slide-canvas');
+        const slideBody = canvasEl
+            ? (canvasEl.innerText || canvasEl.textContent || "").replace(/\n{3,}/g, "\n\n").trim()
+            : "";
+
+        const content =
+            `SLIDE ${slide.num} / ${slideDeck.length}: ${title}\n` +
+            `Phase: ${slide.chapter}   |   Speaker: ${slide.speaker.name}\n` +
+            `Ziel: ${slide.target}\n` +
+            `========================================\n\n` +
+            `— FOLIENINHALT —\n${slideBody || "(kein Textinhalt auf dieser Folie)"}\n\n` +
+            `— SPRECHTEXT —\n${notesText}\n`;
+
         const blob = new Blob([content], { type: 'text/plain;charset=utf-8' });
         const url = URL.createObjectURL(blob);
         const a = document.createElement('a');
         a.href = url;
-        a.download = `omm_slide_${String(slide.num).padStart(2, '0')}_notes.txt`;
+        a.download = `omm_slide_${String(slide.num).padStart(2, '0')}_inhalt.txt`;
         document.body.appendChild(a);
         a.click();
         document.body.removeChild(a);
         URL.revokeObjectURL(url);
-        showCustomToast("📥 TXT Exportiert", `Sprechtext für Folie ${slide.num} heruntergeladen.`);
+        showCustomToast("📥 TXT Exportiert", `Vollständiger Folieninhalt + Sprechtext für Folie ${slide.num} heruntergeladen.`);
     }
 
     function exportCurrentSlideHTML() {
@@ -5285,14 +5297,22 @@ function toggleTheaterMode() {
             "Folie wird in PNG konvertiert. Bitte kurz warten."
         );
         
-        const captureImage = () => {
+        const captureImage = async () => {
             const stage = document.getElementById('slide-stage');
+            // Ensure fonts are rendered (no fallback) before capture
+            try { if (document.fonts && document.fonts.ready) await document.fonts.ready; } catch (e) {}
             html2canvas(stage, {
                 backgroundColor: '#030303',
-                scale: 2,
+                scale: 3,                       // high-res (fixes "compressed")
                 useCORS: true,
                 allowTaint: true,
-                logging: false
+                logging: false,
+                width: stage.scrollWidth,       // full element, not clipped (fixes "incomplete")
+                height: stage.scrollHeight,
+                windowWidth: stage.scrollWidth,
+                windowHeight: stage.scrollHeight,
+                scrollX: 0,
+                scrollY: 0
             }).then(canvas => {
                 const dataUrl = canvas.toDataURL('image/png');
                 const a = document.createElement('a');
