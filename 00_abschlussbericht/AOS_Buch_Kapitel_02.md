@@ -104,7 +104,7 @@ menschliches und ein KI-Pendant („Perfect Twin").
 
 ---
 
-### Olha Yevtushenko – Creative Director & Founder · Performance Marketing
+### Olha Yevtushenko – Gründerin & Creative Director · Performance Marketing
 
 **Standort:** Hamburg (HQ · Produktion & Creative Direction)  
 **Funktion im Unternehmen:** Kreative Gesamtleitung — jedes Asset, das das Studio verlässt, geht durch ihre Direction  
@@ -131,9 +131,9 @@ zentrales Differenzierungsmerkmal.
 
 ---
 
-### Denys Demyanyshyn – Performance & Analytics
+### Denys Demyanyshyn – Campaign Manager & Marketing-KI
 
-**Standort:** Berlin (Performance, AI & Growth)  
+**Standort:** Hamburg (Produktion)  
 **Funktion im Unternehmen:** Die Brücke zwischen kreativem Output und messbarem Ergebnis  
 **Projektbeitrag:** ca. 80 h / 20 %
 
@@ -156,7 +156,7 @@ der aus Kreativität eine wiederholbare, messbare Engine macht.
 
 ---
 
-### Ralph Kindermann – CRM & Client Success
+### Ralph Kindermann – CRM & Lifecycle Marketing
 
 **Standort:** Berlin (Performance, AI & Growth)  
 **Funktion im Unternehmen:** Das operative Rückgrat des Studios — Onboarding, Pipeline, Retainer-Rhythmus  
@@ -182,7 +182,7 @@ sondern sich in eine langfristige Kundenbeziehung und einen messbaren Customer L
 
 ---
 
-### Yahya Yildirim – Systems Architect & Growth Lead
+### Yahya Yildirim – Growth & Inbound Marketing (Projektlead)
 
 **Standort:** Berlin (Performance, AI & Growth)  
 **Funktion im Unternehmen:** Architekt des Systems — Strategie, Frontier-Firm-Architektur, Website & Tech, Compliance, Growth  

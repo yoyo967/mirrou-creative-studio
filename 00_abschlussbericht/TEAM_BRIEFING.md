@@ -26,23 +26,23 @@
 
 ## 2. Eure Rollen & Positionen
 
-### 👑 Olha Yevtushenko — Creative Director & Founder · Performance Marketing · Hamburg · 120 h / 29 %
+### 👑 Olha Yevtushenko — Gründerin & Creative Director · Performance Marketing · Hamburg · 120 h / 29 %
 - **Du verantwortest (alles real im Repo):** Dark-Luxury-Designsystem (Onyx + Gold — `02_brand/brand-assets.md`, live im Code), Brandbook (`02_brand/mirrou_branding_kit.md` + Live-`BrandBookPage`), **12 Logo-Varianten** (`02_brand/*.svg` + `visuals/mirrou-logo-*`), **25 Case-Visuals** (`public/images/cases/`) zu 4 **Demo-Brands** (Luminous Aura, Vitality Pulse, Essence Drift, Neural Glow — Neural Glow bewusst 100 % KI), hunderte produzierte Visuals (`visuals/`, `public/images/gallery/`), Hybrid Production.
 - **Dein Merksatz:** „Jedes Asset, das das Studio verlässt, geht durch meine Direction. Das **Produkt wird nie KI-generiert** — nur die Welt drumherum."
 - **Du präsentierst:** Brand Identity & das Creative-System (Hybrid Production) + die Case Studies — **und die Brücke Creative → Performance** (Data Feedback Loop).
 - 📎 **Doppelrollen-Guide:** [`OLHA_DOPPELROLLE.md`](OLHA_DOPPELROLLE.md) — Performance-Grundlagen, Creative→Performance-Logik, Benchmarks, neue Q&A-Fragen.
 
-### 📊 Denys Demyanyshyn — Performance & Analytics · Berlin · 80 h / 20 %
+### 📊 Denys Demyanyshyn — Campaign Manager & Marketing-KI · Hamburg · 80 h / 20 %
 - **Du verantwortest:** Benchmark-Bibliothek (`01_strategie/benchmark-library.md`) und Platform Intelligence — **echte, ausgearbeitete Dateien**; die A/B-Testing-**Methodik** (Buch Kap. 7.5); den Data Feedback Loop als **Learning-Log-Template** (`05_sops_templates/template-learning-log.md` — Struktur steht, echte Zahlen kommen mit dem ersten Kunden); den **LumiSkin-Pilot als Benchmark-Simulation**; den KI-Literacy-Nachweis (`07_compliance/ki-literacy-nachweis.md`).
 - **Dein Merksatz:** „Ich mache aus Kreativität eine **wiederholbare, messbare Engine**."
 - **Du präsentierst:** Marktproblem (Creative Fatigue + Benchmarks), Methodik (5-Schritt-Algorithmus), den Pilot-Case **als Benchmark-basierte Simulation** (ehrlich benennen — noch keine Live-Daten).
 
-### 🤝 Ralph Kindermann — CRM & Client Success · Berlin · 60 h / 15 %
+### 🤝 Ralph Kindermann — CRM & Lifecycle Marketing · Berlin · 60 h / 15 %
 - **Du verantwortest (real im Repo):** CRM/Pipeline (`01_strategie/mirrou_os_crm_ralph_optimiert.md`), Onboarding-System (`05_sops_templates/onboarding.md`), Retainer-SOP (`sop-retainer-management.md`), Kunden-Übergabestandard (`template-delivery-handover.md`), Redaktion/Konsistenz des Buches. **AVV:** als Rahmen/Kurzform dokumentiert (`07_compliance/legal-compliance.md` — Pflichtbestandteile Art. 28 DSGVO + Unterauftragsverarbeiter), **noch kein voll ausformulierter Mandanten-Vertrag** — so benennen.
 - **Dein Merksatz:** „Ich sorge dafür, dass gute Arbeit **gehalten** wird — Retention ist günstiger als Neuakquise."
 - **Du präsentierst:** Geschäftsmodell & Pricing, Team & Rollen, Onboarding/Retainer-Prozess, Förderperspektive.
 
-### 🧠 Yahya Yildirim — Systems Architect & Growth Lead · Berlin · 150 h / 37 %
+### 🧠 Yahya Yildirim — Growth & Inbound Marketing (Projektlead) · Berlin · 150 h / 37 %
 - **Du verantwortest (real im Repo):** die **Website selbst** (`src/` — 32 Komponenten, 16 Routen, 8 Sprachen, GCP, Lighthouse 100), Compliance-Architektur (`07_compliance/`), MCP-Stack (`.mcp.json` + `docs/DEVTOOLS_MCP.md`), Frontier-Firm-Architektur (Doku + `src/components/Frontier.tsx`), Positionierung/ICP, Growth/Outreach, Projektsteuerung. **Die 5 Perplexity-Spaces laufen extern in Perplexity** — im Repo liegen ihre Konfiguration/Skill-Prompts/Briefings (`06_perplexity_skills/`).
 - **Dein Merksatz:** „Ich bin der **Architekt des Systems** — nicht nur der Agentur, sondern der Art, wie sie denkt und skaliert."
 - **Du präsentierst:** Frontier-Firm-Architektur, Website/Tech (**Live-Demo!**), Compliance, Strategie & Ausblick.

@@ -14,10 +14,10 @@ version: 1.0
 
 | Name | Rolle | Standort | Schwerpunkt |
 |------|-------|---------|-------------|
-| **Olha Yevtushenko** | Creative Director · Performance Marketing | Hamburg | Visuelle Identität, Produktion, Ästhetik |
-| **Denys Demyanyshyn** | Performance & Analytics | Berlin | Daten, Kampagnen, Benchmarks |
-| **Ralph Kindermann** | CRM & Client Success | Berlin | Prozesse, Onboarding, Dokumentation |
-| **Yahya Yildirim** | Growth, Inbound & Project Lead | Berlin | Strategie, Architektur, Inbound, Koordination |
+| **Olha Yevtushenko** | Gründerin & Creative Director · Performance Marketing | Hamburg | Visuelle Identität, Produktion, Ästhetik |
+| **Denys Demyanyshyn** | Campaign Manager & Marketing-KI | Hamburg | Daten, Kampagnen, Benchmarks, A/B-Tests |
+| **Ralph Kindermann** | CRM & Lifecycle Marketing | Berlin | Prozesse, Onboarding, Dokumentation |
+| **Yahya Yildirim** | Growth & Inbound Marketing (Projektlead) | Berlin | Strategie, Architektur, Inbound, Koordination |
 
 ---
 

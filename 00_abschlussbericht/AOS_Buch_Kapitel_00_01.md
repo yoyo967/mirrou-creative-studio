@@ -16,10 +16,10 @@ Frontier Firm Architektur, Hybrid Production und EU AI Act-Compliance als Wettbe
 
 | Name | Rolle | E-Mail | Standort |
 |------|-------|--------|----------|
-| Olha Yevtushenko | Creative Director & Founder · Performance Marketing | olhayevtushenko57@gmail.com | Hamburg |
-| Denys Demyanyshyn | Performance & Analytics | denys.demyanyshyn@dci-student.org | Berlin |
-| Ralph Kindermann | CRM & Client Success | info.ralphkindermann@gmail.com | Berlin |
-| Yahya Yildirim | Systems Architect & Growth Lead | yildirimyahya716@gmail.com | Berlin |
+| Olha Yevtushenko | Gründerin & Creative Director · Performance Marketing | olhayevtushenko57@gmail.com | Hamburg |
+| Denys Demyanyshyn | Campaign Manager & Marketing-KI | denys.demyanyshyn@dci-student.org | Hamburg |
+| Ralph Kindermann | CRM & Lifecycle Marketing | info.ralphkindermann@gmail.com | Berlin |
+| Yahya Yildirim | Growth & Inbound Marketing (Projektlead) | yildirimyahya716@gmail.com | Berlin |
 
 ---
 
@@ -148,8 +148,8 @@ warum wir uns als „Performance Creative Studio" und nicht als klassische Fotog
 | Creative Campaign & Analytics Retainer | Laufende Creative-Engine + Testing | Brands mit 10–150k € Ad-Spend/Monat |
 
 **Das Gründerteam:**
-Olha Yevtushenko (Creative Director & Founder · Performance Marketing), Denys Demyanyshyn (Performance & Analytics),
-Ralph Kindermann (CRM & Client Success), Yahya Yildirim (Systems Architect & Growth Lead).
+Olha Yevtushenko (Gründerin & Creative Director · Performance Marketing), Denys Demyanyshyn (Campaign Manager & Marketing-KI),
+Ralph Kindermann (CRM & Lifecycle Marketing), Yahya Yildirim (Growth & Inbound Marketing / Projektlead).
 
 Die Website ist nicht Konzept, sondern **live und produktiv** unter
 [mirrou.studio](https://mirrou.studio) — statisch vorgerendert, in 8 Sprachen,

@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect, ElementType } from "react";
+import { useState, useRef, useEffect, useCallback, ElementType } from "react";
 
 interface Props {
   text: string;
@@ -20,7 +20,15 @@ export default function ScrambleText({
   const [display, setDisplay] = useState(text);
   const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
 
-  const scramble = () => {
+  const restore = useCallback(() => {
+    if (intervalRef.current) {
+      clearInterval(intervalRef.current);
+      intervalRef.current = null;
+    }
+    setDisplay(text);
+  }, [text]);
+
+  const scramble = useCallback(() => {
     if (intervalRef.current) return;
     let iter = 0;
     intervalRef.current = setInterval(() => {
@@ -37,22 +45,14 @@ export default function ScrambleText({
       iter += 0.5;
       if (iter >= text.length) restore();
     }, 35);
-  };
-
-  const restore = () => {
-    if (intervalRef.current) {
-      clearInterval(intervalRef.current);
-      intervalRef.current = null;
-    }
-    setDisplay(text);
-  };
+  }, [text, restore]);
 
   useEffect(() => {
     if (triggerOnLoad) {
       const t = setTimeout(scramble, loadDelay);
       return () => clearTimeout(t);
     }
-  }, []);
+  }, [triggerOnLoad, loadDelay, scramble]);
 
   useEffect(() => () => { if (intervalRef.current) clearInterval(intervalRef.current); }, []);
 

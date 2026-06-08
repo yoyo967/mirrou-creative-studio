@@ -73,7 +73,7 @@ export default function CursorFollower() {
       document.removeEventListener("mouseover", onEnter);
       document.removeEventListener("mouseout", onLeave);
     };
-  }, []);
+  }, [mouseX, mouseY]);
 
   // Don't render on touch devices
   if (typeof window !== "undefined" && window.matchMedia("(hover: none)").matches) return null;

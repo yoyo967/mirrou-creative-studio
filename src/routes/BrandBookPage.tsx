@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, useMemo } from "react";
 import { useTranslation } from "react-i18next";
 import { Link } from "@/src/components/LocalizedLink";
 import SEO from "../components/SEO";
@@ -232,14 +232,14 @@ export default function BrandBookPage() {
   const [activePlatformTab, setActivePlatformTab] = useState("linkedin");
   const observerRef = useRef<IntersectionObserver | null>(null);
 
-  const sections = [
+  const sections = useMemo(() => [
     { id: "foundation", label: t("sections.foundation") },
     { id: "personality", label: t("sections.personality") },
     { id: "visual", label: t("sections.visual") },
     { id: "messaging", label: t("sections.messaging") },
     { id: "application", label: t("sections.application") },
     { id: "assets", label: t("sections.assets") },
-  ];
+  ], [t]);
 
   useEffect(() => {
     const els = sections
@@ -258,7 +258,7 @@ export default function BrandBookPage() {
 
     els.forEach((el) => observerRef.current!.observe(el));
     return () => observerRef.current?.disconnect();
-  }, []);
+  }, [sections]);
 
   return (
     <main className="min-h-screen bg-bg relative">
