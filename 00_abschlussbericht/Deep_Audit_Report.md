@@ -232,17 +232,17 @@ Bevor ein Tool eingeführt wird: EU AI Act-Konformität, DSGVO-Konformität, Exp
 | **Container** | Docker Multi-Stage + nginx:alpine (gzip-9) | Optimale Bundle-Größe |
 | **Hosting** | GCP Cloud Run, europe-west3 Frankfurt | DSGVO-begründet |
 
-#### Gemessene Qualität (Live, Revision `00046-bk4`, 2. Juni 2026 · Median aus 3 Mobile-Läufen)
+#### Gemessene Qualität (Live, Firebase-Hosting-Front, 7. Juni 2026 · Median aus 3 Mobile-Läufen)
 
 | Kategorie | Desktop | Mobile | Google-Schwelle |
 |---|:---:|:---:|:---:|
-| **Performance** | 100 | 82 | ≥90 |
-| **Accessibility** | 100 | 97 | ≥90 |
+| **Performance** | 100 | 85 | ≥90 |
+| **Accessibility** | 100 | 100 | ≥90 |
 | **Best Practices** | 100 | 100 | ≥90 |
 | **SEO** | 100 | 100 | ≥90 |
 | **Security-Header** | 6/6 A-Grade | — | — |
 
-*Desktop LCP: 0,7s / CLS: 0,011. Die Mobile-Lücke (Performance 82) ist ausschließlich Render-Geschwindigkeit auf gedrosselter Verbindung — adressiert durch den DevTools-MCP-Loop als kurzfristiges To-Do (Ziel ≥90).*
+*Desktop LCP: 0,7s / CLS: 0,011. Mobile erreicht 100 in Accessibility, Best Practices und SEO; die Performance liegt im Median bei 85 (bester Lauf 90), nachdem der Haupt-Engpass — ein clientseitiges Hero-Bilderkarussell — per DevTools-MCP-Trace identifiziert und entschärft wurde. Die Rest-Lücke ist reine Render-Geschwindigkeit auf gedrosselter Verbindung (CLS 0, TBT 0).*
 
 #### Technische Kennzahlen (vollständig)
 *   **React-Komponenten:** 32 (inkl. Hero, Frontier, ProblemDiagnostic, ScrollWordReveal, StatsCounter, CursorFollower, GrainOverlay)
@@ -348,7 +348,7 @@ KI-System-Beschreibung (Modelle + Versionen), anonymisierte Prompt-Logs, Output-
 #### Kurzfristig (0–3 Monate)
 *   **Erste echte Kundenakquise:** LinkedIn Direct Outreach, priorisiert ICP 1 (D2C Skincare 30k+ Ad-Spend, Fatigue-Onset identifiziert)
 *   **Erster bezahlter Case:** Mit Live-Performance-Daten — das einzige substanzielle Gap im aktuellen Audit
-*   **HubSpot-Anbindung:** Kontaktformular → CRM-Pipeline (DSGVO-Consent-Gate)
+*   **Lead-Pipeline (bereits gebaut):** Kontaktformular → eigenes EU-Backend (FastAPI `/api/lead`, Firestore europe-west3), end-to-end verifiziert — bewusst statt HubSpot, für DSGVO-Datenhoheit. Nächster Schritt: E-Mail-Benachrichtigung + CRM-Ausbau im eigenen Cockpit
 *   **Mobile Performance ≥90:** Geführt durch Chrome DevTools MCP Loop (LCP/FCP-Pfad-Optimierung)
 *   **TikTok Shop D2C-Outreach:** Erste Brands ansprechen, die Shop-Ads-Creatives brauchen
 

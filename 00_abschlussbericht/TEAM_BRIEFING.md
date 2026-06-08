@@ -74,7 +74,7 @@ Das Repo **ist** die Website **und** die komplette Projektdoku. Lest in dieser R
 
 - **Positionierung:** AI-natives Performance Creative Studio · Frontier Firm · HQ Hamburg + Studio Berlin · Claim „Algorithm of Soul"
 - **Live & Tech:** mirrou.studio · React 19 + Vite 6 + TypeScript + Tailwind v4 · statisch vorgerendert (vite-react-ssg) · GCP Cloud Run (Frankfurt, EU) · **8 Sprachen** · **346 vorgerenderte Seiten** · 280 Sitemap-URLs
-- **Qualität:** Lighthouse **Desktop 100/100/100/100**, **Mobile 82/97/100/100** (gemessen 2026-06-02, Median aus 3 Läufen, Rev. `00046-bk4`) · **6/6 Security-Header** · 0 npm-Sicherheitslücken
+- **Qualität:** Lighthouse **Desktop 100/100/100/100**, **Mobile 85/100/100/100** (gemessen 2026-06-07, Median aus 3 Läufen, Firebase-Front; bester Lauf 90) · **6/6 Security-Header** · 0 npm-Sicherheitslücken
 - **Frontier Firm:** 4 Personen ≈ Output von 15–20 · 5 Perplexity-Spaces · MCP-Stack · „Perfect Twin" (Mensch + KI je Domäne)
 - **Compliance:** **7 Schichten** — EU AI Act (volle Anwendung **2. Aug 2026**), KI-Labeling-Matrix, **C2PA**, DSGVO, Data Act, **HCVO**, 3-Jahres-Audit-Log
 - **Methode:** 5-Schritt-Algorithmus — Creative Audit → Visual Brief → Hybrid Execution → Performance Layer → Data Feedback Loop · **9–20 Tage** (vs. 4–8 Wochen klassisch)

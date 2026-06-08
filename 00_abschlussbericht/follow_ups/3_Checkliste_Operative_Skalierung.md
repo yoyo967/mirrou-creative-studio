@@ -5,8 +5,8 @@
 ### Tag 1–7: Fundament
 
 #### Tech:
-*   **CRM-Setup:** HubSpot CRM live schalten, Deal-Pipeline konfigurieren (Stufen: *Lead → Audit → Proposal → Deal → Retainer*).
-*   **Kontaktformular:** `mirrou.studio` Kontaktformular → HubSpot mit DSGVO-Consent-Gate verbinden.
+*   **CRM-Setup:** Eigenes EU-CRM im Opus-Magnum-Cockpit (Lead-Inbox) nutzen, Deal-Pipeline konfigurieren (Stufen: *Lead → Audit → Proposal → Deal → Retainer*).
+*   **Kontaktformular:** `mirrou.studio` Kontaktformular ist an das eigene EU-Backend (`/api/lead`, Firestore europe-west3) angebunden und E2E-verifiziert (DSGVO-Consent + Honeypot) — bewusst statt HubSpot.
 *   **Performance:** Lighthouse Mobile Performance Check → DevTools MCP Loop starten.
 *   **Audit-Log:** `AUDIT.md` im Repository anlegen → Ergebnisse aller Lighthouse-Runs festhalten.
 *   **SEO:** Google Search Console: `mirrou.studio` verifizieren + Sitemap einreichen (280 URLs).
@@ -31,7 +31,7 @@
 *   **Outreach ICP 1:** 20 LinkedIn Connection Requests (ICP 1 priorisiert) — kein Pitch, nur persönliche Notiz.
 *   **Outreach ICP 2:** 10 Requests an ICP 2 (Health/Supplement mit HCVO-Signalen).
 *   **Monitoring:** Facebook Ad Library täglich 5 Min. nach Fatigue-Signalen scannen.
-*   **Sales Pipeline:** Erste 3 Replies sofort in HubSpot-Pipeline eintragen.
+*   **Sales Pipeline:** Erste 3 Replies sofort in die eigene Pipeline (Cockpit Lead-Inbox) eintragen.
 
 #### Content:
 *   **Blog-Artikel:** Blog-Artikel #1 live: „Creative Fatigue bei D2C-Beauty-Brands — wie ein System das Problem löst" (SEO-optimiert).
@@ -74,7 +74,7 @@
 *   **Performance Layer:** Denys brieft Hook-Hypothesen + A/B-Struktur.
 
 #### Monitoring:
-*   **HubSpot:** Conversion-Rate Audit → Deal überprüfen.
+*   **CRM:** Conversion-Rate Audit → Deal überprüfen.
 *   **LinkedIn:** Welche Posts haben welche Reichweite? → Content-Learning-Log.
 
 **KPI Tag 22-30:** 1 Vertrag unterschrieben, Produktion läuft, Pipeline mit 3 weiteren Aktiven.

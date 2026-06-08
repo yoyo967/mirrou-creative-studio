@@ -9,7 +9,7 @@ Diese Roadmap beginnt nach dem Projektabschluss — also ab sofort (Juni 2026). 
 **Ziel:** Alles ist scharf, live und bereit für den ersten Kunden.
 
 #### Tech & Ops:
-*   **HubSpot-Anbindung:** Kontaktformular → CRM-Pipeline (DSGVO-Consent-Gate)
+*   **Lead-Pipeline (gebaut):** Kontaktformular → eigenes EU-Backend (`/api/lead`, Firestore europe-west3), E2E-verifiziert — statt HubSpot, für DSGVO-Datenhoheit
 *   **Systemdokumentation:** `CLAUDE.md` + `AUDIT.md` ins Repository einbinden
 *   **Lighthouse Performance:** Chrome DevTools MCP Loop starten, um Mobile Lighthouse Performance von 82 auf ≥90 zu heben (LCP/FCP-Pfad)
 *   **Sicherheit:** 0 npm-Sicherheitslücken bestätigen (bereits erreicht — Monitoring einrichten)
@@ -25,7 +25,7 @@ Diese Roadmap beginnt nach dem Projektabschluss — also ab sofort (Juni 2026). 
 *   **Private Command Center (Yahya):** Akquise-Targets eintragen, Research-Log starten
 *   **Strategy & Intelligence Space:** `outreach-target-list.md` mit 20 konkreten ICP-1-Targets befüllen
 
-**KPI Woche 1–2:** Website ≥90 Mobile, LinkedIn active, HubSpot Pipeline live, 20 Targets identifiziert.
+**KPI Woche 1–2:** Website ≥90 Mobile, LinkedIn active, Lead-Pipeline (eigenes EU-Cockpit) live, 20 Targets identifiziert.
 
 ---
 
@@ -84,7 +84,7 @@ Diese Roadmap beginnt nach dem Projektabschluss — also ab sofort (Juni 2026). 
 
 #### ICP 2 spezifisch:
 *   Health/Supplement-Brands direkt ansprechen: *"Eure HCVO-Probleme + EU AI Act kommen gleichzeitig. Wir haben eine Lösung für beides."*
-*   HCVO-Checkliste als Lead-Magnet anbieten (kostenloses PDF → HubSpot-Liste)
+*   HCVO-Checkliste als Lead-Magnet anbieten (kostenloses PDF → Lead-Liste im eigenen CRM)
 
 **KPI Woche 4–5:** 2 Blog-Artikel live, 1 Trust Center Update, 10 neue ICP-2-Kontakte.
 
