@@ -700,6 +700,18 @@
             </button>
 
             <span class="text-[#2A2A32] font-mono text-xs">|</span>
+            <button onclick="toggleTimerOverlay()" class="flex items-center gap-2 text-xs font-mono text-[#9CA3AF] hover:text-[#A855F7] transition-colors" title="Präsentations-Timer ein/aus (Taste T)">
+                <span>⏱</span>
+                <span>Timer (T)</span>
+            </button>
+
+            <span class="text-[#2A2A32] font-mono text-xs">|</span>
+            <button onclick="toggleSpotlight()" class="flex items-center gap-2 text-xs font-mono text-[#9CA3AF] hover:text-[#A855F7] transition-colors" title="Spotlight / Fokus-Modus (Taste L)">
+                <span>🔦</span>
+                <span>Spotlight (L)</span>
+            </button>
+
+            <span class="text-[#2A2A32] font-mono text-xs">|</span>
             <button onclick="openExportModal()" class="flex items-center gap-2 text-xs font-mono text-[#9CA3AF] hover:text-[#A855F7] transition-colors" title="Öffnet das Export & Download Hub">
                 <span>📥</span>
                 <span>Export / Download</span>
@@ -5588,5 +5600,82 @@ function toggleTheaterMode() {
             </div>
         </div>
     </div>
+
+    <!-- ═══ Presentation Timer + Spotlight (self-contained, CSP-safe) ═══ -->
+    <script>
+    (function () {
+        const css = `
+        #pres-timer{position:fixed;bottom:84px;left:24px;z-index:55;display:flex;align-items:center;gap:12px;
+            background:rgba(8,8,8,.92);border:1px solid rgba(200,162,90,.35);border-radius:10px;padding:7px 14px;
+            font-family:'JetBrains Mono',monospace;backdrop-filter:blur(8px);box-shadow:0 4px 24px rgba(0,0,0,.55);}
+        #pres-timer.hidden{display:none;}
+        #pres-timer .pt-label{font-size:9px;color:#6B7280;text-transform:uppercase;letter-spacing:1.5px;}
+        #pres-timer-time{font-size:22px;font-weight:700;letter-spacing:1px;color:#F2EFE9;font-variant-numeric:tabular-nums;min-width:62px;}
+        #pres-timer-time.warn{color:#C8A25A;}
+        #pres-timer-time.over{color:#E0564F;animation:ptpulse 1s ease-in-out infinite;}
+        @keyframes ptpulse{50%{opacity:.55;}}
+        #pres-timer .pt-btn{background:none;border:none;color:#9CA3AF;cursor:pointer;font-size:15px;line-height:1;padding:3px 5px;border-radius:5px;transition:color .15s,background .15s;}
+        #pres-timer .pt-btn:hover{color:#C8A25A;background:rgba(200,162,90,.12);}
+        #spotlight-overlay{position:fixed;inset:0;z-index:54;pointer-events:none;display:none;
+            background:radial-gradient(circle 140px at 50% 50%, transparent 0, transparent 118px, rgba(3,3,3,.88) 250px);}
+        #spotlight-overlay.active{display:block;}
+        @media print{#pres-timer,#spotlight-overlay{display:none !important;}}`;
+        const st = document.createElement('style'); st.textContent = css; document.head.appendChild(st);
+
+        const timer = document.createElement('div');
+        timer.id = 'pres-timer'; timer.className = 'hidden no-print';
+        timer.innerHTML = '<span class="pt-label">TIMER</span>'
+            + '<span id="pres-timer-time">00:00</span>'
+            + '<button class="pt-btn" id="pt-playpause" title="Start / Pause">⏸</button>'
+            + '<button class="pt-btn" id="pt-reset" title="Reset auf 00:00">↺</button>';
+        document.body.appendChild(timer);
+
+        const spot = document.createElement('div');
+        spot.id = 'spotlight-overlay'; spot.className = 'no-print';
+        document.body.appendChild(spot);
+
+        let elapsed = 0, iv = null;
+        const timeEl = timer.querySelector('#pres-timer-time');
+        const ppBtn = timer.querySelector('#pt-playpause');
+        const render = () => {
+            const m = String(Math.floor(elapsed / 60)).padStart(2, '0');
+            const s = String(elapsed % 60).padStart(2, '0');
+            timeEl.textContent = m + ':' + s;
+            timeEl.classList.toggle('warn', elapsed >= 720 && elapsed < 900); // 12–15 min
+            timeEl.classList.toggle('over', elapsed >= 900);                  // 15 min+
+        };
+        const start = () => { if (iv) return; iv = setInterval(() => { elapsed++; render(); }, 1000); ppBtn.textContent = '⏸'; };
+        const pause = () => { clearInterval(iv); iv = null; ppBtn.textContent = '▶'; };
+        window.presTimerToggle = () => { iv ? pause() : start(); };
+        window.presTimerReset = () => { elapsed = 0; render(); };
+        window.toggleTimerOverlay = () => {
+            const nowHidden = timer.classList.toggle('hidden');
+            if (!nowHidden && !iv && elapsed === 0) start(); // auto-start on first reveal
+        };
+        ppBtn.onclick = window.presTimerToggle;
+        timer.querySelector('#pt-reset').onclick = window.presTimerReset;
+        render();
+
+        let spotOn = false;
+        const onMove = (e) => {
+            spot.style.background = 'radial-gradient(circle 140px at ' + e.clientX + 'px ' + e.clientY
+                + 'px, transparent 0, transparent 118px, rgba(3,3,3,.88) 250px)';
+        };
+        window.toggleSpotlight = () => {
+            spotOn = !spotOn;
+            spot.classList.toggle('active', spotOn);
+            if (spotOn) document.addEventListener('mousemove', onMove);
+            else document.removeEventListener('mousemove', onMove);
+        };
+
+        document.addEventListener('keydown', (e) => {
+            const tag = (document.activeElement && document.activeElement.tagName || '').toLowerCase();
+            if (tag === 'input' || tag === 'textarea' || tag === 'select') return;
+            const k = e.key.toLowerCase();
+            if (k === 't') { e.preventDefault(); window.toggleTimerOverlay(); }
+            else if (k === 'l') { e.preventDefault(); window.toggleSpotlight(); }
+        });
+    })();
+    </script>
 </body>
 </html>
