@@ -1659,20 +1659,17 @@ function toggleTheaterMode() {
                         </div>
                     </div>
 
-                    <!-- Visual Mosaic: 3 product images -->
-                    <div class="grid grid-cols-2 grid-rows-2 gap-2 h-64" style="animation: glowPop 0.6s ease 0.2s both; opacity: 0;">
-                        <div class="row-span-2 rounded-lg overflow-hidden border border-[#E07A5F]/20 img-card-zoom relative shadow-xl">
-                            <img src="${getVisualsPath()}Loumina 4.png" class="w-full h-full object-cover opacity-90">
-                            <div class="absolute bottom-1 left-2 text-[7px] font-mono text-[#E07A5F] uppercase tracking-wider">Luminous Aura</div>
+                    <!-- Cinematic Studio Film: real creative process → campaign -->
+                    <div class="rounded-lg overflow-hidden border border-[#E07A5F]/25 relative shadow-xl" style="animation: glowPop 0.6s ease 0.2s both; opacity: 0;">
+                        <video src="${getVisualsPath()}mirrou-studio-film.mp4" autoplay muted loop playsinline preload="metadata"
+                               class="w-full h-64 object-cover cursor-pointer block bg-[#030303]"
+                               onclick="this.paused ? this.play() : this.pause()"
+                               title="Klick: Pause / Play"></video>
+                        <div class="absolute top-2 left-2 flex items-center gap-1.5 pointer-events-none">
+                            <span class="w-1.5 h-1.5 rounded-full bg-[#E07A5F]" style="animation: pulse 1.5s ease-in-out infinite;"></span>
+                            <span class="text-[8px] font-mono text-[#E07A5F] uppercase tracking-widest font-bold">Mirrou Studio Film</span>
                         </div>
-                        <div class="rounded-lg overflow-hidden border border-[#A855F7]/20 img-card-zoom relative">
-                            <img src="${getVisualsPath()}Vitality Pulse1.png" class="w-full h-full object-cover opacity-90">
-                            <div class="absolute bottom-1 left-2 text-[7px] font-mono text-[#A855F7] uppercase tracking-wider">Vitality Pulse</div>
-                        </div>
-                        <div class="rounded-lg overflow-hidden border border-[#3B82F6]/20 img-card-zoom relative">
-                            <img src="${getVisualsPath()}Loumina 6.png" class="w-full h-full object-cover opacity-90">
-                            <div class="absolute bottom-1 left-2 text-[7px] font-mono text-[#3B82F6] uppercase tracking-wider">Essence Drift</div>
-                        </div>
+                        <div class="absolute bottom-2 left-2 right-2 text-[7px] font-mono text-[#9CA3AF] uppercase tracking-wider pointer-events-none">Real product work → performance-driven creative system</div>
                     </div>
                 </div>
             `
