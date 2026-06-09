@@ -1124,7 +1124,7 @@ function toggleTheaterMode() {
 
     // Interactive presentation state configuration
     let currentSlide = 0;
-    const totalSlides = 37;
+    const totalSlides = 25;
 
     let __toastTimer = null;
     function showCustomToast(icon, title, msg) {
@@ -1234,7 +1234,7 @@ function toggleTheaterMode() {
             num: 2,
             speaker: speakers.YAHYA,
             chapter: 'Intro & Strategy',
-            title: 'The Frontier-Team & Mission',
+            title: 'Das Frontier-Team & die Mission',
             visualType: 'KPI Evidence',
             target: 'Beweis der extremen Teameffizienz durch künstliche Intelligenz und strukturierte Arbeitspakete.',
             notes: "Wir präsentieren heute als Online Marketing Manager. Vier Personen erzielen durch das von uns entwickelte Multi-Tenant-Cockpit und integrierte KI-Systeme die Arbeitsergebnisse einer 15 bis 20 Personen starken Full-Service-Agentur, indem wir repetitive Routineaufgaben über Automatisierungsschnittstellen eliminiert haben.",
@@ -1356,7 +1356,7 @@ function toggleTheaterMode() {
             num: 4,
             speaker: speakers.YAHYA,
             chapter: 'Intro & Strategy',
-            title: 'Die 3-Arenen-Wettbewerbslogik',
+            title: 'Positionierung: Die 3 Arenen',
             visualType: 'Split Narrative',
             target: 'Die Alleinstellungsmerkmale von Mirrou am Markt verorten.',
             notes: "Wo siedeln wir uns an? Klassische Agenturen bieten entweder nur rohe Performance-Daten ohne Brand-Gespür, oder High-End-Design ohne Performance-Messung. Wir verbinden beide Welten vollautomatisch im Dreiklang aus Ästhetik, Daten und systemischer Automatisierung.",
@@ -1391,7 +1391,7 @@ function toggleTheaterMode() {
             num: 5,
             speaker: speakers.YAHYA,
             chapter: 'Intro & Strategy',
-            title: 'Core Claim & Service Packages',
+            title: 'Unser Angebot: Claim & Service-Pakete',
             visualType: 'KPI Evidence',
             target: 'Präsentation vordefinierter, skalierbarer Produkt-Pakete für die Brand-Akquise.',
             notes: "Wir verkaufen keine schwammigen Stundenpakete, sondern standardisierte, hochgradig transparente Agenturprodukte. Direkt buchbar auf unserer Plattform in 8 Sprachen.",
@@ -1520,67 +1520,6 @@ function toggleTheaterMode() {
         },
         {
             num: 6,
-            speaker: speakers.YAHYA,
-            chapter: 'Intro & Strategy',
-            title: 'Die Frontier-Firm-Architektur',
-            visualType: 'System Architecture',
-            target: 'Schematische Darstellung der KI-gesteuerten Systemarchitektur auf Basis des OMM Frameworks.',
-            notes: "Wir nutzen künstliche Intelligenz nicht als billige Shortcut-Alternative, sondern als systemisch verankerte Infrastrukturschicht, gesteuert durch Opus Magnum Media.",
-            render: () => `
-                <div class="grid md:grid-cols-2 gap-5 items-center py-1">
-                    <div class="space-y-2">
-                        <p class="text-xs text-[#9CA3AF] leading-relaxed">Das Frontier Firm Modell: KI nicht als Werkzeug, sondern als <strong class="text-[#F5F5F5]">operative Schicht des gesamten Betriebs</strong> — 4 Schichten + GitHub als OS:</p>
-                        <div class="space-y-1.5 text-left">
-                            <div class="bg-[#030303] border border-[#333] p-2 rounded font-mono text-[9px] text-[#9CA3AF] leading-relaxed">
-                                <span class="text-[#A855F7] font-bold block">OS-LAYER · GITHUB</span>
-                                <span>Single Source of Truth · Actions · EU-AI-Act-Audit-Trail · CI/CD</span>
-                            </div>
-                            <div class="bg-[#1C1C24] border border-[#A855F7]/40 p-2 rounded-lg shadow-lg hover:bg-[#1a1a26] transition-colors">
-                                <span class="font-bold text-[10px] text-[#A855F7] block font-mono">LAYER 1 · INTELLIGENCE</span>
-                                <span class="text-[9px] text-[#F5F5F5]">Perplexity Spaces (5 Spaces · 39 Dokumente) · Claude Opus · Gemini</span>
-                            </div>
-                            <div class="bg-[#0e0e0e] border border-[#2A2A32] p-2 rounded-lg hover:bg-[#15151a] transition-colors">
-                                <span class="font-bold text-[10px] text-[#F5F5F5] block font-mono">LAYER 2 · PRODUCTION</span>
-                                <span class="text-[9px] text-[#9CA3AF]">Adobe CC · Midjourney · Runway ML · Claude Code · Opus Magnum (~40 Agenten)</span>
-                            </div>
-                            <div class="bg-[#0e0e0e] border border-[#2A2A32] p-2 rounded-lg hover:bg-[#15151a] transition-colors">
-                                <span class="font-bold text-[10px] text-[#F5F5F5] block font-mono">LAYER 3 · INFRASTRUCTURE</span>
-                                <span class="text-[9px] text-[#9CA3AF]">GCP Cloud Run europe-west3 · Firebase · Firestore · Secret Manager · MCP</span>
-                            </div>
-                            <div class="bg-[#0e0e0e] border border-[#2A2A32] p-2 rounded-lg hover:bg-[#15151a] transition-colors">
-                                <span class="font-bold text-[10px] text-[#F5F5F5] block font-mono">LAYER 4 · PERFORMANCE</span>
-                                <span class="text-[9px] text-[#9CA3AF]">Meta · TikTok · Google Ads · Analytics · Data Feedback Loop</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="space-y-2">
-                        <div class="bg-[#111116] rounded-lg border border-[#A855F7]/20 overflow-hidden h-40 relative">
-                            <img src="${getVisualsPath()}3beb031e-8d81-4a2f-a248-27ddb4e0ca9b.png" class="object-cover w-full h-full opacity-85 hover:scale-105 transition-transform duration-700">
-                            <div class="absolute bottom-2 left-2 bg-[#030303]/80 border border-[#222] px-2 py-0.5 rounded text-[8px] font-mono text-[#A855F7]">Opus Magnum · 2 GCP-Projekte</div>
-                        </div>
-                        <div class="grid grid-cols-2 gap-2 text-[9px] font-mono">
-                            <div class="bg-[#0e0e0e] border border-[#222] rounded p-2 text-center">
-                                <div class="text-[#9CA3AF]">Mirrou Website</div>
-                                <div class="text-[#A855F7] font-bold">GCP 180023265254</div>
-                                <div class="text-[#9CA3AF]">europe-west3</div>
-                            </div>
-                            <div class="bg-[#0e0e0e] border border-[#222] rounded p-2 text-center">
-                                <div class="text-[#9CA3AF]">Opus Magnum</div>
-                                <div class="text-emerald-400 font-bold">GCP 923137317598</div>
-                                <div class="text-[#9CA3AF]">europe-west3</div>
-                            </div>
-                        </div>
-                        <div class="bg-[#0e0e0e] border border-[#222] rounded p-2 text-[9px] font-mono text-center">
-                            <span class="text-[#9CA3AF]">4-Personen-Team · </span><span class="text-[#A855F7] font-bold">15–20× Effizienz-Multiplikator</span><span class="text-[#9CA3AF]"> durch KI-Orchestrierung</span>
-                        </div>
-                    </div>
-                </div>
-            `
-        },
-
-        // ================== RALPH KINDERMANN (7 - 8) ==================
-        {
-            num: 7,
             speaker: speakers.RALPH,
             chapter: 'Operations Framework',
             title: 'Das Perfect-Twin-Prinzip',
@@ -1628,10 +1567,10 @@ function toggleTheaterMode() {
             `
         },
         {
-            num: 8,
+            num: 7,
             speaker: speakers.RALPH,
             chapter: 'Operations Framework',
-            title: 'Strategic Inbound Setup',
+            title: 'Eigener Inbound-Funnel (Dogfooding)',
             visualType: 'Split Narrative',
             target: 'Aufzeigen der automatisierten Neukundengewinnung über LinkedIn & Meta.',
             notes: "Wir testen dieses System am eigenen Leib. Unsere eigene Inbound-Architektur fängt Leads über LinkedIn, Facebook und Instagram ein und schleust sie vollautomatisch über unsere GCP-Plattform in unsere eigene EU-Lead-Pipeline (FastAPI /api/lead → Firestore in der EU, verwaltet im Opus-Magnum-Cockpit). Wir nutzen dazu hochgradig konvertierende Social Ad Creatives, die direkt auf unsere Buchungsseite leiten.",
@@ -1684,10 +1623,10 @@ function toggleTheaterMode() {
 
         // ================== OLHA YEVTUSHENKO (9 - 16) ==================
         {
-            num: 9,
+            num: 8,
             speaker: speakers.OLHA,
             chapter: 'Creative & Performance',
-            title: 'Visuelle Performance-Philosophie',
+            title: 'Creative-Philosophie: Algorithm of Soul',
             visualType: 'Cinematic Hero',
             target: 'Etablierung der Design-Leitlinien und des Claims "Algorithm of Soul".',
             notes: "Ralph, ich übernehme. Als Creative Director vereine ich kompromisslose Ästhetik mit harten Datensätzen. 'Algorithm of Soul' bedeutet: Wir brechen mit dem Vorurteil, dass verkaufsstarke Werbung billig aussehen muss.",
@@ -1739,74 +1678,10 @@ function toggleTheaterMode() {
             `
         },
         {
-            num: 10,
+            num: 9,
             speaker: speakers.OLHA,
             chapter: 'Creative & Performance',
-            title: 'Brand Identity System',
-            visualType: 'Split Narrative',
-            target: 'Präsentation der technischen Design-Tokens, Farbcodes und Logo-Variationen.',
-            notes: "Wir haben unser Corporate Design modular und programmatisch aufbereitet. Jedes visuelle Asset ist als standardisierter JSON-Token im System abgelegt, um konsistent in allen Kanälen gerendert zu werden.",
-            render: () => `
-                <div class="grid md:grid-cols-2 gap-6 items-center">
-                    <div class="space-y-4">
-                        <p class="text-xs text-[#9CA3AF] leading-relaxed">
-                            Farben und Typografie sind als globale Variablen definiert. Klicken Sie auf ein Farbfeld, um den Hex-Code direkt in die Zwischenablage zu kopieren.
-                        </p>
-                        <!-- Interactive Swatches -->
-                        <div class="grid grid-cols-5 gap-1.5">
-                            <div onclick="copyHexColor('#080808')" class="h-12 bg-[#080808] border border-[#222] rounded flex items-end p-1 cursor-pointer hover:scale-105 transition-transform"><span class="text-[8px] font-mono text-[#F2EFE9]">#080808</span></div>
-                            <div onclick="copyHexColor('#111113')" class="h-12 bg-[#111113] border border-[#222] rounded flex items-end p-1 cursor-pointer hover:scale-105 transition-transform"><span class="text-[8px] font-mono text-[#F2EFE9]">#111113</span></div>
-                            <div onclick="copyHexColor('#C8A25A')" class="h-12 bg-[#C8A25A] rounded flex items-end p-1 cursor-pointer hover:scale-105 transition-transform"><span class="text-[8px] font-mono text-[#080808] font-bold">#C8A25A</span></div>
-                            <div onclick="copyHexColor('#F2EFE9')" class="h-12 bg-[#F2EFE9] rounded flex items-end p-1 cursor-pointer hover:scale-105 transition-transform"><span class="text-[8px] font-mono text-[#080808] font-bold">#F2EFE9</span></div>
-                            <div onclick="copyHexColor('#6E6B66')" class="h-12 bg-[#6E6B66] rounded flex items-end p-1 cursor-pointer hover:scale-105 transition-transform"><span class="text-[8px] font-mono text-[#F2EFE9] font-bold">#6E6B66</span></div>
-                        </div>
-                        <!-- Logo Assets Showcase -->
-                        <div class="space-y-2 pt-2 text-left">
-                            <span class="text-[10px] font-mono text-[#9CA3AF] block uppercase font-bold">Logo Vektor Assets (SVG)</span>
-                            <div class="grid grid-cols-2 gap-3">
-                                <div class="bg-[#111113] p-2 rounded border border-[#222] flex items-center justify-center h-20 hover:border-[#C8A25A] transition-all cursor-pointer">
-                                    <svg viewBox="0 0 800 220" class="max-h-full max-w-full">
-                                        <text x="400" y="110" font-family="system-ui, -apple-system, sans-serif" font-size="96" font-weight="900" fill="#C8A25A" text-anchor="middle" letter-spacing="18">MIRROU</text>
-                                        <line x1="250" y1="130" x2="550" y2="130" stroke="#C8A25A" stroke-width="1.5" opacity="0.6"/>
-                                        <text x="400" y="158" font-family="system-ui, -apple-system, sans-serif" font-size="14" font-weight="400" fill="#F2EFE9" text-anchor="middle" letter-spacing="8" opacity="0.8">CREATIVE STUDIO</text>
-                                    </svg>
-                                </div>
-                                <div class="bg-[#FFFFFF] p-2 rounded border border-[#DDD] flex items-center justify-center h-20 hover:border-[#C8A25A] transition-all cursor-pointer">
-                                    <svg viewBox="0 0 800 220" class="max-h-full max-w-full">
-                                        <text x="400" y="110" font-family="system-ui, -apple-system, sans-serif" font-size="96" font-weight="900" fill="#C8A25A" text-anchor="middle" letter-spacing="18">MIRROU</text>
-                                        <line x1="250" y1="130" x2="550" y2="130" stroke="#C8A25A" stroke-width="1.5" opacity="0.4"/>
-                                        <text x="400" y="158" font-family="system-ui, -apple-system, sans-serif" font-size="14" font-weight="400" fill="#111113" text-anchor="middle" letter-spacing="8" opacity="0.8">CREATIVE STUDIO</text>
-                                    </svg>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Brand Assets JSON Display -->
-                    <div class="bg-[#111113] p-4 rounded-lg border border-[#222]">
-                        <div class="flex justify-between items-center text-[10px] font-mono text-[#9CA3AF] mb-2">
-                            <span>brand_tokens.json</span>
-                            <span class="text-emerald-400 font-bold">active sync</span>
-                        </div>
-                        <pre class="font-mono text-[9px] text-[#C8A25A] overflow-x-auto leading-relaxed">
-{
-  "theme": "Mirrou Dark Luxury",
-  "primary": "#080808",
-  "accent": "#C8A25A",
-  "typography": {
-    "header": "Cormorant Garamond",
-    "body": "Inter",
-    "code": "JetBrains Mono"
-  }
-}</pre>
-                    </div>
-                </div>
-            `
-        },
-        {
-            num: 11,
-            speaker: speakers.OLHA,
-            chapter: 'Creative & Performance',
-            title: 'The Brandbook & Editorial Guidelines',
+            title: 'Brand-System & Brandbook',
             visualType: 'Product UI Showcase',
             target: 'Nachweis der redaktionellen Systemtiefe anhand eines detaillierten Brandbooks.',
             notes: "Ein 49-seitiges physisches und digitales Brandbook stellt sicher, dass unsere Designqualität unabhängig vom ausführenden Operator immer dem Goldstandard entspricht.",
@@ -1837,10 +1712,10 @@ function toggleTheaterMode() {
             `
         },
         {
-            num: 12,
+            num: 10,
             speaker: speakers.OLHA,
             chapter: 'Creative & Performance',
-            title: 'Demo Case 1 – Luminous Aura',
+            title: 'Demo: Hybrid-Composing (Vorher/Nachher)',
             visualType: 'Case Study Presentation',
             target: 'Echtes Composing-Beispiel für ein fiktives High-End Serum-Kosmetikprodukt.',
             notes: "Hier sehen Sie das Ergebnis unserer hybriden Fotoproduktion für Luminous Aura. Wir fangen das Produkt real im Studio ein und komponieren es mit luxuriösen digital generierten Hintergründen.",
@@ -1884,43 +1759,10 @@ function toggleTheaterMode() {
             `
         },
         {
-            num: 13,
+            num: 11,
             speaker: speakers.OLHA,
             chapter: 'Creative & Performance',
-            title: 'Demo Cases 2 & 3 – Vitality Pulse & Essence Drift',
-            visualType: 'KPI Evidence',
-            target: 'Präsentation alternativer Visual-Stile für unterschiedliche Customer Personas.',
-            notes: "Wir beweisen stilistische Vielseitigkeit: Für das Vitality Pulse Duschgel nutzen wir harte, kontrastreiche Schatten, um Frische zu transportieren. Für Essence Drift setzen wir auf organische, weiche Nebelwelten.",
-            render: () => `
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 py-2">
-                    <div class="bg-[#0e0e0e] border border-[#222] p-4 rounded-lg space-y-3">
-                        <span class="text-[#3B82F6] font-mono text-[9px] uppercase tracking-wider block font-semibold">Case 2: Hard Shadows Theme</span>
-                        <h4 class="text-lg font-sans text-[#F5F5F5]">Vitality Pulse Gel</h4>
-                        <div class="h-28 bg-[#15151e] rounded border border-[#3B82F6]/20 flex items-center justify-center relative overflow-hidden group">
-                            <img src="${getVisualsPath()}Vitality Pulse1.png" class="absolute inset-0 w-full h-full object-cover opacity-80 group-hover:scale-105 transition-transform duration-300">
-                            <div class="absolute inset-0 bg-gradient-to-t from-[#0e0e0e] via-transparent to-transparent flex flex-col justify-end p-2 z-10">
-                                <span class="text-[8px] font-mono text-[#3B82F6] block font-bold">High Contrast Shadows</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="bg-[#0e0e0e] border border-[#222] p-4 rounded-lg space-y-3">
-                        <span class="text-[#E07A5F] font-mono text-[9px] uppercase tracking-wider block font-semibold">Case 3: Soft Mist Concept</span>
-                        <h4 class="text-lg font-sans text-[#F5F5F5]">Essence Drift Oil</h4>
-                        <div class="h-28 bg-[#1a1515] rounded border border-[#E07A5F]/20 flex items-center justify-center relative overflow-hidden group">
-                            <img src="${getImagesPath()}essence-drift-4.webp" class="absolute inset-0 w-full h-full object-cover opacity-80 group-hover:scale-105 transition-transform duration-300">
-                            <div class="absolute inset-0 bg-gradient-to-t from-[#0e0e0e] via-transparent to-transparent flex flex-col justify-end p-2 z-10">
-                                <span class="text-[8px] font-mono text-[#E07A5F] block font-bold">Volumetric Soft Fogs</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            `
-        },
-        {
-            num: 14,
-            speaker: speakers.OLHA,
-            chapter: 'Creative & Performance',
-            title: 'Demo Case 4 – Neural Glow',
+            title: 'Demo: 100 % synthetisch — Neural Glow',
             visualType: 'Case Study Presentation',
             target: 'Beispiel für ein vollständig synthetisch erzeugtes, hyperrealistisches Werbebild.',
             notes: "Demo Case 4: Neural Glow. Hier gehen wir den finalen Schritt. Das gesamte Produktbild inklusive Flasche, Texturen und Szenerie wurde vollständig digital generiert. Dadurch senken wir die Set-Kosten für unsere Partner auf exakt Null.",
@@ -1958,46 +1800,10 @@ function toggleTheaterMode() {
             `
         },
         {
-            num: 15,
+            num: 12,
             speaker: speakers.OLHA,
             chapter: 'Creative & Performance',
-            title: 'The Hybrid Production Workflow',
-            visualType: 'Timeline & Process Flow',
-            target: 'Erläuterung des 4-Schritte Hybrid-Production Workflows.',
-            notes: "Unser Produktionsablauf ist standardisiert und getaktet: Wir fangen im Studio mit dem realen Foto an, generieren den Hintergrund digital per Midjourney, maskieren den Flakon und führen beide Bilder im Feinschliff pixelgenau zusammen.",
-            render: () => `
-                <div class="space-y-4 py-2">
-                    <p class="text-xs text-[#9CA3AF] text-center">Der strukturierte Durchlauf vom realen Roh-Asset zum finalen Verkaufsartwork:</p>
-                    <div class="grid grid-cols-1 md:grid-cols-4 gap-3">
-                        <div class="p-3 bg-[#0e0e0e] border border-[#222] rounded-lg text-center space-y-2 hover:border-[#A855F7]/40 transition-colors">
-                            <span class="text-[#A855F7] font-mono text-xs block font-bold">Step 01</span>
-                            <h5 class="text-xs text-[#F5F5F5] font-bold">Real Capture</h5>
-                            <p class="text-[10px] text-[#9CA3AF] leading-relaxed">Physisches Produkt-Foto im Studio vor weißem Hintergrund.</p>
-                        </div>
-                        <div class="p-3 bg-[#0e0e0e] border border-[#222] rounded-lg text-center space-y-2 hover:border-[#A855F7]/40 transition-colors">
-                            <span class="text-[#A855F7] font-mono text-xs block font-bold">Step 02</span>
-                            <h5 class="text-xs text-[#F5F5F5] font-bold">Background Render</h5>
-                            <p class="text-[10px] text-[#9CA3AF] leading-relaxed">Digitaler Prompt-Satz erzeugt luxuriöse Designumgebung.</p>
-                        </div>
-                        <div class="p-3 bg-[#0e0e0e] border border-[#222] rounded-lg text-center space-y-2 hover:border-[#A855F7]/40 transition-colors">
-                            <span class="text-[#A855F7] font-mono text-xs block font-bold">Step 03</span>
-                            <h5 class="text-xs text-[#F5F5F5] font-bold">Alpha Masking</h5>
-                            <p class="text-[10px] text-[#9CA3AF] leading-relaxed">Automatische Freistellung des physischen Elements.</p>
-                        </div>
-                        <div class="p-3 bg-[#0e0e0e] border border-[#222] rounded-lg text-center space-y-2 hover:border-[#A855F7]/40 transition-colors">
-                            <span class="text-[#A855F7] font-mono text-xs block font-bold">Step 04</span>
-                            <h5 class="text-xs text-[#F5F5F5] font-bold">E2E Composing</h5>
-                            <p class="text-[10px] text-[#9CA3AF]">Synthese, Lichteinfall-Anpassung und Export.</p>
-                        </div>
-                    </div>
-                </div>
-            `
-        },
-        {
-            num: 16,
-            speaker: speakers.OLHA,
-            chapter: 'Creative & Performance',
-            title: 'Hybrid Production Efficiency',
+            title: 'Hybride Produktion: 144 h → 4 h',
             visualType: 'KPI Evidence',
             target: 'Gegenüberstellung klassischer vs. moderner hybrider Bildproduktion.',
             notes: "Wir beweisen die Effizienz mit harten Fakten: Ein klassisches Fotoset aufbauen, Requisiten kaufen und retuschieren dauert im Schnitt 144 Stunden. Mit unserem hybriden Modell reduzieren wir diesen Aufwand auf exakt 4 Stunden.",
@@ -2045,10 +1851,10 @@ function toggleTheaterMode() {
 
         // ================== DENYS DEMYANISHYN (17 - 24) ==================
         {
-            num: 17,
+            num: 13,
             speaker: speakers.DENYS,
             chapter: 'Performance & Testing',
-            title: 'Performance-Creative & GML-2026 QFC',
+            title: 'Performance-System & GML-2026 QFC',
             visualType: 'Split Narrative',
             target: 'Erklärung der datengetriebenen Optimierung und Einbindung von Google QFC.',
             notes: "Danke, Olha. Wo deine visuelle Exzellenz aufhört, beginnt mein datenbasiertes Messsystem. Wir optimieren Werbekampagnen nicht nach Bauchgefühl, sondern nutzen Google Marketing Live 2026's QFC (Qualified Future Conversions) als Gemini-gestütztes Prognose-Signal für Upper-Funnel-Kampagnen. Vorsicht: Es ist eine Prognose und ein restricted Pilot, weshalb wir es immer mit Geo-Tests und Meridian MMM validieren.",
@@ -2090,10 +1896,10 @@ function toggleTheaterMode() {
             `
         },
         {
-            num: 18,
+            num: 14,
             speaker: speakers.DENYS,
             chapter: 'Performance & Testing',
-            title: 'Channel Weighting & Budget Allocation',
+            title: 'Kanal-Strategie & Budget-Gewichtung',
             visualType: 'Split Narrative',
             target: 'Aufzeigen der strategischen Budgetgewichtung über verschiedene Werbeplattformen.',
             notes: "Wir streuen Risiken intelligent. Meta bleibt mit 40% unser starker Core Funnel; TikTok fängt mit 25% die Gen Z ab; Google sichert den kaufbereiten Traffic und LinkedIn bedient unsere B2B CRM Brücke.",
@@ -2138,93 +1944,10 @@ function toggleTheaterMode() {
             `
         },
         {
-            num: 19,
+            num: 15,
             speaker: speakers.DENYS,
             chapter: 'Performance & Testing',
-            title: 'Platform Intelligence',
-            visualType: 'KPI Evidence',
-            target: 'Darstellung der spezifischen Anforderungen pro Werbe-Netzwerk.',
-            notes: "Plattform-Intelligenz bedeutet: Jeder Kanal verlangt eigene Formate und Key-Metrics. Auf Meta optimieren wir knallhart nach Thumbstop-Rate; auf LinkedIn zählt das präzise ICP Job-Title Matching.",
-            render: () => `
-                <div class="grid grid-cols-2 md:grid-cols-4 gap-4 py-2">
-                    <div class="p-3 bg-[#0e0e0e] border border-[#222] rounded-lg text-center space-y-1.5 hover:border-[#A855F7]/40 transition-colors">
-                        <span class="text-[#A855F7] font-mono text-xs block font-bold">Meta</span>
-                        <h5 class="text-[11px] text-[#F5F5F5] font-bold">9:16 Feed & Reel</h5>
-                        <div class="h-[1px] bg-[#222] w-6 mx-auto"></div>
-                        <p class="text-[10px] text-[#9CA3AF] font-mono">Key-Metric: Thumbstop Rate</p>
-                    </div>
-                    <div class="p-3 bg-[#0e0e0e] border border-[#222] rounded-lg text-center space-y-1.5 hover:border-[#E07A5F]/40 transition-colors">
-                        <span class="text-[#E07A5F] font-mono text-xs block font-bold">TikTok</span>
-                        <h5 class="text-[11px] text-[#F5F5F5] font-bold">Short-Form Real</h5>
-                        <div class="h-[1px] bg-[#222] w-6 mx-auto"></div>
-                        <p class="text-[10px] text-[#9CA3AF] font-mono">Key-Metric: Hook Ratio</p>
-                    </div>
-                    <div class="p-3 bg-[#0e0e0e] border border-[#222] rounded-lg text-center space-y-1.5 hover:border-[#3B82F6]/40 transition-colors">
-                        <span class="text-[#3B82F6] font-mono text-xs block font-bold">Google Search</span>
-                        <h5 class="text-[11px] text-[#F5F5F5] font-bold">Responsive Text</h5>
-                        <div class="h-[1px] bg-[#222] w-6 mx-auto"></div>
-                        <p class="text-[10px] text-[#9CA3AF] font-mono">Key-Metric: Click Quality</p>
-                    </div>
-                    <div class="p-3 bg-[#0e0e0e] border border-[#222] rounded-lg text-center space-y-1.5 hover:border-[#D8D3CB]/40 transition-colors">
-                        <span class="text-[#D8D3CB] font-mono text-xs block font-bold">LinkedIn</span>
-                        <h5 class="text-[11px] text-[#F5F5F5] font-bold">Native Document</h5>
-                        <div class="h-[1px] bg-[#222] w-6 mx-auto"></div>
-                        <p class="text-[10px] text-[#9CA3AF] font-mono">Key-Metric: Lead Score</p>
-                    </div>
-                </div>
-            `
-        },
-        {
-            num: 20,
-            speaker: speakers.DENYS,
-            chapter: 'Performance & Testing',
-            title: 'Der 5-Schritt-Algorithmus',
-            visualType: 'System Architecture',
-            target: 'Erläuterung des iterativen Test-Algorithmus zur datengetriebenen Budgetskalierung.',
-            notes: "Wir testen in einer mathematischen Dauerschleife. Unser 5-Schritt-Algorithmus reicht von der fundierten Hypothesenformulierung über den isolierten Sandbox-A/B-Test bis zur automatischen Übertragung der Gewinner ins Hauptkonto.",
-            render: () => `
-                <div class="grid md:grid-cols-2 gap-6 items-center py-2">
-                    <div class="space-y-3">
-                        <p class="text-xs text-[#9CA3AF] leading-relaxed">
-                            Jedes Asset durchläuft kontinuierlich diese strukturierte, geschlossene Qualitätskontrolle für optimalen Performance-Erfolg:
-                        </p>
-                        <div class="space-y-1.5 font-mono text-[10px] text-[#F5F5F5]">
-                            <div class="bg-[#0e0e0e] border border-[#222] p-1.5 rounded flex justify-between hover:border-[#A855F7]/40 transition-colors">
-                                <span>Step 1: Hypothese</span>
-                                <span class="text-[#A855F7]">Definition</span>
-                            </div>
-                            <div class="bg-[#0e0e0e] border border-[#222] p-1.5 rounded flex justify-between hover:border-[#A855F7]/40 transition-colors">
-                                <span>Step 2: Micro-Budget Test</span>
-                                <span class="text-[#A855F7]">Sandbox Run</span>
-                            </div>
-                            <div class="bg-[#0e0e0e] border border-[#222] p-1.5 rounded flex justify-between hover:border-[#A855F7]/40 transition-colors">
-                                <span>Step 3: KPI Check (CPA vs Limit)</span>
-                                <span class="text-[#A855F7]">Validation</span>
-                            </div>
-                            <div class="bg-[#0e0e0e] border border-[#222] p-1.5 rounded flex justify-between hover:border-[#A855F7]/40 transition-colors">
-                                <span>Step 4: Scale Winners</span>
-                                <span class="text-[#A855F7]">Budget Lift</span>
-                            </div>
-                            <div class="bg-[#0e0e0e] border border-[#222] p-1.5 rounded flex justify-between hover:border-[#A855F7]/40 transition-colors">
-                                <span>Step 5: Catalog Update</span>
-                                <span class="text-[#A855F7]">Loop back</span>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Data Loop Graphic -->
-                    <div class="bg-[#111116] p-2 rounded-lg border border-[#3B82F6]/20 relative shadow-inner overflow-hidden h-48 flex items-center justify-center">
-                        <img src="${getVisualsPath()}6bbb083e-c0bd-4c3a-9221-1c1b779975ab.png" class="object-cover w-full h-full rounded opacity-85 hover:scale-105 transition-transform duration-700" alt="OMM Data Feedback Loop">
-                        <div class="absolute bottom-2 left-2 bg-[#030303]/80 border border-[#222] px-2 py-0.5 rounded text-[8px] font-mono text-[#3B82F6] uppercase">Data Cycle Pipeline</div>
-                    </div>
-                </div>
-            `
-        },
-        // ================== ✨ INTEGRATION 1: DYNAMIC AD GENERATOR & PROMPT ENGINE ==================
-        {
-            num: 21,
-            speaker: speakers.DENYS,
-            chapter: 'Performance & Testing',
-            title: 'Creative Testing Matrix',
+            title: 'Die Test-Engine: Matrix & Live-Generierung',
             visualType: 'Split Narrative',
             target: 'Strukturierte Gegenüberstellung der Testvarianten mit LLM-gesteuerter Live-Inhaltsgenerierung.',
             notes: "Wir überlassen den Erfolg nicht dem Zufall. Jedes neue Creative wird einer eindeutigen Testvariante zugeordnet. Nutzen Sie unser integriertes KI-Tool, um passgenaue Werbetexte und Midjourney Prompts live zu erzeugen.",
@@ -2295,100 +2018,10 @@ function toggleTheaterMode() {
             `
         },
         {
-            num: 22,
+            num: 16,
             speaker: speakers.DENYS,
             chapter: 'Performance & Testing',
-            title: 'The 25-Day Sprint & Launch Plan',
-            visualType: 'Timeline & Process Flow',
-            target: 'Der zeitlich optimierte Fahrplan für das Onboarding und Kampagnen-Launch in genau 25 Tagen.',
-            notes: "Wir garantieren Schnelligkeit. Innerhalb von exakt 25 Tagen durchläuft jeder neue Partner das Onboarding, die Asset-Synthese und geht mit scharf geschalteten, hochgradig ausgemessenen Ads live.",
-            render: () => `
-                <div class="space-y-3">
-                    <p class="text-[10px] text-[#9CA3AF] text-center font-mono uppercase tracking-wider">Von Onboarding bis Live — Garantiert in 25 Tagen:</p>
-
-                    <!-- Visual Timeline with connector line -->
-                    <div class="relative">
-                        <!-- Connector line -->
-                        <div class="absolute top-[48px] left-[15%] right-[15%] h-[2px] bg-gradient-to-r from-[#A855F7]/30 via-[#A855F7] to-[#A855F7]/30 z-0"></div>
-                        <!-- Arrow heads -->
-                        <div class="absolute top-[42px] left-[47%] text-[#A855F7] text-xs z-0">→</div>
-
-                        <div class="grid grid-cols-3 gap-4 relative z-10">
-                            <!-- Phase 1 -->
-                            <div class="p-3 bg-[#0e0e0e] border border-[#222] rounded-xl space-y-2 premium-hover" style="animation: counterUp 0.5s ease 0.1s both; opacity: 0;">
-                                <div class="flex items-center gap-2">
-                                    <div class="h-8 w-8 rounded-full bg-[#A855F7]/15 border border-[#A855F7]/40 flex items-center justify-center text-[10px] font-mono font-bold text-[#A855F7] flex-shrink-0">1–5</div>
-                                    <div>
-                                        <span class="text-[#A855F7] font-mono text-[9px] block font-bold uppercase">Phase 1</span>
-                                        <h5 class="text-xs text-[#F5F5F5] font-bold leading-tight">Onboarding & Setup</h5>
-                                    </div>
-                                </div>
-                                <div class="h-16 rounded overflow-hidden img-card-zoom border border-[#222]">
-                                    <img src="${getVisualsPath()}3011e753-e50c-464c-a4c2-cc2862db08cc.png" class="w-full h-full object-cover opacity-70">
-                                </div>
-                                <ul class="text-[9px] text-[#9CA3AF] font-mono space-y-0.5">
-                                    <li>✦ Notion Workspace OS Setup</li>
-                                    <li>✦ CRM Integration</li>
-                                    <li>✦ Tracking-Pixel-Prüfung</li>
-                                </ul>
-                            </div>
-
-                            <!-- Phase 2 (highlighted) -->
-                            <div class="p-3 bg-[#111116] border border-[#A855F7]/50 rounded-xl space-y-2 shadow-[0_0_20px_rgba(168,85,247,0.15)]" style="animation: counterUp 0.5s ease 0.2s both; opacity: 0;">
-                                <div class="flex items-center gap-2">
-                                    <div class="h-8 w-8 rounded-full bg-[#A855F7]/30 border border-[#A855F7] flex items-center justify-center text-[10px] font-mono font-bold text-[#A855F7] flex-shrink-0">6–15</div>
-                                    <div>
-                                        <span class="text-[#A855F7] font-mono text-[9px] block font-bold uppercase">Phase 2 · Core</span>
-                                        <h5 class="text-xs text-[#F5F5F5] font-bold leading-tight">Asset-Synthese</h5>
-                                    </div>
-                                </div>
-                                <div class="h-16 rounded overflow-hidden img-card-zoom border border-[#A855F7]/30">
-                                    <img src="${getVisualsPath()}Loumina 4.png" class="w-full h-full object-cover">
-                                </div>
-                                <ul class="text-[9px] text-[#9CA3AF] font-mono space-y-0.5">
-                                    <li>✦ Hybrid-Shooting</li>
-                                    <li>✦ AI-Composing in OMM</li>
-                                    <li>✦ Copywriting & QFC-Check</li>
-                                </ul>
-                            </div>
-
-                            <!-- Phase 3 -->
-                            <div class="p-3 bg-[#0e0e0e] border border-[#222] rounded-xl space-y-2 premium-hover" style="animation: counterUp 0.5s ease 0.3s both; opacity: 0;">
-                                <div class="flex items-center gap-2">
-                                    <div class="h-8 w-8 rounded-full bg-emerald-400/15 border border-emerald-400/40 flex items-center justify-center text-[10px] font-mono font-bold text-emerald-400 flex-shrink-0">25</div>
-                                    <div>
-                                        <span class="text-emerald-400 font-mono text-[9px] block font-bold uppercase">Phase 3 · Go Live</span>
-                                        <h5 class="text-xs text-[#F5F5F5] font-bold leading-tight">Launch & Skalierung</h5>
-                                    </div>
-                                </div>
-                                <div class="h-16 rounded overflow-hidden img-card-zoom border border-emerald-400/20">
-                                    <img src="${getVisualsPath()}6bbb083e-c0bd-4c3a-9221-1c1b779975ab.png" class="w-full h-full object-cover opacity-80">
-                                </div>
-                                <ul class="text-[9px] text-[#9CA3AF] font-mono space-y-0.5">
-                                    <li>✦ Live Ads geschaltet</li>
-                                    <li>✦ Rule Engine aktiv</li>
-                                    <li>✦ QFC Monitoring läuft</li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Progress bar -->
-                    <div class="bg-[#0e0e0e] border border-[#222] rounded-lg p-2 flex items-center gap-3" style="animation: fadeIn 0.5s ease 0.5s both; opacity: 0;">
-                        <span class="text-[9px] font-mono text-[#9CA3AF] flex-shrink-0">Day 0</span>
-                        <div class="flex-1 h-1.5 bg-[#222] rounded-full overflow-hidden">
-                            <div class="h-full bg-gradient-to-r from-[#A855F7] to-emerald-400 rounded-full" style="width: 100%; animation: slideEnterRight 1s ease 0.7s both; transform-origin: left; opacity: 0;"></div>
-                        </div>
-                        <span class="text-[9px] font-mono text-emerald-400 font-bold flex-shrink-0">Day 25 ✓ LIVE</span>
-                    </div>
-                </div>
-            `
-        },
-        {
-            num: 23,
-            speaker: speakers.DENYS,
-            chapter: 'Performance & Testing',
-            title: 'The Automated Rules Engine',
+            title: 'Sicherheit: Automatisierte Rules Engine',
             visualType: 'Product UI Showcase',
             target: 'Darstellung der automatisierten Meta Rules Engine im Pseudocode.',
             notes: "Sicherheit geht vor. Algorithmen überwachen unsere Kampagnen stündlich. Sobald ein Creative unter die Mindestgrenze fällt, schaltet das System es automatisiert ab, um Kundenguthaben zu schützen.",
@@ -2421,113 +2054,13 @@ function toggleTheaterMode() {
             `
         },
         {
-            num: 24,
-            speaker: speakers.DENYS,
-            chapter: 'Performance & Testing',
-            title: 'The Creative Learning Log & Späher Intel',
-            visualType: 'Split Narrative',
-            target: 'Systematische Sicherung gewonnener Performance-Erkenntnisse.',
-            notes: "Wir werfen kein Wissen weg. Jedes Testergebnis wird in unserem 'Creative Learning Log' katalogisiert. Über OMMs Späher-Engine überwachen wir zudem kontinuierlich die Designstrukturen der Konkurrenz.",
-            render: () => `
-                <div class="grid md:grid-cols-2 gap-6 items-center">
-                    <div class="space-y-4">
-                        <p class="text-xs text-[#9CA3AF] leading-relaxed">
-                            Das Learning Log dient als firmeninterne Intelligenz-Datenbank für zukünftige Kampagnenstarts und Best-Practice Benchmarks.
-                        </p>
-                        <ul class="text-xs space-y-2 text-[#F5F5F5] font-mono">
-                            <li class="flex items-center gap-2"><span class="h-1.5 w-1.5 bg-[#A855F7] rounded-full"></span> Konkurrenz-Monitoring</li>
-                            <li class="flex items-center gap-2"><span class="h-1.5 w-1.5 bg-[#A855F7] rounded-full"></span> Automatische OCR Copy-Auswertung</li>
-                            <li class="flex items-center gap-2"><span class="h-1.5 w-1.5 bg-[#A855F7] rounded-full"></span> Datenexport für Kundenreports</li>
-                        </ul>
-                    </div>
-                    <div class="bg-[#0e0e0e] border border-[#222] rounded-lg p-3 space-y-2 text-xs shadow-inner">
-                        <span class="text-[9px] font-mono text-[#A855F7] block uppercase font-semibold">SPÄHER COMPETITOR WATCH</span>
-                        <div class="space-y-1.5 font-mono text-[10px]">
-                            <div class="bg-[#030303] p-2 rounded border border-[#222]">
-                                <span class="text-[#F5F5F5] block font-bold">Brand X Serum (Meta)</span>
-                                <span class="text-[#9CA3AF]">Ad Count: 14 Active | Style: Minimalist White</span>
-                            </div>
-                            <div class="bg-[#030303] p-2 rounded border border-[#222]">
-                                <span class="text-[#F5F5F5] block font-bold">Brand Y Cream (TikTok)</span>
-                                <span class="text-[#9CA3AF]">Ad Count: 8 Active | Style: Neon Lifestyle</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            `
-        },
-
-        // ================== RALPH KINDERMANN (25 - 30) ==================
-        {
-            num: 25,
+            num: 17,
             speaker: speakers.RALPH,
             chapter: 'CRM & Client Operations',
-            title: 'Client Operations Philosophy',
-            visualType: 'Cinematic Hero',
-            target: 'Definition des operativen Qualitätsversprechens und der CRM Führungsphilosophie.',
-            notes: "Ich übernehme wieder für die CRM & Client Operations. Exzellente Werbemittel bringen nichts, wenn die Abwicklung hakt. Wir etablieren absolute Verlässlichkeit durch standardisierte Workflows.",
-            render: () => `
-                <div class="grid md:grid-cols-2 gap-6 items-center">
-                    <!-- Left: Quote + Mission -->
-                    <div class="space-y-4 text-left">
-                        <span class="text-[#D8D3CB] font-mono text-[10px] uppercase tracking-widest block font-bold" style="animation: slideEnterLeft 0.4s ease both; opacity: 0;">OPERATIONAL MISSION</span>
-                        <blockquote class="font-sans text-xl font-bold tracking-tight text-[#F5F5F5] font-light leading-snug border-l-2 border-[#D8D3CB]/40 pl-4" style="animation: slideEnterLeft 0.5s ease 0.1s both; opacity: 0;">
-                            „Qualität ist kein Zufallsprodukt, sondern das Resultat lückenloser, standardisierter Prozesse."
-                        </blockquote>
-                        <div class="h-[1px] bg-gradient-to-r from-[#D8D3CB]/30 to-transparent" style="animation: fadeIn 0.5s ease 0.2s both; opacity: 0;"></div>
-                        <p class="text-xs text-[#9CA3AF] font-sans leading-relaxed" style="animation: fadeIn 0.5s ease 0.3s both; opacity: 0;">
-                            Standard Operating Procedures (SOPs) definieren jeden Schritt vom Erstkontakt bis zum monatlichen Retainer Audit — ohne Ausnahme.
-                        </p>
-                        <!-- SOP Badges -->
-                        <div class="flex flex-wrap gap-2" style="animation: slideEnterUp 0.5s ease 0.4s both; opacity: 0;">
-                            <span class="px-2 py-1 bg-[#0e0e0e] border border-[#D8D3CB]/20 rounded text-[9px] font-mono text-[#D8D3CB]">SOP-01: Lead Handling</span>
-                            <span class="px-2 py-1 bg-[#0e0e0e] border border-[#A855F7]/20 rounded text-[9px] font-mono text-[#A855F7]">SOP-02: Onboarding</span>
-                            <span class="px-2 py-1 bg-[#0e0e0e] border border-[#3B82F6]/20 rounded text-[9px] font-mono text-[#3B82F6]">SOP-03: Case Study</span>
-                        </div>
-                    </div>
-
-                    <!-- Right: CRM KPI dashboard -->
-                    <div class="space-y-3" style="animation: glowPop 0.6s ease 0.2s both; opacity: 0;">
-                        <div class="bg-[#111116] border border-[#D8D3CB]/15 rounded-xl overflow-hidden">
-                            <div class="h-28 relative img-card-zoom">
-                                <img src="${getVisualsPath()}3011e753-e50c-464c-a4c2-cc2862db08cc.png" class="w-full h-full object-cover opacity-60">
-                                <div class="absolute inset-0 bg-gradient-to-t from-[#111116] to-transparent"></div>
-                                <div class="absolute bottom-2 left-3 font-mono text-[8px] text-[#D8D3CB] uppercase tracking-widest">OMM Operations Hub</div>
-                            </div>
-                            <div class="grid grid-cols-3 divide-x divide-[#222] p-0">
-                                <div class="p-3 text-center">
-                                    <span class="kpi-number text-2xl font-bold font-sans block">7</span>
-                                    <span class="text-[8px] font-mono text-[#9CA3AF]">CRM Stages</span>
-                                </div>
-                                <div class="p-3 text-center">
-                                    <span class="text-2xl font-bold font-sans block" style="background: linear-gradient(135deg, #F5F5F5, #D8D3CB); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">3</span>
-                                    <span class="text-[8px] font-mono text-[#9CA3AF]">SOP Dokumente</span>
-                                </div>
-                                <div class="p-3 text-center">
-                                    <span class="text-2xl font-bold font-sans block text-emerald-400">100%</span>
-                                    <span class="text-[8px] font-mono text-[#9CA3AF]">Prozess-Coverage</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="bg-[#0e0e0e] border border-[#222] rounded-lg p-3 flex items-center gap-3">
-                            <div class="h-8 w-8 rounded-full bg-[#D8D3CB]/10 border border-[#D8D3CB]/20 flex items-center justify-center text-xs">📋</div>
-                            <div>
-                                <span class="text-[9px] font-mono text-[#9CA3AF] block">EU-Lead-CRM · Opus-Magnum-Cockpit</span>
-                                <span class="text-[11px] font-mono text-[#F5F5F5] font-bold">Pipeline: Active · 7 Stages · DSGVO-konform</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            `
-        },
-        {
-            num: 26,
-            speaker: speakers.RALPH,
-            chapter: 'CRM & Client Operations',
-            title: 'Inbound & Outbound Customer Journeys',
+            title: 'Client Operations: Inbound & Outbound',
             visualType: 'Split Narrative',
             target: 'Zwei-Wege Vertriebssystem zur systematischen Adressierung von Neukunden.',
-            notes: "Wir bedienen zwei Kanäle: Inbound empfangen wir Leads über LinkedIn und unsere eigene Site; Outbound kontaktieren wir Marken gezielt über personalisierte Video-Audits.",
+            notes: "Danke, Denys — ich übernehme wieder für Client Operations. Wir bedienen zwei Kanäle: Inbound empfangen wir Leads über LinkedIn und unsere eigene Site; Outbound kontaktieren wir Marken gezielt über personalisierte Video-Audits.",
             render: () => `
                 <div class="grid md:grid-cols-2 gap-6 items-center">
                     <div class="space-y-4">
@@ -2551,10 +2084,10 @@ function toggleTheaterMode() {
             `
         },
         {
-            num: 27,
+            num: 18,
             speaker: speakers.RALPH,
             chapter: 'CRM & Client Operations',
-            title: 'Eigenes EU-CRM & Sales Pipeline',
+            title: 'Eigenes EU-CRM & Sales-Pipeline',
             visualType: 'Product UI Showcase',
             target: 'Interaktive Simulation des eigenen EU-CRM Kanban-Boards (Cockpit Lead-Inbox).',
             notes: "Wir verwalten unsere Opportunities im eigenen EU-CRM — der Lead-Inbox unseres Opus-Magnum-Cockpits, bewusst statt HubSpot für volle DSGVO-Datenhoheit. Vom Erstkontakt über das Erstgespräch, das Audit und die Angebotserstellung bis zur Verhandlung und dem Closing durchläuft jeder Deal eine von Ralph exakt definierte Pipeline aus 7 Stages.",
@@ -2608,110 +2141,10 @@ function toggleTheaterMode() {
             `
         },
         {
-            num: 28,
+            num: 19,
             speaker: speakers.RALPH,
             chapter: 'CRM & Client Operations',
-            title: 'Lead Qualification & ICP Scoring',
-            visualType: 'Split Narrative',
-            target: 'Interaktiver ICP Scoring Rechner mit simuliertem Slack Alarm Trigger.',
-            notes: "Wir qualifizieren Leads rigoros nach Ralphs 3 CRM-Segmenten. Über unseren Rechner bewerten wir Werbebudget und Branche, ordnen Leads dem passenden Segment zu und geben eine automatisierte Paket-Empfehlung aus (Creative Retainer, Test-Paket oder White-Label Engine).",
-            render: () => `
-                <div class="grid md:grid-cols-2 gap-6 items-center">
-                    <div class="space-y-4">
-                        <p class="text-xs text-[#9CA3AF] leading-relaxed">
-                            Berechnen Sie die Qualifikation eines Leads direkt in dieser interaktiven Demo-Schnittstelle:
-                        </p>
-                        <!-- Interactive Form Elements -->
-                        <div class="space-y-2 text-xs">
-                            <div class="flex justify-between items-center">
-                                <span class="text-[#F5F5F5]">Monatlicher Ad Spend:</span>
-                                <select id="icp-spend" onchange="calculateIcpScore()" class="bg-[#030303] border border-[#2A2A32] rounded p-1 text-[10px] text-[#F5F5F5] focus:outline-none focus:border-[#A855F7] w-48">
-                                    <option value="15000">&lt; €30.000 (Mid-Spend)</option>
-                                    <option value="45000" selected>&gt; €30.000 (High-Spend / Scale-Up)</option>
-                                </select>
-                            </div>
-                            <div class="flex justify-between items-center">
-                                <span class="text-[#F5F5F5]">Branche & Zielgruppe:</span>
-                                <select id="icp-industry" onchange="calculateIcpScore()" class="bg-[#030303] border border-[#2A2A32] rounded p-1 text-[10px] text-[#F5F5F5] focus:outline-none focus:border-[#A855F7] w-48">
-                                    <option value="beauty" selected>Beauty, Health & Lifestyle</option>
-                                    <option value="agency">Performance Agentur (White-Label)</option>
-                                    <option value="other">Sonstige Branchen</option>
-                                </select>
-                            </div>
-                            <div class="bg-[#0e0e0e] p-2 rounded border border-[#222] space-y-1 text-[10px] font-mono shadow-inner">
-                                <div class="flex justify-between items-center">
-                                    <span class="text-[#9CA3AF]">Zugeordnetes Segment:</span>
-                                    <span id="icp-segment-display" class="text-[#A855F7] font-bold">Segment 1: D2C Scale-Up</span>
-                                </div>
-                                <div class="flex justify-between items-center">
-                                    <span class="text-[#9CA3AF]">Paket-Empfehlung:</span>
-                                    <span id="icp-package-display" class="text-emerald-400 font-bold">Creative Retainer (Full Stack)</span>
-                                </div>
-                                <div class="flex justify-between items-center border-t border-[#222] pt-1 mt-1">
-                                    <span class="text-[#9CA3AF]">Calculated Lead Score:</span>
-                                    <span id="icp-score-display" class="text-[#A855F7] font-bold">10 / 10</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Simulated Slack Notification Area -->
-                    <div class="bg-[#111116] border border-[#222] p-4 rounded-lg space-y-3 shadow-inner">
-                        <div class="flex justify-between items-center text-[10px] font-mono text-[#9CA3AF]">
-                            <span>SLACK SYSTEM ALARM</span>
-                            <span class="text-emerald-400 font-bold">Online Connection</span>
-                        </div>
-                        <div class="bg-[#030303] p-3 rounded border border-emerald-500/20 text-[10px] font-mono space-y-1 leading-relaxed">
-                            <div class="text-[#A855F7]">#sales-alerts [12:25]</div>
-                            <div class="text-[#F5F5F5] font-bold">🚨 HOT LEAD REGISTERED ON MIRROU.STUDIO</div>
-                            <div id="slack-lead-name" class="text-[#9CA3AF]">Name: Beauty Scale-Up Ltd. | Segment: Segment 1</div>
-                            <div class="text-[#9CA3AF]">Score: <span id="slack-score-val" class="text-[#A855F7] font-bold">10/10</span></div>
-                            <div id="slack-lead-rec" class="text-[#9CA3AF]">Empfehlung: Creative Retainer (Full Stack)</div>
-                            <div class="text-emerald-400">&gt;&gt; Automated Calendar Invite sent to CEO</div>
-                        </div>
-                    </div>
-                </div>
-            `
-        },
-        {
-            num: 29,
-            speaker: speakers.RALPH,
-            chapter: 'CRM & Client Operations',
-            title: 'Notion Workspace OS & OMM AI Cockpit Workflows',
-            visualType: 'Product UI Showcase',
-            target: 'Aufzeigen der geordneten Ordnerstruktur und administrativen Automatisierung.',
-            notes: "Wir haben unsere Agentur digital in vier Kernbereichen in Notion strukturiert: Growth/CRM, Production/AI, Operations und Client Records. Das OMM AI Cockpit automatisiert zudem die Medien-Erstellung und Kampagnen-Workflows.",
-            render: () => `
-                <div class="space-y-4 py-2">
-                    <p class="text-xs text-center text-[#9CA3AF]">Strukturierte Wissensdatenbank in Notion (Klicken Sie auf Ordner):</p>
-                    <div class="grid grid-cols-4 gap-2 text-xs font-mono text-center">
-                        <div onclick="selectNotionFolder('sales')" class="bg-[#181822] p-3 rounded border border-[#333] hover:border-[#A855F7] cursor-pointer transition-colors">
-                            <span class="text-[#A855F7] font-bold block truncate">01_Growth_CRM</span>
-                            <span class="text-[9px] text-[#9CA3AF]">Sales & Outreach</span>
-                        </div>
-                        <div onclick="selectNotionFolder('creative')" class="bg-[#181822] p-3 rounded border border-[#333] hover:border-[#E07A5F] cursor-pointer transition-colors">
-                            <span class="text-[#E07A5F] font-bold block truncate">02_Production_AI</span>
-                            <span class="text-[9px] text-[#9CA3AF]">Prompting & Briefs</span>
-                        </div>
-                        <div onclick="selectNotionFolder('clients')" class="bg-[#181822] p-3 rounded border border-[#333] hover:border-[#3B82F6] cursor-pointer transition-colors">
-                            <span class="text-[#3B82F6] font-bold block truncate">03_Operations</span>
-                            <span class="text-[9px] text-[#9CA3AF]">SOPs & Contracts</span>
-                        </div>
-                        <div onclick="selectNotionFolder('internal')" class="bg-[#181822] p-3 rounded border border-[#333] hover:border-[#F5F5F5] cursor-pointer transition-colors">
-                            <span class="text-[#F5F5F5] font-bold block truncate">04_Client_Records</span>
-                            <span class="text-[9px] text-[#9CA3AF]">Client Sheets</span>
-                        </div>
-                    </div>
-                    <div id="notion-folder-details" class="bg-[#0e0e0e] border border-[#A855F7]/20 p-2.5 rounded text-center text-[10px] font-mono text-[#A855F7] min-h-[36px] flex items-center justify-center">
-                        Select a workspace folder above to view detailed structural credentials.
-                    </div>
-                </div>
-            `
-        },
-        {
-            num: 30,
-            speaker: speakers.RALPH,
-            chapter: 'CRM & Client Operations',
-            title: 'Standard Operating Procedures (SOPs 01 – 03)',
+            title: 'Operatives Rückgrat: SOPs & Notion-OS',
             visualType: 'KPI Evidence',
             target: 'Beweis der Prozesssicherheit durch standardisierte, interaktive Checklisten.',
             notes: "Wir beweisen Prozesssicherheit. Jede Tätigkeit hat eine feste SOP. SOP 01 regelt das Lead Handling, SOP 02 sichert das Kunden-Onboarding und SOP 03 steuert den standardisierten Case Study Export.",
@@ -2751,13 +2184,13 @@ function toggleTheaterMode() {
 
         // ================== MARKETING MIX & WACHSTUM (31 - 35) ==================
         {
-            num: 31,
+            num: 20,
             speaker: speakers.YAHYA,
             chapter: 'Marketing Mix & Wachstum',
-            title: 'Der Marketing-Mix — Die 4 Ps × KI',
+            title: 'Der Marketing-Mix: Die 4 Ps × KI',
             visualType: 'Strategic Framework',
             target: 'Der klassische Marketing-Mix (Product, Price, Place, Promotion), operationalisiert durch unseren KI-Toolstack — wie im DCI-Modul gefordert.',
-            notes: "Wir kehren zur Grundlage zurück und zeigen, dass hinter dem System ein sauberer Marketing-Mix steht. Jedes der vier Ps ist bei uns nicht Theorie, sondern KI-operationalisiert: Product über Perplexity-Marktrecherche und Claude-SWOT, Price über Gemini- und Claude-Preisszenarien, Place über eine KI-Kanalstrategie und Promotion über eine automatisierte Content-Engine aus Claude, Zapier und Publer.",
+            notes: "Danke, Ralph. Wir kehren zur Grundlage zurück und zeigen, dass hinter dem System ein sauberer Marketing-Mix steht. Jedes der vier Ps ist bei uns nicht Theorie, sondern KI-operationalisiert: Product über Perplexity-Marktrecherche und Claude-SWOT, Price über Gemini- und Claude-Preisszenarien, Place über eine KI-Kanalstrategie und Promotion über eine automatisierte Content-Engine aus Claude, Zapier und Publer.",
             render: () => `
                 <div class="grid grid-cols-2 gap-3">
                     <div class="p-4 rounded-xl bg-[#0e0e0e]/80 border border-[#A855F7]/25 space-y-2 premium-hover relative overflow-hidden" style="animation: counterUp 0.5s ease 0.1s both; opacity:0;">
@@ -2807,7 +2240,7 @@ function toggleTheaterMode() {
             `
         },
         {
-            num: 32,
+            num: 21,
             speaker: speakers.YAHYA,
             chapter: 'Marketing Mix & Wachstum',
             title: 'Organische Multi-Channel-Kampagne',
@@ -2870,10 +2303,10 @@ function toggleTheaterMode() {
             `
         },
         {
-            num: 33,
+            num: 22,
             speaker: speakers.YAHYA,
             chapter: 'Marketing Mix & Wachstum',
-            title: '6-Wochen-Roadmap: Frontier Firm',
+            title: 'Wachstum: 6-Wochen-Roadmap & TikTok',
             visualType: 'Timeline & Process Flow',
             target: 'Sechs Wochen, sechs Phasen, null Verzögerung — EU AI Act, TikTok Social Commerce und die ersten zahlenden Kunden ab Juni 2026.',
             notes: "Diese Roadmap beginnt ab sofort, ab Juni 2026. Sechs Wochen, sechs Phasen: Erst Infrastruktur scharfstellen und Quick Wins, dann LinkedIn-Akquise für ICP 1 und 2, der erste bezahlte Pilot-Case mit echten Daten, die Compliance-Kommunikation als Differenzierung nach außen, das TikTok-Social-Commerce-Setup, und schließlich Review plus 90-Tage-Skalierungsplan.",
@@ -2919,58 +2352,10 @@ function toggleTheaterMode() {
             `
         },
         {
-            num: 34,
-            speaker: speakers.DENYS,
-            chapter: 'Marketing Mix & Wachstum',
-            title: 'TikTok Social Commerce — First-Mover DACH',
-            visualType: 'KPI Evidence',
-            target: 'Marktfenster TikTok Shop DACH: Zahlen, Chance und die konkreten Creative-Format-Spezifikationen für 2026.',
-            notes: "TikTok Shop ist seit März 2025 in Deutschland, Österreich und der Schweiz live. Der Social-Commerce-GMV in Europa wird 2026 auf über 100 Milliarden Euro geschätzt, allein 27 Millionen Nutzer in Deutschland, und LIVE-Shopping-Events erreichen 30 Prozent Conversion. Trotzdem liefert kaum eine DACH-Kreativagentur Shop-Ads und LIVE-Formate auf unserem Niveau. Genau dieses Fenster besetzen wir.",
-            render: () => `
-                <div class="grid grid-cols-4 gap-2.5 mb-3">
-                    <div class="p-3 rounded-xl bg-[#0e0e0e]/80 border border-[#A855F7]/25 text-center" style="animation: counterUp 0.5s ease 0.1s both; opacity:0;">
-                        <h4 class="text-2xl font-sans font-bold tracking-tighter kpi-number">2025</h4>
-                        <p class="text-[9px] text-[#9CA3AF] font-mono uppercase tracking-wider mt-1">TikTok Shop DACH live (März)</p>
-                    </div>
-                    <div class="p-3 rounded-xl bg-[#0e0e0e]/80 border border-[#3B82F6]/25 text-center" style="animation: counterUp 0.5s ease 0.2s both; opacity:0;">
-                        <h4 class="text-2xl font-sans font-bold tracking-tighter" style="background:linear-gradient(135deg,#F5F5F5,#3B82F6);-webkit-background-clip:text;-webkit-text-fill-color:transparent;">&gt;100 Mrd €</h4>
-                        <p class="text-[9px] text-[#9CA3AF] font-mono uppercase tracking-wider mt-1">Social-Commerce GMV Europa 2026</p>
-                    </div>
-                    <div class="p-3 rounded-xl bg-[#0e0e0e]/80 border border-[#E07A5F]/25 text-center" style="animation: counterUp 0.5s ease 0.3s both; opacity:0;">
-                        <h4 class="text-2xl font-sans font-bold tracking-tighter" style="background:linear-gradient(135deg,#F5F5F5,#E07A5F);-webkit-background-clip:text;-webkit-text-fill-color:transparent;">27 Mio</h4>
-                        <p class="text-[9px] text-[#9CA3AF] font-mono uppercase tracking-wider mt-1">TikTok-Nutzer Deutschland</p>
-                    </div>
-                    <div class="p-3 rounded-xl bg-[#A855F7]/5 border border-[#A855F7]/30 text-center" style="animation: counterUp 0.5s ease 0.4s both; opacity:0;">
-                        <h4 class="text-2xl font-sans font-bold tracking-tighter kpi-number">30%</h4>
-                        <p class="text-[9px] text-[#9CA3AF] font-mono uppercase tracking-wider mt-1">Conversion LIVE-Shopping</p>
-                    </div>
-                </div>
-                <div class="mb-3 grid grid-cols-3 gap-2" style="animation: fadeIn 0.6s ease 0.45s both; opacity:0;">
-                    <div class="rounded-xl overflow-hidden border border-[#1C1C22] h-24 relative img-card-zoom"><img src="${getImagesPath()}vitality-pulse-5.webp" class="w-full h-full object-cover"><div class="absolute bottom-1 left-2 text-[8px] font-mono text-[#F5F5F5] uppercase tracking-widest">Shop-Ad 9:16</div></div>
-                    <div class="rounded-xl overflow-hidden border border-[#1C1C22] h-24 relative img-card-zoom"><img src="${getImagesPath()}neural-glow-6.webp" class="w-full h-full object-cover"><div class="absolute bottom-1 left-2 text-[8px] font-mono text-[#F5F5F5] uppercase tracking-widest">LIVE-Teaser</div></div>
-                    <div class="rounded-xl overflow-hidden border border-[#1C1C22] h-24 relative img-card-zoom"><img src="${getImagesPath()}luminous-aura-6.webp" class="w-full h-full object-cover"><div class="absolute bottom-1 left-2 text-[8px] font-mono text-[#F5F5F5] uppercase tracking-widest">Product Hero</div></div>
-                </div>
-                <div class="rounded-xl border border-[#1C1C22] overflow-hidden" style="animation: fadeIn 0.6s ease 0.5s both; opacity:0;">
-                    <div class="grid grid-cols-3 bg-[#0e0e0e] text-[9px] font-mono uppercase tracking-widest text-[#A855F7] font-bold border-b border-[#1C1C22]">
-                        <div class="p-2">Format</div><div class="p-2">Spec</div><div class="p-2">KI-Einsatz (EU-AI-Act-konform)</div>
-                    </div>
-                    <div class="grid grid-cols-3 text-[11px] text-[#9CA3AF] border-b border-[#1C1C22]/60">
-                        <div class="p-2 text-[#F5F5F5] font-semibold">Shop-Ad (Feed)</div><div class="p-2">9:16 · 15–30s · Auto-Caption</div><div class="p-2">Hintergrund, VFX</div>
-                    </div>
-                    <div class="grid grid-cols-3 text-[11px] text-[#9CA3AF] border-b border-[#1C1C22]/60">
-                        <div class="p-2 text-[#F5F5F5] font-semibold">LIVE-Teaser</div><div class="p-2">9:16 · 3–10s · Hook-first</div><div class="p-2">Transitions, Overlay</div>
-                    </div>
-                    <div class="grid grid-cols-3 text-[11px] text-[#9CA3AF]">
-                        <div class="p-2 text-[#F5F5F5] font-semibold">Product Hero (TikTok)</div><div class="p-2">1:1 oder 9:16 · Static</div><div class="p-2">Hintergrund, Ambiente</div>
-                    </div>
-                </div>
-            `
-        },
-        {
-            num: 35,
+            num: 23,
             speaker: speakers.YAHYA,
             chapter: 'Marketing Mix & Wachstum',
-            title: 'OMM × Mirrou — System-Integration zweier Repositories',
+            title: 'System-Integration: OMM × Mirrou',
             visualType: 'System Architecture',
             target: 'Opus Magnum Media (KI-Cockpit OS) und Mirrou Creative Studio (Agentur-Plattform) sind zwei separate Codebases, die über Schnittstellen nahtlos integriert sind.',
             notes: "Zum Kern: Opus Magnum Media und Mirrou Creative Studio sind zwei eigenständige Capstone-Projekte und Repositories, die zusammen unsere Frontier-Firm-Infrastruktur bilden. Das Website-Repo von Mirrou steuert die mehrsprachige Kundenpräsenz, während das OMM-Repo das interne AI-Marketing-Cockpit mit Python FastAPI und Firestore beherbergt. Beide Systeme integrieren sich nahtlos: Jedes Absenden des Formulars auf mirrou.studio sendet ein POST an das Cloud-Run-Backend von OMM, welches die Leads DSGVO-konform in der EU-Firestore-Instanz speichert. Eine sichere Cross-Project IAM-Architektur regelt die Zugriffsrechte.",
@@ -3020,13 +2405,13 @@ function toggleTheaterMode() {
 
         // ================== YAHYA YILDIRIM (36 - 37) ==================
         {
-            num: 36,
+            num: 24,
             speaker: speakers.YAHYA,
             chapter: 'Closing & Tech Stack',
-            title: 'Tech Stack & Live Staging Deployment',
+            title: 'Tech-Stack & Live-Deployment',
             visualType: 'System Architecture',
             target: 'Technische Erläuterung der Deployment-Architektur auf Firebase & GCP Cloud Run.',
-            notes: "Ralph, danke. Ich schließe die Präsentation ab. Unser gesamtes System ist live auf modernstem Stack deployt: Ein React 19 Frontend, gehostet auf Firebase Hosting, mit einem Python FastAPI Backend auf Google Cloud Run in Frankfurt, abgesichert nach der DSGVO, mit lückenloser Firebase Lead-Bridge.",
+            notes: "Ich schließe die Präsentation ab. Unser gesamtes System ist live auf modernstem Stack deployt: Ein React 19 Frontend, gehostet auf Firebase Hosting, mit einem Python FastAPI Backend auf Google Cloud Run in Frankfurt, abgesichert nach der DSGVO, mit lückenloser Firebase Lead-Bridge.",
             render: () => `
                 <div class="grid md:grid-cols-2 gap-6 items-stretch">
                     <!-- INTERACTIVE SYSTEM LINKS DIRECTORY -->
@@ -3131,10 +2516,10 @@ function toggleTheaterMode() {
         },
         // ================== ✨ INTEGRATION 4: AI AUDITOR Q&A SIMULATOR ==================
         {
-            num: 37,
+            num: 25,
             speaker: speakers.YAHYA,
             chapter: 'Closing & Tech Stack',
-            title: 'Closing Manifesto & OMM SaaS Outlook',
+            title: 'Closing-Manifest & SaaS-Ausblick',
             visualType: 'Closing Manifesto',
             target: 'Ausblick auf die zukünftige Skalierung zum kommerziellen Mandanten SaaS-Modell.',
             notes: "Wir bedanken uns herzlich für Ihre Aufmerksamkeit. Mirrou Creative Studio beweist heute die Kraft von Opus Magnum OS. Im nächsten Schritt skalieren wir dieses interne System zu einem kommerziellen SaaS-Modell für Partneragenturen weltweit.",
