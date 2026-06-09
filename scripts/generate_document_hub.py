@@ -2714,6 +2714,35 @@ function askCopilot() {
       aiMsg.innerHTML = `<p><strong>OMM AI Co-Pilot</strong></p><span class="stream-text"></span>`;
       msgs.appendChild(aiMsg);
       msgs.scrollTop = msgs.scrollHeight;
+
+      // ── AI synthesis via OMM backend (server-side Gemini; CSP-safe, key stays server-side) ──
+      // RAG: local search above provides the grounding context + the cited sources below.
+      // Graceful: on any failure (offline / file:// CORS / rate-limit) we just show the sources.
+      (function(){
+        var ctx = matches.slice(0,5).map(function(m){
+          return m.block.docTitle + ' > ' + m.block.section + ':\n' + m.block.text;
+        }).join('\n\n---\n\n');
+        var aiBox = document.createElement('div');
+        aiBox.style.cssText = 'margin:8px 0 4px;';
+        aiBox.innerHTML = '<div class="callout callout-tip" style="margin:0;padding:12px 16px;"><div class="callout-content" style="font-size:0.85rem;color:var(--text-3);font-style:italic;">✨ KI-Antwort wird generiert …</div></div>';
+        aiMsg.insertBefore(aiBox, aiMsg.querySelector('.stream-text'));
+        fetch('https://opus-magnum-ai-backend-923137317598.europe-west3.run.app/api/hub-qa', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ question: val, context: ctx, doc_title: matches[0] ? matches[0].block.docTitle : '' })
+        }).then(function(r){ return r.ok ? r.json() : Promise.reject(r.status); })
+          .then(function(d){
+            var ans = (d && d.answer) ? d.answer : '';
+            if (!ans){ aiBox.remove(); return; }
+            var html = (typeof marked !== 'undefined') ? marked.parse(ans) : ('<p>' + ans + '</p>');
+            aiBox.innerHTML = '<div class="callout callout-tip" style="margin:0;padding:12px 16px;">'
+              + '<div style="font-size:0.62rem;color:var(--gold);font-family:var(--font-mono);text-transform:uppercase;letter-spacing:1px;margin-bottom:6px;display:flex;align-items:center;gap:6px;"><i data-lucide="sparkles" style="width:13px;height:13px;"></i> KI-Antwort · Quellen unten</div>'
+              + '<div class="callout-content" style="font-size:0.85rem;color:var(--text);line-height:1.6;">' + html + '</div></div>';
+            if (typeof lucide !== 'undefined') { try { lucide.createIcons(); } catch(e){} }
+            msgs.scrollTop = msgs.scrollHeight;
+          })
+          .catch(function(){ aiBox.remove(); });
+      })();
       
       const textSpan = aiMsg.querySelector('.stream-text');
       const words = introText.split(' ');
