@@ -5,26 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MIRROU Creative Studio & OMM - Abschlusspräsentation</title>
     
-    <!-- Modern Google Fonts Integration -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,600&family=Inter:wght@200;300;400;500;600;700;800&family=JetBrains+Mono:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
-    
-    <!-- Tailwind CSS via reliable CDN -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    fontFamily: {
-                        sans: ['Inter', 'system-ui', '-apple-system', 'sans-serif'],
-                        serif: ['Inter', 'sans-serif'],
-                        mono: ['JetBrains Mono', 'monospace']
-                    }
-                }
-            }
-        }
-    </script>
+    <!-- Self-hosted fonts (CSP-safe, offline-capable; was Google Fonts CDN) -->
+    <link href="lib/fonts.css" rel="stylesheet">
+
+    <!-- Self-hosted Tailwind: prebuilt from this deck's classes via scripts/tw-deck.config.js
+         (was cdn.tailwindcss.com Play CDN — blocked by strict CSP / needs eval) -->
+    <link href="lib/deck-tailwind.css" rel="stylesheet">
 
     <!-- Custom Ambient Styling -->
     <style>
@@ -5335,7 +5321,7 @@ function toggleTheaterMode() {
 
         if (typeof html2canvas === 'undefined') {
             const script = document.createElement('script');
-            script.src = 'https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js';
+            script.src = 'lib/html2canvas.min.js';
             script.onload = captureImage;
             script.onerror = () => showCustomToast("❌ Offline?", "Bild-Export benötigt einmalig Internet (html2canvas). Bitte online erneut versuchen.");
             document.head.appendChild(script);
@@ -5430,8 +5416,8 @@ function toggleTheaterMode() {
 
         showCustomToast(pdfIcon, "PDF wird erstellt", "Lade Render-Engine & rendere alle Folien…");
         try {
-            await loadLib('https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js', () => typeof html2canvas !== 'undefined');
-            await loadLib('https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js', () => !!(window.jspdf && window.jspdf.jsPDF));
+            await loadLib('lib/html2canvas.min.js', () => typeof html2canvas !== 'undefined');
+            await loadLib('lib/jspdf.umd.min.js', () => !!(window.jspdf && window.jspdf.jsPDF));
         } catch (e) {
             showCustomToast("❌ Offline?", "PDF-Export aller Folien benötigt einmalig Internet (html2canvas + jsPDF). Einzelne Folie geht offline via 'Folie (PNG)'.");
             return;
