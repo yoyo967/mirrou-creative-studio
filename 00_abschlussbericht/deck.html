@@ -1126,6 +1126,21 @@ function toggleTheaterMode() {
     let currentSlide = 0;
     const totalSlides = 25;
 
+    // ═══ Override-Versionierung: verwirft veraltete localStorage-Folien-Overrides
+    // nach einem Deck-Umbau (sonst stellt das Deck alte/kaputte gespeicherte Folien
+    // wieder her — z.B. nach dem 37→25-Rebuild). Bei jedem strukturellen Umbau DECK_VERSION bumpen.
+    (function () {
+        const DECK_VERSION = '2026-06-09-25slides';
+        try {
+            if (localStorage.getItem('omm-deck-version') !== DECK_VERSION) {
+                Object.keys(localStorage).forEach(function (k) {
+                    if (/^omm-(title|notes|canvas|image)-\d+$/.test(k)) localStorage.removeItem(k);
+                });
+                localStorage.setItem('omm-deck-version', DECK_VERSION);
+            }
+        } catch (e) { /* localStorage unavailable — ignore */ }
+    })();
+
     let __toastTimer = null;
     function showCustomToast(icon, title, msg) {
         const t = document.getElementById('custom-toast'); if (!t) return;
