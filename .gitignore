@@ -60,10 +60,16 @@ lighthouse-*.json
 # Temporary backup
 .gitignore.local
 
-# Antigravity raw image dump (143 MB, unreferenced) — kept local; only the
-# referenced subset is versioned via `git add -f` (see commit history)
+# Antigravity raw image dumps — kept local; only the deck/hub-REFERENCED
+# subset is versioned via `git add -f` (see commit history)
 public/visuals/
 00_abschlussbericht/visuals/
+/visuals/
+public/mirrou socialmdedia/
+/mirrou socialmdedia/
+
+# 2.2 GB working-resources folder (slide source material) — never in git
+ressourcen für slides/
 
 # Python cache & scratch
 __pycache__/

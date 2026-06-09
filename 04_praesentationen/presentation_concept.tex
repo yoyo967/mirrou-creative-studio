@@ -1,0 +1,600 @@
+\documentclass[11pt,a4paper]{article}
+
+% --- PACKAGES ---
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[german]{babel}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage{geometry}
+\geometry{
+    a4paper,
+    total={170mm,257mm},
+    left=20mm,
+    top=25mm,
+    bottom=25mm,
+    right=20mm
+}
+\usepackage{xcolor}
+\usepackage{titlesec}
+\usepackage{fancyhdr}
+\usepackage{booktabs}
+\usepackage{tabularx}
+\usepackage{enumitem}
+\usepackage{tcolorbox}
+\tcbuselibrary{skins,breakable}
+\usepackage{hyperref}
+\usepackage{listings}
+
+% --- COLOR DEFINITIONS ---
+\definecolor{brandonyx}{HTML}{080808}
+\definecolor{branddark}{HTML}{111113}
+\definecolor{brandgold}{HTML}{C8A25A}
+\definecolor{brandivory}{HTML}{F2EFE9}
+\definecolor{mutedgray}{HTML}{6E6B66}
+\definecolor{accentblue}{HTML}{4A90E2}
+\definecolor{accentcoral}{HTML}{E07A5F}
+
+% --- HYPERREF SETUP ---
+\hypersetup{
+    colorlinks=true,
+    linkcolor=brandgold,
+    filecolor=brandgold,      
+    urlcolor=brandgold,
+    pdftitle={Mirrou \& OMM - Presentationskonzept},
+    pdfpagemode=FullScreen,
+}
+
+% --- TYPOGRAPHY & LAYOUT ---
+\renewcommand{\familydefault}{\sfdefault} % Modern Sans-Serif look
+\linespread{1.15}
+
+% Section Styling
+\titleformat{\section}
+  {\color{brandonyx}\normalfont\Large\bfseries}
+  {\thesection}{1em}{}[{\titlerule[1pt]}]
+
+\titleformat{\subsection}
+  {\color{brandgold}\normalfont\large\bfseries}
+  {\thesubsection}{1em}{}
+
+\titleformat{\subsubsection}
+  {\color{brandonyx}\normalfont\normalsize\bfseries}
+  {\thesubsubsection}{1em}{}
+
+% Headers & Footers
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\color{mutedgray}\footnotesize Mirrou Creative Studio \& OMM -- Project OS}
+\fancyhead[R]{\color{mutedgray}\footnotesize Executive Briefing}
+\fancyfoot[L]{\color{mutedgray}\footnotesize Version 4.0 (integrated)}
+\fancyfoot[R]{\color{mutedgray}\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0.4pt}
+
+% Custom Boxes for Slides
+\newtcolorbox{slidebox}[3][]{
+    colback=brandivory!30,
+    colframe=brandgold,
+    arc=2mm,
+    outer arc=2mm,
+    title={\textbf{Folie #2: #3}},
+    coltitle=white,
+    colbacktitle=brandgold,
+    attach boxed title to top left={yshift=-2mm,xshift=3mm},
+    boxed title style={colframe=brandgold,colback=brandgold,arc=1mm},
+    breakable,
+    enhanced,
+    before skip=15pt,
+    after skip=15pt,
+    #1
+}
+
+% --- LISTINGS SETUP ---
+\lstset{
+    backgroundcolor=\color{brandivory!20},
+    basicstyle=\ttfamily\small,
+    breakatwhitespace=false,         
+    breaklines=true,                 
+    captionpos=b,                    
+    keepspaces=true,                 
+    numbers=left,                    
+    numbersep=5pt,                  
+    showspaces=false,                
+    showstringspaces=false,
+    showtabs=false,                  
+    tabsize=2,
+    frame=single,
+    rulecolor=\color{brandgold!50}
+}
+
+% --- DOCUMENT INFO ---
+\title{
+    \vspace{-1.5cm}
+    \begin{center}
+        \color{brandonyx}\Huge\bfseries Algorithm of Soul\\
+        \large\color{brandgold}High-End HTML Presentation Deck -- Executive Blueprint\\
+        \vspace{0.3cm}
+        \small\color{mutedgray}Mirrou Creative Studio \& Opus Magnum Media -- Project OS
+    \end{center}
+}
+\author{\textbf{Projektteam:}\\ Yahya Yildirim \and Olha Yevtushenko \and Denys Demyanyshyn \and Ralph Kindermann}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\begin{tcolorbox}[colback=branddark,colframe=branddark,arc=3mm,text fill,coltext=white]
+    \begin{center}
+        \textbf{\large MISSION} \\
+        \vspace{0.2cm}
+        \small Dieses Dokument dient als autoritativer Entwicklungs- und Design-Blueprint für das finale HTML-Präsentationssystem zur Abschlusspräsentation. Es erzielt eine exakte mathematische Gleichverteilung von \textbf{8 Slides pro Sprecher} (insgesamt 32 Slides) und integriert alle System-URLs, die OMM-Produktfamilie sowie Google QFC.
+    \end{center}
+\end{tcolorbox}
+
+\tableofcontents
+\newpage
+
+% =========================================================================
+\section{Narrative Overview (Die Gesamtstory)}
+% =========================================================================
+Die Abschlusspräsentation baut eine präzise dramaturgische und logische Brücke zwischen zwei Systemen: \textbf{Mirrou Creative Studio} (Design \& Performance-Fokus) und \textbf{Opus Magnum Media} (KI-Betriebssystem \& Application-Cockpit). Die Story gliedert sich in 12 logische Sätze:
+
+\begin{enumerate}[label=\textbf{\arabic*.}]
+    \item \textbf{Die Eröffnung:} Wir starten nicht mit einer Standard-Vorstellung, sondern zeigen ein verteiltes Team (Hamburg/Berlin), das durch ein digitales, hochgradig integriertes Betriebssystem nahtlos zusammenarbeitet.
+    \item \textbf{Das Marktproblem:} Wir enthüllen die Frustration von D2C-Brands im Beauty-, Health- und Lifestyle-Segment, deren Werbemittel nach 14--28 Tagen an \textit{Creative Fatigue} ausbrennen und die Performance einbrechen lassen.
+    \item \textbf{Unsere Antwort:} Mirrou Creative Studio löst diese Ermüdung durch eine kontinuierliche Creative-Engine, die Ästhetik und Algorithmus unter dem Claim ``Algorithm of Soul'' vereint.
+    \item \textbf{Die operative Effizienz:} Durch die Implementierung einer \textit{Frontier-Firm-Architektur} und das \textit{Perfect-Twin-Prinzip} (Mensch-KI-Co-Creation) erzielen vier Personen das Arbeitsergebnis einer 15--20-köpfigen klassischen Agentur.
+    \item \textbf{Die kreative Umsetzung:} Olha Yevtushenko vereint als \textit{Creative Director · Performance Marketing} visuelle Brillanz mit strategischem Performance-Testing. Sie steuert das ``Dark Luxury''-System und vier ausformulierte Demo-Cases.
+    \item \textbf{Die Kundenschnittstelle:} Das Vertrauen wird durch eine proaktive \textit{EU AI Act-} und \textit{DSGVO-Compliance} sowie transparente, produktisierte Service-Pakete gefestigt, die direkt auf der Live-Plattform in 8 Sprachen auswählbar sind.
+    \item \textbf{Die Performance-Validierung:} Wir zeigen, wie dieses System durch eine klare Budgetgewichtung und einen datengetriebenen A/B-Testing-Loop (5-Schritt-Algorithmus) statistisch signifikant optimiert und skaliert wird.
+    \item \textbf{Das Fundament:} Um diese Leads zu konvertieren, nutzen wir eine vordefinierte HubSpot-Pipeline und ein striktes Standard-Operating-Procedures-System (SOPs) in Notion OS.
+    \item \textbf{Die technologische Realisierung:} Mirrou ist kein Konzept, sondern live -- mit einer React-19-Plattform auf GCP Cloud Run mit 8 Sprachen, SEO-Apex-Struktur und vollautomatischer Lead-Bridge.
+    \item \textbf{Das Gehirn dahinter:} Als operationales Rückgrat fungiert \textbf{Opus Magnum Media (Project OS)}, ein KI-gesteuertes Multi-Tenant-Cockpit mit ca. 49 spezialisierten Operator-Agenten.
+    \item \textbf{Die Absicherung:} Wir lösen die kommende KI-Kennzeichnungspflicht des EU AI Acts und die DSGVO-Vorgaben proaktiv durch C2PA-Metadaten und EU-first GCP-Infrastruktur auf.
+    \item \textbf{Der Beweis:} Nach ca. 410 Stunden realem Build-Aufwand steht ein voll funktionsfähiges, rechtskonformes Agentursystem, das bereit ist, vom internen Dogfooding zu einem Mandanten-SaaS-Modell skaliert zu werden.
+\end{enumerate}
+
+\newpage
+
+% =========================================================================
+\section{Deck System (Gestalterisches Framework)}
+% =========================================================================
+Das gestalterische System des HTML-Decks leitet sich direkt aus der Markenidentität von Mirrou ab, wird jedoch um technische Layer für das Opus Magnum OS ergänzt.
+
+\subsection{Farbwelt}
+\begin{itemize}
+    \item \textbf{Deep Onyx (\#080808):} Haupt-Hintergrund für maximale visuelle Ruhe.
+    \item \textbf{Onyx Surface (\#111113):} Card-Hintergründe für klare Abgrenzung.
+    \item \textbf{Muted Gold (\#C8A25A):} Akzente, Trennlinien, Highlight-Rahmen.
+    \item \textbf{Ivory (\#F2EFE9):} Primärtext, Hohe Lesbarkeit.
+    \item \textbf{Muted Gray (\#6E6B66):} Metadaten, Sekundärtext, Fußzeilen.
+\end{itemize}
+
+Sprecher-Akzente zur Orientierung der Jury:
+\begin{itemize}
+    \item \textbf{Yahya Yildirim:} Gold (\#C8A25A)
+    \item \textbf{Olha Yevtushenko:} Terracotta (\#E07A5F)
+    \item \textbf{Denys Demyanyshyn:} Steel Blue (\#4A90E2)
+    \item \textbf{Ralph Kindermann:} Ivory Warm (\#D8D3CB)
+\end{itemize}
+
+\subsection{Typografie}
+\begin{itemize}
+    \item \textbf{Headline-Typografie:} \textit{Cormorant Garamond} (Serif, ultraleicht \texttt{font-weight: 300}) für Editorial-Premium-Feeling.
+    \item \textbf{Fließtext-Typografie:} \textit{Inter} (Sans-Serif, \texttt{font-weight: 300/400/500}) für maximale Lesbarkeit.
+    \item \textbf{Technische Daten / Code-Layer:} \textit{JetBrains Mono} (\texttt{font-weight: 400}) für Systempfade, API-Payloads und CLI-Outputs.
+\end{itemize}
+
+\subsection{Komponentenbibliothek}
+\begin{enumerate}
+    \item \textbf{Interactive Team-Map:} Verortung Hamburg (Creative) \& Berlin (Growth/Tech) mit pulsierenden Hotspots.
+    \item \textbf{KPI Evidence Card:} Glassmorphism-Karten mit einer übergroßen Zahl und einer animierten Fortschrittsleiste.
+    \item \textbf{Browser Frame Component:} Native HTML/CSS-Nachbildung eines Safari/Chrome-Fensters mit URL-Zeile.
+    \item \textbf{Code Terminal:} Dunkles Konsolenfenster mit Syntax-Highlighting.
+    \item \textbf{Timeline/Sprint Rail:} Horizontale Prozess-Timeline, bei der Einzelschritte nacheinander aktiviert werden.
+\end{enumerate}
+
+\newpage
+
+% =========================================================================
+\section{Scene Architecture (Szenentypen)}
+% =========================================================================
+Wir definieren 9 wiederverwendbare Szenentypen, um visuelle Konsistenz zu garantieren:
+\begin{itemize}
+    \item \textbf{Cinematic Hero:} Zentriert, großflächiger dunkler Hintergrund mit sanftem Schein, minimale Typografie (Display Font).
+    \item \textbf{Split Narrative:} 2-Spalten-Layout (55\% Text/Zahlen links, 45\% Visual/SVG rechts).
+    \item \textbf{KPI Evidence:} 3- oder 4-Spalten-Raster aus Glassmorphism-Karten mit großen Zahlen.
+    \item \textbf{System Architecture:} Zentrales, animiertes SVG-Flussdiagramm mit klaren Legenden und interaktiven Knotenpunkten.
+    \item \textbf{Product UI Showcase:} Vollflächiger Browser-Frame mit Live-Iframe-Einbindung oder High-Res-Screenshot.
+    \item \textbf{Timeline \& Process Flow:} Horizontale Kette aus 3--5 Schritten mit Verbindungsbalken.
+    \item \textbf{Case Study Presentation:} Großes visuelles Key-Asset (Mood-Image) mit minimalem Overlay der Design-Parameter.
+    \item \textbf{Compliance Matrix:} Strukturierte Tabelle mit Status-Badges.
+    \item \textbf{Closing Manifesto:} Fokussiert, edel. Ein zentraler Call-to-Action mit QR-Code und abschließendem Claim.
+\end{itemize}
+
+\newpage
+
+% =========================================================================
+\section{Full Slide Plan (32 Slides)}
+% =========================================================================
+
+\subsection{Teil 1: Yahya Yildirim -- Intro \& Strategy (Slides 1--6)}
+
+\begin{slidebox}{1}{Titel \& Begrüßung}
+    \textbf{Sprecher:} Yahya Yildirim \\
+    \textbf{Ziel:} Cineastischer, fehlerfreier Einstieg. Etablierung des Dark-Luxury-Themas.\\
+    \textbf{Kernaussage:} Wir präsentieren eine voll funktionsfähige, datengesteuerte Creative-Agentur samt eigenem KI-Betriebssystem.\\
+    \textbf{Visual Direction:} Cinematic Hero. Deep Onyx mit radialem goldenem Schein im Zentrum. Elegant pulsierendes Mirrou-Logo als Vektorgrafik.\\
+    \textbf{Assets:} \texttt{mirrou\_logo\_gold.svg}, \texttt{qr\_live\_site.svg}.
+\end{slidebox}
+
+\begin{slidebox}{2}{The Frontier-Team \& Mission}
+    \textbf{Sprecher:} Yahya Yildirim \\
+    \textbf{Ziel:} Beweis der extremen Effizienz durch KI-Orchestrierung.\\
+    \textbf{Kernaussage:} Ein 4-Personen-Team erzielt durch die Multi-Tenant-Plattform von OMM die Schlagkraft eines 20-köpfigen Studios.\\
+    \textbf{Visual Direction:} KPI Evidence. Raster aus 4 Karten, farblich dezent auf den jeweiligen Sprecher abgestimmt (Gold, Terracotta, Blau, Grau).\\
+    \textbf{Presenter Notes:} Zeigen des echten Aufwands von ca. 410 Stunden (Olha 120h, Denys 80h, Ralph 60h, Yahya 150h).
+\end{slidebox}
+
+\begin{slidebox}{3}{Das Marktproblem: Creative Fatigue}
+    \textbf{Sprecher:} Yahya Yildirim \\
+    \textbf{Ziel:} Dringlichkeit und Schmerzpunkt aufzeigen.\\
+    \textbf{Kernaussage:} Ohne kontinuierliche Creative-Produktion brennen Social-Media-Kampagnen nach 14--28 Tagen gnadenlos aus.\\
+    \textbf{Visual Direction:} Split Narrative. Links Text mit rotem Warnsymbol, rechts fallende Performance-Kurve als SVG.
+\end{slidebox}
+
+\begin{slidebox}{4}{Die 3-Arenen-Wettbewerbslogik}
+    \textbf{Sprecher:} Yahya Yildirim \\
+    \textbf{Ziel:} Einzigartigkeit von Mirrou verorten.\\
+    \textbf{Kernaussage:} Wir besetzen die Schnittstelle zwischen High-End-Ästhetik und kompromisslosem Performance-Testing.\\
+    \textbf{Visual Direction:} Split Narrative. Rechts eine interaktive Drei-Venn-Diagramm-Grafik mit sich überschneidenden Kreisen (Ästhetik, Daten, Automatisierung).
+\end{slidebox}
+
+\begin{slidebox}{5}{The Core Claim \& Service Packages}
+    \textbf{Sprecher:} Yahya Yildirim \\
+    \textbf{Ziel:} Klares Angebot und Preisschnittstelle definieren.\\
+    \textbf{Kernaussage:} Starke Bildsprache mit klarer Performance-Logik in standardisierten, direkt buchbaren Paketen.\\
+    \textbf{Visual Direction:} KPI Evidence. 3 Spalten mit Paket-Preisen (Catalog, Advertising, Retainer S/M/L).
+\end{slidebox}
+
+\begin{slidebox}{6}{Die Frontier-Firm-Architektur}
+    \textbf{Sprecher:} Yahya Yildirim \\
+    \textbf{Ziel:} Strukturierte KI-Integration aufzeigen.\\
+    \textbf{Kernaussage:} Wir nutzen KI nicht als billige Abkürzung, sondern als systemische Infrastrukturschicht auf Basis des OMM-Frameworks.\\
+    \textbf{Visual Direction:} System Architecture. Vertikales Stapel-Diagramm mit klaren Schnittstellen-Pfeilen.
+\end{slidebox}
+
+\newpage
+\subsection{Teil 2: Ralph Kindermann -- Operations Framework (Slides 7--8)}
+
+\begin{slidebox}{7}{Das Perfect-Twin-Prinzip}
+    \textbf{Sprecher:} Ralph Kindermann \\
+    \textbf{Ziel:} Das Geheimnis der Teameffizienz aus betrieblicher Sicht lüften.\\
+    \textbf{Kernaussage:} Jeder menschliche Spezialist steuert ein maßgeschneidertes KI-Pendant zur Output-Verdopplung ohne Headcount.\\
+    \textbf{Visual Direction:} Split Narrative. Rechts eine interaktive Gegenüberstellung (Mensch-Symbol verbunden mit KI-Knotenpunkt).
+\end{slidebox}
+
+\begin{slidebox}{8}{Strategic Inbound Setup}
+    \textbf{Sprecher:} Ralph Kindermann \\
+    \textbf{Ziel:} Überleitung zum kreativen Teil und Nachweis des Wachstumssetups.\\
+    \textbf{Kernaussage:} Unsere eigene Inbound-Architektur leitet qualifizierten Traffic von LinkedIn, Facebook und Instagram direkt in unser CRM.\\
+    \textbf{Visual Direction:} Split Narrative. Rechts ein Trichterdiagramm (Funnel) von Traffic zu qualifiziertem Lead.
+\end{slidebox}
+
+\subsection{Teil 3: Olha Yevtushenko -- Creative \& Performance (Slides 9--16)}
+
+\begin{slidebox}{9}{Visuelle Performance-Philosophie}
+    \textbf{Sprecher:} Olha Yevtushenko -- \textit{Creative Director · Performance Marketing} \\
+    \textbf{Ziel:} Ihr Profil als Performance-orientierte Kreative etablieren.\\
+    \textbf{Kernaussage:} Ein Premium-Brand-Image darf nicht auf Kosten der Conversion gehen -- wir designen Ästhetik mit Performance-Zielen.\\
+    \textbf{Visual Direction:} Cinematic Hero. Großes, raumfüllendes, edles Produktbild im Hintergrund. Minimaler Typografie-Layer.
+\end{slidebox}
+
+\begin{slidebox}{10}{Brand Identity System}
+    \textbf{Sprecher:} Olha Yevtushenko -- \textit{Creative Director · Performance Marketing} \\
+    \textbf{Ziel:} Technische Präzision des Corporate Designs zeigen.\\
+    \textbf{Kernaussage:} Unser Farb- und Schriftsystem ist als programmatische Design-Tokens im Code verankert.\\
+    \textbf{Visual Direction:} Split Narrative. Links Farb- und Schriftenkarten, rechts eine dynamische Darstellung der 12 Logo-Varianten.
+\end{slidebox}
+
+\begin{slidebox}{11}{The Brandbook & Editorial Guidelines}
+    \textbf{Sprecher:} Olha Yevtushenko -- \textit{Creative Director · Performance Marketing} \\
+    \textbf{Ziel:} Systemische Dokumentation der Marke beweisen.\\
+    \textbf{Kernaussage:} Ein 49-seitiges Brandbook sichert die visuelle Markenidentität unabhängig vom ausführenden Creator.\\
+    \textbf{Visual Direction:} Product UI Showcase. Ein aufgeschlagenes, digitales Buch in einem edlen Mockup-Rahmen.
+\end{slidebox}
+
+\begin{slidebox}{12}{Demo Case 1 -- Luminous Aura}
+    \textbf{Sprecher:} Olha Yevtushenko -- \textit{Creative Director · Performance Marketing} \\
+    \textbf{Ziel:} Den ersten Case Study Case und dessen Konversionsstärke demonstrieren.\\
+    \textbf{Kernaussage:} Goldstaub und Marmor kontrastieren das Produkt für maximale Conversion auf Meta.\\
+    \textbf{Visual Direction:} Case Study. Links Text und Farbcodes, rechts ein interaktiver 3D-Look Slider mit dem Produkt-Rendering.
+\end{slidebox}
+
+\begin{slidebox}{13}{Demo Cases 2 \& 3 -- Vitality Pulse \& Essence Drift}
+    \textbf{Sprecher:} Olha Yevtushenko -- \textit{Creative Director · Performance Marketing} \\
+    \textbf{Ziel:} Vielseitigkeit der visuellen Stile beweisen.\\
+    \textbf{Kernaussage:} Unterschiedliche Produkte fordern unterschiedliche visuelle Dynamiken: von harten Schatten zu weichem Nebel.\\
+    \textbf{Visual Direction:} KPI Evidence. Zwei große Spalten mit den jeweiligen Produkt-Visuals nebeneinander.
+\end{slidebox}
+
+\begin{slidebox}{14}{Demo Case 4 -- Neural Glow}
+    \textbf{Sprecher:} Olha Yevtushenko -- \textit{Creative Director · Performance Marketing} \\
+    \textbf{Ziel:} Beweis der Beherrschung synthetischer Bildwelten.\\
+    \textbf{Kernaussage:} Vollständig KI-generierte Hintergründe gepaart mit realen Produkt-Shootings liefern fotorealistische Ergebnisse ohne Set-Kosten.\\
+    \textbf{Visual Direction:} Case Study. Ein extrem leuchtendes Biotech-Produktbild (synthetisch gerendert).
+\end{slidebox}
+
+\begin{slidebox}{15}{The Hybrid Production Workflow}
+    \textbf{Sprecher:} Olha Yevtushenko -- \textit{Creative Director · Performance Marketing} \\
+    \textbf{Ziel:} Die technologische Produktions-Innovation erklären.\\
+    \textbf{Kernaussage:} Wir fotografieren das physische Produkt real im Studio und generieren die Hintergründe digital per Midjourney.\\
+    \textbf{Visual Direction:} Timeline \& Process Flow. 4-Schritte-Flussdiagramm mit Bildbeispielen für jeden Schritt.
+\end{slidebox}
+
+\begin{slidebox}{16}{Hybrid Production Efficiency}
+    \textbf{Sprecher:} Olha Yevtushenko -- \textit{Creative Director · Performance Marketing} \\
+    \textbf{Ziel:} Den wirtschaftlichen Hebel des Workflows mit Zahlen untermauern.\\
+    \textbf{Kernaussage:} Unsere Hybrid Production reduziert die Durchlaufzeit eines Kampagnen-Shootings um über 90\% (144h vs. 4h).\\
+    \textbf{Visual Direction:} KPI Evidence. Zwei große Balkendiagramme zum direkten Vergleich.
+\end{slidebox}
+
+\newpage
+\subsection{Teil 4: Denys Demyanyshyn -- Performance & Testing (Slides 17--24)}
+
+\begin{slidebox}{17}{Performance-Creative \& GML-2026 QFC}
+    \textbf{Sprecher:} Denys Demyanyshyn \\
+    \textbf{Ziel:} Den Übergang von Kunst zu Wissenschaft demonstrieren.\\
+    \textbf{Kernaussage:} Wir optimieren nicht nur nach vergangenem Umsatz, sondern integrieren Google Marketing Live 2026's QFC für zukunftsorientierte Prognosen.\\
+    \textbf{Visual Direction:} Split Narrative. Links Text, rechts ein abstraktes SVG, das ein Bild in Datenpunkte zerlegt und QFC-Pfade visualisiert.
+\end{slidebox}
+
+\begin{slidebox}{18}{Channel Weighting \& Budget Allocation}
+    \textbf{Sprecher:} Denys Demyanyshyn \\
+    \textbf{Ziel:} Medienkompetenz und Budgetverteilung aufzeigen.\\
+    \textbf{Kernaussage:} Wir verteilen Budgets nach Funnel-Stufen und kanal-spezifischen Stärken, um Risiko zu minimieren.\\
+    \textbf{Visual Direction:} Split Narrative. Rechts ein interaktives Donut-Diagramm mit Segment-Auswahl bei Click (Meta 40\%, TikTok 25\%, Google 20\%).
+\end{slidebox}
+
+\begin{slidebox}{19}{Platform Intelligence}
+    \textbf{Sprecher:} Denys Demyanyshyn \\
+    \textbf{Ziel:} Tiefes Verständnis der Werbeplattformen beweisen.\\
+    \textbf{Kernaussage:} Jede Plattform benötigt ein eigenes Asset-Format und eine eine primäre Auswertungsmetrik.\\
+    \textbf{Visual Direction:} KPI Evidence. 4-Spalten-Raster mit Metriken-Karten für jeden Kanal (Meta, TikTok, Google, LinkedIn).
+\end{slidebox}
+
+\begin{slidebox}{20}{Der 5-Schritt-Algorithmus}
+    \textbf{Sprecher:} Denys Demyanyshyn \\
+    \textbf{Ziel:} Die Systematik der Optimierung beweisen.\\
+    \textbf{Kernaussage:} Jeder Test folgt einer festen mathematisch-logischen Kette von der Hypothese bis zur Skalierung.\\
+    \textbf{Visual Direction:} System Architecture. Ein kreisförmig angeordneter Pfeil-Loop (SVG) mit 5 nummerierten Stationen.
+\end{slidebox}
+
+\begin{slidebox}{21}{Creative Testing Matrix}
+    \textbf{Sprecher:} Denys Demyanyshyn \\
+    \textbf{Ziel:} Methode zur systematischen Hypothesengenerierung zeigen.\\
+    \textbf{Kernaussage:} Wir testen Creatives in vier Dimensionen (Craft, Data, Luxury, Results), um den stärksten Kaufanreiz zu finden.\\
+    \textbf{Visual Direction:} Split Narrative. Rechts eine 2x2 Matrix, die die Testvarianten strukturiert.
+\end{slidebox}
+
+\begin{slidebox}{22}{The 25-Day Sprint \& Launch Plan}
+    \textbf{Sprecher:} Denys Demyanyshyn \\
+    \textbf{Ziel:} Operative Geschwindigkeit und Struktur demonstrieren.\\
+    \textbf{Kernaussage:} In genau 25 Tagen etablieren wir ein voll ausgemessenes, testbereites Kampagnen-Setup.\\
+    \textbf{Visual Direction:} Timeline \& Process Flow. Drei große Tabs für die Sprints, die die Phasen aufschlüsseln.
+\end{slidebox}
+
+\begin{slidebox}{23}{The Automated Rules Engine}
+    \textbf{Sprecher:} Denys Demyanyshyn \\
+    \textbf{Ziel:} Technische Innovation im Advertising belegen.\\
+    \textbf{Kernaussage:} Algorithmen überwachen unsere Kampagnen stündlich und schalten Verlierer automatisch ab.\\
+    \textbf{Visual Direction:} Product UI Showcase. Links die Regeln als Pseudocode/Interface, rechts ein stilisiertes Dashboard.
+\end{slidebox}
+
+\begin{slidebox}{24}{The Creative Learning Log \& Columna Intel}
+    \textbf{Sprecher:} Denys Demyanyshyn \\
+    \textbf{Ziel:} Langfristigen Kundennutzen durch Wissenssicherung aufzeigen.\\
+    \textbf{Kernaussage:} Jedes Testergebnis wird im Learning Log katalogisiert; Wettbewerber werden über OMMs Columna-Engine überwacht.\\
+    \textbf{Visual Direction:} Split Narrative. Links Text, rechts eine scrollbare Datenbank-Ansicht des Learning Logs.
+\end{slidebox}
+
+\newpage
+\subsection{Teil 5: Ralph Kindermann -- CRM \& Client Operations (Slides 25--30)}
+
+\begin{slidebox}{25}{Client Operations Philosophy}
+    \textbf{Sprecher:} Ralph Kindermann \\
+    \textbf{Ziel:} Strukturierte Kundenführung und Zuverlässigkeit beweisen.\\
+    \textbf{Kernaussage:} Professionelle Abwicklung ist genauso wichtig wie das kreative Endprodukt.\\
+    \textbf{Visual Direction:} Cinematic Hero. Großes, minimalistisches Zitat in der Mitte mit feinem goldenen Rahmen.
+\end{slidebox}
+
+\begin{slidebox}{26}{Inbound & Outbound Customer Journeys}
+    \textbf{Sprecher:} Ralph Kindermann \\
+    \textbf{Ziel:} Vertriebskanäle und Kundengewinnung erklären.\\
+    \textbf{Kernaussage:} Wir gewinnen Kunden über zielgerichtete Inbound-Funnel oder personalisierte Video-Audits im Outbound.\\
+    \textbf{Visual Direction:} Split Narrative. Rechts zwei parallele Flussdiagramme, die die Pfade visualisieren.
+\end{slidebox}
+
+\begin{slidebox}{27}{HubSpot Starter CRM \& Sales Pipeline}
+    \textbf{Sprecher:} Ralph Kindermann \\
+    \textbf{Ziel:} Technische CRM-Professionalität beweisen.\\
+    \textbf{Kernaussage:} Unsere 7 Pipeline-Stufen sichern lückenloses Lead-Tracking vom Erstkontakt bis zum Retainer-Start.\\
+    \textbf{Visual Direction:} Product UI Showcase. Nachgebildetes HubSpot-Kanban-Board in einem Browser-Frame.
+\end{slidebox}
+
+\begin{slidebox}{28}{Lead Qualification & ICP Scoring}
+    \textbf{Sprecher:} Ralph Kindermann \\
+    \textbf{Ziel:} Effizienz im Vertrieb zeigen.\\
+    \textbf{Kernaussage:} Jeder Lead wird anhand von Ad-Spend, Branche und Erreichbarkeit bewertet -- Leads ab Score 8 triggern Slack-Alarme.\\
+    \textbf{Visual Direction:} Split Narrative. Links die Kriterien, rechts eine simulierte Slack-Nachricht in einer Card.
+\end{slidebox}
+
+\begin{slidebox}{29}{Notion Workspace OS \& LYGOX Workflows}
+    \textbf{Sprecher:} Ralph Kindermann \\
+    \textbf{Ziel:} Strukturierte Datenablage und Knowledge-OS demonstrieren.\\
+    \textbf{Kernaussage:} 4 Kernordner in Notion strukturieren das gesamte Agenturwissen, während OMMs LYGOX administrative Workflows automatisiert.\\
+    \textbf{Visual Direction:} Product UI Showcase. Ein stilisierter Datei-Explorer im Browser-Frame, der die Ordnerstruktur offenlegt.
+\end{slidebox}
+
+\begin{slidebox}{30}{Standard Operating Procedures (SOPs 01--03)}
+    \textbf{Sprecher:} Ralph Kindermann \\
+    \textbf{Ziel:} Prozesssicherheit und Skalierbarkeit belegen.\\
+    \textbf{Kernaussage:} Klare SOPs für Lead-Handling, Kunden-Onboarding und Case Studies sichern konstante Qualität.\\
+    \textbf{Visual Direction:} KPI Evidence. 3 Spalten mit scrollbaren Interaktions-Checklisten.
+\end{slidebox}
+
+\newpage
+\subsection{Teil 6: Yahya Yildirim -- Closing \& Tech Stack (Slides 31--32)}
+
+\begin{slidebox}{31}{Tech Stack \& Live Staging Deployment}
+    \textbf{Sprecher:} Yahya Yildirim \\
+    \textbf{Ziel:} Technologische Brillanz und Live-Status belegen.\\
+    \textbf{Kernaussage:} Mirrou läuft live auf modernstem Web-Stack in der GCP-EU-Region (staging unter firebaseapp/web.app).\\
+    \textbf{Visual Direction:} System Architecture. Das vollständige Cloud-Architekturdiagramm mit GCP- und Firebase-Diensten.
+\end{slidebox}
+
+\begin{slidebox}{32}{Closing Manifesto \& OMM SaaS Outlook}
+    \textbf{Sprecher:} Yahya Yildirim (Gemeinsam) \\
+    \textbf{Ziel:} Starker, einprägsamer Abschluss und Einladung zur Fragerunde.\\
+    \textbf{Kernaussage:} Mirrou beweist die Kraft von OMMs Systemen; der nächste Schritt ist der SaaS-Launch von Opus Magnum, LYGOX und Columna.\\
+    \textbf{Visual Direction:} Closing Manifesto. Großes, goldenes Mirrou/OMM-Doppel-Logo, links Kontaktdaten und QR-Code.
+\end{slidebox}
+
+% =========================================================================
+\section{Visual Asset Masterlist}
+% =========================================================================
+Die folgende Tabelle listet die wichtigsten visuellen Medien für die Produktion des Decks auf:
+
+\begin{table}[h]
+    \centering
+    \small
+    \begin{tabularx}{\textwidth}{l X l l}
+        \toprule
+        \textbf{Asset-Name} & \textbf{Zweck} & \textbf{Format} & \textbf{Priorität} \\
+        \midrule
+        \texttt{mirrou\_logo\_gold.svg} & Haupt-Brand-Vektor & SVG & Kritisch \\
+        \texttt{frontier\_firm\_layers.svg} & Frontier Firm System-Schichten & SVG & Kritisch \\
+        \texttt{case\_luminous\_aura.webp} & Serum Rendering (Marmor/Goldstaub) & WebP & Kritisch \\
+        \texttt{opus\_magnum\_cockpit.webp} & Operator Frontend Screenshot & WebP & Kritisch \\
+        \texttt{gcp\_architecture\_map.svg} & Frankfurt Cloud Run \& DB Schema & SVG & Wichtig \\
+        \texttt{rules\_engine\_dashboard.webp} & Rules Dashboard mit QFC & WebP & Wichtig \\
+        \texttt{compliance\_siegel.svg} & EU AI Act, C2PA, DSGVO-Siegel & SVG & Wichtig \\
+        \bottomrule
+    \end{tabularx}
+    \caption{Visual Asset Masterlist für die HTML-Produktion}
+\end{table}
+
+% =========================================================================
+\section{HTML Production Spec (Technische Anleitung)}
+% =========================================================================
+Die Präsentation wird als moderne Single-Page-Application (SPA) ohne schwerfällige Frameworks wie Reveal.js gebaut.
+
+\subsection{Verzeichnisstruktur}
+\begin{lstlisting}[language=bash]
+/presentation-deck
+├── index.html            # Hauptstruktur & Slides
+├── /css
+│   └── style.css         # Reset, Brand-Tokens, Layouts, Animations
+├── /js
+│   ├── deck.js           # Tastatursteuerung, Spotlight, Progress-Rail
+│   └── particles.js      # Canvas Staub-Effekt
+└── package.json          # Vite 6 Dev-Server Konfiguration
+\end{lstlisting}
+
+\subsection{State Management \& Keyboard-Navigation (Auszug)}
+\begin{lstlisting}[language=javascript]
+// js/deck.js
+let currentSlideIndex = 0;
+const slides = document.querySelectorAll('.slide');
+
+function showSlide(index) {
+  slides[currentSlideIndex].classList.remove('active');
+  slides[index].classList.add('active');
+  currentSlideIndex = index;
+  updateProgressRail();
+}
+
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'ArrowRight' || e.key === ' ') {
+    if (currentSlideIndex < slides.length - 1) showSlide(currentSlideIndex + 1);
+  } else if (e.key === 'ArrowLeft') {
+    if (currentSlideIndex > 0) showSlide(currentSlideIndex - 1);
+  }
+});
+\end{lstlisting}
+
+\newpage
+% =========================================================================
+\section{Live Demo Strategy}
+% =========================================================================
+Wir planen genau 3 Demos an strategisch wichtigen Stellen ein, um den ``Realer-Build-Charakter'' zu beweisen:
+
+\begin{enumerate}
+    \item \textbf{Demo 1: Olha -- Hybrid Production Workflow (nach Folie 15):}
+    \begin{itemize}
+        \item \textit{Was:} 90-Sekunden Live-Photoshop-Composing eines Serum-Flakons auf einem per Midjourney generierten Goldstaub-Hintergrund.
+        \item \textit{Fallback:} Vorab aufgezeichnetes Zeitraffer-Video (MP4), eingebettet als HTML5-Player.
+    \end{itemize}
+    
+    \item \textbf{Demo 2: Denys -- Ads Manager Testing Matrix (nach Folie 23):}
+    \begin{itemize}
+        \item \textit{Was:} Live-Ansicht der Google Ads / Meta Rules Engine und Looker Studio.
+        \item \textit{Fallback:} Interaktiver HTML-Mock-Screenshot mit Tooltips im Deck.
+    \end{itemize}
+    
+    \item \textbf{Demo 3: Yahya -- Live Lead-Bridge (nach Folie 31):}
+    \begin{itemize}
+        \item \textit{Was:} Ausfüllen des Kontaktformulars auf \texttt{mirrou.studio} $\rightarrow$ E2E-Empfang im Cockpit von \textit{Opus Magnum} auf Cloud Run $\rightarrow$ Persistierung in Firestore EU.
+        \item \textit{Fallback:} Localhost-Mock-Server, aktivierbar via Tastaturshortcut \texttt{Ctrl+Shift+D}.
+    \end{itemize}
+\end{enumerate}
+
+% =========================================================================
+\section{Speaking Choreography (Sprecher-Führung)}
+% =========================================================================
+Die Übergänge sind so choreografiert, dass kein abgehackter Fluss entsteht:
+\begin{itemize}
+    \item \textbf{Yahya $\rightarrow$ Ralph (Folie 6 zu 7):} \\
+    Yahya: \textit{``... Ralph, wie multiplizieren wir unsere menschliche Arbeitskraft auf dieser Infrastruktur?''} \\
+    Ralph: \textit{``Vielen Dank, Yahya. Das Geheimnis liegt im Perfect-Twin-Prinzip...''}
+    
+    \item \textbf{Ralph $\rightarrow$ Olha (Folie 8 zu 9):} \\
+    Ralph: \textit{``... Olha, wie erwecken wir unsere Markenidentität visuell zum Leben?''} \\
+    Olha: \textit{``Vielen Dank, Ralph. Als Creative Director \& Performance Marketer ist meine Mission...''}
+    
+    \item \textbf{Olha $\rightarrow$ Denys (Folie 16 zu 17):} \\
+    Olha: \textit{``... Denys, wie messen und steuern wir diesen visuellen Output?''} \\
+    Denys: \textit{``Danke, Olha. Wo deine visuelle Exzellenz aufhört, beginnt mein Messsystem...''}
+    
+    \item \textbf{Denys $\rightarrow$ Ralph (Folie 24 zu 25):} \\
+    Denys: \textit{``... Ralph, wie fängt unser CRM diese Nachfrage ab?''} \\
+    Ralph: \textit{``Vielen Dank, Denys. Qualität entsteht durch Wiederholbarkeit...''}
+    
+    \item \textbf{Ralph $\rightarrow$ Yahya (Folie 30 zu 31):} \\
+    Ralph: \textit{``... Yahya, wie sieht unsere Cloud-Infrastruktur aus?''} \\
+    Yahya: \textit{``Danke, Ralph. Um dieses komplexe Zusammenspiel zu hosten...''}
+\end{itemize}
+
+\newpage
+% =========================================================================
+\section{System URL Registry}
+% =========================================================================
+Hier sind die autoritativen URLs des Gesamtsystems:
+
+\begin{itemize}
+    \item \textbf{GitHub Website Repo:} \href{https://github.com/yoyo967/mirrou-creative-studio}{github.com/yoyo967/mirrou-creative-studio}
+    \item \textbf{GitHub OMM OS Repo:} \href{https://github.com/yoyo967/Opus-Magnum-Media-Porject-OS}{github.com/yoyo967/Opus-Magnum-Media-Porject-OS}
+    \item \textbf{Firebase Hosting Staging:} \href{https://studio-4188712377-b3681.web.app}{studio-4188712377-b3681.web.app}
+    \item \textbf{Produktions-Domain:} \href{https://mirrou.studio}{mirrou.studio} (DNS IONOS ausstehend)
+    \item \textbf{OMM Cockpit Frontend:} \href{https://opus-magnum-media-v3-923137317598.europe-west3.run.app}{opus-magnum-media-v3-923137317598.europe-west3.run.app}
+    \item \textbf{OMM Backend API:} \href{https://opus-magnum-ai-backend-923137317598.europe-west3.run.app}{opus-magnum-ai-backend-923137317598.europe-west3.run.app}
+    \item \textbf{LinkedIn Mirrou Studio:} \href{https://www.linkedin.com/company/mirrou-studio/}{linkedin.com/company/mirrou-studio}
+    \item \textbf{LinkedIn OMM:} \href{https://www.linkedin.com/company/omm-opus-magnum-media/}{linkedin.com/company/omm-opus-magnum-media}
+    \item \textbf{Instagram Mirrou Studio:} \href{https://www.instagram.com/mirrou.studio/}{instagram.com/mirrou.studio}
+    \item \textbf{Facebook Mirrou Studio:} \href{https://www.facebook.com/profile.php?id=61589455194800}{facebook.com/profile.php?id=61589455194800}
+    \item \textbf{Firebase Console:} \href{https://console.firebase.google.com/project/studio-4188712377-b3681/overview}{console.firebase.google.com/.../studio-4188712377-b3681}
+\end{itemize}
+
+\end{document}
